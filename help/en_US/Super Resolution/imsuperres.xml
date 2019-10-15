@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imsuperres.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imsuperres" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imsuperres</refname>
+    <refpurpose>Super Resolution with Image Sequences</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imsuperres(imvec)
+   imout = imsuperres(imvec,params)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>params :</term>
+      <listitem><para> A structure which consist of following fields, could be created with imsuperres_params</para></listitem></varlistentry>
+   <varlistentry><term>rfactor :</term>
+      <listitem><para> Magnification factor. The default is 4.</para></listitem></varlistentry>
+   <varlistentry><term>iter :</term>
+      <listitem><para> Number of iteration. The default is 50.</para></listitem></varlistentry>
+   <varlistentry><term>beta1 :</term>
+      <listitem><para>  Asymptotic value of steepest descent method. The default is 1.3</para></listitem></varlistentry>
+   <varlistentry><term>lambda :</term>
+      <listitem><para> Weight parameter to balance data term and smoothness term. The default is 0.03</para></listitem></varlistentry>
+   <varlistentry><term>alpha :</term>
+      <listitem><para> Perform wave effect correction. The default is 0.7. btv kernel size is 7.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imsuperres using image sequences to produce higher resolution image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = list();
+S(1) = imread(fullpath(getIPCVpath() + "/images/superres/input001.png"));
+S(2) = imread(fullpath(getIPCVpath() + "/images/superres/input002.png"));
+S(3) = imread(fullpath(getIPCVpath() + "/images/superres/input003.png"));
+S(4) = imread(fullpath(getIPCVpath() + "/images/superres/input004.png"));
+S(5) = imread(fullpath(getIPCVpath() + "/images/superres/input005.png"));
+S(6) = imread(fullpath(getIPCVpath() + "/images/superres/input006.png"));
+S(7) = imread(fullpath(getIPCVpath() + "/images/superres/input007.png"));
+S(8) = imread(fullpath(getIPCVpath() + "/images/superres/input008.png"));
+S(9) = imread(fullpath(getIPCVpath() + "/images/superres/input009.png"));
+S(10) = imread(fullpath(getIPCVpath() + "/images/superres/input010.png"));
+St  = imsuperres(S);
+subplot(221);imshow(S(1));title("Original Image 1 of 10");
+subplot(222);imshow(S(2));title("Original Image 2 of 10");
+subplot(223);imshow(S(3));title("Original Image 3 of 10");
+subplot(224);imshow(St);title("Super Resolution");
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imsuperres_params">imsuperres_params</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

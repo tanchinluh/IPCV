@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rgb2gray.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rgb2gray" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rgb2gray</refname>
+    <refpurpose>Convert RGB images to gray images</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   G = rgb2gray(RGB)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
+   <varlistentry><term>G :</term>
+      <listitem><para> Output image, a gray image which dimension is M x N and has the same data type as RGB .</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+rgb2gry convert RGB images to gray scale images using G = 0.299*R + 0.587*G + 0.114*B.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+G = rgb2gray(RGB);
+imshow(G);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="im2bw">im2bw</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

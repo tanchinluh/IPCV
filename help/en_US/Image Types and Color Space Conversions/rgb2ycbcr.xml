@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rgb2ycbcr.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rgb2ycbcr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rgb2ycbcr</refname>
+    <refpurpose>Convert a RGB image to the equivalent YCbCr image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   YCC = rgb2ycbcr(RGB)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
+   <varlistentry><term>YCC :</term>
+      <listitem><para> Output image, which has the same size as RGB and type of double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+rgb2ycbcr convert a RGB image to the equivalent HSV image using:
+   </para>
+   <para>
+Y = 0.299*R + 0.587*G + 0.114*B
+   </para>
+   <para>
+Cb = (B-Y)*0.564 + 0.5
+   </para>
+   <para>
+Cr = (R-Y)*0.713 + 0.5
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE. If RGB is not a double image, it will be converted to double image first in the procedure.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+YCC = rgb2ycbcr(RGB);
+RGB = ycbcr2rgb(YCC);
+imshow(RGB);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="rgb2hsv">rgb2hsv</link></member>
+   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
+   <member><link linkend="rgb2ntsc">rgb2ntsc</link></member>
+   <member><link linkend="ntsc2rgb">ntsc2rgb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

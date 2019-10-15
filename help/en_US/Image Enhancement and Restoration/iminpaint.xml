@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from iminpaint.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="iminpaint" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>iminpaint</refname>
+    <refpurpose>Restores the selected region in an image using the region neighborhood</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = iminpaint(imin,mask,rad,method)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Input Image</para></listitem></varlistentry>
+   <varlistentry><term>mask :</term>
+      <listitem><para> Input mask</para></listitem></varlistentry>
+   <varlistentry><term>rad :</term>
+      <listitem><para> Radius of a circular neighborhood of each point inpainted that is considered by the algorithm</para></listitem></varlistentry>
+   <varlistentry><term>method :</term>
+      <listitem><para> Inpainting method that could be either 0 --&gt; Navier-Stokes based method or 1 --&gt; Method by Alexandru Telea</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Output Image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function reconstructs the selected image area from the pixel near the area boundary.
+The function may be used to remove dust and scratches from a scanned photo, or to remove undesirable objects from still images or video.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+mask = imroi(S);
+imout = iminpaint(S,mask,1,1);
+imshow(S);
+figure(); imshow(imout);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imroi">imroi</link></member>
+   <member><link linkend="imroifilt">imroifilt</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. http://en.wikipedia.org/wiki/Inpainting</para>
+</refsection>
+</refentry>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from avifile.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="avifile" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>avifile</refname>
+    <refpurpose>Create a new video file to write.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   n = avifile(filename, dims)
+   n = avifile(filename, dims, fps)
+   n = avifile(filename, dims, fps, fourcc)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>filename :</term>
+            <listitem><para> A string, the video filename to be created.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>dims :</term>
+            <listitem><para> A 1x2 vector, which indicates the frame size (width, height).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fps :</term>
+            <listitem><para> Frame per second.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fourcc :</term>
+            <listitem><para> 4-character code of codec used to compress the frames.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>For e.g.:</term>
+            <listitem><para> 'xvid', 'mjpg', 'pim1', 'mp42', 'divx','flv1', etc.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>Under windows:</term>
+            <listitem><para> </para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> A number, the opened video file index.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+   </para>
+   <para>
+In order to use certain codec, the codec must be installed.
+   </para>
+   <para>
+For e.g., xvid required xvid codec (http://www.xvid.org) while the mpg required ffdshow codec. (http://www.free-codecs.com/ffdshow_download.htm)
+avifile create a new video file.
+   </para>
+   <para>
+After the video file is created, addframe can be used to add frame to the file. Remember to close the opened file using aviclose(n) or avicloseall().
+   </para>
+   <para>
+Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+n = avifile('baboon.avi', [300;300], 30,'xvid');
+
+for ii=1:200
+ims = im(ii:512-ii, ii:512-ii, :);
+aviaddframe(n, ims);
+end
+
+aviclose(n);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="avifile">avifile</link></member>
+   <member><link linkend="aviopen">aviopen</link></member>
+   <member><link linkend="aviaddframe">aviaddframe</link></member>
+   <member><link linkend="aviclose">aviclose</link></member>
+   <member><link linkend="avicloseall">avicloseall</link></member>
+   <member><link linkend="avilistopened">avilistopened</link></member>
+   <member><link linkend="avireadframe">avireadframe</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

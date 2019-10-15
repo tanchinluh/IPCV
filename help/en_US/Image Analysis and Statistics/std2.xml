@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from std2.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="std2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>std2</refname>
+    <refpurpose>Standard deviation of 2D matrix elements</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   s = std2(im)
+   s = stdev2(im)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> An matrix/image, which can be integer or double matrix, but must be one channel image.</para></listitem></varlistentry>
+   <varlistentry><term>s :</term>
+      <listitem><para> The standard deviation, a scalar of class double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+std2/stdev2 computes standard deviation of matrix im using stdev(im(:)).
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="mean2">mean2</link></member>
+   <member><link linkend="corr2">corr2</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rgb2ind.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rgb2ind" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rgb2ind</refname>
+    <refpurpose>Convert RGB image to index image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [imout,map] = rgb2ind(imin,n)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>inm :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>n :</term>
+      <listitem><para>  n levels for each color channel intensity</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Output indexed image</para></listitem></varlistentry>
+   <varlistentry><term>map :</term>
+      <listitem><para> Colormap</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+On input Im is a n1 x n2 x 3 hypermat describing a
+true color image  Im(i,j,:) giving the R-G-B of the
+pixel (i,j).
+On output A is a n1 x n2 matrix, A(i,j) given the
+index on the "true" color map of the (i,j) pixel.
+There are n levels for each color channel intensity
+(each intensity being given by an integer I between 0 and n-1)
+To the "color" R,G,B (R,G,B in [0,n-1]) must correspond the
+index k= R n^2 + G n + B + 1 of the table cmap of size n^3 x 3
+and cmap(k,:) =  [R/(n-1) G/(n-1) B/(n-1)]
+As the max size of a cmap in scilab is 2^16-2,
+n = 40 is the max possible (40^3 &lt;= 2^16 - 2 &lt; 41^3).
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
+[X,map] = rgb2ind(S,8);
+imshow(X,map);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="ind2rgb">ind2rgb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Ricardo Fabbri</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from avilistopened.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="avilistopened" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>avilistopened</refname>
+    <refpurpose>Show all opened video files.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   I=avilistopened()
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>I :</term>
+            <listitem><para> A vector, the opened video file/camera indices.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+avilistopenedlist all opened files and cameras.
+   </para>
+   <para>
+Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+n = aviopen(fullpath(getIPCVpath() + "/images/video.avi"));
+im = avireadframe(n); //get a frame
+imshow(im);
+avilistopened()
+aviclose(n);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="avifile">avifile</link></member>
+   <member><link linkend="aviopen">aviopen</link></member>
+   <member><link linkend="aviaddframe">aviaddframe</link></member>
+   <member><link linkend="aviclose">aviclose</link></member>
+   <member><link linkend="avicloseall">avicloseall</link></member>
+   <member><link linkend="avilistopened">avilistopened</link></member>
+   <member><link linkend="avireadframe">avireadframe</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

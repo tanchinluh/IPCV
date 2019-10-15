@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from dnn_readmodel.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="dnn_readmodel" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>dnn_readmodel</refname>
+    <refpurpose>Read/Import DNN model from disk</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   net = dnn_readmodel(model,modelinfo,modeltype);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>model :</term>
+            <listitem><para> Model binary (Caffe -&gt; .caffemodel file, TF -&gt; .pb file).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>modelinfo :</term>
+            <listitem><para> MOdel info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>modeltype :</term>
+            <listitem><para> Model type, currently support Caffe and Tensorflow model.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>net :</term>
+            <listitem><para> Loaded net with its' pointer and informations.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function is used for loading DNN model and used in Scilab for inference system.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+S = imread(dnn_path + '3.jpg');
+imshow(S);
+out = dnn_forward(net,~S,[28,28]);
+[maxV,maxI]=max(out);
+xnumb(10,10,maxI-1);
+e = gce();
+e.font_size = 10;
+e.font_color = 5;
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="dnn_readmodel">dnn_readmodel</link></member>
+   <member><link linkend="dnn_list">dnn_list</link></member>
+   <member><link linkend="dnn_unloadmodel">dnn_unloadmodel</link></member>
+   <member><link linkend="dnn_unloadallmodels">dnn_unloadallmodels</link></member>
+   <member><link linkend="dnn_forward">dnn_forward</link></member>
+   <member><link linkend="dnn_getparam">dnn_getparam</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>CL Tan - Trity Technologies.</member>
+   </simplelist>
+</refsection>
+</refentry>

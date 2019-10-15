@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from aviinfo.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="aviinfo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>aviinfo</refname>
+    <refpurpose>Retrieve video file information</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [frames,width,height,fps]=aviinfo(filename)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>filename :</term>
+            <listitem><para> Video filename.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>frames :</term>
+            <listitem><para> Total number of frames in the video.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>width :</term>
+            <listitem><para> Width of the frame.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>height :</term>
+            <listitem><para> Height of the frame.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fps :</term>
+            <listitem><para> Frame per second for the video.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+addframe add a frame to video file n.
+   </para>
+   <para>
+Retrieve video file information. This function return 4 important information for a video file to be used in other functions.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+[frames,width,height,fps]=aviinfo(fullpath(getIPCVpath() + "/images/video.avi"));
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="avifile">avifile</link></member>
+   <member><link linkend="aviopen">aviopen</link></member>
+   <member><link linkend="aviaddframe">aviaddframe</link></member>
+   <member><link linkend="aviclose">aviclose</link></member>
+   <member><link linkend="avicloseall">avicloseall</link></member>
+   <member><link linkend="avilistopened">avilistopened</link></member>
+   <member><link linkend="avireadframe">avireadframe</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imrects.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imrects" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imrects</refname>
+    <refpurpose>Draw Bounding Boxes on An Image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imrects(BB,rgb)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>BB :</term>
+      <listitem><para> Bounding Boxes, 4 by M, in which each column representing 1 box in [x,y,w,h].</para></listitem></varlistentry>
+   <varlistentry><term>rgb :</term>
+      <listitem><para> RGB values with value from 0 to 255 in [R,G,B] format</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function draw rectangles on the image using given bounding boxes paremeters.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+A = imread(fullpath(getIPCVpath() + "/images/coins.png"));
+Agray = rgb2gray(A);
+Abin = im2bw(Agray,imgraythresh(Agray));
+se = imcreatese('ellipse',15,15);
+A_close = imclose(~Abin,se);
+[A_labeled,n] = imlabel(A_close);
+[Area, BB] = imblobprop(A_labeled);
+imshow(A);
+imrects(BB,[255 0 0]);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imlabel">imlabel</link></member>
+   <member><link linkend="imblobprop">imblobprop</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from impixel.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="impixel" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>impixel</refname>
+    <refpurpose>Return selected pixel coordinates and values</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [xc,yc,pixval] = impixel(S);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>S :</term>
+      <listitem><para> Image matrix in Scilab</para></listitem></varlistentry>
+   <varlistentry><term>xc :</term>
+      <listitem><para> x-coordinates for the selected points</para></listitem></varlistentry>
+   <varlistentry><term>yc :</term>
+      <listitem><para> y-coordinates for the selected points</para></listitem></varlistentry>
+   <varlistentry><term>pixval :</term>
+      <listitem><para> Correspond pixels' values</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function provides interactive way to select the points on an image
+and returned with the locations and pixels values. Multiple points could
+be selected with left mouse click and the last point should be selected
+with the right mouse click.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/balloons.png"));
+impixel(S);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="improfile">improfile</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

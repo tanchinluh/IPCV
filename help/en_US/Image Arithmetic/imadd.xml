@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imadd.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imadd" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imadd</refname>
+    <refpurpose>Add two images or add a constant to an image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imadd(im1, im2)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im1 :</term>
+      <listitem><para> Input image.</para></listitem></varlistentry>
+   <varlistentry><term>im2 :</term>
+      <listitem><para> Input image with the same size and same class with im1 , or a double scalar.</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> The sum of im1 and im2 .</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+If im1 and im2 are images with the same size and same class, imadd adds each element in im1 to the corresponding one in im2. If im2 is a double scalar, the element in imout is the sum of the corresponding one in im1 with the double scalar. imout has the same size and class with im1.
+   </para>
+   <para>
+If im1 is an integer matrix, the elements in the output matrix imout that exceed the range of the integer type will be truncated.
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im1 = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+im2 = imread(fullpath(getIPCVpath() + "/images/peppers.png"));
+ims1 = imadd(im1, im2);
+ims2 = imadd(im1, 50);
+imshow(ims1);
+scf(); imshow(ims2);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imabsdiff">imabsdiff</link></member>
+   <member><link linkend="imsubtract">imsubtract</link></member>
+   <member><link linkend="immultiply">immultiply</link></member>
+   <member><link linkend="imdivide">imdivide</link></member>
+   <member><link linkend="imcomplement">imcomplement</link></member>
+   <member><link linkend="imlincomb">imlincomb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

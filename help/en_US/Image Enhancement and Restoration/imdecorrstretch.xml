@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdecorrstretch.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdecorrstretch" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdecorrstretch</refname>
+    <refpurpose>Apply decorrelation stretch to multichannel image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   S = imdecorrstretch(I, tol, useCorr)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>I :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>tol :</term>
+      <listitem><para>  The fraction of the image to saturate at low and high intensities. If tol is an scalar, high intensity is 1 - tol.</para></listitem></varlistentry>
+   <varlistentry><term>useCorr :</term>
+      <listitem><para> 1 to use correlation method, 0 to use covariance method.</para></listitem></varlistentry>
+   <varlistentry><term>S :</term>
+      <listitem><para> Stretched output image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The primary purpose of decorrelation stretch is visual enhancement. Decorrelation stretching is a way to enhance the color differences in an image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/" + 'baboon.png'));
+S2 = imdecorrstretch(S);
+subplot(121);imshow(S);
+subplot(122);imshow(S2);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imadjust">imadjust</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

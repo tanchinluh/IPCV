@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imadjust.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imadjust" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imadjust</refname>
+    <refpurpose>Adjust the intensity of an image from given source histogram range to the destination histogram range</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imadjust(imin,src,dest)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>src :</term>
+      <listitem><para> Source histogram range [min max]</para></listitem></varlistentry>
+   <varlistentry><term>dest :</term>
+      <listitem><para> destination histogram range [min max]</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Destination Image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function use to adjust the intensity of an image using histogram
+range method. The new image would be map into the new range with given
+min and max values
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+I = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+J = imadjust(I,[0 0.5],[0.5 1]);
+imshow(I)
+figure();imshow(J);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imhistequal">imhistequal</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

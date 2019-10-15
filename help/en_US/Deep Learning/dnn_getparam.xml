@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from dnn_getparam.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="dnn_getparam" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>dnn_getparam</refname>
+    <refpurpose>Get the layer's parameters</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   out = dnn_getparam(net,layer_name,numParam)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>net :</term>
+            <listitem><para> DNN object loaded in Scilab</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>layer_name :</term>
+            <listitem><para> Name for layer which output is needed to get</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>numParam :</term>
+            <listitem><para> index of the layer parameter in the layer</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>out :</term>
+            <listitem><para> Output matrix of the results depending on the type of DNN loaded.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function is used to retrieve the layer's parameters (filter coefficients)
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Initialize
+dnn_unloadallmodels
+dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+
+
+// Read Image
+S = imread(dnn_path + '3.jpg');
+
+// Forward Pass
+para1 = dnn_getparam(net,"conv2d/Conv2D");
+scf();dnn_showparam(para1);
+
+// Clean Up
+dnn_unloadallmodels();
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="dnn_readmodel">dnn_readmodel</link></member>
+   <member><link linkend="dnn_list">dnn_list</link></member>
+   <member><link linkend="dnn_unloadmodel">dnn_unloadmodel</link></member>
+   <member><link linkend="dnn_unloadallmodels">dnn_unloadallmodels</link></member>
+   <member><link linkend="dnn_forward">dnn_forward</link></member>
+   <member><link linkend="dnn_getparam">dnn_getparam</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>CL Tan - Trity Technologies.</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imselect.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imselect" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imselect</refname>
+    <refpurpose>Select points on an image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   pts = imselect(n [, bnd])
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>n :</term>
+      <listitem><para> Number of maximum points to select, or it could be less by using right click.</para></listitem></varlistentry>
+   <varlistentry><term>bnd :</term>
+      <listitem><para> optional 1x4 vector [xmin, ymin, xmax, ymax];</para></listitem></varlistentry>
+   <varlistentry><term>pts :</term>
+      <listitem><para> Selected points coordinates, axes coordinates returns.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function allows user to select the up to the maximum points specified in n,
+or the last points could be selected by using right click. The returned coordinates
+are in cartesian, which need to be manually converted to image coordinates if required.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
+imshow(S);
+pts = imselect(5);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcrop">imcrop</link></member>
+   <member><link linkend="imroi">imroi</link></member>
+   <member><link linkend="imcropm">imcropm</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

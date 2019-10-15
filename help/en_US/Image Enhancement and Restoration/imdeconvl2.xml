@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdeconvl2.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdeconvl2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdeconvl2</refname>
+    <refpurpose>Deconvolution with L2 Regularization</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdeconvl2(imin,psf,lambda)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>f :</term>
+      <listitem><para> Blur function</para></listitem></varlistentry>
+   <varlistentry><term>lamda :</term>
+      <listitem><para> Regularization parameter</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Deblurred Image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Deconvolution is obtained by dividing the Fourier transform of :
+<para><latex>$[f^\star(\omega) = \frac{\hat y(\omega)}{\hat h(\omega)} = \hat f_0(\omega) + \hat w(\omega)/{\hat h(\omega)}]$</latex>  </para>
+To avoid this explosion, we consider a simple regularization.
+<para><latex>$[f^{\star} = \text{argmin}_f \: \|y-\Phi f\|^2 + \lambda \|f\|^2]$</latex>  </para>
+Since the filtering is diagonalized over Fourier, the solution is simply computed over the Fourier domain as:
+<para><latex>$[\hat f^\star(\omega) = \frac{\hat y(\omega) \hat h(\omega)}{ \|\hat h(\omega)\|^2 + \lambda }]$</latex>  </para>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+S = im2double(S);
+h = fspecial('motion',25,45);
+S2 = imfilter(S,h,'circular');
+imshow(S2);
+S3 = imdeconvl2(S2,h,0);
+figure;imshow(S3);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imdeconvsobolev">imdeconvsobolev</link></member>
+   <member><link linkend="imdeconvwiener">imdeconvwiener</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. Advanced Signal, Image and Surface Processing, Ceremade, Université Paris-Dauphine</para>
+</refsection>
+</refentry>

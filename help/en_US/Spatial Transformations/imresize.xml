@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imresize.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imresize" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imresize</refname>
+    <refpurpose>Resizes image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imresize(imin, scale)
+   imout = imresize(imin, scale, interp)
+   imout = imresize(imin, [mrows ncols])
+   imout = imresize(imin, [mrows ncols], interp)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> An image which will be resized.</para></listitem></varlistentry>
+   <varlistentry><term>scale :</term>
+      <listitem><para>The size of resized image is [width, height] x scale .</para></listitem></varlistentry>
+   <varlistentry><term>[mrows ncols] :</term>
+      <listitem><para> The size of resized image.</para></listitem></varlistentry>
+   <varlistentry><term>interp :</term>
+      <listitem><para> Interpolation method. The value of interp must be one of the follows:</para></listitem></varlistentry>
+   <varlistentry><term>1. 'nearest' :</term>
+      <listitem><para> nearest-neigbor interpolation (default value);</para></listitem></varlistentry>
+   <varlistentry><term>2. 'bilinear' :</term>
+      <listitem><para> bilinear interpolation;</para></listitem></varlistentry>
+   <varlistentry><term>3. 'bicubic' :</term>
+      <listitem><para> bicubic interpolation;</para></listitem></varlistentry>
+   <varlistentry><term>4. 'area' :</term>
+      <listitem><para> resampling using pixel area relation.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imresize resize the input image. When scale parameter is specified, the width and height of the image is resized in the same scale. There are four interpolation method can be used: nearest-neigbor, bilinear, bicubic and area methods. The default method is nearest-neigbor method.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+ima = imresize(im, 1.5);
+imb = imresize(im, 1.5, 'bilinear');
+imc = imresize(im, [100,200], 'bicubic');
+imshow(ima);scf();imshow(imb);scf();imshow(imc);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcrop">imcrop</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

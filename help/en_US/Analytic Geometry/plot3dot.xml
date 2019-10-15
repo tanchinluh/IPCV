@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from plot3dot.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="plot3dot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>plot3dot</refname>
+    <refpurpose>3-D Parametric plot for opoints</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   plot3dot(x,y,z)
+   plot3dot(x,y,z,mark_foreground,mark_style)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>x :</term>
+      <listitem><para> x data</para></listitem></varlistentry>
+   <varlistentry><term>y :</term>
+      <listitem><para> y data</para></listitem></varlistentry>
+   <varlistentry><term>z :</term>
+      <listitem><para> z data</para></listitem></varlistentry>
+   <varlistentry><term>mark_foreground :</term>
+      <listitem><para> marker color</para></listitem></varlistentry>
+   <varlistentry><term>mark_style :</term>
+      <listitem><para> marker style</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This is the function to visualize 3-D Parametric plot for opoints
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+x = rand(1:10);
+y = rand(1:10);
+z = rand(1:10);
+plot3dot(x,y,z)
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from dnn_showparamf3d.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="dnn_showparamf3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>dnn_showparamf3d</refname>
+    <refpurpose>Visualize the DNN parameters (filter) in frequency domain (3D)</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   dnn_showparamf3d(para_map,out_num,c)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>para_map :</term>
+            <listitem><para> Parameters to be visualized</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>out_num :</term>
+            <listitem><para> Number of filters to be shown</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>c :</term>
+            <listitem><para> Colormap for visualization</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function is used to visualize the DNN  parameters (filter) in 3D frequency domain
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Initialize
+dnn_unloadallmodels
+dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+
+
+// Read Image
+S = imread(dnn_path + '3.jpg');
+
+// Forward Pass
+para1 = dnn_getparam(net,"conv2d/Conv2D");
+scf();dnn_showparamf3d(para1);
+
+// Clean Up
+dnn_unloadallmodels();
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="dnn_showfeature">dnn_showfeature</link></member>
+   <member><link linkend="dnn_showparam">dnn_showparam</link></member>
+   <member><link linkend="dnn_showparamf2d">dnn_showparamf2d</link></member>
+   <member><link linkend="dnn_showparamf3d">dnn_showparamf3d</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>CL Tan - Trity Technologies.</member>
+   </simplelist>
+</refsection>
+</refentry>

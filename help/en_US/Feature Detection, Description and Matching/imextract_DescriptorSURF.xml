@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imextract_DescriptorSURF.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imextract_DescriptorSURF" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imextract_DescriptorSURF</refname>
+    <refpurpose>Computes the descriptors for a set of keypoints detected in an image  with SURF method.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   des = imextract_DescriptorSURF(im1,fobj1);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im1 :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>fobj1 :</term>
+      <listitem><para> Features</para></listitem></varlistentry>
+   <varlistentry><term>des :</term>
+      <listitem><para> Descriptors for the features</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function extracts the descriptors of an image's features with SURF method
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imcreatechecker(8,4,[1 0.5]);
+fobj = imdetect_SURF(S);
+imshow(S); plotfeature(fobj);
+des = imextract_DescriptorSURF(S,fobj);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imextract_DescriptorSIFT">imextract_DescriptorSIFT</link></member>
+   <member><link linkend="imextract_DescriptorSURF">imextract_DescriptorSURF</link></member>
+   <member><link linkend="imextract_DescriptorBRIEF">imextract_DescriptorBRIEF</link></member>
+   <member><link linkend="imextract_DescriptorBRISK">imextract_DescriptorBRISK</link></member>
+   <member><link linkend="imextract_DescriptorORB">imextract_DescriptorORB</link></member>
+   <member><link linkend="imextract_DescriptorFREAK">imextract_DescriptorFREAK</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 2.4 Online Documentation</para>
+</refsection>
+</refentry>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rgb2hsv.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rgb2hsv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rgb2hsv</refname>
+    <refpurpose>Convert a RGB image to the equivalent HSV image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   HSV = rgb2hsv(RGB)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> A RGB image (matrix), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
+   <varlistentry><term>HSV :</term>
+      <listitem><para> Output image, which has the same size and type as RGB.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+rgb2hsv convert a RGB image to the equivalent HSV image
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+HSV = rgb2hsv(RGB);
+RGB = hsv2rgb(HSV);
+imshow(RGB);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
+   <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
+   <member><link linkend="rgb2ntsc">rgb2ntsc</link></member>
+   <member><link linkend="ntsc2rgb">ntsc2rgb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

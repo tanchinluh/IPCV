@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdetect_MSER.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdetect_MSER" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdetect_MSER</refname>
+    <refpurpose>Detect features from an image with MSER algorithm</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   fobj = imdetect_MSER(im [,delta [,min_area [,max_area [,max_variation [,min_diversity [,max_evolution [,area_threshold [,min_margin [,edge_blur_size]]]]]]]]]);
+   
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>delta:</term>
+      <listitem><para> Compares (sizei - sizei-delta)/sizei-delta. Default value is 5.</para></listitem></varlistentry>
+   <varlistentry><term>min_area :</term>
+      <listitem><para> Prune the area which smaller than minArea. Default value is 60.</para></listitem></varlistentry>
+   <varlistentry><term>max_area :</term>
+      <listitem><para> Prune the area which bigger than maxArea. Default value is 14400.</para></listitem></varlistentry>
+   <varlistentry><term>max_variation :</term>
+      <listitem><para> Prune the area have simliar size to its children. Default value is 0.25.</para></listitem></varlistentry>
+   <varlistentry><term>min_diversity :</term>
+      <listitem><para> For color image, trace back to cut off mser with diversity less than min_diversity. Default value is 0.2.</para></listitem></varlistentry>
+   <varlistentry><term>max_evolution :</term>
+      <listitem><para> For color image, the evolution steps. Default value is 200.</para></listitem></varlistentry>
+   <varlistentry><term>area_threshold :</term>
+      <listitem><para> For color image, the area threshold to cause re-initialize. Default value is 1.01.</para></listitem></varlistentry>
+   <varlistentry><term>min_margin :</term>
+      <listitem><para> For color image, ignore too small margin. Default value is 0.003.</para></listitem></varlistentry>
+   <varlistentry><term>edge_blur_size :</term>
+      <listitem><para> For color image, the aperture size for edge blur. Default value is 5.</para></listitem></varlistentry>
+   <varlistentry><term>fobj :</term>
+      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
+   <varlistentry><term>type :</term>
+      <listitem><para> Type of features</para></listitem></varlistentry>
+   <varlistentry><term>n :</term>
+      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
+   <varlistentry><term>x :</term>
+      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
+   <varlistentry><term>y :</term>
+      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
+   <varlistentry><term>size :</term>
+      <listitem><para> Size of detected features</para></listitem></varlistentry>
+   <varlistentry><term>angle :</term>
+      <listitem><para> keypoint orientation</para></listitem></varlistentry>
+   <varlistentry><term>response :</term>
+      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
+   <varlistentry><term>octave :</term>
+      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
+   <varlistentry><term>class_id :</term>
+      <listitem><para> object id</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to detect the features of an image using MSER method
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imcreatechecker(8,8,[1 0.5]);
+fobj = imdetect_MSER(S,1);
+imshow(S); plotfeature(fobj);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>
+   <member><link linkend="imdetect_STAR">imdetect_STAR</link></member>
+   <member><link linkend="imdetect_SIFT">imdetect_SIFT</link></member>
+   <member><link linkend="imdetect_SURF">imdetect_SURF</link></member>
+   <member><link linkend="imdetect_ORB">imdetect_ORB</link></member>
+   <member><link linkend="imdetect_BRISK">imdetect_BRISK</link></member>
+   <member><link linkend="imdetect_MSER">imdetect_MSER</link></member>
+   <member><link linkend="imdetect_GFTT">imdetect_GFTT</link></member>
+   <member><link linkend="imdetect_HARRIS">imdetect_HARRIS</link></member>
+   <member><link linkend="imdetect_DENSE">imdetect_DENSE</link></member>
+   <member><link linkend="plotfeature">plotfeature</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 2.4 Online Documentation</para>
+</refsection>
+</refentry>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from mkfftfilter.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="mkfftfilter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>mkfftfilter</refname>
+    <refpurpose>Create frequency domain filter</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   h = mkfftfilter(image,name,rc1,rc2)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>image :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>name :</term>
+      <listitem><para> Filter name, a string, the name can be 'binary', 'butterworth1', 'butterworth2', 'exp', 'gauss', or 'trapeze'</para></listitem></varlistentry>
+   <varlistentry><term>rc1 :</term>
+      <listitem><para> 1st cut-off frequencies which set the filter characteristics, which is normalized to 0-1</para></listitem></varlistentry>
+   <varlistentry><term>rc2 :</term>
+      <listitem><para> 2nd cut-off frequencies which set the filter characteristics, which is normalized to 0-1</para></listitem></varlistentry>
+   <varlistentry><term>h :</term>
+      <listitem><para> A matrix with values between 0 and 1. These values can then be applied on the fft spectrum of an image.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function gives some popular filters to be applied on the spectrum (fft) of an image.
+The Fourier Transform gives informations about which frequencies are present in a signal (spectrum).
+A great property of the spectrum is that the original image can be reconstructed from it.
+Of course, modifications in the spectrum will result in a modified image,
+but spectrum modifications can be easier and more intuitive. A combination of several filters is possible.
+All these filters are cylindrical and act only on amplitude (not on phase).
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
+h = mkfftfilter(S,'gauss',0.1);
+S2 = fft2(im2double(S));
+S3 = S2.*fftshift(h);
+S4 = real(ifft(S3));
+imshow(S4);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfilter">imfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. "Optique: fondements et applications" J-P PEREZ 6e edition, Dunod</para>
+   <para>2. chap34: introduction au traitement numerique des images et a la couleur</para>
+</refsection>
+</refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rgb2ntsc.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rgb2ntsc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rgb2ntsc</refname>
+    <refpurpose>Convert a RGB image to the equivalent NTSC image YIQ.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   YIQ = rgb2ntsc(RGB)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
+   <varlistentry><term>YIQ :</term>
+      <listitem><para> Output image, which has the same size as RGB and type of double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+rgb2ntsc convert a RGB image to the equivalent NTSC image YIQ using:
+   </para>
+   <para>
+Y = 0.299*R + 0.587*G + 0.114*B
+   </para>
+   <para>
+I = 0.596*R - 0.274*G - 0.322*B
+   </para>
+   <para>
+Q = 0.212*R - 0.523*G - 0.311*B
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE. If RGB is not a double image, it will be converted to double image first in the procedure.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+YIQ = rgb2ntsc(RGB);
+RGB = ntsc2rgb(YIQ);
+imshow(RGB);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="rgb2hsv">rgb2hsv</link></member>
+   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
+   <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
+   <member><link linkend="ntsc2rgb">ntsc2rgb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Ricardo Fabbri</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imfuse.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imfuse" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imfuse</refname>
+    <refpurpose>Image fusion</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   y = imfuse(x1,x2,method,alpha);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>x1 :</term>
+      <listitem><para> First image</para></listitem></varlistentry>
+   <varlistentry><term>x2 :</term>
+      <listitem><para> Second image</para></listitem></varlistentry>
+   <varlistentry><term>method :</term>
+      <listitem><para> Fusion method, currently support 'colordiff', 'composite', 'diff','cascade', 'max' and 'min'</para></listitem></varlistentry>
+   <varlistentry><term>alpha :</term>
+      <listitem><para> ration for composite method</para></listitem></varlistentry>
+   <varlistentry><term>y :</term>
+      <listitem><para> Fused image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function combine 2 images together using different method.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+I1 = imread(fullpath(getIPCVpath() + "/images/lena.bmp"));
+I2 = imread(fullpath(getIPCVpath() + "/images/lena7030.bmp"));
+[S,TR,ROT,SC]=imphasecorr(I1,I2);
+y = imfuse(I1,S,'colordiff');
+imshow(y);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfeaturematch">imfeaturematch</link></member>
+   <member><link linkend="imtransform">imtransform</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

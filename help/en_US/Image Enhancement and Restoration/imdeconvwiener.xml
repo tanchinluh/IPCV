@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdeconvwiener.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdeconvwiener" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdeconvwiener</refname>
+    <refpurpose>Deconvolution with Wiener method</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdeconvl2(imin,psf,lambda)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>f :</term>
+      <listitem><para> Blur function</para></listitem></varlistentry>
+   <varlistentry><term>noisefct :</term>
+      <listitem><para> Noise Factor</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Deblurred Image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+In mathematics, Wiener deconvolution is an application of the Wiener filter
+to the noise problems inherent in deconvolution. It works in the frequency domain,
+attempting to minimize the impact of deconvoluted noise at frequencies which
+have a poor signal-to-noise ratio.
+The Wiener deconvolution method has widespread use in image deconvolution applications,
+as the frequency spectrum of most visual images is fairly well behaved and may be estimated easily.
+Wiener deconvolution is named after Norbert Wiener.
+The Wiener deconvolution filter provides such a g(t)
+The filter is most easily described in the frequency domain:
+<para><latex>$\ G(f) = \frac{H(f) S(f)}{ \|H(f)\|^2 S(f)+ N(f) }\$</latex></para>
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+S = im2double(S);
+h = fspecial('motion',25,45);
+S2 = imfilter(S,h,'circular');
+imshow(S2);
+S3 = imdeconvwiener(S2,h,0);
+figure;imshow(S3);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imdeconvl2">imdeconvl2</link></member>
+   <member><link linkend="imdeconvsobolev">imdeconvsobolev</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. Wikipedia : http://en.wikipedia.org/wiki/Wiener_deconvolution</para>
+   <para>2. OpenCV Example : http://gigadom.wordpress.com/category/opencv/</para>
+</refsection>
+</refentry>

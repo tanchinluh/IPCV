@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdetectobjects.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdetectobjects" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdetectobjects</refname>
+    <refpurpose>Detect Objects In an Image with Cascade Classification</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   r = imdetectobjects(S,cfn)
+   r = imdetectobjects(S,cfn,fac)
+   r = imdetectobjects(S,cfn,fac,minNB)
+   r = imdetectobjects(S,cfn,fac,minNB,minSz)
+   r = imdetectobjects(S,cfn,fac,minNB,minSz,maxSz)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>S :</term>
+      <listitem><para> Source image.</para></listitem></varlistentry>
+   <varlistentry><term>cfn :</term>
+      <listitem><para> Classifier file name, in xml format.</para></listitem></varlistentry>
+   <varlistentry><term>fac :</term>
+      <listitem><para> Parameter specifying how much the image size is reduced at each image scale. Default value is 1.1</para></listitem></varlistentry>
+   <varlistentry><term>minNB :</term>
+      <listitem><para> Parameter specifying how many neighbors each candidate rectangle should have to retain it. Default value is 3</para></listitem></varlistentry>
+   <varlistentry><term>minSz :</term>
+      <listitem><para> Minimum possible object size. Objects smaller than that are ignored. In [w h] format. Default value is [30 30]</para></listitem></varlistentry>
+   <varlistentry><term>maxSz :</term>
+      <listitem><para> Maximum possible object size. Objects larger than that are ignored. In [w h] format. Default value not set will be unlimited</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imdetectobjects Detects objects of different sizes in the input image. The detected objects are returned as a list of rectangles.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/people2.jpg"));
+cfn = fullpath(getIPCVpath() + "/demos/haarcascade_frontalface_alt.xml");
+r = imdetectobjects(S,cfn);
+imshow(S);
+imrects(r,[0 255 0]);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imrects">imrects</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

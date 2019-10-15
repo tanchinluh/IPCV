@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imtransform.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imtransform" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imtransform</refname>
+    <refpurpose>Image affine transformation</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imtransform(imin,warpmat,tf_type, width,height)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>warpmat :</term>
+      <listitem><para> Affine transform matrix</para></listitem></varlistentry>
+   <varlistentry><term>tf_type :</term>
+      <listitem><para> Transformation type, affine or perspective</para></listitem></varlistentry>
+   <varlistentry><term>width :</term>
+      <listitem><para> Output image width</para></listitem></varlistentry>
+   <varlistentry><term>height :</term>
+      <listitem><para> Output image height</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Transformed Image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Applies an affine transformation or perspective transformation to an image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
+src = [261 412; 170 348; 213 282];
+tgt = [175 412; 170 308; 251 308];
+mat = imgettransform(src,tgt,'affine')
+S2 = imtransform(S,mat,'affine');
+imshow(S);
+figure();imshow(S2);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="warpmatselect">warpmatselect</link></member>
+   <member><link linkend="imrotate">imrotate</link></member>
+   <member><link linkend="imgettransform">imgettransform</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

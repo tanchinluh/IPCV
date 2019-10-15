@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imfilter.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imfilter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imfilter</refname>
+    <refpurpose>Image filtering</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imf = imfilter(im, F, bound, opsz)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> An image which will be filterd. The image can be UINT8, INT8, UINT16, INT16, INT32, DOUBLE.</para></listitem></varlistentry>
+   <varlistentry><term>F :</term>
+      <listitem><para> A double 2D filter.</para></listitem></varlistentry>
+   <varlistentry><term>imf :</term>
+      <listitem><para> The filtered image which has the same dimension and class with im .</para></listitem></varlistentry>
+   <varlistentry><term>bound :</term>
+      <listitem><para> Type of boundary, values or keywords. Current supported type with keyword is 'circular'.</para></listitem></varlistentry>
+   <varlistentry><term>opsz :</term>
+      <listitem><para> Output image size, either 'full' or 'same'.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imfilter filters an image im with filter F. When im is a mult-channel image, each channel can be filtered with F seperately. Input image pixel values outside the bounds of the image are assumed to equal the nearest array border value.
+   </para>
+   <para>
+The only diffence of filter2 with imfilter is the output of filter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+filter = fspecial('sobel');
+imf = imfilter(im, filter);
+imshow(imf);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="fspecial">fspecial</link></member>
+   <member><link linkend="filter2">filter2</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

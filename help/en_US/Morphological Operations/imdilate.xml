@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdilate.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdilate" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdilate</refname>
+    <refpurpose>Image dilation</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdilate(imin,se)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>se :</term>
+      <listitem><para> Structure element</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Output image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function dilates the source image using the specified structuring element
+that determines the shape of a pixel neighborhood over which the maximum is taken.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+a = zeros(10,10);
+a(4:7,4:7) = 1;
+se = imcreatese('rect',3,3);
+b = imdilate(a,se);
+disp(b);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcreatese">imcreatese</link></member>
+   <member><link linkend="imdilate">imdilate</link></member>
+   <member><link linkend="imerode">imerode</link></member>
+   <member><link linkend="imopen">imopen</link></member>
+   <member><link linkend="imclose">imclose</link></member>
+   <member><link linkend="imgradient">imgradient</link></member>
+   <member><link linkend="imtophat">imtophat</link></member>
+   <member><link linkend="imblackhat">imblackhat</link></member>
+   <member><link linkend="imhitmiss">imhitmiss</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from immatch_BruteForce.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="immatch_BruteForce" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>immatch_BruteForce</refname>
+    <refpurpose>Brute-force matcher for features matching.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   m = immatch_BruteForce(des1,des2,normType);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>des1 :</term>
+      <listitem><para> First descriptor</para></listitem></varlistentry>
+   <varlistentry><term>des2 :</term>
+      <listitem><para> Second descriptor</para></listitem></varlistentry>
+   <varlistentry><term>normType :</term>
+      <listitem><para> One of NORM_L1, NORM_L2, NORM_HAMMING, NORM_HAMMING2. L1 and L2 norms are preferable choices for SIFT and SURF descriptors, NORM_HAMMING should be used with ORB, BRISK and BRIEF, NORM_HAMMING2 should be used with ORB when WTA_K==3 or 4 (see ORB::ORB constructor description).</para></listitem></varlistentry>
+   <varlistentry><term>m :</term>
+      <listitem><para> Mathching matrix</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to Brute-force matcher to match the given descriptors.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Read the image and rotate it by 45 degrees
+S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+S2 = imrotate(S,45);
+// Use the ORB to detect features
+f1 = imdetect_ORB(S)
+f2 = imdetect_ORB(S2)
+// Extract the descriptor
+d1 = imextract_DescriptorORB(S,f1);
+d2 = imextract_DescriptorORB(S2,f2);
+// Feature matching
+m = immatch_BruteForce(d1,d2,4)
+// Find the 10 best matches
+[fout1,fout2,mout] = imbestmatches(f1,f2,m,10);
+// Draw the matches
+SS = imdrawmatches(S,S2,fout1,fout2,mout);
+// Show the comparison
+imshow(SS);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imbestmatches">imbestmatches</link></member>
+   <member><link linkend="imdrawmatches">imdrawmatches</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 2.4 Online Documentation</para>
+</refsection>
+</refentry>

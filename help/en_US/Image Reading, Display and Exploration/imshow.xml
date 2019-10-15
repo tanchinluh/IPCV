@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imshow.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imshow" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imshow</refname>
+    <refpurpose>Display image in graphic window</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imshow(im)
+   imshow(im, varargin)
+   imshow(im, [colormap, outopt, handle])
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>varargin (colormap):</term>
+      <listitem><para> Colormap for the image, defined in Nx3 matrix</para></listitem></varlistentry>
+   <varlistentry><term>varargin (outopt) :</term>
+      <listitem><para> Output options, 0 for Scilab graphics, 1 for uicontrol, 2 for tcl/tk</para></listitem></varlistentry>
+   <varlistentry><term>varargin (handle) :</term>
+      <listitem><para> Handle for which the image will shown</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Show images in different types, double (0-1), uint8(0-255), binary, and others supported image datatype.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+imshow(im);
+f = scf();
+imshow(im, 1);
+if with_tk() then
+imshow(im, 2);
+end
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imread">imread</link></member>
+   <member><link linkend="imwrite">imwrite</link></member>
+   <member><link linkend="imfinfo">imfinfo</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Allan CORNET</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

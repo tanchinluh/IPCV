@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from camread.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="camread" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>camread</refname>
+    <refpurpose>Grabs and returns a frame from a camera</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   im = camread(n)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> The opened video file/camera index.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> The returned frame/image. If no frame, return 0.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+camread grabs and returns a frame from a camera.
+   </para>
+   <para>
+Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+n = camopen(0);
+sleep(200);
+im = camread(n); //get a frame
+imshow(im);
+camcloseall();
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="camclose">camclose</link></member>
+   <member><link linkend="camcloseall">camcloseall</link></member>
+   <member><link linkend="camlistopened">camlistopened</link></member>
+   <member><link linkend="camopen">camopen</link></member>
+   <member><link linkend="camread">camread</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

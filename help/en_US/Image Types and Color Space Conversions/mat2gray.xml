@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from mat2gray.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="mat2gray" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>mat2gray</refname>
+    <refpurpose>Convert matrix to grayscale image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   G = mat2gray(M)
+   G = mat2gray(M, [mmin, mmax])
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>M :</term>
+      <listitem><para> An matrix/image.</para></listitem></varlistentry>
+   <varlistentry><term>[mmin, mmax] :</term>
+      <listitem><para> [mmin, mmax] is the values in M that correspond to 0.0 and 1.0 in G . The elements in M which is lower than mmin will be converted to 0.0 , and greater than mmax will be converted to 1.0 .</para></listitem></varlistentry>
+   <varlistentry><term>G :</term>
+      <listitem><para> A double precision matrix/image which data value in the range [0,1].</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+mat2gray(M,[mmin, mmax]) converts the matrix M to the double precision image. The output matrix contains values in the range [0.0, 1.0]. mmin and mmax are the values in M that correspond to 0.0 and 1.0 in the output image.
+   </para>
+   <para>
+When [mmin, mmax] is not specified, minimum and maximum of M are the values in M that correspond to 0.0 and 1.0 in the output image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+M = [0:10;0:10];
+I = mat2gray(M);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="im2bw">im2bw</link></member>
+   <member><link linkend="im2uint8">im2uint8</link></member>
+   <member><link linkend="im2int8">im2int8</link></member>
+   <member><link linkend="im2uint16">im2uint16</link></member>
+   <member><link linkend="im2int16">im2int16</link></member>
+   <member><link linkend="im2int32">im2int32</link></member>
+   <member><link linkend="im2double">im2double</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

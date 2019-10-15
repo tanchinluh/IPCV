@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from plotfeature.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="plotfeature" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>plotfeature</refname>
+    <refpurpose>Plot the features detected by feature detectors</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   plotfeature(fobj [,ind]);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ind :</term>
+            <listitem><para> Index to which feature to be plotted</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to plot the features detected by feature detector
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imcreatechecker(8,8,[1 0.5]);
+fobj = imdetect_ORB(S);
+imshow(S); plotfeature(fobj);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>
+   <member><link linkend="imdetect_STAR">imdetect_STAR</link></member>
+   <member><link linkend="imdetect_SIFT">imdetect_SIFT</link></member>
+   <member><link linkend="imdetect_SURF">imdetect_SURF</link></member>
+   <member><link linkend="imdetect_ORB">imdetect_ORB</link></member>
+   <member><link linkend="imdetect_BRISK">imdetect_BRISK</link></member>
+   <member><link linkend="imdetect_MSER">imdetect_MSER</link></member>
+   <member><link linkend="imdetect_GFTT">imdetect_GFTT</link></member>
+   <member><link linkend="imdetect_HARRIS">imdetect_HARRIS</link></member>
+   <member><link linkend="imdetect_DENSE">imdetect_DENSE</link></member>
+   <member><link linkend="plotfeature">plotfeature</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

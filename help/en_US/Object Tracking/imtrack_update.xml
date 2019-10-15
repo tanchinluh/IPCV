@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imtrack_update.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imtrack_update" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imtrack_update</refname>
+    <refpurpose>Update Tracker</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   rect = imtrack_update(ptr_track, im)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>ptr_track :</term>
+            <listitem><para> Tracker object pointer</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image or frame</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rect :</term>
+            <listitem><para> Updated rectangle of the object being tracked</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function is used to update the location of the tracked object
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+n = aviopen(fullpath(getIPCVpath() + "/images/video.avi"));
+
+S1 = avireadframe(n,1);
+S2 = avireadframe(n,5);
+S3 = avireadframe(n,10);
+S4 = avireadframe(n,15);
+
+rec = [136 49 38 24]';
+subplot(221);imshow(S1);imrects(rec,[0 255 0]);title('Frame 1');
+
+tracker = imtrack_init(S1,rec,"CSRT");
+
+rec2 = imtrack_update(tracker,S2);
+subplot(222);imshow(S2);imrects(rec2,[0 255 0]);title('Frame 5');
+
+rec3 = imtrack_update(tracker,S3);
+subplot(223);imshow(S3);imrects(rec3,[0 255 0]);title('Frame 10');
+
+rec4 = imtrack_update(tracker,S4);
+subplot(224);imshow(S4);imrects(rec4,[0 255 0]);title('Frame 15');
+
+imtrack_unloadall();
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imtrack_init">imtrack_init</link></member>
+   <member><link linkend="imtrack_unloadall">imtrack_unloadall</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>CL Tan - Bytecode (formally Trity Technologies)</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from edge.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="edge" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>edge</refname>
+    <refpurpose>Find edges in a single channel image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   E = edge(im, method)
+   E = edge(im, method, thresh)
+   E = edge(im, method, thresh, direction)
+   E = edge(im, method, thresh, sigma)
+   [E, thresh] = edge(im, method, ...)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> Input image which must be a single channel image.</para></listitem></varlistentry>
+   <varlistentry><term>method :</term>
+      <listitem><para> may be 'sobel'(default), 'prewitt', 'log', 'fftderiv' or 'canny'. Other methods will appear in the future.</para></listitem></varlistentry>
+   <varlistentry><term>thresh :</term>
+      <listitem><para> sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, E , will have the un-thresholded gradient image.</para></listitem></varlistentry>
+   <varlistentry><term>direction :</term>
+      <listitem><para> may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient.</para></listitem></varlistentry>
+   <varlistentry><term>sigma :</term>
+      <listitem><para> Controls the ammount of high-frequency attenuation in some methods (only the 'fftderiv' method uses this parameter). This can be used to obtain different levels of detail and to filter out high-frequency noise.</para></listitem></varlistentry>
+   <varlistentry><term>E :</term>
+      <listitem><para> edge image which is boolean matrix and has the same size as im . If thresh&lt;0 , E is a double un-thresholded image.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function edge performs edge detection on a grayscale intensity image. The user may set the method, the threshold level, the direction of the edge detection, etc.
+   </para>
+   <para>
+E=edge(im, 'sobel', thresh, direction)
+Detects edges in im , using the sobel gradient estimator.
+   </para>
+   <para>
+E=edge(im, 'prewitt', thresh, direction)
+Detects edges in im , using the prewitt gradient estimator.
+   </para>
+   <para>
+E=edge(im, 'log', thresh, sigma)
+Detects edges in im , using the the Laplacian of Gaussian method. sigma is the standard deviation of the LoG filter and the size of the LoG filter is nxn, where n = ceil(sigma*3)*2+1. The default value for sigma is 2.
+   </para>
+   <para>
+E=edge(im, 'fftderiv', thresh, direction, sigma)
+Detects edges in im , using the FFT gradient method, default sigma 1.0
+   </para>
+   <para>
+E=edge(im, 'canny', thresh, sigma)
+Detects edges in im , using Canny method. thresh is a two-element vector, in which the fist element is the low threshold and the seond one is the high threshold. If thresh is a scalar, the low threshold is 0.4*thresh and the high one is thresh . Besides, thresh can not be negative scalar. sigma is the Aperture parameter for canny operator, which must be 1, 3, 5 or 7. default thresh 0.2; default sigma 3.
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+im = rgb2gray(im);
+E = edge(im, 'sobel');
+imshow(E);
+
+E = edge(im, 'canny', [0.06, 0.2]);
+imshow(E);
+
+E = edge(im, 'prewitt');
+imshow(mat2gray(E));
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="fspecial">fspecial</link></member>
+   <member><link linkend="imfilter">imfilter</link></member>
+   <member><link linkend="filter2">filter2</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu (SIVP)</member>
+   <member>Ricardo Fabbri (SIP)</member>
+   <member>Tan Chin Luh (IPCV)</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from ntsc2rgb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="ntsc2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>ntsc2rgb</refname>
+    <refpurpose>Convert a NTSC image to the equivalent RGB image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   RGB = ntsc2rgb(YIQ)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>YIQ :</term>
+      <listitem><para> A NTSC image (hypermat). The dimension of NTSC should be M x N x 3 , the type should be double and the element value range should be [0,1].</para></listitem></varlistentry>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> Output image, which has the same size as NTSC and type of double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+ntsc2rgb convert a NTSC image to the equivalent RGB image using:
+   </para>
+   <para>
+R = Y + 0.956*I + 0.621*Q
+   </para>
+   <para>
+G = Y - 0.272*I - 0.647*Q
+   </para>
+   <para>
+B = Y - 1.105*I - 1.702*Q
+   </para>
+   <para>
+Supported classe: DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+YIQ = rgb2ntsc(RGB);
+RGB = ntsc2rgb(YIQ);
+imshow(RGB);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="rgb2hsv">rgb2hsv</link></member>
+   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
+   <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
+   <member><link linkend="rgb2ntsc">rgb2ntsc</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Ricardo Fabbri</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

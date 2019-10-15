@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imconvexHull.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imconvexHull" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imconvexHull</refname>
+    <refpurpose>Finds the convex hull of a point set.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   H = imconvexHull(pts)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>pts :</term>
+            <listitem><para> Input 2D point set.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>H :</term>
+            <listitem><para> Output convexhull</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The functions find the convex hull of a 2D point set using the Sklansky's algorithm.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/hand.jpg"));
+Sbw = im2bw(~S,0.5);
+imshow(Sbw);
+Sc = imfindContours(Sbw);
+[A, BB, ctr] = imblobprop(Sc);
+[maxV,maxI] = max(A);
+[row,col] = find(Sc==maxI);
+[cart_x,cart_y] = sub2cartesian(size(Sc), row,col);
+SS = [(cart_x)',(cart_y)'];
+H = imconvexHull(SS);
+sz = size(S);
+plot(cart_x,cart_y,'.');
+Hd = double(H);
+plot(Hd(:,1),Hd(:,2),'r');
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfindContours">imfindContours</link></member>
+   <member><link linkend="imdrawContours">imdrawContours</link></member>
+   <member><link linkend="imconvexHull">imconvexHull</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 2.4 Online Documentation</para>
+</refsection>
+</refentry>

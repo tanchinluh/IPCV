@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imcolproc.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imcolproc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imcolproc</refname>
+    <refpurpose>Sliding block processing for an image, with vectorization</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   y = imblockproc(x,blk,func)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>x :</term>
+      <listitem><para> Source Image</para></listitem></varlistentry>
+   <varlistentry><term>blk :</term>
+      <listitem><para> Block size [m,n]</para></listitem></varlistentry>
+   <varlistentry><term>func :</term>
+      <listitem><para> A function name which provide the processing function. The fucntion</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function is block processing function with sliding blocks, with each
+sliding blocks converted to column matrix for faster performance.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+A = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+deff('y=myfunc(x)','y = mean(x,1)');
+y = imcolproc(A,[9 9],'myfunc');
+imshow(y);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imblockproc">imblockproc</link></member>
+   <member><link linkend="imblockslide">imblockslide</link></member>
+   <member><link linkend="im2col">im2col</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

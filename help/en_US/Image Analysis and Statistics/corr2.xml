@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from corr2.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="corr2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>corr2</refname>
+    <refpurpose>2D correlation coefficient</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   c = corr2(imA, imB)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imA, imB :</term>
+      <listitem><para> imA and imB are 2D matrices of the same size.</para></listitem></varlistentry>
+   <varlistentry><term>c :</term>
+      <listitem><para> Correlation coefficient, a scalar of class double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+corr2 computes correlation coefficient of two 2D matrices imA and imB.
+c = sum( (imA-mA).*(imB-mB) / sqrt(sum((imA-mA).^2) * sum((imB-mB).^2))
+mA=mean2(imA) and mB=mean2(imB)
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="mean2">mean2</link></member>
+   <member><link linkend="std2">std2</link></member>
+   <member><link linkend="stdev2">stdev2</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh. Modified from the original work of Shiqi Yu</member>
+   </simplelist>
+</refsection>
+</refentry>

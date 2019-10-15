@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdrawmatches.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdrawmatches" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdrawmatches</refname>
+    <refpurpose>Draw matching result for 2 images</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdrawmatches(im1,im2,fobj1,fobj2,m);
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im1 :</term>
+      <listitem><para> First input image</para></listitem></varlistentry>
+   <varlistentry><term>im2 :</term>
+      <listitem><para> Second input image</para></listitem></varlistentry>
+   <varlistentry><term>fobj1 :</term>
+      <listitem><para> First feature object</para></listitem></varlistentry>
+   <varlistentry><term>fobj2 :</term>
+      <listitem><para> Second feature object</para></listitem></varlistentry>
+   <varlistentry><term>m :</term>
+      <listitem><para> Matching matrix</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Output matching image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to draw matching result for 2 images with the features object and matching matrix provided.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Read the image and rotate it by 45 degrees
+S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+S2 = imrotate(S,45);
+// Use the ORB to detect features
+f1 = imdetect_ORB(S)
+f2 = imdetect_ORB(S2)
+// Extract the descriptor
+d1 = imextract_DescriptorORB(S,f1);
+d2 = imextract_DescriptorORB(S2,f2);
+// Feature matching
+m = immatch_BruteForce(d1,d2,4)
+// Find the 10 best matches
+[fout1,fout2,mout] = imbestmatches(f1,f2,m,10);
+// Draw the matches
+SS = imdrawmatches(S,S2,fout1,fout2,mout);
+// Show the comparison
+imshow(SS);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="immatch_Brute">immatch_Brute</link></member>
+   <member><link linkend="imbestmatches">imbestmatches</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

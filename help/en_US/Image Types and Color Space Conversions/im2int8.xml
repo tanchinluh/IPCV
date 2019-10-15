@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from im2int8.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="im2int8" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>im2int8</refname>
+    <refpurpose>Convert image to 8-bit signed integers</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   im2 = im2int8(im)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> An matrix/image, which can be ANY image supported by IPCV.</para></listitem></varlistentry>
+   <varlistentry><term>im2 :</term>
+      <listitem><para> Output image, an 8-bit signed integer matrix.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+im2int8 convert intensity or RGB images to 8-bit signed integers. If the input is of class int8, the output image is identical to it. Otherwise, im2int8 rescales or offsets the data, and returns the equivalent image of class int8.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="im2bw">im2bw</link></member>
+   <member><link linkend="im2uint8">im2uint8</link></member>
+   <member><link linkend="im2uint16">im2uint16</link></member>
+   <member><link linkend="im2int16">im2int16</link></member>
+   <member><link linkend="im2int32">im2int32</link></member>
+   <member><link linkend="im2double">im2double</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

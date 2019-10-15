@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from bwborder.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="bwborder" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>bwborder</refname>
+    <refpurpose>Find border for an image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   outm = bwborder(inm, conn)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>inm :</term>
+      <listitem><para> Source Image (must be in binary)</para></listitem></varlistentry>
+   <varlistentry><term>conn :</term>
+      <listitem><para> 4 or 8 neighbourhood</para></listitem></varlistentry>
+   <varlistentry><term>outm :</term>
+      <listitem><para> Output image (in double)</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Extracts contours from binary images, by detecting which pixel valued 1 has
+at least one neighbor valued 0. conn is 4 or 8 dependig if the detection is to
+be made in 4 or 8-neighborhood. The final border is 8-connected if
+4-neighbors are used, and 4-connected if 8-neighbors are used.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+inm = imread(fullpath(getIPCVpath() + "/images/big_sq.png"));
+outm = bwborder(im2bw(inm,0.5), 4);
+imshow(outm);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="edge">edge</link></member>
+   <member><link linkend="im2bw">im2bw</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh. Modified from the original work of Ricardo Fabbri</member>
+   </simplelist>
+</refsection>
+</refentry>

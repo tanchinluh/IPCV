@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdrawcontours.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdrawcontours" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdrawcontours</refname>
+    <refpurpose>Draw contours from the contour image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   So = imdrawcontour(Sc)
+   So = imdrawcontour(Sc,colormap)
+   So = imdrawcontour(Sc,colormap,thickness)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>Sc :</term>
+            <listitem><para> Input contour image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>colormap :</term>
+            <listitem><para> Colormap used to draw the contour</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>thickness :</term>
+            <listitem><para> Thickness of the contours</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>So :</term>
+            <listitem><para> Output contours in RGB</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to draw the contours in RGB, with colormap and thickness.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+Sbw = im2bw(S,0.5);
+Sc = imfindContours(Sbw);
+So = imdrawContours(Sc);
+imshow(So);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfindContours">imfindContours</link></member>
+   <member><link linkend="imdrawContours">imdrawContours</link></member>
+   <member><link linkend="imconvexHull">imconvexHull</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 2.4 Online Documentation</para>
+</refsection>
+</refentry>

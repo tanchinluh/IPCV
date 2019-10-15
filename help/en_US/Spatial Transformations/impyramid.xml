@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from impyramid.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="impyramid" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>impyramid</refname>
+    <refpurpose>Image pyramid reduction and expansion</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imresize(imin, direction)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> An image which will be downsampled or upsampled.</para></listitem></varlistentry>
+   <varlistentry><term>direction :</term>
+      <listitem><para> Can be 'reduce' or 'expand'. If direction is 'reduce', impyramid computes a Gaussian pyramid reduction of imin by one level. If direction is 'expand', impyramid computes a Gaussian pyramid expansion of imin by one level. Gaussian 5x5 filter is currently supported.</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> The output reduced or expanded image.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imout=impyramid(imin,direction) computes a Gaussian pyramid reduction or expasion of imin by one level. Direction can be 'reduce' or 'expand'. If imin is mxn and direction is 'reduce', then the size of imout is ceil(m/2)xceil(n/2). If direction is 'expand', then the size of imout is (2xm)x(2xn).
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+//Compute a four-level multiresolution pyramid of the 'lena' image.
+
+im0 = imread(fullpath(getIPCVpath() + "/images/" + 'baboon.png'));
+im1 = impyramid(im0, 'reduce');
+im2 = impyramid(im1, 'reduce');
+im3 = impyramid(im2, 'reduce');
+
+imshow(im0);
+imshow(im1);
+imshow(im2);
+imshow(im3);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imresize">imresize</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Jia Wu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from avireadframe.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="avireadframe" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>avireadframe</refname>
+    <refpurpose>Grabs and returns a frame from a opened video file or camera.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   im = avireadframe(n, fnum)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> The opened video file/camera index.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fnum :</term>
+            <listitem><para> Frame number, specify which frame to be retrived</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> The returned frame/image. If no frame, return 0.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+avireadframe grabs and returns a frame from an opened video file or camera. We could specified which frame to be retrived at the second input argument.
+   </para>
+   <para>
+Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+n = aviopen(fullpath(getIPCVpath() + "/images/video.avi"));
+im = avireadframe(n,100); //get a frame
+imshow(im);
+
+avilistopened()
+aviclose(n);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="avifile">avifile</link></member>
+   <member><link linkend="aviopen">aviopen</link></member>
+   <member><link linkend="aviaddframe">aviaddframe</link></member>
+   <member><link linkend="aviclose">aviclose</link></member>
+   <member><link linkend="avicloseall">avicloseall</link></member>
+   <member><link linkend="avilistopened">avilistopened</link></member>
+   <member><link linkend="avireadframe">avireadframe</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imcreatese.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imcreatese" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imcreatese</refname>
+    <refpurpose>Creating Structure Element for Morphological operation</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   se = imcreatese(setype,r,c)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>setype :</term>
+      <listitem><para> Type of structure element, currently support 'rect', 'ellipse' and 'cross'</para></listitem></varlistentry>
+   <varlistentry><term>r :</term>
+      <listitem><para> Number of rows</para></listitem></varlistentry>
+   <varlistentry><term>c :</term>
+      <listitem><para> Number of colomns</para></listitem></varlistentry>
+   <varlistentry><term>se :</term>
+      <listitem><para> Created structure element</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function constructs and returns the structuring element that can be
+further passed to any morphology filter. You can also construct an arbitrary
+mask yourself and use it as the structuring element
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+a = zeros(10,10);
+a(4:7,4:7) = 1;
+se = imcreatese('rect',3,3);
+b = imdilate(a,se);
+disp(b);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcreatese">imcreatese</link></member>
+   <member><link linkend="imdilate">imdilate</link></member>
+   <member><link linkend="imerode">imerode</link></member>
+   <member><link linkend="imopen">imopen</link></member>
+   <member><link linkend="imclose">imclose</link></member>
+   <member><link linkend="imgradient">imgradient</link></member>
+   <member><link linkend="imtophat">imtophat</link></member>
+   <member><link linkend="imblackhat">imblackhat</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

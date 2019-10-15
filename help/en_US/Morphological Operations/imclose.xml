@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imclose.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imclose" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imclose</refname>
+    <refpurpose>Image closing</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imclose(imin,se)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>imin :</term>
+      <listitem><para> Input image</para></listitem></varlistentry>
+   <varlistentry><term>se :</term>
+      <listitem><para> Structure element</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> Output image</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The function perform closing operation on the source image using the specified structuring element.
+This operation is same as obtained by the dilation of an image followed by an erosion.
+Useful to remove small holes.(it is assumed that the objects are bright on a dark foreground)
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/morpex.png"));
+se = imcreatese('ellipse',11,11);
+S2 = imclose(S,se);
+imshow(S2);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcreatese">imcreatese</link></member>
+   <member><link linkend="imdilate">imdilate</link></member>
+   <member><link linkend="imerode">imerode</link></member>
+   <member><link linkend="imopen">imopen</link></member>
+   <member><link linkend="imclose">imclose</link></member>
+   <member><link linkend="imgradient">imgradient</link></member>
+   <member><link linkend="imtophat">imtophat</link></member>
+   <member><link linkend="imblackhat">imblackhat</link></member>
+   <member><link linkend="imhitmiss">imhitmiss</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

@@ -1,0 +1,32 @@
+# no .a files
+*.a
+*.bin
+*.dll
+*.lib
+
+
+# but do track lib.a, even though you're ignoring .a files above
+#!lib.a
+lib
+
+loader.sce
+unloader.sce
+cleaner.sce
+cleaner_gateway.sce
+Makelib.mak
+gw_ipcv*
+
+# only ignore the TODO file in the current directory, not subdir/TODO
+#/TODO
+
+# ignore all files in the build/ directory
+Release/
+jar/
+2.0/
+
+
+# ignore doc/notes.txt, but not doc/server/arch.txt
+#doc/*.txt
+
+# ignore all .pdf files in the doc/ directory
+#doc/**/*.pdf

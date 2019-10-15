@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imcomplement.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imcomplement" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imcomplement</refname>
+    <refpurpose>Complement image</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imcomplement(im)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im :</term>
+      <listitem><para> Input image.</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> The complement image, which has the same size and class with im .</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imcomplement computes the complement image of im. In the output image imout, dark pixels become lighter and light pixels become darker.
+   </para>
+   <para>
+Supported classes: BOOLEAN, INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = [%F, %T];
+imcomplement(im)
+
+im = uint8([0, 50, 100; 150, 200, 250]);
+imcomplement(im)
+
+im = int8([-100, -50, 0; 50, 100, 150]);
+imcomplement(im)
+
+im = [0, 0.2, 0.4; 0.6, 0.8, 1.0];
+imcomplement(im)
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imabsdiff">imabsdiff</link></member>
+   <member><link linkend="imadd">imadd</link></member>
+   <member><link linkend="imsubtract">imsubtract</link></member>
+   <member><link linkend="immultiply">immultiply</link></member>
+   <member><link linkend="imdivide">imdivide</link></member>
+   <member><link linkend="imlincomb">imlincomb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

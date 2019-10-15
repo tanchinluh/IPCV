@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from im2movie.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="im2movie" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>im2movie</refname>
+    <refpurpose>Create movie from sequence of images</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   err = im2movie(mvfn,imfn,sz,fps,fourcc)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>mvfn :</term>
+      <listitem><para> Output moive filename</para></listitem></varlistentry>
+   <varlistentry><term>sz :</term>
+      <listitem><para> A 1x2 vector, which indicates the frame size (width, height).</para></listitem></varlistentry>
+   <varlistentry><term>fps :</term>
+      <listitem><para> Frame pre second</para></listitem></varlistentry>
+   <varlistentry><term>fourcc :</term>
+      <listitem><para> 4-character code of codec used to compress the frames</para></listitem></varlistentry>
+   <varlistentry><term>repeat :</term>
+      <listitem><para> How many times to repeat the sequence images</para></listitem></varlistentry>
+   <varlistentry><term>err :</term>
+      <listitem><para> Error message if any</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function convert sequence of images to movie with given setting.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+err = im2movie('test.avi',[1000 600],30,'xvid');
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="avifile">avifile</link></member>
+   <member><link linkend="addframe">addframe</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Copyright (C) 2012 - Trity Technologies.</member>
+   </simplelist>
+</refsection>
+</refentry>

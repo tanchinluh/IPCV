@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from ycbcr2rgb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="ycbcr2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>ycbcr2rgb</refname>
+    <refpurpose>Convert a YCbCr image to the equivalent RGB image.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   RGB = ycbcr2rgb(YCC)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>YCC :</term>
+      <listitem><para> A YCbCr image (hypermat). The dimension of YCbCr should be M x N x 3 , the type should be double and the element value range should be [0,1].</para></listitem></varlistentry>
+   <varlistentry><term>RGB :</term>
+      <listitem><para> Output image, which has the same size as YCC and type of double.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+ycbcr2rgb convert a RGB image to the equivalent YCbCr image using:
+   </para>
+   <para>
+R = Y + 1.403*(Cr - 0.5)
+   </para>
+   <para>
+G = Y - 0.344*(Cr - 0.5) - 0.714*(Cb - 0.5)
+   </para>
+   <para>
+B = Y + 1.773*(Cb - 0.5)
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+YCC = rgb2ycbcr(RGB);
+RGB = ycbcr2rgb(YCC);
+imshow(RGB);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="rgb2hsv">rgb2hsv</link></member>
+   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
+   <member><link linkend="rgb2ntsc">rgb2ntsc</link></member>
+   <member><link linkend="ntsc2rgb">ntsc2rgb</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

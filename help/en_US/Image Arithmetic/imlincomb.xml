@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imlincomb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imlincomb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imlincomb</refname>
+    <refpurpose>Linear combination of images</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imlincomb(k1, im1, k2, im2, ..., kn, imn)
+   imout = imlincomb(k1, im1, k2, im2, ..., kn, imn, K)
+   imout = imlincomb(..., output_class)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>im1, im2, ..., imn :</term>
+      <listitem><para> Input images with the same size and class.</para></listitem></varlistentry>
+   <varlistentry><term>k1, k2, ..., kn :</term>
+      <listitem><para> Double scalars.</para></listitem></varlistentry>
+   <varlistentry><term>K :</term>
+      <listitem><para> Offset, a double scalar.</para></listitem></varlistentry>
+   <varlistentry><term>output_class :</term>
+      <listitem><para> A string which specifies the output image class. The value of output_class can be 'int8', 'uint8', 'int16', 'uint16', 'int32' or 'constant'.</para></listitem></varlistentry>
+   <varlistentry><term>imout :</term>
+      <listitem><para> The linear combination of input images, which has the same size and class with input images or specified by output_class .</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imcomplement computes the linear combination of input images.
+   </para>
+   <para>
+imout = k1*im1 + k2*im2 + ... + kn*imn [+K]
+   </para>
+   <para>
+If imout is an integer matrix, the elements in the output matrix imout that exceed the range of the integer type will be truncated.
+   </para>
+   <para>
+Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im1 = uint8([0, 50, 100; 150, 200, 250]);
+im2 = uint8([1, 52, 103; 154, 205, 255]);
+imlincomb( 0.43, im1, 0.7, im2)
+imlincomb( 0.43, im1, 0.7, im2, 4)
+imlincomb( 0.43, im1, 0.7, im2, 4, 'int16')
+imlincomb( 0.43, im1, 0.7, im2, 4, 'constant')
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imabsdiff">imabsdiff</link></member>
+   <member><link linkend="imadd">imadd</link></member>
+   <member><link linkend="imsubtract">imsubtract</link></member>
+   <member><link linkend="immultiply">immultiply</link></member>
+   <member><link linkend="imdivide">imdivide</link></member>
+   <member><link linkend="imcomplement">imcomplement</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

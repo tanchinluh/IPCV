@@ -1,0 +1,30 @@
+//==============================================================================
+// Allan CORNET - 2012 - DIGITEO
+//
+// IPCV - Scilab Image Processing and Computer Vision toolbox
+// Copyright (C) 2017  Tan Chin Luh
+//==============================================================================
+// unit test imshow
+//==============================================================================
+
+S_rgb_uint8 = imread(getIPCVpath() + '/images/baboon.png');
+assert_checkequal(size(S_rgb_uint8), [512 512 3]);
+imshow(S_rgb_uint8);
+S_gray_uint8 = rgb2gray(S_rgb_uint8);
+imshow(S_gray_uint8);
+S_rgb_double = im2double(S_rgb_uint8);
+imshow(S_rgb_double);
+S_gray_double = rgb2gray(S_rgb_double);
+imshow(S_gray_double);
+S_binary = im2bw(S_gray_uint8,0.5);
+imshow(S_binary);
+S_rgb_int8 = im2int8(S_rgb_uint8);
+imshow(S_rgb_int8);
+S_rgb_int16 = im2int16(S_rgb_uint8);
+imshow(S_rgb_int16);
+S_rgb_int32 = im2int32(S_rgb_uint8);
+imshow(S_rgb_int32);
+[S_ind_double, map] = rgb2ind(S_rgb_double,8);
+
+
+//==============================================================================

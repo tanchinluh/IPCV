@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imgettransform.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imgettransform" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imgettransform</refname>
+    <refpurpose>Get transformation matrix from given source and destination points</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   mat = imgettransform(src,tgt)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>src :</term>
+      <listitem><para> Source points</para></listitem></varlistentry>
+   <varlistentry><term>tgt :</term>
+      <listitem><para> Target points</para></listitem></varlistentry>
+   <varlistentry><term>tf_type :</term>
+      <listitem><para> Transformation type, affine or perspective</para></listitem></varlistentry>
+   <varlistentry><term>mat :</term>
+      <listitem><para> Transformation matrix</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This functions create the transformation matrix for affine and perspective transform operation.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+src = [261 412; 170 348; 213 282];
+tgt = [175 412; 170 308; 251 308];
+mat = imgettransform(src,tgt,'affine')
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="warpmatselect">warpmatselect</link></member>
+   <member><link linkend="imtransform">imtransform</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

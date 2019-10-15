@@ -1,0 +1,119 @@
+//=============================================================================
+// IPCV - Scilab Image Processing and Computer Vision toolbox
+// Copyright (C) 2017  Tan Chin Luh
+//=============================================================================
+//
+function ipcvlib = startModule()
+
+    TOOLBOX_NAME  = "IPCV"
+    TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
+
+    mprintf("Start " + TOOLBOX_NAME + " 4.1 for Scilab 6.0\n");
+    mprintf(TOOLBOX_TITLE + "\n");
+    mprintf("2019 - Bytecode Malaysia\n");
+    //mprintf("Find more information at http://scilabipcv.tritytech.com \n");
+
+    if isdef("ipcvlib") then
+        warning(TOOLBOX_NAME + " library is already loaded");
+        return;
+    end
+
+    etc_tlbx  = get_absolute_file_path("IPCV.start");
+    etc_tlbx  = getshortpathname(etc_tlbx);
+    root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+    //Load  functions library
+    // =============================================================================
+    mprintf("\tLoad macros\n");
+    pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
+    ipcvlib = lib(pathmacros);
+
+    verboseMode = ilib_verbose();
+    ilib_verbose(0);
+
+    // load dependencies
+    // =============================================================================
+    // load dependencies on OpenCV 2.4.3
+    mprintf("\tLoad dependencies\n");
+    OPENCV_LIBS = ['opencv_world'];
+    //TORCH_LIBS = [''];
+
+    OPENCV_VERSION = "4.1.0"
+    bDepsLoaded = %t;
+    bNonfLoaded = %t;
+
+    if getos() == 'Windows' then // Windows
+        OPENCV_LIBS = OPENCV_LIBS + "410" ;
+        exec(etc_tlbx+'IPCV_windows.sci');
+        IPCV_windows(root_tlbx,OPENCV_LIBS);
+        //exec(etc_tlbx+'IPCV_windows_torch.sci');
+        //IPCV_windows_torch(root_tlbx,TORCH_LIBS);
+
+    elseif getos() == 'Darwin' // Mac        
+        exec(etc_tlbx+'IPCV_MacOS.sci');
+        IPCV_MacOS(root_tlbx,OPENCV_LIBS);
+
+    else // Linux
+        exec(etc_tlbx+'IPCV_linux.sci');
+        IPCV_linux(root_tlbx,OPENCV_LIBS);
+        //exec(etc_tlbx+'IPCV_linux_torch.sci');
+        //IPCV_linux_torch(root_tlbx,TORCH_LIBS);        
+    end
+
+
+    // load gateways
+    // =============================================================================
+    mprintf("\tLoad gateways\n");
+    try
+        exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
+    catch
+        err = lasterror();		
+        if grep(err,'GLIBCXX')
+            disp('');		
+            disp('------------------------------------------------------');
+            disp("Error : Different version of compiler detected, consider recompile the module by running the builder.sce.");
+            disp('');
+            disp("Pre-requisites for recompilation : OpenCV and OpenCV-nonfree.");
+            disp('');
+            disp(" Visit ""http://scilabipcv.tritytech.com/2017/03/17/installation-of-scilab-ipcv/"" for more details");
+            disp('');	
+            disp('------------------------------------------------------');
+        end
+        return;
+    end
+
+    ilib_verbose(verboseMode);
+
+    // Load and add help chapter
+    // =============================================================================
+    if or(getscilabmode() == ["NW";"STD"]) then
+        mprintf("\tLoad help\n");
+        path_addchapter = pathconvert(root_tlbx+"/jar");
+        if ( isdir(path_addchapter) <> [] ) then
+            add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
+        end
+    end
+
+    // Load demos
+    // =============================================================================
+    if or(getscilabmode() == ["NW";"STD"]) then
+        mprintf("\tLoad demos\n");
+        pathdemos = pathconvert(root_tlbx+"/demos/ipcv.dem.gateway.sce",%F,%T);
+        add_demo("IPCV",pathdemos);
+    end
+
+    ipcv_init(root_tlbx);
+
+endfunction
+// =============================================================================
+
+if isdef("ipcvlib") then
+    warning(" IPCV library is already loaded");
+    return;
+else
+    ipcvlib = startModule();
+    clear startModule; // remove startModule on stack
+
+end
+// =============================================================================
+
