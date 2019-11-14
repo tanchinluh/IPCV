@@ -25,8 +25,8 @@
 #include "Windows.h"
 /*--------------------------------------------------------------------------*/
 #if _WIN64
-#pragma comment(lib,"../../thirdparty/opencv/windows/x64/lib/opencv_world410.lib")
-#pragma comment(lib,"../../thirdparty/opencv/windows/x64/lib/opencv_img_hash410.lib")
+#pragma comment(lib,"../../thirdparty/opencv/windows/x64/lib/opencv_world412.lib")
+#pragma comment(lib,"../../thirdparty/opencv/windows/x64/lib/opencv_img_hash412.lib")
 #else
 #pragma comment(lib,"../../thirdparty/opencv/windows/x86/lib/opencv_world410.lib")
 #pragma comment(lib,"../../thirdparty/opencv/windows/x86/lib/opencv_img_hash410.lib")

@@ -8,7 +8,7 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.1 for Scilab 6.0\n");
+    mprintf("Start " + TOOLBOX_NAME + " 4.1.2 for Scilab 6.0\n");
     mprintf(TOOLBOX_TITLE + "\n");
     mprintf("2019 - Bytecode Malaysia\n");
     //mprintf("Find more information at http://scilabipcv.tritytech.com \n");
@@ -38,12 +38,12 @@ function ipcvlib = startModule()
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
 
-    OPENCV_VERSION = "4.1.0"
+    OPENCV_VERSION = "4.1.2"
     bDepsLoaded = %t;
     bNonfLoaded = %t;
 
     if getos() == 'Windows' then // Windows
-        OPENCV_LIBS = OPENCV_LIBS + "410" ;
+        OPENCV_LIBS = OPENCV_LIBS + "412" ;
         exec(etc_tlbx+'IPCV_windows.sci');
         IPCV_windows(root_tlbx,OPENCV_LIBS);
         //exec(etc_tlbx+'IPCV_windows_torch.sci');

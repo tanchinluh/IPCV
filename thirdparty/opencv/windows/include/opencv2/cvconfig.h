@@ -11,16 +11,16 @@
 /* #undef CV_DISABLE_OPTIMIZATION */
 
 /* Compile for 'real' NVIDIA GPU architectures */
-#define CUDA_ARCH_BIN " 30 35 37 50 52 60 61 70 75"
+#define CUDA_ARCH_BIN ""
 
 /* Create PTX or BIN for 1.0 compute capability */
 /* #undef CUDA_ARCH_BIN_OR_PTX_10 */
 
 /* NVIDIA GPU features are used */
-#define CUDA_ARCH_FEATURES " 30 35 37 50 52 60 61 70 75 75"
+#define CUDA_ARCH_FEATURES ""
 
 /* Compile for 'virtual' NVIDIA PTX architectures */
-#define CUDA_ARCH_PTX " 75"
+#define CUDA_ARCH_PTX ""
 
 /* AMD's Basic Linear Algebra Subprograms Library*/
 /* #undef HAVE_CLAMDBLAS */
@@ -34,14 +34,17 @@
 /* Cocoa API */
 /* #undef HAVE_COCOA */
 
-/* NVIDIA CUDA Basic Linear Algebra Subprograms (BLAS) API*/
-#define HAVE_CUBLAS
-
 /* NVIDIA CUDA Runtime API*/
-#define HAVE_CUDA
+/* #undef HAVE_CUDA */
+
+/* NVIDIA CUDA Basic Linear Algebra Subprograms (BLAS) API*/
+/* #undef HAVE_CUBLAS */
+
+/* NVIDIA CUDA Deep Neural Network (cuDNN) API*/
+/* #undef HAVE_CUDNN */
 
 /* NVIDIA CUDA Fast Fourier Transform (FFT) API*/
-#define HAVE_CUFFT
+/* #undef HAVE_CUFFT */
 
 /* DirectX */
 #define HAVE_DIRECTX
