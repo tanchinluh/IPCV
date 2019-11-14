@@ -123,7 +123,8 @@ extern ObjectTracker ObjTrack[MAX_TRACK_NUM];
 
 
 extern char sIPCV_PATH[MAX_FILENAME_LENGTH];
-
+extern "C"
+{
 // SIVP interface functions
 int IplImg2Mat(IplImage * pImage, int nPos);
 int Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
@@ -153,6 +154,8 @@ static void correctModel(cv::Mat &TRANS, cv::Mat &EMIS, cv::Mat &INIT);
 static void printPaths(const cv::Mat &PATHS,const cv::Mat &P, const int &t);
 static void printModel(const cv::Mat &TRANS,const cv::Mat &EMIS,const cv::Mat &INIT);
 
+
+
 // IPCV interface functions
 int matdata2scidata(Mat &pImage, void *pMatData);
 int scidata2matdata(Mat &pImage, void *pMatData);
@@ -177,8 +180,7 @@ int get_integer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 int get_string_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);
 int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);
 
-extern "C" 
-{
+
 //	int sci_int_dnnclassify2(char * fname,  void* pvApiCtx);
 //	int sci_int_mnist(char * fname, void* pvApiCtx);
 //	int sci_int_loadmnist(char * fname, void* pvApiCtx);
