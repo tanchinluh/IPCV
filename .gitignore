@@ -15,6 +15,7 @@ cleaner.sce
 cleaner_gateway.sce
 Makelib.mak
 gw_ipcv*
+libgw*
 
 # only ignore the TODO file in the current directory, not subdir/TODO
 #/TODO
