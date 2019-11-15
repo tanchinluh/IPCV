@@ -157,7 +157,7 @@ function builder_gateway_cpp()
 
         //inter_cflags = ilib_include_flag([OPENCV_INCLUDE,TORCH_INCLUDE, includes_src_cpp]);
         inter_cflags = ' -I'+OPENCV_INCLUDE;
-        inter_cflags =  inter_cflags + ' -D_GLIBCXX_USE_CXX11_ABI=0';   // This is for LIBTorch
+        //inter_cflags =  inter_cflags + ' -D_GLIBCXX_USE_CXX11_ABI=0';   // This is for LIBTorch 1.1 
         inter_ldflags = " -std=c++11";
         opencv_libs = [];
 

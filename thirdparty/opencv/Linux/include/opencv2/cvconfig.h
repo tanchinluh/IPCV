@@ -34,11 +34,14 @@
 /* Cocoa API */
 /* #undef HAVE_COCOA */
 
+/* NVIDIA CUDA Runtime API*/
+/* #undef HAVE_CUDA */
+
 /* NVIDIA CUDA Basic Linear Algebra Subprograms (BLAS) API*/
 /* #undef HAVE_CUBLAS */
 
-/* NVIDIA CUDA Runtime API*/
-/* #undef HAVE_CUDA */
+/* NVIDIA CUDA Deep Neural Network (cuDNN) API*/
+/* #undef HAVE_CUDNN */
 
 /* NVIDIA CUDA Fast Fourier Transform (FFT) API*/
 /* #undef HAVE_CUFFT */
@@ -51,16 +54,16 @@
 /* #undef HAVE_D3D9 */
 
 /* Eigen Matrix & Linear Algebra Library */
-/* #undef HAVE_EIGEN */
+#define HAVE_EIGEN
 
 /* Geospatial Data Abstraction Library */
 /* #undef HAVE_GDAL */
 
 /* GTK+ 2.0 Thread support */
-#define HAVE_GTHREAD
+/* #undef HAVE_GTHREAD */
 
 /* GTK+ 2.x toolkit */
-#define HAVE_GTK
+/* #undef HAVE_GTK */
 
 /* Halide support */
 /* #undef HAVE_HALIDE */
@@ -119,10 +122,10 @@
 #define HAVE_PTHREADS_PF
 
 /* Qt support */
-/* #undef HAVE_QT */
+#define HAVE_QT
 
 /* Qt OpenGL support */
-/* #undef HAVE_QT_OPENGL */
+#define HAVE_QT_OPENGL
 
 /* Intel Threading Building Blocks */
 /* #undef HAVE_TBB */
