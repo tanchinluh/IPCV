@@ -39,7 +39,8 @@ function main_builder();
 //  exec(toolbox_dir+"/src/getCUDA_VERSION.sci");
 //  exec(toolbox_dir+"/src/getNVCC_PATH.sci");
 //  getNVCC_PATH(toolbox_dir);
-  tbx_builder_src(toolbox_dir);
+//  tbx_builder_src(toolbox_dir);
+
   ///////////
   tbx_builder_gateway(toolbox_dir);
   tbx_builder_help(toolbox_dir);

@@ -52,7 +52,13 @@ function [xc,yc,pixval] = improfile(S,points)
     else
         xc = points(:,1); yc = points(:,2); cnt=3;
     end
-    
+
+    a=gca();
+    a.children // list the children of the axes.
+    // There are a compound made of two polylines and a legend
+    poly1= a.children(1).children(1); //store polyline handle into poly1
+    poly1.foreground = 3; // another way to change the style...
+
     [r,c] = size(S);
     //pixval = cell(cnt-1,1);
     yc = r+1-yc;

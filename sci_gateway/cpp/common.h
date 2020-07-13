@@ -189,6 +189,7 @@ int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 //	int sci_int_geotiffread(char * fname, void* pvApiCtx);
 //	int sci_int_gpu_conv(char * fname, void* pvApiCtx);
 //	int sci_int_test(char * fname, void* pvApiCtx);
+	int sci_int_imdist(char * fname, void* pvApiCtx);
 	int sci_int_tracker_init(char * fname, void* pvApiCtx);
 	int sci_int_tracker_update(char * fname, void* pvApiCtx);
 	int sci_int_tracker_unloadall(char * fname, void* pvApiCtx);

@@ -83,6 +83,10 @@ int sci_int_dnn_init(char * fname, void* pvApiCtx)
 			sciprint("Loading ONNX Model: %s\n", modelBin.c_str());
 			DeepNet[nCurrFile].net = dnn::readNetFromONNX(modelBin);
 			break; }
+		case 5: {
+			sciprint("Loading Torch Model: %s\n", modelBin.c_str());
+			DeepNet[nCurrFile].net = dnn::readNetFromTorch(modelBin);
+			break; }
 		}
 
 		//DeepNet[nCurrFile].net = dnn::readNet(modelBin, modelTxt);

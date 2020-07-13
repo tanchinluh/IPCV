@@ -60,6 +60,10 @@ Update OPENCV to 4.1, subsequence versioning will follow the OPENCV versionn num
 6. Remove unsupported functions by CV4
 7. RaspberryPi Ready. :)
 
-Version 4.1-dev (17-Juy-19):
+Version 4.1-2 (15-Nov-19):
 1. Change dnn_readmodel 4th options from torch to ONNX
 Affected files : dnn_readmodel.sci, int_dnn_init.cpp
+2. Update to OpenCV 4.1.2 engine
+3. Changes of extern C to prepare for the sciTorch integration
+
+

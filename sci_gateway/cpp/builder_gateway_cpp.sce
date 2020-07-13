@@ -165,13 +165,14 @@ function builder_gateway_cpp()
         all_libs = [];
 
     else // Windows
+
         THIRDPARTY_ROOT_PATH = fullpath(gw_cpp_path + "../../thirdparty");
         OPENCV_INCLUDE = fullpath(THIRDPARTY_ROOT_PATH + "/opencv/windows/include");
-        TORCH_INCLUDE = '';
+        // TORCH_INCLUDE = '';
         //        TORCH_INCLUDE = fullpath(gw_cpp_path + "../../thirdparty/libtorch/windows/include");
         //        TORCH2_INCLUDE = fullpath(gw_cpp_path + "../../thirdparty/libtorch/windows/include/torch/csrc/api/include");
 
-        inter_cflags = ilib_include_flag([OPENCV_INCLUDE,TORCH_INCLUDE, includes_src_cpp]); 
+        inter_cflags = ilib_include_flag([OPENCV_INCLUDE]); 
         
         inter_cflags = inter_cflags + " -std=c++11";
         inter_ldflags = "";

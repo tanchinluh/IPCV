@@ -41,7 +41,7 @@ function [A, BB, ctr] = imblobprop(imin)
     BB = zeros(4,n);
     ctr = zeros(2,n);    
     for cnt = 1:n
-        disp(cnt);
+        //disp(cnt);
         A(cnt) =  sum(imin==cnt);
         if A(cnt) == 0 then
             minx = 1;
