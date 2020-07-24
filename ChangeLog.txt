@@ -66,4 +66,9 @@ Affected files : dnn_readmodel.sci, int_dnn_init.cpp
 2. Update to OpenCV 4.1.2 engine
 3. Changes of extern C to prepare for the sciTorch integration
 
+Version 4.1.2.1 (Jun-20):
+1. Fix imrotate
 
+Version 4.1.2.2 (24-Jul-20):
+1. Add imreadmulti
+2. Add modes for imread

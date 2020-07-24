@@ -8,7 +8,7 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.1.2 for Scilab 6.0\n");
+    mprintf("Start " + TOOLBOX_NAME + " 4.1.2.2 for Scilab 6.0\n");
     mprintf(TOOLBOX_TITLE + "\n");
     mprintf("2019 - Bytecode Malaysia\n");
     //mprintf("Find more information at http://scilabipcv.tritytech.com \n");

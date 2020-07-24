@@ -5,7 +5,7 @@ Title: Image Processing and Computer Vision Toolbox for Scilab
 
 Summary: The useful, efficient, and powerful image processing and computer vision module for Scilab.
 
-Version: 4.1.2
+Version: 4.1.2.2
 
 Author: Tan Chin Luh 
 
@@ -25,6 +25,6 @@ ScilabVersion: >= 6.0
 
 Depends: 
 
-Date: 2019-11-15 12:00:007
+Date: 2020-07-24 12:00:007
 
 Description: IPCV is inspired by sivp (but totally independant), with more than 200 functions for image and computer vision.
