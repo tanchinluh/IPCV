@@ -2,11 +2,11 @@
 
 <!--
  *
- * This help file was generated from imread.sci using help_from_sci().
+ * This help file was generated from imreadmulti.sci using help_from_sci().
  *
  -->
 
-<refentry version="5.0-subset Scilab" xml:id="imread" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="imreadmulti" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,17 +16,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>imread</refname>
-    <refpurpose>Reads image file - Add modes support</refpurpose>
+    <refname>imreadmulti</refname>
+    <refpurpose>Reads multi pages image file</refpurpose>
   </refnamediv>
 
 
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   im = imread(filename)
-   im = imread(filename,modes)
-   im = imread(url)
+   im = imreadmulti(filename)
+   im = imreadmulti(filename,modes)
    
    </synopsis>
 </refsynopsisdiv>
@@ -35,8 +34,8 @@
    <title>Parameters</title>
    <variablelist>
         <varlistentry>
-            <term>filename,url :</term>
-            <listitem><para> A string, the image filename or a valid URL to be read. For the case of URL, the full syntax must be used. For example, "http://www.tritytech.com/images/phocagallery/roll8_ScilabIOT.png".</para></listitem>
+            <term>filename :</term>
+            <listitem><para> A string, the image filename to be read.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modes :</term>
@@ -52,13 +51,7 @@
 <refsection>
    <title>Description</title>
    <para>
-imread reads many types of image files into Scilab. The format of the file is inferred from the extension in the filename parameter. Currently the following file formats are supported:
-   </para>
-   <para>
-im = imread(filename)
-   </para>
-   <para>
-reads image in filename into im matrix. If filename contains a truecolor image, im is a MxNx3 hypermatrix, so for example im(:,:,1) stands for the red channel. For gray images, im is a MxNx1 unsigned char matrix.
+imreadmulti reads multi pages image files into Scilab as 4 dimentions matrix.
    </para>
    <para>
 </para>
@@ -67,8 +60,8 @@ reads image in filename into im matrix. If filename contains a truecolor image, 
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-im = imread(fullpath(getIPCVpath() + "/images/" + 'baboon.png'));
-imshow(im);
+im = imreadmulti(fullpath(getIPCVpath() + "/images/" + 'img_multipage.tiff'));
+imshow(im(:,:,:,1);
 
    ]]></programlisting>
 </refsection>
@@ -76,6 +69,7 @@ imshow(im);
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
+   <member><link linkend="imread">imread</link></member>
    <member><link linkend="imwrite">imwrite</link></member>
    <member><link linkend="imshow">imshow</link></member>
    <member><link linkend="imfinfo">imfinfo</link></member>

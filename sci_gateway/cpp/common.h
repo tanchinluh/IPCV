@@ -65,6 +65,7 @@
 #include <opencv2/photo.hpp>
 #include <opencv2/tracking.hpp>
 #include <opencv2/core/ocl.hpp>
+#include <opencv2/imgcodecs.hpp>
 
 //#ifdef HAVE_OPENCV_NONFREE
 //#endif
@@ -179,7 +180,8 @@ int get_bsparse_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 int get_integer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos, vector<Mat>& imgs, void* pvApiCtx);
 int get_string_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);
 int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);
-
+int SetImages(int nPos, vector<Mat>& new_img, void* pvApiCtx);
+int matvec2scihyper(vector<Mat> &pImage, void *pMatData);
 
 //	int sci_int_dnnclassify2(char * fname,  void* pvApiCtx);
 //	int sci_int_mnist(char * fname, void* pvApiCtx);

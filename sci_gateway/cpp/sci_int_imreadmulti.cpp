@@ -26,22 +26,22 @@
 
 extern "C" 
 {
-int sci_int_imread(char * fname,void* pvApiCtx);
+int sci_int_imreadmulti(char * fname,void* pvApiCtx);
 }
 
-int sci_int_imread(char * fname,void* pvApiCtx)
+int sci_int_imreadmulti(char * fname,void* pvApiCtx)
 {
 
 	char *pstName = NULL;
 	Mat pImage;
 
 	CheckInputArgument(pvApiCtx, 2, 2);
-	CheckOutputArgument(pvApiCtx, 1, 1);
-	
-	// First Input
+	CheckOutputArgument(pvApiCtx, 0, 1);
+
+	// First Input - Image filename
 	GetString(1, pstName,pvApiCtx);
-	
-	// Second Input
+
+	// Second Input - imread modes
 	SciErr sciErr;
 	int* piAddr = NULL;
 	sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
@@ -53,7 +53,7 @@ int sci_int_imread(char * fname,void* pvApiCtx)
 	///
 
 	int iRet = 0;
-	
+
 	unsigned char cData = 0;
 	iRet = getScalarUnsignedInteger8(pvApiCtx, piAddr, &cData);
 	if (iRet)
@@ -61,34 +61,18 @@ int sci_int_imread(char * fname,void* pvApiCtx)
 		return iRet;
 	}
 	//
-	////pImage = cvLoadImage(cstk(lR), CV_LOAD_IMAGE_ANYDEPTH|CV_LOAD_IMAGE_ANYCOLOR);
-	////pImage = imread(pstName,CV_LOAD_IMAGE_ANYDEPTH|CV_LOAD_IMAGE_ANYCOLOR);
-	
-	/*string str1(pstName);
 
-	if ((str1.find(str2) != std::string::npos))
-	{
-		pImage = imread(pstName, IMREAD_LOAD_GDAL | IMREAD_ANYDEPTH | IMREAD_ANYCOLOR);
-	}
-	else
-	{
-		pImage = imread(pstName, IMREAD_ANYDEPTH | IMREAD_ANYCOLOR);
-	}*/
-	pImage = imread(pstName, int(cData));
+	vector<Mat> mats;
+	imreadmulti(pstName, mats, int(cData));
 	
-	//pImage = imread(pstName,IMREAD_LOAD_GDAL|IMREAD_ANYDEPTH);
-
 	/* if load image failed */
-	if(!pImage.data)
+	if (mats.empty())
 	{
 		Scierror(999, "%s: Can not open file %s.\r\n", fname, pstName);
 		return -1;
 	}
 
-	//sciprint("r,c,dpt,ch : %i %i %i %i\n", pImage.rows, pImage.cols, pImage.depth(), pImage.channels());
-	SetImage(1,pImage,pvApiCtx);
-
-
+	SetImages(1, mats, pvApiCtx);
 
 
 	return 0;

@@ -520,6 +520,7 @@ int matdata2scidata(Mat &pImage, void *pMatData)
 	else
 	{
 		// 20190308 - Changed to for loop to cater N Dim Images
+		// 20200722 - Possible need to reverse the RGB
 		int i;
 		for (i = 0; i <pImage.channels(); i++) {
 			//memcpy(pDst, ch1[2].ptr(), rows*cols*nBytes);
@@ -1903,3 +1904,124 @@ int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 	return 0;
 }
 
+
+int SetImages(int nPos, vector<Mat>& new_img, void* pvApiCtx)
+{
+
+	int num_img = new_img.size();
+	int rows = new_img[0].rows;
+	int cols = new_img[0].cols;
+	int channels = new_img[0].channels();
+	int elemSize1 = new_img[0].elemSize1();  // ToDo : revisit the need of this in tiff
+	int ndims = 4;
+	int dims_var[4] = { rows,cols,channels,num_img};
+	int *dims;
+	dims = dims_var;
+	void * pMatData;
+	SciErr sciErr;
+
+	switch (new_img[0].depth())
+		
+	{
+	case CV_8U:
+	{
+		if (ndims >= 3)
+		{
+
+			pMatData = malloc(rows * cols * channels * num_img);
+			matvec2scihyper(new_img, pMatData);
+			sciErr = createHypermatOfUnsignedInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + nPos, dims, 4, (const unsigned char*)pMatData);
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+
+			AssignOutputVariable(pvApiCtx, nPos) = nbInputArgument(pvApiCtx) + nPos;
+		}
+
+		else
+		{
+			Scierror(999,"Currently only support Grayscale and RGB in multipages image\n");
+			return sciErr.iErr;
+		}
+
+	}
+	break;
+
+	default:
+		sciprint("Unknown type !\n"); // Should never happen
+	}
+
+	free(pMatData);
+	// new_img.release();
+
+	return 0;
+}
+
+
+int matvec2scihyper(vector<Mat> &pImage, void *pMatData)
+{
+
+	int rows, cols, channels, num_img;
+	long nCount = 0;
+	int nBytes;
+
+	unsigned char * pSrc = NULL;
+	unsigned char * pDst = NULL;
+
+	pDst = (unsigned char*)pMatData;
+	rows = pImage[0].rows;
+	cols = pImage[0].cols;
+	channels = pImage[0].channels();
+	num_img = pImage.size();
+	vector<Mat> ch1; // B, G, R channels
+	nBytes = pImage[0].elemSize1();
+
+	//memcpy(pDst + 0 * rows*cols*nBytes, ch1[2].ptr(), rows*cols*nBytes);
+	//memcpy(pDst + 1 * rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
+	//memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
+
+	//if (pImage.channels() == 1)
+	//{
+	//	memcpy(pDst, ch1[0].ptr(), rows*cols*nBytes);
+	//}
+	//else if (pImage.channels() == 3)
+	//{
+	//	memcpy(pDst + 0 * rows*cols*nBytes, ch1[2].ptr(), rows*cols*nBytes);
+	//	memcpy(pDst + 1 * rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
+	//	memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
+	//}
+
+	if (pImage[0].channels() == 1)
+	{
+		for (int i = 0; i < num_img; i++) {
+			split(pImage[i].t(), ch1);
+			for (int j = 0; j < channels; j++) {
+				memcpy(pDst + ((channels * i) + j) * rows*cols*nBytes, ch1[channels - j - 1].ptr(), rows*cols*nBytes);
+			}
+		}
+	}
+	else if (pImage[0].channels() == 3)
+	{
+		for (int i = 0; i < num_img; i++) {
+			split(pImage[i].t(), ch1);
+			for (int j = 0; j < channels; j++) {
+				memcpy(pDst + ((3 * i) + j) * rows*cols*nBytes, ch1[channels - j - 1].ptr(), rows*cols*nBytes);
+			}
+		}
+	}
+	else //(pImage.channels() == 4)
+	{
+		Scierror(999, ("%s: Currently only support Grayscale and RGB for multipages image.\n"), 1);
+		//memcpy(pDst + 0 * rows*cols*nBytes, ch1[2].ptr(), rows*cols*nBytes);
+		//memcpy(pDst + 1 * rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
+		//memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
+		//memcpy(pDst + 3 * rows*cols*nBytes, ch1[3].ptr(), rows*cols*nBytes);
+	}
+
+	// 20190308 - Changed to for loop to cater N Dim Images
+
+
+	return 0;
+}

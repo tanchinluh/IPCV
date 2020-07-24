@@ -12,8 +12,9 @@ current_path = get_absolute_file_path("genhelpscript_single.sce");
 path_macros = fullpath(current_path) + filesep();
 
 
-//p1Help = fullpath(current_path + '/../help/en_US/Image Reading, Display and Exploration');
-//help_from_sci(path_macros + 'imread.sci', p1Help);
+p1Help = fullpath(current_path + '/../help/en_US/Image Reading, Display and Exploration');
+help_from_sci(path_macros + 'imreadmulti.sci', p1Help);
+help_from_sci(path_macros + 'imread.sci', p1Help);
 //help_from_sci(path_macros + 'imshow.sci', p1Help);
 //help_from_sci(path_macros + 'imwrite.sci', p1Help);
 //help_from_comment(path_macros + 'imdisplay.sci', p1Help);
@@ -48,7 +49,7 @@ path_macros = fullpath(current_path) + filesep();
 //help_from_sci(path_macros + 'ind2rgb.sci', p2Help)
 //
 //// Generate for Utilities and Interactive Tools
-p3Help = fullpath(current_path + '/../help/en_US/Utilities and Interactive Tools');
+//p3Help = fullpath(current_path + '/../help/en_US/Utilities and Interactive Tools');
 //help_from_sci(path_macros + 'imroi.sci', p3Help);
 //help_from_sci(path_macros + 'imselect.sci', p3Help);
 //help_from_sci(path_macros + 'imrects.sci', p3Help);
@@ -61,7 +62,7 @@ p3Help = fullpath(current_path + '/../help/en_US/Utilities and Interactive Tools
 //help_from_sci(path_macros + 'imbreakunset.sci', p3Help);
 //help_from_sci(path_macros + 'impixelval.sci', p3Help);
 //help_from_sci(path_macros + 'rectangle.sci', p3Help);
-help_from_sci(path_macros + 'imchoose.sci', p3Help);
+//help_from_sci(path_macros + 'imchoose.sci', p3Help);
 //
 //// Generate for Spatial Transformations
 //p4Help = fullpath(current_path + '/../help/en_US/Spatial Transformations');
@@ -128,9 +129,9 @@ help_from_sci(path_macros + 'imchoose.sci', p3Help);
 //help_from_sci(path_macros + 'mkfftfilter.sci', p9Help);
 //
 //// Generate for Image Transforms
-p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
+//p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
 //help_from_sci(path_macros + 'imdct.sci', p10Help); 
-help_from_sci(path_macros + 'imidct.sci', p10Help);
+//help_from_sci(path_macros + 'imidct.sci', p10Help);
 //help_from_sci(path_macros + 'imradon.sci', p10Help);
 //help_from_sci(path_macros + 'imhough.sci', p10Help);
 //help_from_sci(path_macros + 'imhoughc.sci', p10Help);
@@ -167,16 +168,16 @@ help_from_sci(path_macros + 'imidct.sci', p10Help);
 //help_from_sci(path_macros + 'imcolproc.sci', p13Help);
 //
 //// Generate for Video Handling
-p14Help = fullpath(current_path + '/../help/en_US/Video Handling');
+//p14Help = fullpath(current_path + '/../help/en_US/Video Handling');
 //help_from_sci(path_macros + 'aviclose.sci', p14Help);
 //help_from_sci(path_macros + 'avicloseall.sci', p14Help);
-help_from_sci(path_macros + 'avireadframe.sci', p14Help);
+//help_from_sci(path_macros + 'avireadframe.sci', p14Help);
 //help_from_sci(path_macros + 'aviopen.sci', p14Help);
 //help_from_sci(path_macros + 'avifile.sci', p14Help);
 //help_from_sci(path_macros + 'aviaddframe.sci', p14Help);
 //help_from_sci(path_macros + 'addframe.sci', p14Help);
 //help_from_sci(path_macros + 'avilistopened.sci', p14Help);
-help_from_sci(path_macros + 'aviinfo.sci', p14Help);
+//help_from_sci(path_macros + 'aviinfo.sci', p14Help);
 //
 //// Generate for Camera Handling
 //p14bHelp = fullpath(current_path + '/../help/en_US/Camera Handling');
@@ -218,7 +219,7 @@ p17Help = fullpath(current_path + '/../help/en_US/Feature Detection, Description
 //help_from_sci(path_macros + 'immatch_BruteForce.sci', p17Help);
 //help_from_sci(path_macros + 'imdrawmatches.sci', p17Help);
 //help_from_sci(path_macros + 'imbestmatches.sci', p17Help);
-help_from_sci(path_macros + 'plotfeature.sci', p17Help);
+//help_from_sci(path_macros + 'plotfeature.sci', p17Help);
 ////help_from_sci(path_macros + 'grid2Ddata.sci', p16Help);
 
 //// Generate for Image Stitching
@@ -239,22 +240,22 @@ help_from_sci(path_macros + 'plotfeature.sci', p17Help);
 //help_from_sci(path_macros + 'imconvexHull.sci', p20Help);
 
 ////Deep Learning 
-p21Help = fullpath(current_path + '/../help/en_US/Deep Learning');
-help_from_sci(path_macros + 'dnn_getparam.sci', p21Help);
-help_from_sci(path_macros + 'dnn_forward.sci', p21Help);
-help_from_sci(path_macros + 'dnn_unloadallmodels.sci', p21Help);
-help_from_sci(path_macros + 'dnn_unloadmodel.sci', p21Help);
-help_from_sci(path_macros + 'dnn_list.sci', p21Help);
-help_from_sci(path_macros + 'dnn_readmodel.sci', p21Help);
-help_from_sci(path_macros + 'dnn_showfeature.sci', p21Help);
-help_from_sci(path_macros + 'dnn_showparam.sci', p21Help);
-help_from_sci(path_macros + 'dnn_showparamf2d.sci', p21Help);
-help_from_sci(path_macros + 'dnn_showparamf3d.sci', p21Help);
+//p21Help = fullpath(current_path + '/../help/en_US/Deep Learning');
+//help_from_sci(path_macros + 'dnn_getparam.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_forward.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_unloadallmodels.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_unloadmodel.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_list.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_readmodel.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_showfeature.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_showparam.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_showparamf2d.sci', p21Help);
+//help_from_sci(path_macros + 'dnn_showparamf3d.sci', p21Help);
 
 
 //Deep Learning 
-p22Help = fullpath(current_path + '/../help/en_US/Object Tracking');
-help_from_sci(path_macros + 'imtrack_init.sci', p22Help);
-help_from_sci(path_macros + 'imtrack_update.sci', p22Help);
-help_from_sci(path_macros + 'imtrack_unloadall.sci', p22Help);
+//p22Help = fullpath(current_path + '/../help/en_US/Object Tracking');
+//help_from_sci(path_macros + 'imtrack_init.sci', p22Help);
+//help_from_sci(path_macros + 'imtrack_update.sci', p22Help);
+//help_from_sci(path_macros + 'imtrack_unloadall.sci', p22Help);
 
