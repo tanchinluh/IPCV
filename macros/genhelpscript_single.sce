@@ -129,13 +129,15 @@ help_from_sci(path_macros + 'imread.sci', p1Help);
 //help_from_sci(path_macros + 'mkfftfilter.sci', p9Help);
 //
 //// Generate for Image Transforms
-//p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
+p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
 //help_from_sci(path_macros + 'imdct.sci', p10Help); 
 //help_from_sci(path_macros + 'imidct.sci', p10Help);
 //help_from_sci(path_macros + 'imradon.sci', p10Help);
 //help_from_sci(path_macros + 'imhough.sci', p10Help);
 //help_from_sci(path_macros + 'imhoughc.sci', p10Help);
 //help_from_sci(path_macros + 'imlogpolar.sci', p10Help);
+help_from_sci(path_macros + 'imdistransf.sci', p10Help);
+help_from_sci(path_macros + 'imwatershed.sci', p10Help);
 //
 //// Generate for Morphological Operations
 //p11Help = fullpath(current_path + '/../help/en_US/Morphological Operations');

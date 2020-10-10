@@ -287,5 +287,7 @@ int matvec2scihyper(vector<Mat> &pImage, void *pMatData);
 	int sci_int_imboundingRect(char * fname, void* pvApiCtx);
 	int sci_int_imfinfo(char *fname, void* pvApiCtx);
 	int sci_aviinfo(char *fname, void* pvApiCtx);
+	int sci_int_imdistransf(char * fname, void* pvApiCtx);
+	int sci_int_imwatershed(char * fname, void* pvApiCtx);
 }
 #endif

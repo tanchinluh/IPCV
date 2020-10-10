@@ -114,11 +114,13 @@
 </tocitem>
 <tocitem target="section_8adb84d26782c1d3a5d34be202e5d52c" text="Image Transforms">
 <tocitem target="imdct" text="imdct"/>
+<tocitem target="imdistransf" text="imdistransf"/>
 <tocitem target="imhough" text="imhough"/>
 <tocitem target="imhoughc" text="imhoughc"/>
 <tocitem target="imidct" text="imidct"/>
 <tocitem target="imlogpolar" text="imlogpolar"/>
 <tocitem target="imradon" text="imradon"/>
+<tocitem target="imwatershed" text="imwatershed"/>
 </tocitem>
 <tocitem target="section_4cd16036872803e658f06738c76a972f" text="Image Types and Color Space Conversions">
 <tocitem target="hsv2rgb" text="hsv2rgb"/>

@@ -24,7 +24,7 @@ libgw*
 Release/
 jar/
 2.0/
-
+**/testing
 
 # ignore doc/notes.txt, but not doc/server/arch.txt
 #doc/*.txt

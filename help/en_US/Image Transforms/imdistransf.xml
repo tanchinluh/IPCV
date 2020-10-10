@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imdistransf.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imdistransf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdistransf</refname>
+    <refpurpose>Distance Transform</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdistransf(imin)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input binary image or 8-bit, single-channel (binary)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>method :</term>
+            <listitem><para> Distance type, l1, l2, or c where the setting shall correspond to 1, 2 and 3 respectively:</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>l1 :</term>
+            <listitem><para> distance = |x1-x2| + |y1-y2|, use 1</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>l2 :</term>
+            <listitem><para> the simple euclidean distance, use 2</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>c  :</term>
+            <listitem><para> distance = max(|x1-x2|,|y1-y2|), use 3</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output image with calculated distances. It is a double precision single-channel image of the same size as input</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to calculates the distance to the closest zero pixel for each pixel of the source image.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
+Sgray = rgb2gray(S);
+Sb = im2bw(Sgray,0.1);
+Sd = imdistransf(Sb);
+subplot(211);imshow(Sb);subplot(212);imshow(Sd);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imwatershed">imwatershed</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>1. OpenCV 4.1.2 Online Documentation</para>
+</refsection>
+</refentry>

@@ -101,11 +101,13 @@
 <mapID target="imstitchimage_params" url="imstitchimage_params.html"/>
 <mapID target="section_8adb84d26782c1d3a5d34be202e5d52c" url="section_8adb84d26782c1d3a5d34be202e5d52c.html"/>
 <mapID target="imdct" url="imdct.html"/>
+<mapID target="imdistransf" url="imdistransf.html"/>
 <mapID target="imhough" url="imhough.html"/>
 <mapID target="imhoughc" url="imhoughc.html"/>
 <mapID target="imidct" url="imidct.html"/>
 <mapID target="imlogpolar" url="imlogpolar.html"/>
 <mapID target="imradon" url="imradon.html"/>
+<mapID target="imwatershed" url="imwatershed.html"/>
 <mapID target="section_4cd16036872803e658f06738c76a972f" url="section_4cd16036872803e658f06738c76a972f.html"/>
 <mapID target="hsv2rgb" url="hsv2rgb.html"/>
 <mapID target="hsv2rgb2" url="hsv2rgb2.html"/>

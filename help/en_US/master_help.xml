@@ -86,11 +86,13 @@
 <!ENTITY ae63d275559f1a30855346404b0057811 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage.xml">
 <!ENTITY ab5e474517e5fd3b94994a9f48fe3019f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage_params.xml">
 <!ENTITY a8bc4fd8dec0893dd918bb60b0f96101d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imdct.xml">
+<!ENTITY af38c2f40fd269d2fd87a0eb576ee1f68 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imdistransf.xml">
 <!ENTITY a0d19cf981a1c35150ace1d395aae6da5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imhough.xml">
 <!ENTITY afd68a6350731398b0743476142e97da2 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imhoughc.xml">
 <!ENTITY a8b0cc6513abbe16ecb90a7d85b33866c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imidct.xml">
 <!ENTITY a9f9eb4b399246c07f3a1de6a1cc29f0d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imlogpolar.xml">
 <!ENTITY a44038e83832186acf3c44df70a75c121 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imradon.xml">
+<!ENTITY a6072980fb4793defef9b59abacb01fc4 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imwatershed.xml">
 <!ENTITY a7662d65fd2dba5b11dad382414920e0e SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb.xml">
 <!ENTITY accaaeddc0eeb04d76d690de62e2a42f7 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb2.xml">
 <!ENTITY a4031d17a900a6e14eef4ab42c14eb1f8 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2bw.xml">
@@ -304,11 +306,13 @@
 <part xml:id='section_8adb84d26782c1d3a5d34be202e5d52c'>
 <title>Image Transforms</title>
 &a8bc4fd8dec0893dd918bb60b0f96101d;
+&af38c2f40fd269d2fd87a0eb576ee1f68;
 &a0d19cf981a1c35150ace1d395aae6da5;
 &afd68a6350731398b0743476142e97da2;
 &a8b0cc6513abbe16ecb90a7d85b33866c;
 &a9f9eb4b399246c07f3a1de6a1cc29f0d;
 &a44038e83832186acf3c44df70a75c121;
+&a6072980fb4793defef9b59abacb01fc4;
 </part>
 <part xml:id='section_4cd16036872803e658f06738c76a972f'>
 <title>Image Types and Color Space Conversions</title>
