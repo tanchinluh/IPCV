@@ -12,11 +12,11 @@
     <div class="manualnavbar">
     <table width="100%"><tr>
       <td width="30%">
-    	<span class="previous"><a href="section_0ce9b203651f7fb740e8e542a182611c.html">&lt;&lt; Image Block Processing</a></span>
+    	<span class="previous"><a href="section_3d4861484a486468e2759f7fc9afde93.html">&lt;&lt; Image Block Processing</a></span>
 
       </td>
       <td width="40%" class="center">
-      	<span class="top"><a href="section_0ce9b203651f7fb740e8e542a182611c.html">Image Block Processing</a></span>
+      	<span class="top"><a href="section_3d4861484a486468e2759f7fc9afde93.html">Image Block Processing</a></span>
 
       </td>
       <td width="30%" class="next">
@@ -29,52 +29,52 @@
 
 
 
-    <span class="path" dir="ltr"><a href="index.html">IPCV</a> &gt;&gt; <a href="section_0ce9b203651f7fb740e8e542a182611c.html">Image Block Processing</a> &gt; im2col</span>
+    <span class="path" dir="ltr"><a href="index.html">IPCV</a> &gt;&gt; <a href="section_3d4861484a486468e2759f7fc9afde93.html">Image Block Processing</a> &gt; im2col</span>
 
     <br /><br />
     <div class="refnamediv"><h1 class="refname">im2col</h1>
     <p class="refpurpose">Convert image into series of columns</p></div>
 
 
-<div class="refsynopsisdiv"><h3 class="title">Syntax</h3>
+<div class="refsynopsisdiv"><h3 class="title" id="#L25">Syntax</h3>
    <div class="synopsis"><pre><span class="default">y</span><span class="default"> = </span><span class="functionid">im2col</span><span class="default">(</span><span class="default">x</span><span class="default">,</span><span class="default">blk</span><span class="default">)</span></pre></div></div>
 
-<div class="refsection"><h3 class="title">Parameters</h3>
+<div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
       <dd><p class="para">Source Image</p></dd></dt>
    <dt><span class="term">blk :</span>
       <dd><p class="para">Block size [m,n]</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title">Description</h3>
+<div class="refsection"><h3 class="title" id="#L43">Description</h3>
    <p class="para">This function is used to convert the image to columns of vector for
 faster processing as Scilab perform better with vectorization code.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title">Examples</h3>
-   <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">mag</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L53">Examples</h3>
+   <div class="programlisting" id="#L60"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">mag</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">B</span> <span class="scilaboperator">=</span> <span class="scilabid">im2col</span><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">3</span> <span class="scilabnumber">3</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<span class="scilabid">C</span> <span class="scilaboperator">=</span> <a class="scilabmacro" href="scilab://mean">mean</a><span class="scilabopenclose">(</span><span class="scilabid">B</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">C</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://mean">mean</a><span class="scilabopenclose">(</span><span class="scilabid">B</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">D</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://matrix">matrix</a><span class="scilabopenclose">(</span><span class="scilabid">C</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">4</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilaboperator">&#0039;</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title">See also</h3>
+<div class="refsection"><h3 class="title" id="#L64">See also</h3>
    <ul class="itemizedlist"><li class="member"><a href="imblockproc.html" class="link">imblockproc</a></li>
    <li class="member"><a href="imblockslide.html" class="link">imblockslide</a></li>
    <li class="member"><a href="imcolproc.html" class="link">imcolproc</a></li></ul></div>
 
-<div class="refsection"><h3 class="title">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L73">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 
     <div class="manualnavbar">
     <table width="100%">
-    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+    <tr><td colspan="3" class="next"><a href="https://gitlab.com/scilab/scilab/-/issues/new" class="ulink">Report an issue</a></td></tr>
 <tr>
       <td width="30%">
-    	<span class="previous"><a href="section_0ce9b203651f7fb740e8e542a182611c.html">&lt;&lt; Image Block Processing</a></span>
+    	<span class="previous"><a href="section_3d4861484a486468e2759f7fc9afde93.html">&lt;&lt; Image Block Processing</a></span>
 
       </td>
       <td width="40%" class="center">
-      	<span class="top"><a href="section_0ce9b203651f7fb740e8e542a182611c.html">Image Block Processing</a></span>
+      	<span class="top"><a href="section_3d4861484a486468e2759f7fc9afde93.html">Image Block Processing</a></span>
 
       </td>
       <td width="30%" class="next">

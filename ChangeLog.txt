@@ -72,3 +72,6 @@ Version 4.1.2.1 (Jun-20):
 Version 4.1.2.2 (24-Jul-20):
 1. Add imreadmulti
 2. Add modes for imread
+
+Version 4.5 (17-nov-23)
+1. add dependencies build script for unix

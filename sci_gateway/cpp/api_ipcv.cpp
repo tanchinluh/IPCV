@@ -802,9 +802,6 @@ int GetImage(int nPos, Mat& new_img,void* pvApiCtx)
 	case sci_boolean_sparse:
 		sciprint("A sparse matrix of booleans\n");
 		break;
-	case sci_matlab_sparse:
-		sciprint("A sparse matlab matrix\n");
-		break;
 	case sci_ints:
 		//sciprint("A matrix of integers\n");
 		{

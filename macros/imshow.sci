@@ -380,7 +380,7 @@ function [A] = sip_index_true_cmap(Im,n)
 
     //v = round(double(Im("entries"))./255*(n-1))
     m = dims(1)*dims(2)
-    A = v(1:m)*n^2 + v(m+1:2*m)*n + v(2*m+1:$) + 1
+    A = v(1:m)*(n^2) + v(m+1:2*m)*n + v(2*m+1:$) + 1
     A = matrix(A,dims(1),dims(2))
 endfunction
 

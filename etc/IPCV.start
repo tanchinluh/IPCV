@@ -8,7 +8,7 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.1.2.2 for Scilab 6.0\n");
+    mprintf("Start " + TOOLBOX_NAME + " 4.1.2.3 for Scilab 2024\n");
     mprintf(TOOLBOX_TITLE + "\n");
     mprintf("2019 - Bytecode Malaysia\n");
     //mprintf("Find more information at http://scilabipcv.tritytech.com \n");
@@ -43,23 +43,19 @@ function ipcvlib = startModule()
     bNonfLoaded = %t;
 
     if getos() == 'Windows' then // Windows
+
         OPENCV_LIBS = OPENCV_LIBS + "412" ;
         exec(etc_tlbx+'IPCV_windows.sci');
         IPCV_windows(root_tlbx,OPENCV_LIBS);
         //exec(etc_tlbx+'IPCV_windows_torch.sci');
         //IPCV_windows_torch(root_tlbx,TORCH_LIBS);
 
-    elseif getos() == 'Darwin' // Mac        
-        exec(etc_tlbx+'IPCV_MacOS.sci');
-        IPCV_MacOS(root_tlbx,OPENCV_LIBS);
+    else // Darwin, Linux        
 
-    else // Linux
-        exec(etc_tlbx+'IPCV_linux.sci');
-        IPCV_linux(root_tlbx,OPENCV_LIBS);
-        //exec(etc_tlbx+'IPCV_linux_torch.sci');
-        //IPCV_linux_torch(root_tlbx,TORCH_LIBS);        
+        exec(etc_tlbx+'IPCV_unix.sci');
+        IPCV_unix(root_tlbx,OPENCV_LIBS);
+
     end
-
 
     // load gateways
     // =============================================================================

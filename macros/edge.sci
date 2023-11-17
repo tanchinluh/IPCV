@@ -189,8 +189,8 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
         if sigma == 0
             gf = ones(r,c)
         else
-            gf = ones(r,1) * exp(-(sigma*%pi*fu)^2)
-            gv = exp(-(sigma*%pi*fv')^2) * ones(1,c)
+            gf = ones(r,1) * exp(-(sigma*%pi*fu).^2)
+            gv = exp(-(sigma*%pi*fv').^2) * ones(1,c)
             gf = gf .* gv
         end
 
