@@ -25,6 +25,7 @@ cmake -DCMAKE_INSTALL_PREFIX="${THIRDPARTY}" \
 -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,${THIRDPARTY}/lib" \
 -DCMAKE_INSTALL_RPATH="${THIRDPARTY}/lib" \
 -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VER}/modules \
+-DWITH_OPENJPEG=OFF \
 -DBUILD_opencv_apps=OFF \
 -DBUILD_opencv_python2=OFF \
 -DBUILD_opencv_world:BOOL=ON \
