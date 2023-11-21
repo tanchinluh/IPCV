@@ -1,17 +1,15 @@
 //=============================================================================
-// IPCV - Scilab Image Processing and Computer Vision toolbox
+// IPCV - Slabelilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
-function So = imdrawContours(Sc,colormap,thickness)
+function So = imdrawContours(Slabel,colormap,thickness)
     // Draw contours from the contour image.
     //
     // Syntax
-    //    So = imdrawcontour(Sc)
-    //    So = imdrawcontour(Sc,colormap)
-    //    So = imdrawcontour(Sc,colormap,thickness)
+    //    So = imdrawcontour(Slabel[, colormap[, thickness]])
     //
     // Parameters
-    //     Sc : Input contour image
+    //     Slabel : Input labeled image
     //     colormap : Colormap used to draw the contour
     //     thickness : Thickness of the contours
     //     So : Output contours in RGB
@@ -23,7 +21,8 @@ function So = imdrawContours(Sc,colormap,thickness)
     //     S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
     //     Sbw = im2bw(S,0.5);
     //     Sc = imfindContours(Sbw);
-    //     So = imdrawContours(Sc);
+    //     Slabel = imcontour2label(S,Sc);
+    //     So = imdrawContours(Slabel);
     //     imshow(So);
     //  
     // See also
@@ -39,7 +38,7 @@ function So = imdrawContours(Sc,colormap,thickness)
     
     
     rhs=argn(2);
-    total = max(Sc);
+    total = max(Slabel);
     // Error Checking
     if rhs < 2; colormap = rainbowcolormap(2^nextpow2(total)); end    
     if rhs < 3; thickness = 5; end    
@@ -48,16 +47,16 @@ function So = imdrawContours(Sc,colormap,thickness)
     
     se = imcreatese('ellipse',thickness,thickness);
     
-    Sr = zeros(Sc);
+    Sr = zeros(Slabel);
     Sg = Sr;
     Sb = Sr;
     
     for cnt = 1:total
-        Sc2 = Sc==cnt;
-        Sc3 = imdilate(Sc2,se);
-        Sr(Sc3) = colormap(cnt,1);
-        Sg(Sc3) = colormap(cnt,2);
-        Sb(Sc3) = colormap(cnt,3);        
+        Slabel2 = Slabel==cnt;
+        Slabel3 = imdilate(Slabel2,se);
+        Sr(Slabel3) = colormap(cnt,1);
+        Sg(Slabel3) = colormap(cnt,2);
+        Sb(Slabel3) = colormap(cnt,3);        
     end
     So = Sr;
     So(:,:,2) = Sg;

@@ -5,6 +5,6 @@ function y = imfinfo(x)
     if isbw(s)
         y(2) = 7;
     end
-    imfinfo_print(y);
+    //imfinfo_print(y);
     
 endfunction

@@ -21,7 +21,7 @@ function imout = imdistransf(imin,method)
     //    This function used to calculates the distance to the closest zero pixel for each pixel of the source image.
     //
     // Examples
-    //    S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
+    //    S = imread(fullpath(getIPCVpath() + "/images/three_objects.png") , IMREAD_COLOR = 1);
     //    Sgray = rgb2gray(S);
     //    Sb = im2bw(Sgray,0.1);
     //    Sd = imdistransf(Sb);

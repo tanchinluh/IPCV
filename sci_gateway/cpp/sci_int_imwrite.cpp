@@ -13,7 +13,7 @@ int sci_int_imwrite(char * fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 
-	CheckInputArgument(pvApiCtx, 2, 2);
+	CheckInputArgument(pvApiCtx, 3, 3);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
 	/////////////////
@@ -32,8 +32,20 @@ int sci_int_imwrite(char * fname,void* pvApiCtx)
 			freeAllocatedSingleString(pstData);
 			return iRet;
 		}
-         
-	int retval = imwrite( pstData, pSrcImg );
+    
+	// Second Input - Rotation angle
+	int *piAddr2 = NULL;
+	double compression_ratio = 0;
+	getVarAddressFromPosition(pvApiCtx, 3, &piAddr2);
+	getScalarDouble(pvApiCtx, piAddr2, &compression_ratio);
+
+
+	vector<int> p(2);
+	p[0] = IMWRITE_JPEG_QUALITY;
+	p[1] = int(compression_ratio); // compression factor
+
+
+	int retval = imwrite( pstData, pSrcImg, p);
 	int iRows1 = 1;
 	int iCols1 = 1;
 	double pdblReal1;

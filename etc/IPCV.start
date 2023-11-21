@@ -1,6 +1,6 @@
 //=============================================================================
 // IPCV - Scilab Image Processing and Computer Vision toolbox
-// Copyright (C) 2017  Tan Chin Luh
+// Copyright (C) 2020  Tan Chin Luh
 //=============================================================================
 //
 function ipcvlib = startModule()
@@ -8,10 +8,10 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.1.2.2 for Scilab 6.0\n");
+    mprintf("Start " + TOOLBOX_NAME + " 4.5.0 for Scilab 2024.0.0\n");
     mprintf(TOOLBOX_TITLE + "\n");
-    mprintf("2019 - Bytecode Malaysia\n");
-    //mprintf("Find more information at http://scilabipcv.tritytech.com \n");
+    mprintf("2020 - Scilab Academy\n");
+    //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
 
     if isdef("ipcvlib") then
         warning(TOOLBOX_NAME + " library is already loaded");
@@ -38,12 +38,12 @@ function ipcvlib = startModule()
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
 
-    OPENCV_VERSION = "4.1.2"
+    OPENCV_VERSION = "4.5.0"
     bDepsLoaded = %t;
     bNonfLoaded = %t;
 
     if getos() == 'Windows' then // Windows
-        OPENCV_LIBS = OPENCV_LIBS + "412" ;
+        OPENCV_LIBS = OPENCV_LIBS + "450" ;
         exec(etc_tlbx+'IPCV_windows.sci');
         IPCV_windows(root_tlbx,OPENCV_LIBS);
         //exec(etc_tlbx+'IPCV_windows_torch.sci');

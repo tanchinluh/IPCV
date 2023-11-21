@@ -38,8 +38,8 @@ int sci_int_imextract_DescriptorSIFT(char * fname,void* pvApiCtx)
 
 	// computing descriptors
 	//BRISK extractor;
-	Ptr<xfeatures2d::SIFT> extractor;
-	extractor = xfeatures2d::SIFT::create();
+	Ptr<SIFT> extractor;
+	extractor = SIFT::create();
 
 	Mat descriptors1;
 	extractor->compute(img1, keypoints1, descriptors1);

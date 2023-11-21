@@ -27,6 +27,7 @@ OpenedAviFile OpenedAvi[MAX_AVI_FILE_NUM];
 OpenedCamCapture OpenedCam[MAX_AVI_FILE_NUM];
 DeepNetwork DeepNet[MAX_DL_NUM];
 ObjectTracker ObjTrack[MAX_TRACK_NUM];
+DeepSRNetwork DeepSRNet[MAX_DL_NUM];
 
 //extern "C" 
 //{

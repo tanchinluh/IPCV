@@ -39,7 +39,7 @@ int sci_int_imdetect_SIFT(char * fname,void* pvApiCtx)
 		
     
     try {
-	Ptr<xfeatures2d::SIFT> detector = xfeatures2d::SIFT::create(nfeatures, nOctaveLayers,contrastThreshold,edgeThreshold,sigma);
+	Ptr<SIFT> detector = SIFT::create(nfeatures, nOctaveLayers,contrastThreshold,edgeThreshold,sigma);
 
 
 	vector<KeyPoint> keypoints1;

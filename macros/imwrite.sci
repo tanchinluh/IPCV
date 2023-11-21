@@ -6,7 +6,7 @@
 // Copyright (C) 2017  Tan Chin Luh
 //
 ////////////////////////////////////////////////////////////
-function ret = imwrite(im, filename)
+function ret = imwrite(im, filename, compression_ratio)
     //    Write image to file
     //    
     //    Syntax
@@ -36,9 +36,9 @@ function ret = imwrite(im, filename)
     //      Tan Chin Luh
 
     if  typeof(im) == 'uint16' then
-        ret = int_imwrite(im, filename);
+        ret = int_imwrite(im, filename,compression_ratio);
     else
-        ret = int_imwrite(im2uint8(im), filename);
+        ret = int_imwrite(im2uint8(im), filename,compression_ratio);
     end
 
 

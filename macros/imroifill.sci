@@ -68,7 +68,8 @@ function result = imroifill(imin,mask)
         // Index of points with interior neighbors
         q = find(Q)';
         // Connect interior points to neighbors with -1's.
-        i = [i; grid(idx(q))]; //#ok<AGROW>
+        pause
+        i = [i; grid(idx(q))']; //#ok<AGROW>
         j = [j; Q(q)];
         s = [s; -ones(length(q),1)];
     end

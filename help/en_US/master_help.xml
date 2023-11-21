@@ -1,171 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
 <!--Begin Entities-->
-<!ENTITY a83d33ef111bb7d25932da498e469d978 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Analytic Geometry/plot3dot.xml">
-<!ENTITY a46d9c584f699616e9f0c55c23e9030b5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Camera Handling/camclose.xml">
-<!ENTITY aa8035261fde965a274706b0fd6d14644 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Camera Handling/camcloseall.xml">
-<!ENTITY a67ecb6328c704548651c8c6e9f34694a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Camera Handling/camlistopened.xml">
-<!ENTITY a721fcc55075e41d57a2499d08be24449 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Camera Handling/camopen.xml">
-<!ENTITY a63de672f4f92293efa982cad1a050bf9 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Camera Handling/camread.xml">
-<!ENTITY ad9b4d3bce095303059046dee48ce2aec SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_forward.xml">
-<!ENTITY a45b7c6b8fb7b17a3305121d631398b54 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_getparam.xml">
-<!ENTITY a79fa23a704bcf8236c081b28c68abfbf SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_list.xml">
-<!ENTITY a47d732cb2d3343ed033d2dc620c686dd SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_readmodel.xml">
-<!ENTITY ab09ce9368e0f9e4e86370dce71c795d7 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showfeature.xml">
-<!ENTITY ae8dbeef76c82aab5031fcd34c86cc77a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparam.xml">
-<!ENTITY a29048e54434dd6f10cb5afe3524a4044 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparamf2d.xml">
-<!ENTITY a94a1bfab124b62c8b1c43214370bea98 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparamf3d.xml">
-<!ENTITY a2c5034851de9b47cea7b5e50d91c021c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_unloadallmodels.xml">
-<!ENTITY ab6ba110ec18b525d72f1e5198839c405 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Deep Learning/dnn_unloadmodel.xml">
-<!ENTITY a8bc7a561e4aeecfa2beb17e167c80c22 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imbestmatches.xml">
-<!ENTITY aba599f1d8206224a0213cb063d48ed49 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_BRISK.xml">
-<!ENTITY a5bec991136a2cac33ae767680b0313f2 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_FAST.xml">
-<!ENTITY a6cb9547e250ee0f7dbc9485481563901 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_GFTT.xml">
-<!ENTITY aebc238155635be415de063aa2fd80a2b SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_MSER.xml">
-<!ENTITY ad8b20ddb12d268b9b19ce73faebf8f89 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_ORB.xml">
-<!ENTITY a0b31204919bc8cb4139413103fa8cc40 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_SIFT.xml">
-<!ENTITY aa9ae297ba4ebda3ea6260cf3af240059 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_STAR.xml">
-<!ENTITY af57931af6872382b8b859006bed66aac SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_SURF.xml">
-<!ENTITY a01e6a1e7343778574836c3d0d72338a1 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdrawmatches.xml">
-<!ENTITY a66fa574fd848b77ad2a5bf6de702e789 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorBRISK.xml">
-<!ENTITY a29f3a59e3d5abbf2c1acd7c6f80e9449 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorORB.xml">
-<!ENTITY acf904019b1f8d8503db1b4b6ec73b69d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSIFT.xml">
-<!ENTITY ad0a047aaabe6529b4bfebba33080dcfb SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSURF.xml">
-<!ENTITY a1d93894552c7162b67bd53985bbc3059 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/immatch_BruteForce.xml">
-<!ENTITY a4d3e88d818b8063b1f66d9772ae9640e SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/plotfeature.xml">
-<!ENTITY af52a13a8fbd44a660923bb832e6d0225 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Filter Design and Visualization/fft2pad.xml">
-<!ENTITY aea3c030d0056fbbddf0e02b75264bc17 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Filter Design and Visualization/immesh.xml">
-<!ENTITY ad21eff214f5b686960699df04fbd89ef SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Filter Design and Visualization/imsmoothsurf.xml">
-<!ENTITY a5655b9d5c94e244e7845e26a57c46af9 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Filter Design and Visualization/imsurf.xml">
-<!ENTITY a719739a31997d475c9c5dc65b812d841 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Filter Design and Visualization/mkfftfilter.xml">
-<!ENTITY ad1969ce1c51aeda74812e57d5958ef60 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/corr2.xml">
-<!ENTITY a7d16847979bc37fcab18f5f36057e9de SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/edge.xml">
-<!ENTITY a0e0bb221ef5960283e9e0c76e0f30a36 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/imhist.xml">
-<!ENTITY a0a41950811e2b85d34574690fde4aed7 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/impixel.xml">
-<!ENTITY a95d9742bed5684ee2834a49eda751d37 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/improfile.xml">
-<!ENTITY a5a988ab8a9a89e596363f2aeab6d5ebd SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/mean2.xml">
-<!ENTITY a12b719bda8ca4a8b423425c6869b68cb SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/std2.xml">
-<!ENTITY a0484666744f9ff773401aaf26268b0c3 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/stdev2.xml">
-<!ENTITY af5cf9144a688904107d9e7b8f61b31ba SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imabsdiff.xml">
-<!ENTITY a3672a5333777879aab45e70d71548e9f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imadd.xml">
-<!ENTITY a3f4f90b99b38c19b027dafba82fc3fd6 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imcomplement.xml">
-<!ENTITY a681a3b78cbfa51fecd9c8f7bf5484865 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imdivide.xml">
-<!ENTITY afc1037c36e70e7a10cb7650d43812ffb SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imlincomb.xml">
-<!ENTITY a9b7c28c50b633452ea265477198b129d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/immultiply.xml">
-<!ENTITY abda889e30652d0502e35f86aa3e39ef0 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Arithmetic/imsubtract.xml">
-<!ENTITY a9ed7b05a2321a2c595136293ac7d00c4 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Block Processing/im2col.xml">
-<!ENTITY acf59e327d9d2259242f849530d7e2922 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Block Processing/imblockproc.xml">
-<!ENTITY a37352c933f634a2293d94e43d63ab1f0 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Block Processing/imblockslide.xml">
-<!ENTITY a45c9ccde39650a225696f2e96a003c49 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Block Processing/imcolproc.xml">
-<!ENTITY aa4bb7848b91d95729e2682bc1ffa3bf5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imadjust.xml">
-<!ENTITY a0e7f9e5979a13cce3407f7637c979edf SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvl2.xml">
-<!ENTITY abf9f8a41479bd4778609b49ea527d6a5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvsobolev.xml">
-<!ENTITY aa706fe6c6c7393f568c21ff25a5a266c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvwiener.xml">
-<!ENTITY a6dcb024440b8cc1deb516382df370d74 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdecorrstretch.xml">
-<!ENTITY aa700a58e0056be883270b2ddce67969a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imhistequal.xml">
-<!ENTITY abef1b7383a1881c9700a3dd4242c5af1 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/iminpaint.xml">
-<!ENTITY aaabb6cc9d2220e07503c71faae4a2462 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/immedian.xml">
-<!ENTITY a947df41521801c9ce1c3914858548c77 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imnoise.xml">
-<!ENTITY a3eabc3ebdca8b98523cb42b037f11b24 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imwiener2.xml">
-<!ENTITY a341b156b68e824dc91da78d0108aabb0 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Linear Filtering/filter2.xml">
-<!ENTITY a610ebf410f34d5a65975f37e46912a21 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Linear Filtering/fspecial.xml">
-<!ENTITY aa0f5e818a72617bf05d2ec00cd1c6528 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Linear Filtering/imfilter.xml">
-<!ENTITY a110dd30e793defae994add61a2affbf0 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imcreatechecker.xml">
-<!ENTITY a2576c7ca1a5a015ec13afb4fe503f033 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdestroy.xml">
-<!ENTITY ad4dc815796ab3d6d5c71313d3eb12d7e SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdestroyall.xml">
-<!ENTITY a51df4bd2c4a40815cd4833aa4cb57b7e SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdisplay.xml">
-<!ENTITY a514807f5cf8bac5fa2da422dd6cb5a94 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imread.xml">
-<!ENTITY a53d0c5b18deafde6d79ef1a7552b174c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imreadmulti.xml">
-<!ENTITY acea215b1656f7e55096c22c422ff88a4 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imshow.xml">
-<!ENTITY a55e84aa1a68a904b5ebfa951556db8a9 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imwrite.xml">
-<!ENTITY a791d0578119e749ebdf81f3299c17911 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/tifread.xml">
-<!ENTITY af88232c900d23afd5d895b711f1c0637 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imfuse.xml">
-<!ENTITY ab9c861c30df67265d06f0ff9b62c5e49 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imgettransform.xml">
-<!ENTITY ad63ac6487bf385a9aad7c2e0f4571b8a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imtransform.xml">
-<!ENTITY a16266ec2418c68fa37a561000b812435 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/warpmatselect.xml">
-<!ENTITY ae63d275559f1a30855346404b0057811 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage.xml">
-<!ENTITY ab5e474517e5fd3b94994a9f48fe3019f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage_params.xml">
-<!ENTITY a8bc4fd8dec0893dd918bb60b0f96101d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imdct.xml">
-<!ENTITY af38c2f40fd269d2fd87a0eb576ee1f68 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imdistransf.xml">
-<!ENTITY a0d19cf981a1c35150ace1d395aae6da5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imhough.xml">
-<!ENTITY afd68a6350731398b0743476142e97da2 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imhoughc.xml">
-<!ENTITY a8b0cc6513abbe16ecb90a7d85b33866c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imidct.xml">
-<!ENTITY a9f9eb4b399246c07f3a1de6a1cc29f0d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imlogpolar.xml">
-<!ENTITY a44038e83832186acf3c44df70a75c121 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imradon.xml">
-<!ENTITY a6072980fb4793defef9b59abacb01fc4 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Transforms/imwatershed.xml">
-<!ENTITY a7662d65fd2dba5b11dad382414920e0e SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb.xml">
-<!ENTITY accaaeddc0eeb04d76d690de62e2a42f7 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb2.xml">
-<!ENTITY a4031d17a900a6e14eef4ab42c14eb1f8 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2bw.xml">
-<!ENTITY a0060de58f2d35fa990eed7134d030a4c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2double.xml">
-<!ENTITY af9915442ca5d7e218ae539b6d3219f41 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int16.xml">
-<!ENTITY a8dc8bf4d126814e278a5671aa4d8c299 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int32.xml">
-<!ENTITY ade2d8e20e00a8291b5e6509241135dab SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int8.xml">
-<!ENTITY a0dd48973e3c7613f6a6ad0e163c89591 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2uint16.xml">
-<!ENTITY a64cdaf84a80901a9ecbe1bb48a0833cc SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2uint8.xml">
-<!ENTITY a2e4bdd79bb7764b35a018b25af582f38 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/imgraythresh.xml">
-<!ENTITY aa34c1c34974af8e88a9363057a123987 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/imnorm.xml">
-<!ENTITY a216ee00534fb15e8ed7140b8bef886b9 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ind2rgb.xml">
-<!ENTITY a019440ff2ad33ace9e13b97c49eab2e2 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/mat2gray.xml">
-<!ENTITY a0405a9687ab20009bba2e9fb7fa20e53 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ntsc2rgb.xml">
-<!ENTITY abdf77cb02f2bacc4725005233fd1c59b SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2gray.xml">
-<!ENTITY a6fc1de07ec7f10c0b243829083828d09 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2hsv.xml">
-<!ENTITY ad80110407f6b1a3681c356eb3e614d11 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ind.xml">
-<!ENTITY a912536172ea0b7cac2a3441b3ba68323 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2lab.xml">
-<!ENTITY afa6f570c35857b971fca7ca3ae624bca SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ntsc.xml">
-<!ENTITY a7c0e50bb4c6fa1cbd3d8ab60df5c95ea SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ycbcr.xml">
-<!ENTITY ac3f31acca0b00b372b9758c7e278bab8 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/xs2im.xml">
-<!ENTITY ae132b60ccfb370516fbf5e27d2902cd7 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ycbcr2rgb.xml">
-<!ENTITY ae0ef5cc81f8618747ac40b330cb46f9b SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/bwborder.xml">
-<!ENTITY a1ea1d088ab8a360ec6f3f175b1bec045 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imblackhat.xml">
-<!ENTITY ac0b25aef50c3aee083559010f7d947b5 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imblobprop.xml">
-<!ENTITY a28c89c8d23d7cede7ede489f9dc8c06c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imclose.xml">
-<!ENTITY a442aadd3d5471111e8d994bc4dde176f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imcreatese.xml">
-<!ENTITY a5fce5af775808f3133015e0ababf6aa6 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imdilate.xml">
-<!ENTITY a52a4a6cb3b2f15ec134624ed897a378b SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imerode.xml">
-<!ENTITY ac85c8c08bbeb03dbb0d0e7b45b73b8cf SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imfill.xml">
-<!ENTITY a9a7648951efcc6d0d81629e300be8881 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imgradient.xml">
-<!ENTITY a837271ca3ade071bfb6aa4bc81046fda SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imhitmiss.xml">
-<!ENTITY ad4658cb34327b982d48e4ac32bb86fbc SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imlabel.xml">
-<!ENTITY a5f762b3d5ca9b9412d379f72ffbec2cf SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imopen.xml">
-<!ENTITY a45340507bfa152e13ed8f6e6223c6fa6 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Morphological Operations/imtophat.xml">
-<!ENTITY a64820c56f7531b7d6a0517e4c85412fc SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Object Detection/imdetectobjects.xml">
-<!ENTITY a1f48cfa452d3d04e00197ca4071ddb3a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_init.xml">
-<!ENTITY aa1c25ad159b40ad711686ef43924bc66 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_unloadall.xml">
-<!ENTITY a827adc2a0b0b48f599d716cae3d318c2 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_update.xml">
-<!ENTITY a4cbd801b9052e32a93caec4924ff3a0c SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/ROI Processing/imroifill.xml">
-<!ENTITY a6109b8d4edba3db12ba54b9d0e248cf3 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/ROI Processing/imroifilt.xml">
-<!ENTITY a4ed12be90a729248a4664e243349c5d3 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Spatial Transformations/imcrop.xml">
-<!ENTITY a3c856ea951f27d5c81c701fa4ed30991 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Spatial Transformations/imcropm.xml">
-<!ENTITY ae938f317faaf5e86af7edd7d9b7ea995 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Spatial Transformations/impyramid.xml">
-<!ENTITY af6c3ad78caa6b070871967a5c726e3ca SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Spatial Transformations/imresize.xml">
-<!ENTITY a875aaf1f113e3f81643e2b3b559b21be SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Spatial Transformations/imrotate.xml">
-<!ENTITY aca64d2ab82801a33bfe6acc0ae2b9369 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imconvexHull.xml">
-<!ENTITY a9d82ba3af729270e9be240e6d08b020f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imdrawcontours.xml">
-<!ENTITY abf9139b5e9f512a19f41eb4ce594481a SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imfindcontours.xml">
-<!ENTITY a3402e92ca89d223ce626d2f963e9608f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Super Resolution/imsuperres.xml">
-<!ENTITY a198774071d78df927230768a2aa44b01 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Super Resolution/imsuperres_params.xml">
-<!ENTITY abbd0c8200d67116ccb5e5c2841538233 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/im2movie.xml">
-<!ENTITY ace971d404537296a9fde3da8d49e1a73 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imaddtext.xml">
-<!ENTITY a501f8409befbb849ebddb4a46f7d5573 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imbreakset.xml">
-<!ENTITY a86ebdcaac1b7f20da39138f5e7475d92 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imbreakunset.xml">
-<!ENTITY a64242ac88fd492fb0b621a6ccaee14fe SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imcaminfo.xml">
-<!ENTITY a6ca0838aa18268d26a66ccc6e9ddc777 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imchoose.xml">
-<!ENTITY a7a133a4668c59aea673f4524fda5a42d SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imdistline.xml">
-<!ENTITY a5983f84a8e100367bac06b4103f62295 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imlsusb.xml">
-<!ENTITY aea4d7325ccc5c8cce792d96dcd5ab53f SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/impixelval.xml">
-<!ENTITY a886f8015726f4cddfb390767e8debe68 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imrects.xml">
-<!ENTITY a1704ff74cd127db025849fe53b28bbcf SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imroi.xml">
-<!ENTITY aa6fcf93bca0a757a745d7122f0b496d6 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imselect.xml">
-<!ENTITY a98c8adfda5f25890f50e817a576e0925 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/rectangle.xml">
-<!ENTITY a19d3a61d1bad9cfdd51e9e6c928be186 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/addframe.xml">
-<!ENTITY a6aa832d63277c31fb47b5979da481a38 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/aviaddframe.xml">
-<!ENTITY a8d5515dc3462b6b914e66a89bc5a1ba3 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/aviclose.xml">
-<!ENTITY ac3ed655dcf09b00bdde5597cf359ce55 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/avicloseall.xml">
-<!ENTITY a7c79b54baf8c74f14c2dd6f0b3941a86 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/avifile.xml">
-<!ENTITY a92f221979ecfb734647a2e3899f16fdc SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/aviinfo.xml">
-<!ENTITY a786bb568cd4674657d8e01322175ba31 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/avilistopened.xml">
-<!ENTITY a0b280ae9d26361ab18fd3a7be8000d71 SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/aviopen.xml">
-<!ENTITY a6e2822f80d09c8564d02286b5a947b6b SYSTEM "file:///C:/scilab/scilab-6.1.0/contrib/IPCV/help/en_US/Video Handling/avireadframe.xml">
+<!ENTITY a5ec5f26842c24eaaa6a5fe6ac435e525 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Analytic Geometry/plot3dot.xml">
+<!ENTITY afba664b40507ec88995fcb5a36c4466c SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Camera Handling/camclose.xml">
+<!ENTITY afc1ef4b4a09a0a953ddaabc398583855 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Camera Handling/camcloseall.xml">
+<!ENTITY aaa3838840c59cf62d403bfdabcc84ca0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Camera Handling/camlistopened.xml">
+<!ENTITY a9e461e9600f109350f24ab2b08bcda4b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Camera Handling/camopen.xml">
+<!ENTITY a7acb06f7a1d80d229db1d4de11c661ca SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Camera Handling/camread.xml">
+<!ENTITY afea8571e15100e01fcbbd9e868b27916 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_forward.xml">
+<!ENTITY a359ce239f4779c22bdd56de391577fcb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_getparam.xml">
+<!ENTITY a76bc5abfa1100c0758e79cdb553edf06 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_list.xml">
+<!ENTITY aef96a7921e4e2d4facf11a11ed418842 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_readmodel.xml">
+<!ENTITY a9a5765ca6562eb55d20ed493a3d39636 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showfeature.xml">
+<!ENTITY ac7cd8b595468ae8164bb9caf3151b581 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparam.xml">
+<!ENTITY a663e383daeb547d6b15a32a1f9775838 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparamf2d.xml">
+<!ENTITY a527733e376d84cd81b1c30aeb8a1f896 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_showparamf3d.xml">
+<!ENTITY ad0dcc437a51ba75ed5238a226de6b4ce SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_unloadallmodels.xml">
+<!ENTITY a5a29266b923d02bcd7134b0c5e78ac31 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Deep Learning/dnn_unloadmodel.xml">
+<!ENTITY a758db6ba755704ae20593473d280d859 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imbestmatches.xml">
+<!ENTITY a696acc71a1fc621d2a49d08bd6175235 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_BRISK.xml">
+<!ENTITY a8ae83ec6adad6a4dddbea0b9543eb1b6 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_FAST.xml">
+<!ENTITY afdcbf1e60b12fef1e43e6ce9eec84758 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_GFTT.xml">
+<!ENTITY a8fca7e0c2fe351ec524fe8de8178a2fb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_MSER.xml">
+<!ENTITY a2ec5a3ff93334a6cd99ba0bb24f36c96 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_ORB.xml">
+<!ENTITY ab8e441061ce4b0935aab42ab599ff8f0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_SIFT.xml">
+<!ENTITY a946afb7e92d95358f174c7c20ed9a929 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_STAR.xml">
+<!ENTITY a1968bbeac343d30222b33dac8712e0f0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdetect_SURF.xml">
+<!ENTITY a1a7f8a29ce06e09c067ad1f2b84a8218 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imdrawmatches.xml">
+<!ENTITY a1493184453cd566accd86aa1dec7e984 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorBRISK.xml">
+<!ENTITY aee632c0e8f8797d51dca6bb5a4552f59 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorORB.xml">
+<!ENTITY ae84d7749513e2f1bf4b09d307a10b211 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSIFT.xml">
+<!ENTITY acee1abdeeae9cfb6553fff1ccc51b6c1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSURF.xml">
+<!ENTITY a09c3f2e128c0cfd71ea115b2849375fb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/immatch_BruteForce.xml">
+<!ENTITY af43d9142010dd80a40cdc1bebdee87b8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Feature Detection, Description and Matching/plotfeature.xml">
+<!ENTITY a7501e897795e507574faf5850f11b2b1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Filter Design and Visualization/fft2pad.xml">
+<!ENTITY a085cb4cb45e08b4ac4472266c0d2982a SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Filter Design and Visualization/immesh.xml">
+<!ENTITY a54e972a3a0946af74de96feb8560f4bd SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Filter Design and Visualization/imsmoothsurf.xml">
+<!ENTITY ad5ee0617b86fa68820934f4750da8820 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Filter Design and Visualization/imsurf.xml">
+<!ENTITY ad219b9ba645c28285a23fe040d30b4a8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Filter Design and Visualization/mkfftfilter.xml">
+<!ENTITY a697912da195462f683b624ea4bbca146 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/corr2.xml">
+<!ENTITY a7de05197e977fdf08be67b8a146d449d SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/edge.xml">
+<!ENTITY a7f8bcb785f89f22ac313b40c1bfde3da SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/imhist.xml">
+<!ENTITY a94ecb7d114a032f6afd7a3dd5941ba28 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/impixel.xml">
+<!ENTITY ac6e54dc78305425b56c7e373883ab1b2 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/improfile.xml">
+<!ENTITY a7a527c87664d29384a22bb70ff150653 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/mean2.xml">
+<!ENTITY a9ed53fa16d7ab310f8814b95cb8109c1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/std2.xml">
+<!ENTITY a47d2720ff0a3a60972d5d80a90f92f2f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Analysis and Statistics/stdev2.xml">
+<!ENTITY a046ba6839c2e9aa7ebd15981d91285fd SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imabsdiff.xml">
+<!ENTITY a83694d6ca72c228dd941053469be1ecc SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imadd.xml">
+<!ENTITY a673b332422526bd687d02a0023e70cca SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imcomplement.xml">
+<!ENTITY ad3b9b2d1158f29f7f9347b7154c88b98 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imdivide.xml">
+<!ENTITY a7acb3a010d8de8363a8f2f82394e7a00 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imlincomb.xml">
+<!ENTITY a52c6f30c0730253870748667b5359c43 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/immultiply.xml">
+<!ENTITY a433a4f57a5ef4f2890449083cb007b79 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Arithmetic/imsubtract.xml">
+<!ENTITY aa7cdbe374a493bf00a80c15b08661f50 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Block Processing/im2col.xml">
+<!ENTITY aec83437263cf85c795a9b47caaafd613 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Block Processing/imblockproc.xml">
+<!ENTITY a47ac4e075e23c8e8d3f12d56c2f322c1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Block Processing/imblockslide.xml">
+<!ENTITY aa95253634def58e558844bbd56f41da4 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Block Processing/imcolproc.xml">
+<!ENTITY a0ee6d1ac026fada21ec5efc28ae19352 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imadjust.xml">
+<!ENTITY a972d5fa98d47ef9b01d6d4c986d6c9bd SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvl2.xml">
+<!ENTITY ac73e9809f627f0328d0b8367e5fd29b8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvsobolev.xml">
+<!ENTITY a5c08a305cebd28d8d27e04387ea57b63 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvwiener.xml">
+<!ENTITY aa6ddfd5e2d82e58361adc9fd5fa1b2eb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imdecorrstretch.xml">
+<!ENTITY a47bb35984077294681b4ee2a6665c8a1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imhistequal.xml">
+<!ENTITY aaad4b269699de4f919378940ff864d57 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/iminpaint.xml">
+<!ENTITY ab26aafa00db166a9c3bdb416a3c91d62 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/immedian.xml">
+<!ENTITY ab186705ebd7715b19c5a1cd639199e4a SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imnoise.xml">
+<!ENTITY a24e2ef8a77319d182e462829bc88c975 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Enhancement and Restoration/imwiener2.xml">
+<!ENTITY a9115b1f970d60da171bcc4c8f37fa5e0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Linear Filtering/filter2.xml">
+<!ENTITY aa4040498ed61099b52dccf461642cbbf SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Linear Filtering/fspecial.xml">
+<!ENTITY ababa41be68b09f2a2c22f18a5feccded SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Linear Filtering/imfilter.xml">
+<!ENTITY a486986fdb3d966a54b0e10b03ea088d0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imcreatechecker.xml">
+<!ENTITY a9dd79aa08de50236653e789b4252bc34 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdestroy.xml">
+<!ENTITY a7fdf1961b361299f879d98717b16d95e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdestroyall.xml">
+<!ENTITY ad6cfbe8883df453df3c613a5e3f449f0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imdisplay.xml">
+<!ENTITY adf1cba81cd403515a679119a3ef369a6 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imread.xml">
+<!ENTITY a065b021afcbae477ff07aef1295dddb7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imreadmulti.xml">
+<!ENTITY accf9eefe2990b2d68077304bca92743b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imshow.xml">
+<!ENTITY ad43a525715ff8f10590de45b19ff8172 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/imwrite.xml">
+<!ENTITY a0f12ba97364f494a90119b48d34a861f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/tifread.xml">
+<!ENTITY a6dc9a9325ca1c2ad147d9f72c5abcf37 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imfuse.xml">
+<!ENTITY a091f11b75e1b00ce8edd29407b8752b8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imgettransform.xml">
+<!ENTITY a0a947d35a1595450ee636b45da2e45d7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imtransform.xml">
+<!ENTITY a59ff0d922c694d927959b882fa147c27 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/warpmatselect.xml">
+<!ENTITY a508b45257561c8588e0fb9b7ffe6b7a3 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage.xml">
+<!ENTITY a7d957ad3c3e97506858e00c7022d96a0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage_params.xml">
+<!ENTITY a091a507eea7d547f5a16fcac5bf17927 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imdct.xml">
+<!ENTITY a338fa812cf6cdf579e013ab15da58ed7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imdistransf.xml">
+<!ENTITY a65992bd92962348d270557c980371185 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imhough.xml">
+<!ENTITY a6726f09cf5d992fcd622409bdb374518 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imhoughc.xml">
+<!ENTITY ae8a9ed83b718575e0e4a8da1cf9598e2 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imidct.xml">
+<!ENTITY a6a2da19e8d68a6d8882c37d1dc9d586f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imlogpolar.xml">
+<!ENTITY aa4d5464e06c7d0159a34d67ba15b78b6 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imradon.xml">
+<!ENTITY af3fdbe72de11cd7fe111a1e0656c26a8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Transforms/imwatershed.xml">
+<!ENTITY a1c289b2e128f994f453a06f1d3ed6c49 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb.xml">
+<!ENTITY ac7ea8003d13418f17e6799f62f77575c SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb2.xml">
+<!ENTITY a3c67cdccf93985a5e1a300e6a8e9cf27 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2bw.xml">
+<!ENTITY aa7db67d2b49ee0446a60a9868f3fcbe0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2double.xml">
+<!ENTITY a84a5c91236462867a1c914211faabcd7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int16.xml">
+<!ENTITY a3ee72d72195261351c87622f87a66332 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int32.xml">
+<!ENTITY ada96b1cf8d8ee3ced11a8de03e9e3d44 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2int8.xml">
+<!ENTITY a4343ad5f9059ed8ad91562982a681ab4 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2uint16.xml">
+<!ENTITY af12ca6aa9605560b13225a25b1d0530b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/im2uint8.xml">
+<!ENTITY a7c0d0b286991640bd83bf5309f4b069e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/imgraythresh.xml">
+<!ENTITY a34b129026382d379b611649214efb413 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/imnorm.xml">
+<!ENTITY a9272857fbef66dc6ecf77ec2d6ed2887 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ind2rgb.xml">
+<!ENTITY a5066a4f59041479c69fec403a3543519 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/mat2gray.xml">
+<!ENTITY a519fef7c19f1b2d11b7e1b212dbe9107 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ntsc2rgb.xml">
+<!ENTITY a68b2f3b341f76908f3adfcca53581d6d SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2gray.xml">
+<!ENTITY a7cf52dab8b77db7369ba70eba2a88a13 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2hsv.xml">
+<!ENTITY a6a7df693d0c93818f031591bd8d77565 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ind.xml">
+<!ENTITY a6053bb02254ebd7a9a8119ecc3b1f85b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2lab.xml">
+<!ENTITY aafebeebc9c45e0d9d5449375105f537e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ntsc.xml">
+<!ENTITY afe2b194fb9c38f864a66a19944afbe48 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/rgb2ycbcr.xml">
+<!ENTITY ac616a1bad4439cabaaf4a15771c5feb0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/xs2im.xml">
+<!ENTITY a0570b4993de78b4da329e0d342365feb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Types and Color Space Conversions/ycbcr2rgb.xml">
+<!ENTITY ab7b0439f3a5fef9e94693a6f580b7931 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/bwborder.xml">
+<!ENTITY a271334ba052425ffd37d593e06935bc2 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imblackhat.xml">
+<!ENTITY ae50043993f07f20f5d53dd2f3ba92038 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imblobprop.xml">
+<!ENTITY aea4b06082dcde77effd949a45d826913 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imclose.xml">
+<!ENTITY a723e15f1b3f5db821a83516edcfbd67f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imcreatese.xml">
+<!ENTITY a37c748e6f8e8b772367be96f06c84a20 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imdilate.xml">
+<!ENTITY a4253f2ece326878b440820ebeca2b526 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imerode.xml">
+<!ENTITY a4a5f4e9c475e2fa771fdbee3162b51cf SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imfill.xml">
+<!ENTITY ad8bb53448799457c7f98dc95f7d449a1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imgradient.xml">
+<!ENTITY aae70905a67536f4b1696af50f5f200bc SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imhitmiss.xml">
+<!ENTITY a9e4cccfa1ecfe99fdf90fbc735577626 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imlabel.xml">
+<!ENTITY a8def4694d516e34b6ee1c5362dd95254 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imopen.xml">
+<!ENTITY a8b5810c5388274c2fab59083ebe29caf SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Morphological Operations/imtophat.xml">
+<!ENTITY a5799f3b72c1d34399a0b22c8ffe92371 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Object Detection/imdetectobjects.xml">
+<!ENTITY a9fb135aa3810bc42830b1f79de18de1e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_init.xml">
+<!ENTITY a640c99e2a775bf7273751bbf2d0a67cc SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_unloadall.xml">
+<!ENTITY a2281e865726c78a0f9c340a934e011c5 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Object Tracking/imtrack_update.xml">
+<!ENTITY a1a62dab387eab791227f851899594242 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/ROI Processing/imroifill.xml">
+<!ENTITY ac803664126fbe0f1ddbcf4a8ee44b53a SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/ROI Processing/imroifilt.xml">
+<!ENTITY a156ed8cec016a161d008374529949cb8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imcrop.xml">
+<!ENTITY acd2946dda1a75f415a4cb751fb5c638b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imcropm.xml">
+<!ENTITY a4b69518cc385d786e90131cdbefcdc38 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/impyramid.xml">
+<!ENTITY a0fec9305766082772e978d8764707961 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imresize.xml">
+<!ENTITY a33b4039dd94d51e26f9d892699c1429d SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imrotate.xml">
+<!ENTITY a755614ba9f6201e046dfcdaef279f2b7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imconvexHull.xml">
+<!ENTITY a2e726c56ffdd6495e4bf62fb8eb688cb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imconvexityDefects.xml">
+<!ENTITY a3cca2f168c5d395b76bf8ead85674f8e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imdrawcontours.xml">
+<!ENTITY a63c2a9a067ad90d5a6cac37eb1d6fa16 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imfindContours.xml">
+<!ENTITY a17e9ac00a6e4b4503bfb2fc573aed88f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/implotContours.xml">
+<!ENTITY a92e81cd00ca183dcfca60210427426bb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Super Resolution/imsuperres.xml">
+<!ENTITY a96c8cfdb113146af3fb3a61297bf2054 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Super Resolution/imsuperres_params.xml">
+<!ENTITY ad3b13dfbf1f161cd9340626449ca1462 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/im2movie.xml">
+<!ENTITY ac11b6f6c6d452a2040422522a812c0d9 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imaddtext.xml">
+<!ENTITY a0050457a092a04e455548b3458ccad49 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imbreakset.xml">
+<!ENTITY a51b04c4300cbd34da7c8dbd694039463 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imbreakunset.xml">
+<!ENTITY aae20774a6ff3365c7b4dfc02d4e20d60 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imcaminfo.xml">
+<!ENTITY a77744c5b7ddef4b2d6e2099f473bc1dc SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imchoose.xml">
+<!ENTITY a9dc4e3a88a1a02978a05bdd3accfeb3c SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imdistline.xml">
+<!ENTITY aa7acefcc77fc68e42282ef3cc8cf0389 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imlsusb.xml">
+<!ENTITY a17ce64dad847d125b578e288ff38f8ae SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/impixelval.xml">
+<!ENTITY a89b873eeb19bc7c03a20be2f41e63171 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imrects.xml">
+<!ENTITY aeccc407406de5d9c84f8081816f9f8a1 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imroi.xml">
+<!ENTITY a3f3df33231cde308890d97c6ffdab9d7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/imselect.xml">
+<!ENTITY af61cceaec9cfdb9a6ac70f7716ccb811 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/rect2cart.xml">
+<!ENTITY afade9c4bf3546fcab4b651d5fdce48ee SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/rectangle.xml">
+<!ENTITY a31bd802742adf10e834866a7dfe6edb0 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Utilities and Interactive Tools/sub2cart.xml">
+<!ENTITY a35086d25928e3cc34692956b019e4966 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/addframe.xml">
+<!ENTITY a513e061eb36d7d83926dd55652b4c27a SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/aviaddframe.xml">
+<!ENTITY a40aec8bb3d9cde904eaf6961433bcc95 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/aviclose.xml">
+<!ENTITY afc2c6a446962bebc5a8dc90a2cf9ee4b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/avicloseall.xml">
+<!ENTITY a8702e42a3ba0ef20a2ceb68f5c3a5d22 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/avifile.xml">
+<!ENTITY adb896d341635ddf21641b4dc558bfb6b SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/aviinfo.xml">
+<!ENTITY a909aac9423b44cec27e9ba95e0180c96 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/avilistopened.xml">
+<!ENTITY a932d448fba86b7f00769134a429190d8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/aviopen.xml">
+<!ENTITY a43c6c9ae0843cdbd54cbcefc056f2448 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Video Handling/avireadframe.xml">
 <!--End Entities-->
 ]>
 <book version="5.0-subset Scilab" xml:lang="en_US"
@@ -180,241 +184,245 @@
     <title>IPCV</title>
   </info>
 
-<part xml:id='section_5927af1a66e9916448066774a89736be'>
+<part xml:id='section_3a3193854720bf9d39f805cb163d86fe'>
 <title>Analytic Geometry</title>
-&a83d33ef111bb7d25932da498e469d978;
+&a5ec5f26842c24eaaa6a5fe6ac435e525;
 </part>
-<part xml:id='section_4b1ea0437bca1ba390090a1a7002f2f1'>
+<part xml:id='section_f56c0f6c4d5eee3288644be24f47b8b6'>
 <title>Camera Handling</title>
-&a46d9c584f699616e9f0c55c23e9030b5;
-&aa8035261fde965a274706b0fd6d14644;
-&a67ecb6328c704548651c8c6e9f34694a;
-&a721fcc55075e41d57a2499d08be24449;
-&a63de672f4f92293efa982cad1a050bf9;
+&afba664b40507ec88995fcb5a36c4466c;
+&afc1ef4b4a09a0a953ddaabc398583855;
+&aaa3838840c59cf62d403bfdabcc84ca0;
+&a9e461e9600f109350f24ab2b08bcda4b;
+&a7acb06f7a1d80d229db1d4de11c661ca;
 </part>
-<part xml:id='section_8d8a7844bbdeb1358a372154eedb244c'>
+<part xml:id='section_adf07e817d9d0496c57b506225b9c36a'>
 <title>Deep Learning</title>
-&ad9b4d3bce095303059046dee48ce2aec;
-&a45b7c6b8fb7b17a3305121d631398b54;
-&a79fa23a704bcf8236c081b28c68abfbf;
-&a47d732cb2d3343ed033d2dc620c686dd;
-&ab09ce9368e0f9e4e86370dce71c795d7;
-&ae8dbeef76c82aab5031fcd34c86cc77a;
-&a29048e54434dd6f10cb5afe3524a4044;
-&a94a1bfab124b62c8b1c43214370bea98;
-&a2c5034851de9b47cea7b5e50d91c021c;
-&ab6ba110ec18b525d72f1e5198839c405;
+&afea8571e15100e01fcbbd9e868b27916;
+&a359ce239f4779c22bdd56de391577fcb;
+&a76bc5abfa1100c0758e79cdb553edf06;
+&aef96a7921e4e2d4facf11a11ed418842;
+&a9a5765ca6562eb55d20ed493a3d39636;
+&ac7cd8b595468ae8164bb9caf3151b581;
+&a663e383daeb547d6b15a32a1f9775838;
+&a527733e376d84cd81b1c30aeb8a1f896;
+&ad0dcc437a51ba75ed5238a226de6b4ce;
+&a5a29266b923d02bcd7134b0c5e78ac31;
 </part>
-<part xml:id='section_da5a648acab5cc2af263aceae659ffae'>
+<part xml:id='section_a618da3583127184bb55dc69995051d2'>
 <title>Feature Detection, Description and Matching</title>
-&a8bc7a561e4aeecfa2beb17e167c80c22;
-&aba599f1d8206224a0213cb063d48ed49;
-&a5bec991136a2cac33ae767680b0313f2;
-&a6cb9547e250ee0f7dbc9485481563901;
-&aebc238155635be415de063aa2fd80a2b;
-&ad8b20ddb12d268b9b19ce73faebf8f89;
-&a0b31204919bc8cb4139413103fa8cc40;
-&aa9ae297ba4ebda3ea6260cf3af240059;
-&af57931af6872382b8b859006bed66aac;
-&a01e6a1e7343778574836c3d0d72338a1;
-&a66fa574fd848b77ad2a5bf6de702e789;
-&a29f3a59e3d5abbf2c1acd7c6f80e9449;
-&acf904019b1f8d8503db1b4b6ec73b69d;
-&ad0a047aaabe6529b4bfebba33080dcfb;
-&a1d93894552c7162b67bd53985bbc3059;
-&a4d3e88d818b8063b1f66d9772ae9640e;
+&a758db6ba755704ae20593473d280d859;
+&a696acc71a1fc621d2a49d08bd6175235;
+&a8ae83ec6adad6a4dddbea0b9543eb1b6;
+&afdcbf1e60b12fef1e43e6ce9eec84758;
+&a8fca7e0c2fe351ec524fe8de8178a2fb;
+&a2ec5a3ff93334a6cd99ba0bb24f36c96;
+&ab8e441061ce4b0935aab42ab599ff8f0;
+&a946afb7e92d95358f174c7c20ed9a929;
+&a1968bbeac343d30222b33dac8712e0f0;
+&a1a7f8a29ce06e09c067ad1f2b84a8218;
+&a1493184453cd566accd86aa1dec7e984;
+&aee632c0e8f8797d51dca6bb5a4552f59;
+&ae84d7749513e2f1bf4b09d307a10b211;
+&acee1abdeeae9cfb6553fff1ccc51b6c1;
+&a09c3f2e128c0cfd71ea115b2849375fb;
+&af43d9142010dd80a40cdc1bebdee87b8;
 </part>
-<part xml:id='section_bc60c52cf0117873c773bc56bf1df0e1'>
+<part xml:id='section_70f67a5afe4fde7d59f7cb24a4adb0b8'>
 <title>Filter Design and Visualization</title>
-&af52a13a8fbd44a660923bb832e6d0225;
-&aea3c030d0056fbbddf0e02b75264bc17;
-&ad21eff214f5b686960699df04fbd89ef;
-&a5655b9d5c94e244e7845e26a57c46af9;
-&a719739a31997d475c9c5dc65b812d841;
+&a7501e897795e507574faf5850f11b2b1;
+&a085cb4cb45e08b4ac4472266c0d2982a;
+&a54e972a3a0946af74de96feb8560f4bd;
+&ad5ee0617b86fa68820934f4750da8820;
+&ad219b9ba645c28285a23fe040d30b4a8;
 </part>
-<part xml:id='section_7038fc4dcd46fdb25fa131494e7019ab'>
+<part xml:id='section_5b247fab668df8629d9a7c7d74abbda7'>
 <title>Image Analysis and Statistics</title>
-&ad1969ce1c51aeda74812e57d5958ef60;
-&a7d16847979bc37fcab18f5f36057e9de;
-&a0e0bb221ef5960283e9e0c76e0f30a36;
-&a0a41950811e2b85d34574690fde4aed7;
-&a95d9742bed5684ee2834a49eda751d37;
-&a5a988ab8a9a89e596363f2aeab6d5ebd;
-&a12b719bda8ca4a8b423425c6869b68cb;
-&a0484666744f9ff773401aaf26268b0c3;
+&a697912da195462f683b624ea4bbca146;
+&a7de05197e977fdf08be67b8a146d449d;
+&a7f8bcb785f89f22ac313b40c1bfde3da;
+&a94ecb7d114a032f6afd7a3dd5941ba28;
+&ac6e54dc78305425b56c7e373883ab1b2;
+&a7a527c87664d29384a22bb70ff150653;
+&a9ed53fa16d7ab310f8814b95cb8109c1;
+&a47d2720ff0a3a60972d5d80a90f92f2f;
 </part>
-<part xml:id='section_b4520a3b24bdf2428c1d01bd78769fc0'>
+<part xml:id='section_b95bf00231e55950a8e2df6626309e22'>
 <title>Image Arithmetic</title>
-&af5cf9144a688904107d9e7b8f61b31ba;
-&a3672a5333777879aab45e70d71548e9f;
-&a3f4f90b99b38c19b027dafba82fc3fd6;
-&a681a3b78cbfa51fecd9c8f7bf5484865;
-&afc1037c36e70e7a10cb7650d43812ffb;
-&a9b7c28c50b633452ea265477198b129d;
-&abda889e30652d0502e35f86aa3e39ef0;
+&a046ba6839c2e9aa7ebd15981d91285fd;
+&a83694d6ca72c228dd941053469be1ecc;
+&a673b332422526bd687d02a0023e70cca;
+&ad3b9b2d1158f29f7f9347b7154c88b98;
+&a7acb3a010d8de8363a8f2f82394e7a00;
+&a52c6f30c0730253870748667b5359c43;
+&a433a4f57a5ef4f2890449083cb007b79;
 </part>
-<part xml:id='section_0ce9b203651f7fb740e8e542a182611c'>
+<part xml:id='section_14c99f1b9c24be46c36a00ab7d7bfefa'>
 <title>Image Block Processing</title>
-&a9ed7b05a2321a2c595136293ac7d00c4;
-&acf59e327d9d2259242f849530d7e2922;
-&a37352c933f634a2293d94e43d63ab1f0;
-&a45c9ccde39650a225696f2e96a003c49;
+&aa7cdbe374a493bf00a80c15b08661f50;
+&aec83437263cf85c795a9b47caaafd613;
+&a47ac4e075e23c8e8d3f12d56c2f322c1;
+&aa95253634def58e558844bbd56f41da4;
 </part>
-<part xml:id='section_46fb869eb1083509f66f9381a0103e12'>
+<part xml:id='section_65811ec7bde5eeb78d8c6b2aa429517f'>
 <title>Image Enhancement and Restoration</title>
-&aa4bb7848b91d95729e2682bc1ffa3bf5;
-&a0e7f9e5979a13cce3407f7637c979edf;
-&abf9f8a41479bd4778609b49ea527d6a5;
-&aa706fe6c6c7393f568c21ff25a5a266c;
-&a6dcb024440b8cc1deb516382df370d74;
-&aa700a58e0056be883270b2ddce67969a;
-&abef1b7383a1881c9700a3dd4242c5af1;
-&aaabb6cc9d2220e07503c71faae4a2462;
-&a947df41521801c9ce1c3914858548c77;
-&a3eabc3ebdca8b98523cb42b037f11b24;
+&a0ee6d1ac026fada21ec5efc28ae19352;
+&a972d5fa98d47ef9b01d6d4c986d6c9bd;
+&ac73e9809f627f0328d0b8367e5fd29b8;
+&a5c08a305cebd28d8d27e04387ea57b63;
+&aa6ddfd5e2d82e58361adc9fd5fa1b2eb;
+&a47bb35984077294681b4ee2a6665c8a1;
+&aaad4b269699de4f919378940ff864d57;
+&ab26aafa00db166a9c3bdb416a3c91d62;
+&ab186705ebd7715b19c5a1cd639199e4a;
+&a24e2ef8a77319d182e462829bc88c975;
 </part>
-<part xml:id='section_af68d7b56356d9bf99b73fbf892f15fe'>
+<part xml:id='section_a856b6440c6c9c30937b3cdc7209c1fd'>
 <title>Image Linear Filtering</title>
-&a341b156b68e824dc91da78d0108aabb0;
-&a610ebf410f34d5a65975f37e46912a21;
-&aa0f5e818a72617bf05d2ec00cd1c6528;
+&a9115b1f970d60da171bcc4c8f37fa5e0;
+&aa4040498ed61099b52dccf461642cbbf;
+&ababa41be68b09f2a2c22f18a5feccded;
 </part>
-<part xml:id='section_82ef678b3cd774013f332d677bb86bb0'>
+<part xml:id='section_69d3038051dd81e26e076ba2796efaaa'>
 <title>Image Reading, Display and Exploration</title>
-&a110dd30e793defae994add61a2affbf0;
-&a2576c7ca1a5a015ec13afb4fe503f033;
-&ad4dc815796ab3d6d5c71313d3eb12d7e;
-&a51df4bd2c4a40815cd4833aa4cb57b7e;
-&a514807f5cf8bac5fa2da422dd6cb5a94;
-&a53d0c5b18deafde6d79ef1a7552b174c;
-&acea215b1656f7e55096c22c422ff88a4;
-&a55e84aa1a68a904b5ebfa951556db8a9;
-&a791d0578119e749ebdf81f3299c17911;
+&a486986fdb3d966a54b0e10b03ea088d0;
+&a9dd79aa08de50236653e789b4252bc34;
+&a7fdf1961b361299f879d98717b16d95e;
+&ad6cfbe8883df453df3c613a5e3f449f0;
+&adf1cba81cd403515a679119a3ef369a6;
+&a065b021afcbae477ff07aef1295dddb7;
+&accf9eefe2990b2d68077304bca92743b;
+&ad43a525715ff8f10590de45b19ff8172;
+&a0f12ba97364f494a90119b48d34a861f;
 </part>
-<part xml:id='section_2685ead2a77acb605a59438020b7e98c'>
+<part xml:id='section_7f6c2f919a1d3daf9d6d8bc3342428c9'>
 <title>Image Registration and Image Fusion</title>
-&af88232c900d23afd5d895b711f1c0637;
-&ab9c861c30df67265d06f0ff9b62c5e49;
-&ad63ac6487bf385a9aad7c2e0f4571b8a;
-&a16266ec2418c68fa37a561000b812435;
+&a6dc9a9325ca1c2ad147d9f72c5abcf37;
+&a091f11b75e1b00ce8edd29407b8752b8;
+&a0a947d35a1595450ee636b45da2e45d7;
+&a59ff0d922c694d927959b882fa147c27;
 </part>
-<part xml:id='section_e9e0a2a0196e6dc0eb59db5414ca324b'>
+<part xml:id='section_7935e25b36f3c58861b2962921ef08a7'>
 <title>Image Stitching</title>
-&ae63d275559f1a30855346404b0057811;
-&ab5e474517e5fd3b94994a9f48fe3019f;
+&a508b45257561c8588e0fb9b7ffe6b7a3;
+&a7d957ad3c3e97506858e00c7022d96a0;
 </part>
-<part xml:id='section_8adb84d26782c1d3a5d34be202e5d52c'>
+<part xml:id='section_8d01e70a5f1c1858764d8ebb9bc37aec'>
 <title>Image Transforms</title>
-&a8bc4fd8dec0893dd918bb60b0f96101d;
-&af38c2f40fd269d2fd87a0eb576ee1f68;
-&a0d19cf981a1c35150ace1d395aae6da5;
-&afd68a6350731398b0743476142e97da2;
-&a8b0cc6513abbe16ecb90a7d85b33866c;
-&a9f9eb4b399246c07f3a1de6a1cc29f0d;
-&a44038e83832186acf3c44df70a75c121;
-&a6072980fb4793defef9b59abacb01fc4;
+&a091a507eea7d547f5a16fcac5bf17927;
+&a338fa812cf6cdf579e013ab15da58ed7;
+&a65992bd92962348d270557c980371185;
+&a6726f09cf5d992fcd622409bdb374518;
+&ae8a9ed83b718575e0e4a8da1cf9598e2;
+&a6a2da19e8d68a6d8882c37d1dc9d586f;
+&aa4d5464e06c7d0159a34d67ba15b78b6;
+&af3fdbe72de11cd7fe111a1e0656c26a8;
 </part>
-<part xml:id='section_4cd16036872803e658f06738c76a972f'>
+<part xml:id='section_8829e4d6e9152d923fe53f29cd5a10e7'>
 <title>Image Types and Color Space Conversions</title>
-&a7662d65fd2dba5b11dad382414920e0e;
-&accaaeddc0eeb04d76d690de62e2a42f7;
-&a4031d17a900a6e14eef4ab42c14eb1f8;
-&a0060de58f2d35fa990eed7134d030a4c;
-&af9915442ca5d7e218ae539b6d3219f41;
-&a8dc8bf4d126814e278a5671aa4d8c299;
-&ade2d8e20e00a8291b5e6509241135dab;
-&a0dd48973e3c7613f6a6ad0e163c89591;
-&a64cdaf84a80901a9ecbe1bb48a0833cc;
-&a2e4bdd79bb7764b35a018b25af582f38;
-&aa34c1c34974af8e88a9363057a123987;
-&a216ee00534fb15e8ed7140b8bef886b9;
-&a019440ff2ad33ace9e13b97c49eab2e2;
-&a0405a9687ab20009bba2e9fb7fa20e53;
-&abdf77cb02f2bacc4725005233fd1c59b;
-&a6fc1de07ec7f10c0b243829083828d09;
-&ad80110407f6b1a3681c356eb3e614d11;
-&a912536172ea0b7cac2a3441b3ba68323;
-&afa6f570c35857b971fca7ca3ae624bca;
-&a7c0e50bb4c6fa1cbd3d8ab60df5c95ea;
-&ac3f31acca0b00b372b9758c7e278bab8;
-&ae132b60ccfb370516fbf5e27d2902cd7;
+&a1c289b2e128f994f453a06f1d3ed6c49;
+&ac7ea8003d13418f17e6799f62f77575c;
+&a3c67cdccf93985a5e1a300e6a8e9cf27;
+&aa7db67d2b49ee0446a60a9868f3fcbe0;
+&a84a5c91236462867a1c914211faabcd7;
+&a3ee72d72195261351c87622f87a66332;
+&ada96b1cf8d8ee3ced11a8de03e9e3d44;
+&a4343ad5f9059ed8ad91562982a681ab4;
+&af12ca6aa9605560b13225a25b1d0530b;
+&a7c0d0b286991640bd83bf5309f4b069e;
+&a34b129026382d379b611649214efb413;
+&a9272857fbef66dc6ecf77ec2d6ed2887;
+&a5066a4f59041479c69fec403a3543519;
+&a519fef7c19f1b2d11b7e1b212dbe9107;
+&a68b2f3b341f76908f3adfcca53581d6d;
+&a7cf52dab8b77db7369ba70eba2a88a13;
+&a6a7df693d0c93818f031591bd8d77565;
+&a6053bb02254ebd7a9a8119ecc3b1f85b;
+&aafebeebc9c45e0d9d5449375105f537e;
+&afe2b194fb9c38f864a66a19944afbe48;
+&ac616a1bad4439cabaaf4a15771c5feb0;
+&a0570b4993de78b4da329e0d342365feb;
 </part>
-<part xml:id='section_34753f8dbdbb7ef63cedb53e94eb1bf2'>
+<part xml:id='section_411468e5458df42f06fc284265287a1a'>
 <title>Morphological Operations</title>
-&ae0ef5cc81f8618747ac40b330cb46f9b;
-&a1ea1d088ab8a360ec6f3f175b1bec045;
-&ac0b25aef50c3aee083559010f7d947b5;
-&a28c89c8d23d7cede7ede489f9dc8c06c;
-&a442aadd3d5471111e8d994bc4dde176f;
-&a5fce5af775808f3133015e0ababf6aa6;
-&a52a4a6cb3b2f15ec134624ed897a378b;
-&ac85c8c08bbeb03dbb0d0e7b45b73b8cf;
-&a9a7648951efcc6d0d81629e300be8881;
-&a837271ca3ade071bfb6aa4bc81046fda;
-&ad4658cb34327b982d48e4ac32bb86fbc;
-&a5f762b3d5ca9b9412d379f72ffbec2cf;
-&a45340507bfa152e13ed8f6e6223c6fa6;
+&ab7b0439f3a5fef9e94693a6f580b7931;
+&a271334ba052425ffd37d593e06935bc2;
+&ae50043993f07f20f5d53dd2f3ba92038;
+&aea4b06082dcde77effd949a45d826913;
+&a723e15f1b3f5db821a83516edcfbd67f;
+&a37c748e6f8e8b772367be96f06c84a20;
+&a4253f2ece326878b440820ebeca2b526;
+&a4a5f4e9c475e2fa771fdbee3162b51cf;
+&ad8bb53448799457c7f98dc95f7d449a1;
+&aae70905a67536f4b1696af50f5f200bc;
+&a9e4cccfa1ecfe99fdf90fbc735577626;
+&a8def4694d516e34b6ee1c5362dd95254;
+&a8b5810c5388274c2fab59083ebe29caf;
 </part>
-<part xml:id='section_15c7a04ce086122f7ca6d6cda47c3123'>
+<part xml:id='section_9403d96c195fceca1056cc8b5ca17b7d'>
 <title>Object Detection</title>
-&a64820c56f7531b7d6a0517e4c85412fc;
+&a5799f3b72c1d34399a0b22c8ffe92371;
 </part>
-<part xml:id='section_e68634cd1ff28e5993d377c29392a928'>
+<part xml:id='section_80c32e071bcb6598fd30fc598d132662'>
 <title>Object Tracking</title>
-&a1f48cfa452d3d04e00197ca4071ddb3a;
-&aa1c25ad159b40ad711686ef43924bc66;
-&a827adc2a0b0b48f599d716cae3d318c2;
+&a9fb135aa3810bc42830b1f79de18de1e;
+&a640c99e2a775bf7273751bbf2d0a67cc;
+&a2281e865726c78a0f9c340a934e011c5;
 </part>
-<part xml:id='section_fcd8ab43eb306f3fedb99eb89af99113'>
+<part xml:id='section_464cbe6df08049f9d4796741b8b805d4'>
 <title>ROI Processing</title>
-&a4cbd801b9052e32a93caec4924ff3a0c;
-&a6109b8d4edba3db12ba54b9d0e248cf3;
+&a1a62dab387eab791227f851899594242;
+&ac803664126fbe0f1ddbcf4a8ee44b53a;
 </part>
-<part xml:id='section_832d9684d05a62143622fca954ed7da6'>
+<part xml:id='section_bf80dd6ddc127dff4b18eea728413764'>
 <title>Spatial Transformations</title>
-&a4ed12be90a729248a4664e243349c5d3;
-&a3c856ea951f27d5c81c701fa4ed30991;
-&ae938f317faaf5e86af7edd7d9b7ea995;
-&af6c3ad78caa6b070871967a5c726e3ca;
-&a875aaf1f113e3f81643e2b3b559b21be;
+&a156ed8cec016a161d008374529949cb8;
+&acd2946dda1a75f415a4cb751fb5c638b;
+&a4b69518cc385d786e90131cdbefcdc38;
+&a0fec9305766082772e978d8764707961;
+&a33b4039dd94d51e26f9d892699c1429d;
 </part>
-<part xml:id='section_ddbaa5565a8946671ef6ce01465d6849'>
+<part xml:id='section_f5260a15c8fde1a55ccfc32fca1501a1'>
 <title>Structural Analysis and Shape Descriptors</title>
-&aca64d2ab82801a33bfe6acc0ae2b9369;
-&a9d82ba3af729270e9be240e6d08b020f;
-&abf9139b5e9f512a19f41eb4ce594481a;
+&a755614ba9f6201e046dfcdaef279f2b7;
+&a2e726c56ffdd6495e4bf62fb8eb688cb;
+&a3cca2f168c5d395b76bf8ead85674f8e;
+&a63c2a9a067ad90d5a6cac37eb1d6fa16;
+&a17e9ac00a6e4b4503bfb2fc573aed88f;
 </part>
-<part xml:id='section_9d9b4b1707bbbe8a6a7fc9e9ec615f88'>
+<part xml:id='section_7d487fa50af482d311ad1099def58007'>
 <title>Super Resolution</title>
-&a3402e92ca89d223ce626d2f963e9608f;
-&a198774071d78df927230768a2aa44b01;
+&a92e81cd00ca183dcfca60210427426bb;
+&a96c8cfdb113146af3fb3a61297bf2054;
 </part>
-<part xml:id='section_5b14599e76bc941a7008b215d87b54ca'>
+<part xml:id='section_4fbf0bdb315d361303c4ecfec2a326cf'>
 <title>Utilities and Interactive Tools</title>
-&abbd0c8200d67116ccb5e5c2841538233;
-&ace971d404537296a9fde3da8d49e1a73;
-&a501f8409befbb849ebddb4a46f7d5573;
-&a86ebdcaac1b7f20da39138f5e7475d92;
-&a64242ac88fd492fb0b621a6ccaee14fe;
-&a6ca0838aa18268d26a66ccc6e9ddc777;
-&a7a133a4668c59aea673f4524fda5a42d;
-&a5983f84a8e100367bac06b4103f62295;
-&aea4d7325ccc5c8cce792d96dcd5ab53f;
-&a886f8015726f4cddfb390767e8debe68;
-&a1704ff74cd127db025849fe53b28bbcf;
-&aa6fcf93bca0a757a745d7122f0b496d6;
-&a98c8adfda5f25890f50e817a576e0925;
+&ad3b13dfbf1f161cd9340626449ca1462;
+&ac11b6f6c6d452a2040422522a812c0d9;
+&a0050457a092a04e455548b3458ccad49;
+&a51b04c4300cbd34da7c8dbd694039463;
+&aae20774a6ff3365c7b4dfc02d4e20d60;
+&a77744c5b7ddef4b2d6e2099f473bc1dc;
+&a9dc4e3a88a1a02978a05bdd3accfeb3c;
+&aa7acefcc77fc68e42282ef3cc8cf0389;
+&a17ce64dad847d125b578e288ff38f8ae;
+&a89b873eeb19bc7c03a20be2f41e63171;
+&aeccc407406de5d9c84f8081816f9f8a1;
+&a3f3df33231cde308890d97c6ffdab9d7;
+&af61cceaec9cfdb9a6ac70f7716ccb811;
+&afade9c4bf3546fcab4b651d5fdce48ee;
+&a31bd802742adf10e834866a7dfe6edb0;
 </part>
-<part xml:id='section_7550508b2914bdd24e0f2751ec96f60f'>
+<part xml:id='section_75f54431e2194dec46f8e74973f6a35e'>
 <title>Video Handling</title>
-&a19d3a61d1bad9cfdd51e9e6c928be186;
-&a6aa832d63277c31fb47b5979da481a38;
-&a8d5515dc3462b6b914e66a89bc5a1ba3;
-&ac3ed655dcf09b00bdde5597cf359ce55;
-&a7c79b54baf8c74f14c2dd6f0b3941a86;
-&a92f221979ecfb734647a2e3899f16fdc;
-&a786bb568cd4674657d8e01322175ba31;
-&a0b280ae9d26361ab18fd3a7be8000d71;
-&a6e2822f80d09c8564d02286b5a947b6b;
+&a35086d25928e3cc34692956b019e4966;
+&a513e061eb36d7d83926dd55652b4c27a;
+&a40aec8bb3d9cde904eaf6961433bcc95;
+&afc2c6a446962bebc5a8dc90a2cf9ee4b;
+&a8702e42a3ba0ef20a2ceb68f5c3a5d22;
+&adb896d341635ddf21641b4dc558bfb6b;
+&a909aac9423b44cec27e9ba95e0180c96;
+&a932d448fba86b7f00769134a429190d8;
+&a43c6c9ae0843cdbd54cbcefc056f2448;
 </part>
 </book>

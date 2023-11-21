@@ -40,7 +40,7 @@ function S = imread(fn,modes)
     rhs = argn(2);
 
     if rhs < 1 then error("Expect at least 1 argument, N, which is the Network topology"); end;
-    if rhs == 1 then IMREAD_ANYDEPTH=1,IMREAD_COLOR = 1, end
+    if rhs == 1 then IMREAD_ANYDEPTH=1,IMREAD_ANYCOLOR = 1, end
     if ~isdef('IMREAD_GRAYSCALE')|IMREAD_GRAYSCALE==[] then IMREAD_GRAYSCALE = 0;end;
     if ~isdef('IMREAD_COLOR')|IMREAD_COLOR==[] then IMREAD_COLOR = 0;end;
     if ~isdef('IMREAD_ANYDEPTH')|IMREAD_ANYDEPTH==[] then IMREAD_ANYDEPTH = 0;end;

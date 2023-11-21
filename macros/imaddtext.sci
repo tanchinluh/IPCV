@@ -64,7 +64,7 @@ function SS = imaddtext(S,str,x,y,font_sz,font_style,font_color,angleval,box)
 		t.box = "on";
 	end
 	t.font_angle = -angleval;
-    sleep(1000);
+    sleep(50);
     SS = xs2im(f.figure_id);
     close;
 endfunction

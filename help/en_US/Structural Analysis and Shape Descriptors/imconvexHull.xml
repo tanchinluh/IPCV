@@ -24,7 +24,7 @@
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   H = imconvexHull(pts)
+   H = imconvexHull(contours[, cw[, ind]])
    
    </synopsis>
 </refsynopsisdiv>
@@ -33,12 +33,20 @@
    <title>Parameters</title>
    <variablelist>
         <varlistentry>
-            <term>pts :</term>
-            <listitem><para> Input 2D point set.</para></listitem>
+            <term>contours :</term>
+            <listitem><para> Contours in list</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cw :</term>
+            <listitem><para> Return points in clockwise or counter-clockwise direction, 0 as CCW, 1 as CW</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ind :</term>
+            <listitem><para> Return points in image rectangular coordinate pairs or the indices of contours, 0 to return coor pairs, 1 to return indexes</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>H :</term>
-            <listitem><para> Output convexhull</para></listitem>
+            <listitem><para> Convex hulls in list in correspond to the contours</para></listitem>
         </varlistentry>
    </variablelist>
 </refsection>
@@ -46,7 +54,7 @@
 <refsection>
    <title>Description</title>
    <para>
-The functions find the convex hull of a 2D point set using the Sklansky's algorithm.
+The functions find the convex hull of all the contours in list using the Sklansky's algorithm.
    </para>
    <para>
 </para>
@@ -59,26 +67,18 @@ S = imread(fullpath(getIPCVpath() + "/images/hand.jpg"));
 Sbw = im2bw(~S,0.5);
 imshow(Sbw);
 Sc = imfindContours(Sbw);
-[A, BB, ctr] = imblobprop(Sc);
-[maxV,maxI] = max(A);
-[row,col] = find(Sc==maxI);
-[cart_x,cart_y] = sub2cartesian(size(Sc), row,col);
-SS = [(cart_x)',(cart_y)'];
-H = imconvexHull(SS);
-sz = size(S);
-plot(cart_x,cart_y,'.');
-Hd = double(H);
-plot(Hd(:,1),Hd(:,2),'r');
+H = imconvexHull(Sc);
+implotContours(Sbw,lstcat(Sc, H),5)
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfindContours">imfindContours</link></member>
-   <member><link linkend="imdrawContours">imdrawContours</link></member>
-   <member><link linkend="imconvexHull">imconvexHull</link></member>
+   <member><link linkend="implotContours">implotContours</link></member>
+   <member><link linkend="imconvexityDefects">imconvexityDefects</link></member>
    </simplelist>
 </refsection>
 
@@ -87,10 +87,5 @@ plot(Hd(:,1),Hd(:,2),'r');
    <simplelist type="vert">
    <member>Tan Chin Luh</member>
    </simplelist>
-</refsection>
-
-<refsection>
-   <title>Bibliography</title>
-   <para>1. OpenCV 2.4 Online Documentation</para>
 </refsection>
 </refentry>

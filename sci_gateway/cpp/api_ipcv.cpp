@@ -802,9 +802,9 @@ int GetImage(int nPos, Mat& new_img,void* pvApiCtx)
 	case sci_boolean_sparse:
 		sciprint("A sparse matrix of booleans\n");
 		break;
-	case sci_matlab_sparse:
-		sciprint("A sparse matlab matrix\n");
-		break;
+	//case sci_matlab_sparse:
+	//	sciprint("A sparse matlab matrix\n");
+	//	break;
 	case sci_ints:
 		//sciprint("A matrix of integers\n");
 		{
@@ -1322,6 +1322,7 @@ int is_binary_image( Mat& new_img) {
 	return r;
 }
 
+
 int GetListImg(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos, vector<Mat>& imgs, void* pvApiCtx)
 {
 	SciErr sciErr;
@@ -1377,17 +1378,17 @@ int get_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos, vect
 		break;
 	case sci_list :
 		insert_indent();
-		sciprint("List ");
+		//sciprint("List ");
 		iRet = get_list_info_imgvec(_iRhs, _piParent, _piAddr, _iItemPos,imgs,pvApiCtx);
 		break;
 	case sci_tlist :
 		insert_indent();
-		sciprint("TList ");
+		//sciprint("TList ");
 		iRet = get_list_info_imgvec(_iRhs, _piParent, _piAddr, _iItemPos,imgs,pvApiCtx);
 		break;
 	case sci_mlist :
 		insert_indent();
-		sciprint("MList ");
+		//sciprint("MList ");
 		iRet = get_list_info_imgvec(_iRhs, _piParent, _piAddr, _iItemPos,imgs,pvApiCtx);
 		break;
 	case sci_pointer :
@@ -1395,7 +1396,7 @@ int get_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos, vect
 		break;
 	default :
 		insert_indent();
-		sciprint("Unknown type\n");
+		//sciprint("Unknown type\n");
 		return 1;
 	}
 	return iRet;
@@ -1416,7 +1417,7 @@ int get_list_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,
 		return 0;
 	}
 
-	sciprint("(%d)\n", iItem);
+	//sciprint("(%d)\n", iItem);
 	for(i = 0 ; i < iItem ; i++)
 	{
 		sciErr = getListItemAddress(pvApiCtx, _piAddr, i + 1, &piChild);
@@ -1461,6 +1462,26 @@ int get_double_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPo
 		else
 		{
 			sciErr = getMatrixOfDoubleInList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pdblReal);
+						///////////////
+			if (isHypermatType(pvApiCtx, _piAddr))
+			{
+				int sz2[] = { iRows,iCols,3 };
+				Mat new_img = Mat(2, sz2, CV_64F);
+				scidata2matdata(new_img, pdblReal);
+				imgs.push_back(new_img);
+			}
+			else
+			{
+				int sz2[] = { iRows,iCols,1 };
+				Mat new_img = Mat(2, sz2, CV_64F);
+				scidata2matdata(new_img, pdblReal);
+				imgs.push_back(new_img);
+			}
+			/////////////////
+
+
+
+
 		}
 	}
 
@@ -1471,7 +1492,7 @@ int get_double_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPo
 	}
 
 	insert_indent();
-	sciprint("Double (%d x %d)\n", iRows, iCols);
+	//sciprint("Double (%d x %d)\n", iRows, iCols);
 	return 0;;
 }
 
@@ -1583,7 +1604,7 @@ int get_poly_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,
 	}
 
 	insert_indent();
-	sciprint("Poly  (%d x %d), varname : \'%s\'\n", iRows, iCols, pstVar);
+	//sciprint("Poly  (%d x %d), varname : \'%s\'\n", iRows, iCols, pstVar);
 
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
@@ -1619,7 +1640,7 @@ int get_boolean_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 	}
 
 	insert_indent();
-	sciprint("Boolean (%d x %d)\n", iRows, iCols);
+	//sciprint("Boolean (%d x %d)\n", iRows, iCols);
 	return 0;
 }
 int get_sparse_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx)
@@ -1657,7 +1678,7 @@ int get_sparse_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPo
 	}
 
 	insert_indent();
-	sciprint("Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
+	//sciprint("Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
 	return 0;;
 }
 
@@ -1686,7 +1707,7 @@ int get_bsparse_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 	}
 
 	insert_indent();
-	sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
+	//sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
 	return 0;;
 }
 int get_integer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos, vector<Mat>& imgs, void* pvApiCtx)
@@ -1758,16 +1779,20 @@ int get_integer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 		case SCI_UINT8 :
 			{sciErr = getMatrixOfUnsignedInteger8InList(pvApiCtx, _piParent, _iItemPos, &iRows, &iCols, &pucData);
 			///////////////
-			int sz2[] = {iRows,iCols,3};
-			//new_img = Mat(2, sz2, CV_8U);
-			//scidata2matdata(new_img, pucData);
-
-			//int sz2[] = {*dims, *(dims+1), *(dims+2)};
-			Mat new_img = Mat(2, sz2, CV_8UC3);
-			scidata2matdata(new_img, pucData);
-			//imshow("aaa",new_img);
-			imgs.push_back(new_img);
-			//SetImage(1,new_img,pvApiCtx);
+			if (isHypermatType(pvApiCtx, _piAddr))
+			{
+				int sz2[] = { iRows,iCols,3 };
+				Mat new_img = Mat(2, sz2, CV_8UC3);
+				scidata2matdata(new_img, pucData);
+				imgs.push_back(new_img);
+			}
+			else
+			{
+				int sz2[] = { iRows,iCols,1 };
+				Mat new_img = Mat(2, sz2, CV_8U);
+				scidata2matdata(new_img, pucData);
+				imgs.push_back(new_img);
+			}
 			/////////////////
 			break;}
 		case SCI_UINT16 :
@@ -1794,7 +1819,7 @@ int get_integer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 		sciprint("Unsigned ");
 	}
 
-	sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
+	//sciprint("Integer %d bits (%d x %d)\n", (iPrec % 10) * 8, iRows, iCols);
 	return 0;;
 }
 int get_string_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx)
@@ -1876,7 +1901,7 @@ int get_string_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPo
 	}
 
 	insert_indent();
-	sciprint("Strings (%d x %d)\n", iRows, iCols);
+	//sciprint("Strings (%d x %d)\n", iRows, iCols);
 	return 0;;
 }
 int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx)
@@ -1900,7 +1925,7 @@ int get_pointer_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemP
 	}
 
 	insert_indent();
-	sciprint("Pointer : 0x%08X\n", pvPtr);
+	//sciprint("Pointer : 0x%08X\n", pvPtr);
 	return 0;
 }
 

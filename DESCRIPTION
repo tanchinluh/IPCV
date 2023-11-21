@@ -5,7 +5,7 @@ Title: Image Processing and Computer Vision Toolbox for Scilab
 
 Summary: The useful, efficient, and powerful image processing and computer vision module for Scilab.
 
-Version: 4.1.2.2
+Version: 4.5
 
 Author: Tan Chin Luh 
 
@@ -15,7 +15,7 @@ Category: Image Processing
 
 Entity: Bytecode Malaysia (formerly Trity Technologies)
 
-WebSite: https://www.bytecode-asia.com/
+WebSite: https://ipcv.scilab-academy.com/
 
 URL: https://github.com/tanchinluh/IPCV
 

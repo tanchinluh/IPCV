@@ -88,6 +88,9 @@ int sci_int_cvtcolor(char *fname,void* pvApiCtx)
 		cvt_code = COLOR_BGR2YCrCb;
 	else if( strcmp(cvt_str_code, "ycrcb2rgb") == 0)
 		cvt_code = COLOR_YCrCb2BGR;
+	else if (strcmp(cvt_str_code, "lab2rgb") == 0)
+		cvt_code = COLOR_Lab2BGR;
+
 	else
 	{
 		sciprint("%s error: unsupport convertion code %s.\r\n", fname, cvt_str_code);

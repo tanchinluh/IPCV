@@ -53,7 +53,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-
 #include <opencv2/core.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
@@ -72,7 +71,7 @@
 
 #include <opencv2/dnn.hpp>
 #include <opencv2/dnn/shape_utils.hpp>
-
+#include <opencv2/dnn_superres.hpp>
 
 #define MAX_AVI_FILE_NUM 32
 #define MAX_FILENAME_LENGTH 2048
@@ -121,6 +120,12 @@ typedef struct ObjectTracker {
 } TrackObj;
 
 extern ObjectTracker ObjTrack[MAX_TRACK_NUM];
+
+typedef struct DeepSRNetwork {
+	dnn_superres::DnnSuperResImpl sr;
+} DeepSRNetwork;
+
+extern DeepSRNetwork DeepSRNet[MAX_DL_NUM];
 
 
 extern char sIPCV_PATH[MAX_FILENAME_LENGTH];
@@ -271,6 +276,7 @@ int matvec2scihyper(vector<Mat> &pImage, void *pMatData);
 	int sci_int_imdrawmatches(char * fname,void* pvApiCtx);
 	int sci_mat2utfimg(char * fname,void* pvApiCtx);
 	int sci_int_imfindContours(char * fname,void* pvApiCtx);
+	int sci_int_imfindContours2(char * fname, void* pvApiCtx);
 	int sci_int_imconvexHull(char * fname,void* pvApiCtx);
 	int sci_int_imstitchImage(char * fname,void* pvApiCtx);
 	int sci_int_imsuperres(char * fname,void* pvApiCtx);
@@ -289,5 +295,10 @@ int matvec2scihyper(vector<Mat> &pImage, void *pMatData);
 	int sci_aviinfo(char *fname, void* pvApiCtx);
 	int sci_int_imdistransf(char * fname, void* pvApiCtx);
 	int sci_int_imwatershed(char * fname, void* pvApiCtx);
+	int sci_int_imconvexityDefects(char * fname, void* pvApiCtx);
+	int sci_int_dnn_superres(char * fname, void* pvApiCtx);
+	int sci_int_dnn_superres_init(char * fname, void* pvApiCtx);
+	int sci_int_dnn_superres_upsample(char * fname, void* pvApiCtx);
+	int sci_int_bgr2lab(char * fname, void* pvApiCtx);
 }
 #endif
