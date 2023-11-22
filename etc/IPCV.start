@@ -8,10 +8,10 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.1.2.3 for Scilab 2024\n");
+    mprintf("Start " + TOOLBOX_NAME + " 4.5.0\n");
     mprintf(TOOLBOX_TITLE + "\n");
-    mprintf("2019 - Bytecode Malaysia\n");
-    //mprintf("Find more information at http://scilabipcv.tritytech.com \n");
+    mprintf("2020 - Scilab Academy\n");
+    //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
 
     if isdef("ipcvlib") then
         warning(TOOLBOX_NAME + " library is already loaded");
@@ -38,13 +38,13 @@ function ipcvlib = startModule()
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
 
-    OPENCV_VERSION = "4.1.2"
+    OPENCV_VERSION = "4.5.0"
     bDepsLoaded = %t;
     bNonfLoaded = %t;
 
     if getos() == 'Windows' then // Windows
 
-        OPENCV_LIBS = OPENCV_LIBS + "412" ;
+        OPENCV_LIBS = OPENCV_LIBS + "450" ;
         exec(etc_tlbx+'IPCV_windows.sci');
         IPCV_windows(root_tlbx,OPENCV_LIBS);
         //exec(etc_tlbx+'IPCV_windows_torch.sci');
@@ -60,23 +60,8 @@ function ipcvlib = startModule()
     // load gateways
     // =============================================================================
     mprintf("\tLoad gateways\n");
-    try
-        exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
-    catch
-        err = lasterror();		
-        if grep(err,'GLIBCXX')
-            disp('');		
-            disp('------------------------------------------------------');
-            disp("Error : Different version of compiler detected, consider recompile the module by running the builder.sce.");
-            disp('');
-            disp("Pre-requisites for recompilation : OpenCV and OpenCV-nonfree.");
-            disp('');
-            disp(" Visit ""http://scilabipcv.tritytech.com/2017/03/17/installation-of-scilab-ipcv/"" for more details");
-            disp('');	
-            disp('------------------------------------------------------');
-        end
-        return;
-    end
+    
+    exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
 
     ilib_verbose(verboseMode);
 

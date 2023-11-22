@@ -8,7 +8,8 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
     ffmpeg_libs = ["avutil"; "swscale"; "avcodec"; "avformat"; "avfilter"; "avdevice"];
     OPENCV_LIBS = "lib"+[ffmpeg_libs; OPENCV_LIBS];
     
-    opencvDynLibPath = fullpath(fullfile(root_tlbx,"thirdparty",getos(),unix_g("uname -m"),"lib"));
+    ARCH = unix_g("uname -m");
+    opencvDynLibPath = fullpath(fullfile(root_tlbx,"thirdparty",getos(),ARCH,"lib"));
     
     pp = pwd();
     cd(opencvDynLibPath);
