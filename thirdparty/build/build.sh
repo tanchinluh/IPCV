@@ -1,4 +1,6 @@
-THIRDPARTY="$(realpath $(pwd)/..)/$(uname -s)/$(uname -m)"
+cd ..
+THIRDPARTY="$(pwd)/$(uname -s)/$(uname -m)"
+cd build
 OPENCV_VER=4.5.0
 FFMPEG_VER=4.3.6
 
@@ -6,7 +8,7 @@ FFMPEG_VER=4.3.6
 curl -L https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.xz -o ffmpeg.tar.xz
 tar xvzf ffmpeg.tar.xz
 cd ffmpeg-${FFMPEG_VER}
-./configure --enable-shared --enable-rpath --disable-static --disable-programs --prefix="${THIRDPARTY}"
+./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${THIRDPARTY}"
 make -j4
 make install
 cd ..
