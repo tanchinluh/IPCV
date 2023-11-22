@@ -43,7 +43,8 @@ function [G] = rgb2gray(RGB)
     //check whether RGB is a MxNx3 hypermat
     if (size(dims,2)== 3) then
         if (dims(3)<>3) then
-            error('RGB image must have dimentions M x N x 3.');
+            mprintf("%s\n","Input image is not a RGB image, output remained the same as input.");
+            G = RGB;
         end
         G = int_rgb2gray(RGB)
 //        //convert the image to double image first
@@ -70,6 +71,7 @@ function [G] = rgb2gray(RGB)
 //        end //end select
 
     else //if not size(dims,'2') == 3
-        error('RGB image must have dimentions M x N x 3.')
+            mprintf("%s\n","Input image is not a RGB image, output remained the same as input.");
+            G = RGB;
     end
 endfunction

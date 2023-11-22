@@ -43,9 +43,17 @@ function [] = imsurf(imin,n,plotop);
 
     sz = size(imin);
     //mesh(abs(F2(1:10:$,(1:10:$))))
-
     r_step = round(sz(1)/n);
     c_step = round(sz(2)/n);
+
+    if sz(1)< n then
+        r_step = 1;
+    end
+
+    if sz(2)< n then
+        c_step = 1;
+    end
+
 
     if n == -1 then
         r_step = 1;

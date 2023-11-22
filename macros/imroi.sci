@@ -3,7 +3,7 @@
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
 
-function imout = imroi(imin, nr_points)
+function [imout,pts] = imroi(imin, nr_points)
     // Select region of interest and create a mask from it
     //
     // Syntax
@@ -63,9 +63,9 @@ function imout = imroi(imin, nr_points)
     imshow(imin);
     sleep(500);
     imtruesize(gcf());
-//	if pts == [] then
+	if pts == [] then
 		pts = imselect(nr_points, [0 0 size(imin,2) size(imin,1)]);
-//	end
+	end
 f =gcf();
 ///////////////
 //pause

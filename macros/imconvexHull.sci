@@ -1,56 +1,49 @@
 //=============================================================================
 // IPCV - Scilab Image Processing and Computer Vision toolbox
-// Copyright (C) 2017  Tan Chin Luh
+// Copyright (C) 2020  Tan Chin Luh
 //=============================================================================
-function H = imconvexHull(pts)
+function H = imconvexHull(contours, cw, ind)
     // Finds the convex hull of a point set.
     //
     // Syntax
-    //    H = imconvexHull(pts)
+    //    H = imconvexHull(contours[, cw[, ind]])
     //
     // Parameters
-    //    pts : Input 2D point set.
-    //    H : Output convexhull
+    //    contours : Contours in list
+    //    cw : Return points in clockwise or counter-clockwise direction, 0 as CCW, 1 as CW
+    //    ind : Return points in image rectangular coordinate pairs or the indices of contours, 0 to return coor pairs, 1 to return indexes 
+    //    H : Convex hulls in list in correspond to the contours
     //     
     // Description
-    //    The functions find the convex hull of a 2D point set using the Sklansky's algorithm.
+    //    The functions find the convex hull of all the contours in list using the Sklansky's algorithm.
     //
     // Examples
     //    S = imread(fullpath(getIPCVpath() + "/images/hand.jpg"));
     //    Sbw = im2bw(~S,0.5);
     //    imshow(Sbw);
     //    Sc = imfindContours(Sbw);
-    //    [A, BB, ctr] = imblobprop(Sc);
-    //    [maxV,maxI] = max(A);
-    //    [row,col] = find(Sc==maxI);
-    //    [cart_x,cart_y] = sub2cartesian(size(Sc), row,col);
-    //    SS = [(cart_x)',(cart_y)'];
-    //    H = imconvexHull(SS);
-    //    sz = size(S);
-    //    plot(cart_x,cart_y,'.');
-    //    Hd = double(H);
-    //    plot(Hd(:,1),Hd(:,2),'r');
+    //    H = imconvexHull(Sc);
+    //    implotContours(Sbw,lstcat(Sc, H),5)
     //  
     // See also
     //     imfindContours
-    //     imdrawContours
-    //     imconvexHull
+    //     implotContours
+    //     imconvexityDefects
     //
     // Authors
     //    Tan Chin Luh
     //
-    // Bibliography
-    //    1. OpenCV 2.4 Online Documentation
+    
+    rhs = argn(2);
+    // Error Checking
+    if rhs < 1; error("This function needs at least 1 input"); end;
+    if rhs < 2; cw = 0; end;
+    if rhs < 3; ind = 0; end;
+
+    if cw == []; cw = 0; end;
+    if ind == []; ind = 0; end;
     
     
-    if size(pts,1) == 2 then
-        pts = pts';
-    elseif size(pts,2) == 2
-        pts = pts;
-    else
-        error('Input vector must be either 2 rows or 2 columns');
-    end
-    
-    H=int_imconvexHull(SS);
+    H = int_imconvexHull(contours, cw, ind);
     
 endfunction

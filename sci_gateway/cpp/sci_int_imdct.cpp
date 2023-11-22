@@ -47,7 +47,7 @@ int sci_int_imdct(char * fname,void* pvApiCtx)
 	/////////////////
 	Mat pDstImg = pSrcImg;
 	//
-	dct( pSrcImg, pDstImg,0);
+	dct(pSrcImg, pDstImg,0);
 	//sciprint("dims : %i\n",pSrcImg.dims);
 	//sciprint("dims : %i\n",pSrcImg.dims);
 	//

@@ -18,7 +18,7 @@ function imout = imwatershed(imin,markers)
     //    The function implements one of the variants of watershed, non-parametric marker-based segmentation algorithm.
     //
     // Examples
-    //    S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
+    //    S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"), IMREAD_COLOR = 1);
     //    Sgray = rgb2gray(S);
     //    Sb = im2bw(Sgray,0.1);
     //    Sd = imdistransf(Sb);

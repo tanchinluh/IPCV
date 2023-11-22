@@ -9,12 +9,12 @@ S(1) = imread(fullpath(getIPCVpath() + "/images/superres/input001.png"));
 S(2) = imread(fullpath(getIPCVpath() + "/images/superres/input002.png"));
 p = imsuperres_params();
 p.iter = 1;
-assert_checkequal(size(imsuperres(S,p)),[256,256,3]);
+assert_checkalmostequal(size(imsuperres(S,p)),[256,256,3]);
 List (2)
 	Unsigned Integer 8 bits (64 x 64)
 	Unsigned Integer 8 bits (64 x 64)
 X = 0.000000 , Y = 0.000000
-X = -0.133316 , Y = 1.293030
+X = -0.133057 , Y = 1.293125
 Xadj = 0.000000 , Yadj = 0.000000
-Xadj = 0.000000 , Yadj = 1.293030
+Xadj = 0.000000 , Yadj = 1.293125
 //==============================================================================

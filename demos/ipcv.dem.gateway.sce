@@ -9,9 +9,11 @@ function subdemolist = demo_gateway()
                  "Frequency Domain Filter Design","demo_filter2.sci"; ..
                  "Image Analysis and Stats","demo_imagestats.sci"; ..
                  "Image Transformation", "demo_transform.sci"; ..
-                 "Image Arithmetic", "demo_arithmetic.sci"]
-                 //"WebCam Demo", "demo_webcam.sci"];
-
+                 "Image Arithmetic", "demo_arithmetic.sci"];
+                 if getos() <> "Darwin"
+                     subdemolist = [subdemolist
+                         "WebCam Demo", "demo_webcam.sci"];
+                end
   subdemolist(:,2) = demopath + subdemolist(:,2);
 endfunction
 // ====================================================================

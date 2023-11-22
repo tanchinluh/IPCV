@@ -35,6 +35,15 @@ function y = imdct(x)
         error('Matrix must be either 1-D or 2-D');
     end
 
+    // 2022-Sep-27 : Add to handle odd size image 
+    if modulo(size(x,1),2) ~= 0
+        x = x(1:$-1,:);
+    end
+    if modulo(size(x,2),2) ~= 0
+        x = x(:,1:$-1);
+    end
+
+
     if type(x) == 8 then
         y = int_imdct(double(x));    
     elseif type(x) == 1

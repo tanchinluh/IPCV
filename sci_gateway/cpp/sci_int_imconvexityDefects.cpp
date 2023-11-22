@@ -1,13 +1,13 @@
 /***********************************************************************
 * IPCV - Scilab Image Processing and Computer Vision toolbox
-* Copyright (C) 2017  Tan Chin Luh
+* Copyright (C) 2020  Tan Chin Luh
 ***********************************************************************/
 
 #include "common.h"
 using namespace cv;
 using namespace std;
 
-int sci_int_imconvexHull(char * fname, void* pvApiCtx)
+int sci_int_imconvexityDefects(char * fname, void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iItem = 0;
@@ -19,43 +19,54 @@ int sci_int_imconvexHull(char * fname, void* pvApiCtx)
 	double *indd = NULL;
 	bool cw, ind;
 
-	CheckInputArgument(pvApiCtx, 3, 3);
-	CheckOutputArgument(pvApiCtx, 0, 3);
+	CheckInputArgument(pvApiCtx, 2, 2);
+	CheckOutputArgument(pvApiCtx, 0, 1);
 
-	vector<Mat> imgs;
-	GetListImg(1, NULL, piAddr, 0, imgs, pvApiCtx);
+	vector<Mat> imgs1;
+	GetListImg(1, NULL, piAddr, 0, imgs1, pvApiCtx);
 
-	GetDouble(2, cwd, iRows, iCols, pvApiCtx);
-	cw = (*cwd != 0);
+	int num_item1 = imgs1.size();
 
-	GetDouble(3, indd, iRows, iCols, pvApiCtx);
-	ind = (*indd != 0);
+	vector<vector<Point>>contours(num_item1);
 
-	int num_item = imgs.size();
-
-	vector<vector<Point>>contours(num_item);
-
-	for (int num = 0; num < num_item; num++)
+	for (int num = 0; num < num_item1; num++)
 	{
-		Mat C = imgs[num];
+		Mat C1 = imgs1[num];
 
-		for (int x = 0; x < C.cols - 1; x++)
-			for (int y = 0; y < C.rows; y++)
+		for (int x = 0; x < C1.cols - 1; x++)
+			for (int y = 0; y < C1.rows; y++)
 			{
-				contours[num].push_back(Point(C.at<double>(y, x) - 1, C.at<double>(y, x + 1) - 1));
+				contours[num].push_back(Point(C1.at<double>(y, x) - 1, C1.at<double>(y, x + 1) - 1));
+			}
+	}
+
+	vector<Mat> imgs2;
+	GetListImg(2, NULL, piAddr, 0, imgs2, pvApiCtx);
+
+	int num_item2 = imgs2.size();
+
+	vector<vector<int>>hullidx(num_item2);
+
+	for (int num = 0; num < num_item2; num++)
+	{
+		Mat C2 = imgs2[num];
+
+		for (int x = 0; x < C2.cols; x++)
+			for (int y = 0; y < C2.rows; y++)
+			{
+				hullidx[num].push_back(C2.at<double>(y, x) - 1);
 			}
 	}
 
 
-	// Deside to export the hull in points or indices
-	if (ind)
-	{
-		vector<vector<int> >hull(contours.size());
+	    vector<vector<Vec4i>> defects(contours.size());
+		
 		for (size_t i = 0; i < contours.size(); i++)
 		{
 			try
 			{
-				convexHull(contours[i], hull[i], cw);
+				//convexHull(contours[i], hull[i], cw);
+				convexityDefects(contours[i], hullidx[i], defects[i]);
 			}
 			catch (std::exception& e)
 			{
@@ -64,26 +75,30 @@ int sci_int_imconvexHull(char * fname, void* pvApiCtx)
 		}
 
 		// Preparing output in list, each hull in each list item
-		int hull_num = hull.size();
+		int defects_num = defects.size();
 
 		// create list size base on number of contours found
-		sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hull_num, &piAddr);
+		sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, defects_num, &piAddr);
 		if (sciErr.iErr)
 		{
 			printError(&sciErr, 0);
 			return 0;
 		}
 
-		for (int num = 0; num < hull_num; num++)
+		for (int num = 0; num < defects_num; num++)
 		{
-			int iRows1 = hull[num].size() * 1;
-			int iCols1 = 1;
+			int iRows1 = defects[num].size() * 1;
+			int iCols1 = 4;
 			double* pdblReal1 = NULL;
 			pdblReal1 = new double[iRows1*iCols1];
 
 			for (int cnt = 0; cnt < iRows1; cnt++)
 			{
-				pdblReal1[cnt] = hull[num][cnt] + 1;
+				pdblReal1[iCols1 / 4 * cnt] = defects[num][cnt][0] + 1;
+				pdblReal1[iRows1 + iCols1 / 4 * cnt] = defects[num][cnt][1] + 1;
+				pdblReal1[iRows1*2 + iCols1 / 4 * cnt] = defects[num][cnt][2] + 1;
+				pdblReal1[iRows1*3 + iCols1 / 4 * cnt] = defects[num][cnt][3];
+				//sciprint("%i\n", cnt);
 
 			}
 
@@ -96,57 +111,10 @@ int sci_int_imconvexHull(char * fname, void* pvApiCtx)
 
 		}
 
-	}
-	else
-	{
-		vector<vector<Point> >hull(contours.size());
-		for (size_t i = 0; i < contours.size(); i++)
-		{
-			try
-			{
-				convexHull(contours[i], hull[i], cw);
-			}
-			catch (std::exception& e)
-			{
-				sciprint("%s\n", e.what());
-			}
-		}
-
-		// Preparing output in list, each hull in each list item
-		int hull_num = hull.size();
-
-		// create list size base on number of contours found
-		sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, hull_num, &piAddr);
-		if (sciErr.iErr)
-		{
-			printError(&sciErr, 0);
-			return 0;
-		}
-
-		for (int num = 0; num < hull_num; num++)
-		{
-			int iRows1 = hull[num].size() * 1;
-			int iCols1 = 2;
-			double* pdblReal1 = NULL;
-			pdblReal1 = new double[iRows1*iCols1];
-
-			for (int cnt = 0; cnt < iRows1; cnt++)
-			{
-				pdblReal1[iCols1 / 2 * cnt] = hull[num][cnt].x + 1;
-				pdblReal1[iRows1 + iCols1 / 2 * cnt] = hull[num][cnt].y + 1;
-
-			}
-
-			sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, num + 1, iRows1, iCols1, pdblReal1);
-			if (sciErr.iErr)
-			{
-				printError(&sciErr, 0);
-				return 0;
-			}
-
-		}
-	}
 	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+
+
+	/////////////////////////////////////////////
 
 	//vector<vector<Point>>hull;
 	//convexHull(contours, hull);

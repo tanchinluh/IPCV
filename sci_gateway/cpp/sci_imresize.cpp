@@ -99,7 +99,7 @@ int sci_imresize(char * fname,void* pvApiCtx)
 	}
 
 	resize(src, dst, dsize, 0, 0, Interpolation);
-
+	//resize(src, dst, dsize, 0, 0, INTER_LINEAR);
 	SetImage(1,dst,pvApiCtx);
 
 	return 0;
