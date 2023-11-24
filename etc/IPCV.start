@@ -8,7 +8,11 @@ function ipcvlib = startModule()
     TOOLBOX_NAME  = "IPCV"
     TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
 
-    mprintf("Start " + TOOLBOX_NAME + " 4.5.0\n");
+    etc_tlbx  = get_absolute_file_path("IPCV.start");
+    etc_tlbx  = getshortpathname(etc_tlbx);
+    root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+
+    mprintf("Start %s %s\n",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
     mprintf(TOOLBOX_TITLE + "\n");
     mprintf("2020 - Scilab Academy\n");
     //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
@@ -18,9 +22,6 @@ function ipcvlib = startModule()
         return;
     end
 
-    etc_tlbx  = get_absolute_file_path("IPCV.start");
-    etc_tlbx  = getshortpathname(etc_tlbx);
-    root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 
     //Load  functions library
     // =============================================================================

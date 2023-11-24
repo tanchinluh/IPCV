@@ -33,20 +33,26 @@ function builder_gateway_cpp()
 
     gw_tables = [scifunctions_name, cppfunctions_name];
 
-    THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty");
-    
-    if getos() ~= "Windows" // Darwin, Linux
-        gw_cpp_files = [gw_cpp_files; "common.h"];
-        gw_cpp_files(gw_cpp_files == 'dllipcv.cpp') = [];
-        ARCH = unix_g("uname -m");
+    if  getos() == "Windows"
+        ARCH = getenv("PROCESSOR_ARCHITECTURE");        
     else
-        ARCH = getenv("PROCESSOR_ARCHITECTURE");
+        ARCH = unix_g("uname -m");
     end
-    OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
+
+    THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty",getos(),ARCH));
+
+    all_libs = [];
+    if getos() == "Windows"
+        OPENCV_INCLUDE = fullfile(THIRDPARTY,"include");
+        libs = ["opencv_world450";"opencv_img_hash450"]
+        all_libs = fullfile(THIRDPARTY,"lib",libs); 
+    else  // Darwin, Linux
+        OPENCV_INCLUDE = fullfile(THIRDPARTY,"include","opencv4");
+        gw_cpp_files = [gw_cpp_files; "common.h"];
+    end
 
     inter_cflags = ilib_include_flag(OPENCV_INCLUDE); 
     inter_ldflags = "";
-    all_libs = [];
 
     tbx_build_gateway('gw_ipcv', ..
     gw_tables, ..
@@ -55,6 +61,14 @@ function builder_gateway_cpp()
     all_libs, ..
     inter_ldflags, ..
     inter_cflags);
+
+    if getos() == "Windows"
+        // remove redundant/harcoded path link in generated loader script
+        loaderPath = fullfile(gw_cpp_path,"loader.sce");
+        loader = mgetl(loaderPath);
+        loader(grep(loader,["opencv_world";"opencv_img_hash"])) = [];
+        mputl(loader,loaderPath);
+    end
 
 endfunction
 // ====================================================================
