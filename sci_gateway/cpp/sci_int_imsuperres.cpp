@@ -346,11 +346,11 @@ void superresolutionSparseMat32f(Mat src[], Mat& dest, SparseMat DHF[], const in
 		putText(dest,name,Point(15,50), FONT_HERSHEY_DUPLEX,1.5,CV_RGB(255,255,255),2);
 
 		sprintf(name,"iteration%04d.png",i);
-		imshow("SRimage - Press Esc to Close Window",dest); //waitKey(30);
-		if(waitKey(10) == 27)
-			{sprintf(name,"iteration%04d.png",i);
-				break;
-		}
+        // imshow("SRimage - Press Esc to Close Window",dest); //waitKey(30);
+        // if(waitKey(10) == 27)
+        //     {sprintf(name,"iteration%04d.png",i);
+        //         break;
+        // }
 
 		//imwrite(name,dest);
 		//cout<<"time/iteration"<<(getTickCount()-t)*1000.0/getTickFrequency()<<"ms"<<endl;
@@ -358,7 +358,7 @@ void superresolutionSparseMat32f(Mat src[], Mat& dest, SparseMat DHF[], const in
 	}
 
 	//re-convert  1D vecor structure to Mat image structure
-	destroyWindow("SRimage - Press Esc to Close Window");
+    // destroyWindow("SRimage - Press Esc to Close Window");
 	dstvec.reshape(3,dest.rows).convertTo(dest,CV_8UC3);
 	
 	//imwrite("sr.png",dest);
