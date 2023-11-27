@@ -65,7 +65,7 @@ int sci_int_dnn_superres_upsample(char * fname, void* pvApiCtx)
 			//DeepSRNet[0].sr.setModel(algorithm, scale_int);
 			//sciprint("aaa\n");
 			
-			sciprint("%s\n", DeepSRNet[0].sr.getAlgorithm());
+			sciprint("%s\n", DeepSRNet[0].sr.getAlgorithm().c_str());
 			DeepSRNet[0].sr.upsample(img, img_new);
 
 		}       // and exits the switch
