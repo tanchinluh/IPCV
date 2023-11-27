@@ -110,7 +110,11 @@ function imshow(im, varargin)
                 elseif ColorMap ~= []
                     e = gce();
                     e.image_type = 'index';                
-                    e.parent.parent.color_map = ColorMap;
+                    e = e.parent;
+                    while e.type <> "Figure"
+                        e = e.parent;
+                    end
+                    e.color_map = ColorMap;
                 end
                 drawnow();
             else
