@@ -23,7 +23,7 @@ function result = imroifill(imin,mask)
     //    mask = imroi(S);
     //    imout = imroifill(S,mask);
     //    imshow(S);
-    //    figure(); imshow(imout);
+    //    scf; imshow(imout);
     //
     // See also
     //    imroi

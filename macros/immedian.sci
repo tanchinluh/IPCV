@@ -21,7 +21,7 @@ function imout = immedian(imin,sz)
     //    S_noise =  imnoise(S,'salt & pepper',0.02);
     //    imshow(S_noise);
     //    S2 = immedian(S_noise,3);
-    //    figure; imshow(S2);
+    //    scf; imshow(S2);
     //
     // See also
     //    imfilter

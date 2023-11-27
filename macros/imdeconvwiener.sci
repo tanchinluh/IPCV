@@ -33,7 +33,7 @@ function imout = imdeconvwiener(imin,f,noisefct)
     //    S2 = imfilter(S,h,'circular');
     //    imshow(S2);
     //    S3 = imdeconvwiener(S2,h,0);
-    //    figure;imshow(S3);
+    //    scf;imshow(S3);
     //
     // See also
     //    imdeconvl2

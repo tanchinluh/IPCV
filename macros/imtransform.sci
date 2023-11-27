@@ -26,7 +26,7 @@ function imout = imtransform(imin,warpmat,tf_type,width,height)
     //    mat = imgettransform(src,tgt,'affine')
     //    S2 = imtransform(S,mat,'affine');
     //    imshow(S);
-    //    figure();imshow(S2);
+    //    scf;imshow(S2);
     //
     // See also
     //    warpmatselect

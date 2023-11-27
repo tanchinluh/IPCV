@@ -70,7 +70,8 @@ h = fspecial('motion',25,45);
 S2 = imfilter(S,h,'circular');
 imshow(S2);
 S3 = imdeconvwiener(S2,h,0);
-figure;imshow(S3);
+scf;
+imshow(S3);
 
    ]]></programlisting>
 </refsection>

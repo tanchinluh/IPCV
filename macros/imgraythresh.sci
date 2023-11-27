@@ -26,7 +26,7 @@ function level = imgraythresh (I)
     //    S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
     //    th = imgraythresh(S);
     //    S2 = im2bw(S,th);
-    //    figure(); imshow(S2);
+    //    scf; imshow(S2);
     //
     // See also
     //     im2bw
