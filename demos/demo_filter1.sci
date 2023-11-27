@@ -15,8 +15,7 @@ function demo_filter1()
         imf2 = imfilter(im, filter);
         filter = fspecial('average');
         imf3 = imfilter(im, filter);
-        clf;
-        show_window
+        scf();
         subplot(221); imshow(im); title("Original image");
         subplot(222); imshow(imf1); title("Sobel Filter");
         subplot(223); imshow(imf2); title("Unsharpen  Filter");

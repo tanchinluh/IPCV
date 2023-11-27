@@ -17,6 +17,7 @@ function demo_arithmetic()
         
         ima1 = imadd(im1,im2);
         ima2 = imadd(im1,100);
+        scf();
         subplot(221); imshow(im1); title("First Image");
         subplot(222); imshow(im2); title("Second Image");
         subplot(223); imshow(ima1); title("1st Image + 2nd Image");
