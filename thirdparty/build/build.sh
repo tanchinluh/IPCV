@@ -1,3 +1,12 @@
+# Copyright (C) 2023 - UTC - Stéphane MOTTELET
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public
+# License as published by the Free Software Foundation; either
+# version 2.1 of the License, or (at your option) any later version.
+#
+# openCV build script for Linux and macOS
+# cmake should be in the PATH
+
 cd ..
 THIRDPARTY="$(pwd)/$(uname -s)/$(uname -m)"
 cd build
