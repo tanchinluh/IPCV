@@ -1,10 +1,10 @@
 function IPCV_windows(root_tlbx,OPENCV_LIBS)
-    
+
     ARCH = getenv("PROCESSOR_ARCHITECTURE");
-    opencvDynLibPath = fullpath(fullfile(root_tlbx,"thirdparty",getos(),ARCH,"lib"));
+    opencvDynLibPath = fullpath(fullfile(root_tlbx,"thirdparty",getos(),ARCH,"bin"));
 
     tmp = pwd();
-    cd(opencvDllPath);
+    cd(opencvDynLibPath);
 
     for l = 1:size(OPENCV_LIBS, '*')
         if execstr('link(OPENCV_LIBS(l) + getdynlibext())', 'errcatch') <> 0 then
@@ -13,7 +13,8 @@ function IPCV_windows(root_tlbx,OPENCV_LIBS)
             break;
         end
     end
-    
+
     cd(tmp);
 
 endfunction
+
