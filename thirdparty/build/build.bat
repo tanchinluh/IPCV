@@ -12,13 +12,13 @@ curl -o opencv.tgz https://codeload.github.com/opencv/opencv/tar.gz/refs/tags/%O
 curl -o opencv_contrib.tgz https://codeload.github.com/opencv/opencv_contrib/tar.gz/refs/tags/%OPENCV_VER%
 tar xvzf opencv.tgz
 tar xvzf opencv_contrib.tgz
+cd ..
 set THIRDPARTY=%cd%
-cd opencv-%OPENCV_VER%
+cd build\opencv-%OPENCV_VER%
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX="%THIRDPARTY%\Windows\%PROCESSOR_ARCHITECTURE%" ^
--DCMAKE_MACOSX_RPATH=ON ^
--DOPENCV_EXTRA_MODULES_PATH="%THIRDPARTY%\opencv_contrib-%OPENCV_VER%\modules" ^
+-DOPENCV_EXTRA_MODULES_PATH="%THIRDPARTY%\build\opencv_contrib-%OPENCV_VER%\modules" ^
 -DWITH_OPENJPEG=OFF ^
 -DBUILD_opencv_apps=OFF ^
 -DBUILD_opencv_python2=OFF ^
@@ -32,6 +32,6 @@ cmake -DCMAKE_INSTALL_PREFIX="%THIRDPARTY%\Windows\%PROCESSOR_ARCHITECTURE%" ^
 -DBUILD_EXAMPLES:BOOL=OFF ^
 -DCMAKE_CXX_FLAGS="/D _SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1" ^
 ..
-cd %THIRDPARTY% 
-cmake --build opencv-%OPENCV_VER%\build
-cmake --install opencv-%OPENCV_VER%\build
+cmake --build . --config Release
+cmake --install .
+
