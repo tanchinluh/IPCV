@@ -15,7 +15,7 @@ FFMPEG_VER=4.3.6
 
 # ffmpeg build
 curl -L https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.xz -o ffmpeg.tar.gz
-tar xvzf ffmpeg.tar.xz
+tar xvzf ffmpeg.tar.gz
 cd ffmpeg-${FFMPEG_VER}
 ./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${THIRDPARTY}"
 make -j4
