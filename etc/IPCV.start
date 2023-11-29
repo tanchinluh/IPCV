@@ -14,7 +14,7 @@ function ipcvlib = startModule()
 
     mprintf("Start %s %s\n",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
     mprintf(TOOLBOX_TITLE + "\n");
-    mprintf("2020 - Scilab Academy\n");
+    mprintf("2023 - Scilab Academy\n");
     //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
 
     if isdef("ipcvlib") then
@@ -34,7 +34,7 @@ function ipcvlib = startModule()
 
     // load dependencies
     // =============================================================================
-    // load dependencies on OpenCV 2.4.3
+    // load dependencies on OpenCV
     mprintf("\tLoad dependencies\n");
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
