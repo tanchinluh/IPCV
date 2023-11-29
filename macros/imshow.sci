@@ -93,7 +93,8 @@ function imshow(im, varargin)
 
             if imParent == [] //| imParent.children ==[]
                 //scf();
-                drawlater();
+                imdraw = gcf().immediate_drawing;
+                gcf().immediate_drawing = "off";
                 dim = size(im);
 
                 if typeof(im) == 'boolean' //boolean
@@ -116,7 +117,7 @@ function imshow(im, varargin)
                     end
                     e.color_map = ColorMap;
                 end
-                drawnow();
+                gcf().immediate_drawing = imdraw;
             else
                 imChildren = imParent.children($);
                 dim = size(im);
@@ -216,7 +217,7 @@ function imshow(im, varargin)
             imParent.parent.background = -2;
             imParent.axes_visible = ['off' 'off' 'off'];
 
-            drawnow();
+           gcf().immediate_drawing = imdraw;
         end
 
     endfunction
