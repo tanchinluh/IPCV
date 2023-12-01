@@ -238,8 +238,8 @@ function [F] = fspecial(ftype, varargin)
         //
         sizx = (siz(2)-1)/2;
         sizy = (siz(1)-1)/2;
-        x2 = ones(siz(1),1) * ([-sizx:sizx]^2);
-        y2 = ([-sizy:sizy]^2)' * ones(1, siz(2));
+        x2 = ones(siz(1),1) * ([-sizx:sizx].^2);
+        y2 = ([-sizy:sizy].^2)' * ones(1, siz(2));
         F = exp( -(x2+y2)/(2*g_std^2) );
         F(F<%eps*max(F)) = 0;
         sumF=sum(F);
