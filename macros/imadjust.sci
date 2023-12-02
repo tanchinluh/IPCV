@@ -23,7 +23,7 @@ function imout = imadjust(imin,src,dest,gm)
     //    I = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
     //    J = imadjust(I,[0 0.5],[0.5 1]);
     //    imshow(I)
-    //    figure();imshow(J);
+    //    scf;imshow(J);
     //
     // See also
     //     imhistequal

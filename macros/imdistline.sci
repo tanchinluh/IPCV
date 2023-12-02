@@ -44,7 +44,7 @@ function dist = imdistline()
     end
 
 
-    dist = sqrt((xc - ox)^2 + (yc - oy)^2);
+    dist = sqrt((xc - ox).^2 + (yc - oy).^2);
 
     x_mid = min(xc,ox) + abs(xc - ox)/2;
     y_mid = min(yc,oy) + abs(yc - oy)/2;

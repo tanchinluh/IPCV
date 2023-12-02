@@ -37,37 +37,44 @@
 
 
 <div class="refsynopsisdiv"><h3 class="title" id="#L25">Syntax</h3>
-   <div class="synopsis"><pre><span class="default">H</span><span class="default"> = </span><span class="functionid">imconvexHull</span><span class="default">(</span><span class="default">contours</span><span class="default">[, </span><span class="default">cw</span><span class="default">[, </span><span class="default">ind</span><span class="default">]])</span></pre></div></div>
+   <div class="synopsis"><pre><span class="default">H</span><span class="default"> = </span><span class="functionid">imconvexHull</span><span class="default">(</span><span class="default">pts</span><span class="default">)</span></pre></div></div>
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
-   <dl><dt><span class="term">contours :</span>
-            <dd><p class="para">Contours in list</p></dd></dt>
-        <dt><span class="term">cw :</span>
-            <dd><p class="para">Return points in clockwise or counter-clockwise direction, 0 as CCW, 1 as CW</p></dd></dt>
-        <dt><span class="term">ind :</span>
-            <dd><p class="para">Return points in image rectangular coordinate pairs or the indices of contours, 0 to return coor pairs, 1 to return indexes</p></dd></dt>
+   <dl><dt><span class="term">pts :</span>
+            <dd><p class="para">Input 2D point set.</p></dd></dt>
         <dt><span class="term">H :</span>
-            <dd><p class="para">Convex hulls in list in correspond to the contours</p></dd></dt></dl></div>
+            <dd><p class="para">Output convexhull</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Description</h3>
-   <p class="para">The functions find the convex hull of all the contours in list using the Sklansky&#0039;s algorithm.</p>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+   <p class="para">The functions find the convex hull of a 2D point set using the Sklansky&#0039;s algorithm.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L64">Examples</h3>
+<div class="refsection"><h3 class="title" id="#L56">Examples</h3>
    <div class="programlisting" id="#L73"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/hand.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">Sbw</span> <span class="scilaboperator">=</span> <span class="scilabid">im2bw</span><span class="scilabopenclose">(</span><span class="scilaboperator">~</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabnumber">0.5</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">Sbw</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">Sc</span> <span class="scilaboperator">=</span> <span class="scilabid">imfindContours</span><span class="scilabopenclose">(</span><span class="scilabid">Sbw</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<span class="scilabid">H</span> <span class="scilaboperator">=</span> <span class="scilabid">imconvexHull</span><span class="scilabopenclose">(</span><span class="scilabid">Sc</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<span class="scilabid">implotContours</span><span class="scilabopenclose">(</span><span class="scilabid">Sbw</span><span class="scilabdefault">,</span><a class="scilabmacro" href="scilab://lstcat">lstcat</a><span class="scilabopenclose">(</span><span class="scilabid">Sc</span><span class="scilabdefault">,</span> <span class="scilabid">H</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabnumber">5</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+<span class="scilabopenclose">[</span><span class="scilabid">A</span><span class="scilabdefault">,</span> <span class="scilabid">BB</span><span class="scilabdefault">,</span> <span class="scilabid">ctr</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">imblobprop</span><span class="scilabopenclose">(</span><span class="scilabid">Sc</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">maxV</span><span class="scilabdefault">,</span><span class="scilabid">maxI</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://max">max</a><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">row</span><span class="scilabdefault">,</span><span class="scilabid">col</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://find">find</a><span class="scilabopenclose">(</span><span class="scilabid">Sc</span><span class="scilaboperator">==</span><span class="scilabid">maxI</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabopenclose">[</span><span class="scilabid">cart_x</span><span class="scilabdefault">,</span><span class="scilabid">cart_y</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">sub2cartesian</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://size">size</a><span class="scilabopenclose">(</span><span class="scilabid">Sc</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span> <span class="scilabid">row</span><span class="scilabdefault">,</span><span class="scilabid">col</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">SS</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabopenclose">(</span><span class="scilabid">cart_x</span><span class="scilabopenclose">)</span><span class="scilaboperator">&#0039;</span><span class="scilabdefault">,</span><span class="scilabopenclose">(</span><span class="scilabid">cart_y</span><span class="scilabopenclose">)</span><span class="scilaboperator">&#0039;</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+<span class="scilabid">H</span> <span class="scilaboperator">=</span> <span class="scilabid">imconvexHull</span><span class="scilabopenclose">(</span><span class="scilabid">SS</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">sz</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://size">size</a><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<a class="scilabmacro" href="scilab://plot">plot</a><span class="scilabopenclose">(</span><span class="scilabid">cart_x</span><span class="scilabdefault">,</span><span class="scilabid">cart_y</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">.</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">Hd</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://double">double</a><span class="scilabopenclose">(</span><span class="scilabid">H</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<a class="scilabmacro" href="scilab://plot">plot</a><span class="scilabopenclose">(</span><span class="scilabid">Hd</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabid">Hd</span><span class="scilabopenclose">(</span><span class="scilabspecial">:</span><span class="scilabdefault">,</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">r</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
 <div class="refsection"><h3 class="title" id="#L77">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imfindContours.html" class="link">imfindContours</a> &#8212; Finds contours in a binary image.</li>
-   <li class="member"><a href="implotContours.html" class="link">implotContours</a> &#8212; Plot contours on image.</li>
-   <li class="member"><a href="imconvexityDefects.html" class="link">imconvexityDefects</a> &#8212; Finds the convexity defects of a contour.</li></ul></div>
+   <ul class="itemizedlist"><li class="member"><a href="scilab://imfindContours" class="link">imfindContours</a></li>
+   <li class="member"><a href="scilab://imdrawContours" class="link">imdrawContours</a></li>
+   <li class="member"><a href="imconvexHull.html" class="link">imconvexHull</a></li></ul></div>
 
 <div class="refsection"><h3 class="title" id="#L86">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
+
+<div class="refsection"><h3 class="title" id="#L93">Bibliography</h3>
+   <p class="para">1. OpenCV 2.4 Online Documentation</p></div>
     <br />
 
     <div class="manualnavbar">

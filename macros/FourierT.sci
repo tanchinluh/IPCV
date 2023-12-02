@@ -32,8 +32,8 @@ I2 = imhistequal(I1);
 image = I2;
 
 if display==1 
-    figure;imshow(I1);title('FFT enhancement');  
-    figure;imshow(I2);title('FFT & histogram');
+    scf;imshow(I1);title('FFT enhancement');  
+    scf;imshow(I2);title('FFT & histogram');
 end
 
 endfunction

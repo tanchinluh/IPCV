@@ -184,7 +184,7 @@
 <tocitem target="imconvexHull" text="imconvexHull"/>
 <tocitem target="imconvexityDefects" text="imconvexityDefects"/>
 <tocitem target="imdrawcontours" text="imdrawcontours"/>
-<tocitem target="imfindContours" text="imfindContours"/>
+<tocitem target="imfindcontours" text="imfindcontours"/>
 <tocitem target="implotContours" text="implotContours"/>
 </tocitem>
 <tocitem target="section_7d487fa50af482d311ad1099def58007" text="Super Resolution">

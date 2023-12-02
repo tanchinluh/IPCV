@@ -54,13 +54,13 @@
    <p class="para"></p></div>
 
 <div class="refsection"><h3 class="title" id="#L64">Examples</h3>
-   <div class="programlisting" id="#L82"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabcomment">// Initialize</span>
+   <div class="programlisting" id="#L81"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabcomment">// Initialize</span>
 <span class="scilabid">dnn_unloadallmodels</span>
-<span class="scilabid">dnn_path</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">/images/dnn/</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<span class="scilabid">net</span> <span class="scilaboperator">=</span> <span class="scilabid">dnn_readmodel</span><span class="scilabopenclose">(</span><span class="scilabid">dnn_path</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">lenet5.pb</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">tensorflow</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">dnn_path</span> <span class="scilaboperator">=</span> <a class="scilabmacro" href="scilab://fullfile">fullfile</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">images</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">dnn</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">net</span> <span class="scilaboperator">=</span> <span class="scilabid">dnn_readmodel</span><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://fullfile">fullfile</a><span class="scilabopenclose">(</span><span class="scilabid">dnn_path</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">lenet5.pb</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">tensorflow</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 
 <span class="scilabcomment">// Read Image</span>
-<span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><span class="scilabid">dnn_path</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">3.jpg</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://fullfile">fullfile</a><span class="scilabopenclose">(</span><span class="scilabid">dnn_path</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">3.jpg</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 
 <span class="scilabcomment">// Forward Pass</span>
 <span class="scilabid">para1</span> <span class="scilaboperator">=</span> <span class="scilabid">dnn_getparam</span><span class="scilabopenclose">(</span><span class="scilabid">net</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">conv2d/Conv2D</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -69,7 +69,7 @@
 <span class="scilabcomment">// Clean Up</span>
 <span class="scilabid">dnn_unloadallmodels</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L86">See also</h3>
+<div class="refsection"><h3 class="title" id="#L85">See also</h3>
    <ul class="itemizedlist"><li class="member"><a href="dnn_readmodel.html" class="link">dnn_readmodel</a> &#8212; Read/Import DNN model from disk</li>
    <li class="member"><a href="dnn_list.html" class="link">dnn_list</a> &#8212; List all loaded DNN models in memory</li>
    <li class="member"><a href="dnn_unloadmodel.html" class="link">dnn_unloadmodel</a> &#8212; Unload DNN model from memory</li>
@@ -77,7 +77,7 @@
    <li class="member"><a href="dnn_forward.html" class="link">dnn_forward</a> &#8212; Runs forward pass to compute output of layer with name layer_name</li>
    <li class="member"><a href="dnn_getparam.html" class="link">dnn_getparam</a> &#8212; Get the layer&#0039;s parameters</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L98">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L97">Authors</h3>
    <ul class="itemizedlist"><li class="member">CL Tan - Trity Technologies.</li></ul></div>
     <br />
 

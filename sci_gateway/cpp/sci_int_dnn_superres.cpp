@@ -32,7 +32,7 @@ int sci_int_dnn_superres(char * fname, void* pvApiCtx)
 	Mat original_img(img);
 	if (img.empty())
 	{
-		Scierror(999, "%s: Couldn't load image: \n", img);
+		Scierror(999, "%s: Couldn't load image: \n", img_path.c_str());
 		return -2;
 	}
 
@@ -54,10 +54,10 @@ int sci_int_dnn_superres(char * fname, void* pvApiCtx)
 		else if (algorithm == "edsr" || algorithm == "espcn" || algorithm == "fsrcnn" || algorithm == "lapsrn")
 		{
 			sr.readModel(path);
-			sciprint("%s\n", sr.getAlgorithm());
+			sciprint("%s\n", sr.getAlgorithm().c_str());
 			sciprint("%f\n", sr.getScale());
 			sr.setModel(algorithm, scale);
-			sciprint("%s\n", sr.getAlgorithm());
+			sciprint("%s\n", sr.getAlgorithm().c_str());
 			sciprint("%f\n", sr.getScale());
 			sr.upsample(img, img_new);
 

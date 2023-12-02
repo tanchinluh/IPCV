@@ -62,7 +62,8 @@ S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 mask = imroi(S);
 imout = iminpaint(S,mask,1,1);
 imshow(S);
-figure(); imshow(imout);
+scf;
+imshow(imout);
 
    ]]></programlisting>
 </refsection>

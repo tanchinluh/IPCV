@@ -21,7 +21,7 @@ function imout = imrotate(im1,deg,crp)
     //    S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
     //    J = imrotate(S,45);
     //    imshow(S);
-    //    figure(); imshow(J);
+    //    scf; imshow(J);
     //
     // See also
     //     imtransform

@@ -22,7 +22,7 @@ I5 = bwmorph(I4,'skel',inf);
 image = I5;
 
 if (display == 1)
-    figure;imshow(I5);title('skeleton of the fingerprint');
+    scf;imshow(I5);title('skeleton of the fingerprint');
 end
 
 endfunction

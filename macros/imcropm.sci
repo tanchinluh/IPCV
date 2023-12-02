@@ -19,7 +19,7 @@ function [y,rec2] = imcropm(S)
     // Examples
     //    S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
     //    J = imcropm(S);
-    //    figure(); imshow(J);
+    //    scf; imshow(J);
     //
     // See also
     //     imcrop

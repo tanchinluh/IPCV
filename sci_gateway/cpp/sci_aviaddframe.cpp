@@ -31,7 +31,7 @@ int sci_aviaddframe(char * fname,void* pvApiCtx)
 	Mat pImage;
 
 	CheckInputArgument(pvApiCtx, 2, 2);
-	CheckOutputArgument(pvApiCtx, 0, 0);
+	CheckOutputArgument(pvApiCtx, 1, 1);
 
 	double *out = NULL;
 	int iRows			= 0;

@@ -11,11 +11,13 @@ function ret = imwrite(im, filename, compression_ratio)
     //    
     //    Syntax
     //      ret=imwrite(im, filename)
+    //      ret=imwrite(im, filename, compression_ratio)
     //    
     //    Parameters
     //      im : im can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. If im is not of class uint8, imwrite will convert the datatype before writing using im2uint8(im) .
     //      filename : A string that specifies the name of the output file.
     //      ret : Return value. If the image is successfully writed into a file, ret will be 1.
+    //      
     //    
     //    Description
     //      imwrite writes a matrix into a image file. The format of the file is inferred from the extension in the filename parameter. Currently the following file formats are supported:
@@ -35,6 +37,9 @@ function ret = imwrite(im, filename, compression_ratio)
     //      Shiqi Yu
     //      Tan Chin Luh
 
+    if ~exists("compression_ratio","local")  then
+        compression_ratio = 75;
+    end
     if  typeof(im) == 'uint16' then
         ret = int_imwrite(im, filename,compression_ratio);
     else

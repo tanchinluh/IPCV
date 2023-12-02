@@ -83,9 +83,9 @@ This function is used to run forward pass to compute output of layer with name l
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-S = imread(dnn_path + '3.jpg');
+dnn_path = fullfile(getIPCVpath(),'images','dnn');
+net = dnn_readmodel(fullfile(dnn_path,'lenet5.pb'),'','tensorflow');
+S = imread(fullfile(dnn_path,'3.jpg'));
 imshow(S);
 out = dnn_forward(net,~S,[28,28]);
 [maxV,maxI]=max(out);

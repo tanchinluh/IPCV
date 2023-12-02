@@ -23,7 +23,7 @@ function result = imroifill(imin,mask)
     //    mask = imroi(S);
     //    imout = imroifill(S,mask);
     //    imshow(S);
-    //    figure(); imshow(imout);
+    //    scf; imshow(imout);
     //
     // See also
     //    imroi
@@ -68,7 +68,7 @@ function result = imroifill(imin,mask)
         // Index of points with interior neighbors
         q = find(Q)';
         // Connect interior points to neighbors with -1's.
-        // pause
+        //pause
         i = [i; grid(idx(q))']; //#ok<AGROW>
         j = [j; Q(q)];
         s = [s; -ones(length(q),1)];

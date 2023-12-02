@@ -24,7 +24,7 @@ function imout = iminpaint(imin,mask,rad,method)
     //    mask = imroi(S);
     //    imout = iminpaint(S,mask,1,1);
     //    imshow(S);
-    //    figure(); imshow(imout);
+    //    scf; imshow(imout);
     //
     // See also
     //    imroi

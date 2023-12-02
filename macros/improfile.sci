@@ -91,13 +91,13 @@ function [xc,yc,pixval] = improfile(S,points)
         pixvalmat = cell2mat(pixval);
 
         pixvalmat = matrix(pixvalmat,3,double(max(size(pixval))));
-        figure();newaxes();
+        scf;newaxes();
         plot(1:length(xcnew),pixvalmat(1,:),'r',1:length(xcnew),pixvalmat(2,:),'g',1:length(xcnew),pixvalmat(3,:),'b');
     else
         pixvalmat = cell2mat(pixval);
         pixvalmat = matrix(pixvalmat,1,double(max(size(pixval))));
 
-        figure();newaxes();
+        scf;newaxes();
         plot(1:length(xcnew),pixvalmat);
 
     end

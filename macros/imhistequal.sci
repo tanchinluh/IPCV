@@ -24,7 +24,7 @@ function y = imhistequal(x)
     //    S = imread(fullpath(getIPCVpath() + "/images/Lena_dark.png"));
     //    J = imhistequal(S);
     //    imshow(S);
-    //    figure(); imshow(J);
+    //    scf; imshow(J);
     //
     // See also
     //    imadjust

@@ -33,7 +33,7 @@ function imout = imdeconvsobolev(imin,f,lambda)
     //    S2 = imfilter(S,h,'circular');
     //    imshow(S2);
     //    S3 = imdeconvsobolev(S2,h,0);
-    //    figure;imshow(S3);
+    //    scf;imshow(S3);
     //
     // See also
     //    imdeconvl2
@@ -74,6 +74,6 @@ function imout = imdeconvsobolev(imin,f,lambda)
     imout = (IMIN2-min(IMIN2))/(max(IMIN2)-min(IMIN2));
 
     //ShowImage(A,'');
-    //figure();ShowImage(S,'');
+    //scf;ShowImage(S,'');
 endfunction
 

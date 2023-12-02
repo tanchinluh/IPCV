@@ -13,6 +13,7 @@ function demo_transform()
         y2 = fft2(im2double(S));
 
        
+        scf()
         subplot(221); imshow(S); title("Original Image");
         subplot(222); imshow(y1,jetcolormap(512)); title("DCT");
         subplot(223); imshow(y2,jetcolormap(512)); title("FFT");

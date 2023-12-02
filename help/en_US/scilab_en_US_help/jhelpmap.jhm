@@ -164,7 +164,7 @@
 <mapID target="imconvexHull" url="imconvexHull.html"/>
 <mapID target="imconvexityDefects" url="imconvexityDefects.html"/>
 <mapID target="imdrawcontours" url="imdrawcontours.html"/>
-<mapID target="imfindContours" url="imfindContours.html"/>
+<mapID target="imfindcontours" url="imfindcontours.html"/>
 <mapID target="implotContours" url="implotContours.html"/>
 <mapID target="section_7d487fa50af482d311ad1099def58007" url="section_7d487fa50af482d311ad1099def58007.html"/>
 <mapID target="imsuperres" url="imsuperres.html"/>

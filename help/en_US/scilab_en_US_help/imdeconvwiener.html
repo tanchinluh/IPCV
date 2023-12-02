@@ -63,22 +63,23 @@ The filter is most easily described in the frequency domain:
    <p class="para"></p></div>
 
 <div class="refsection"><h3 class="title" id="#L65">Examples</h3>
-   <div class="programlisting" id="#L75"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <div class="programlisting" id="#L76"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">im2double</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">h</span> <span class="scilaboperator">=</span> <span class="scilabid">fspecial</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">motion</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">25</span><span class="scilabdefault">,</span><span class="scilabnumber">45</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S2</span> <span class="scilaboperator">=</span> <span class="scilabid">imfilter</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabid">h</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">circular</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S2</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S3</span> <span class="scilaboperator">=</span> <span class="scilabid">imdeconvwiener</span><span class="scilabopenclose">(</span><span class="scilabid">S2</span><span class="scilabdefault">,</span><span class="scilabid">h</span><span class="scilabdefault">,</span><span class="scilabnumber">0</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<a class="scilabcommand" href="scilab://figure">figure</a><span class="scilabdefault">;</span><span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S3</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+<a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabdefault">;</span>
+<span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S3</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L79">See also</h3>
+<div class="refsection"><h3 class="title" id="#L80">See also</h3>
    <ul class="itemizedlist"><li class="member"><a href="imdeconvl2.html" class="link">imdeconvl2</a></li>
    <li class="member"><a href="imdeconvsobolev.html" class="link">imdeconvsobolev</a></li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L87">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L88">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L94">Bibliography</h3>
+<div class="refsection"><h3 class="title" id="#L95">Bibliography</h3>
    <p class="para">1. Wikipedia : http://en.wikipedia.org/wiki/Wiener_deconvolution</p>
    <p class="para">2. OpenCV Example : http://gigadom.wordpress.com/category/opencv/</p></div>
     <br />

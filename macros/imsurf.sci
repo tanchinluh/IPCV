@@ -87,13 +87,14 @@ function [] = imsurf(imin,n,plotop);
     else
         plot3d(y,x,imin(ind1,ind2));    
     end
+    h=gce();
 
 
     f=gcf();
     f.color_map = jetcolormap(256);
-    f.children.children.color_flag = 1;
+    h.color_flag = 1;
     f.background = -2;    
-    f.children.children.hiddencolor=0;
+    h.hiddencolor=0;
 
 
 endfunction

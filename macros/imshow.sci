@@ -93,7 +93,8 @@ function imshow(im, varargin)
 
             if imParent == [] //| imParent.children ==[]
                 //scf();
-                drawlater();
+                imdraw = gcf().immediate_drawing;
+                gcf().immediate_drawing = "off";
                 dim = size(im);
 
                 if typeof(im) == 'boolean' //boolean
@@ -110,9 +111,13 @@ function imshow(im, varargin)
                 elseif ColorMap ~= []
                     e = gce();
                     e.image_type = 'index';                
-                    e.parent.parent.color_map = ColorMap;
+                    e = e.parent;
+                    while e.type <> "Figure"
+                        e = e.parent;
+                    end
+                    e.color_map = ColorMap;
                 end
-                drawnow();
+                gcf().immediate_drawing = imdraw;
             else
                 imChildren = imParent.children($);
                 dim = size(im);
@@ -212,7 +217,7 @@ function imshow(im, varargin)
             imParent.parent.background = -2;
             imParent.axes_visible = ['off' 'off' 'off'];
 
-            drawnow();
+           gcf().immediate_drawing = imdraw;
         end
 
     endfunction
@@ -380,7 +385,7 @@ function [A] = sip_index_true_cmap(Im,n)
 
     //v = round(double(Im("entries"))./255*(n-1))
     m = dims(1)*dims(2)
-    A = v(1:m)*n^2 + v(m+1:2*m)*n + v(2*m+1:$) + 1
+    A = v(1:m)*(n^2) + v(m+1:2*m)*n + v(2*m+1:$) + 1
     A = matrix(A,dims(1),dims(2))
 endfunction
 

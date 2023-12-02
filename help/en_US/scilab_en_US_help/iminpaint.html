@@ -57,20 +57,21 @@ The function may be used to remove dust and scratches from a scanned photo, or t
    <p class="para"></p></div>
 
 <div class="refsection"><h3 class="title" id="#L59">Examples</h3>
-   <div class="programlisting" id="#L67"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <div class="programlisting" id="#L68"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">mask</span> <span class="scilaboperator">=</span> <span class="scilabid">imroi</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imout</span> <span class="scilaboperator">=</span> <span class="scilabid">iminpaint</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabid">mask</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<a class="scilabcommand" href="scilab://figure">figure</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imout</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+<a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabdefault">;</span>
+<span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imout</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L71">See also</h3>
+<div class="refsection"><h3 class="title" id="#L72">See also</h3>
    <ul class="itemizedlist"><li class="member"><a href="imroi.html" class="link">imroi</a></li>
    <li class="member"><a href="imroifilt.html" class="link">imroifilt</a></li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L79">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L80">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L86">Bibliography</h3>
+<div class="refsection"><h3 class="title" id="#L87">Bibliography</h3>
    <p class="para">1. http://en.wikipedia.org/wiki/Inpainting</p></div>
     <br />
 
