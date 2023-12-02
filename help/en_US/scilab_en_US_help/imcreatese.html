@@ -41,38 +41,38 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">setype :</span>
-      <dd><p class="para">Type of structure element, currently support &#0039;rect&#0039;, &#0039;ellipse&#0039; and &#0039;cross&#0039;</p></dd></dt>
-   <dt><span class="term">r :</span>
-      <dd><p class="para">Number of rows</p></dd></dt>
-   <dt><span class="term">c :</span>
-      <dd><p class="para">Number of colomns</p></dd></dt>
-   <dt><span class="term">se :</span>
-      <dd><p class="para">Created structure element</p></dd></dt></dl></div>
+            <dd><p class="para">Type of structure element, currently support &#0039;rect&#0039;, &#0039;ellipse&#0039; and &#0039;cross&#0039;</p></dd></dt>
+        <dt><span class="term">r :</span>
+            <dd><p class="para">Number of rows</p></dd></dt>
+        <dt><span class="term">c :</span>
+            <dd><p class="para">Number of colomns</p></dd></dt>
+        <dt><span class="term">se :</span>
+            <dd><p class="para">Created structure element</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">The function constructs and returns the structuring element that can be
 further passed to any morphology filter. You can also construct an arbitrary
 mask yourself and use it as the structuring element</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L58">Examples</h3>
-   <div class="programlisting" id="#L66"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">a</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabnumber">10</span><span class="scilabdefault">,</span><span class="scilabnumber">10</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L66">Examples</h3>
+   <div class="programlisting" id="#L74"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">a</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabnumber">10</span><span class="scilabdefault">,</span><span class="scilabnumber">10</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">a</span><span class="scilabopenclose">(</span><span class="scilabnumber">4</span><span class="scilabspecial">:</span><span class="scilabnumber">7</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabspecial">:</span><span class="scilabnumber">7</span><span class="scilabopenclose">)</span> <span class="scilaboperator">=</span> <span class="scilabnumber">1</span><span class="scilabdefault">;</span>
 <span class="scilabid">se</span> <span class="scilaboperator">=</span> <span class="scilabid">imcreatese</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">rect</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">3</span><span class="scilabdefault">,</span><span class="scilabnumber">3</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">b</span> <span class="scilaboperator">=</span> <span class="scilabid">imdilate</span><span class="scilabopenclose">(</span><span class="scilabid">a</span><span class="scilabdefault">,</span><span class="scilabid">se</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">b</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L70">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imcreatese.html" class="link">imcreatese</a></li>
-   <li class="member"><a href="imdilate.html" class="link">imdilate</a></li>
-   <li class="member"><a href="imerode.html" class="link">imerode</a></li>
-   <li class="member"><a href="imopen.html" class="link">imopen</a></li>
-   <li class="member"><a href="imclose.html" class="link">imclose</a></li>
-   <li class="member"><a href="imgradient.html" class="link">imgradient</a></li>
-   <li class="member"><a href="imtophat.html" class="link">imtophat</a></li>
-   <li class="member"><a href="imblackhat.html" class="link">imblackhat</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L78">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imcreatese.html" class="link">imcreatese</a> &#8212; Creating Structure Element for Morphological operation</li>
+   <li class="member"><a href="imdilate.html" class="link">imdilate</a> &#8212; Image dilation</li>
+   <li class="member"><a href="imerode.html" class="link">imerode</a> &#8212; Image erosion</li>
+   <li class="member"><a href="imopen.html" class="link">imopen</a> &#8212; Image opening</li>
+   <li class="member"><a href="imclose.html" class="link">imclose</a> &#8212; Image closing</li>
+   <li class="member"><a href="imgradient.html" class="link">imgradient</a> &#8212; Image gradient</li>
+   <li class="member"><a href="imtophat.html" class="link">imtophat</a> &#8212; Image tophat</li>
+   <li class="member"><a href="imblackhat.html" class="link">imblackhat</a> &#8212; Image blackhat</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L84">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L92">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>RGB :</term>
-      <listitem><para> A RGB image (matrix), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
-   <varlistentry><term>HSV :</term>
-      <listitem><para> Output image, which has the same size and type as RGB.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>RGB :</term>
+            <listitem><para> A RGB image (matrix), the dimension of RGB should be M x N x 3 .</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>HSV :</term>
+            <listitem><para> Output image, which has the same size and type as RGB.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -62,7 +66,7 @@ imshow(RGB);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="rgb2gray">rgb2gray</link></member>

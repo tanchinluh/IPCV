@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im1, im2 :</term>
-      <listitem><para> Input images, which can be any kinds of images, but must have the same width, height, class and number of channels.</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> The absolute difference of two input images.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im1, im2 :</term>
+            <listitem><para> Input images, which can be any kinds of images, but must have the same width, height, class and number of channels.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> The absolute difference of two input images.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -54,7 +58,7 @@ Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
 </para>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imadd">imadd</link></member>

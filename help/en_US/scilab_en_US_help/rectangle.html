@@ -41,21 +41,21 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">im :</span>
-      <dd><p class="para">An image, which can be one channel or three channel image.</p></dd></dt>
-   <dt><span class="term">rect :</span>
-      <dd><p class="para">rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rectangle.</p></dd></dt>
-   <dt><span class="term">imr :</span>
-      <dd><p class="para">imr is the the output image with the rectangle.</p></dd></dt></dl></div>
+            <dd><p class="para">An image, which can be one channel or three channel image.</p></dd></dt>
+        <dt><span class="term">rect :</span>
+            <dd><p class="para">rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rectangle.</p></dd></dt>
+        <dt><span class="term">imr :</span>
+            <dd><p class="para">imr is the the output image with the rectangle.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Examples</h3>
-   <div class="programlisting" id="#L51"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L51">Examples</h3>
+   <div class="programlisting" id="#L57"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imr</span> <span class="scilaboperator">=</span> <span class="scilabid">rectangle</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span> <span class="scilabopenclose">[</span><span class="scilabnumber">20</span><span class="scilabdefault">,</span> <span class="scilabnumber">30</span><span class="scilabdefault">,</span> <span class="scilabnumber">50</span><span class="scilabdefault">,</span> <span class="scilabnumber">100</span><span class="scilabopenclose">]</span><span class="scilabdefault">,</span> <span class="scilabopenclose">[</span><span class="scilabnumber">12</span> <span class="scilabnumber">155</span> <span class="scilabnumber">0</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imr</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L55">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imrects.html" class="link">imrects</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L61">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imrects.html" class="link">imrects</a> &#8212; Draw Bounding Boxes on An Image</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L62">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L68">Authors</h3>
    <ul class="itemizedlist"><li class="member">Jia Wu</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

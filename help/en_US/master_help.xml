@@ -81,6 +81,7 @@
 <!ENTITY a0f12ba97364f494a90119b48d34a861f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Reading, Display and Exploration/tifread.xml">
 <!ENTITY a6dc9a9325ca1c2ad147d9f72c5abcf37 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imfuse.xml">
 <!ENTITY a091f11b75e1b00ce8edd29407b8752b8 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imgettransform.xml">
+<!ENTITY a0b8290d40bef7ce6c467df3767c59830 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imphasecorr.xml">
 <!ENTITY a0a947d35a1595450ee636b45da2e45d7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/imtransform.xml">
 <!ENTITY a59ff0d922c694d927959b882fa147c27 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Registration and Image Fusion/warpmatselect.xml">
 <!ENTITY a508b45257561c8588e0fb9b7ffe6b7a3 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Image Stitching/imstitchimage.xml">
@@ -139,9 +140,10 @@
 <!ENTITY a4b69518cc385d786e90131cdbefcdc38 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/impyramid.xml">
 <!ENTITY a0fec9305766082772e978d8764707961 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imresize.xml">
 <!ENTITY a33b4039dd94d51e26f9d892699c1429d SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Spatial Transformations/imrotate.xml">
+<!ENTITY a5d3fa301206a1de49a4c7a9cd08446d5 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imcontour2label.xml">
 <!ENTITY a755614ba9f6201e046dfcdaef279f2b7 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imconvexHull.xml">
 <!ENTITY a2e726c56ffdd6495e4bf62fb8eb688cb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imconvexityDefects.xml">
-<!ENTITY a3cca2f168c5d395b76bf8ead85674f8e SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imdrawcontours.xml">
+<!ENTITY a3dbc845d664216748e866b12683d18a9 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imdrawContours.xml">
 <!ENTITY a63c2a9a067ad90d5a6cac37eb1d6fa16 SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/imfindContours.xml">
 <!ENTITY a17e9ac00a6e4b4503bfb2fc573aed88f SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Structural Analysis and Shape Descriptors/implotContours.xml">
 <!ENTITY a92e81cd00ca183dcfca60210427426bb SYSTEM "file:///C:/scilab/scilab-2024.0.0/contrib/IPCV/help/en_US/Super Resolution/imsuperres.xml">
@@ -299,6 +301,7 @@
 <title>Image Registration and Image Fusion</title>
 &a6dc9a9325ca1c2ad147d9f72c5abcf37;
 &a091f11b75e1b00ce8edd29407b8752b8;
+&a0b8290d40bef7ce6c467df3767c59830;
 &a0a947d35a1595450ee636b45da2e45d7;
 &a59ff0d922c694d927959b882fa147c27;
 </part>
@@ -384,9 +387,10 @@
 </part>
 <part xml:id='section_f5260a15c8fde1a55ccfc32fca1501a1'>
 <title>Structural Analysis and Shape Descriptors</title>
+&a5d3fa301206a1de49a4c7a9cd08446d5;
 &a755614ba9f6201e046dfcdaef279f2b7;
 &a2e726c56ffdd6495e4bf62fb8eb688cb;
-&a3cca2f168c5d395b76bf8ead85674f8e;
+&a3dbc845d664216748e866b12683d18a9;
 &a63c2a9a067ad90d5a6cac37eb1d6fa16;
 &a17e9ac00a6e4b4503bfb2fc573aed88f;
 </part>

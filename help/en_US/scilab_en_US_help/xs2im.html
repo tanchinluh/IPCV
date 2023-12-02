@@ -41,26 +41,26 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">win_num :</span>
-      <dd><p class="para">Integer scalar or vector.</p></dd></dt>
-   <dt><span class="term">color :</span>
-      <dd><p class="para">Optional integer. 0 means black and white and 1 means color. The default value is 1.</p></dd></dt>
-   <dt><span class="term">im :</span>
-      <dd><p class="para">The returned image, uint8 type hyper-matrix.</p></dd></dt></dl></div>
+            <dd><p class="para">Integer scalar or vector.</p></dd></dt>
+        <dt><span class="term">color :</span>
+            <dd><p class="para">Optional integer. 0 means black and white and 1 means color. The default value is 1.</p></dd></dt>
+        <dt><span class="term">im :</span>
+            <dd><p class="para">The returned image, uint8 type hyper-matrix.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">xs2im convert the recorded graphics of the window win_num to an image matrix. This function works only if the selected driver is &#0034;Rec&#0034; in the window win_num or if the window is in &#0034;new style&#0034;.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L54">Examples</h3>
-   <div class="programlisting" id="#L61"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabopenclose">(</span><span class="scilabnumber">0</span><span class="scilabopenclose">)</span>
+<div class="refsection"><h3 class="title" id="#L60">Examples</h3>
+   <div class="programlisting" id="#L67"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabopenclose">(</span><span class="scilabnumber">0</span><span class="scilabopenclose">)</span>
 <a class="scilabcommand" href="scilab://plot2d">plot2d</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span>
 <span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">xs2im</span><span class="scilabopenclose">(</span><span class="scilabnumber">0</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L65">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="im2double.html" class="link">im2double</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L71">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="im2double.html" class="link">im2double</a> &#8212; Convert image to double precision</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L72">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L78">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>f :</term>
-      <listitem><para> Blur function</para></listitem></varlistentry>
-   <varlistentry><term>lamda :</term>
-      <listitem><para> Regularization parameter</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Deblurred Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>f :</term>
+            <listitem><para> Blur function</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>lamda :</term>
+            <listitem><para> Regularization parameter</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Deblurred Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -66,13 +74,12 @@ h = fspecial('motion',25,45);
 S2 = imfilter(S,h,'circular');
 imshow(S2);
 S3 = imdeconvl2(S2,h,0);
-scf;
-imshow(S3);
+scf;imshow(S3);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdeconvsobolev">imdeconvsobolev</link></member>

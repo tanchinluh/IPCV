@@ -33,14 +33,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input Image</para></listitem></varlistentry>
-   <varlistentry><term>nr_points :</term>
-      <listitem><para> Maximum number of points to select with mouse - a positive integer (the default value is 10)</para></listitem></varlistentry>
-   <varlistentry><term>points :</term>
-      <listitem><para> a 2xN matrix of points; if present the region is defined by points and no interactive mouse selection is used</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output mask</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nr_points :</term>
+            <listitem><para> Maximum number of points to select with mouse - a positive integer (the default value is 10)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>points :</term>
+            <listitem><para> a 2xN matrix of points; if present the region is defined by points and no interactive mouse selection is used</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output mask</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -71,7 +79,7 @@ imshow(imout);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imroifill">imroifill</link></member>

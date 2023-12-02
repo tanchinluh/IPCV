@@ -32,34 +32,62 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>th :</term>
-      <listitem><para> threshold on difference between intensity of the central pixel and pixels of a circle around this pixel. Default value is 1.</para></listitem></varlistentry>
-   <varlistentry><term>nms :</term>
-      <listitem><para> nonmaxSuppression, if 1, non-maximum suppression is applied to detected corners (keypoints). Default value is 1.</para></listitem></varlistentry>
-   <varlistentry><term>nb :</term>
-      <listitem><para> one of the three neighborhoods, TYPE_5_8 = 0, TYPE_7_12 = 1, TYPE_9_16 = 2. Default value is 2.</para></listitem></varlistentry>
-   <varlistentry><term>fobj :</term>
-      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> Type of features</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
-   <varlistentry><term>x :</term>
-      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
-   <varlistentry><term>size :</term>
-      <listitem><para> Size of detected features</para></listitem></varlistentry>
-   <varlistentry><term>angle :</term>
-      <listitem><para> keypoint orientation</para></listitem></varlistentry>
-   <varlistentry><term>response :</term>
-      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
-   <varlistentry><term>octave :</term>
-      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
-   <varlistentry><term>class_id :</term>
-      <listitem><para> object id</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>th :</term>
+            <listitem><para> threshold on difference between intensity of the central pixel and pixels of a circle around this pixel. Default value is 1.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nms :</term>
+            <listitem><para> nonmaxSuppression, if 1, non-maximum suppression is applied to detected corners (keypoints). Default value is 1.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nb :</term>
+            <listitem><para> one of the three neighborhoods, TYPE_5_8 = 0, TYPE_7_12 = 1, TYPE_9_16 = 2. Default value is 2.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object contains following fields -</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -82,7 +110,7 @@ imshow(S); plotfeature(fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>

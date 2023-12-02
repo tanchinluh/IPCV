@@ -41,31 +41,31 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">I :</span>
-      <dd><p class="para">Image matrix in Scilab</p></dd></dt>
-   <dt><span class="term">theta :</span>
-      <dd><p class="para">Angles for calculating radon tansform</p></dd></dt>
-   <dt><span class="term">RT :</span>
-      <dd><p class="para">Matrix of the Radon transform for one of the angles in theta.</p></dd></dt>
-   <dt><span class="term">xp :</span>
-      <dd><p class="para">Radial coordinates corresponding to each row of RT.</p></dd></dt></dl></div>
+            <dd><p class="para">Image matrix in Scilab</p></dd></dt>
+        <dt><span class="term">theta :</span>
+            <dd><p class="para">Angles for calculating radon tansform</p></dd></dt>
+        <dt><span class="term">RT :</span>
+            <dd><p class="para">Matrix of the Radon transform for one of the angles in theta.</p></dd></dt>
+        <dt><span class="term">xp :</span>
+            <dd><p class="para">Radial coordinates corresponding to each row of RT.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">Calculates the 2D-Radon transform of the matrix I at angles given
 in THETA. To each element of THETA corresponds a column in RT.
 The variable XP represents the x-axis of the rotated coordinate.
 If THETA is not defined, then 0:179 is assumed.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L59">Examples</h3>
-   <div class="programlisting" id="#L66"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">I</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabnumber">100</span><span class="scilabdefault">,</span><span class="scilabnumber">100</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L67">Examples</h3>
+   <div class="programlisting" id="#L74"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">I</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabnumber">100</span><span class="scilabdefault">,</span><span class="scilabnumber">100</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">I</span><span class="scilabopenclose">(</span><span class="scilabnumber">25</span><span class="scilabspecial">:</span><span class="scilabnumber">75</span><span class="scilabdefault">,</span> <span class="scilabnumber">25</span><span class="scilabspecial">:</span><span class="scilabnumber">75</span><span class="scilabopenclose">)</span> <span class="scilaboperator">=</span> <span class="scilabnumber">1</span><span class="scilabdefault">;</span>
 <span class="scilabopenclose">[</span><span class="scilabid">RT</span><span class="scilabdefault">,</span><span class="scilabid">xp</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">imradon</span><span class="scilabopenclose">(</span><span class="scilabid">I</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">RT</span><span class="scilabdefault">,</span><a class="scilabmacro" href="scilab://hotcolormap">hotcolormap</a><span class="scilabopenclose">(</span><span class="scilabnumber">64</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L70">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imhough.html" class="link">imhough</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L78">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imhough.html" class="link">imhough</a> &#8212; Image Hough transformation</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L77">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L85">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

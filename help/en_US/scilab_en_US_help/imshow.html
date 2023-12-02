@@ -43,20 +43,20 @@
 
 <div class="refsection"><h3 class="title" id="#L35">Parameters</h3>
    <dl><dt><span class="term">im :</span>
-      <dd><p class="para">Input image</p></dd></dt>
-   <dt><span class="term">varargin (colormap):</span>
-      <dd><p class="para">Colormap for the image, defined in Nx3 matrix</p></dd></dt>
-   <dt><span class="term">varargin (outopt) :</span>
-      <dd><p class="para">Output options, 0 for Scilab graphics, 1 for uicontrol, 2 for tcl/tk</p></dd></dt>
-   <dt><span class="term">varargin (handle) :</span>
-      <dd><p class="para">Handle for which the image will shown</p></dd></dt></dl></div>
+            <dd><p class="para">Input image</p></dd></dt>
+        <dt><span class="term">varargin (colormap):</span>
+            <dd><p class="para">Colormap for the image, defined in Nx3 matrix</p></dd></dt>
+        <dt><span class="term">varargin (outopt) :</span>
+            <dd><p class="para">Output options, 0 for Scilab graphics, 1 for uicontrol, 2 for tcl/tk</p></dd></dt>
+        <dt><span class="term">varargin (handle) :</span>
+            <dd><p class="para">Handle for which the image will shown</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L49">Description</h3>
+<div class="refsection"><h3 class="title" id="#L57">Description</h3>
    <p class="para">Show images in different types, double (0-1), uint8(0-255), binary, and others supported image datatype.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L58">Examples</h3>
-   <div class="programlisting" id="#L68"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L66">Examples</h3>
+   <div class="programlisting" id="#L76"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">f</span> <span class="scilaboperator">=</span> <a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span> <span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -64,12 +64,12 @@
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span> <span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L72">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imread.html" class="link">imread</a></li>
-   <li class="member"><a href="imwrite.html" class="link">imwrite</a></li>
+<div class="refsection"><h3 class="title" id="#L80">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imread.html" class="link">imread</a> &#8212; Reads image file - Add modes support</li>
+   <li class="member"><a href="imwrite.html" class="link">imwrite</a> &#8212; Write image to file</li>
    <li class="member"><a href="scilab://imfinfo" class="link">imfinfo</a></li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L81">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L89">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Allan CORNET</li>
    <li class="member">Tan Chin Luh</li></ul></div>

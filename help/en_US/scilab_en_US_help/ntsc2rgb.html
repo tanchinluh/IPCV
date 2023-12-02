@@ -41,11 +41,11 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">YIQ :</span>
-      <dd><p class="para">A NTSC image (hypermat). The dimension of NTSC should be M x N x 3 , the type should be double and the element value range should be [0,1].</p></dd></dt>
-   <dt><span class="term">RGB :</span>
-      <dd><p class="para">Output image, which has the same size as NTSC and type of double.</p></dd></dt></dl></div>
+            <dd><p class="para">A NTSC image (hypermat). The dimension of NTSC should be M x N x 3 , the type should be double and the element value range should be [0,1].</p></dd></dt>
+        <dt><span class="term">RGB :</span>
+            <dd><p class="para">Output image, which has the same size as NTSC and type of double.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">ntsc2rgb convert a NTSC image to the equivalent RGB image using:</p>
    <p class="para">R = Y + 0.956*I + 0.621*Q</p>
    <p class="para">G = Y - 0.272*I - 0.647*Q</p>
@@ -53,22 +53,22 @@
    <p class="para">Supported classe: DOUBLE.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L64">Examples</h3>
-   <div class="programlisting" id="#L71"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">RGB</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L68">Examples</h3>
+   <div class="programlisting" id="#L75"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">RGB</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">YIQ</span> <span class="scilaboperator">=</span> <span class="scilabid">rgb2ntsc</span><span class="scilabopenclose">(</span><span class="scilabid">RGB</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">RGB</span> <span class="scilaboperator">=</span> <span class="scilabid">ntsc2rgb</span><span class="scilabopenclose">(</span><span class="scilabid">YIQ</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">RGB</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L75">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="rgb2gray.html" class="link">rgb2gray</a></li>
-   <li class="member"><a href="mat2gray.html" class="link">mat2gray</a></li>
-   <li class="member"><a href="rgb2hsv.html" class="link">rgb2hsv</a></li>
-   <li class="member"><a href="hsv2rgb.html" class="link">hsv2rgb</a></li>
-   <li class="member"><a href="rgb2ycbcr.html" class="link">rgb2ycbcr</a></li>
-   <li class="member"><a href="ycbcr2rgb.html" class="link">ycbcr2rgb</a></li>
-   <li class="member"><a href="rgb2ntsc.html" class="link">rgb2ntsc</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L79">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="rgb2gray.html" class="link">rgb2gray</a> &#8212; Convert RGB images to gray images</li>
+   <li class="member"><a href="mat2gray.html" class="link">mat2gray</a> &#8212; Convert matrix to grayscale image</li>
+   <li class="member"><a href="rgb2hsv.html" class="link">rgb2hsv</a> &#8212; Convert a RGB image to the equivalent HSV image</li>
+   <li class="member"><a href="hsv2rgb.html" class="link">hsv2rgb</a> &#8212; Convert a HSV image to the equivalent RGB image.</li>
+   <li class="member"><a href="rgb2ycbcr.html" class="link">rgb2ycbcr</a> &#8212; Convert a RGB image to the equivalent YCbCr image.</li>
+   <li class="member"><a href="ycbcr2rgb.html" class="link">ycbcr2rgb</a> &#8212; Convert a YCbCr image to the equivalent RGB image.</li>
+   <li class="member"><a href="rgb2ntsc.html" class="link">rgb2ntsc</a> &#8212; Convert a RGB image to the equivalent NTSC image YIQ.</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L88">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L92">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Ricardo Fabbri</li>
    <li class="member">Tan Chin Luh</li></ul></div>

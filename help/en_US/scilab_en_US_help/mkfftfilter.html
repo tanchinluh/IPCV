@@ -41,17 +41,17 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">image :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">name :</span>
-      <dd><p class="para">Filter name, a string, the name can be &#0039;binary&#0039;, &#0039;butterworth1&#0039;, &#0039;butterworth2&#0039;, &#0039;exp&#0039;, &#0039;gauss&#0039;, or &#0039;trapeze&#0039;</p></dd></dt>
-   <dt><span class="term">rc1 :</span>
-      <dd><p class="para">1st cut-off frequencies which set the filter characteristics, which is normalized to 0-1</p></dd></dt>
-   <dt><span class="term">rc2 :</span>
-      <dd><p class="para">2nd cut-off frequencies which set the filter characteristics, which is normalized to 0-1</p></dd></dt>
-   <dt><span class="term">h :</span>
-      <dd><p class="para">A matrix with values between 0 and 1. These values can then be applied on the fft spectrum of an image.</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">name :</span>
+            <dd><p class="para">Filter name, a string, the name can be &#0039;binary&#0039;, &#0039;butterworth1&#0039;, &#0039;butterworth2&#0039;, &#0039;exp&#0039;, &#0039;gauss&#0039;, or &#0039;trapeze&#0039;</p></dd></dt>
+        <dt><span class="term">rc1 :</span>
+            <dd><p class="para">1st cut-off frequencies which set the filter characteristics, which is normalized to 0-1</p></dd></dt>
+        <dt><span class="term">rc2 :</span>
+            <dd><p class="para">2nd cut-off frequencies which set the filter characteristics, which is normalized to 0-1</p></dd></dt>
+        <dt><span class="term">h :</span>
+            <dd><p class="para">A matrix with values between 0 and 1. These values can then be applied on the fft spectrum of an image.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L49">Description</h3>
+<div class="refsection"><h3 class="title" id="#L59">Description</h3>
    <p class="para">This function gives some popular filters to be applied on the spectrum (fft) of an image.
 The Fourier Transform gives informations about which frequencies are present in a signal (spectrum).
 A great property of the spectrum is that the original image can be reconstructed from it.
@@ -60,21 +60,21 @@ but spectrum modifications can be easier and more intuitive. A combination of se
 All these filters are cylindrical and act only on amplitude (not on phase).</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L63">Examples</h3>
-   <div class="programlisting" id="#L72"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/measure_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L73">Examples</h3>
+   <div class="programlisting" id="#L82"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/measure_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">h</span> <span class="scilaboperator">=</span> <span class="scilabid">mkfftfilter</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">gauss</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">0.1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S2</span> <span class="scilaboperator">=</span> <a class="scilabmacro" href="scilab://fft2">fft2</a><span class="scilabopenclose">(</span><span class="scilabid">im2double</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S3</span> <span class="scilaboperator">=</span> <span class="scilabid">S2</span><span class="scilaboperator">.*</span><a class="scilabmacro" href="scilab://fftshift">fftshift</a><span class="scilabopenclose">(</span><span class="scilabid">h</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S4</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://real">real</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://ifft">ifft</a><span class="scilabopenclose">(</span><span class="scilabid">S3</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L76">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imfilter.html" class="link">imfilter</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L86">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imfilter.html" class="link">imfilter</a> &#8212; Image filtering</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L83">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L93">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L90">Bibliography</h3>
+<div class="refsection"><h3 class="title" id="#L100">Bibliography</h3>
    <p class="para">1. &#0034;Optique: fondements et applications&#0034; J-P PEREZ 6e edition, Dunod</p>
    <p class="para">2. chap34: introduction au traitement numerique des images et a la couleur</p></div>
     <br />

@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input Image</para></listitem></varlistentry>
-   <varlistentry><term>f :</term>
-      <listitem><para> Input filter</para></listitem></varlistentry>
-   <varlistentry><term>mask :</term>
-      <listitem><para> Mask for the ROI</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>f :</term>
+            <listitem><para> Input filter</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mask :</term>
+            <listitem><para> Mask for the ROI</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -64,7 +72,7 @@ imshow(S2);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imroi">imroi</link></member>

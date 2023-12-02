@@ -41,25 +41,25 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">im :</span>
-      <dd><p class="para">Input image.</p></dd></dt>
-   <dt><span class="term">type :</span>
-      <dd><p class="para">String having one of these values:</p></dd></dt>
-   <dt><span class="term">&#0039;salt &amp; pepper&#0039; :</span>
-      <dd><p class="para">drop-out/On-off noise</p></dd></dt>
-   <dt><span class="term">&#0039;speckle&#0039; :</span>
-      <dd><p class="para">multiplicative noise</p></dd></dt>
-   <dt><span class="term">&#0039;gaussian&#0039; :</span>
-      <dd><p class="para">Gaussian white/additive noise</p></dd></dt>
-   <dt><span class="term">&#0039;localvar&#0039; :</span>
-      <dd><p class="para">Pixel-specific variance (Zero-mean Gaussian)</p></dd></dt>
-   <dt><span class="term">&#0039;poisson&#0039; :</span>
-      <dd><p class="para">Not yet implemented</p></dd></dt>
-   <dt><span class="term">parameters :</span>
-      <dd><p class="para">A sequence of parameters to control the noise distribution, depending on the chosen type. If omitted, default values are used (see below).</p></dd></dt>
-   <dt><span class="term">imn :</span>
-      <dd><p class="para">Noisy image, which has the same size and type as input image im .</p></dd></dt></dl></div>
+            <dd><p class="para">Input image.</p></dd></dt>
+        <dt><span class="term">type :</span>
+            <dd><p class="para">String having one of these values:</p></dd></dt>
+        <dt><span class="term">&#0039;salt &amp; pepper&#0039; :</span>
+            <dd><p class="para">drop-out/On-off noise</p></dd></dt>
+        <dt><span class="term">&#0039;speckle&#0039; :</span>
+            <dd><p class="para">multiplicative noise</p></dd></dt>
+        <dt><span class="term">&#0039;gaussian&#0039; :</span>
+            <dd><p class="para">Gaussian white/additive noise</p></dd></dt>
+        <dt><span class="term">&#0039;localvar&#0039; :</span>
+            <dd><p class="para">Pixel-specific variance (Zero-mean Gaussian)</p></dd></dt>
+        <dt><span class="term">&#0039;poisson&#0039; :</span>
+            <dd><p class="para">Not yet implemented</p></dd></dt>
+        <dt><span class="term">parameters :</span>
+            <dd><p class="para">A sequence of parameters to control the noise distribution, depending on the chosen type. If omitted, default values are used (see below).</p></dd></dt>
+        <dt><span class="term">imn :</span>
+            <dd><p class="para">Noisy image, which has the same size and type as input image im .</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L57">Description</h3>
+<div class="refsection"><h3 class="title" id="#L75">Description</h3>
    <p class="para">imnoise(im, type [, parameters]) adds a type of noise to the intensity image im. Optionally, you can control the noise parameters starting at the 3rd. Argument to imnoise. Here are example of noise types and their parameterss:</p>
    <p class="para">imn = imnoise(im,&#0039;salt &amp; pepper&#0039;,d) adds drop-out noise, where d is the noise density (probability of swapping a pixel). (default: d=0.05).</p>
    <p class="para">imn = imnoise(im,&#0039;gaussian&#0039;,m,v) adds Gaussian additive noise of mean m and variance v. (default: m=0 and v=0.01)</p>
@@ -70,8 +70,8 @@
    <p class="para">Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L87">Examples</h3>
-   <div class="programlisting" id="#L110"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/</span><span class="scilabstring">&#0034;</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">baboon.png</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L105">Examples</h3>
+   <div class="programlisting" id="#L128"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/</span><span class="scilabstring">&#0034;</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">baboon.png</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 
 <span class="scilabid">imn</span> <span class="scilaboperator">=</span> <span class="scilabid">imnoise</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">gaussian</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imn</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -92,10 +92,10 @@
 <span class="scilabid">imn</span> <span class="scilaboperator">=</span> <span class="scilabid">imnoise</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span> <span class="scilabstring">&#0039;</span><span class="scilabstring">speckle</span><span class="scilabstring">&#0039;</span> <span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imn</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L114">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imfilter.html" class="link">imfilter</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L132">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imfilter.html" class="link">imfilter</a> &#8212; Image filtering</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L121">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L139">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Ricardo Fabbri</li>
    <li class="member">Tan Chin Luh</li></ul></div>

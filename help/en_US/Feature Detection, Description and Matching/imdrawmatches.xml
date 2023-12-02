@@ -32,18 +32,30 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im1 :</term>
-      <listitem><para> First input image</para></listitem></varlistentry>
-   <varlistentry><term>im2 :</term>
-      <listitem><para> Second input image</para></listitem></varlistentry>
-   <varlistentry><term>fobj1 :</term>
-      <listitem><para> First feature object</para></listitem></varlistentry>
-   <varlistentry><term>fobj2 :</term>
-      <listitem><para> Second feature object</para></listitem></varlistentry>
-   <varlistentry><term>m :</term>
-      <listitem><para> Matching matrix</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output matching image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im1 :</term>
+            <listitem><para> First input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>im2 :</term>
+            <listitem><para> Second input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj1 :</term>
+            <listitem><para> First feature object</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj2 :</term>
+            <listitem><para> Second feature object</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>m :</term>
+            <listitem><para> Matching matrix</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output matching image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -80,7 +92,7 @@ imshow(SS);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="immatch_Brute">immatch_Brute</link></member>

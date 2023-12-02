@@ -41,28 +41,28 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">S :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">HM :</span>
-      <dd><p class="para">Hough Matrix</p></dd></dt>
-   <dt><span class="term">rho :</span>
-      <dd><p class="para">Distance from center to the point</p></dd></dt>
-   <dt><span class="term">th  :</span>
-      <dd><p class="para">Angle from the center to the point</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">HM :</span>
+            <dd><p class="para">Hough Matrix</p></dd></dt>
+        <dt><span class="term">rho :</span>
+            <dd><p class="para">Distance from center to the point</p></dd></dt>
+        <dt><span class="term">th  :</span>
+            <dd><p class="para">Angle from the center to the point</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">Applies Hough transformation to an image.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L56">Examples</h3>
-   <div class="programlisting" id="#L63"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/2lines.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L64">Examples</h3>
+   <div class="programlisting" id="#L71"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/2lines.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabopenclose">[</span><span class="scilabid">HM</span><span class="scilabdefault">,</span> <span class="scilabid">rho</span><span class="scilabdefault">,</span> <span class="scilabid">th</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">imhough</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span><a class="scilabmacro" href="scilab://Sgrayplot">Sgrayplot</a><span class="scilabopenclose">(</span><span class="scilabid">th</span><span class="scilabdefault">,</span><span class="scilabid">rho</span><span class="scilabdefault">,</span><span class="scilabid">HM</span><span class="scilaboperator">&#0039;</span><span class="scilabdefault">,</span><span class="scilabid">strf</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">021</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabcommand" href="scilab://xset">xset</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">colormap</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">,</span><a class="scilabmacro" href="scilab://hotcolormap">hotcolormap</a><span class="scilabopenclose">(</span><span class="scilabnumber">64</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L67">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imradon.html" class="link">imradon</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L75">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imradon.html" class="link">imradon</a> &#8212; Calculates the 2D-Radon transform of the matrix</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L74">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L82">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

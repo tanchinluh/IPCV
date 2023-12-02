@@ -41,15 +41,15 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">imin :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">f :</span>
-      <dd><p class="para">Blur function</p></dd></dt>
-   <dt><span class="term">lamda :</span>
-      <dd><p class="para">Regularization parameter</p></dd></dt>
-   <dt><span class="term">imout :</span>
-      <dd><p class="para">Deblurred Image</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">f :</span>
+            <dd><p class="para">Blur function</p></dd></dt>
+        <dt><span class="term">lamda :</span>
+            <dd><p class="para">Regularization parameter</p></dd></dt>
+        <dt><span class="term">imout :</span>
+            <dd><p class="para">Deblurred Image</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">L2 regularization did not perform any denoising. To remove some noise,
 we can penalize high frequencies using Sobolev regularization (quadratic grow).</p>
    <p class="para">The Sobolev prior reads (note the conversion from spacial domain to Fourier domain)
@@ -60,24 +60,23 @@ solution to the deblurring with Sobolev prior simply with the Fourier coefficien
 Compute the Sobolev prior penalty S (rescale to [0,1]).</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L67">Examples</h3>
-   <div class="programlisting" id="#L78"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L75">Examples</h3>
+   <div class="programlisting" id="#L85"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">im2double</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">h</span> <span class="scilaboperator">=</span> <span class="scilabid">fspecial</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">motion</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">25</span><span class="scilabdefault">,</span><span class="scilabnumber">45</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S2</span> <span class="scilaboperator">=</span> <span class="scilabid">imfilter</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabid">h</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">circular</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S2</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S3</span> <span class="scilaboperator">=</span> <span class="scilabid">imdeconvsobolev</span><span class="scilabopenclose">(</span><span class="scilabid">S2</span><span class="scilabdefault">,</span><span class="scilabid">h</span><span class="scilabdefault">,</span><span class="scilabnumber">0</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabdefault">;</span>
-<span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S3</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+<a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabdefault">;</span><span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S3</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L82">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imdeconvl2.html" class="link">imdeconvl2</a></li>
-   <li class="member"><a href="imdeconvwiener.html" class="link">imdeconvwiener</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L89">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imdeconvl2.html" class="link">imdeconvl2</a> &#8212; Deconvolution with L2 Regularization</li>
+   <li class="member"><a href="imdeconvwiener.html" class="link">imdeconvwiener</a> &#8212; Deconvolution with Wiener method</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L90">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L97">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L97">Bibliography</h3>
+<div class="refsection"><h3 class="title" id="#L104">Bibliography</h3>
    <p class="para">1. Advanced Signal, Image and Surface Processing, Ceremade, Université Paris-Dauphine</p></div>
     <br />
 

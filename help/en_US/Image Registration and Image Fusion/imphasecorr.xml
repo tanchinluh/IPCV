@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imphasecorr.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imphasecorr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imphasecorr</refname>
+    <refpurpose>Detection and automatic image registration for translation, rotation and scale using phase correlation method.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [S,TR,ROT,SC]=imphasecorr(I1,I2)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>I1 :</term>
+            <listitem><para> Target image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>I2 :</term>
+            <listitem><para> Source image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Registed Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>TR :</term>
+            <listitem><para> Translation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ROT :</term>
+            <listitem><para> Rotation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>SC :</term>
+            <listitem><para> Scale</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Detection and automatic image registration for translation, rotation and scale using phase correlation method.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+I1 = imread(fullpath(getIPCVpath() + "/images/lena.bmp"));
+I2 = imread(fullpath(getIPCVpath() + "/images/lena7030.bmp"));
+[S,TR,ROT,SC]=imphasecorr(I1,I2);
+imshow(S);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfeaturematch">imfeaturematch</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

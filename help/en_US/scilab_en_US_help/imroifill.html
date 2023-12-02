@@ -41,29 +41,29 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">imin :</span>
-      <dd><p class="para">Input Image</p></dd></dt>
-   <dt><span class="term">mask :</span>
-      <dd><p class="para">Input mask</p></dd></dt>
-   <dt><span class="term">result :</span>
-      <dd><p class="para">Output Image</p></dd></dt></dl></div>
+            <dd><p class="para">Input Image</p></dd></dt>
+        <dt><span class="term">mask :</span>
+            <dd><p class="para">Input mask</p></dd></dt>
+        <dt><span class="term">result :</span>
+            <dd><p class="para">Output Image</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">This function is to fill the selected region with the borders&#0039; value, which
 would remove an object from an image/</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Examples</h3>
-   <div class="programlisting" id="#L63"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L61">Examples</h3>
+   <div class="programlisting" id="#L69"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">mask</span> <span class="scilaboperator">=</span> <span class="scilabid">imroi</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imout</span> <span class="scilaboperator">=</span> <span class="scilabid">imroifill</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabid">mask</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
-<a class="scilabcommand" href="scilab://figure">figure</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imout</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+<a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabdefault">;</span> <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imout</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L67">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imroi.html" class="link">imroi</a></li>
-   <li class="member"><a href="imroifilt.html" class="link">imroifilt</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L73">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imroi.html" class="link">imroi</a> &#8212; Select region of interest and create a mask from it</li>
+   <li class="member"><a href="imroifilt.html" class="link">imroifilt</a> &#8212; Filtering of a selected region</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L75">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L81">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

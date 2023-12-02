@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>A :</term>
-      <listitem><para> Area of the blob</para></listitem></varlistentry>
-   <varlistentry><term>BB :</term>
-      <listitem><para> Bounding box for the blob</para></listitem></varlistentry>
-   <varlistentry><term>ctr :</term>
-      <listitem><para> Centroid of the blob</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>A :</term>
+            <listitem><para> Area of the blob</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>BB :</term>
+            <listitem><para> Bounding box for the blob</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ctr :</term>
+            <listitem><para> Centroid of the blob</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -67,7 +75,7 @@ imrects(BB,[255,0,0]);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imlabel">imlabel</link></member>

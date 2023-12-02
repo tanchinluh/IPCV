@@ -34,14 +34,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>varargin (colormap):</term>
-      <listitem><para> Colormap for the image, defined in Nx3 matrix</para></listitem></varlistentry>
-   <varlistentry><term>varargin (outopt) :</term>
-      <listitem><para> Output options, 0 for Scilab graphics, 1 for uicontrol, 2 for tcl/tk</para></listitem></varlistentry>
-   <varlistentry><term>varargin (handle) :</term>
-      <listitem><para> Handle for which the image will shown</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>varargin (colormap):</term>
+            <listitem><para> Colormap for the image, defined in Nx3 matrix</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>varargin (outopt) :</term>
+            <listitem><para> Output options, 0 for Scilab graphics, 1 for uicontrol, 2 for tcl/tk</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>varargin (handle) :</term>
+            <listitem><para> Handle for which the image will shown</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -68,7 +76,7 @@ end
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imread">imread</link></member>

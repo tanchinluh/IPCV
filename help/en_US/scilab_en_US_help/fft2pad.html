@@ -41,29 +41,29 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
-      <dd><p class="para">Source matrix</p></dd></dt>
-   <dt><span class="term">r :</span>
-      <dd><p class="para">Number of rows for the output image</p></dd></dt>
-   <dt><span class="term">c :</span>
-      <dd><p class="para">Number of columns for the output image</p></dd></dt>
-   <dt><span class="term">y :</span>
-      <dd><p class="para">Output matric with rxc size</p></dd></dt></dl></div>
+            <dd><p class="para">Source matrix</p></dd></dt>
+        <dt><span class="term">r :</span>
+            <dd><p class="para">Number of rows for the output image</p></dd></dt>
+        <dt><span class="term">c :</span>
+            <dd><p class="para">Number of columns for the output image</p></dd></dt>
+        <dt><span class="term">y :</span>
+            <dd><p class="para">Output matric with rxc size</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">FFT2PAD will pad the input matrix to the given r x c size, and perform fft2
 after the padding. This will yield the output matrix at the same size given.
 This is useful in the frequency domain filtering.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L58">Examples</h3>
-   <div class="programlisting" id="#L63"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">x</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">magic</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">5</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L66">Examples</h3>
+   <div class="programlisting" id="#L71"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">x</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">magic</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">5</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">y</span> <span class="scilaboperator">=</span> <span class="scilabid">fft2pad</span><span class="scilabopenclose">(</span><span class="scilabid">x</span><span class="scilabdefault">,</span><span class="scilabnumber">8</span><span class="scilabdefault">,</span><span class="scilabnumber">8</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L67">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imdct.html" class="link">imdct</a></li>
-   <li class="member"><a href="imidct.html" class="link">imidct</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L75">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imdct.html" class="link">imdct</a> &#8212; Discrete cosine transform (DCT)</li>
+   <li class="member"><a href="imidct.html" class="link">imidct</a> &#8212; Inverse discrete cosine transform (DCT)</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L75">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L83">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

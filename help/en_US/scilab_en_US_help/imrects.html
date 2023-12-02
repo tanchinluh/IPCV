@@ -41,16 +41,16 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">BB :</span>
-      <dd><p class="para">Bounding Boxes, 4 by M, in which each column representing 1 box in [x,y,w,h].</p></dd></dt>
-   <dt><span class="term">rgb :</span>
-      <dd><p class="para">RGB values with value from 0 to 255 in [R,G,B] format</p></dd></dt></dl></div>
+            <dd><p class="para">Bounding Boxes, 4 by M, in which each column representing 1 box in [x,y,w,h].</p></dd></dt>
+        <dt><span class="term">rgb :</span>
+            <dd><p class="para">RGB values with value from 0 to 255 in [R,G,B] format</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">This function draw rectangles on the image using given bounding boxes paremeters.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L52">Examples</h3>
-   <div class="programlisting" id="#L64"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L56">Examples</h3>
+   <div class="programlisting" id="#L68"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/coins.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">Agray</span> <span class="scilaboperator">=</span> <span class="scilabid">rgb2gray</span><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">Abin</span> <span class="scilaboperator">=</span> <span class="scilabid">im2bw</span><span class="scilabopenclose">(</span><span class="scilabid">Agray</span><span class="scilabdefault">,</span><span class="scilabid">imgraythresh</span><span class="scilabopenclose">(</span><span class="scilabid">Agray</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">se</span> <span class="scilaboperator">=</span> <span class="scilabid">imcreatese</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">ellipse</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">15</span><span class="scilabdefault">,</span><span class="scilabnumber">15</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -60,11 +60,11 @@
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imrects</span><span class="scilabopenclose">(</span><span class="scilabid">BB</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">255</span> <span class="scilabnumber">0</span> <span class="scilabnumber">0</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L68">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imlabel.html" class="link">imlabel</a></li>
-   <li class="member"><a href="imblobprop.html" class="link">imblobprop</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L72">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imlabel.html" class="link">imlabel</a> &#8212; Find blobs in an image</li>
+   <li class="member"><a href="imblobprop.html" class="link">imblobprop</a> &#8212; Calculate blobs properties from labeled image</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L76">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L80">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

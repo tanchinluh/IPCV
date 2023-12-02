@@ -94,6 +94,7 @@
 <mapID target="section_7f6c2f919a1d3daf9d6d8bc3342428c9" url="section_7f6c2f919a1d3daf9d6d8bc3342428c9.html"/>
 <mapID target="imfuse" url="imfuse.html"/>
 <mapID target="imgettransform" url="imgettransform.html"/>
+<mapID target="imphasecorr" url="imphasecorr.html"/>
 <mapID target="imtransform" url="imtransform.html"/>
 <mapID target="warpmatselect" url="warpmatselect.html"/>
 <mapID target="section_7935e25b36f3c58861b2962921ef08a7" url="section_7935e25b36f3c58861b2962921ef08a7.html"/>
@@ -161,10 +162,11 @@
 <mapID target="imresize" url="imresize.html"/>
 <mapID target="imrotate" url="imrotate.html"/>
 <mapID target="section_f5260a15c8fde1a55ccfc32fca1501a1" url="section_f5260a15c8fde1a55ccfc32fca1501a1.html"/>
+<mapID target="imcontour2label" url="imcontour2label.html"/>
 <mapID target="imconvexHull" url="imconvexHull.html"/>
 <mapID target="imconvexityDefects" url="imconvexityDefects.html"/>
-<mapID target="imdrawcontours" url="imdrawcontours.html"/>
-<mapID target="imfindcontours" url="imfindcontours.html"/>
+<mapID target="imdrawContours" url="imdrawContours.html"/>
+<mapID target="imfindContours" url="imfindContours.html"/>
 <mapID target="implotContours" url="implotContours.html"/>
 <mapID target="section_7d487fa50af482d311ad1099def58007" url="section_7d487fa50af482d311ad1099def58007.html"/>
 <mapID target="imsuperres" url="imsuperres.html"/>

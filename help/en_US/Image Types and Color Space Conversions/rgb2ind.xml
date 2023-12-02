@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>inm :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para>  n levels for each color channel intensity</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output indexed image</para></listitem></varlistentry>
-   <varlistentry><term>map :</term>
-      <listitem><para> Colormap</para></listitem></varlistentry>
+        <varlistentry>
+            <term>inm :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para>  n levels for each color channel intensity</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output indexed image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>map :</term>
+            <listitem><para> Colormap</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -73,7 +81,7 @@ imshow(X,map);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="ind2rgb">ind2rgb</link></member>

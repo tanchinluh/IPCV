@@ -32,24 +32,42 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image.</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> String having one of these values:</para></listitem></varlistentry>
-   <varlistentry><term>'salt &amp; pepper' :</term>
-      <listitem><para> drop-out/On-off noise</para></listitem></varlistentry>
-   <varlistentry><term>'speckle' :</term>
-      <listitem><para> multiplicative noise</para></listitem></varlistentry>
-   <varlistentry><term>'gaussian' :</term>
-      <listitem><para> Gaussian white/additive noise</para></listitem></varlistentry>
-   <varlistentry><term>'localvar' :</term>
-      <listitem><para> Pixel-specific variance (Zero-mean Gaussian)</para></listitem></varlistentry>
-   <varlistentry><term>'poisson' :</term>
-      <listitem><para> Not yet implemented</para></listitem></varlistentry>
-   <varlistentry><term>parameters :</term>
-      <listitem><para> A sequence of parameters to control the noise distribution, depending on the chosen type. If omitted, default values are used (see below).</para></listitem></varlistentry>
-   <varlistentry><term>imn :</term>
-      <listitem><para> Noisy image, which has the same size and type as input image im .</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> String having one of these values:</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>'salt &amp; pepper' :</term>
+            <listitem><para> drop-out/On-off noise</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>'speckle' :</term>
+            <listitem><para> multiplicative noise</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>'gaussian' :</term>
+            <listitem><para> Gaussian white/additive noise</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>'localvar' :</term>
+            <listitem><para> Pixel-specific variance (Zero-mean Gaussian)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>'poisson' :</term>
+            <listitem><para> Not yet implemented</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>parameters :</term>
+            <listitem><para> A sequence of parameters to control the noise distribution, depending on the chosen type. If omitted, default values are used (see below).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imn :</term>
+            <listitem><para> Noisy image, which has the same size and type as input image im .</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -110,7 +128,7 @@ imshow(imn);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfilter">imfilter</link></member>

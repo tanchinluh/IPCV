@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>dev :</term>
-      <listitem><para> USB bus number and device number for the connected device in string</para></listitem></varlistentry>
-   <varlistentry><term>out :</term>
-      <listitem><para> Strings containing the list of supported resolution for the camera</para></listitem></varlistentry>
+        <varlistentry>
+            <term>dev :</term>
+            <listitem><para> USB bus number and device number for the connected device in string</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>out :</term>
+            <listitem><para> Strings containing the list of supported resolution for the camera</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -56,7 +60,7 @@ out = imcaminfo('001:005')
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imlsusb">imlsusb</link></member>

@@ -41,26 +41,26 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">imin :</span>
-      <dd><p class="para">Input Matrix</p></dd></dt>
-   <dt><span class="term">n :</span>
-      <dd><p class="para">Number of points to plot</p></dd></dt></dl></div>
+            <dd><p class="para">Input Matrix</p></dd></dt>
+        <dt><span class="term">n :</span>
+            <dd><p class="para">Number of points to plot</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">This function used to visualize the 2-D matrix as 3D surf plot with the values
 as the z-axes value. It is useful to visuallize the filter in frequency
 domain, and also the frequency response of the images.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L54">Examples</h3>
-   <div class="programlisting" id="#L60"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">f</span> <span class="scilaboperator">=</span> <span class="scilabid">fspecial</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">gaussian</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L58">Examples</h3>
+   <div class="programlisting" id="#L64"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">f</span> <span class="scilaboperator">=</span> <span class="scilabid">fspecial</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">gaussian</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">F</span> <span class="scilaboperator">=</span> <a class="scilabmacro" href="scilab://fftshift">fftshift</a><span class="scilabopenclose">(</span><span class="scilabid">fft2pad</span><span class="scilabopenclose">(</span><span class="scilabid">f</span><span class="scilabdefault">,</span><span class="scilabnumber">256</span><span class="scilabdefault">,</span><span class="scilabnumber">256</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imsmoothsurf</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://abs">abs</a><span class="scilabopenclose">(</span><span class="scilabid">F</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span><span class="scilabnumber">100</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L64">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="immesh.html" class="link">immesh</a></li>
-   <li class="member"><a href="imsurf.html" class="link">imsurf</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L68">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="immesh.html" class="link">immesh</a> &#8212; Visualize 2D matrix using mesh plot, useful for frequency response visualization.</li>
+   <li class="member"><a href="imsurf.html" class="link">imsurf</a> &#8212; Visualize 2D matrix using surf plot, useful for frequency response visualization.</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L72">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L76">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An image, which can be integer or double matrix, but must be one channel image.</para></listitem></varlistentry>
-   <varlistentry><term>m :</term>
-      <listitem><para> The mean of the values in im , a scalar of class double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An image, which can be integer or double matrix, but must be one channel image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>m :</term>
+            <listitem><para> The mean of the values in im , a scalar of class double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -48,7 +52,7 @@ mean2 computes the mean of a matrix using mean(im(:)).
 </para>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="corr2">corr2</link></member>

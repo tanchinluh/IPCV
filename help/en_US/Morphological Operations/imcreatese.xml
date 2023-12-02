@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>setype :</term>
-      <listitem><para> Type of structure element, currently support 'rect', 'ellipse' and 'cross'</para></listitem></varlistentry>
-   <varlistentry><term>r :</term>
-      <listitem><para> Number of rows</para></listitem></varlistentry>
-   <varlistentry><term>c :</term>
-      <listitem><para> Number of colomns</para></listitem></varlistentry>
-   <varlistentry><term>se :</term>
-      <listitem><para> Created structure element</para></listitem></varlistentry>
+        <varlistentry>
+            <term>setype :</term>
+            <listitem><para> Type of structure element, currently support 'rect', 'ellipse' and 'cross'</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>r :</term>
+            <listitem><para> Number of rows</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>c :</term>
+            <listitem><para> Number of colomns</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>se :</term>
+            <listitem><para> Created structure element</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -66,7 +74,7 @@ disp(b);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imcreatese">imcreatese</link></member>

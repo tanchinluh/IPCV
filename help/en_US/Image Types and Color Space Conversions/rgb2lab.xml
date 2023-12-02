@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> RGB Image</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> LAB Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> RGB Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> LAB Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -55,7 +59,7 @@ This function convert from rgb to lab
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    </simplelist>

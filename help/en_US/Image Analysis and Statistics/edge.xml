@@ -36,18 +36,30 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image which must be a single channel image.</para></listitem></varlistentry>
-   <varlistentry><term>method :</term>
-      <listitem><para> may be 'sobel'(default), 'prewitt', 'log', 'fftderiv' or 'canny'. Other methods will appear in the future.</para></listitem></varlistentry>
-   <varlistentry><term>thresh :</term>
-      <listitem><para> sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, E , will have the un-thresholded gradient image.</para></listitem></varlistentry>
-   <varlistentry><term>direction :</term>
-      <listitem><para> may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient.</para></listitem></varlistentry>
-   <varlistentry><term>sigma :</term>
-      <listitem><para> Controls the ammount of high-frequency attenuation in some methods (only the 'fftderiv' method uses this parameter). This can be used to obtain different levels of detail and to filter out high-frequency noise.</para></listitem></varlistentry>
-   <varlistentry><term>E :</term>
-      <listitem><para> edge image which is boolean matrix and has the same size as im . If thresh&lt;0 , E is a double un-thresholded image.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image which must be a single channel image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>method :</term>
+            <listitem><para> may be 'sobel'(default), 'prewitt', 'log', 'fftderiv' or 'canny'. Other methods will appear in the future.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>thresh :</term>
+            <listitem><para> sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, E , will have the un-thresholded gradient image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>direction :</term>
+            <listitem><para> may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sigma :</term>
+            <listitem><para> Controls the ammount of high-frequency attenuation in some methods (only the 'fftderiv' method uses this parameter). This can be used to obtain different levels of detail and to filter out high-frequency noise.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>E :</term>
+            <listitem><para> edge image which is boolean matrix and has the same size as im . If thresh&lt;0 , E is a double un-thresholded image.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -100,7 +112,7 @@ imshow(mat2gray(E));
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="fspecial">fspecial</link></member>

@@ -32,16 +32,26 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input Image</para></listitem></varlistentry>
-   <varlistentry><term>mask :</term>
-      <listitem><para> Input mask</para></listitem></varlistentry>
-   <varlistentry><term>rad :</term>
-      <listitem><para> Radius of a circular neighborhood of each point inpainted that is considered by the algorithm</para></listitem></varlistentry>
-   <varlistentry><term>method :</term>
-      <listitem><para> Inpainting method that could be either 0 --&gt; Navier-Stokes based method or 1 --&gt; Method by Alexandru Telea</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mask :</term>
+            <listitem><para> Input mask</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rad :</term>
+            <listitem><para> Radius of a circular neighborhood of each point inpainted that is considered by the algorithm</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>method :</term>
+            <listitem><para> Inpainting method that could be either 0 --&gt; Navier-Stokes based method or 1 --&gt; Method by Alexandru Telea</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -62,13 +72,12 @@ S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 mask = imroi(S);
 imout = iminpaint(S,mask,1,1);
 imshow(S);
-scf;
-imshow(imout);
+scf; imshow(imout);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imroi">imroi</link></member>

@@ -61,11 +61,12 @@ This function is used to visualize the DNN feature maps
    <programlisting role="example"><![CDATA[
 // Initialize
 dnn_unloadallmodels
-dnn_path = fullfile(getIPCVpath(),'images','dnn');
-net = dnn_readmodel(fullfile(dnn_path,'lenet5.pb'),'','tensorflow');
+dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+
 
 // Read Image
-S = imread(fullfile(dnn_path,'3.jpg'));
+S = imread(dnn_path + '3.jpg');
 
 // Forward Pass
 out1 = dnn_forward(net,~S,[28,28],"conv2d/Conv2D");

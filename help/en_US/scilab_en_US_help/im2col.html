@@ -41,27 +41,27 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">blk :</span>
-      <dd><p class="para">Block size [m,n]</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">blk :</span>
+            <dd><p class="para">Block size [m,n]</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">This function is used to convert the image to columns of vector for
 faster processing as Scilab perform better with vectorization code.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L53">Examples</h3>
-   <div class="programlisting" id="#L60"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">mag</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L57">Examples</h3>
+   <div class="programlisting" id="#L64"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://testmatrix">testmatrix</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">mag</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">B</span> <span class="scilaboperator">=</span> <span class="scilabid">im2col</span><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">3</span> <span class="scilabnumber">3</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">C</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://mean">mean</a><span class="scilabopenclose">(</span><span class="scilabid">B</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">D</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://matrix">matrix</a><span class="scilabopenclose">(</span><span class="scilabid">C</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">4</span><span class="scilabdefault">,</span><span class="scilabnumber">4</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilaboperator">&#0039;</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L64">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imblockproc.html" class="link">imblockproc</a></li>
-   <li class="member"><a href="imblockslide.html" class="link">imblockslide</a></li>
-   <li class="member"><a href="imcolproc.html" class="link">imcolproc</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L68">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imblockproc.html" class="link">imblockproc</a> &#8212; Distict block processing for an image</li>
+   <li class="member"><a href="imblockslide.html" class="link">imblockslide</a> &#8212; Sliding block processing for an image</li>
+   <li class="member"><a href="imcolproc.html" class="link">imcolproc</a> &#8212; Sliding block processing for an image, with vectorization</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L73">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L77">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

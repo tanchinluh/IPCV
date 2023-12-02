@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>mn :</term>
-      <listitem><para> Block size</para></listitem></varlistentry>
-   <varlistentry><term>noise :</term>
-      <listitem><para> Noise ratio</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Output Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mn :</term>
+            <listitem><para> Block size</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>noise :</term>
+            <listitem><para> Noise ratio</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -64,7 +72,7 @@ imshow(S3);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfilter">imfilter</link></member>

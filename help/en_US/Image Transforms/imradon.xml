@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>I :</term>
-      <listitem><para> Image matrix in Scilab</para></listitem></varlistentry>
-   <varlistentry><term>theta :</term>
-      <listitem><para> Angles for calculating radon tansform</para></listitem></varlistentry>
-   <varlistentry><term>RT :</term>
-      <listitem><para> Matrix of the Radon transform for one of the angles in theta.</para></listitem></varlistentry>
-   <varlistentry><term>xp :</term>
-      <listitem><para> Radial coordinates corresponding to each row of RT.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>I :</term>
+            <listitem><para> Image matrix in Scilab</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>theta :</term>
+            <listitem><para> Angles for calculating radon tansform</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>RT :</term>
+            <listitem><para> Matrix of the Radon transform for one of the angles in theta.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>xp :</term>
+            <listitem><para> Radial coordinates corresponding to each row of RT.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -66,7 +74,7 @@ imshow(RT,hotcolormap(64));
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imhough">imhough</link></member>

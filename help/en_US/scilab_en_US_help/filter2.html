@@ -41,28 +41,28 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">im :</span>
-      <dd><p class="para">An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</p></dd></dt>
-   <dt><span class="term">F :</span>
-      <dd><p class="para">A double 2D filter.</p></dd></dt>
-   <dt><span class="term">imf :</span>
-      <dd><p class="para">The filtered image which has the same size with imf and the class double.</p></dd></dt></dl></div>
+            <dd><p class="para">An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</p></dd></dt>
+        <dt><span class="term">F :</span>
+            <dd><p class="para">A double 2D filter.</p></dd></dt>
+        <dt><span class="term">imf :</span>
+            <dd><p class="para">The filtered image which has the same size with imf and the class double.</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">filter2 filters an image im with filter F. When im is a mult-channel image, each channel can be filtered with F seperately. Input image pixel values outside the bounds of the image are assumed to equal the nearest array border value.</p>
    <p class="para">The only diffence of filter2 with imfilter is the output of filter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L57">Examples</h3>
-   <div class="programlisting" id="#L64"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L63">Examples</h3>
+   <div class="programlisting" id="#L70"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/baboon.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabcommand" href="scilab://filter">filter</a> <span class="scilabstring">=</span> <span class="scilabstring">fspecial('sobel')</span><span class="scilabdefault">;</span>
 <span class="scilabid">imf</span> <span class="scilaboperator">=</span> <span class="scilabid">filter2</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabdefault">,</span><a class="scilabcommand" href="scilab://filter">filter</a><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imf</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L68">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="fspecial.html" class="link">fspecial</a></li>
-   <li class="member"><a href="imfilter.html" class="link">imfilter</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L74">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="fspecial.html" class="link">fspecial</a> &#8212; Create some 2D special filters</li>
+   <li class="member"><a href="imfilter.html" class="link">imfilter</a> &#8212; Image filtering</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L76">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L82">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

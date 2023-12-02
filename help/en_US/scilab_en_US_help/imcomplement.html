@@ -41,17 +41,17 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">im :</span>
-      <dd><p class="para">Input image.</p></dd></dt>
-   <dt><span class="term">imout :</span>
-      <dd><p class="para">The complement image, which has the same size and class with im .</p></dd></dt></dl></div>
+            <dd><p class="para">Input image.</p></dd></dt>
+        <dt><span class="term">imout :</span>
+            <dd><p class="para">The complement image, which has the same size and class with im .</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">imcomplement computes the complement image of im. In the output image imout, dark pixels become lighter and light pixels become darker.</p>
    <p class="para">Supported classes: BOOLEAN, INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Examples</h3>
-   <div class="programlisting" id="#L69"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabconstants">%F</span><span class="scilabdefault">,</span> <span class="scilabconstants">%T</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L59">Examples</h3>
+   <div class="programlisting" id="#L73"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabconstants">%F</span><span class="scilabdefault">,</span> <span class="scilabconstants">%T</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
 <span class="scilabid">imcomplement</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabopenclose">)</span>
 
 <span class="scilabid">im</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://uint8">uint8</a><span class="scilabopenclose">(</span><span class="scilabopenclose">[</span><span class="scilabnumber">0</span><span class="scilabdefault">,</span> <span class="scilabnumber">50</span><span class="scilabdefault">,</span> <span class="scilabnumber">100</span><span class="scilabdefault">;</span> <span class="scilabnumber">150</span><span class="scilabdefault">,</span> <span class="scilabnumber">200</span><span class="scilabdefault">,</span> <span class="scilabnumber">250</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -63,15 +63,15 @@
 <span class="scilabid">im</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabnumber">0</span><span class="scilabdefault">,</span> <span class="scilabnumber">0.2</span><span class="scilabdefault">,</span> <span class="scilabnumber">0.4</span><span class="scilabdefault">;</span> <span class="scilabnumber">0.6</span><span class="scilabdefault">,</span> <span class="scilabnumber">0.8</span><span class="scilabdefault">,</span> <span class="scilabnumber">1.0</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
 <span class="scilabid">imcomplement</span><span class="scilabopenclose">(</span><span class="scilabid">im</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L73">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imabsdiff.html" class="link">imabsdiff</a></li>
-   <li class="member"><a href="imadd.html" class="link">imadd</a></li>
-   <li class="member"><a href="imsubtract.html" class="link">imsubtract</a></li>
-   <li class="member"><a href="immultiply.html" class="link">immultiply</a></li>
-   <li class="member"><a href="imdivide.html" class="link">imdivide</a></li>
-   <li class="member"><a href="imlincomb.html" class="link">imlincomb</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L77">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imabsdiff.html" class="link">imabsdiff</a> &#8212; Calculate absolute difference of two images</li>
+   <li class="member"><a href="imadd.html" class="link">imadd</a> &#8212; Add two images or add a constant to an image</li>
+   <li class="member"><a href="imsubtract.html" class="link">imsubtract</a> &#8212; Subtract two images or subtract a constant from an image</li>
+   <li class="member"><a href="immultiply.html" class="link">immultiply</a> &#8212; Multiply two images or multiply an image by an constant.</li>
+   <li class="member"><a href="imdivide.html" class="link">imdivide</a> &#8212; Divide two images or divide an image by an constant.</li>
+   <li class="member"><a href="imlincomb.html" class="link">imlincomb</a> &#8212; Linear combination of images</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L85">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L89">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

@@ -41,15 +41,15 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">inm :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">n :</span>
-      <dd><p class="para">n levels for each color channel intensity</p></dd></dt>
-   <dt><span class="term">imout :</span>
-      <dd><p class="para">Output indexed image</p></dd></dt>
-   <dt><span class="term">map :</span>
-      <dd><p class="para">Colormap</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">n :</span>
+            <dd><p class="para">n levels for each color channel intensity</p></dd></dt>
+        <dt><span class="term">imout :</span>
+            <dd><p class="para">Output indexed image</p></dd></dt>
+        <dt><span class="term">map :</span>
+            <dd><p class="para">Colormap</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L47">Description</h3>
+<div class="refsection"><h3 class="title" id="#L55">Description</h3>
    <p class="para">On input Im is a n1 x n2 x 3 hypermat describing a
 true color image  Im(i,j,:) giving the R-G-B of the
 pixel (i,j).
@@ -64,15 +64,15 @@ As the max size of a cmap in scilab is 2^16-2,
 n = 40 is the max possible (40^3 &lt;= 2^16 - 2 &lt; 41^3).</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L67">Examples</h3>
-   <div class="programlisting" id="#L73"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/puffin.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L75">Examples</h3>
+   <div class="programlisting" id="#L81"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/puffin.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabopenclose">[</span><span class="scilabid">X</span><span class="scilabdefault">,</span><span class="scilabid">map</span><span class="scilabopenclose">]</span> <span class="scilaboperator">=</span> <span class="scilabid">rgb2ind</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabnumber">8</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">X</span><span class="scilabdefault">,</span><span class="scilabid">map</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L77">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="ind2rgb.html" class="link">ind2rgb</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L85">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="ind2rgb.html" class="link">ind2rgb</a> &#8212; Convert index image to RGB image</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L84">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L92">Authors</h3>
    <ul class="itemizedlist"><li class="member">Ricardo Fabbri</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

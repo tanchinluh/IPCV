@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>RGB :</term>
-      <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
-   <varlistentry><term>YCC :</term>
-      <listitem><para> Output image, which has the same size as RGB and type of double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>RGB :</term>
+            <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>YCC :</term>
+            <listitem><para> Output image, which has the same size as RGB and type of double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -71,7 +75,7 @@ imshow(RGB);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="rgb2gray">rgb2gray</link></member>

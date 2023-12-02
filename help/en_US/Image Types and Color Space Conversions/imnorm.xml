@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> Input 2-D matrix</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Normalized output matrix</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Input 2-D matrix</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Normalized output matrix</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -59,7 +63,7 @@ disp(s2);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    </simplelist>

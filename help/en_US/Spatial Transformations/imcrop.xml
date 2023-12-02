@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An image, which can be one channel or three channel image.</para></listitem></varlistentry>
-   <varlistentry><term>rect :</term>
-      <listitem><para> rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rentangle.</para></listitem></varlistentry>
-   <varlistentry><term>subim :</term>
-      <listitem><para> subim is the sub-region of the image im .</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An image, which can be one channel or three channel image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rect :</term>
+            <listitem><para> rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rentangle.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>subim :</term>
+            <listitem><para> subim is the sub-region of the image im .</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -60,10 +66,11 @@ imshow(subim);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imresize">imresize</link></member>
+   <member><link linkend="imchoose">imchoose</link></member>
    </simplelist>
 </refsection>
 

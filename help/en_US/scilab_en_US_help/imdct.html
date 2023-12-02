@@ -41,24 +41,24 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
-      <dd><p class="para">Input Matrix (1D or 2D)</p></dd></dt>
-   <dt><span class="term">y :</span>
-      <dd><p class="para">Output Matrix same dimension with x</p></dd></dt></dl></div>
+            <dd><p class="para">Input Matrix (1D or 2D)</p></dd></dt>
+        <dt><span class="term">y :</span>
+            <dd><p class="para">Output Matrix same dimension with x</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L43">Description</h3>
+<div class="refsection"><h3 class="title" id="#L47">Description</h3>
    <p class="para">Performs a forward discrete Cosine transform of 1D or 2D array.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L52">Examples</h3>
-   <div class="programlisting" id="#L58"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/measure_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L56">Examples</h3>
+   <div class="programlisting" id="#L62"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/measure_gray.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">y</span> <span class="scilaboperator">=</span> <span class="scilabid">imdct</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">y</span><span class="scilabdefault">,</span><a class="scilabmacro" href="scilab://jetcolormap">jetcolormap</a><span class="scilabopenclose">(</span><span class="scilabnumber">256</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L62">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imidct.html" class="link">imidct</a></li>
-   <li class="member"><a href="fft2pad.html" class="link">fft2pad</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L66">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imidct.html" class="link">imidct</a> &#8212; Inverse discrete cosine transform (DCT)</li>
+   <li class="member"><a href="fft2pad.html" class="link">fft2pad</a> &#8212; Pad smaller matrix with zeros to the given size before transformation.</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L70">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L74">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

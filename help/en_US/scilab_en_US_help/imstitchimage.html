@@ -42,26 +42,26 @@
 
 <div class="refsection"><h3 class="title" id="#L34">Parameters</h3>
    <dl><dt><span class="term">params :</span>
-      <dd><p class="para">A structure which consist of following fields, could be created with imstitchimage_params</p></dd></dt>
-   <dt><span class="term">RegistrationResol :</span>
-      <dd><p class="para">Resolution for image registration step. The default is 0.6 Mpx</p></dd></dt>
-   <dt><span class="term">SeamEstimationResol :</span>
-      <dd><p class="para">Resolution for seam estimation step. The default is 0.1 Mpx</p></dd></dt>
-   <dt><span class="term">CompositingResol :</span>
-      <dd><p class="para">Resolution for compositing step. Use -1 for original resolution.The default is 1</p></dd></dt>
-   <dt><span class="term">PanoConfidenceThresh :</span>
-      <dd><p class="para">Threshold for two images are from the same panorama confidence. The default is 1</p></dd></dt>
-   <dt><span class="term">WaveCorrection :</span>
-      <dd><p class="para">Perform wave effect correction. The default is 1</p></dd></dt>
-   <dt><span class="term">BlenderBands :</span>
-      <dd><p class="para">Then number of bands for MultiBandBlender. The default is 100</p></dd></dt></dl></div>
+            <dd><p class="para">A structure which consist of following fields, could be created with imstitchimage_params</p></dd></dt>
+        <dt><span class="term">RegistrationResol :</span>
+            <dd><p class="para">Resolution for image registration step. The default is 0.6 Mpx</p></dd></dt>
+        <dt><span class="term">SeamEstimationResol :</span>
+            <dd><p class="para">Resolution for seam estimation step. The default is 0.1 Mpx</p></dd></dt>
+        <dt><span class="term">CompositingResol :</span>
+            <dd><p class="para">Resolution for compositing step. Use -1 for original resolution.The default is 1</p></dd></dt>
+        <dt><span class="term">PanoConfidenceThresh :</span>
+            <dd><p class="para">Threshold for two images are from the same panorama confidence. The default is 1</p></dd></dt>
+        <dt><span class="term">WaveCorrection :</span>
+            <dd><p class="para">Perform wave effect correction. The default is 1</p></dd></dt>
+        <dt><span class="term">BlenderBands :</span>
+            <dd><p class="para">Then number of bands for MultiBandBlender. The default is 100</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L54">Description</h3>
+<div class="refsection"><h3 class="title" id="#L68">Description</h3>
    <p class="para">imstitchimage tries to stitch images saved in Scilab list together to form a panaromic image.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L63">Examples</h3>
-   <div class="programlisting" id="#L82"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L77">Examples</h3>
+   <div class="programlisting" id="#L96"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S</span><span class="scilabopenclose">(</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/stitching/sk1.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S</span><span class="scilabopenclose">(</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/stitching/sk2.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S</span><span class="scilabopenclose">(</span><span class="scilabnumber">3</span><span class="scilabopenclose">)</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/stitching/sk3.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
@@ -77,10 +77,10 @@
 <a class="scilabmacro" href="scilab://subplot">subplot</a><span class="scilabopenclose">(</span><span class="scilabnumber">326</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span><span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">(</span><span class="scilabnumber">6</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabmacro" href="scilab://scf">scf</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span><span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">St</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L86">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imstitchimage_params.html" class="link">imstitchimage_params</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L100">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imstitchimage_params.html" class="link">imstitchimage_params</a> &#8212; Image Stitching Parameters</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L93">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L107">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -38,7 +38,7 @@
         </varlistentry>
         <varlistentry>
             <term>modelinfo :</term>
-            <listitem><para> MOdel info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
+            <listitem><para> Model info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modeltype :</term>
@@ -63,9 +63,9 @@ This function is used for loading DNN model and used in Scilab for inference sys
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-dnn_path = fullfile(getIPCVpath(),'images','dnn');
-net = dnn_readmodel(fullfile(dnn_path,'lenet5.pb'),'','tensorflow');
-S = imread(fullfile(dnn_path,'3.jpg'));
+dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+S = imread(dnn_path + '3.jpg');
 imshow(S);
 out = dnn_forward(net,~S,[28,28]);
 [maxV,maxI]=max(out);

@@ -41,29 +41,29 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
-      <dd><p class="para">Source Image</p></dd></dt>
-   <dt><span class="term">blk :</span>
-      <dd><p class="para">Block size [m,n]</p></dd></dt>
-   <dt><span class="term">func :</span>
-      <dd><p class="para">A function name which provide the processing function. The fucntion</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image</p></dd></dt>
+        <dt><span class="term">blk :</span>
+            <dd><p class="para">Block size [m,n]</p></dd></dt>
+        <dt><span class="term">func :</span>
+            <dd><p class="para">A function name which provide the processing function. The fucntion</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">This function is block processing function with sliding blocks, with each
 sliding blocks converted to column matrix for faster performance.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Examples</h3>
-   <div class="programlisting" id="#L62"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L61">Examples</h3>
+   <div class="programlisting" id="#L68"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">A</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <a class="scilabmacro" href="scilab://deff">deff</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0039;</span><span class="scilabstring">y=myfunc(x)</span><span class="scilabstring">&#0039;</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">y = mean(x,1)</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">y</span> <span class="scilaboperator">=</span> <span class="scilabid">imcolproc</span><span class="scilabopenclose">(</span><span class="scilabid">A</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">9</span> <span class="scilabnumber">9</span><span class="scilabopenclose">]</span><span class="scilabdefault">,</span><span class="scilabstring">&#0039;</span><span class="scilabstring">myfunc</span><span class="scilabstring">&#0039;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">y</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L66">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imblockproc.html" class="link">imblockproc</a></li>
-   <li class="member"><a href="imblockslide.html" class="link">imblockslide</a></li>
-   <li class="member"><a href="im2col.html" class="link">im2col</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L72">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imblockproc.html" class="link">imblockproc</a> &#8212; Distict block processing for an image</li>
+   <li class="member"><a href="imblockslide.html" class="link">imblockslide</a> &#8212; Sliding block processing for an image</li>
+   <li class="member"><a href="im2col.html" class="link">im2col</a> &#8212; Convert image into series of columns</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L75">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L81">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -41,27 +41,27 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">x :</span>
-      <dd><p class="para">Input image</p></dd></dt>
-   <dt><span class="term">m :</span>
-      <dd><p class="para">Magnitude scale parameter</p></dd></dt>
-   <dt><span class="term">y :</span>
-      <dd><p class="para">Output image</p></dd></dt></dl></div>
+            <dd><p class="para">Input image</p></dd></dt>
+        <dt><span class="term">m :</span>
+            <dd><p class="para">Magnitude scale parameter</p></dd></dt>
+        <dt><span class="term">y :</span>
+            <dd><p class="para">Output image</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">The function cvLogPolar transforms the source image using the following transformation:
 p = m*log(sqrt(x^2 + y^2)), phi = atan(y/x)</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Examples</h3>
-   <div class="programlisting" id="#L61"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">x</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L61">Examples</h3>
+   <div class="programlisting" id="#L67"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">x</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">y</span> <span class="scilaboperator">=</span> <span class="scilabid">imlogpolar</span><span class="scilabopenclose">(</span><span class="scilabid">x</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">y</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L65">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imgettransform.html" class="link">imgettransform</a></li>
-   <li class="member"><a href="imtransform.html" class="link">imtransform</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L71">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imgettransform.html" class="link">imgettransform</a> &#8212; Get transformation matrix from given source and destination points</li>
+   <li class="member"><a href="imtransform.html" class="link">imtransform</a> &#8212; Image affine transformation</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L73">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L79">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

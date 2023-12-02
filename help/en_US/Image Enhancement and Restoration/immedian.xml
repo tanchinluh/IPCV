@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>sz :</term>
-      <listitem><para> Size of the filter block</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sz :</term>
+            <listitem><para> Size of the filter block</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -56,13 +60,12 @@ S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 S_noise =  imnoise(S,'salt & pepper',0.02);
 imshow(S_noise);
 S2 = immedian(S_noise,3);
-scf;
-imshow(S2);
+scf; imshow(S2);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfilter">imfilter</link></member>

@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>S :</term>
-      <listitem><para> Image matrix in Scilab</para></listitem></varlistentry>
-   <varlistentry><term>xc :</term>
-      <listitem><para> x-coordinates for the selected points</para></listitem></varlistentry>
-   <varlistentry><term>yc :</term>
-      <listitem><para> y-coordinates for the selected points</para></listitem></varlistentry>
-   <varlistentry><term>pixval :</term>
-      <listitem><para> Correspond pixels' values along the selected points</para></listitem></varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Image matrix in Scilab</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>xc :</term>
+            <listitem><para> x-coordinates for the selected points</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>yc :</term>
+            <listitem><para> y-coordinates for the selected points</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>pixval :</term>
+            <listitem><para> Correspond pixels' values along the selected points</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -63,7 +71,7 @@ improfile(S);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="impixel">impixel</link></member>

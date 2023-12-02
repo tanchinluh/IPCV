@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Number of detected objects</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Labeled Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Number of detected objects</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Labeled Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -63,7 +69,7 @@ imshow(A_labeled,jetcolormap(n));
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imblobprop">imblobprop</link></member>

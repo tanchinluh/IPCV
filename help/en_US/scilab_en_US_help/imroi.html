@@ -42,15 +42,15 @@
 
 <div class="refsection"><h3 class="title" id="#L34">Parameters</h3>
    <dl><dt><span class="term">imin :</span>
-      <dd><p class="para">Input Image</p></dd></dt>
-   <dt><span class="term">nr_points :</span>
-      <dd><p class="para">Maximum number of points to select with mouse - a positive integer (the default value is 10)</p></dd></dt>
-   <dt><span class="term">points :</span>
-      <dd><p class="para">a 2xN matrix of points; if present the region is defined by points and no interactive mouse selection is used</p></dd></dt>
-   <dt><span class="term">imout :</span>
-      <dd><p class="para">Output mask</p></dd></dt></dl></div>
+            <dd><p class="para">Input Image</p></dd></dt>
+        <dt><span class="term">nr_points :</span>
+            <dd><p class="para">Maximum number of points to select with mouse - a positive integer (the default value is 10)</p></dd></dt>
+        <dt><span class="term">points :</span>
+            <dd><p class="para">a 2xN matrix of points; if present the region is defined by points and no interactive mouse selection is used</p></dd></dt>
+        <dt><span class="term">imout :</span>
+            <dd><p class="para">Output mask</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L48">Description</h3>
+<div class="refsection"><h3 class="title" id="#L56">Description</h3>
    <p class="para">The first calling sequence is used to provide interactive way to select up to nr_points points (or up to 10 points,
 if nr_points is not given) by using right mouse button to select the last point, and points are used
 to create the image mask.</p>
@@ -58,18 +58,18 @@ to create the image mask.</p>
 which has the form [x1,y1;x2,y2;...;xN,yN], where (xi,yi), i=1..N are vertices of the region.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L63">Examples</h3>
-   <div class="programlisting" id="#L71"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L71">Examples</h3>
+   <div class="programlisting" id="#L79"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imout</span> <span class="scilaboperator">=</span> <span class="scilabid">imroi</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabcomment">// interactive selection of a region (max 10 vertices)</span>
 <span class="scilabid">imout</span> <span class="scilaboperator">=</span> <span class="scilabid">imroi</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabnumber">15</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabcomment">// interactive selection of a region (max 15 vertices)</span>
 <span class="scilabid">imout</span> <span class="scilaboperator">=</span> <span class="scilabid">imroi</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">10</span><span class="scilabdefault">,</span><span class="scilabnumber">10</span><span class="scilabdefault">;</span><span class="scilabnumber">20</span> <span class="scilabnumber">20</span><span class="scilabdefault">;</span><span class="scilabnumber">15</span> <span class="scilabnumber">35</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> <span class="scilabcomment">// create a mask from a region defined by points</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">imout</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L75">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imroifill.html" class="link">imroifill</a></li>
-   <li class="member"><a href="imroifilt.html" class="link">imroifilt</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L83">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imroifill.html" class="link">imroifill</a> &#8212; Fill and image using the border color of the selected region</li>
+   <li class="member"><a href="imroifilt.html" class="link">imroifilt</a> &#8212; Filtering of a selected region</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L83">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L91">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -32,38 +32,70 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>hessianThreshold :</term>
-      <listitem><para> Threshold for hessian keypoint detector used in SURF. Default value is 1000.</para></listitem></varlistentry>
-   <varlistentry><term>nOctaves :</term>
-      <listitem><para> Number of pyramid octaves the keypoint detector will use. Default value is 4.</para></listitem></varlistentry>
-   <varlistentry><term>nOctaveLayers :</term>
-      <listitem><para> Number of octave layers within each octave. Default value is 2.</para></listitem></varlistentry>
-   <varlistentry><term>extended :</term>
-      <listitem><para> Extended descriptor flag. Default value is 1.</para></listitem></varlistentry>
-   <varlistentry><term>upright :</term>
-      <listitem><para> Up-right or rotated features flag. Default value is 0.</para></listitem></varlistentry>
-   <varlistentry><term>fobj :</term>
-      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> Type of features</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
-   <varlistentry><term>x :</term>
-      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
-   <varlistentry><term>size :</term>
-      <listitem><para> Size of detected features</para></listitem></varlistentry>
-   <varlistentry><term>angle :</term>
-      <listitem><para> keypoint orientation</para></listitem></varlistentry>
-   <varlistentry><term>response :</term>
-      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
-   <varlistentry><term>octave :</term>
-      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
-   <varlistentry><term>class_id :</term>
-      <listitem><para> object id</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>hessianThreshold :</term>
+            <listitem><para> Threshold for hessian keypoint detector used in SURF. Default value is 1000.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nOctaves :</term>
+            <listitem><para> Number of pyramid octaves the keypoint detector will use. Default value is 4.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nOctaveLayers :</term>
+            <listitem><para> Number of octave layers within each octave. Default value is 2.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>extended :</term>
+            <listitem><para> Extended descriptor flag. Default value is 1.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>upright :</term>
+            <listitem><para> Up-right or rotated features flag. Default value is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object contains following fields -</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -86,7 +118,7 @@ imshow(S); plotfeature(fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>

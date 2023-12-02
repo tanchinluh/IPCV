@@ -45,33 +45,33 @@
 
 <div class="refsection"><h3 class="title" id="#L37">Parameters</h3>
    <dl><dt><span class="term">S :</span>
-      <dd><p class="para">Source image.</p></dd></dt>
-   <dt><span class="term">cfn :</span>
-      <dd><p class="para">Classifier file name, in xml format.</p></dd></dt>
-   <dt><span class="term">fac :</span>
-      <dd><p class="para">Parameter specifying how much the image size is reduced at each image scale. Default value is 1.1</p></dd></dt>
-   <dt><span class="term">minNB :</span>
-      <dd><p class="para">Parameter specifying how many neighbors each candidate rectangle should have to retain it. Default value is 3</p></dd></dt>
-   <dt><span class="term">minSz :</span>
-      <dd><p class="para">Minimum possible object size. Objects smaller than that are ignored. In [w h] format. Default value is [30 30]</p></dd></dt>
-   <dt><span class="term">maxSz :</span>
-      <dd><p class="para">Maximum possible object size. Objects larger than that are ignored. In [w h] format. Default value not set will be unlimited</p></dd></dt></dl></div>
+            <dd><p class="para">Source image.</p></dd></dt>
+        <dt><span class="term">cfn :</span>
+            <dd><p class="para">Classifier file name, in xml format.</p></dd></dt>
+        <dt><span class="term">fac :</span>
+            <dd><p class="para">Parameter specifying how much the image size is reduced at each image scale. Default value is 1.1</p></dd></dt>
+        <dt><span class="term">minNB :</span>
+            <dd><p class="para">Parameter specifying how many neighbors each candidate rectangle should have to retain it. Default value is 3</p></dd></dt>
+        <dt><span class="term">minSz :</span>
+            <dd><p class="para">Minimum possible object size. Objects smaller than that are ignored. In [w h] format. Default value is [30 30]</p></dd></dt>
+        <dt><span class="term">maxSz :</span>
+            <dd><p class="para">Maximum possible object size. Objects larger than that are ignored. In [w h] format. Default value not set will be unlimited</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L55">Description</h3>
+<div class="refsection"><h3 class="title" id="#L67">Description</h3>
    <p class="para">imdetectobjects Detects objects of different sizes in the input image. The detected objects are returned as a list of rectangles.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L64">Examples</h3>
-   <div class="programlisting" id="#L72"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/people2.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L76">Examples</h3>
+   <div class="programlisting" id="#L84"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/people2.jpg</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">cfn</span> <span class="scilaboperator">=</span> <a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/demos/haarcascade_frontalface_alt.xml</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">r</span> <span class="scilaboperator">=</span> <span class="scilabid">imdetectobjects</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabid">cfn</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imrects</span><span class="scilabopenclose">(</span><span class="scilabid">r</span><span class="scilabdefault">,</span><span class="scilabopenclose">[</span><span class="scilabnumber">0</span> <span class="scilabnumber">255</span> <span class="scilabnumber">0</span><span class="scilabopenclose">]</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L76">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="imrects.html" class="link">imrects</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L88">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="imrects.html" class="link">imrects</a> &#8212; Draw Bounding Boxes on An Image</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L83">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L95">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

@@ -33,10 +33,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An matrix/image, which can be integer or double matrix, but must be one channel image.</para></listitem></varlistentry>
-   <varlistentry><term>s :</term>
-      <listitem><para> The standard deviation, a scalar of class double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An matrix/image, which can be integer or double matrix, but must be one channel image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>s :</term>
+            <listitem><para> The standard deviation, a scalar of class double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -49,7 +53,7 @@ std2/stdev2 computes standard deviation of matrix im using stdev(im(:)).
 </para>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="mean2">mean2</link></member>

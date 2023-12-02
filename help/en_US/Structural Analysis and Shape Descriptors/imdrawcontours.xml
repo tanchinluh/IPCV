@@ -2,11 +2,11 @@
 
 <!--
  *
- * This help file was generated from imdrawcontours.sci using help_from_sci().
+ * This help file was generated from imdrawContours.sci using help_from_sci().
  *
  -->
 
-<refentry version="5.0-subset Scilab" xml:id="imdrawcontours" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="imdrawContours" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>imdrawcontours</refname>
+    <refname>imdrawContours</refname>
     <refpurpose>Draw contours from the contour image.</refpurpose>
   </refnamediv>
 
@@ -24,9 +24,7 @@
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   So = imdrawcontour(Sc)
-   So = imdrawcontour(Sc,colormap)
-   So = imdrawcontour(Sc,colormap,thickness)
+   So = imdrawcontour(Slabel[, colormap[, thickness]])
    
    </synopsis>
 </refsynopsisdiv>
@@ -35,8 +33,8 @@
    <title>Parameters</title>
    <variablelist>
         <varlistentry>
-            <term>Sc :</term>
-            <listitem><para> Input contour image</para></listitem>
+            <term>Slabel :</term>
+            <listitem><para> Input labeled image</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>colormap :</term>
@@ -68,13 +66,14 @@ This function used to draw the contours in RGB, with colormap and thickness.
 S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 Sbw = im2bw(S,0.5);
 Sc = imfindContours(Sbw);
-So = imdrawContours(Sc);
-imshow(So);
+Slabel = imcontour2label(S,Sc);
+So = imdrawContours(Slabel);
+imshow(im2uint8(So));
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfindContours">imfindContours</link></member>

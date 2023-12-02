@@ -41,29 +41,29 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">inm :</span>
-      <dd><p class="para">Source Image (must be in binary)</p></dd></dt>
-   <dt><span class="term">conn :</span>
-      <dd><p class="para">4 or 8 neighbourhood</p></dd></dt>
-   <dt><span class="term">outm :</span>
-      <dd><p class="para">Output image (in double)</p></dd></dt></dl></div>
+            <dd><p class="para">Source Image (must be in binary)</p></dd></dt>
+        <dt><span class="term">conn :</span>
+            <dd><p class="para">4 or 8 neighbourhood</p></dd></dt>
+        <dt><span class="term">outm :</span>
+            <dd><p class="para">Output image (in double)</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L45">Description</h3>
+<div class="refsection"><h3 class="title" id="#L51">Description</h3>
    <p class="para">Extracts contours from binary images, by detecting which pixel valued 1 has
 at least one neighbor valued 0. conn is 4 or 8 dependig if the detection is to
 be made in 4 or 8-neighborhood. The final border is 8-connected if
 4-neighbors are used, and 4-connected if 8-neighbors are used.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L57">Examples</h3>
-   <div class="programlisting" id="#L63"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">inm</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/big_sq.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L63">Examples</h3>
+   <div class="programlisting" id="#L69"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">inm</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/big_sq.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">outm</span> <span class="scilaboperator">=</span> <span class="scilabid">bwborder</span><span class="scilabopenclose">(</span><span class="scilabid">im2bw</span><span class="scilabopenclose">(</span><span class="scilabid">inm</span><span class="scilabdefault">,</span><span class="scilabnumber">0.5</span><span class="scilabopenclose">)</span><span class="scilabdefault">,</span> <span class="scilabnumber">4</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">outm</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L67">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="edge.html" class="link">edge</a></li>
-   <li class="member"><a href="im2bw.html" class="link">im2bw</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L73">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="edge.html" class="link">edge</a> &#8212; Find edges in a single channel image.</li>
+   <li class="member"><a href="im2bw.html" class="link">im2bw</a> &#8212; Convert image to binary</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L75">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L81">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh. Modified from the original work of Ricardo Fabbri</li></ul></div>
     <br />
 

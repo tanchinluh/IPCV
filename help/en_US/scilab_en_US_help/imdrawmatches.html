@@ -41,24 +41,24 @@
 
 <div class="refsection"><h3 class="title" id="#L33">Parameters</h3>
    <dl><dt><span class="term">im1 :</span>
-      <dd><p class="para">First input image</p></dd></dt>
-   <dt><span class="term">im2 :</span>
-      <dd><p class="para">Second input image</p></dd></dt>
-   <dt><span class="term">fobj1 :</span>
-      <dd><p class="para">First feature object</p></dd></dt>
-   <dt><span class="term">fobj2 :</span>
-      <dd><p class="para">Second feature object</p></dd></dt>
-   <dt><span class="term">m :</span>
-      <dd><p class="para">Matching matrix</p></dd></dt>
-   <dt><span class="term">imout :</span>
-      <dd><p class="para">Output matching image</p></dd></dt></dl></div>
+            <dd><p class="para">First input image</p></dd></dt>
+        <dt><span class="term">im2 :</span>
+            <dd><p class="para">Second input image</p></dd></dt>
+        <dt><span class="term">fobj1 :</span>
+            <dd><p class="para">First feature object</p></dd></dt>
+        <dt><span class="term">fobj2 :</span>
+            <dd><p class="para">Second feature object</p></dd></dt>
+        <dt><span class="term">m :</span>
+            <dd><p class="para">Matching matrix</p></dd></dt>
+        <dt><span class="term">imout :</span>
+            <dd><p class="para">Output matching image</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L51">Description</h3>
+<div class="refsection"><h3 class="title" id="#L63">Description</h3>
    <p class="para">This function used to draw matching result for 2 images with the features object and matching matrix provided.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L60">Examples</h3>
-   <div class="programlisting" id="#L80"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabcomment">// Read the image and rotate it by 45 degrees</span>
+<div class="refsection"><h3 class="title" id="#L72">Examples</h3>
+   <div class="programlisting" id="#L92"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabcomment">// Read the image and rotate it by 45 degrees</span>
 <span class="scilabid">S</span> <span class="scilaboperator">=</span> <span class="scilabid">imread</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://fullpath">fullpath</a><span class="scilabopenclose">(</span><span class="scilabid">getIPCVpath</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span> <span class="scilaboperator">+</span> <span class="scilabstring">&#0034;</span><span class="scilabstring">/images/balloons_gray.png</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabid">S2</span> <span class="scilaboperator">=</span> <span class="scilabid">imrotate</span><span class="scilabopenclose">(</span><span class="scilabid">S</span><span class="scilabdefault">,</span><span class="scilabnumber">45</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
 <span class="scilabcomment">// Use the ORB to detect features</span>
@@ -76,11 +76,11 @@
 <span class="scilabcomment">// Show the comparison</span>
 <span class="scilabid">imshow</span><span class="scilabopenclose">(</span><span class="scilabid">SS</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L84">See also</h3>
+<div class="refsection"><h3 class="title" id="#L96">See also</h3>
    <ul class="itemizedlist"><li class="member"><a href="scilab://immatch_Brute" class="link">immatch_Brute</a></li>
-   <li class="member"><a href="imbestmatches.html" class="link">imbestmatches</a></li></ul></div>
+   <li class="member"><a href="imbestmatches.html" class="link">imbestmatches</a> &#8212; Find the best matched features from 2 features objects and the matching matrix</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L92">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L104">Authors</h3>
    <ul class="itemizedlist"><li class="member">Tan Chin Luh</li></ul></div>
     <br />
 

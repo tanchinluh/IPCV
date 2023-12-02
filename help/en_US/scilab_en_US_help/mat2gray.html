@@ -42,32 +42,32 @@
 
 <div class="refsection"><h3 class="title" id="#L34">Parameters</h3>
    <dl><dt><span class="term">M :</span>
-      <dd><p class="para">An matrix/image.</p></dd></dt>
-   <dt><span class="term">[mmin, mmax] :</span>
-      <dd><p class="para">[mmin, mmax] is the values in M that correspond to 0.0 and 1.0 in G . The elements in M which is lower than mmin will be converted to 0.0 , and greater than mmax will be converted to 1.0 .</p></dd></dt>
-   <dt><span class="term">G :</span>
-      <dd><p class="para">A double precision matrix/image which data value in the range [0,1].</p></dd></dt></dl></div>
+            <dd><p class="para">An matrix/image.</p></dd></dt>
+        <dt><span class="term">[mmin, mmax] :</span>
+            <dd><p class="para">[mmin, mmax] is the values in M that correspond to 0.0 and 1.0 in G . The elements in M which is lower than mmin will be converted to 0.0 , and greater than mmax will be converted to 1.0 .</p></dd></dt>
+        <dt><span class="term">G :</span>
+            <dd><p class="para">A double precision matrix/image which data value in the range [0,1].</p></dd></dt></dl></div>
 
-<div class="refsection"><h3 class="title" id="#L46">Description</h3>
+<div class="refsection"><h3 class="title" id="#L52">Description</h3>
    <p class="para">mat2gray(M,[mmin, mmax]) converts the matrix M to the double precision image. The output matrix contains values in the range [0.0, 1.0]. mmin and mmax are the values in M that correspond to 0.0 and 1.0 in the output image.</p>
    <p class="para">When [mmin, mmax] is not specified, minimum and maximum of M are the values in M that correspond to 0.0 and 1.0 in the output image.</p>
    <p class="para"></p></div>
 
-<div class="refsection"><h3 class="title" id="#L58">Examples</h3>
-   <div class="programlisting" id="#L63"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">M</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabnumber">0</span><span class="scilabspecial">:</span><span class="scilabnumber">10</span><span class="scilabdefault">;</span><span class="scilabnumber">0</span><span class="scilabspecial">:</span><span class="scilabnumber">10</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
+<div class="refsection"><h3 class="title" id="#L64">Examples</h3>
+   <div class="programlisting" id="#L69"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">M</span> <span class="scilaboperator">=</span> <span class="scilabopenclose">[</span><span class="scilabnumber">0</span><span class="scilabspecial">:</span><span class="scilabnumber">10</span><span class="scilabdefault">;</span><span class="scilabnumber">0</span><span class="scilabspecial">:</span><span class="scilabnumber">10</span><span class="scilabopenclose">]</span><span class="scilabdefault">;</span>
 <span class="scilabid">I</span> <span class="scilaboperator">=</span> <span class="scilabid">mat2gray</span><span class="scilabopenclose">(</span><span class="scilabid">M</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
 
-<div class="refsection"><h3 class="title" id="#L67">See also</h3>
-   <ul class="itemizedlist"><li class="member"><a href="rgb2gray.html" class="link">rgb2gray</a></li>
-   <li class="member"><a href="im2bw.html" class="link">im2bw</a></li>
-   <li class="member"><a href="im2uint8.html" class="link">im2uint8</a></li>
-   <li class="member"><a href="im2int8.html" class="link">im2int8</a></li>
-   <li class="member"><a href="im2uint16.html" class="link">im2uint16</a></li>
-   <li class="member"><a href="im2int16.html" class="link">im2int16</a></li>
-   <li class="member"><a href="im2int32.html" class="link">im2int32</a></li>
-   <li class="member"><a href="im2double.html" class="link">im2double</a></li></ul></div>
+<div class="refsection"><h3 class="title" id="#L73">See also</h3>
+   <ul class="itemizedlist"><li class="member"><a href="rgb2gray.html" class="link">rgb2gray</a> &#8212; Convert RGB images to gray images</li>
+   <li class="member"><a href="im2bw.html" class="link">im2bw</a> &#8212; Convert image to binary</li>
+   <li class="member"><a href="im2uint8.html" class="link">im2uint8</a> &#8212; Convert image to 8-bit unsigned integers</li>
+   <li class="member"><a href="im2int8.html" class="link">im2int8</a> &#8212; Convert image to 8-bit signed integers</li>
+   <li class="member"><a href="im2uint16.html" class="link">im2uint16</a> &#8212; Convert image to 16-bit unsigned integers</li>
+   <li class="member"><a href="im2int16.html" class="link">im2int16</a> &#8212; Convert image to 16-bit signed integers</li>
+   <li class="member"><a href="im2int32.html" class="link">im2int32</a> &#8212; Convert image to 32-bit signed integers</li>
+   <li class="member"><a href="im2double.html" class="link">im2double</a> &#8212; Convert image to double precision</li></ul></div>
 
-<div class="refsection"><h3 class="title" id="#L81">Authors</h3>
+<div class="refsection"><h3 class="title" id="#L87">Authors</h3>
    <ul class="itemizedlist"><li class="member">Shiqi Yu</li>
    <li class="member">Tan Chin Luh</li></ul></div>
     <br />

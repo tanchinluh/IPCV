@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>RGB :</term>
-      <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem></varlistentry>
-   <varlistentry><term>G :</term>
-      <listitem><para> Output image, a gray image which dimension is M x N and has the same data type as RGB .</para></listitem></varlistentry>
+        <varlistentry>
+            <term>RGB :</term>
+            <listitem><para> A RGB image (hypermat), the dimension of RGB should be M x N x 3 .</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>G :</term>
+            <listitem><para> Output image, a gray image which dimension is M x N and has the same data type as RGB .</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -58,7 +62,7 @@ imshow(G);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="im2bw">im2bw</link></member>

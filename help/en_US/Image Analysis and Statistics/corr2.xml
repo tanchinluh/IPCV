@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imA, imB :</term>
-      <listitem><para> imA and imB are 2D matrices of the same size.</para></listitem></varlistentry>
-   <varlistentry><term>c :</term>
-      <listitem><para> Correlation coefficient, a scalar of class double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imA, imB :</term>
+            <listitem><para> imA and imB are 2D matrices of the same size.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>c :</term>
+            <listitem><para> Correlation coefficient, a scalar of class double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -57,7 +61,7 @@ mA=mean2(imA) and mB=mean2(imB)
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="mean2">mean2</link></member>

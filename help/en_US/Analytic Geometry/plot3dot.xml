@@ -33,16 +33,26 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> x data</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> y data</para></listitem></varlistentry>
-   <varlistentry><term>z :</term>
-      <listitem><para> z data</para></listitem></varlistentry>
-   <varlistentry><term>mark_foreground :</term>
-      <listitem><para> marker color</para></listitem></varlistentry>
-   <varlistentry><term>mark_style :</term>
-      <listitem><para> marker style</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> x data</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> y data</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>z :</term>
+            <listitem><para> z data</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mark_foreground :</term>
+            <listitem><para> marker color</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mark_style :</term>
+            <listitem><para> marker style</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
