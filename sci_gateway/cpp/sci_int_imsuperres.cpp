@@ -32,7 +32,7 @@ SparseMat createDownsampledMotionandBlurCCDSparseMat32f(Mat& src, int amp, Point
 SparseMat createDegradedImageandSparseMat32F(Mat& src, Mat& dest, Point2d move, int amp);
 void btvregularization(Mat& srcVec, Size kernel, float alpha, Mat& dstVec, Size size);
 
-#define sign_float(a,b) (a>b)?1.0f:(a<b)?-1.0f:0.0f
+#define sign_float(a,b) ((a>b) ? 1.0f : ( (a<b) ? (-1.0f) : 0.0f))
 
 enum
 {
@@ -342,10 +342,10 @@ void superresolutionSparseMat32f(Mat src[], Mat& dest, SparseMat DHF[], const in
 		cout<<"PSNR"<<getPSNR(dest,ideal,10)<<"dB"<<endl;
 
 		
-		sprintf(name,"%03d: %.1f dB",i,getPSNR(dest,ideal,10));
+		snprintf(name,64,"%03d: %.1f dB",i,getPSNR(dest,ideal,10));
 		putText(dest,name,Point(15,50), FONT_HERSHEY_DUPLEX,1.5,CV_RGB(255,255,255),2);
 
-		sprintf(name,"iteration%04d.png",i);
+		snprintf(name,64,"iteration%04d.png",i);
         // imshow("SRimage - Press Esc to Close Window",dest); //waitKey(30);
         // if(waitKey(10) == 27)
         //     {sprintf(name,"iteration%04d.png",i);

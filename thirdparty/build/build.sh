@@ -10,8 +10,8 @@
 cd ..
 THIRDPARTY="$(pwd)/$(uname -s)/$(uname -m)"
 cd build
-OPENCV_VER=4.5.0
-FFMPEG_VER=4.3.6
+OPENCV_VER=4.8.1
+FFMPEG_VER=6.0
 
 # ffmpeg build
 curl -L https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz -o ffmpeg.tar.gz

@@ -19,7 +19,7 @@ int sci_int_imdist(char * fname,void* pvApiCtx)
 
 	GetImage(1,src,pvApiCtx);
 
-	distanceTransform(src, dst, CV_DIST_L1, 3);
+	distanceTransform(src, dst, DIST_L1, 3);
 
 	SetImage(1,dst,pvApiCtx);
 

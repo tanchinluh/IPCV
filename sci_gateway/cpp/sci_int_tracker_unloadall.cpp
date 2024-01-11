@@ -22,7 +22,7 @@ int sci_int_tracker_unloadall(char * fname,void* pvApiCtx)
 		if (!(ObjTrack[i].trackobj.empty())) //OpenedVideoCapture[nCurrFile].cap
 		{
 			//~ObjTrack[i].trackobj;
-			ObjTrack[i].trackobj = Ptr<Tracker>();
+			ObjTrack[i].trackobj = Ptr<cv::legacy::Tracker>();
 
 			//DeepNet[i].net = dnn::Net();
 			//~DeepNet[i].net;
