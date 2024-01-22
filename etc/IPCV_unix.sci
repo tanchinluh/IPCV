@@ -5,7 +5,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
     //    image_codec_libs = ["png12"; "jpeg"];
     //    video_codec_libs = ["gstbase-0.10";"openh264";"gstreamer-0.10";"gstvideo-0.10";"gstapp-0.10";...
     //    "gstriff-0.10";"gstpbutils-0.10";"QtOpenGL";"QtTest";"gstinterfaces-0.10";"gstaudio-0.10";"gsttag-0.10"];
-    ffmpeg_libs = ["avutil"; "swscale"; "avcodec"; "avformat"; "avfilter"; "avdevice"];
+    ffmpeg_libs = ["avutil"; "swscale"; "swresample"; "avcodec"; "avformat"; "avfilter"; "avdevice"];
     OPENCV_LIBS = "lib"+[ffmpeg_libs; OPENCV_LIBS];
     
     ARCH = unix_g("uname -m");
