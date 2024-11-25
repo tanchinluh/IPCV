@@ -42,16 +42,16 @@ function builder_gateway_cpp()
     THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty",getos(),ARCH));
 
     all_libs = [];
+    inter_cflags = ilib_include_flag(OPENCV_INCLUDE);
     if getos() == "Windows"
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"include");
         libs = ["opencv_world450";"opencv_img_hash450"]
         all_libs = fullfile(THIRDPARTY,"lib",libs); 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"include","opencv4");
-        gw_cpp_files = [gw_cpp_files; "common.h"];
+        inter_cflags = inter_cflags + " -I"+gw_cpp_path;
     end
 
-    inter_cflags = ilib_include_flag(OPENCV_INCLUDE); 
     inter_ldflags = "";
 
     tbx_build_gateway('gw_ipcv', ..
