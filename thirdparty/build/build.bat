@@ -7,7 +7,7 @@
 :: openCV build script for Windows
 :: cmake.exe (standalone or Visual Studio cmake.exe) should be in the PATH
 
-set OPENCV_VER=4.5.0
+set OPENCV_VER=4.8.1
 curl -o opencv.tgz https://codeload.github.com/opencv/opencv/tar.gz/refs/tags/%OPENCV_VER%
 curl -o opencv_contrib.tgz https://codeload.github.com/opencv/opencv_contrib/tar.gz/refs/tags/%OPENCV_VER%
 tar xvzf opencv.tgz
