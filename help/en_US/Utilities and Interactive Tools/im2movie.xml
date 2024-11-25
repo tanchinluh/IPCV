@@ -32,18 +32,30 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>mvfn :</term>
-      <listitem><para> Output moive filename</para></listitem></varlistentry>
-   <varlistentry><term>sz :</term>
-      <listitem><para> A 1x2 vector, which indicates the frame size (width, height).</para></listitem></varlistentry>
-   <varlistentry><term>fps :</term>
-      <listitem><para> Frame pre second</para></listitem></varlistentry>
-   <varlistentry><term>fourcc :</term>
-      <listitem><para> 4-character code of codec used to compress the frames</para></listitem></varlistentry>
-   <varlistentry><term>repeat :</term>
-      <listitem><para> How many times to repeat the sequence images</para></listitem></varlistentry>
-   <varlistentry><term>err :</term>
-      <listitem><para> Error message if any</para></listitem></varlistentry>
+        <varlistentry>
+            <term>mvfn :</term>
+            <listitem><para> Output moive filename</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sz :</term>
+            <listitem><para> A 1x2 vector, which indicates the frame size (width, height).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fps :</term>
+            <listitem><para> Frame pre second</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fourcc :</term>
+            <listitem><para> 4-character code of codec used to compress the frames</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>repeat :</term>
+            <listitem><para> How many times to repeat the sequence images</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>err :</term>
+            <listitem><para> Error message if any</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -64,7 +76,7 @@ err = im2movie('test.avi',[1000 600],30,'xvid');
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="avifile">avifile</link></member>

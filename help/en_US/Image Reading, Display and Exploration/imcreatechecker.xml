@@ -17,6 +17,73 @@
 
   <refnamediv>
     <refname>imcreatechecker</refname>
+    <refpurpose>Detect features from an image with FAST algorithm. Usually used for corner features.</refpurpose>
   </refnamediv>
 
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   zz = imcreatechecker()
+   zz = imcreatechecker(n)
+   zz = imcreatechecker(n,col)
+   zz = imcreatechecker(n,col,tone)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Power of 2, to create the checker box with size of 2^n. Default value is 8</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>col :</term>
+            <listitem><para> Number of columns for the checker board. Default value is 8</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>tone :</term>
+            <listitem><para> in matrix [a b], which is the in starting and ending "grayness" of the white cells. Default value is [1 1].</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output image</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to detect the features of an image using FAST method.Good for corner detection.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imcreatechecker(8,8,[1 0.5]);
+imshow(S);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imread">imread</link></member>
+   <member><link linkend="imwrite">imwrite</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
 </refentry>

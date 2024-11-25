@@ -36,18 +36,30 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>S :</term>
-      <listitem><para> Source image.</para></listitem></varlistentry>
-   <varlistentry><term>cfn :</term>
-      <listitem><para> Classifier file name, in xml format.</para></listitem></varlistentry>
-   <varlistentry><term>fac :</term>
-      <listitem><para> Parameter specifying how much the image size is reduced at each image scale. Default value is 1.1</para></listitem></varlistentry>
-   <varlistentry><term>minNB :</term>
-      <listitem><para> Parameter specifying how many neighbors each candidate rectangle should have to retain it. Default value is 3</para></listitem></varlistentry>
-   <varlistentry><term>minSz :</term>
-      <listitem><para> Minimum possible object size. Objects smaller than that are ignored. In [w h] format. Default value is [30 30]</para></listitem></varlistentry>
-   <varlistentry><term>maxSz :</term>
-      <listitem><para> Maximum possible object size. Objects larger than that are ignored. In [w h] format. Default value not set will be unlimited</para></listitem></varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Source image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cfn :</term>
+            <listitem><para> Classifier file name, in xml format.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fac :</term>
+            <listitem><para> Parameter specifying how much the image size is reduced at each image scale. Default value is 1.1</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>minNB :</term>
+            <listitem><para> Parameter specifying how many neighbors each candidate rectangle should have to retain it. Default value is 3</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>minSz :</term>
+            <listitem><para> Minimum possible object size. Objects smaller than that are ignored. In [w h] format. Default value is [30 30]</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>maxSz :</term>
+            <listitem><para> Maximum possible object size. Objects larger than that are ignored. In [w h] format. Default value not set will be unlimited</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -72,7 +84,7 @@ imrects(r,[0 255 0]);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imrects">imrects</link></member>

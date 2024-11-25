@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An image, which can be one channel or three channel image.</para></listitem></varlistentry>
-   <varlistentry><term>rect :</term>
-      <listitem><para> rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rectangle.</para></listitem></varlistentry>
-   <varlistentry><term>imr :</term>
-      <listitem><para> imr is the the output image with the rectangle.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An image, which can be one channel or three channel image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rect :</term>
+            <listitem><para> rect=[x, y, width, height] is a vector. (x, y) is the top-left corner of the rectangle.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imr :</term>
+            <listitem><para> imr is the the output image with the rectangle.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -51,7 +57,7 @@ imshow(imr);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imrects">imrects</link></member>

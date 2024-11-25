@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An matrix/image, which can be ANY image supported by IPCV.</para></listitem></varlistentry>
-   <varlistentry><term>im2 :</term>
-      <listitem><para> Output image, a 16-bit signed integer matrix.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An matrix/image, which can be ANY image supported by IPCV.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>im2 :</term>
+            <listitem><para> Output image, a 16-bit signed integer matrix.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -48,7 +52,7 @@ im2int16 convert intensity or RGB images to 16-bit signed integers. If the input
 </para>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="im2bw">im2bw</link></member>

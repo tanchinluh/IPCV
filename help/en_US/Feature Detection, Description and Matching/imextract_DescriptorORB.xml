@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im1 :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>fobj1 :</term>
-      <listitem><para> Features</para></listitem></varlistentry>
-   <varlistentry><term>des :</term>
-      <listitem><para> Descriptors for the features</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im1 :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj1 :</term>
+            <listitem><para> Features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>des :</term>
+            <listitem><para> Descriptors for the features</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -61,7 +67,7 @@ des = imextract_DescriptorORB(S,fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imextract_DescriptorSIFT">imextract_DescriptorSIFT</link></member>

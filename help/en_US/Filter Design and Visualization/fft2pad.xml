@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> Source matrix</para></listitem></varlistentry>
-   <varlistentry><term>r :</term>
-      <listitem><para> Number of rows for the output image</para></listitem></varlistentry>
-   <varlistentry><term>c :</term>
-      <listitem><para> Number of columns for the output image</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Output matric with rxc size</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Source matrix</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>r :</term>
+            <listitem><para> Number of rows for the output image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>c :</term>
+            <listitem><para> Number of columns for the output image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Output matric with rxc size</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -63,7 +71,7 @@ y = fft2pad(x,8,8);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdct">imdct</link></member>

@@ -33,44 +33,82 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>nfeatures:</term>
-      <listitem><para> The maximum number of features to returned. Default value is 500.</para></listitem></varlistentry>
-   <varlistentry><term>scaleFactor :</term>
-      <listitem><para> Pyramid decimation ratio, greater than 1. Default value is 1.2.</para></listitem></varlistentry>
-   <varlistentry><term>nlevels :</term>
-      <listitem><para> The number of pyramid levels. Default value is 8.</para></listitem></varlistentry>
-   <varlistentry><term>edgeThreshold :</term>
-      <listitem><para> This is size of the border where the features are not detected. It should roughly match the patchSize parameter. Default value is 31.</para></listitem></varlistentry>
-   <varlistentry><term>firstLevel :</term>
-      <listitem><para> It should be 0 in the current implementation. Default value is 0.</para></listitem></varlistentry>
-   <varlistentry><term>WTA_K :</term>
-      <listitem><para> The number of points that produce each element of the oriented BRIEF descriptor. Default value is 2.</para></listitem></varlistentry>
-   <varlistentry><term>scoreType :</term>
-      <listitem><para> The default HARRIS_SCORE means that Harris algorithm is used to rank features. Default value is 0.</para></listitem></varlistentry>
-   <varlistentry><term>patchSize :</term>
-      <listitem><para>  size of the patch used by the oriented BRIEF descriptor. Default value is 31.</para></listitem></varlistentry>
-   <varlistentry><term>fobj :</term>
-      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> Type of features</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
-   <varlistentry><term>x :</term>
-      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
-   <varlistentry><term>size :</term>
-      <listitem><para> Size of detected features</para></listitem></varlistentry>
-   <varlistentry><term>angle :</term>
-      <listitem><para> keypoint orientation</para></listitem></varlistentry>
-   <varlistentry><term>response :</term>
-      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
-   <varlistentry><term>octave :</term>
-      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
-   <varlistentry><term>class_id :</term>
-      <listitem><para> object id</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nfeatures:</term>
+            <listitem><para> The maximum number of features to returned. Default value is 500.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>scaleFactor :</term>
+            <listitem><para> Pyramid decimation ratio, greater than 1. Default value is 1.2.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>nlevels :</term>
+            <listitem><para> The number of pyramid levels. Default value is 8.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>edgeThreshold :</term>
+            <listitem><para> This is size of the border where the features are not detected. It should roughly match the patchSize parameter. Default value is 31.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>firstLevel :</term>
+            <listitem><para> It should be 0 in the current implementation. Default value is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>WTA_K :</term>
+            <listitem><para> The number of points that produce each element of the oriented BRIEF descriptor. Default value is 2.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>scoreType :</term>
+            <listitem><para> The default HARRIS_SCORE means that Harris algorithm is used to rank features. Default value is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>patchSize :</term>
+            <listitem><para>  size of the patch used by the oriented BRIEF descriptor. Default value is 31.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object contains following fields -</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -93,7 +131,7 @@ imshow(S); plotfeature(fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>

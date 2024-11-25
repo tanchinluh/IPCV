@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>S :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Number of points to be selected</para></listitem></varlistentry>
-   <varlistentry><term>pts :</term>
-      <listitem><para> Returned points in image coordinates</para></listitem></varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Number of points to be selected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>pts :</term>
+            <listitem><para> Returned points in image coordinates</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -60,7 +66,7 @@ pts = warpmatselect(S,3)
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imgettransform">imgettransform</link></member>

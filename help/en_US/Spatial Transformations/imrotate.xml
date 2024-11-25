@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im1 :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>deg :</term>
-      <listitem><para> Rotational angle in degree, positive indicating anti-clockwise direction</para></listitem></varlistentry>
-   <varlistentry><term>crp :</term>
-      <listitem><para> Returns only central portion output image which is the same size as source if set to 1</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Rotated Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im1 :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>deg :</term>
+            <listitem><para> Rotational angle in degree, positive indicating anti-clockwise direction</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>crp :</term>
+            <listitem><para> Returns only central portion output image which is the same size as source if set to 1</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Rotated Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -58,12 +66,12 @@ This function rotate an image to a given angle
 S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
 J = imrotate(S,45);
 imshow(S);
-figure(); imshow(J);
+scf; imshow(J);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imtransform">imtransform</link></member>

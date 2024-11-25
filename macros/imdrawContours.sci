@@ -24,6 +24,7 @@ function So = imdrawContours(Slabel,colormap,thickness)
     //     Slabel = imcontour2label(S,Sc);
     //     So = imdrawContours(Slabel);
     //     imshow(So);
+
     //  
     // See also
     //     imfindContours
@@ -44,7 +45,7 @@ function So = imdrawContours(Slabel,colormap,thickness)
     if rhs < 3; thickness = 5; end    
     
     if colormap ==[]; colormap = rainbowcolormap(2^nextpow2(total));end
-    
+
     se = imcreatese('ellipse',thickness,thickness);
     
     Sr = zeros(Slabel);

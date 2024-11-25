@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>inm :</term>
-      <listitem><para> Source Image (must be in binary)</para></listitem></varlistentry>
-   <varlistentry><term>conn :</term>
-      <listitem><para> 4 or 8 neighbourhood</para></listitem></varlistentry>
-   <varlistentry><term>outm :</term>
-      <listitem><para> Output image (in double)</para></listitem></varlistentry>
+        <varlistentry>
+            <term>inm :</term>
+            <listitem><para> Source Image (must be in binary)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>conn :</term>
+            <listitem><para> 4 or 8 neighbourhood</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>outm :</term>
+            <listitem><para> Output image (in double)</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -63,7 +69,7 @@ imshow(outm);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="edge">edge</link></member>

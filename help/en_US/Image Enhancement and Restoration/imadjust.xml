@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>src :</term>
-      <listitem><para> Source histogram range [min max]</para></listitem></varlistentry>
-   <varlistentry><term>dest :</term>
-      <listitem><para> destination histogram range [min max]</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> Destination Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>src :</term>
+            <listitem><para> Source histogram range [min max]</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>dest :</term>
+            <listitem><para> destination histogram range [min max]</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Destination Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -66,7 +74,7 @@ imshow(J);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imhistequal">imhistequal</link></member>

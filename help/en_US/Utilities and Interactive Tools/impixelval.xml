@@ -32,8 +32,10 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>S :</term>
-      <listitem><para> Scilab Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Scilab Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -55,7 +57,7 @@ impixelval(S)
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="impixel,">improfile, iminspect</link></member>

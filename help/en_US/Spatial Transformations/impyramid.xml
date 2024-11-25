@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> An image which will be downsampled or upsampled.</para></listitem></varlistentry>
-   <varlistentry><term>direction :</term>
-      <listitem><para> Can be 'reduce' or 'expand'. If direction is 'reduce', impyramid computes a Gaussian pyramid reduction of imin by one level. If direction is 'expand', impyramid computes a Gaussian pyramid expansion of imin by one level. Gaussian 5x5 filter is currently supported.</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> The output reduced or expanded image.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> An image which will be downsampled or upsampled.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>direction :</term>
+            <listitem><para> Can be 'reduce' or 'expand'. If direction is 'reduce', impyramid computes a Gaussian pyramid reduction of imin by one level. If direction is 'expand', impyramid computes a Gaussian pyramid expansion of imin by one level. Gaussian 5x5 filter is currently supported.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> The output reduced or expanded image.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -68,7 +74,7 @@ imshow(im3);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imresize">imresize</link></member>

@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>I :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>level :</term>
-      <listitem><para> Otsu's threshold value</para></listitem></varlistentry>
+        <varlistentry>
+            <term>I :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>level :</term>
+            <listitem><para> Otsu's threshold value</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -55,12 +59,12 @@ minimize the intraclass variance of the black and white pixels.
 S = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
 th = imgraythresh(S);
 S2 = im2bw(S,th);
-figure(); imshow(S2);
+scf; imshow(S2);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="im2bw">im2bw</link></member>

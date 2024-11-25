@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>S :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Subimage</para></listitem></varlistentry>
+        <varlistentry>
+            <term>S :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Subimage</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -54,12 +58,12 @@ using mouse.
    <programlisting role="example"><![CDATA[
 S = imread(fullpath(getIPCVpath() + "/images/puffin.png"));
 J = imcropm(S);
-figure(); imshow(J);
+scf; imshow(J);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imcrop">imcrop</link></member>

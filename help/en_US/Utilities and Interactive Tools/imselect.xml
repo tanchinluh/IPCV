@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>n :</term>
-      <listitem><para> Number of maximum points to select, or it could be less by using right click.</para></listitem></varlistentry>
-   <varlistentry><term>bnd :</term>
-      <listitem><para> optional 1x4 vector [xmin, ymin, xmax, ymax];</para></listitem></varlistentry>
-   <varlistentry><term>pts :</term>
-      <listitem><para> Selected points coordinates, axes coordinates returns.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Number of maximum points to select, or it could be less by using right click.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>bnd :</term>
+            <listitem><para> optional 1x4 vector [xmin, ymin, xmax, ymax];</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>pts :</term>
+            <listitem><para> Selected points coordinates, axes coordinates returns.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -62,7 +68,7 @@ pts = imselect(5);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imcrop">imcrop</link></member>

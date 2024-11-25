@@ -34,16 +34,26 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im1, im2, ..., imn :</term>
-      <listitem><para> Input images with the same size and class.</para></listitem></varlistentry>
-   <varlistentry><term>k1, k2, ..., kn :</term>
-      <listitem><para> Double scalars.</para></listitem></varlistentry>
-   <varlistentry><term>K :</term>
-      <listitem><para> Offset, a double scalar.</para></listitem></varlistentry>
-   <varlistentry><term>output_class :</term>
-      <listitem><para> A string which specifies the output image class. The value of output_class can be 'int8', 'uint8', 'int16', 'uint16', 'int32' or 'constant'.</para></listitem></varlistentry>
-   <varlistentry><term>imout :</term>
-      <listitem><para> The linear combination of input images, which has the same size and class with input images or specified by output_class .</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im1, im2, ..., imn :</term>
+            <listitem><para> Input images with the same size and class.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>k1, k2, ..., kn :</term>
+            <listitem><para> Double scalars.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>K :</term>
+            <listitem><para> Offset, a double scalar.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>output_class :</term>
+            <listitem><para> A string which specifies the output image class. The value of output_class can be 'int8', 'uint8', 'int16', 'uint16', 'int32' or 'constant'.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> The linear combination of input images, which has the same size and class with input images or specified by output_class .</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -78,7 +88,7 @@ imlincomb( 0.43, im1, 0.7, im2, 4, 'constant')
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imabsdiff">imabsdiff</link></member>

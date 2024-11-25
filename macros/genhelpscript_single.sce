@@ -11,20 +11,19 @@ current_path = pwd();
 current_path = get_absolute_file_path("genhelpscript_single.sce");
 path_macros = fullpath(current_path) + filesep();
 
-
-p1Help = fullpath(current_path + '/../help/en_US/Image Reading, Display and Exploration');
-help_from_sci(path_macros + 'imreadmulti.sci', p1Help);
-help_from_sci(path_macros + 'imread.sci', p1Help);
+//
+//p1Help = fullpath(current_path + '/../help/en_US/Image Reading, Display and Exploration');
+//help_from_sci(path_macros + 'imreadmulti.sci', p1Help);
+//help_from_sci(path_macros + 'imread.sci', p1Help);
 //help_from_sci(path_macros + 'imshow.sci', p1Help);
 //help_from_sci(path_macros + 'imwrite.sci', p1Help);
-//help_from_comment(path_macros + 'imdisplay.sci', p1Help);
-//help_from_comment(path_macros + 'imdestroy.sci', p1Help);
-//help_from_comment(path_macros + 'imdestroyall.sci', p1Help);
-//help_from_comment(path_macros + 'imcreatechecker.sci', p1Help);
-//
+//help_from_sci(path_macros + 'imdisplay.sci', p1Help);
+//help_from_sci(path_macros + 'imdestroy.sci', p1Help);
+////help_from_sci(path_macros + 'imdestroyall.sci', p1Help);
+//help_from_sci(path_macros + 'imcreatechecker.sci', p1Help);
 ////help_from_sci(path_macros + 'tifread.sci', p1Help);
 //
-// Generate for Image Types and Color Space Conversions
+//// Generate for Image Types and Color Space Conversions
 //p2Help = fullpath(current_path + '/../help/en_US/Image Types and Color Space Conversions');
 //help_from_sci(path_macros + 'imgraythresh.sci', p2Help);
 //help_from_sci(path_macros + 'rgb2hsv.sci', p2Help);
@@ -50,6 +49,8 @@ help_from_sci(path_macros + 'imread.sci', p1Help);
 //
 //// Generate for Utilities and Interactive Tools
 //p3Help = fullpath(current_path + '/../help/en_US/Utilities and Interactive Tools');
+//help_from_sci(path_macros + 'rect2cart.sci', p3Help);
+//help_from_sci(path_macros + 'sub2cart.sci', p3Help);
 //help_from_sci(path_macros + 'imroi.sci', p3Help);
 //help_from_sci(path_macros + 'imselect.sci', p3Help);
 //help_from_sci(path_macros + 'imrects.sci', p3Help);
@@ -70,7 +71,7 @@ help_from_sci(path_macros + 'imread.sci', p1Help);
 //help_from_sci(path_macros + 'imcropm.sci', p4Help);
 //help_from_sci(path_macros + 'imrotate.sci', p4Help);
 //help_from_sci(path_macros + 'imresize.sci', p4Help);
-//help_from_comment(path_macros + 'impyramid.sci', p4Help);
+//help_from_sci(path_macros + 'impyramid.sci', p4Help);
 //
 //// Generate for Image Registration and Image Fusion
 //p4bHelp = fullpath(current_path + '/../help/en_US/Image Registration and Image Fusion');
@@ -118,8 +119,9 @@ help_from_sci(path_macros + 'imread.sci', p1Help);
 //// Generate for Image Linear Filtering
 //p8Help = fullpath(current_path + '/../help/en_US/Image Linear Filtering');
 //help_from_sci(path_macros + 'fspecial.sci', p8Help);
-//help_from_sci(path_macros + 'imfilter.sci', p8Help);
-//help_from_comment(path_macros + 'filter2.sci', p8Help);
+////help_from_sci(path_macros + 'imfilter.sci', p8Help);
+//help_from_sci(path_macros + 'filter2.sci', p8Help);
+//
 //// Generate for Filter Design and Visualization
 //p9Help = fullpath(current_path + '/../help/en_US/Filter Design and Visualization');
 //help_from_sci(path_macros + 'fft2pad.sci', p9Help);
@@ -129,15 +131,15 @@ help_from_sci(path_macros + 'imread.sci', p1Help);
 //help_from_sci(path_macros + 'mkfftfilter.sci', p9Help);
 //
 //// Generate for Image Transforms
-p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
+//p10Help = fullpath(current_path + '/../help/en_US/Image Transforms');
 //help_from_sci(path_macros + 'imdct.sci', p10Help); 
 //help_from_sci(path_macros + 'imidct.sci', p10Help);
 //help_from_sci(path_macros + 'imradon.sci', p10Help);
 //help_from_sci(path_macros + 'imhough.sci', p10Help);
 //help_from_sci(path_macros + 'imhoughc.sci', p10Help);
 //help_from_sci(path_macros + 'imlogpolar.sci', p10Help);
-help_from_sci(path_macros + 'imdistransf.sci', p10Help);
-help_from_sci(path_macros + 'imwatershed.sci', p10Help);
+//help_from_sci(path_macros + 'imdistransf.sci', p10Help);
+//help_from_sci(path_macros + 'imwatershed.sci', p10Help);
 //
 //// Generate for Morphological Operations
 //p11Help = fullpath(current_path + '/../help/en_US/Morphological Operations');
@@ -157,10 +159,9 @@ help_from_sci(path_macros + 'imwatershed.sci', p10Help);
 ////
 //// Generate for ROI Processing
 //p12Help = fullpath(current_path + '/../help/en_US/ROI Processing');
-
-
 //help_from_sci(path_macros + 'imroifill.sci', p12Help);
 //help_from_sci(path_macros + 'imroifilt.sci', p12Help);
+//
 ////
 //// Generate for Image Block Processing
 //p13Help = fullpath(current_path + '/../help/en_US/Image Block Processing');
@@ -198,10 +199,9 @@ help_from_sci(path_macros + 'imwatershed.sci', p10Help);
 ////help_from_sci(path_macros + 'delaunay.sci', p16Help);
 //help_from_sci(path_macros + 'plot3dot.sci', p16Help);
 ////help_from_sci(path_macros + 'grid2Ddata.sci', p16Help);
-
-
+//
 //// Feature Detection, Description and Matching
-p17Help = fullpath(current_path + '/../help/en_US/Feature Detection, Description and Matching');
+//p17Help = fullpath(current_path + '/../help/en_US/Feature Detection, Description and Matching');
 //help_from_sci(path_macros + 'imdetect_FAST.sci', p17Help);
 //help_from_sci(path_macros + 'imdetect_MSER.sci', p17Help);
 //help_from_sci(path_macros + 'imdetect_ORB.sci', p17Help);
@@ -209,37 +209,40 @@ p17Help = fullpath(current_path + '/../help/en_US/Feature Detection, Description
 //help_from_sci(path_macros + 'imdetect_STAR.sci', p17Help);
 //help_from_sci(path_macros + 'imdetect_SURF.sci', p17Help);
 //help_from_sci(path_macros + 'imdetect_SIFT.sci', p17Help);
-//help_from_sci(path_macros + 'imdetect_HARRIS.sci', p17Help);
+////help_from_sci(path_macros + 'imdetect_HARRIS.sci', p17Help);
 //help_from_sci(path_macros + 'imdetect_GFTT.sci', p17Help);
-//help_from_sci(path_macros + 'imdetect_DENSE.sci', p17Help);
+////help_from_sci(path_macros + 'imdetect_DENSE.sci', p17Help);
 //help_from_sci(path_macros + 'imextract_DescriptorSIFT.sci', p17Help);
 //help_from_sci(path_macros + 'imextract_DescriptorSURF.sci', p17Help);
-//help_from_sci(path_macros + 'imextract_DescriptorBRIEF.sci', p17Help);
+////help_from_sci(path_macros + 'imextract_DescriptorBRIEF.sci', p17Help);
 //help_from_sci(path_macros + 'imextract_DescriptorBRISK.sci', p17Help);
 //help_from_sci(path_macros + 'imextract_DescriptorORB.sci', p17Help);
-//help_from_sci(path_macros + 'imextract_DescriptorFREAK.sci', p17Help);
+////help_from_sci(path_macros + 'imextract_DescriptorFREAK.sci', p17Help);
 //help_from_sci(path_macros + 'immatch_BruteForce.sci', p17Help);
 //help_from_sci(path_macros + 'imdrawmatches.sci', p17Help);
 //help_from_sci(path_macros + 'imbestmatches.sci', p17Help);
 //help_from_sci(path_macros + 'plotfeature.sci', p17Help);
 ////help_from_sci(path_macros + 'grid2Ddata.sci', p16Help);
-
+//
 //// Generate for Image Stitching
 //p18Help = fullpath(current_path + '/../help/en_US/Image Stitching');
 //help_from_sci(path_macros + 'imstitchimage.sci', p18Help);
 //help_from_sci(path_macros + 'imstitchimage_params.sci', p18Help);
-
-
+//
+//
 //// Generate for Super Resolution
 //p19Help = fullpath(current_path + '/../help/en_US/Super Resolution');
 //help_from_sci(path_macros + 'imsuperres.sci', p19Help);
 //help_from_sci(path_macros + 'imsuperres_params.sci', p19Help);
-
-////Structural Analysis and Shape Descriptors
-//p20Help = fullpath(current_path + '/../help/en_US/Structural Analysis and Shape Descriptors');
-//help_from_sci(path_macros + 'imfindcontours.sci', p20Help);
-//help_from_sci(path_macros + 'imdrawcontours.sci', p20Help);
-//help_from_sci(path_macros + 'imconvexHull.sci', p20Help);
+//
+//Structural Analysis and Shape Descriptors
+p20Help = fullpath(current_path + '/../help/en_US/Structural Analysis and Shape Descriptors');
+help_from_sci(path_macros + 'imconvexHull.sci', p20Help);
+help_from_sci(path_macros + 'imfindContours.sci', p20Help);
+help_from_sci(path_macros + 'implotContours.sci', p20Help);
+help_from_sci(path_macros + 'imconvexityDefects.sci', p20Help);
+help_from_sci(path_macros + 'imdrawContours.sci', p20Help);
+help_from_sci(path_macros + 'imcontour2label.sci', p20Help);
 
 ////Deep Learning 
 //p21Help = fullpath(current_path + '/../help/en_US/Deep Learning');
@@ -253,9 +256,9 @@ p17Help = fullpath(current_path + '/../help/en_US/Feature Detection, Description
 //help_from_sci(path_macros + 'dnn_showparam.sci', p21Help);
 //help_from_sci(path_macros + 'dnn_showparamf2d.sci', p21Help);
 //help_from_sci(path_macros + 'dnn_showparamf3d.sci', p21Help);
-
-
-//Deep Learning 
+//
+//
+////Object Tracking
 //p22Help = fullpath(current_path + '/../help/en_US/Object Tracking');
 //help_from_sci(path_macros + 'imtrack_init.sci', p22Help);
 //help_from_sci(path_macros + 'imtrack_update.sci', p22Help);

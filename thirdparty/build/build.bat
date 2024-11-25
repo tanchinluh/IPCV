@@ -35,3 +35,4 @@ cmake -DCMAKE_INSTALL_PREFIX="%THIRDPARTY%\Windows\%PROCESSOR_ARCHITECTURE%" ^
 cmake --build . --config Release
 cmake --install .
 
+

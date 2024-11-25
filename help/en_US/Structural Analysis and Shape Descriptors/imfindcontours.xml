@@ -2,11 +2,11 @@
 
 <!--
  *
- * This help file was generated from imfindcontours.sci using help_from_sci().
+ * This help file was generated from imfindContours.sci using help_from_sci().
  *
  -->
 
-<refentry version="5.0-subset Scilab" xml:id="imfindcontours" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="imfindContours" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>imfindcontours</refname>
+    <refname>imfindContours</refname>
     <refpurpose>Finds contours in a binary image.</refpurpose>
   </refnamediv>
 
@@ -24,7 +24,7 @@
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   Sc = imfindcontour(Sbw)
+   Sc = imfindContours(Sbw, rmode, method)
    
    </synopsis>
 </refsynopsisdiv>
@@ -37,8 +37,52 @@
             <listitem><para> Input binary image</para></listitem>
         </varlistentry>
         <varlistentry>
+            <term>rmode :</term>
+            <listitem><para> Contour retrieval mode, value 0-4 allowed</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>0 :</term>
+            <listitem><para> RETR_EXTERNAL</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>1 :</term>
+            <listitem><para> RETR_LIST</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>2 :</term>
+            <listitem><para> RETR_CCOMP</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>3 :</term>
+            <listitem><para> RETR_TREE</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>4 :</term>
+            <listitem><para> RETR_FLOODFILL</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>method :</term>
+            <listitem><para> Contour approximation method, value 0-3 allowed</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>0 :</term>
+            <listitem><para> CHAIN_APPROX_NONE</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>1 :</term>
+            <listitem><para> CHAIN_APPROX_SIMPLE</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>2 :</term>
+            <listitem><para> CHAIN_APPROX_TC89_L1</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>3 :</term>
+            <listitem><para> CHAIN_APPROX_TC89_KCOS</para></listitem>
+        </varlistentry>
+        <varlistentry>
             <term>Sc :</term>
-            <listitem><para> Output labelled image with detected contours, each contour labelled with same indices.</para></listitem>
+            <listitem><para> List which contains the coordinates for contours, each in one item in list.</para></listitem>
         </varlistentry>
    </variablelist>
 </refsection>
@@ -46,7 +90,7 @@
 <refsection>
    <title>Description</title>
    <para>
-This function used to find the contours of a binary image, returned in labelled image format.
+This function used to find the contours of a binary image, returned in lists of coordinates.
    </para>
    <para>
 </para>
@@ -58,19 +102,17 @@ This function used to find the contours of a binary image, returned in labelled 
 S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 Sbw = im2bw(S,0.5);
 Sc = imfindContours(Sbw);
-So = imdrawContours(Sc);
-imshow(So);
-
+implotContours(S,Sc,5)
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="imfindContours">imfindContours</link></member>
-   <member><link linkend="imdrawContours">imdrawContours</link></member>
+   <member><link linkend="implotContours">implotContours</link></member>
    <member><link linkend="imconvexHull">imconvexHull</link></member>
+   <member><link linkend="imconvexityDefects">imconvexityDefects</link></member>
    </simplelist>
 </refsection>
 
@@ -79,10 +121,5 @@ imshow(So);
    <simplelist type="vert">
    <member>Tan Chin Luh</member>
    </simplelist>
-</refsection>
-
-<refsection>
-   <title>Bibliography</title>
-   <para>1. OpenCV 2.4 Online Documentation</para>
 </refsection>
 </refentry>

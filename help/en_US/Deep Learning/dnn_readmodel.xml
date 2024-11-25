@@ -38,7 +38,7 @@
         </varlistentry>
         <varlistentry>
             <term>modelinfo :</term>
-            <listitem><para> MOdel info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
+            <listitem><para> Model info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modeltype :</term>

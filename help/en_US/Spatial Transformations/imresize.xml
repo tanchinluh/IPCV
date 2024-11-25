@@ -35,22 +35,38 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> An image which will be resized.</para></listitem></varlistentry>
-   <varlistentry><term>scale :</term>
-      <listitem><para>The size of resized image is [width, height] x scale .</para></listitem></varlistentry>
-   <varlistentry><term>[mrows ncols] :</term>
-      <listitem><para> The size of resized image.</para></listitem></varlistentry>
-   <varlistentry><term>interp :</term>
-      <listitem><para> Interpolation method. The value of interp must be one of the follows:</para></listitem></varlistentry>
-   <varlistentry><term>1. 'nearest' :</term>
-      <listitem><para> nearest-neigbor interpolation (default value);</para></listitem></varlistentry>
-   <varlistentry><term>2. 'bilinear' :</term>
-      <listitem><para> bilinear interpolation;</para></listitem></varlistentry>
-   <varlistentry><term>3. 'bicubic' :</term>
-      <listitem><para> bicubic interpolation;</para></listitem></varlistentry>
-   <varlistentry><term>4. 'area' :</term>
-      <listitem><para> resampling using pixel area relation.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> An image which will be resized.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>scale :</term>
+            <listitem><para>The size of resized image is [width, height] x scale .</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>[mrows ncols] :</term>
+            <listitem><para> The size of resized image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>interp :</term>
+            <listitem><para> Interpolation method. The value of interp must be one of the follows:</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>1. 'nearest' :</term>
+            <listitem><para> nearest-neigbor interpolation (default value);</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>2. 'bilinear' :</term>
+            <listitem><para> bilinear interpolation;</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>3. 'bicubic' :</term>
+            <listitem><para> bicubic interpolation;</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>4. 'area' :</term>
+            <listitem><para> resampling using pixel area relation.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -75,7 +91,7 @@ imshow(ima);scf();imshow(imb);scf();imshow(imc);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imcrop">imcrop</link></member>

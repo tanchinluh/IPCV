@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>BB :</term>
-      <listitem><para> Bounding Boxes, 4 by M, in which each column representing 1 box in [x,y,w,h].</para></listitem></varlistentry>
-   <varlistentry><term>rgb :</term>
-      <listitem><para> RGB values with value from 0 to 255 in [R,G,B] format</para></listitem></varlistentry>
+        <varlistentry>
+            <term>BB :</term>
+            <listitem><para> Bounding Boxes, 4 by M, in which each column representing 1 box in [x,y,w,h].</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rgb :</term>
+            <listitem><para> RGB values with value from 0 to 255 in [R,G,B] format</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -64,7 +68,7 @@ imrects(BB,[255 0 0]);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imlabel">imlabel</link></member>

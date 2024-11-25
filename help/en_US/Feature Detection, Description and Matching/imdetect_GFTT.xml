@@ -32,38 +32,70 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>maxCorner :</term>
-      <listitem><para> Maximum corders to be returned. Default value is 1000.</para></listitem></varlistentry>
-   <varlistentry><term>qualityLevel :</term>
-      <listitem><para> Parameter characterizing the minimal accepted quality of image corners. Default value is 0.01.</para></listitem></varlistentry>
-   <varlistentry><term>minDistance :</term>
-      <listitem><para> Minimum possible Euclidean distance between the returned corners. Default value is 1.</para></listitem></varlistentry>
-   <varlistentry><term>blockSize :</term>
-      <listitem><para> Size of an average block for computing a derivative covariation matrix over each pixel neighborhood. Default value is 3.</para></listitem></varlistentry>
-   <varlistentry><term>k :</term>
-      <listitem><para> Free parameter of the Harris detector. Default value is 0.04.</para></listitem></varlistentry>
-   <varlistentry><term>fobj :</term>
-      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> Type of features</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
-   <varlistentry><term>x :</term>
-      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
-   <varlistentry><term>size :</term>
-      <listitem><para> Size of detected features</para></listitem></varlistentry>
-   <varlistentry><term>angle :</term>
-      <listitem><para> keypoint orientation</para></listitem></varlistentry>
-   <varlistentry><term>response :</term>
-      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
-   <varlistentry><term>octave :</term>
-      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
-   <varlistentry><term>class_id :</term>
-      <listitem><para> object id</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>maxCorner :</term>
+            <listitem><para> Maximum corders to be returned. Default value is 1000.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>qualityLevel :</term>
+            <listitem><para> Parameter characterizing the minimal accepted quality of image corners. Default value is 0.01.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>minDistance :</term>
+            <listitem><para> Minimum possible Euclidean distance between the returned corners. Default value is 1.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>blockSize :</term>
+            <listitem><para> Size of an average block for computing a derivative covariation matrix over each pixel neighborhood. Default value is 3.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>k :</term>
+            <listitem><para> Free parameter of the Harris detector. Default value is 0.04.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object contains following fields -</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -86,7 +118,7 @@ imshow(S); plotfeature(fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>

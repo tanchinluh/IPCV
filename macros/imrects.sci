@@ -37,16 +37,16 @@ function imrects(BB,rgb)
 
 
 
-    f = gcf();
+    f = gca();
     
-    h = findobj('image_type','rgb');
+    h = findobj(f,'image_type','rgb');
     
     if h ==[]  then
-        h = findobj('image_type','index');
+        h = findobj(f,'image_type','index');
     end
     
     if h ==[]  then
-        h = findobj('image_type','gray');
+        h = findobj(f,'image_type','gray');
     end
     //pause
     //sz = size(f.children.children.data);

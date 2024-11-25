@@ -33,46 +33,86 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>delta:</term>
-      <listitem><para> Compares (sizei - sizei-delta)/sizei-delta. Default value is 5.</para></listitem></varlistentry>
-   <varlistentry><term>min_area :</term>
-      <listitem><para> Prune the area which smaller than minArea. Default value is 60.</para></listitem></varlistentry>
-   <varlistentry><term>max_area :</term>
-      <listitem><para> Prune the area which bigger than maxArea. Default value is 14400.</para></listitem></varlistentry>
-   <varlistentry><term>max_variation :</term>
-      <listitem><para> Prune the area have simliar size to its children. Default value is 0.25.</para></listitem></varlistentry>
-   <varlistentry><term>min_diversity :</term>
-      <listitem><para> For color image, trace back to cut off mser with diversity less than min_diversity. Default value is 0.2.</para></listitem></varlistentry>
-   <varlistentry><term>max_evolution :</term>
-      <listitem><para> For color image, the evolution steps. Default value is 200.</para></listitem></varlistentry>
-   <varlistentry><term>area_threshold :</term>
-      <listitem><para> For color image, the area threshold to cause re-initialize. Default value is 1.01.</para></listitem></varlistentry>
-   <varlistentry><term>min_margin :</term>
-      <listitem><para> For color image, ignore too small margin. Default value is 0.003.</para></listitem></varlistentry>
-   <varlistentry><term>edge_blur_size :</term>
-      <listitem><para> For color image, the aperture size for edge blur. Default value is 5.</para></listitem></varlistentry>
-   <varlistentry><term>fobj :</term>
-      <listitem><para> Features object contains following fields -</para></listitem></varlistentry>
-   <varlistentry><term>type :</term>
-      <listitem><para> Type of features</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Numbers of detected features</para></listitem></varlistentry>
-   <varlistentry><term>x :</term>
-      <listitem><para> Coordinates of the detected features - X</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Coordinates of the detected features - Y</para></listitem></varlistentry>
-   <varlistentry><term>size :</term>
-      <listitem><para> Size of detected features</para></listitem></varlistentry>
-   <varlistentry><term>angle :</term>
-      <listitem><para> keypoint orientation</para></listitem></varlistentry>
-   <varlistentry><term>response :</term>
-      <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem></varlistentry>
-   <varlistentry><term>octave :</term>
-      <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem></varlistentry>
-   <varlistentry><term>class_id :</term>
-      <listitem><para> object id</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>delta:</term>
+            <listitem><para> Compares (sizei - sizei-delta)/sizei-delta. Default value is 5.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>min_area :</term>
+            <listitem><para> Prune the area which smaller than minArea. Default value is 60.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>max_area :</term>
+            <listitem><para> Prune the area which bigger than maxArea. Default value is 14400.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>max_variation :</term>
+            <listitem><para> Prune the area have simliar size to its children. Default value is 0.25.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>min_diversity :</term>
+            <listitem><para> For color image, trace back to cut off mser with diversity less than min_diversity. Default value is 0.2.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>max_evolution :</term>
+            <listitem><para> For color image, the evolution steps. Default value is 200.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>area_threshold :</term>
+            <listitem><para> For color image, the area threshold to cause re-initialize. Default value is 1.01.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>min_margin :</term>
+            <listitem><para> For color image, ignore too small margin. Default value is 0.003.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>edge_blur_size :</term>
+            <listitem><para> For color image, the aperture size for edge blur. Default value is 5.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>fobj :</term>
+            <listitem><para> Features object contains following fields -</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Type of features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Numbers of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Coordinates of the detected features - X</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Coordinates of the detected features - Y</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>size :</term>
+            <listitem><para> Size of detected features</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>angle :</term>
+            <listitem><para> keypoint orientation</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>response :</term>
+            <listitem><para> The response by which the most strong keypoints have been selected.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>octave :</term>
+            <listitem><para> pyramid octave in which the keypoint has been detected</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>class_id :</term>
+            <listitem><para> object id</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -95,7 +135,7 @@ imshow(S); plotfeature(fobj);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdetect_FAST">imdetect_FAST</link></member>

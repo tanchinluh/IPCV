@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input image</para></listitem></varlistentry>
-   <varlistentry><term>sz :</term>
-      <listitem><para> Size of the filter block</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sz :</term>
+            <listitem><para> Size of the filter block</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -62,7 +66,7 @@ imshow(S2);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfilter">imfilter</link></member>

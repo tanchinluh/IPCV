@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>blk :</term>
-      <listitem><para> Block size [m,n]</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>blk :</term>
+            <listitem><para> Block size [m,n]</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -60,7 +64,7 @@ D = matrix(C,[4,4])';
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imblockproc">imblockproc</link></member>

@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input Matrix</para></listitem></varlistentry>
-   <varlistentry><term>n :</term>
-      <listitem><para> Number of points to plot</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input Matrix</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>n :</term>
+            <listitem><para> Number of points to plot</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -60,7 +64,7 @@ imsurf(abs(F),100);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="immesh">immesh</link></member>

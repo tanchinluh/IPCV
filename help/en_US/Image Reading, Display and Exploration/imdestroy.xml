@@ -32,8 +32,10 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>windowname :</term>
-      <listitem><para> Name of the opened window.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>windowname :</term>
+            <listitem><para> Name of the opened window.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -56,7 +58,7 @@ imdestroy('MyImage');
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imread">imread</link></member>

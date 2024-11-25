@@ -25,6 +25,7 @@
    <title>Syntax</title>
    <synopsis>
    ret=imwrite(im, filename)
+   ret=imwrite(im, filename, compression_ratio)
    
    </synopsis>
 </refsynopsisdiv>
@@ -32,12 +33,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> im can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. If im is not of class uint8, imwrite will convert the datatype before writing using im2uint8(im) .</para></listitem></varlistentry>
-   <varlistentry><term>filename :</term>
-      <listitem><para> A string that specifies the name of the output file.</para></listitem></varlistentry>
-   <varlistentry><term>ret :</term>
-      <listitem><para> Return value. If the image is successfully writed into a file, ret will be 1.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> im can be an M-by-N (greyscale image) or M-by-N-by-3 (color image) matrix. If im is not of class uint8, imwrite will convert the datatype before writing using im2uint8(im) .</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>filename :</term>
+            <listitem><para> A string that specifies the name of the output file.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ret :</term>
+            <listitem><para> Return value. If the image is successfully writed into a file, ret will be 1.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -61,7 +68,7 @@ imshow(S);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imread">imread</link></member>

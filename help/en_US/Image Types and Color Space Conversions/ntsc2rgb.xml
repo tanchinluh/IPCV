@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>YIQ :</term>
-      <listitem><para> A NTSC image (hypermat). The dimension of NTSC should be M x N x 3 , the type should be double and the element value range should be [0,1].</para></listitem></varlistentry>
-   <varlistentry><term>RGB :</term>
-      <listitem><para> Output image, which has the same size as NTSC and type of double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>YIQ :</term>
+            <listitem><para> A NTSC image (hypermat). The dimension of NTSC should be M x N x 3 , the type should be double and the element value range should be [0,1].</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>RGB :</term>
+            <listitem><para> Output image, which has the same size as NTSC and type of double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -71,7 +75,7 @@ imshow(RGB);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="rgb2gray">rgb2gray</link></member>

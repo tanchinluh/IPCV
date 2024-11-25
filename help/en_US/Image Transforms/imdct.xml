@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> Input Matrix (1D or 2D)</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Output Matrix same dimension with x</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Input Matrix (1D or 2D)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Output Matrix same dimension with x</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -58,7 +62,7 @@ imshow(y,jetcolormap(256));
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imidct">imidct</link></member>

@@ -32,12 +32,18 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>imin :</term>
-      <listitem><para> Input Image</para></listitem></varlistentry>
-   <varlistentry><term>mask :</term>
-      <listitem><para> Input mask</para></listitem></varlistentry>
-   <varlistentry><term>result :</term>
-      <listitem><para> Output Image</para></listitem></varlistentry>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Input Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mask :</term>
+            <listitem><para> Input mask</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>result :</term>
+            <listitem><para> Output Image</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -58,12 +64,12 @@ S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 mask = imroi(S);
 imout = imroifill(S,mask);
 imshow(S);
-figure(); imshow(imout);
+scf; imshow(imout);
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imroi">imroi</link></member>

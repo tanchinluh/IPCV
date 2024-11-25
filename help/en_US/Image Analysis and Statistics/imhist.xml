@@ -34,18 +34,30 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>im :</term>
-      <listitem><para> An image, which can be a boolean, uint8 , int8 , uint16 , int16 , int32 or double image.</para></listitem></varlistentry>
-   <varlistentry><term>bins :</term>
-      <listitem><para> The number of bins of the histogram. If bins is not specified, the function will used default value which determined by the image type: 2 for boolen, 2^8 for uint8 and int8, 2^16 for uint16 and int16, 2^16 for int32 (2^32 will need huge computer memory), and 10 for double.</para></listitem></varlistentry>
-   <varlistentry><term>width :</term>
-      <listitem><para> This argument will be sent to bar function. It is a real scalar, defines the width (a percentage of the available room) for the bar (default: 0.8, i.e 80%).</para></listitem></varlistentry>
-   <varlistentry><term>color :</term>
-      <listitem><para> This argument will be sent to bar function. It is a string (default: 'blue'), specifing the inside color bar.</para></listitem></varlistentry>
-   <varlistentry><term>counts :</term>
-      <listitem><para> the returned histogram.</para></listitem></varlistentry>
-   <varlistentry><term>cells :</term>
-      <listitem><para> the intervals for bins.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An image, which can be a boolean, uint8 , int8 , uint16 , int16 , int32 or double image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>bins :</term>
+            <listitem><para> The number of bins of the histogram. If bins is not specified, the function will used default value which determined by the image type: 2 for boolen, 2^8 for uint8 and int8, 2^16 for uint16 and int16, 2^16 for int32 (2^32 will need huge computer memory), and 10 for double.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>width :</term>
+            <listitem><para> This argument will be sent to bar function. It is a real scalar, defines the width (a percentage of the available room) for the bar (default: 0.8, i.e 80%).</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>color :</term>
+            <listitem><para> This argument will be sent to bar function. It is a string (default: 'blue'), specifing the inside color bar.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>counts :</term>
+            <listitem><para> the returned histogram.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cells :</term>
+            <listitem><para> the intervals for bins.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -83,7 +95,7 @@ scf(3); imhist(im, 10, 0.8, 'green');
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="mean2">mean2</link></member>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from rect2cart.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="rect2cart" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>rect2cart</refname>
+    <refpurpose>Convert from image rectangular coordinate to cartesian coordinate in pixel mode</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [cart_x,cart_y] = rect2cart(dim, rect_x, rect_y)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>dim :</term>
+            <listitem><para> Dimention of the Scilab matrix (first 2 dim of the matrix) in row and column format, in [row col].</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>varargin :</term>
+            <listitem><para> Input could be in rect_x and rect_y pairs (each in m x 1 matrix), or in m x 2 matrix which consist of [rect_x rect_y]</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rect_x :</term>
+            <listitem><para> X in rectangular coordinate system</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rect_y :</term>
+            <listitem><para> Y in rectangular coordinate system</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>varargout :</term>
+            <listitem><para> Output in cart_x and cart_y pairs or matrix of [cart_x cart_y] following in the input format</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cart_x :</term>
+            <listitem><para> X in cartesian coordinate system</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cart_y :</term>
+            <listitem><para> Y in cartesian coordinate system</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function used to convert from image rectangular coordinate to cartesian coordinate in pixel mode.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = rand(10,10);
+S2 = repmat(S,[1,1,3]);
+S2(3,4,:) = [1,0,0];
+imshow(S2);
+rect_x = 4; rect_y = 3;
+[cart_x,cart_y] = rect2cart([10,10], rect_x, rect_y);
+plot(cart_x,cart_y, 'bx');
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="sub2cart">sub2cart</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

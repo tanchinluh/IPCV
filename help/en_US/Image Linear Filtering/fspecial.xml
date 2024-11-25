@@ -34,14 +34,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>type :</term>
-      <listitem><para> Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp', 'motion'. ('disk' in future.)</para></listitem></varlistentry>
-   <varlistentry><term>op1 :</term>
-      <listitem><para> The first parameter for the filter. Some type of filters do not need it.</para></listitem></varlistentry>
-   <varlistentry><term>op2 :</term>
-      <listitem><para> The second parameter for the filter. Some type of filters do not need it.</para></listitem></varlistentry>
-   <varlistentry><term>FT :</term>
-      <listitem><para> The returned filter, which is of type double.</para></listitem></varlistentry>
+        <varlistentry>
+            <term>type :</term>
+            <listitem><para> Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp', 'motion'. ('disk' in future.)</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>op1 :</term>
+            <listitem><para> The first parameter for the filter. Some type of filters do not need it.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>op2 :</term>
+            <listitem><para> The second parameter for the filter. Some type of filters do not need it.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>FT :</term>
+            <listitem><para> The returned filter, which is of type double.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -105,7 +113,7 @@ imshow(imf);
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imfilter">imfilter</link></member>

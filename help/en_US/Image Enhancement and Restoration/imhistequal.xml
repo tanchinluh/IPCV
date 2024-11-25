@@ -32,10 +32,14 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>x :</term>
-      <listitem><para> Source Image</para></listitem></varlistentry>
-   <varlistentry><term>y :</term>
-      <listitem><para> Output Image with enhanced contrast of images</para></listitem></varlistentry>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Source Image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Output Image with enhanced contrast of images</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -59,13 +63,17 @@ this by effectively spreading out the most frequent intensity values.
 S = imread(fullpath(getIPCVpath() + "/images/Lena_dark.png"));
 J = imhistequal(S);
 imshow(S);
+<<<<<<< HEAD
 scf;
 imshow(J);
+=======
+scf; imshow(J);
+>>>>>>> upstream/master
 
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imadjust">imadjust</link></member>

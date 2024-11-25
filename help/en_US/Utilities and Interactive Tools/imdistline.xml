@@ -32,8 +32,10 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>dist :</term>
-      <listitem><para> Computed distance</para></listitem></varlistentry>
+        <varlistentry>
+            <term>dist :</term>
+            <listitem><para> Computed distance</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -56,7 +58,7 @@ dist = imdistline();
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="impixel">impixel</link></member>

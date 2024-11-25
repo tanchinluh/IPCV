@@ -32,14 +32,22 @@
 <refsection>
    <title>Parameters</title>
    <variablelist>
-   <varlistentry><term>src :</term>
-      <listitem><para> Source points</para></listitem></varlistentry>
-   <varlistentry><term>tgt :</term>
-      <listitem><para> Target points</para></listitem></varlistentry>
-   <varlistentry><term>tf_type :</term>
-      <listitem><para> Transformation type, affine or perspective</para></listitem></varlistentry>
-   <varlistentry><term>mat :</term>
-      <listitem><para> Transformation matrix</para></listitem></varlistentry>
+        <varlistentry>
+            <term>src :</term>
+            <listitem><para> Source points</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>tgt :</term>
+            <listitem><para> Target points</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>tf_type :</term>
+            <listitem><para> Transformation type, affine or perspective</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>mat :</term>
+            <listitem><para> Transformation matrix</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -62,7 +70,7 @@ mat = imgettransform(src,tgt,'affine')
    ]]></programlisting>
 </refsection>
 
-<refsection>
+<refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="warpmatselect">warpmatselect</link></member>

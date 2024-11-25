@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imconvexityDefects.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imconvexityDefects" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imconvexityDefects</refname>
+    <refpurpose>Finds the convexity defects of a contour.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   D = imconvexityDefects(contours, hullinds)
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>contours :</term>
+            <listitem><para> Contours in list</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>hullinds :</term>
+            <listitem><para> Indices of contours which representing convex hulls in list of each contours.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>D :</term>
+            <listitem><para> The output vector of convexity defects.(start_index, end_index, farthest_pt_index, fixpt_depth)</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+The functions finds the convexity defects of a contour.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/star.png"));
+Sbw = im2bw(S,0.5);
+Sc = imfindContours(Sbw);
+H = imconvexHull(Sc,0,1);
+D = imconvexityDefects(Sc,H)
+d = D(1);
+f = Sc(1)(d(:,3),:)
+[cart_ff] = rect2cart(size(S)(1:2), f);
+imshow(Sbw);
+plot(cart_ff(:,1),cart_ff(:,2),'g*')
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfindContours">imfindContours</link></member>
+   <member><link linkend="implotContours">implotContours</link></member>
+   <member><link linkend="imconvexHull">imconvexHull</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>
