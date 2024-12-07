@@ -65,6 +65,7 @@
 #include <opencv2/tracking.hpp>
 #include <opencv2/core/ocl.hpp>
 #include <opencv2/imgcodecs.hpp>
+#include <opencv2/tracking/tracking_legacy.hpp>
 
 //#ifdef HAVE_OPENCV_NONFREE
 //#endif
@@ -116,7 +117,7 @@ extern DeepNetwork DeepNet[MAX_DL_NUM];
 
 typedef struct ObjectTracker {
 	//Track trackobj;
-	Ptr<Tracker> trackobj;
+	Ptr<cv::legacy::Tracker> trackobj;
 } TrackObj;
 
 extern ObjectTracker ObjTrack[MAX_TRACK_NUM];
@@ -129,6 +130,12 @@ extern DeepSRNetwork DeepSRNet[MAX_DL_NUM];
 
 
 extern char sIPCV_PATH[MAX_FILENAME_LENGTH];
+
+IplImage * Mat2IplImg(int nPos);
+IplImage * CreateIplImgFromHm(int nPos);
+Mat sci2mat(int nPos);
+string type2str(int type);
+
 extern "C"
 {
 // SIVP interface functions
@@ -139,9 +146,6 @@ int Create2DDoubleMat(int nPos, int nRow, int nCol, double * pData);
 int Create3DIntMat(int nPos, int nRow, int nCol, int nCh, void * pData, int nType);
 int Create3DFloatMat(int nPos, int nRow, int nCol, int nCh, float* pData);
 int Create3DDoubleMat(int nPos, int nRow, int nCol, int nCh, double* pData);
-IplImage * Mat2IplImg(int nPos);
-IplImage * CreateIplImgFromHm(int nPos);
-Mat sci2mat(int nPos);
 int mat2sci(Mat pImage, int nPos);
 int MatData2ImgData(IplImage * pImage, void * pMatData);
 int ImgData2MatData(IplImage * pImage, void * pMatData);
@@ -172,7 +176,6 @@ int SetString(int nPos, char *&pstName, void* pvApiCtx);
 int GetDouble(int nPos, double *&pstdata, int& iRows,int& iCols,void* pvApiCtx);
 int GetDouble2(int nPos, double *&pstdata, int& iRows,int& iCols,void* pvApiCtx);
 int SetDouble(int nPos, double *&pstdata, int& iRows,int& iCols,void* pvApiCtx);
-string type2str(int type);
 int is_binary_image( Mat& new_img);
 int GetListImg(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);
 int get_info_imgvec(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos,vector<Mat>& imgs,void* pvApiCtx);

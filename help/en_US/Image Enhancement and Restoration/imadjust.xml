@@ -68,7 +68,8 @@ min and max values
 I = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
 J = imadjust(I,[0 0.5],[0.5 1]);
 imshow(I)
-scf;imshow(J);
+scf;
+imshow(J);
 
    ]]></programlisting>
 </refsection>

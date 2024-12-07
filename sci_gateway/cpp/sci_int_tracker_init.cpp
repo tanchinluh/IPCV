@@ -67,31 +67,31 @@ int sci_int_tracker_init(char * fname, void* pvApiCtx)
 		switch (typeTracker) {
 		case 1: {
 			sciprint("Initializing CSRT Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerCSRT::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerCSRT::create();
 			break; }
 		case 2: {
 			sciprint("Initializing KCF Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerKCF::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerKCF::create();
 			break; }
 		case 3: {
 			sciprint("Initializing Boosting Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerBoosting::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerBoosting::create();
 			break; }       // and exits the switch
 		case 4: {
 			sciprint("Initializing MIL Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerMIL::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerMIL::create();
 			break; }       // and exits the switch
 		case 5: {
 			sciprint("Initializing TLD Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerTLD::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerTLD::create();
 			break; }       // and exits the switch
 		case 6: {
 			sciprint("Initializing MedianFlow Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerMedianFlow::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerMedianFlow::create();
 			break; }
 		case 7: {
 			sciprint("Initializing MOSSE Tracker...\n");
-			ObjTrack[nCurrFile].trackobj = TrackerMOSSE::create();
+			ObjTrack[nCurrFile].trackobj = cv::legacy::TrackerMOSSE::create();
 			break; }
 		}
 

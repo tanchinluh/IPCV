@@ -63,7 +63,12 @@ this by effectively spreading out the most frequent intensity values.
 S = imread(fullpath(getIPCVpath() + "/images/Lena_dark.png"));
 J = imhistequal(S);
 imshow(S);
+<<<<<<< HEAD
+scf;
+imshow(J);
+=======
 scf; imshow(J);
+>>>>>>> upstream/master
 
    ]]></programlisting>
 </refsection>

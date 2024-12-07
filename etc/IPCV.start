@@ -39,13 +39,13 @@ function ipcvlib = startModule()
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
 
-    OPENCV_VERSION = "4.5.0"
+    OPENCV_VERSION = "4.8.1"
     bDepsLoaded = %t;
     bNonfLoaded = %t;
 
     if getos() == 'Windows' then // Windows
 
-        OPENCV_LIBS = OPENCV_LIBS + "450" ;
+        OPENCV_LIBS = OPENCV_LIBS + "481" ;
         exec(etc_tlbx+'IPCV_windows.sci');
         IPCV_windows(root_tlbx,OPENCV_LIBS);
         //exec(etc_tlbx+'IPCV_windows_torch.sci');

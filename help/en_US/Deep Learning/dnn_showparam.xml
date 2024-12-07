@@ -61,12 +61,11 @@ This function is used to visualize the DNN parameters (filter) in spatial domain
    <programlisting role="example"><![CDATA[
 // Initialize
 dnn_unloadallmodels
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-
+dnn_path = fullfile(getIPCVpath(),'images','dnn');
+net = dnn_readmodel(fullfile(dnn_path,'lenet5.pb'),'','tensorflow');
 
 // Read Image
-S = imread(dnn_path + '3.jpg');
+S = imread(fullfile(dnn_path,'3.jpg'));
 
 // Forward Pass
 para1 = dnn_getparam(net,"conv2d/Conv2D");

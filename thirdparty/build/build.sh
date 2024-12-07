@@ -10,8 +10,8 @@
 cd ..
 THIRDPARTY="$(pwd)/$(uname -s)/$(uname -m)"
 cd build
-OPENCV_VER=4.5.0
-FFMPEG_VER=4.3.6
+OPENCV_VER=4.8.1
+FFMPEG_VER=6.0
 
 # ffmpeg build
 curl -L https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz -o ffmpeg.tar.gz
@@ -33,6 +33,7 @@ cd build
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:${THIRDPARTY}/lib/pkgconfig"
 cmake -DCMAKE_INSTALL_PREFIX="${THIRDPARTY}" \
 -DCMAKE_MACOSX_RPATH=ON \
+-DCMAKE_OSX_SYSROOT=$SDKROOT \
 -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,${THIRDPARTY}/lib" \
 -DCMAKE_INSTALL_RPATH="${THIRDPARTY}/lib" \
 -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-${OPENCV_VER}/modules \

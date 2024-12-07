@@ -46,12 +46,12 @@ function builder_gateway_cpp()
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"include");
         libs = ["opencv_world450";"opencv_img_hash450"]
         all_libs = fullfile(THIRDPARTY,"lib",libs); 
+        inter_cflags = ilib_include_flag(OPENCV_INCLUDE); 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"include","opencv4");
-        gw_cpp_files = [gw_cpp_files; "common.h"];
+        inter_cflags = ilib_include_flag(OPENCV_INCLUDE) + " -I"+gw_cpp_path;; 
     end
 
-    inter_cflags = ilib_include_flag(OPENCV_INCLUDE); 
     inter_ldflags = "";
 
     tbx_build_gateway('gw_ipcv', ..
@@ -75,53 +75,3 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,4 +1,8 @@
-# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5 (21-Nov-23)
+# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.8.1 (25-Nov-24)
+
+Version 4.8.1 (25-Nov-24)
+1. Change OpenCV Dependency to 4.8.1
+2. Issues fixed
 
 Version 4.5 (21-Nov-23):
 1. Change OpenCV Dependency to 4.5

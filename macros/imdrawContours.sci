@@ -23,7 +23,8 @@ function So = imdrawContours(Slabel,colormap,thickness)
     //     Sc = imfindContours(Sbw);
     //     Slabel = imcontour2label(S,Sc);
     //     So = imdrawContours(Slabel);
-    //     imshow(im2uint8(So));
+    //     imshow(So);
+
     //  
     // See also
     //     imfindContours
