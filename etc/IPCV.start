@@ -12,10 +12,7 @@ function ipcvlib = startModule()
     etc_tlbx  = getshortpathname(etc_tlbx);
     root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 
-    mprintf("Start %s %s\n",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
-    mprintf(TOOLBOX_TITLE + "\n");
-    mprintf("2023 - Scilab Academy\n");
-    //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
+    mprintf("Start %s %s: ",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
 
     if isdef("ipcvlib") then
         warning(TOOLBOX_NAME + " library is already loaded");
@@ -25,7 +22,7 @@ function ipcvlib = startModule()
 
     //Load  functions library
     // =============================================================================
-    mprintf("\tLoad macros\n");
+    mprintf("load macros");
     pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
     ipcvlib = lib(pathmacros);
 
@@ -35,7 +32,7 @@ function ipcvlib = startModule()
     // load dependencies
     // =============================================================================
     // load dependencies on OpenCV
-    mprintf("\tLoad dependencies\n");
+    mprintf(", dependencies");
     OPENCV_LIBS = ['opencv_world'];
     //TORCH_LIBS = [''];
 
@@ -60,7 +57,7 @@ function ipcvlib = startModule()
 
     // load gateways
     // =============================================================================
-    mprintf("\tLoad gateways\n");
+    mprintf(", gateways");
     
     exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
 
@@ -69,7 +66,7 @@ function ipcvlib = startModule()
     // Load and add help chapter
     // =============================================================================
     if or(getscilabmode() == ["NW";"STD"]) then
-        mprintf("\tLoad help\n");
+        mprintf(", help");
         path_addchapter = pathconvert(root_tlbx+"/jar");
         if ( isdir(path_addchapter) <> [] ) then
             add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
@@ -79,7 +76,7 @@ function ipcvlib = startModule()
     // Load demos
     // =============================================================================
     if or(getscilabmode() == ["NW";"STD"]) then
-        mprintf("\tLoad demos\n");
+        mprintf(", demos.");
         pathdemos = pathconvert(root_tlbx+"/demos/ipcv.dem.gateway.sce",%F,%T);
         add_demo("IPCV",pathdemos);
     end

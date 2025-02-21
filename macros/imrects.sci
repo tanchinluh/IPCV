@@ -40,6 +40,10 @@ function imrects(BB,rgb)
     f = gca();
     
     h = findobj(f,'image_type','rgb');
+
+    if h ==[]  then
+        h = findobj(f,'image_type','rgba');
+    end
     
     if h ==[]  then
         h = findobj(f,'image_type','index');

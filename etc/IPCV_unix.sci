@@ -30,7 +30,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         cd(pp);
 
         if bDepsLoaded == %t then
-            disp("Pre-Compiled OpenCV lib used");
+            printf(" (packaged OpenCV lib used)");
             break;
         end
 
@@ -49,7 +49,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         end
         
         if bDepsLoaded == %t then
-            disp("System OpenCV lib used");
+        printf(" (system OpenCV lib used)");
             break;
         end
 
@@ -71,7 +71,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         end
         
         if bDepsLoaded == %t then
-            disp("Mixed OpenCV lib used");
+            printf(" (mixed OpenCV lib used)");
             break;
         end
 
