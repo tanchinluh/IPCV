@@ -36,7 +36,7 @@
    <variablelist>
         <varlistentry>
             <term>filename,url :</term>
-            <listitem><para> A string, the image filename or a valid URL to be read. For the case of URL, the full syntax must be used. For example, "http://www.tritytech.com/images/phocagallery/roll8_ScilabIOT.png".</para></listitem>
+            <listitem><para> A string, the image filename or a valid URL to be read. For the case of URL, the full syntax must be used. For example, "https://gitlab.com/uploads/-/system/project/avatar/3330423/puffin.png".</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modes :</term>
@@ -61,6 +61,48 @@ im = imread(filename)
 reads image in filename into im matrix. If filename contains a truecolor image, im is a MxNx3 hypermatrix, so for example im(:,:,1) stands for the red channel. For gray images, im is a MxNx1 unsigned char matrix.
    </para>
    <para>
+The imread mode can be controlled by setting any of these optional arguments to 1:
+   </para>
+   <para>
+IMREAD_UNCHANGED (return the loaded image as is (with alpha channel, otherwise it gets cropped). Ignore EXIF orientation)
+   </para>
+   <para>
+IMREAD_GRAYSCALE (convert image to the single channel grayscale image)
+   </para>
+   <para>
+IMREAD_COLOR (convert image to the 3 channel color image)
+   </para>
+   <para>
+IMREAD_ANYDEPTH (return 16-bit/32-bit image when the input has the corresponding depth, otherwise convert it to 8-bit)
+   </para>
+   <para>
+IMREAD_ANYCOLOR (the image is read in any possible color format)
+   </para>
+   <para>
+IMREAD_LOAD_GDAL (use the gdal driver for loading the image)
+   </para>
+   <para>
+IMREAD_REDUCED_GRAYSCALE_2 (convert image to the single channel grayscale image and the image size reduced 1/2)
+   </para>
+   <para>
+IMREAD_REDUCED_COLOR_2 (convert image to the 3 channelcolor image and the image size reduced 1/2)
+   </para>
+   <para>
+IMREAD_REDUCED_GRAYSCALE_4 (convert image to the single channel grayscale image and the image size reduced 1/4)
+   </para>
+   <para>
+IMREAD_REDUCED_COLOR_4 (convert image to the 3 channelcolor image and the image size reduced 1/4)
+   </para>
+   <para>
+IMREAD_REDUCED_GRAYSCALE_8  (convert image to the single channel grayscale image and the image size reduced 1/8)
+   </para>
+   <para>
+IMREAD_REDUCED_COLOR_8 (convert image to the 3 channelcolor image and the image size reduced 1/8)
+   </para>
+   <para>
+IMREAD_IGNORE_ORIENTATION (do not rotate the image according to EXIF's orientation flag)
+   </para>
+   <para>
 </para>
 </refsection>
 
@@ -70,6 +112,8 @@ reads image in filename into im matrix. If filename contains a truecolor image, 
 im = imread(fullpath(getIPCVpath() + "/images/" + 'baboon.png'));
 imshow(im);
 
+im = imread(fullpath(getIPCVpath() + "/images/" + 'puffin.png'),IMREAD_UNCHANGED=1);
+imshow(im);
    ]]></programlisting>
 </refsection>
 
