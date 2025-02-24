@@ -9,7 +9,7 @@
 # cmake should be in the PATH
 
 THIRDPARTY="$(cd ..; pwd)"
-PREFIX="${THIRDPARTY}$(uname -s)/$(uname -m)"
+PREFIX="${THIRDPARTY}/$(uname -s)/$(uname -m)"
 OPENCV_VER=4.5.0
 FFMPEG_VER=4.3.6
 
