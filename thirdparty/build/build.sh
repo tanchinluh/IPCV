@@ -17,7 +17,7 @@ FFMPEG_VER=4.3.6
 [ ! -f opencv-${OPENCV_VER}.tar.gz ] && curl -LO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz
 tar xvzf ffmpeg-${FFMPEG_VER}.tar.gz
 cd ffmpeg-${FFMPEG_VER}
-./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${THIRDPARTY}"
+./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${PREFIX}"
 make -j4
 make install
 cd ..

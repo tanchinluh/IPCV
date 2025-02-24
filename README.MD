@@ -1,5 +1,9 @@
 # Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5 (21-Nov-23)
 
+Version 4.5.0.1 (24-Feb-25)
+1. Fix Linux build
+2. Backport master branch fixes
+
 Version 4.5 (21-Nov-23):
 1. Change OpenCV Dependency to 4.5
 2. base64toimg, imgtobase64 (20-Sep-2022) - experimental, requite USB E for image exchange
