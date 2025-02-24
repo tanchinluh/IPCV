@@ -5,7 +5,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
     //    image_codec_libs = ["png12"; "jpeg"];
     //    video_codec_libs = ["gstbase-0.10";"openh264";"gstreamer-0.10";"gstvideo-0.10";"gstapp-0.10";...
     //    "gstriff-0.10";"gstpbutils-0.10";"QtOpenGL";"QtTest";"gstinterfaces-0.10";"gstaudio-0.10";"gsttag-0.10"];
-    ffmpeg_libs = ["avutil"; "swscale"; "avcodec"; "avformat"; "avfilter"; "avdevice"];
+    ffmpeg_libs = ["avutil"; "swscale"; "swresample"; "avcodec"; "avformat"; "avfilter"; "avdevice"];
     OPENCV_LIBS = "lib"+[ffmpeg_libs; OPENCV_LIBS];
     
     ARCH = unix_g("uname -m");
@@ -30,7 +30,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         cd(pp);
 
         if bDepsLoaded == %t then
-            disp("Pre-Compiled OpenCV lib used");
+            printf(" (packaged OpenCV lib used)");
             break;
         end
 
@@ -49,7 +49,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         end
         
         if bDepsLoaded == %t then
-            disp("System OpenCV lib used");
+        printf(" (system OpenCV lib used)");
             break;
         end
 
@@ -71,7 +71,7 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         end
         
         if bDepsLoaded == %t then
-            disp("Mixed OpenCV lib used");
+            printf(" (mixed OpenCV lib used)");
             break;
         end
 
@@ -96,8 +96,5 @@ function IPCV_unix(root_tlbx,OPENCV_LIBS)
         disp('------------------------------------------------------');
         return;
     end
-
-
-
 
 endfunction

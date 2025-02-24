@@ -54,8 +54,8 @@ int sci_int_imread(char * fname,void* pvApiCtx)
 
 	int iRet = 0;
 	
-	unsigned char cData = 0;
-	iRet = getScalarUnsignedInteger8(pvApiCtx, piAddr, &cData);
+	char cData = 0;
+	iRet = getScalarInteger8(pvApiCtx, piAddr, &cData);
 	if (iRet)
 	{
 		return iRet;
@@ -93,4 +93,3 @@ int sci_int_imread(char * fname,void* pvApiCtx)
 
 	return 0;
 }
-

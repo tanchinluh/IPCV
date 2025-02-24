@@ -1,6 +1,7 @@
 //=============================================================================
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
+// Copyright (C) 2023-2025 - UTC - Stéphane Mottelet
 //=============================================================================
 //
 function ipcvlib = startModule()
@@ -12,20 +13,16 @@ function ipcvlib = startModule()
     etc_tlbx  = getshortpathname(etc_tlbx);
     root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 
-    mprintf("Start %s %s\n",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
-    mprintf(TOOLBOX_TITLE + "\n");
-    mprintf("2023 - Scilab Academy\n");
-    //mprintf("Find more information at https://ipcv.scilab-academy.com \n");
+    mprintf("Start %s %s: ",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
 
     if isdef("ipcvlib") then
         warning(TOOLBOX_NAME + " library is already loaded");
         return;
     end
 
-
     //Load  functions library
     // =============================================================================
-    mprintf("\tLoad macros\n");
+    mprintf("load macros");
     pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
     ipcvlib = lib(pathmacros);
 
@@ -35,23 +32,13 @@ function ipcvlib = startModule()
     // load dependencies
     // =============================================================================
     // load dependencies on OpenCV
-    mprintf("\tLoad dependencies\n");
+    mprintf(", dependencies");
     OPENCV_LIBS = ['opencv_world'];
-    //TORCH_LIBS = [''];
 
-    OPENCV_VERSION = "4.5.0"
     bDepsLoaded = %t;
     bNonfLoaded = %t;
 
-    if getos() == 'Windows' then // Windows
-
-        OPENCV_LIBS = OPENCV_LIBS + "450" ;
-        exec(etc_tlbx+'IPCV_windows.sci');
-        IPCV_windows(root_tlbx,OPENCV_LIBS);
-        //exec(etc_tlbx+'IPCV_windows_torch.sci');
-        //IPCV_windows_torch(root_tlbx,TORCH_LIBS);
-
-    else // Darwin, Linux        
+    if getos() <> 'Windows' then // Darwin, Linux
 
         exec(etc_tlbx+'IPCV_unix.sci');
         IPCV_unix(root_tlbx,OPENCV_LIBS);
@@ -60,7 +47,7 @@ function ipcvlib = startModule()
 
     // load gateways
     // =============================================================================
-    mprintf("\tLoad gateways\n");
+    mprintf(", gateways");
     
     exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
 
@@ -69,7 +56,7 @@ function ipcvlib = startModule()
     // Load and add help chapter
     // =============================================================================
     if or(getscilabmode() == ["NW";"STD"]) then
-        mprintf("\tLoad help\n");
+        mprintf(", help");
         path_addchapter = pathconvert(root_tlbx+"/jar");
         if ( isdir(path_addchapter) <> [] ) then
             add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
@@ -79,7 +66,7 @@ function ipcvlib = startModule()
     // Load demos
     // =============================================================================
     if or(getscilabmode() == ["NW";"STD"]) then
-        mprintf("\tLoad demos\n");
+        mprintf(", demos.");
         pathdemos = pathconvert(root_tlbx+"/demos/ipcv.dem.gateway.sce",%F,%T);
         add_demo("IPCV",pathdemos);
     end
@@ -98,4 +85,3 @@ else
 
 end
 // =============================================================================
-
