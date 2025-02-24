@@ -3,7 +3,7 @@
 // Copyright (C) 2005-2010  Shiqi Yu
 // Copyright (C) 2012 - DIGITEO - Allan CORNET
 // Copyright (C) 2017 - Trity - Tan Chin Luh
-// Copyright (C) 2023 - UTC - Stéphane Mottelet
+// Copyright (C) 2023-2025 - UTC - Stéphane Mottelet
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,15 +39,15 @@ function builder_gateway_cpp()
         ARCH = unix_g("uname -m");
     end
 
-    THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty",getos(),ARCH));
+    THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty"));
 
     all_libs = [];
     if getos() == "Windows"
-        OPENCV_INCLUDE = fullfile(THIRDPARTY,"include");
+        OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
         libs = ["opencv_world450";"opencv_img_hash450"]
-        all_libs = fullfile(THIRDPARTY,"lib",libs); 
+        all_libs = fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs); 
     else  // Darwin, Linux
-        OPENCV_INCLUDE = fullfile(THIRDPARTY,"include","opencv4");
+        OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
         gw_cpp_files = [gw_cpp_files; "common.h"];
     end
 
@@ -62,19 +62,18 @@ function builder_gateway_cpp()
     inter_ldflags, ..
     inter_cflags);
 
-    if getos() == "Windows"
-        // remove redundant/harcoded path link in generated loader script
-        loaderPath = fullfile(gw_cpp_path,"loader.sce");
-        loader = mgetl(loaderPath);
-        loader(grep(loader,["opencv_world";"opencv_img_hash"])) = [];
-        mputl(loader,loaderPath);
-    end
-
 endfunction
 // ====================================================================
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
+
+
+
+
+
+
+
 
 
 
