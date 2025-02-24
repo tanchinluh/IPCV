@@ -64,5 +64,5 @@ cmake -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
 -DBUILD_EXAMPLES=OFF \
 ..
 cd ../..
-cmake --build opencv-${OPENCV_VER}\build --config Release
-cmake --install opencv-${OPENCV_VER}\build
+cmake --build opencv-${OPENCV_VER}/build --config Release
+cmake --install opencv-${OPENCV_VER}/build
