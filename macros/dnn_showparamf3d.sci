@@ -49,7 +49,7 @@ function [] = dnn_showparamf3d(para_map,out_num,c)
         out_num = %inf;
     end;
     if rhs<3 then
-        c = jetcolormap(256);
+        c = jet(256);
     end;
 
     // Check for empty optional inputs
@@ -57,7 +57,7 @@ function [] = dnn_showparamf3d(para_map,out_num,c)
         out_num = %inf;
     end;
     if isempty(c) then
-        c = jetcolormap(256);
+        c = jet(256);
     end;
 
     drawlater;

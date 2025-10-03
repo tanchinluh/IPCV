@@ -48,11 +48,11 @@ function dnn_showparamf2d(para_map,out_num,c)
 
     if rhs < 1; error("At least 1 argument expected, activation output map."); end  
     if rhs < 2; out_num = %inf; end 
-    if rhs < 3; c = jetcolormap(256); end 
+    if rhs < 3; c = jet(256); end 
 
     // Check for empty optional inputs
     if isempty(out_num); out_num = %inf; end
-    if isempty(c); c = jetcolormap(256); end
+    if isempty(c); c = jet(256); end
 
     drawlater();
     para_map_n = para_map; //(para_map - min(para_map))./(max(para_map)-min(para_map)).*255;

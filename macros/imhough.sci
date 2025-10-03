@@ -21,7 +21,7 @@ function [HM, rho, th2] = imhough(S)
     //    S = imread(fullpath(getIPCVpath() + "/images/2lines.png"));
     //    [HM, rho, th] = imhough(S);
     //    scf();Sgrayplot(th,rho,HM',strf="021");
-    //    xset("colormap",hotcolormap(64))
+    //    xset("colormap",hot(64))
     //
     // See also
     //    imradon

@@ -41,7 +41,7 @@ function implotContours(img, cntr, thickness)
     
     f = gcf();
     f.visible = 'off';
-    f.color_map = hsvcolormap(size(cntr));  
+    f.color_map = hsv(size(cntr));  
     imshow(img);
     for i = 1:size(cntr)
         cntr_cart = rect2cart(size(S)(1:2), cntr(i));

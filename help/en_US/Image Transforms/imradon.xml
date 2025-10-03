@@ -69,7 +69,7 @@ If THETA is not defined, then 0:179 is assumed.
 I = zeros(100,100);
 I(25:75, 25:75) = 1;
 [RT,xp] = imradon(I);
-imshow(RT,hotcolormap(64));
+imshow(RT,hot(64));
 
    ]]></programlisting>
 </refsection>

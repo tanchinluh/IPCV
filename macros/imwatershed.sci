@@ -26,7 +26,7 @@ function imout = imwatershed(imin,markers)
     //    [markers,n] = imlabel(dist);
     //    markers(1:5,1:5) = 255;
     //    Sw = imwatershed(S, markers);
-    //    imshow(Sw,hsvcolormap(3));
+    //    imshow(Sw,hsv(3));
     //
     // See also
     //    imdistransf

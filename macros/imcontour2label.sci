@@ -21,7 +21,7 @@ function So = imcontour2label(S,Sc)
     //     Sbw = im2bw(S,0.5);
     //     Sc = imfindContours(Sbw);
     //     So = imcontour2label(S,Sc);
-    //     imshow(So,rainbowcolormap(size(Sc)));
+    //     imshow(So,rainbow(size(Sc)));
     //  
     // See also
     //     imfindContours

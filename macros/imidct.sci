@@ -20,7 +20,7 @@ function y = imidct(x)
     //    y = imdct(S);
     //    y2 = zeros(y);
     //    y2(1:100,1:100) = y(1:100,1:100);
-    //    imshow(y2,jetcolormap(256));
+    //    imshow(y2,jet(256));
     //    S2 = imidct(y2);
     //    imshow(S2./255);
     //

@@ -48,11 +48,11 @@ function dnn_showfeature(feature_map,out_num,c)
 
     if rhs < 1; error("At least 1 argument expected, activation output map."); end  
     if rhs < 2; out_num = %inf; end 
-    if rhs < 3; c = jetcolormap(256); end 
+    if rhs < 3; c = jet(256); end 
 
     // Check for empty optional inputs
     if isempty(out_num); out_num = %inf; end
-    if isempty(c); c = jetcolormap(256); end
+    if isempty(c); c = jet(256); end
 
     drawlater();
     feature_map_n = (feature_map - min(feature_map))./(max(feature_map)-min(feature_map)).*255;

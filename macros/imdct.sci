@@ -18,7 +18,7 @@ function y = imdct(x)
     // Examples
     //    S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
     //    y = imdct(S);
-    //    imshow(y,jetcolormap(256));
+    //    imshow(y,jet(256));
     //
     // See also
     //     imidct

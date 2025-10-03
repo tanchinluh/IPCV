@@ -40,10 +40,10 @@ function So = imdrawContours(Slabel,colormap,thickness)
     rhs=argn(2);
     total = max(Slabel);
     // Error Checking
-    if rhs < 2; colormap = rainbowcolormap(2^nextpow2(total)); end    
+    if rhs < 2; colormap = rainbow(2^nextpow2(total)); end    
     if rhs < 3; thickness = 5; end    
     
-    if colormap ==[]; colormap = rainbowcolormap(2^nextpow2(total));end
+    if colormap ==[]; colormap = rainbow(2^nextpow2(total));end
 
     se = imcreatese('ellipse',thickness,thickness);
     

@@ -6,18 +6,18 @@
 # version 2.1 of the License, or (at your option) any later version.
 #
 # openCV build script for Linux and macOS
-# cmake should be in the PATH
+# cmake and ninja should be in the PATH
 
 THIRDPARTY="$(cd ..; pwd)"
-PREFIX="${THIRDPARTY}$(uname -s)/$(uname -m)"
+PREFIX="${THIRDPARTY}/$(uname -s)/$(uname -m)"
 OPENCV_VER=4.5.0
 FFMPEG_VER=4.3.6
 
 # ffmpeg build
 [ ! -f opencv-${OPENCV_VER}.tar.gz ] && curl -LO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz
-tar xvzf ffmpeg-${FFMPEG_VER}.tar.gz
+tar -xf ffmpeg-${FFMPEG_VER}.tar.gz
 cd ffmpeg-${FFMPEG_VER}
-./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${THIRDPARTY}"
+./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${PREFIX}"
 make -j4
 make install
 cd ..
@@ -25,14 +25,14 @@ cd ..
 # opencv build
 [ ! -f opencv-${OPENCV_VER}.tar.gz ] && curl -L https://github.com/opencv/opencv/archive/refs/tags/${OPENCV_VER}.tar.gz -o opencv-${OPENCV_VER}.tar.gz
 [ ! -f opencv_contrib-${OPENCV_VER}.tar.gz ] && curl -L https://github.com/opencv/opencv_contrib/archive/refs/tags/${OPENCV_VER}.tar.gz -o opencv_contrib-${OPENCV_VER}.tar.gz
-tar xvzf opencv-${OPENCV_VER}.tar.gz
-tar xvzf opencv_contrib-${OPENCV_VER}.tar.gz
+tar -xf opencv-${OPENCV_VER}.tar.gz
+tar -xf opencv_contrib-${OPENCV_VER}.tar.gz
 cd opencv-${OPENCV_VER}
 rm -rf build
 mkdir -p build
 cd build
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:${PREFIX}/lib/pkgconfig"
-cmake -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+cmake -G Ninja -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
 -DCMAKE_BUILD_TYPE=Release \
 -DWITH_VTK=OFF \
 -DCMAKE_MACOSX_RPATH=ON \

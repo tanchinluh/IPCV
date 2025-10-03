@@ -25,7 +25,7 @@ function [RT,xp] = imradon (I,theta)
     //    I = zeros(100,100);
     //    I(25:75, 25:75) = 1;
     //    [RT,xp] = imradon(I);
-    //    imshow(RT,hotcolormap(64));
+    //    imshow(RT,hot(64));
     //
     // See also
     //    imhough

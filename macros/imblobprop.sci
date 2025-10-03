@@ -23,7 +23,7 @@ function [A, BB, ctr] = imblobprop(imin)
     //    se = imcreatese('ellipse',15,15);
     //    A_dilate = imdilate(A_edge,se);
     //    [A_labeled,n] = imlabel(A_dilate);
-    //    imshow(A_labeled,jetcolormap(n));
+    //    imshow(A_labeled,jet(n));
     //    [Area, BB, ctr] = imblobprop(A_labeled);
     //    imrects(BB,[255,0,0]);
     //

@@ -30,7 +30,6 @@ function builder_gateway_cpp()
     scifunctions_name = strsubst(scifunctions_name, '.cpp', '');
     cppfunctions_name = gw_cpp_files(grep(gw_cpp_files,'sci_'));
     cppfunctions_name = strsubst(cppfunctions_name, '.cpp', '');
-
     gw_tables = [scifunctions_name, cppfunctions_name];
 
     if  getos() == "Windows"
@@ -51,7 +50,7 @@ function builder_gateway_cpp()
         gw_cpp_files = [gw_cpp_files; "common.h"];
     end
 
-    inter_cflags = ilib_include_flag(OPENCV_INCLUDE); 
+    inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path]); 
     inter_ldflags = "";
 
     tbx_build_gateway('gw_ipcv', ..

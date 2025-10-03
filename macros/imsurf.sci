@@ -91,7 +91,7 @@ function [] = imsurf(imin,n,plotop);
 
 
     f=gcf();
-    f.color_map = jetcolormap(256);
+    f.color_map = jet(256);
     h.color_flag = 1;
     f.background = -2;    
     h.hiddencolor=0;

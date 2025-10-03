@@ -57,7 +57,7 @@ Performs a forward discrete Cosine transform of 1D or 2D array.
    <programlisting role="example"><![CDATA[
 S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
 y = imdct(S);
-imshow(y,jetcolormap(256));
+imshow(y,jet(256));
 
    ]]></programlisting>
 </refsection>

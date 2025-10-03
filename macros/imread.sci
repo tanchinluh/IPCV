@@ -106,11 +106,7 @@ function S = imread(fn,modes)
     end
     S = int_imread(fn,modes);
 
-    // if (sum(S==0)+sum(S==255)) == prod(size(S)) & size(S,3) ==1 then
-    if (sum(S==0)+sum(S==255)) == prod(size(S)) then
-        if size(S,3) == 4;
-            S = S(:,:,1:3);
-        end
+    if size(S,3)==1 && (sum(S==0)+sum(S==255)) == prod(size(S))
         S = im2bw(S,0.5);
     end
 

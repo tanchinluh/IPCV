@@ -15,9 +15,9 @@ function demo_transform()
        
         scf()
         subplot(221); imshow(S); title("Original Image");
-        subplot(222); imshow(y1,jetcolormap(512)); title("DCT");
-        subplot(223); imshow(y2,jetcolormap(512)); title("FFT");
-        subplot(224); imshow(fftshift(y2),jetcolormap(512)); title("FFT Shifted");
+        subplot(222); imshow(y1,jet(512)); title("DCT");
+        subplot(223); imshow(y2,jet(512)); title("FFT");
+        subplot(224); imshow(fftshift(y2),jet(512)); title("FFT Shifted");
         
         scf()
         //subplot(221); imshow(S); title("Original Image");
