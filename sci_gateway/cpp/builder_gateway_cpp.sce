@@ -35,7 +35,7 @@ function builder_gateway_cpp()
     if  getos() == "Windows"
         ARCH = getenv("PROCESSOR_ARCHITECTURE");        
     else
-        ARCH = unix_g("uname -m");
+        [_,ARCH] = host("uname -m");
     end
 
     THIRDPARTY=fullpath(fullfile(gw_cpp_path,"..","..","thirdparty"));

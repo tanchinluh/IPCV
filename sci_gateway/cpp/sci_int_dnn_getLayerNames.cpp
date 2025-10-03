@@ -54,7 +54,7 @@ int sci_int_dnn_getLayerNames(char * fname, void* pvApiCtx)
 	}
 	catch (const cv::Exception& e)
 	{
-		char* pData = "Err";
+		char *pData = (char *)"Err";
 
 		sciprint("Error: %s \n", e.err.c_str());
 		SetString(1, pData, pvApiCtx);

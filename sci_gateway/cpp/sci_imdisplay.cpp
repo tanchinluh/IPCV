@@ -36,7 +36,7 @@ int sci_imdisplay(char * fname,void* pvApiCtx)
 	}
 	else
 	{
-		pstName = "Display Window";		
+		pstName = (char *)"Display Window";		
 	}
 
 	//namedWindow(pstName, CV_WINDOW_NORMAL);// Create a window for display.

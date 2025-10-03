@@ -79,3 +79,8 @@ Version 4.5 (21-Nov-23):
 
 Version 4.5.0.1 (24-Feb-25)
 1. backport master branch fixes
+
+Version 4.5.0.2 (03-Oct-25)
+1. Fix compilation warnings
+2. Fix call of deprecated macros for Scilab 2026.0.0
+3. Use Ninja for thirdparty OpenCV build
