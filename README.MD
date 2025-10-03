@@ -1,4 +1,4 @@
-# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5.0.1 (24-Feb-25)
+# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5.0.2 (03-Oct-25)
 
 Version 4.5.0.2 (03-Oct-25)
 1. Fix compilation warnings
