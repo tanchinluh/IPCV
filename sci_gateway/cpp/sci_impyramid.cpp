@@ -48,7 +48,7 @@ int sci_impyramid(char *fname,void* pvApiCtx)
 	}
 	else
 	{
-		pstName = "reduce";		
+		pstName = (char *)"reduce";		
 	}
 
 	//GetRhsVar(2, "c", &mR, &nR, &lR);

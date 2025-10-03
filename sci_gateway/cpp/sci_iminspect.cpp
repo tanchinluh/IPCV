@@ -30,7 +30,7 @@ int sci_iminspect(char * fname,void* pvApiCtx)
 	}
 	else
 	{
-		pstName = "Inspect Window";		
+		pstName = (char *)"Inspect Window";		
 	}
 	 
 	for(;;)

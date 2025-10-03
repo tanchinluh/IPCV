@@ -25,5 +25,5 @@ function out = imlsusb()
     //    Tan Chin Luh
     //
         
-    out = unix_g("lsusb");
+    [_,out] = host("lsusb");
 endfunction

@@ -1,4 +1,9 @@
-# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5.0.1 (24-Feb-25)
+# Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5.0.2 (03-Oct-25)
+
+Version 4.5.0.2 (03-Oct-25)
+1. Fix compilation warnings
+2. Fix call of deprecated macros for Scilab 2026.0.0
+3. Use Ninja for thirdparty OpenCV build
 
 Version 4.5.0.1 (24-Feb-25)
 1. backport master branch fixes

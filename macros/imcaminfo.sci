@@ -25,6 +25,6 @@ function out = imcaminfo(dev)
     // Authors
     //    Tan Chin Luh
 
-    out = unix_g('lsusb -s '+ dev +' -v | egrep ""Width|Height""');
+    [_,out] = host('lsusb -s '+ dev +' -v | egrep ""Width|Height""');
 
 endfunction
