@@ -54,7 +54,6 @@ function dnn_showfeature(feature_map,out_num,c)
     if isempty(out_num); out_num = %inf; end
     if isempty(c); c = jet(256); end
 
-    drawlater();
     feature_map_n = (feature_map - min(feature_map))./(max(feature_map)-min(feature_map)).*255;
     //feature_map_n = (feature_map - min(feature_map))./(max(feature_map)-min(feature_map));
     feature_map_n = squeeze(feature_map_n);

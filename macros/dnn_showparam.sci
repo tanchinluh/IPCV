@@ -54,7 +54,6 @@ function dnn_showparam(para_map,out_num,c)
     if isempty(out_num); out_num = %inf; end
     if isempty(c); c = jet(256); end
     
-    drawlater();
     para_map_n = (para_map - min(para_map))./(max(para_map)-min(para_map)).*255;
     para_map_n = squeeze(para_map_n);
     f = gcf();

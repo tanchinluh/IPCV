@@ -47,7 +47,6 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     if rhs < 3; modeltype = 1; end
     if isempty(modeltype); modeltype = 1; end
     
-    
     supported_model = ["caffe","tensorflow","yolo","onnx","torch"];
     // Check modeltype
     if type(modeltype) == 1 then
@@ -60,7 +59,7 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
         error("Only model type in number, 1 to 5, or model string ""caffe"", ""tensor"" , ""yolo"" , ""onnx"" and ""torch"" are allowed."); 
     end
     
-    modelname = strsplit(model,['\','/','\\','//'])
+    modelname = strsplit(model,['\','/','\\'])
 
     net.identifier = "dnn"
     net.name = modelname($);

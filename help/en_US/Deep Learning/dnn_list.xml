@@ -47,7 +47,12 @@ This function is used for list all loaded DNN models in the memory.
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-
+   dnn_list()
+   dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
+   net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+   dnn_list()
+   dnn_unloadallmodels();
+   dnn_list()
    ]]></programlisting>
 </refsection>
 

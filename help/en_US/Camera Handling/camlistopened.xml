@@ -55,7 +55,7 @@ Video support for IPCV is only available when IPCV is compiled with OpenCV which
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
 n = camopen(0);
-camlistopened()
+I = camlistopened()
 camcloseall()
 
    ]]></programlisting>
