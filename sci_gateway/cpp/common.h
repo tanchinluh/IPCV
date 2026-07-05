@@ -114,20 +114,32 @@ typedef struct OpenedCamCapture {
 extern OpenedCamCapture OpenedCam[MAX_AVI_FILE_NUM];
 
 typedef struct DeepNetwork {
+#if CV_VERSION_MAJOR >= 5
+	int skipped_opencv5_dnn;
+#else
 	dnn::Net net;
+#endif
 } DeepNetwork;
 
 extern DeepNetwork DeepNet[MAX_DL_NUM];
 
 typedef struct ObjectTracker {
+#if CV_VERSION_MAJOR >= 5
+	int skipped_opencv5_tracker;
+#else
 	//Track trackobj;
 	Ptr<Tracker> trackobj;
+#endif
 } TrackObj;
 
 extern ObjectTracker ObjTrack[MAX_TRACK_NUM];
 
 typedef struct DeepSRNetwork {
+#if CV_VERSION_MAJOR >= 5
+	int skipped_opencv5_dnn_superres;
+#else
 	dnn_superres::DnnSuperResImpl sr;
+#endif
 } DeepSRNetwork;
 
 extern DeepSRNetwork DeepSRNet[MAX_DL_NUM];

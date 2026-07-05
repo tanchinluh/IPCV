@@ -24,6 +24,44 @@ function builder_gateway_cpp()
 
     gw_cpp_path = get_absolute_file_path('builder_gateway_cpp.sce');
     gw_cpp_files = findfiles(gw_cpp_path, '*.cpp');
+    skip_cpp_files = [
+        "sci_int_imlogpolar.cpp";
+        "sci_int_dnn_init.cpp";
+        "sci_int_dnn_forward.cpp";
+        "sci_int_dnn_getLayerNames.cpp";
+        "sci_int_dnn_getLayersCount.cpp";
+        "sci_int_dnn_getParam.cpp";
+        "sci_int_dnn_list.cpp";
+        "sci_int_dnn_superres.cpp";
+        "sci_int_dnn_superres_init.cpp";
+        "sci_int_dnn_superres_upsample.cpp";
+        "sci_int_dnn_unload.cpp";
+        "sci_int_dnn_unloadall.cpp";
+        "sci_int_getaffinetransform.cpp";
+        "sci_int_getperspectivetransform.cpp";
+        "sci_int_imboundingRect.cpp";
+        "sci_int_imconvexHull.cpp";
+        "sci_int_imconvexityDefects.cpp";
+        "sci_int_imfindContours2.cpp";
+        "sci_int_imdetect_BRISK.cpp";
+        "sci_int_imextract_DescriptorBRISK.cpp";
+        "sci_int_imdetect_SIFT.cpp";
+        "sci_int_imextract_DescriptorSIFT.cpp";
+        "sci_int_perspectivetransform.cpp";
+        "sci_int_imhough.cpp";
+        "sci_int_imhoughcircles.cpp";
+        "sci_int_imrotate.cpp";
+        "sci_int_imstitchImage.cpp";
+        "sci_int_imsuperres.cpp";
+        "sci_int_rgb2gray.cpp";
+        "sci_int_rgb2lab.cpp";
+        "sci_int_tracker_init.cpp";
+        "sci_int_tracker_update.cpp";
+        "sci_int_tracker_unloadall.cpp";
+    ];
+    for i = 1:size(skip_cpp_files, "*")
+        gw_cpp_files(gw_cpp_files == skip_cpp_files(i)) = [];
+    end
     scifunctions_name = gw_cpp_files(grep(gw_cpp_files, 'sci_'));
     scifunctions_name = strsubst(scifunctions_name, 'sci_', '');
     scifunctions_name = strsubst(scifunctions_name, 'percent', '%');
@@ -33,7 +71,10 @@ function builder_gateway_cpp()
     gw_tables = [scifunctions_name, cppfunctions_name];
 
     if  getos() == "Windows"
-        ARCH = getenv("PROCESSOR_ARCHITECTURE");        
+        ARCH = getenv("PROCESSOR_ARCHITECTURE");
+        if ARCH == "AMD64" then
+            setenv("WIN64", "OK");
+        end
     else
         [_,ARCH] = host("uname -m");
     end
@@ -71,11 +112,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
-
-
-
-
 
 
 
