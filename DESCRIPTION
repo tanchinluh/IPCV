@@ -76,6 +76,10 @@ Description: IPCV – Scilab Image Processing &amp; Computer Vision, a module of
  • Use Ninja for thirdparty OpenCV build
  
 
+OpenCV 5 migration branch
+ • Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
+ • Update gateway linking and C++ compile flags for OpenCV 5
+
 HasNativeCode: Yes
 
 sourceName: IPCV-4.5.0.2.zip

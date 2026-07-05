@@ -29,7 +29,7 @@ int sci_int_imfill(char * fname,void* pvApiCtx)
     vector<Vec4i> hierarchy;
 
     findContours(src,contours,hierarchy,RETR_CCOMP,CHAIN_APPROX_SIMPLE,cv::Point(0,0));
-    CvScalar color=cvScalar(255);
+    Scalar color(255);
     dst=Mat::zeros(src.size(),CV_8UC1);
 
     for(int i=0;i<contours.size();i++)

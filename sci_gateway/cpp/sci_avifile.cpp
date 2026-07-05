@@ -122,7 +122,7 @@ int sci_avifile(char *fname,void* pvApiCtx)
 	if(isStringType(pvApiCtx, piAddr))
 	{
 		//OpenedAviCap[nCurrFile].video.writer = cvCreateVideoWriter(pstName, CV_FOURCC(c1,c2,c3,c4), (double)nFPS, cvSize(nWidth, nHeight),1);
-		OpenedAvi[nCurrFile].writer = VideoWriter(pstName, VideoWriter::fourcc(c1, c2, c3, c4), (double)nFPS, cvSize(nWidth, nHeight), 1);
+		OpenedAvi[nCurrFile].writer = VideoWriter(pstName, VideoWriter::fourcc(c1, c2, c3, c4), (double)nFPS, Size(nWidth, nHeight), 1);
 		if(!OpenedAvi[nCurrFile].writer.isOpened())
 		{
 			Scierror(999, "%s: Can not create video file %s or codec %c %c %c %c not found.\r\n", fname, pstName,c1,c2,c3,c4);
@@ -132,7 +132,7 @@ int sci_avifile(char *fname,void* pvApiCtx)
 	else if(isDoubleType(pvApiCtx, piAddr))
 	{
 		//OpenedAviCap[nCurrFile].video.writer = cvCreateVideoWriter(pstName,c5, (double)nFPS, cvSize(nWidth, nHeight),1);
-		OpenedAvi[nCurrFile].writer = VideoWriter(pstName, c5, (double)nFPS, cvSize(nWidth, nHeight), 1);
+		OpenedAvi[nCurrFile].writer = VideoWriter(pstName, c5, (double)nFPS, Size(nWidth, nHeight), 1);
 		if(!OpenedAvi[nCurrFile].writer.isOpened())
 		{
 			Scierror(999, "%s: Can not create video file %s or mode %i not supported.\r\n", fname, pstName,c5);

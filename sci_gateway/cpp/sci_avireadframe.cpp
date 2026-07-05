@@ -39,8 +39,6 @@ int sci_avireadframe(char * fname,void* pvApiCtx)
   double *frame_num = NULL;
   int iRows			= 0;
   int iCols			= 0;
-  IplImage * pImage;
-
   double tmp;
 
   //CheckRhs(1,2);
@@ -134,4 +132,3 @@ int sci_avireadframe(char * fname,void* pvApiCtx)
 
   return 0;
 }
-

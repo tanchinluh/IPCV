@@ -43,7 +43,7 @@ function builder_gateway_cpp()
     all_libs = [];
     if getos() == "Windows"
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
-        libs = ["opencv_world450";"opencv_img_hash450"]
+        libs = ["opencv_world500";"opencv_img_hash500"]
         all_libs = fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs); 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
@@ -51,6 +51,11 @@ function builder_gateway_cpp()
     end
 
     inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path]); 
+    if getos() == "Windows" then
+        inter_cflags = inter_cflags + " /std:c++17";
+    else
+        inter_cflags = inter_cflags + " -std=c++17";
+    end
     inter_ldflags = "";
 
     tbx_build_gateway('gw_ipcv', ..
@@ -66,7 +71,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

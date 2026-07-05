@@ -54,9 +54,14 @@
 #include <sys/stat.h>
 
 #include <opencv2/core.hpp>
+#include <opencv2/core/version.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#if CV_VERSION_MAJOR >= 5
+#include <opencv2/features.hpp>
+#else
 #include <opencv2/features2d.hpp>
+#endif
 #include <opencv2/xfeatures2d.hpp>
 #include <opencv2/stitching.hpp>
 #include <opencv2/video.hpp>
@@ -131,6 +136,7 @@ extern DeepSRNetwork DeepSRNet[MAX_DL_NUM];
 extern char sIPCV_PATH[MAX_FILENAME_LENGTH];
 extern "C"
 {
+#if CV_VERSION_MAJOR < 5
 // SIVP interface functions
 int IplImg2Mat(IplImage * pImage, int nPos);
 int Create2DIntMat(int nPos, int nRow, int nCol, void * pData, int nType);
@@ -149,6 +155,7 @@ int IplType2SciType(int IplType);
 int SciType2IplType(int SciType);
 void img2mat(unsigned char* pSrc, unsigned char * pDst, int nWidth, int nHeight, int nCh);
 void mat2img(unsigned char * pMat, unsigned char *pImg, int nWidth, int nHeight, int nCh);
+#endif
 
 // ???
 static void generate(const int &_N,const cv::Mat &_TRANS,const cv::Mat &_EMIS, const cv::Mat &_INIT, cv::Mat &seq, cv::Mat &states);

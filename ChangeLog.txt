@@ -1,5 +1,9 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
+OpenCV 5 migration branch
+1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
+2. Update gateway linking and C++ compile flags for OpenCV 5
+
 Version 1.0 (17-Mar-17): Initial Release 
 
 Version 1.1 (6-Apr-17): Add features and tests, improved start file

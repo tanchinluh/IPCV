@@ -10,7 +10,7 @@
 
 THIRDPARTY="$(cd ..; pwd)"
 PREFIX="${THIRDPARTY}/$(uname -s)/$(uname -m)"
-OPENCV_VER=4.5.0
+OPENCV_VER=5.0.0
 FFMPEG_VER=4.3.6
 
 # ffmpeg build
@@ -34,6 +34,8 @@ cd build
 export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:${PREFIX}/lib/pkgconfig"
 cmake -G Ninja -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
 -DCMAKE_BUILD_TYPE=Release \
+-DCMAKE_CXX_STANDARD=17 \
+-DCMAKE_CXX_STANDARD_REQUIRED=ON \
 -DWITH_VTK=OFF \
 -DCMAKE_MACOSX_RPATH=ON \
 -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,${PREFIX}/lib" \

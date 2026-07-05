@@ -22,7 +22,11 @@
 *****************************************************************************/
 
 #include "common.h"
+#if CV_VERSION_MAJOR >= 5
+#include <opencv2/xobjdetect.hpp>
+#else
 #include "opencv2/objdetect.hpp"
+#endif
 
 /**********************************************************************
 * this function only supports UINT8
@@ -33,8 +37,6 @@
 
 int sci_int_detectobjects(char * fname,void* pvApiCtx)
 {
-
-	static CvHaarClassifierCascade* pCascade = NULL;
 
 	CheckInputArgument(pvApiCtx, 6, 6);
 	CheckOutputArgument(pvApiCtx, 0, 1);

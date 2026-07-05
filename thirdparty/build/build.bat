@@ -7,7 +7,7 @@
 :: openCV build script for Windows
 :: cmake.exe (standalone or Visual Studio cmake.exe) and ninja.exe should be in the PATH
 
-set OPENCV_VER=4.5.0
+set OPENCV_VER=5.0.0
 curl -o opencv.tgz https://codeload.github.com/opencv/opencv/tar.gz/refs/tags/%OPENCV_VER%
 curl -o opencv_contrib.tgz https://codeload.github.com/opencv/opencv_contrib/tar.gz/refs/tags/%OPENCV_VER%
 tar -xf opencv.tgz
@@ -20,6 +20,8 @@ mkdir build
 cd build
 cmake -G Ninja -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
 -DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_CXX_STANDARD=17 ^
+-DCMAKE_CXX_STANDARD_REQUIRED=ON ^
 -DWITH_VTK=OFF ^
 -DOPENCV_EXTRA_MODULES_PATH="%THIRDPARTY%\build\opencv_contrib-%OPENCV_VER%\modules" ^
 -DBUILD_ZLIB=ON ^

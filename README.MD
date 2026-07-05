@@ -1,5 +1,9 @@
 # Image Processing and Computer Vision Toolbox (IPCV) - Version 4.5.0.2 (03-Oct-25)
 
+OpenCV 5 migration branch
+1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
+2. Update gateway linking and C++ compile flags for OpenCV 5
+
 Version 4.5.0.2 (03-Oct-25)
 1. Fix compilation warnings
 2. Fix call of deprecated macros for Scilab 2026.0.0

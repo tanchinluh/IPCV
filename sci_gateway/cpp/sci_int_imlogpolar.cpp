@@ -51,7 +51,7 @@ int sci_int_imlogpolar(char * fname,void* pvApiCtx)
 	//cvLogPolar( pSrcImg2, pDstImg2, cvPoint2D32f(pSrcImg2->width/2,pSrcImg2->height/2), M, CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS );
 	//cvLogPolar( dst, src2, cvPoint2D32f(src->width/2,src->height/2), 40, CV_INTER_LINEAR+CV_WARP_FILL_OUTLIERS+CV_WARP_INVERSE_MA
 
-	logPolar(pSrcImg1, pDstImg1, cvPoint2D32f(pSrcImg1.cols / 2, pSrcImg1.rows / 2), M, INTER_LINEAR + WARP_FILL_OUTLIERS);
+	logPolar(pSrcImg1, pDstImg1, Point2f(pSrcImg1.cols / 2.0f, pSrcImg1.rows / 2.0f), M, INTER_LINEAR + WARP_FILL_OUTLIERS);
 
 	//pDstImg1 = Mat(pDstImg2);
 	
@@ -62,4 +62,3 @@ int sci_int_imlogpolar(char * fname,void* pvApiCtx)
 
 
 }
-
