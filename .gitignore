@@ -26,6 +26,17 @@ jar/
 2.0/
 **/testing
 
+# ignore bundled thirdparty payloads, but keep build helper scripts tracked
+thirdparty/*
+!thirdparty/build/
+thirdparty/build/*
+!thirdparty/build/README.txt
+!thirdparty/build/build.bat
+!thirdparty/build/build.sh
+
+# generated help output
+help/en_US/scilab_en_US_help/
+
 # ignore doc/notes.txt, but not doc/server/arch.txt
 #doc/*.txt
 
