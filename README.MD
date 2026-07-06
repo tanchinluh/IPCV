@@ -1,4 +1,4 @@
-# IPCV OpenCV 5 and C++ Migration - Version 4.5.0.2 (03-Oct-25)
+# IPCV OpenCV 5 and C++ Migration
 
 OpenCV 5 migration branch
 1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
