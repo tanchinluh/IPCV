@@ -741,6 +741,12 @@ extern "C" IPCV_CORE_API int ipcv_detect_orb(const IpcvDecodedImage *source, int
     return run_detector(source, detector, keypoints, "missing ORB image input");
 }
 
+extern "C" IPCV_CORE_API int ipcv_detect_sift(const IpcvDecodedImage *source, int nfeatures, int octave_layers, double contrast_threshold, double edge_threshold, double sigma, IpcvKeypointMatrix *keypoints)
+{
+    cv::Ptr<cv::SIFT> detector = cv::SIFT::create(nfeatures, octave_layers, contrast_threshold, edge_threshold, sigma);
+    return run_detector(source, detector, keypoints, "missing SIFT image input");
+}
+
 extern "C" IPCV_CORE_API int ipcv_detect_star(const IpcvDecodedImage *source, int max_size, int response_threshold, int line_threshold_projected, int line_threshold_binarized, int suppress_nonmax_size, IpcvKeypointMatrix *keypoints)
 {
     cv::Ptr<cv::xfeatures2d::StarDetector> detector = cv::xfeatures2d::StarDetector::create(max_size, response_threshold, line_threshold_projected, line_threshold_binarized, suppress_nonmax_size);

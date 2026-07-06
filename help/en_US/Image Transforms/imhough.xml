@@ -34,7 +34,7 @@
    <variablelist>
         <varlistentry>
             <term>S :</term>
-            <listitem><para> Source Image</para></listitem>
+            <listitem><para> Source edge image. Boolean pixels and nonzero numeric pixels vote in Hough space.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>HM :</term>
@@ -54,7 +54,7 @@
 <refsection>
    <title>Description</title>
    <para>
-Applies Hough transformation to an image.
+Applies the line Hough transformation to an edge image and returns the Hough accumulator matrix.
    </para>
    <para>
 </para>

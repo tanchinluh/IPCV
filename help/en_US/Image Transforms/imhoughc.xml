@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
- *
- * This help file was generated from imhoughc.sci using help_from_sci().
- *
- -->
-
 <refentry version="5.0-subset Scilab" xml:id="imhoughc" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,49 +11,61 @@
 
   <refnamediv>
     <refname>imhoughc</refname>
-    <refpurpose>Image Hough transformation for Circle Detection</refpurpose>
+    <refpurpose>Hough circle detection</refpurpose>
   </refnamediv>
 
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+circles = imhoughc(S)
+    </synopsis>
+  </refsynopsisdiv>
 
-<refsynopsisdiv>
-   <title>Syntax</title>
-   <synopsis>
-   
-   </synopsis>
-</refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>S :</term>
+        <listitem><para>Source image.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>circles :</term>
+        <listitem><para>A 3-by-N matrix. Each column contains x position, y position, and radius.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-   </variablelist>
-</refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+Detects circles in an image using OpenCV HoughCircles.
+    </para>
+  </refsection>
 
-<refsection>
-   <title>Description</title>
-   <para>
-   </para>
-   <para>
-</para>
-</refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+S = uint8(zeros(120, 120));
+t = 0:%pi/180:2*%pi;
+x = round(60 + 30*cos(t));
+y = round(60 + 30*sin(t));
+S(sub2ind(size(S), y, x)) = 255;
+circles = imhoughc(S);
+    ]]></programlisting>
+  </refsection>
 
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imhough">imhough</link></member>
+      <member><link linkend="imradon">imradon</link></member>
+    </simplelist>
+  </refsection>
 
-   ]]></programlisting>
-</refsection>
-
-<refsection role="see also">
-   <title>See also</title>
-   <simplelist type="inline">
-   <member><link linkend="imradon">imradon</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Tan Chin Luh</member>
-   </simplelist>
-</refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
 </refentry>

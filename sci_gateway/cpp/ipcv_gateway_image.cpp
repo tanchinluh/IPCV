@@ -411,6 +411,261 @@ int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedIma
 	return 0;
 }
 
+static int ipcv_get_image_from_address(void* pvApiCtx, int *piAddr, IpcvDecodedImage& image)
+{
+	SciErr sciErr;
+	int precision = 0;
+	int *dims = NULL;
+	int ndims = 0;
+	int iRows = 0;
+	int iCols = 0;
+
+	memset(&image, 0, sizeof(image));
+	if (isHypermatType(pvApiCtx, piAddr))
+	{
+		sciErr = getHypermatType(pvApiCtx, piAddr, &precision);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+
+		if (precision == sci_matrix)
+		{
+			double *data = NULL;
+			sciErr = getHypermatOfDouble(pvApiCtx, piAddr, &dims, &ndims, &data);
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+			image.data = reinterpret_cast<unsigned char*>(data);
+			image.depth = IPCV_DEPTH_64F;
+		}
+		else if (precision == sci_boolean)
+		{
+			int *data = NULL;
+			sciErr = getHypermatOfBoolean(pvApiCtx, piAddr, &dims, &ndims, &data);
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+			if (ndims < 2 || ndims > 3)
+			{
+				return -1;
+			}
+			return ipcv_set_boolean_image(image, dims[0], dims[1], ndims == 3 ? dims[2] : 1, data);
+		}
+		else if (precision == sci_ints)
+		{
+			sciErr = getHypermatOfIntegerPrecision(pvApiCtx, piAddr, &precision);
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+			if (precision == SCI_UINT8)
+			{
+				unsigned char *data = NULL;
+				sciErr = getHypermatOfUnsignedInteger8(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = data;
+				image.depth = IPCV_DEPTH_8U;
+			}
+			else if (precision == SCI_UINT16)
+			{
+				unsigned short *data = NULL;
+				sciErr = getHypermatOfUnsignedInteger16(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_16U;
+			}
+			else if (precision == SCI_INT32)
+			{
+				int *data = NULL;
+				sciErr = getHypermatOfInteger32(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_32S;
+			}
+			else
+			{
+				return -1;
+			}
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+		}
+		else
+		{
+			return -1;
+		}
+
+		if (ndims < 2 || ndims > 3)
+		{
+			return -1;
+		}
+		image.rows = dims[0];
+		image.cols = dims[1];
+		image.channels = ndims == 3 ? dims[2] : 1;
+		return ipcv_fill_image_metadata(image);
+	}
+
+	sciErr = getVarType(pvApiCtx, piAddr, &precision);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if (precision == sci_matrix)
+	{
+		double *data = NULL;
+		sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		image.rows = iRows;
+		image.cols = iCols;
+		image.channels = 1;
+		image.depth = IPCV_DEPTH_64F;
+		image.data = reinterpret_cast<unsigned char*>(data);
+		return ipcv_fill_image_metadata(image);
+	}
+
+	if (precision == sci_boolean)
+	{
+		int *data = NULL;
+		sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		return ipcv_set_boolean_image(image, iRows, iCols, 1, data);
+	}
+
+	if (precision != sci_ints)
+	{
+		return -1;
+	}
+
+	sciErr = getMatrixOfIntegerPrecision(pvApiCtx, piAddr, &precision);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if (precision == SCI_UINT8)
+	{
+		unsigned char *data = NULL;
+		sciErr = getMatrixOfUnsignedInteger8(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = data;
+		image.depth = IPCV_DEPTH_8U;
+	}
+	else if (precision == SCI_UINT16)
+	{
+		unsigned short *data = NULL;
+		sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_16U;
+	}
+	else if (precision == SCI_INT32)
+	{
+		int *data = NULL;
+		sciErr = getMatrixOfInteger32(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_32S;
+	}
+	else
+	{
+		return -1;
+	}
+
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+	image.rows = iRows;
+	image.cols = iCols;
+	image.channels = 1;
+	return ipcv_fill_image_metadata(image);
+}
+
+int ipcv_get_image_list_argument(void* pvApiCtx, int nPos, IpcvImageList& list)
+{
+	SciErr sciErr;
+	int *listAddr = NULL;
+	int itemCount = 0;
+
+	memset(&list, 0, sizeof(list));
+	sciErr = getVarAddressFromPosition(pvApiCtx, nPos, &listAddr);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = getListItemNumber(pvApiCtx, listAddr, &itemCount);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+	if (itemCount <= 0)
+	{
+		return -1;
+	}
+
+	list.count = itemCount;
+	list.images = static_cast<IpcvDecodedImage*>(calloc(static_cast<size_t>(itemCount), sizeof(IpcvDecodedImage)));
+	if (list.images == NULL)
+	{
+		strncpy(list.error, "out of memory", sizeof(list.error) - 1);
+		return -1;
+	}
+
+	for (int item = 0; item < itemCount; item++)
+	{
+		int *itemAddr = NULL;
+		sciErr = getListItemAddress(pvApiCtx, listAddr, item + 1, &itemAddr);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			ipcv_release_image_list_argument(list);
+			return sciErr.iErr;
+		}
+
+		int iRet = ipcv_get_image_from_address(pvApiCtx, itemAddr, list.images[item]);
+		if (iRet)
+		{
+			strncpy(list.error, "list item is not an image", sizeof(list.error) - 1);
+			ipcv_release_image_list_argument(list);
+			return iRet;
+		}
+	}
+
+	return 0;
+}
+
+void ipcv_release_image_list_argument(IpcvImageList& list)
+{
+	if (list.images != NULL)
+	{
+		for (int item = 0; item < list.count; item++)
+		{
+			ipcv_release_image_argument(list.images[item]);
+		}
+		free(list.images);
+	}
+	list.images = NULL;
+	list.count = 0;
+}
+
 int ipcv_get_contour_list_argument(void* pvApiCtx, int nPos, IpcvContourList& list)
 {
 	SciErr sciErr;

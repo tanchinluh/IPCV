@@ -68,6 +68,7 @@ Migrated code
    - `imdetect_GFTT` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_MSER` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_ORB` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_SIFT` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_STAR` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_SURF` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imextract_DescriptorBRISK` -> `src/cpp/ipcv_feature_detection.cpp`
@@ -77,10 +78,17 @@ Migrated code
    - `immatch_BruteForce` -> `src/cpp/ipcv_feature_detection.cpp`
    - `immatch_Flann` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdrawmatches` -> `src/cpp/ipcv_feature_detection.cpp`
-14. Gateway image exchange
+14. Hough and stitching
+   - `int_imhough` -> `src/cpp/ipcv_hough.cpp`
+   - `int_imhoughcircles` -> `src/cpp/ipcv_hough.cpp`
+   - `imstitchimage` / `int_imstitchImage` -> `src/cpp/ipcv_stitching.cpp`
+15. Removed obsolete gateways
+   - Removed `sci_int_imfindContours2.cpp`
+   - Removed `sci_int_imread2.cpp`
+16. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-15. Current unit tests
+17. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -95,6 +103,7 @@ Migrated code
    - `tests/unit_tests/ipcv_image_transform.tst`
    - `tests/unit_tests/ipcv_structural_analysis.tst`
    - `tests/unit_tests/ipcv_feature_detection.tst`
+   - `tests/unit_tests/ipcv_hough_stitching.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

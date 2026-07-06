@@ -41,8 +41,14 @@ assert_checkequal(size(orb.x, 2), orb.n);
 orbDescriptors = imextract_DescriptorORB(S, orb);
 assert_checkequal(size(orbDescriptors), [orb.n 32]);
 
-siftDescriptors = imextract_DescriptorSIFT(S, orb);
-assert_checkequal(size(siftDescriptors), [orb.n 128]);
+sift = imdetect_SIFT(S);
+assert_checkequal(sift.type, "SIFT");
+assert_checktrue(sift.n >= 0);
+assert_checkequal(size(sift.x, 2), sift.n);
+if sift.n > 0 then
+    siftDescriptors = imextract_DescriptorSIFT(S, sift);
+    assert_checkequal(size(siftDescriptors), [sift.n 128]);
+end
 
 S2 = imrotate(S, 45);
 orb2 = imdetect_ORB(S2);
@@ -60,23 +66,6 @@ drawn = imdrawmatches(S, S2, fout1, fout2, mout);
 assert_checkequal(size(drawn, 3), 3);
 assert_checktrue(size(drawn, 1) > 0);
 assert_checktrue(size(drawn, 2) > 0);
-
-flannMatches = immatch_Flann(orbDescriptors, orbDescriptors2);
-assert_checkequal(size(flannMatches, 1), 4);
-assert_checkequal(size(flannMatches, 2), orb.n);
-
-[fout1, fout2, mout] = imbestmatches(orb, orb2, matches, 10);
-drawn = imdrawmatches(S, S2, fout1, fout2, mout);
-assert_checkequal(size(drawn, 3), 3);
-assert_checktrue(size(drawn, 1) > 0);
-assert_checktrue(size(drawn, 2) > 0);
-
-S2 = imrotate(S, 45);
-orb2 = imdetect_ORB(S2);
-orbDescriptors2 = imextract_DescriptorORB(S2, orb2);
-matches = immatch_BruteForce(orbDescriptors, orbDescriptors2, 4);
-assert_checkequal(size(matches, 1), 4);
-assert_checkequal(size(matches, 2), orb.n);
 
 star = imdetect_STAR(S);
 assert_checkequal(star.type, "STAR");

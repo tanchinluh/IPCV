@@ -37,11 +37,6 @@ function builder_gateway_cpp()
         "sci_int_dnn_superres_upsample.cpp";
         "sci_int_dnn_unload.cpp";
         "sci_int_dnn_unloadall.cpp";
-        "sci_int_imfindContours2.cpp";
-        "sci_int_imdetect_SIFT.cpp";
-        "sci_int_imhough.cpp";
-        "sci_int_imhoughcircles.cpp";
-        "sci_int_imstitchImage.cpp";
         "sci_int_imsuperres.cpp";
         "sci_int_tracker_init.cpp";
         "sci_int_tracker_update.cpp";
@@ -101,8 +96,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
-
 
 
 

@@ -295,7 +295,6 @@ int matvec2scihyper(vector<Mat> &pImage, void *pMatData);
 	int sci_int_imdrawmatches(char * fname,void* pvApiCtx);
 	int sci_mat2utfimg(char * fname,void* pvApiCtx);
 	int sci_int_imfindContours(char * fname,void* pvApiCtx);
-	int sci_int_imfindContours2(char * fname, void* pvApiCtx);
 	int sci_int_imconvexHull(char * fname,void* pvApiCtx);
 	int sci_int_imstitchImage(char * fname,void* pvApiCtx);
 	int sci_int_imsuperres(char * fname,void* pvApiCtx);
