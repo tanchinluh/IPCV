@@ -143,6 +143,54 @@ void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination
         }
     }
 }
+
+int ipcv_depth_from_mat_depth(int depth)
+{
+    return depth == CV_32F ? IPCV_DEPTH_64F : depth;
+}
+
+bool validate_stack_page(const cv::Mat& page, int rows, int cols, int channels, int depth)
+{
+    return !page.empty() && page.rows == rows && page.cols == cols && page.channels() == channels && page.depth() == depth;
+}
+
+bool copy_page_to_stack_layout(const cv::Mat& page, int pageIndex, int rows, int cols, int channels, int targetDepth, unsigned char *destination)
+{
+    const size_t elemBytes = depth_size(targetDepth);
+    if (elemBytes == 0)
+    {
+        return false;
+    }
+
+    cv::Mat converted;
+    const cv::Mat *source = &page;
+    if (page.depth() == CV_32F)
+    {
+        page.convertTo(converted, CV_64F);
+        source = &converted;
+    }
+
+    for (int ch = 0; ch < channels; ch++)
+    {
+        int srcCh = ch;
+        if ((channels == 3 || channels == 4) && ch < 3)
+        {
+            srcCh = 2 - ch;
+        }
+
+        for (int col = 0; col < cols; col++)
+        {
+            for (int row = 0; row < rows; row++)
+            {
+                const unsigned char *src = source->ptr<unsigned char>(row) + ((col * channels + srcCh) * elemBytes);
+                const size_t dstOffset = (((static_cast<size_t>(pageIndex) * channels + ch) * rows * cols) + static_cast<size_t>(col) * rows + row) * elemBytes;
+                std::memcpy(destination + dstOffset, src, elemBytes);
+            }
+        }
+    }
+
+    return true;
+}
 }
 
 extern "C" IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info)
@@ -319,6 +367,100 @@ extern "C" IPCV_CORE_API int ipcv_decode_image(const char *filename, int flags, 
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_decode_image_stack(const char *filename, int flags, IpcvDecodedImageStack *stack)
+{
+    if (stack == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(stack, 0, sizeof(*stack));
+    if (filename == NULL || filename[0] == 0)
+    {
+        std::strncpy(stack->error, "empty filename", sizeof(stack->error) - 1);
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        std::vector<cv::Mat> pages;
+        if (!cv::imreadmulti(filename, pages, flags) || pages.empty())
+        {
+            std::strncpy(stack->error, "OpenCV could not read multipage image", sizeof(stack->error) - 1);
+            return -1;
+        }
+
+        const int rows = pages[0].rows;
+        const int cols = pages[0].cols;
+        const int channels = pages[0].channels();
+        const int sourceDepth = pages[0].depth();
+        const int targetDepth = ipcv_depth_from_mat_depth(sourceDepth);
+        const int pageCount = static_cast<int>(pages.size());
+        const size_t elemBytes = depth_size(targetDepth);
+        if (elemBytes == 0)
+        {
+            std::strncpy(stack->error, "unsupported multipage image depth", sizeof(stack->error) - 1);
+            return -1;
+        }
+        if (channels != 1 && channels != 3)
+        {
+            std::strncpy(stack->error, "multipage image must be grayscale or RGB", sizeof(stack->error) - 1);
+            return -1;
+        }
+
+        stack->rows = rows;
+        stack->cols = cols;
+        stack->channels = channels;
+        stack->pages = pageCount;
+        stack->depth = targetDepth;
+        stack->byte_count = static_cast<size_t>(rows) * cols * channels * pageCount * elemBytes;
+        stack->data = static_cast<unsigned char*>(std::malloc(stack->byte_count));
+        if (stack->data == NULL)
+        {
+            std::strncpy(stack->error, "out of memory", sizeof(stack->error) - 1);
+            return -1;
+        }
+
+        for (int i = 0; i < pageCount; i++)
+        {
+            if (!validate_stack_page(pages[i], rows, cols, channels, sourceDepth))
+            {
+                ipcv_free_decoded_image_stack(stack);
+                std::strncpy(stack->error, "all multipage image pages must have the same size, channels, and depth", sizeof(stack->error) - 1);
+                return -1;
+            }
+            if (!copy_page_to_stack_layout(pages[i], i, rows, cols, channels, targetDepth, stack->data))
+            {
+                ipcv_free_decoded_image_stack(stack);
+                std::strncpy(stack->error, "could not convert multipage image data", sizeof(stack->error) - 1);
+                return -1;
+            }
+        }
+
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        std::strncpy(stack->error, e.what(), sizeof(stack->error) - 1);
+        stack->error[sizeof(stack->error) - 1] = 0;
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        std::strncpy(stack->error, e.what(), sizeof(stack->error) - 1);
+        stack->error[sizeof(stack->error) - 1] = 0;
+        return -1;
+    }
+    catch (...)
+    {
+        std::strncpy(stack->error, "unknown multipage decoder failure", sizeof(stack->error) - 1);
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API void ipcv_free_decoded_image(IpcvDecodedImage *image)
 {
     if (image == NULL)
@@ -329,4 +471,16 @@ extern "C" IPCV_CORE_API void ipcv_free_decoded_image(IpcvDecodedImage *image)
     std::free(image->data);
     image->data = NULL;
     image->byte_count = 0;
+}
+
+extern "C" IPCV_CORE_API void ipcv_free_decoded_image_stack(IpcvDecodedImageStack *stack)
+{
+    if (stack == NULL)
+    {
+        return;
+    }
+
+    std::free(stack->data);
+    stack->data = NULL;
+    stack->byte_count = 0;
 }

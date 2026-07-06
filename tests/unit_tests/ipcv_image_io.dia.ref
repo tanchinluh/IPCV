@@ -23,4 +23,9 @@ roundtrip = imread(outPath);
 assert_checkequal(size(roundtrip), [16 16 3]);
 assert_checkequal(roundtrip, patch);
 
+multiPath = fullpath(getIPCVpath() + "/images/circbw.tif");
+multi = imreadmulti(multiPath);
+assert_checkequal(typeof(multi), "uint8");
+assert_checktrue(size(multi, "*") > 0);
+
 //==============================================================================

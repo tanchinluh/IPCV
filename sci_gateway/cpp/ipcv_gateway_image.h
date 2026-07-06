@@ -16,6 +16,7 @@
 int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image);
 void ipcv_release_image_argument(IpcvDecodedImage& image);
 int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& image);
+int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedImageStack& stack);
 int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation);
 size_t ipcv_depth_size(int depth);
 

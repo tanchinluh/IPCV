@@ -10,6 +10,7 @@ Migrated code
    - Split source C++ into category files under `src/cpp`
 2. Image I/O
    - `imread` -> `src/cpp/ipcv_image_io.cpp`
+   - `imreadmulti` -> `src/cpp/ipcv_image_io.cpp`
    - `imfinfo` -> `src/cpp/ipcv_image_io.cpp`
    - `imwrite` -> `src/cpp/ipcv_image_io.cpp`
 3. Arithmetic

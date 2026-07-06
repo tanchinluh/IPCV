@@ -362,6 +362,55 @@ int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& im
 	return 0;
 }
 
+int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedImageStack& stack)
+{
+	int dims[4] = {stack.rows, stack.cols, stack.channels, stack.pages};
+	const int outVar = nbInputArgument(pvApiCtx) + nPos;
+	const size_t elemBytes = ipcv_depth_size(stack.depth);
+	const size_t expectedBytes = static_cast<size_t>(stack.rows) * stack.cols * stack.channels * stack.pages * elemBytes;
+	SciErr sciErr;
+
+	if (stack.rows <= 0 || stack.cols <= 0 || stack.channels <= 0 || stack.pages <= 0 || stack.data == NULL || elemBytes == 0 || stack.byte_count != expectedBytes)
+	{
+		Scierror(999, "IPCV: Invalid multipage image returned from C++ implementation.\n");
+		return -1;
+	}
+
+	switch(stack.depth)
+	{
+	case IPCV_DEPTH_8U:
+		sciErr = createHypermatOfUnsignedInteger8(pvApiCtx, outVar, dims, 4, stack.data);
+		break;
+	case IPCV_DEPTH_8S:
+		sciErr = createHypermatOfInteger8(pvApiCtx, outVar, dims, 4, reinterpret_cast<const char*>(stack.data));
+		break;
+	case IPCV_DEPTH_16U:
+		sciErr = createHypermatOfUnsignedInteger16(pvApiCtx, outVar, dims, 4, reinterpret_cast<const unsigned short*>(stack.data));
+		break;
+	case IPCV_DEPTH_16S:
+		sciErr = createHypermatOfInteger16(pvApiCtx, outVar, dims, 4, reinterpret_cast<const short*>(stack.data));
+		break;
+	case IPCV_DEPTH_32S:
+		sciErr = createHypermatOfInteger32(pvApiCtx, outVar, dims, 4, reinterpret_cast<const int*>(stack.data));
+		break;
+	case IPCV_DEPTH_64F:
+		sciErr = createHypermatOfDouble(pvApiCtx, outVar, dims, 4, reinterpret_cast<const double*>(stack.data));
+		break;
+	default:
+		Scierror(999, "IPCV: Unsupported multipage image depth %d.\n", stack.depth);
+		return -1;
+	}
+
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	AssignOutputVariable(pvApiCtx, nPos) = outVar;
+	return 0;
+}
+
 int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation)
 {
 	IpcvDecodedImage left;
