@@ -1,0 +1,26 @@
+//==============================================================================
+// IPCV OpenCV 5 migration
+//==============================================================================
+// unit test migrated image I/O source layer
+//==============================================================================
+
+imagePath = fullpath(getIPCVpath() + "/images/baboon.png");
+
+img = imread(imagePath);
+assert_checkequal(typeof(img), "uint8");
+assert_checkequal(size(img), [512 512 3]);
+
+info = imfinfo(imagePath);
+assert_checkequal(info(1), [512 512]);
+assert_checkequal(info(3), 3);
+
+patch = img(1:16, 1:16, :);
+outPath = fullpath(TMPDIR + "/ipcv_image_io.png");
+ret = imwrite(patch, outPath);
+assert_checkequal(ret, 1);
+
+roundtrip = imread(outPath);
+assert_checkequal(size(roundtrip), [16 16 3]);
+assert_checkequal(roundtrip, patch);
+
+//==============================================================================

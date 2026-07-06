@@ -4,6 +4,34 @@ OpenCV 5 migration branch
 1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
 2. Update gateway linking and C++ compile flags for OpenCV 5
 
+Migrated code
+1. Core source library
+   - Renamed source DLL target from `libipcv_decode` to `libipcv_core`
+   - Split source C++ into category files under `src/cpp`
+2. Image I/O
+   - `imread` -> `src/cpp/ipcv_image_io.cpp`
+   - `imfinfo` -> `src/cpp/ipcv_image_io.cpp`
+   - `imwrite` -> `src/cpp/ipcv_image_io.cpp`
+3. Arithmetic
+   - `imadd` -> `src/cpp/ipcv_arithmetic.cpp`
+   - `imsubtract` -> `src/cpp/ipcv_arithmetic.cpp`
+   - `immultiply` -> `src/cpp/ipcv_arithmetic.cpp`
+   - `imdivide` -> `src/cpp/ipcv_arithmetic.cpp`
+   - `imabsdiff` -> `src/cpp/ipcv_arithmetic.cpp`
+4. Spatial transformations
+   - `imresize` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `impyramid` -> `src/cpp/ipcv_spatial_transform.cpp`
+5. Gateway image exchange
+   - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
+   - Added `sci_gateway/cpp/ipcv_gateway_image.h`
+6. Current unit tests
+   - Current OpenCV 5 migration tests are in `tests/unit_tests`
+   - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
+   - `tests/unit_tests/ipcv_image_io.tst`
+   - `tests/unit_tests/ipcv_arithmetic.tst`
+   - `tests/unit_tests/ipcv_spatial_transform.tst`
+   - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
+
 Version 4.5.0.2 (03-Oct-25)
 1. Fix compilation warnings
 2. Fix call of deprecated macros for Scilab 2026.0.0
