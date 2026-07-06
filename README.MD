@@ -84,13 +84,24 @@ Migrated code
    - `int_imhoughcircles` -> `src/cpp/ipcv_hough.cpp`
    - `imstitchimage` / `int_imstitchImage` -> `src/cpp/ipcv_stitching.cpp`
    - `imsuperres` / `int_imsuperres` -> `src/cpp/ipcv_superres.cpp`
-15. Removed obsolete gateways
+15. Object detection and tracking
+   - `imdetectobjects` / `int_detectobjects` -> `src/cpp/ipcv_detection_tracking.cpp`
+   - `imtrack_init` / `int_tracker_init` -> `src/cpp/ipcv_detection_tracking.cpp`
+   - `imtrack_update` / `int_tracker_update` -> `src/cpp/ipcv_detection_tracking.cpp`
+   - `imtrack_unloadall` / `int_tracker_unloadall` -> `src/cpp/ipcv_detection_tracking.cpp`
+16. Video and camera handling
+   - `aviopen`, `avifile`, `aviinfo`, `avilistopened` -> `src/cpp/ipcv_video_camera.cpp`
+   - `avireadframe`, `aviaddframe`, `addframe` -> `src/cpp/ipcv_video_camera.cpp`
+   - `aviclose`, `avicloseall` -> `src/cpp/ipcv_video_camera.cpp`
+   - `camopen`, `camread`, `camlistopened` -> `src/cpp/ipcv_video_camera.cpp`
+   - `camclose`, `camcloseall` -> `src/cpp/ipcv_video_camera.cpp`
+17. Removed obsolete gateways
    - Removed `sci_int_imfindContours2.cpp`
    - Removed `sci_int_imread2.cpp`
-16. Gateway image exchange
+18. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-17. Current unit tests
+19. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -107,6 +118,8 @@ Migrated code
    - `tests/unit_tests/ipcv_feature_detection.tst`
    - `tests/unit_tests/ipcv_hough_stitching.tst`
    - `tests/unit_tests/ipcv_superres.tst`
+   - `tests/unit_tests/ipcv_detection_tracking.tst`
+   - `tests/unit_tests/ipcv_video_camera.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

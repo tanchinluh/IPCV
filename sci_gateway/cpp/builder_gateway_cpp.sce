@@ -36,9 +36,6 @@ function builder_gateway_cpp()
         "sci_int_dnn_superres_upsample.cpp";
         "sci_int_dnn_unload.cpp";
         "sci_int_dnn_unloadall.cpp";
-        "sci_int_tracker_init.cpp";
-        "sci_int_tracker_update.cpp";
-        "sci_int_tracker_unloadall.cpp";
     ];
     for i = 1:size(skip_cpp_files, "*")
         gw_cpp_files(gw_cpp_files == skip_cpp_files(i)) = [];
@@ -94,7 +91,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

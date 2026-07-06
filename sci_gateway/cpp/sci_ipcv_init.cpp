@@ -22,9 +22,6 @@
  ***********************************************************************/
 
 #include "common.h"
-OpenedAviFile OpenedAvi[MAX_AVI_FILE_NUM];
-//OpenedVideoCamCapture OpenedVideoCapture[MAX_AVI_FILE_NUM];
-OpenedCamCapture OpenedCam[MAX_AVI_FILE_NUM];
 DeepNetwork DeepNet[MAX_DL_NUM];
 ObjectTracker ObjTrack[MAX_TRACK_NUM];
 DeepSRNetwork DeepSRNet[MAX_DL_NUM];
@@ -89,11 +86,7 @@ int sci_ipcv_init(char * fname,void* pvApiCtx)
 	}
 
 	//cvSetErrMode(CV_ErrModeParent);
-	//memset(OpenedAviCap, 0, sizeof(OpenedAvifileCap));
-	//memset(OpenedCam, 0, sizeof(OpenedCamCapture));
-	//memset(OpenedVideoCapture, 0, sizeof(OpenedVideoCamCapture));
 	return 0;
 
 }
 /*--------------------------------------------------------------------------*/
-

@@ -4,6 +4,7 @@
 #include "ipcv_arithmetic.h"
 #include "ipcv_binary_analysis.h"
 #include "ipcv_color.h"
+#include "ipcv_detection_tracking.h"
 #include "ipcv_edge_filter.h"
 #include "ipcv_enhancement.h"
 #include "ipcv_feature_detection.h"
@@ -17,6 +18,7 @@
 #include "ipcv_stitching.h"
 #include "ipcv_structural_analysis.h"
 #include "ipcv_superres.h"
+#include "ipcv_video_camera.h"
 
 int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image);
 void ipcv_release_image_argument(IpcvDecodedImage& image);

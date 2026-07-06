@@ -88,31 +88,6 @@ using namespace cv::dnn;
 using namespace std;
 
 
-typedef struct OpenedAviFile{ 
-	int iswriter; //reader or writer
-//	union{
-//		CvCapture * cap; //for reading from video files or cameras
-//		CvVideoWriter * writer; // for writing to video files
-//	}video;
-	VideoCapture cap; //for reading from video files or cameras
-	VideoWriter writer; // for writing to video files
-	int width; //now only used by writer
-	int height;//now only used by writer
-	char filename[MAX_FILENAME_LENGTH];
-} OpenedAviFile;
-
-extern OpenedAviFile OpenedAvi[MAX_AVI_FILE_NUM];
-
-typedef struct OpenedCamCapture {
-	int iswriter; //reader or writer
-	VideoCapture cap; //for reading from video files or cameras
-	VideoWriter writer; // for writing to video files
-	int width; //now only used by writer
-	int height;//now only used by writer
-	char filename[MAX_FILENAME_LENGTH];
-} OpenedCamCapture;
-extern OpenedCamCapture OpenedCam[MAX_AVI_FILE_NUM];
-
 typedef struct DeepNetwork {
 #if CV_VERSION_MAJOR >= 5
 	int skipped_opencv5_dnn;
