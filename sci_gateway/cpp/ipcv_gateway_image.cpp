@@ -1,7 +1,12 @@
 #include "common.h"
 #include "ipcv_gateway_image.h"
 
+#include <algorithm>
+#include <stdlib.h>
 #include <string.h>
+#include <vector>
+
+static std::vector<unsigned char*> ipcv_owned_input_buffers;
 
 size_t ipcv_depth_size(int depth)
 {
@@ -31,6 +36,30 @@ static int ipcv_fill_image_metadata(IpcvDecodedImage& image)
 		return -1;
 	}
 	image.byte_count = static_cast<size_t>(image.rows) * image.cols * image.channels * elemBytes;
+	return 0;
+}
+
+static int ipcv_set_boolean_image(IpcvDecodedImage& image, int rows, int cols, int channels, const int *source)
+{
+	const size_t count = static_cast<size_t>(rows) * cols * channels;
+	unsigned char *data = static_cast<unsigned char*>(malloc(count));
+	if (data == NULL)
+	{
+		return -1;
+	}
+
+	for (size_t i = 0; i < count; i++)
+	{
+		data[i] = source[i] ? 255 : 0;
+	}
+
+	image.rows = rows;
+	image.cols = cols;
+	image.channels = channels;
+	image.depth = IPCV_DEPTH_8U;
+	image.byte_count = count;
+	image.data = data;
+	ipcv_owned_input_buffers.push_back(data);
 	return 0;
 }
 
@@ -72,6 +101,21 @@ int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image)
 			}
 			image.data = reinterpret_cast<unsigned char*>(data);
 			image.depth = IPCV_DEPTH_64F;
+		}
+		else if (precision == sci_boolean)
+		{
+			int *data = NULL;
+			sciErr = getHypermatOfBoolean(pvApiCtx, piAddr, &dims, &ndims, &data);
+			if (sciErr.iErr)
+			{
+				printError(&sciErr, 0);
+				return sciErr.iErr;
+			}
+			if (ndims < 2 || ndims > 3)
+			{
+				return -1;
+			}
+			return ipcv_set_boolean_image(image, dims[0], dims[1], ndims == 3 ? dims[2] : 1, data);
 		}
 		else if (precision == sci_ints)
 		{
@@ -151,6 +195,18 @@ int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image)
 		return ipcv_fill_image_metadata(image);
 	}
 
+	if (precision == sci_boolean)
+	{
+		int *data = NULL;
+		sciErr = getMatrixOfBoolean(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		return ipcv_set_boolean_image(image, iRows, iCols, 1, data);
+	}
+
 	if (precision != sci_ints)
 	{
 		return -1;
@@ -198,6 +254,18 @@ int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image)
 	image.cols = iCols;
 	image.channels = 1;
 	return ipcv_fill_image_metadata(image);
+}
+
+void ipcv_release_image_argument(IpcvDecodedImage& image)
+{
+	std::vector<unsigned char*>::iterator it = std::find(ipcv_owned_input_buffers.begin(), ipcv_owned_input_buffers.end(), image.data);
+	if (it != ipcv_owned_input_buffers.end())
+	{
+		free(image.data);
+		ipcv_owned_input_buffers.erase(it);
+	}
+	image.data = NULL;
+	image.byte_count = 0;
 }
 
 int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& image)
@@ -315,10 +383,13 @@ int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation)
 	if (iRet)
 	{
 		Scierror(999, "%s: Wrong type for input argument #%d: Image or scalar expected.\n", fname, 2);
+		ipcv_release_image_argument(left);
 		return iRet;
 	}
 
 	iRet = ipcv_binary_arithmetic(&left, &right, operation, &output);
+	ipcv_release_image_argument(left);
+	ipcv_release_image_argument(right);
 	if (iRet)
 	{
 		Scierror(999, "%s: %s\n", fname, output.error);

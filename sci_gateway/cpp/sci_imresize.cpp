@@ -43,6 +43,7 @@ int sci_imresize(char *fname, void *pvApiCtx)
     if (iRet || sizeArg == NULL)
     {
         Scierror(999, "%s: Wrong type for input argument #%d: Double value or 1x2 vector expected.\n", fname, 2);
+        ipcv_release_image_argument(source);
         return -1;
     }
 
@@ -59,6 +60,7 @@ int sci_imresize(char *fname, void *pvApiCtx)
     else
     {
         Scierror(999, "%s: The second parameter should be a double value or 1x2 vector.\n", fname);
+        ipcv_release_image_argument(source);
         return -1;
     }
 
@@ -69,6 +71,7 @@ int sci_imresize(char *fname, void *pvApiCtx)
         if (iRet || method == NULL)
         {
             Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 3);
+            ipcv_release_image_argument(source);
             return -1;
         }
 
@@ -95,11 +98,13 @@ int sci_imresize(char *fname, void *pvApiCtx)
         else
         {
             Scierror(999, "%s: Interpolation method '%s' is not supported.\n", fname, method);
+            ipcv_release_image_argument(source);
             return -1;
         }
     }
 
     iRet = ipcv_resize_image(&source, targetRows, targetCols, interpolation, &output);
+    ipcv_release_image_argument(source);
     if (iRet)
     {
         Scierror(999, "%s: %s\n", fname, output.error);

@@ -38,6 +38,7 @@ int sci_impyramid(char *fname, void *pvApiCtx)
     if (iRet || directionName == NULL)
     {
         Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 2);
+        ipcv_release_image_argument(source);
         return -1;
     }
 
@@ -52,10 +53,12 @@ int sci_impyramid(char *fname, void *pvApiCtx)
     else
     {
         Scierror(999, "%s: Undefined pyramid direction '%s'.\n", fname, directionName);
+        ipcv_release_image_argument(source);
         return -1;
     }
 
     iRet = ipcv_pyramid_image(&source, direction, &output);
+    ipcv_release_image_argument(source);
     if (iRet)
     {
         Scierror(999, "%s: %s\n", fname, output.error);

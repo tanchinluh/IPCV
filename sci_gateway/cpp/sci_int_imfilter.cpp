@@ -37,10 +37,13 @@ int sci_int_imfilter(char *fname, void *pvApiCtx)
     if (iRet)
     {
         Scierror(999, "%s: Wrong type for input argument #%d: 2D kernel expected.\n", fname, 2);
+        ipcv_release_image_argument(source);
         return iRet;
     }
 
     iRet = ipcv_filter2d_image(&source, &kernel, IPCV_FILTER_OUTPUT_SAME_DEPTH, &output);
+    ipcv_release_image_argument(source);
+    ipcv_release_image_argument(kernel);
     if (iRet)
     {
         Scierror(999, "%s: %s\n", fname, output.error);
