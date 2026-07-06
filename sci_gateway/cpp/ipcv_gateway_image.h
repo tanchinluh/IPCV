@@ -8,7 +8,9 @@
 #include "ipcv_enhancement.h"
 #include "ipcv_filtering.h"
 #include "ipcv_image_io.h"
+#include "ipcv_image_transform.h"
 #include "ipcv_morphology.h"
+#include "ipcv_segmentation.h"
 #include "ipcv_spatial_transform.h"
 
 int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image);
