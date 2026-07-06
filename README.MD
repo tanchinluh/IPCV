@@ -21,6 +21,11 @@ Migrated code
 4. Spatial transformations
    - `imresize` -> `src/cpp/ipcv_spatial_transform.cpp`
    - `impyramid` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `imtransform(..., "affine", ...)` / `int_affinetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `imtransform(..., "perspective", ...)` / `int_perspectivetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `imgettransform(..., "affine", ...)` / `int_getaffinetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `imgettransform(..., "perspective", ...)` / `int_getperspectivetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
+   - `imrotate` -> `src/cpp/ipcv_spatial_transform.cpp`
 5. Filtering
    - `filter2` -> `src/cpp/ipcv_filtering.cpp`
    - `imfilter` -> `src/cpp/ipcv_filtering.cpp`
@@ -34,10 +39,19 @@ Migrated code
    - `rgb2lab` -> `src/cpp/ipcv_color.cpp`
    - `bgr2lab` -> `src/cpp/ipcv_color.cpp`
    - `rgb2hsv` / `hsv2rgb2` / `rgb2ycbcr` / `ycbcr2rgb` -> `src/cpp/ipcv_color.cpp`
-8. Gateway image exchange
+8. Edge/detail filtering
+   - `edge(..., "sobel", ...)` / `int_sobel` -> `src/cpp/ipcv_edge_filter.cpp`
+   - `edge(..., "canny", ...)` / `int_canny` -> `src/cpp/ipcv_edge_filter.cpp`
+   - `immedian` -> `src/cpp/ipcv_edge_filter.cpp`
+9. Binary analysis
+   - `imdist` -> `src/cpp/ipcv_binary_analysis.cpp`
+   - `imdistransf` -> `src/cpp/ipcv_binary_analysis.cpp`
+   - `imfill` -> `src/cpp/ipcv_binary_analysis.cpp`
+   - `imlabel` -> `src/cpp/ipcv_binary_analysis.cpp`
+10. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-9. Current unit tests
+11. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -46,6 +60,8 @@ Migrated code
    - `tests/unit_tests/ipcv_filtering.tst`
    - `tests/unit_tests/ipcv_morphology.tst`
    - `tests/unit_tests/ipcv_color.tst`
+   - `tests/unit_tests/ipcv_edge_filter.tst`
+   - `tests/unit_tests/ipcv_binary_analysis.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

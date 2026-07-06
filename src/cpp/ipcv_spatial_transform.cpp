@@ -2,6 +2,7 @@
 #include "ipcv_spatial_transform.h"
 
 #include <opencv2/core.hpp>
+#include <opencv2/geometry.hpp>
 #include <opencv2/imgproc.hpp>
 
 #include <cstdlib>
@@ -323,6 +324,396 @@ extern "C" IPCV_CORE_API int ipcv_pyramid_image(const IpcvDecodedImage *source, 
     catch (...)
     {
         set_error(output, "unknown pyramid failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_affine_transform_image(const IpcvDecodedImage *source, const IpcvDecodedImage *matrix, int target_rows, int target_cols, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL || matrix == NULL)
+    {
+        set_error(output, "missing image or affine matrix input");
+        return -1;
+    }
+    if (target_rows <= 0 || target_cols <= 0)
+    {
+        set_error(output, "target image size must be positive");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat matrixMat;
+        cv::Mat transformed;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (!image_to_mat(*matrix, matrixMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (matrixMat.channels() != 1)
+        {
+            set_error(output, "affine matrix must be single-channel");
+            return -1;
+        }
+        if (matrixMat.rows == 3 && matrixMat.cols == 2)
+        {
+            matrixMat = matrixMat.t();
+        }
+        if (matrixMat.rows != 2 || matrixMat.cols != 3)
+        {
+            set_error(output, "affine matrix must be 2x3");
+            return -1;
+        }
+        if (matrixMat.depth() != CV_64F)
+        {
+            matrixMat.convertTo(matrixMat, CV_64F);
+        }
+
+        cv::warpAffine(sourceMat, transformed, matrixMat, cv::Size(target_cols, target_rows));
+        if (!mat_to_image(transformed, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert affine transform image");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown affine transform failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_perspective_transform_image(const IpcvDecodedImage *source, const IpcvDecodedImage *matrix, int target_rows, int target_cols, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL || matrix == NULL)
+    {
+        set_error(output, "missing image or perspective matrix input");
+        return -1;
+    }
+    if (target_rows <= 0 || target_cols <= 0)
+    {
+        set_error(output, "target image size must be positive");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat matrixMat;
+        cv::Mat transformed;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (!image_to_mat(*matrix, matrixMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (matrixMat.channels() != 1 || matrixMat.rows != 3 || matrixMat.cols != 3)
+        {
+            set_error(output, "perspective matrix must be 3x3");
+            return -1;
+        }
+        matrixMat = matrixMat.t();
+        if (matrixMat.depth() != CV_64F)
+        {
+            matrixMat.convertTo(matrixMat, CV_64F);
+        }
+
+        cv::warpPerspective(sourceMat, transformed, matrixMat, cv::Size(target_cols, target_rows));
+        if (!mat_to_image(transformed, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert perspective transform image");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown perspective transform failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_rotate_image(const IpcvDecodedImage *source, double angle, int crop, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat rotation;
+        cv::Mat rotated;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+
+        const cv::Point2f center(sourceMat.cols / 2.0f, sourceMat.rows / 2.0f);
+        rotation = cv::getRotationMatrix2D(center, angle, 1.0);
+        if (crop == 1)
+        {
+            cv::warpAffine(sourceMat, rotated, rotation, sourceMat.size());
+        }
+        else
+        {
+            const cv::Rect bbox = cv::RotatedRect(center, sourceMat.size(), static_cast<float>(angle)).boundingRect();
+            rotation.at<double>(0, 2) += bbox.width / 2.0 - center.x;
+            rotation.at<double>(1, 2) += bbox.height / 2.0 - center.y;
+            cv::warpAffine(sourceMat, rotated, rotation, bbox.size());
+        }
+
+        if (!mat_to_image(rotated, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert rotated image");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown rotate failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_get_affine_transform_matrix(const IpcvDecodedImage *source_points, const IpcvDecodedImage *target_points, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source_points == NULL || target_points == NULL)
+    {
+        set_error(output, "missing source or target points");
+        return -1;
+    }
+
+    try
+    {
+        cv::Mat sourceMat;
+        cv::Mat targetMat;
+        char error[256] = {0};
+        if (!image_to_mat(*source_points, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (!image_to_mat(*target_points, targetMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (sourceMat.channels() != 1 || targetMat.channels() != 1 || sourceMat.rows != 3 || targetMat.rows != 3 || sourceMat.cols != 2 || targetMat.cols != 2)
+        {
+            set_error(output, "affine transform points must be 3x2 matrices");
+            return -1;
+        }
+        if (sourceMat.depth() != CV_64F)
+        {
+            sourceMat.convertTo(sourceMat, CV_64F);
+        }
+        if (targetMat.depth() != CV_64F)
+        {
+            targetMat.convertTo(targetMat, CV_64F);
+        }
+
+        cv::Point2f sourceTri[3];
+        cv::Point2f targetTri[3];
+        for (int i = 0; i < 3; i++)
+        {
+            sourceTri[i] = cv::Point2f(static_cast<float>(sourceMat.at<double>(i, 0)), static_cast<float>(sourceMat.at<double>(i, 1)));
+            targetTri[i] = cv::Point2f(static_cast<float>(targetMat.at<double>(i, 0)), static_cast<float>(targetMat.at<double>(i, 1)));
+        }
+
+        cv::Mat matrix = cv::getAffineTransform(sourceTri, targetTri);
+        if (!mat_to_image(matrix, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert affine transform matrix");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown affine matrix failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_get_perspective_transform_matrix(const IpcvDecodedImage *source_points, const IpcvDecodedImage *target_points, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source_points == NULL || target_points == NULL)
+    {
+        set_error(output, "missing source or target points");
+        return -1;
+    }
+
+    try
+    {
+        cv::Mat sourceMat;
+        cv::Mat targetMat;
+        char error[256] = {0};
+        if (!image_to_mat(*source_points, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (!image_to_mat(*target_points, targetMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (sourceMat.channels() != 1 || targetMat.channels() != 1 || sourceMat.rows != 4 || targetMat.rows != 4 || sourceMat.cols != 2 || targetMat.cols != 2)
+        {
+            set_error(output, "perspective transform points must be 4x2 matrices");
+            return -1;
+        }
+        if (sourceMat.depth() != CV_64F)
+        {
+            sourceMat.convertTo(sourceMat, CV_64F);
+        }
+        if (targetMat.depth() != CV_64F)
+        {
+            targetMat.convertTo(targetMat, CV_64F);
+        }
+
+        cv::Point2f sourceQuad[4];
+        cv::Point2f targetQuad[4];
+        for (int i = 0; i < 4; i++)
+        {
+            sourceQuad[i] = cv::Point2f(static_cast<float>(sourceMat.at<double>(i, 0)), static_cast<float>(sourceMat.at<double>(i, 1)));
+            targetQuad[i] = cv::Point2f(static_cast<float>(targetMat.at<double>(i, 0)), static_cast<float>(targetMat.at<double>(i, 1)));
+        }
+
+        cv::Mat matrix = cv::getPerspectiveTransform(sourceQuad, targetQuad);
+        if (!mat_to_image(matrix, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert perspective transform matrix");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown perspective matrix failure");
         return -1;
     }
 }

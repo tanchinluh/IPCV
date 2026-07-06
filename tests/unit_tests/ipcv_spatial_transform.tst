@@ -22,4 +22,44 @@ expanded = impyramid(reduced, "expand");
 assert_checkequal(typeof(expanded), "uint8");
 assert_checkequal(size(expanded), [512 512 3]);
 
+small = uint8([1 2 3; 4 5 6]);
+
+affineIdentity = [1 0 0; 0 1 0];
+affineOut = int_affinetransform(small, affineIdentity, 3, 2);
+assert_checkequal(typeof(affineOut), "uint8");
+assert_checkequal(size(affineOut), [2 3]);
+assert_checkequal(affineOut, small);
+
+affineSrc = [1 1; 3 1; 1 2];
+affineTgt = affineSrc;
+affineMat = imgettransform(affineSrc, affineTgt, "affine");
+affinePublic = imtransform(small, affineMat, "affine", 3, 2);
+assert_checkequal(typeof(affinePublic), "uint8");
+assert_checkequal(size(affinePublic), [2 3]);
+assert_checkequal(affinePublic, small);
+
+perspectiveIdentity = [1 0 0; 0 1 0; 0 0 1];
+perspectiveOut = int_perspectivetransform(small, perspectiveIdentity, 3, 2);
+assert_checkequal(typeof(perspectiveOut), "uint8");
+assert_checkequal(size(perspectiveOut), [2 3]);
+assert_checkequal(perspectiveOut, small);
+
+perspectiveSrc = [1 1; 3 1; 1 2; 3 2];
+perspectiveTgt = perspectiveSrc;
+perspectiveMat = imgettransform(perspectiveSrc, perspectiveTgt, "perspective");
+perspectivePublic = imtransform(small, perspectiveMat, "perspective", 3, 2);
+assert_checkequal(typeof(perspectivePublic), "uint8");
+assert_checkequal(size(perspectivePublic), [2 3]);
+assert_checkequal(perspectivePublic, small);
+
+rotatedCropped = imrotate(small, 0, 1);
+assert_checkequal(typeof(rotatedCropped), "uint8");
+assert_checkequal(size(rotatedCropped), [2 3]);
+assert_checkequal(rotatedCropped, small);
+
+rotatedExpanded = imrotate(small, 90, 0);
+assert_checkequal(typeof(rotatedExpanded), "uint8");
+assert_checktrue(size(rotatedExpanded, 1) >= 3);
+assert_checktrue(size(rotatedExpanded, 2) >= 2);
+
 //==============================================================================

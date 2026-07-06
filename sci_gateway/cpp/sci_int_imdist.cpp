@@ -1,29 +1,34 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2020  Tan Chin Luh
- ***********************************************************************/
-
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
-/************************************************************
-* imout = int_imdist(imin, me);
-************************************************************/
+#include <string.h>
 
-
-int sci_int_imdist(char * fname,void* pvApiCtx)
+int sci_int_imdist(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	Mat src;
-	Mat dst;
-	Mat se;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-	GetImage(1,src,pvApiCtx);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Binary image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	distanceTransform(src, dst, CV_DIST_L1, 3);
+    iRet = ipcv_distance_l1_image(&source, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	SetImage(1,dst,pvApiCtx);
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

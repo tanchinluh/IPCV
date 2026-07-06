@@ -24,6 +24,11 @@ enum
 
 IPCV_CORE_API int ipcv_resize_image(const IpcvDecodedImage *source, int target_rows, int target_cols, int interpolation, IpcvDecodedImage *output);
 IPCV_CORE_API int ipcv_pyramid_image(const IpcvDecodedImage *source, int direction, IpcvDecodedImage *output);
+IPCV_CORE_API int ipcv_affine_transform_image(const IpcvDecodedImage *source, const IpcvDecodedImage *matrix, int target_rows, int target_cols, IpcvDecodedImage *output);
+IPCV_CORE_API int ipcv_perspective_transform_image(const IpcvDecodedImage *source, const IpcvDecodedImage *matrix, int target_rows, int target_cols, IpcvDecodedImage *output);
+IPCV_CORE_API int ipcv_rotate_image(const IpcvDecodedImage *source, double angle, int crop, IpcvDecodedImage *output);
+IPCV_CORE_API int ipcv_get_affine_transform_matrix(const IpcvDecodedImage *source_points, const IpcvDecodedImage *target_points, IpcvDecodedImage *output);
+IPCV_CORE_API int ipcv_get_perspective_transform_matrix(const IpcvDecodedImage *source_points, const IpcvDecodedImage *target_points, IpcvDecodedImage *output);
 
 #ifdef __cplusplus
 }
