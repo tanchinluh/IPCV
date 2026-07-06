@@ -18,8 +18,11 @@ function S = imreadmulti(fn,modes)
     //      imreadmulti reads multi pages image files into Scilab as 4 dimentions matrix.
     //    
     //    Examples
-    //      im = imreadmulti(fullpath(getIPCVpath() + "/images/circbw.tif"));
-    //      imshow(im(:,:,:,1));
+    //      im = imreadmulti(fullpath(getIPCVpath() + "/images/" + 'img_multipage.tiff'));
+    //      for i = 1:10
+    //          subplot(2,5,i);
+    //          imshow(im(:,:,:,i));
+    //      end
     //     
     //    See also
     //      imread

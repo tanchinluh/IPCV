@@ -411,6 +411,137 @@ int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedIma
 	return 0;
 }
 
+int ipcv_get_contour_list_argument(void* pvApiCtx, int nPos, IpcvContourList& list)
+{
+	SciErr sciErr;
+	int *listAddr = NULL;
+	int itemCount = 0;
+	int columns = -1;
+	size_t totalValues = 0;
+	std::vector<int> rowCounts;
+	std::vector<std::vector<double>> items;
+
+	memset(&list, 0, sizeof(list));
+	sciErr = getVarAddressFromPosition(pvApiCtx, nPos, &listAddr);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = getListItemNumber(pvApiCtx, listAddr, &itemCount);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	rowCounts.resize(itemCount);
+	items.resize(itemCount);
+	for (int item = 0; item < itemCount; item++)
+	{
+		int *itemAddr = NULL;
+		int rows = 0;
+		int cols = 0;
+		double *data = NULL;
+
+		sciErr = getListItemAddress(pvApiCtx, listAddr, item + 1, &itemAddr);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		sciErr = getMatrixOfDoubleInList(pvApiCtx, listAddr, item + 1, &rows, &cols, &data);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		if (columns < 0)
+		{
+			columns = cols;
+		}
+		if (cols != columns || rows < 0)
+		{
+			return -1;
+		}
+
+		rowCounts[item] = rows;
+		items[item].assign(data, data + static_cast<size_t>(rows) * cols);
+		totalValues += static_cast<size_t>(rows) * cols;
+	}
+
+	list.count = itemCount;
+	list.columns = columns < 0 ? 0 : columns;
+	list.rows = static_cast<int*>(calloc(static_cast<size_t>(itemCount), sizeof(int)));
+	list.data = static_cast<double*>(calloc(totalValues == 0 ? 1 : totalValues, sizeof(double)));
+	if ((itemCount > 0 && list.rows == NULL) || list.data == NULL)
+	{
+		ipcv_release_contour_list_argument(list);
+		return -1;
+	}
+
+	size_t offset = 0;
+	for (int item = 0; item < itemCount; item++)
+	{
+		list.rows[item] = rowCounts[item];
+		const size_t itemValues = static_cast<size_t>(rowCounts[item]) * list.columns;
+		if (itemValues > 0)
+		{
+			memcpy(list.data + offset, items[item].data(), itemValues * sizeof(double));
+		}
+		offset += itemValues;
+	}
+
+	return 0;
+}
+
+void ipcv_release_contour_list_argument(IpcvContourList& list)
+{
+	free(list.rows);
+	free(list.data);
+	list.rows = NULL;
+	list.data = NULL;
+	list.count = 0;
+	list.columns = 0;
+}
+
+int ipcv_set_contour_list_argument(void* pvApiCtx, int nPos, const IpcvContourList& list)
+{
+	SciErr sciErr;
+	int *listAddr = NULL;
+	const int outVar = nbInputArgument(pvApiCtx) + nPos;
+
+	if (list.count < 0 || list.columns <= 0 || list.rows == NULL || list.data == NULL)
+	{
+		Scierror(999, "IPCV: Invalid contour list returned from C++ implementation.\n");
+		return -1;
+	}
+
+	sciErr = createList(pvApiCtx, outVar, list.count, &listAddr);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	size_t offset = 0;
+	for (int item = 0; item < list.count; item++)
+	{
+		const int rows = list.rows[item];
+		sciErr = createMatrixOfDoubleInList(pvApiCtx, outVar, listAddr, item + 1, rows, list.columns, list.data + offset);
+		if (sciErr.iErr)
+		{
+			printError(&sciErr, 0);
+			return sciErr.iErr;
+		}
+		offset += static_cast<size_t>(rows) * list.columns;
+	}
+
+	AssignOutputVariable(pvApiCtx, nPos) = outVar;
+	return 0;
+}
+
 int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation)
 {
 	IpcvDecodedImage left;

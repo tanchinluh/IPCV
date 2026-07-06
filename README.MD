@@ -57,10 +57,14 @@ Migrated code
 11. Image transforms and segmentation
    - `imradon` -> `src/cpp/ipcv_image_transform.cpp`
    - `imwatershed` -> `src/cpp/ipcv_segmentation.cpp`
-12. Gateway image exchange
+12. Structural analysis
+   - `imfindContours` -> `src/cpp/ipcv_structural_analysis.cpp`
+   - `imconvexHull` -> `src/cpp/ipcv_structural_analysis.cpp`
+   - `imconvexityDefects` -> `src/cpp/ipcv_structural_analysis.cpp`
+13. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-13. Current unit tests
+14. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -73,6 +77,7 @@ Migrated code
    - `tests/unit_tests/ipcv_binary_analysis.tst`
    - `tests/unit_tests/ipcv_enhancement.tst`
    - `tests/unit_tests/ipcv_image_transform.tst`
+   - `tests/unit_tests/ipcv_structural_analysis.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)
