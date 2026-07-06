@@ -48,10 +48,15 @@ Migrated code
    - `imdistransf` -> `src/cpp/ipcv_binary_analysis.cpp`
    - `imfill` -> `src/cpp/ipcv_binary_analysis.cpp`
    - `imlabel` -> `src/cpp/ipcv_binary_analysis.cpp`
-10. Gateway image exchange
+10. Enhancement and restoration
+   - `imdct` -> `src/cpp/ipcv_enhancement.cpp`
+   - `imidct` -> `src/cpp/ipcv_enhancement.cpp`
+   - `imadapthistequal` -> `src/cpp/ipcv_enhancement.cpp`
+   - `iminpaint` -> `src/cpp/ipcv_enhancement.cpp`
+11. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-11. Current unit tests
+12. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -62,6 +67,7 @@ Migrated code
    - `tests/unit_tests/ipcv_color.tst`
    - `tests/unit_tests/ipcv_edge_filter.tst`
    - `tests/unit_tests/ipcv_binary_analysis.tst`
+   - `tests/unit_tests/ipcv_enhancement.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

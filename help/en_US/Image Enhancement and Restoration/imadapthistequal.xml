@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * Help file for imadapthistequal.
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imadapthistequal" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imadapthistequal</refname>
+    <refpurpose>Adaptive histogram equalization using CLAHE</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   y = imadapthistequal(x)
+   y = imadapthistequal(x, cl)
+
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>x :</term>
+            <listitem><para> Source image. The input can be a grayscale image or an RGB image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>cl :</term>
+            <listitem><para> Clip limit for contrast limiting. The default value is 3.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>y :</term>
+            <listitem><para> Output image with locally enhanced contrast. The output has the same image size as the input.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function applies contrast limited adaptive histogram equalization
+(CLAHE). CLAHE improves local contrast while limiting the amplification
+of noise in nearly uniform image regions.
+   </para>
+   <para>
+For a grayscale image, CLAHE is applied directly to the image intensity.
+For an RGB image, the image is converted to the Lab color space, CLAHE is
+applied to the lightness channel, and the result is converted back to
+RGB. This enhances contrast while preserving the color information.
+   </para>
+   <para>
+If the input image is not an integer image, it is converted to uint8
+before processing and converted back to the original Scilab image type
+after processing.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+J = imadapthistequal(S, 2);
+imshow(S);
+scf; imshow(J);
+
+G = rgb2gray(S);
+K = imadapthistequal(G, 2);
+scf; imshow(K);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imhistequal">imhistequal</link></member>
+   <member><link linkend="imadjust">imadjust</link></member>
+   <member><link linkend="rgb2gray">rgb2gray</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

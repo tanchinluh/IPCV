@@ -57,6 +57,7 @@
 <!ENTITY a975f89b3a733d9922c2453c8fcbbbdb1 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Block Processing/imblockproc.xml">
 <!ENTITY a160c43a92e93dcefe1e12a79dd1f7298 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Block Processing/imblockslide.xml">
 <!ENTITY a403a85a8b8a3470b0a60c5ba9116999f SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Block Processing/imcolproc.xml">
+<!ENTITY af7c55c1944b90c53bdbaa98603e70f67 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Enhancement and Restoration/imadapthistequal.xml">
 <!ENTITY a40c169e8596b2496f090874edc544ac6 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Enhancement and Restoration/imadjust.xml">
 <!ENTITY abedacb7d863ff524666f6f6bdaac56cb SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvl2.xml">
 <!ENTITY a035314f7fb98e5e3e762a82e9f874e64 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Enhancement and Restoration/imdeconvsobolev.xml">
@@ -268,6 +269,7 @@
 </part>
 <part xml:id='section_e24ea0fd5be5ff647b75c899b8a581ec'>
 <title>Image Enhancement and Restoration</title>
+&af7c55c1944b90c53bdbaa98603e70f67;
 &a40c169e8596b2496f090874edc544ac6;
 &abedacb7d863ff524666f6f6bdaac56cb;
 &a035314f7fb98e5e3e762a82e9f874e64;

@@ -41,6 +41,7 @@
   "im2uint16": "TBX/help/en_US/Image Types and Color Space Conversions/im2uint16.xml",
   "im2uint8": "TBX/help/en_US/Image Types and Color Space Conversions/im2uint8.xml",
   "imabsdiff": "TBX/help/en_US/Image Arithmetic/imabsdiff.xml",
+  "imadapthistequal": "TBX/help/en_US/Image Enhancement and Restoration/imadapthistequal.xml",
   "imadd": "TBX/help/en_US/Image Arithmetic/imadd.xml",
   "imaddtext": "TBX/help/en_US/Utilities and Interactive Tools/imaddtext.xml",
   "imadjust": "TBX/help/en_US/Image Enhancement and Restoration/imadjust.xml",

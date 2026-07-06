@@ -1,38 +1,34 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- ***********************************************************************/
-
-
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
+#include <string.h>
 
-
-/************************************************************
-* y = int_imidct(x);
-************************************************************/
-
-int sci_int_imidct(char * fname,void* pvApiCtx)
+int sci_int_imidct(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	CheckInputArgument(pvApiCtx, 1, 1);
-	CheckOutputArgument(pvApiCtx, 1, 1);
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	/////////////////
-	// First Input //
-	/////////////////
-	Mat pSrcImg;
-	GetImage(1,pSrcImg,pvApiCtx);
-	/////////////////
-	Mat pDstImg = pSrcImg;
-	//
-	dct( pSrcImg, pDstImg,1);
-	//sciprint("dims : %i\n",pSrcImg.dims);
-	//sciprint("dims : %i\n",pSrcImg.dims);
-	//
-	SetImage(1,pDstImg,pvApiCtx);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Single-channel matrix expected.\n", fname, 1);
+        return iRet;
+    }
 
-	return 0;
+    iRet = ipcv_dct_image(&source, IPCV_DCT_INVERSE, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

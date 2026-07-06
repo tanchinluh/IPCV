@@ -1,56 +1,52 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- ***********************************************************************/
-
-
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
-int sci_int_iminpaint(char * fname,void* pvApiCtx)
+#include <math.h>
+#include <string.h>
+
+int sci_int_iminpaint(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage mask;
+    IpcvDecodedImage output;
+    double *radius = NULL;
+    double *method = NULL;
+    int rows = 0;
+    int cols = 0;
 
-	// Initialization
-	//IplImage *pSrcImg = NULL;
-	//IplImage *pMask = NULL;
-	//IplImage *pDstImg = NULL;
-	Mat pSrcImg, pDstImg,pMask;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 4, 4);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	int mR1 = 0, nR1, lR1 = 0;
-	int mR2 = 0, nR2 = 0, lR2 = 0;
-	int flags = 0;
-	double *inpaintRange = NULL;
-	double *FLAG = NULL;
-	int flag;
-	int iRows			= 0;
-	int iCols			= 0;
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	// Checking numbers of Arguments
-	//CheckRhs(4, 4);
-	//CheckLhs(1, 1);
-	CheckInputArgument(pvApiCtx, 4, 4);
-	CheckOutputArgument(pvApiCtx, 1, 1);
-	
-	// Creating images and getting parameters
-	//pSrcImg = Mat2IplImg(1);
-	GetImage(1,pSrcImg,pvApiCtx);
-	//pMask = Mat2IplImg(2);
-	GetImage(2,pMask,pvApiCtx);
-	//GetRhsVar(3,"d", &mR1, &nR1, &lR1);
-	//inpaintRange = *stk(lR1);
-	GetDouble(3,inpaintRange,iRows,iCols,pvApiCtx);
-	//GetRhsVar(4,"i", &mR2, &nR2, &lR2);
-	//flags = *istk(lR2);
-	GetDouble(4,FLAG,iRows,iCols,pvApiCtx);
-	flag = round(*FLAG);
-	//pDstImg = cvCreateImage(cvSize(pSrcImg->width, pSrcImg->height),pSrcImg->depth, pSrcImg->nChannels);
+    iRet = ipcv_get_image_argument(pvApiCtx, 2, mask);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Mask expected.\n", fname, 2);
+        ipcv_release_image_argument(source);
+        return iRet;
+    }
 
-	// Do the transformation
-	inpaint(pSrcImg, pMask, pDstImg, *inpaintRange, flag);
+    GetDouble(3, radius, rows, cols, pvApiCtx);
+    GetDouble(4, method, rows, cols, pvApiCtx);
 
-	// Export image
-	SetImage(1,pDstImg,pvApiCtx);
+    iRet = ipcv_inpaint_image(&source, &mask, *radius, static_cast<int>(round(*method)), &output);
+    ipcv_release_image_argument(source);
+    ipcv_release_image_argument(mask);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }
