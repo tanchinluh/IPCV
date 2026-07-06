@@ -26,4 +26,9 @@ defects = imconvexityDefects(contours, hullIndices);
 firstDefects = defects(1);
 assert_checkequal(size(firstDefects, 2), 4);
 
+bounds = int_imboundingRect(Sbw);
+assert_checkequal(size(bounds), [4 1]);
+assert_checktrue(bounds(3) > 0);
+assert_checktrue(bounds(4) > 0);
+
 //==============================================================================

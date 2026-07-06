@@ -414,6 +414,80 @@ extern "C" IPCV_CORE_API int ipcv_convexity_defects(const IpcvContourList *conto
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_bounding_rect(const IpcvDecodedImage *source, double rect[4], char *error, int error_size)
+{
+    if (rect == NULL)
+    {
+        return -1;
+    }
+
+    rect[0] = 0;
+    rect[1] = 0;
+    rect[2] = 0;
+    rect[3] = 0;
+    if (source == NULL)
+    {
+        if (error != NULL && error_size > 0)
+        {
+            std::strncpy(error, "missing bounding rectangle image input", error_size - 1);
+            error[error_size - 1] = 0;
+        }
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat source_mat;
+        char local_error[256] = {0};
+        if (!image_to_mat(*source, source_mat, local_error))
+        {
+            if (error != NULL && error_size > 0)
+            {
+                std::strncpy(error, local_error, error_size - 1);
+                error[error_size - 1] = 0;
+            }
+            return -1;
+        }
+
+        cv::Rect bounds = cv::boundingRect(source_mat);
+        rect[0] = bounds.x;
+        rect[1] = bounds.y;
+        rect[2] = bounds.width;
+        rect[3] = bounds.height;
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        if (error != NULL && error_size > 0)
+        {
+            std::strncpy(error, e.what(), error_size - 1);
+            error[error_size - 1] = 0;
+        }
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        if (error != NULL && error_size > 0)
+        {
+            std::strncpy(error, e.what(), error_size - 1);
+            error[error_size - 1] = 0;
+        }
+        return -1;
+    }
+    catch (...)
+    {
+        if (error != NULL && error_size > 0)
+        {
+            std::strncpy(error, "unknown bounding rectangle failure", error_size - 1);
+            error[error_size - 1] = 0;
+        }
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API void ipcv_free_contour_list(IpcvContourList *contours)
 {
     if (contours == NULL)

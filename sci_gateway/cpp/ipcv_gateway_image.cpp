@@ -542,6 +542,28 @@ int ipcv_set_contour_list_argument(void* pvApiCtx, int nPos, const IpcvContourLi
 	return 0;
 }
 
+int ipcv_set_keypoint_matrix_argument(void* pvApiCtx, int nPos, const IpcvKeypointMatrix& keypoints)
+{
+	SciErr sciErr;
+	const int outVar = nbInputArgument(pvApiCtx) + nPos;
+
+	if (keypoints.rows != 7 || keypoints.cols < 0 || keypoints.data == NULL)
+	{
+		Scierror(999, "IPCV: Invalid keypoint matrix returned from C++ implementation.\n");
+		return -1;
+	}
+
+	sciErr = createMatrixOfDouble(pvApiCtx, outVar, keypoints.rows, keypoints.cols, keypoints.data);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	AssignOutputVariable(pvApiCtx, nPos) = outVar;
+	return 0;
+}
+
 int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation)
 {
 	IpcvDecodedImage left;

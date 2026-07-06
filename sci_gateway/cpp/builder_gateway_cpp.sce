@@ -37,7 +37,6 @@ function builder_gateway_cpp()
         "sci_int_dnn_superres_upsample.cpp";
         "sci_int_dnn_unload.cpp";
         "sci_int_dnn_unloadall.cpp";
-        "sci_int_imboundingRect.cpp";
         "sci_int_imfindContours2.cpp";
         "sci_int_imdetect_BRISK.cpp";
         "sci_int_imextract_DescriptorBRISK.cpp";
@@ -105,7 +104,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

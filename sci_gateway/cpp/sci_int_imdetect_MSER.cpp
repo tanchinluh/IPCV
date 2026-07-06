@@ -4,6 +4,7 @@
 ***********************************************************************/
 
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
 int sci_int_imdetect_MSER(char * fname,void* pvApiCtx)
 {
@@ -11,19 +12,19 @@ int sci_int_imdetect_MSER(char * fname,void* pvApiCtx)
 	CheckInputArgument(pvApiCtx, 10, 10);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
-	Mat img1;
-	GetImage(1,img1,pvApiCtx);
-
-
-	if(img1.empty())
-	{
-		sciprint("Can't read image\n");
-		return -1;
-	}
-
+	IpcvDecodedImage image;
+	IpcvKeypointMatrix keypoints;
+	memset(&keypoints, 0, sizeof(keypoints));
 	double *val = NULL;
 	int iRows			= 0;
 	int iCols			= 0;
+	int iRet = ipcv_get_image_argument(pvApiCtx, 1, image);
+	if (iRet)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+		return iRet;
+	}
+
 	GetDouble(2,val,iRows,iCols,pvApiCtx);
 	int _delta = int(*val);
 	GetDouble(3,val,iRows,iCols,pvApiCtx);
@@ -43,35 +44,16 @@ int sci_int_imdetect_MSER(char * fname,void* pvApiCtx)
 	GetDouble(10,val,iRows,iCols,pvApiCtx);
 	int _edge_blur_size = int(*val);
 
-	//MSER detector(_delta,_min_area,_max_area,_max_variation,_min_diversity,_max_evolution,_area_threshold,_min_margin,_edge_blur_size);
-	Ptr<MSER> detector = MSER::create(_delta, _min_area, _max_area, _max_variation, _min_diversity, _max_evolution, _area_threshold, _min_margin, _edge_blur_size);
-
-	vector<KeyPoint> keypoints1;
-	//detector.detect(img1, keypoints1);
-	detector->detect(img1, keypoints1);
-
-	int iRows1			= 7;
-	int iCols1			= keypoints1.size()*1;
-	double* pdblReal1 = NULL;
-	pdblReal1 = new double[iRows1*iCols1];
-
-
-	for (int cnt = 0 ; cnt < iCols1; cnt++)
+	iRet = ipcv_detect_mser(&image, _delta, _min_area, _max_area, _max_variation, _min_diversity, _max_evolution, _area_threshold, _min_margin, _edge_blur_size, &keypoints);
+	ipcv_release_image_argument(image);
+	if (iRet)
 	{
-		pdblReal1[iRows1*cnt] = keypoints1[cnt].pt.x;
-		pdblReal1[iRows1*cnt+1] = keypoints1[cnt].pt.y;
-		pdblReal1[iRows1*cnt+2] = keypoints1[cnt].size;
-		pdblReal1[iRows1*cnt+3] = keypoints1[cnt].angle;
-		pdblReal1[iRows1*cnt+4] = keypoints1[cnt].response;
-		pdblReal1[iRows1*cnt+5] = keypoints1[cnt].octave; 
-		pdblReal1[iRows1*cnt+6] = keypoints1[cnt].class_id; 
+		Scierror(999, "%s: %s\n", fname, keypoints.error);
+		ipcv_free_keypoint_matrix(&keypoints);
+		return iRet;
 	}
 
-
-	SetDouble(1,pdblReal1,iRows1,iCols1,pvApiCtx);
-
-	delete [] pdblReal1;
-
-	return 0;
+	iRet = ipcv_set_keypoint_matrix_argument(pvApiCtx, 1, keypoints);
+	ipcv_free_keypoint_matrix(&keypoints);
+	return iRet;
 }
-

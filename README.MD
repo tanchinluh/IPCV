@@ -61,10 +61,16 @@ Migrated code
    - `imfindContours` -> `src/cpp/ipcv_structural_analysis.cpp`
    - `imconvexHull` -> `src/cpp/ipcv_structural_analysis.cpp`
    - `imconvexityDefects` -> `src/cpp/ipcv_structural_analysis.cpp`
-13. Gateway image exchange
+   - `imboundingRect` -> `src/cpp/ipcv_structural_analysis.cpp`
+13. Feature detection
+   - `imdetect_FAST` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_GFTT` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_MSER` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_ORB` -> `src/cpp/ipcv_feature_detection.cpp`
+14. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-14. Current unit tests
+15. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -78,6 +84,7 @@ Migrated code
    - `tests/unit_tests/ipcv_enhancement.tst`
    - `tests/unit_tests/ipcv_image_transform.tst`
    - `tests/unit_tests/ipcv_structural_analysis.tst`
+   - `tests/unit_tests/ipcv_feature_detection.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

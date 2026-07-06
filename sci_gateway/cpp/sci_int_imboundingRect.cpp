@@ -4,13 +4,7 @@
 ***********************************************************************/
 
 #include "common.h"
-#include <opencv2/core/utils/trace.hpp>
-using namespace cv;
-using namespace cv::dnn;
-#include <fstream>
-#include <iostream>
-#include <cstdlib>
-using namespace std;
+#include "ipcv_gateway_image.h"
 /************************************************************
 * imout = sci_int_imboundingRect(imin, se);
 ************************************************************/
@@ -20,42 +14,30 @@ using namespace std;
 
 int sci_int_imboundingRect(char * fname,void* pvApiCtx)
 {
-
-	Mat img;
-	int iRows			= 0;
-	int iCols			= 0;
-	double *sz1 = NULL;
-	int sz2;
-
-	char *pstName = NULL;
-
 	CheckInputArgument(pvApiCtx, 0, 1);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
-	GetImage(1, img, pvApiCtx);
+	IpcvDecodedImage image;
+	double rect[4] = {0, 0, 0, 0};
+	char error[1024] = {0};
+	int iRet = ipcv_get_image_argument(pvApiCtx, 1, image);
+	if (iRet)
+	{
+		Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+		return iRet;
+	}
 
-	Rect myrect = boundingRect(img);
+	iRet = ipcv_bounding_rect(&image, rect, error, sizeof(error));
+	ipcv_release_image_argument(image);
+	if (iRet)
+	{
+		Scierror(999, "%s: %s\n", fname, error);
+		return iRet;
+	}
 
-	//sciprint("%i %i %i %i\n",myrect.x, myrect.y, myrect.width, myrect.height);
-
-
-	int iRows1 = 4;
-	int iCols1 = 1;
-	double* pdblReal1 = NULL;
-	pdblReal1 = new double[iRows1*iCols1];
-
-
-//	for (int cnt = 0; cnt < iCols1; cnt++)
-//	{
-		pdblReal1[0] = (double)myrect.x;
-		pdblReal1[1] = (double)myrect.y;
-		pdblReal1[2] = (double)myrect.width;
-		pdblReal1[3] = (double)myrect.height;
-//	}
-
-	SetDouble(1, pdblReal1, iRows1, iCols1, pvApiCtx);
-	delete[] pdblReal1;
-	return 0;
-
-	
+	int rows = 4;
+	int cols = 1;
+	double *rect_data = rect;
+	SetDouble(1, rect_data, rows, cols, pvApiCtx);
+	return 0;	
 }
