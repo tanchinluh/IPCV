@@ -3,6 +3,7 @@
 
 #include "ipcv_arithmetic.h"
 #include "ipcv_image_io.h"
+#include "ipcv_spatial_transform.h"
 
 int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image);
 int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& image);

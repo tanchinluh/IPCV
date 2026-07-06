@@ -1,106 +1,113 @@
 /***********************************************************************
-* SIVP - Scilab Image and Video Processing toolbox
-* Copyright (C) 2005  Shiqi Yu
-*
-* IPCV - Scilab Image Processing and Computer Vision toolbox
-* Copyright (C) 2017  Tan Chin Luh
+ * SIVP - Scilab Image and Video Processing toolbox
+ * Copyright (C) 2005  Shiqi Yu
  *
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-***********************************************************************/
-
+ * IPCV - Scilab Image Processing and Computer Vision toolbox
+ * Copyright (C) 2017  Tan Chin Luh
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ ***********************************************************************/
 
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
+#include <math.h>
+#include <string.h>
 
-/**********************************************************************
-* this function only supports UINT8, UINT16, INT32, SINGLE, DOUBLE
-* imout=imresize(imin, scale);
-* imout=imresize(imin, scale, interp);
-* imout=imresize(imin, [mrows ncols]);
-* imout=imresize(imin, [mrows ncols], interp);
-*
-* interp = 'nearest', 'bilinear', 'bicubic' or 'area'
-**********************************************************************/
-int sci_imresize(char * fname,void* pvApiCtx)
+int sci_imresize(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
+    double *sizeArg = NULL;
+    int sizeRows = 0;
+    int sizeCols = 0;
+    int targetRows = 0;
+    int targetCols = 0;
+    int interpolation = IPCV_INTER_NEAREST;
 
-	SciErr sciErr;
-	int* piAddr = NULL;
-	int iType   = 0;
-	int iRet    = 0;
-	int Interpolation = INTER_NEAREST;
-	Mat src,dst;
-	double *out = NULL;
-	int iRows			= 0;
-	int iCols			= 0;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-	CheckInputArgument(pvApiCtx, 2, 3);
-	CheckOutputArgument(pvApiCtx, 0, 1);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	GetImage(1,src,pvApiCtx);
+    iRet = GetDouble(2, sizeArg, sizeRows, sizeCols, pvApiCtx);
+    if (iRet || sizeArg == NULL)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Double value or 1x2 vector expected.\n", fname, 2);
+        return -1;
+    }
 
-	GetDouble(2,out,iRows,iCols,pvApiCtx);
-	//sciprint("%i\t%i\n",iRows,iCols);
-	Size dsize;
-	if(iRows == 1 && iCols == 1)
-	{
-		dsize = Size(round(src.cols * *out),round(src.rows * *out));
-	}
-	else if(iRows * iCols == 2)
-	{
-		dsize = Size(round(*(out+1)) ,round(*out) );
-	}
-	else
-	{
-		Scierror(999, "%s: The second parameter should be a double value or 1X2 vector.\r\n", fname);
-		return -1;
-	}
+    if (sizeRows == 1 && sizeCols == 1)
+    {
+        targetRows = static_cast<int>(round(source.rows * sizeArg[0]));
+        targetCols = static_cast<int>(round(source.cols * sizeArg[0]));
+    }
+    else if (sizeRows * sizeCols == 2)
+    {
+        targetRows = static_cast<int>(round(sizeArg[0]));
+        targetCols = static_cast<int>(round(sizeArg[1]));
+    }
+    else
+    {
+        Scierror(999, "%s: The second parameter should be a double value or 1x2 vector.\n", fname);
+        return -1;
+    }
 
-	if( *getNbInputArgument(pvApiCtx) == 3)
-	{
-		char *pstName = NULL;
-		int ret = GetString(3, pstName,pvApiCtx);
+    if (nbInputArgument(pvApiCtx) == 3)
+    {
+        char *method = NULL;
+        iRet = GetString(3, method, pvApiCtx);
+        if (iRet || method == NULL)
+        {
+            Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 3);
+            return -1;
+        }
 
-		if (ret==0)
-		{
-			if( strcmp(pstName, "nearest") == 0)
-				Interpolation = INTER_NEAREST;
-			else if( strcmp(pstName, "bilinear") == 0)
-				Interpolation = INTER_LINEAR;
-			else if( strcmp(pstName, "bicubic") == 0)
-				Interpolation = INTER_CUBIC;
-			else if( strcmp(pstName, "area") == 0)
-				Interpolation = INTER_AREA;
-			else if( strcmp(pstName, "lanczos") == 0)
-				Interpolation = INTER_LANCZOS4 ;
-			else
-			{
-				Scierror(999, "%s: Interpolation method '%s' is not supported.\r\nSee the help page of %s for detailed information.\r\n", fname, pstName, fname);
-				return -1;
-			}
-		}
-		else
-		{
-			Scierror(999, "%s: Interpolation method '%d' is not supported.\r\nSee the help page of %s for detailed information.\r\n", fname, pstName, fname);
-			return -1;
-		}
-	}
+        if (strcmp(method, "nearest") == 0)
+        {
+            interpolation = IPCV_INTER_NEAREST;
+        }
+        else if (strcmp(method, "bilinear") == 0)
+        {
+            interpolation = IPCV_INTER_LINEAR;
+        }
+        else if (strcmp(method, "bicubic") == 0)
+        {
+            interpolation = IPCV_INTER_CUBIC;
+        }
+        else if (strcmp(method, "area") == 0)
+        {
+            interpolation = IPCV_INTER_AREA;
+        }
+        else if (strcmp(method, "lanczos") == 0)
+        {
+            interpolation = IPCV_INTER_LANCZOS;
+        }
+        else
+        {
+            Scierror(999, "%s: Interpolation method '%s' is not supported.\n", fname, method);
+            return -1;
+        }
+    }
 
-	resize(src, dst, dsize, 0, 0, Interpolation);
-	//resize(src, dst, dsize, 0, 0, INTER_LINEAR);
-	SetImage(1,dst,pvApiCtx);
+    iRet = ipcv_resize_image(&source, targetRows, targetCols, interpolation, &output);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	return 0;
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

@@ -18,7 +18,7 @@ function builder_cpp()
     end
 
     tbx_build_src(["ipcv_core"], ..
-        ["ipcv_image_io.cpp"; "ipcv_arithmetic.cpp"], ..
+        ["ipcv_image_io.cpp"; "ipcv_arithmetic.cpp"; "ipcv_spatial_transform.cpp"], ..
         "cpp", ..
         src_cpp_path, ..
         [opencv_lib], ..
