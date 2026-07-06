@@ -85,13 +85,14 @@ function builder_gateway_cpp()
     if getos() == "Windows"
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
         libs = ["opencv_world500";"opencv_img_hash500"]
-        all_libs = fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs); 
+        all_libs = [fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs);
+                    fullfile("..","..","src","cpp","libipcv_decode")]; 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
         gw_cpp_files = [gw_cpp_files; "common.h"];
     end
 
-    inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path]); 
+    inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path,fullfile(gw_cpp_path,"..","..","src","cpp")]); 
     if getos() == "Windows" then
         inter_cflags = inter_cflags + " /std:c++17";
     else
@@ -112,7 +113,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

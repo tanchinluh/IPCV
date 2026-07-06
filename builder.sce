@@ -33,6 +33,7 @@ function main_builder();
   // Action
   // =============================================================================
   tbx_builder_macros(toolbox_dir);
+  tbx_builder_src(toolbox_dir);
   
   ///////////
 //  WITH_CUDA = 1;
@@ -51,4 +52,3 @@ endfunction
 main_builder();
 clear main_builder;
 // =============================================================================
-

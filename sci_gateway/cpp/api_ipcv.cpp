@@ -21,6 +21,17 @@
 
 #include "common.h"
 static int iTab = 0;
+static FILE *ipcv_open_debug_log()
+{
+	const char *enabled = getenv("IPCV_IMREAD_DEBUG");
+	if (enabled == NULL || enabled[0] == 0)
+	{
+		return NULL;
+	}
+
+	return fopen("F:\\ScilabModules\\IPCV\\ipcv_imread_debug.log", "ab");
+}
+
 void insert_indent(void)
 {
 	int i = 0;
@@ -32,6 +43,139 @@ void insert_indent(void)
 
 int SetImage(int nPos, Mat& new_img,void* pvApiCtx)
 {
+#if CV_VERSION_MAJOR >= 5
+	{
+	FILE *dbg = ipcv_open_debug_log();
+	if (dbg)
+	{
+		fprintf(dbg, "SetImage: enter\n");
+		fflush(dbg);
+	}
+	if (new_img.rows <= 0 || new_img.cols <= 0 || new_img.data == NULL)
+	{
+		Scierror(999, "SetImage: Empty OpenCV image.\n");
+		if (dbg) { fprintf(dbg, "SetImage: empty image\n"); fclose(dbg); }
+		return -1;
+	}
+
+	Mat converted_img;
+	const Mat *src_img = &new_img;
+	if (new_img.depth() == CV_32F)
+	{
+		new_img.convertTo(converted_img, CV_64F);
+		src_img = &converted_img;
+	}
+
+	const int rows = src_img->rows;
+	const int cols = src_img->cols;
+	const int channels = src_img->channels();
+	int dims[3] = {rows, cols, channels};
+	const size_t dataSize = static_cast<size_t>(rows) * cols * channels * src_img->elemSize1();
+	if (dbg)
+	{
+		fprintf(dbg, "SetImage: rows=%d cols=%d channels=%d depth=%d elemSize1=%zu dataSize=%zu\n",
+			rows, cols, channels, src_img->depth(), src_img->elemSize1(), dataSize);
+		fflush(dbg);
+	}
+	vector<unsigned char> sciData(dataSize);
+
+	if (dbg) { fprintf(dbg, "SetImage: before matdata2scidata\n"); fflush(dbg); }
+	int iRet = matdata2scidata(*src_img, sciData.data());
+	if (dbg) { fprintf(dbg, "SetImage: after matdata2scidata ret=%d\n", iRet); fflush(dbg); }
+	if (iRet)
+	{
+		Scierror(999, "SetImage: Could not convert OpenCV image data.\n");
+		if (dbg) { fprintf(dbg, "SetImage: conversion failed\n"); fclose(dbg); }
+		return iRet;
+	}
+
+	const int outVar = nbInputArgument(pvApiCtx) + nPos;
+	SciErr sciErr;
+
+	switch(src_img->depth())
+	{
+	case CV_8U:
+		if (channels >= 2)
+		{
+			if (dbg) { fprintf(dbg, "SetImage: before createHypermatOfUnsignedInteger8\n"); fflush(dbg); }
+			sciErr = createHypermatOfUnsignedInteger8(pvApiCtx, outVar, dims, 3, (const unsigned char*)sciData.data());
+			if (dbg) { fprintf(dbg, "SetImage: after createHypermatOfUnsignedInteger8 err=%d\n", sciErr.iErr); fflush(dbg); }
+		}
+		else
+		{
+			if (dbg) { fprintf(dbg, "SetImage: before createMatrixOfUnsignedInteger8\n"); fflush(dbg); }
+			sciErr = createMatrixOfUnsignedInteger8(pvApiCtx, outVar, rows, cols, (const unsigned char*)sciData.data());
+			if (dbg) { fprintf(dbg, "SetImage: after createMatrixOfUnsignedInteger8 err=%d\n", sciErr.iErr); fflush(dbg); }
+		}
+		break;
+	case CV_8S:
+		if (channels >= 2)
+		{
+			sciErr = createHypermatOfInteger8(pvApiCtx, outVar, dims, 3, (const char*)sciData.data());
+		}
+		else
+		{
+			sciErr = createMatrixOfInteger8(pvApiCtx, outVar, rows, cols, (const char*)sciData.data());
+		}
+		break;
+	case CV_16U:
+		if (channels >= 2)
+		{
+			sciErr = createHypermatOfUnsignedInteger16(pvApiCtx, outVar, dims, 3, (const unsigned short*)sciData.data());
+		}
+		else
+		{
+			sciErr = createMatrixOfUnsignedInteger16(pvApiCtx, outVar, rows, cols, (const unsigned short*)sciData.data());
+		}
+		break;
+	case CV_16S:
+		if (channels >= 2)
+		{
+			sciErr = createHypermatOfInteger16(pvApiCtx, outVar, dims, 3, (const short*)sciData.data());
+		}
+		else
+		{
+			sciErr = createMatrixOfInteger16(pvApiCtx, outVar, rows, cols, (const short*)sciData.data());
+		}
+		break;
+	case CV_32S:
+		if (channels >= 2)
+		{
+			sciErr = createHypermatOfInteger32(pvApiCtx, outVar, dims, 3, (const int*)sciData.data());
+		}
+		else
+		{
+			sciErr = createMatrixOfInteger32(pvApiCtx, outVar, rows, cols, (const int*)sciData.data());
+		}
+		break;
+	case CV_64F:
+		if (channels >= 2)
+		{
+			sciErr = createHypermatOfDouble(pvApiCtx, outVar, dims, 3, (const double*)sciData.data());
+		}
+		else
+		{
+			sciErr = createMatrixOfDouble(pvApiCtx, outVar, rows, cols, (const double*)sciData.data());
+		}
+		break;
+	default:
+		Scierror(999, "SetImage: Unsupported OpenCV image depth %d.\n", src_img->depth());
+		return -1;
+	}
+
+	if(sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		if (dbg) { fprintf(dbg, "SetImage: SciErr %d\n", sciErr.iErr); fclose(dbg); }
+		return sciErr.iErr;
+	}
+
+	if (dbg) { fprintf(dbg, "SetImage: before AssignOutputVariable outVar=%d nPos=%d\n", outVar, nPos); fflush(dbg); }
+	AssignOutputVariable(pvApiCtx, nPos) = outVar;
+	if (dbg) { fprintf(dbg, "SetImage: after AssignOutputVariable\n"); fclose(dbg); }
+	return 0;
+	}
+#endif
 
 	Size s = new_img.size();
 	int rows = new_img.size().height;
@@ -445,117 +589,42 @@ int SetImage(int nPos, Mat& new_img,void* pvApiCtx)
 	default:
 		sciprint("Unknown type !\n"); // Should never happen
 	}
-	//sciErr = createHypermatOfUnsignedInteger8(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned char*)new_img.data);
 	free(pMatData);
-	new_img.release();
-	//free(pSrc);
-	//free(pDst);
 	return 0;
 }
 
-//int scidata2matdata(Mat &pImage, void* pMatData)
-int matdata2scidata(Mat &pImage, void *pMatData)
+int matdata2scidata(const Mat &pImage, void *pMatData)
 {
-	//  IPL_DEPTH_8U, IPL_DEPTH_8S, IPL_DEPTH_16U,
-	//IPL_DEPTH_16S, IPL_DEPTH_32S, IPL_DEPTH_32F and IPL_DEPTH_64F
-	//int row, col, ch;
-	int rows, cols;
-	long nCount = 0;
-	int nBytes;
-
-	unsigned char * pSrc = NULL;
-	unsigned char * pDst = NULL;
-
-	//if (pImage == NULL || pMatData == NULL)
-	//	return FALSE;
-
-	/////////////
-	//pSrc = (unsigned char*)(pImage.data);
-	//pDst = (unsigned char*)pMatData;
-
-	///*how many bytes per pixel per channel*/
-	//nBytes = pImage.elemSize1();
-	//
-	//for(ch = 0; ch < pImage.channels() ; ch++) //the order of IplImage is BGR
-	//	for(col =0; col < pImage.size().width; col++)
-	//		for(row = 0; row < pImage.size().height; row++)
-	//		{
-	//			memcpy(pDst+nCount, pSrc + pImage.step*row + (col*pImage.channels() + (pImage.channels()-ch-1))*nBytes, nBytes );
-	//			nCount += nBytes;
-	//			//sciprint(".");
-	//		}
-	/////////////
-
-	///////////////////////////////////////
-	pImage = pImage.t();
-	pSrc = (unsigned char*)(pImage.data);
-	pDst = (unsigned char*)pMatData;
-	rows = pImage.rows;
-	cols = pImage.cols;
-	vector<Mat> ch1; // B, G, R channels
-	split(pImage, ch1);
-	nBytes = pImage.elemSize1();	
-
-
-	//unsigned char * data = NULL;
-	//data = (unsigned char*)pMatData;
-
-	if (pImage.channels()==1)
+	if (pImage.rows <= 0 || pImage.cols <= 0 || pImage.data == NULL || pMatData == NULL)
 	{
-		memcpy(pDst, ch1[0].ptr(), rows*cols*nBytes);
+		return -1;
 	}
-	else if (pImage.channels() == 3)
+
+	const int rows = pImage.rows;
+	const int cols = pImage.cols;
+	const int channels = pImage.channels();
+	const size_t nBytes = pImage.elemSize1();
+	unsigned char *pDst = static_cast<unsigned char*>(pMatData);
+
+	for (int ch = 0; ch < channels; ch++)
 	{
-		memcpy(pDst + 0 * rows*cols*nBytes, ch1[2].ptr(), rows*cols*nBytes);
-		memcpy(pDst + 1 * rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
-		memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
-	}
-	else if (pImage.channels() == 4)
-	{
-		memcpy(pDst + 0 * rows*cols*nBytes, ch1[2].ptr(), rows*cols*nBytes);
-		memcpy(pDst + 1 * rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
-		memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
-		memcpy(pDst + 3 * rows*cols*nBytes, ch1[3].ptr(), rows*cols*nBytes);
-	}
-	else
-	{
-		// 20190308 - Changed to for loop to cater N Dim Images
-		// 20200722 - Possible need to reverse the RGB
-		int i;
-		for (i = 0; i <pImage.channels(); i++) {
-			//memcpy(pDst, ch1[2].ptr(), rows*cols*nBytes);
-			//memcpy(pDst + rows*cols*nBytes, ch1[1].ptr(), rows*cols*nBytes);
-			//memcpy(pDst + 2 * rows*cols*nBytes, ch1[0].ptr(), rows*cols*nBytes);
-			memcpy(pDst + i * rows*cols*nBytes, ch1[i].ptr(), rows*cols*nBytes);
+		int srcCh = ch;
+		if ((channels == 3 || channels == 4) && ch < 3)
+		{
+			srcCh = 2 - ch;
+		}
+
+		for (int col = 0; col < cols; col++)
+		{
+			for (int row = 0; row < rows; row++)
+			{
+				const unsigned char *pSrc = pImage.ptr<unsigned char>(row) + ((col * channels + srcCh) * nBytes);
+				size_t dstOffset = (static_cast<size_t>(ch) * rows * cols + static_cast<size_t>(col) * rows + row) * nBytes;
+				memcpy(pDst + dstOffset, pSrc, nBytes);
+			}
 		}
 	}
 
-	///////////////////////////////////////
-
-
-
-	//memcpy(pDst + pImage.step*row + (col*pImage.channels() + (pImage.channels()-ch-1))*nBytes, pSrc+nCount, nBytes );
-	//sciprint("Test3\n");
-
-	//pDst = (unsigned char*)pImage.data;
-	//	pSrc = (unsigned char*)pMatData;
-	//
-	//	
-	//
-	//	/*how many bytes per pixel per channel*/
-	//	nBytes = pImage.elemSize1();
-	//
-	//	for(ch = 0; ch < pImage.channels() ; ch++) //the order of IplImage is BGR
-	//		for(col =0; col < pImage.size().width; col++)
-	//			for(row = 0; row < pImage.size().height; row++)
-	//			{
-	//				memcpy(pDst + pImage.step*row + (col*pImage.channels() + (pImage.channels()-ch-1))*nBytes, pSrc+nCount, nBytes );
-	//				nCount += nBytes;
-	//			}
-	pImage.release();
-	//free(pMatData);
-	//free(pSrc);
-//	free(pDst);
 	return 0;
 }
 

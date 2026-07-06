@@ -2,7 +2,10 @@
 *.a
 *.bin
 *.dll
+*.def
+*.exp
 *.lib
+*.obj
 
 
 # but do track lib.a, even though you're ignoring .a files above
@@ -13,6 +16,7 @@ loader.sce
 unloader.sce
 cleaner.sce
 cleaner_gateway.sce
+cleaner_src.sce
 Makelib.mak
 gw_ipcv*
 libgw*

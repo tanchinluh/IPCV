@@ -19,6 +19,7 @@
 
 
 #include "common.h"
+#include "ipcv_decode.h"
 
 int sci_int_imfinfo(char *fname, void* pvApiCtx)
 {
@@ -125,7 +126,6 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 	//	LhsVar(1) =2 ;
 
 	char *pstName = NULL;
-	Mat pImage;
 	SciErr sciErr;
 	int *piAddr = NULL;
 	double pdblData1[] = {0,0};
@@ -137,8 +137,15 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 
 	GetString(1, pstName, pvApiCtx);
 
-	//pImage = cvLoadImage(cstk(lR), CV_LOAD_IMAGE_ANYDEPTH|CV_LOAD_IMAGE_ANYCOLOR);
-	pImage = imread(pstName, IMREAD_LOAD_GDAL);
+	IpcvImageInfo imageInfo;
+	int iRet = ipcv_image_info(pstName, IMREAD_LOAD_GDAL, &imageInfo);
+	if (iRet)
+	{
+		Scierror(999, "%s: Can not open image file %s: %s\r\n", fname, pstName, imageInfo.error);
+		freeAllocatedSingleString(pstName);
+		return -1;
+	}
+	freeAllocatedSingleString(pstName);
 
 	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 3, &piAddr);
 	if (sciErr.iErr)
@@ -147,11 +154,10 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 		return 0;
 	}
 		
-	Size s = pImage.size();
-	pdblData1[0] = s.width;
-	pdblData1[1] = s.height;
-	pdb1_depth = pImage.depth() & 0x0FFFFFFF;
-	pdb1_channel = pImage.channels();
+	pdblData1[0] = imageInfo.width;
+	pdblData1[1] = imageInfo.height;
+	pdb1_depth = imageInfo.depth & 0x0FFFFFFF;
+	pdb1_channel = imageInfo.channels;
 
 	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 1, 1, 2, pdblData1);
 	if (sciErr.iErr)

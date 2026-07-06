@@ -182,7 +182,7 @@ static void printModel(const cv::Mat &TRANS,const cv::Mat &EMIS,const cv::Mat &I
 
 
 // IPCV interface functions
-int matdata2scidata(Mat &pImage, void *pMatData);
+int matdata2scidata(const Mat &pImage, void *pMatData);
 int scidata2matdata(Mat &pImage, void *pMatData);
 int GetImage(int nPos, Mat& new_img,void* pvApiCtx);
 int SetImage(int nPos, Mat& new_img,void* pvApiCtx);
