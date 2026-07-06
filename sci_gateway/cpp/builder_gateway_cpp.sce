@@ -53,8 +53,6 @@ function builder_gateway_cpp()
         "sci_int_imrotate.cpp";
         "sci_int_imstitchImage.cpp";
         "sci_int_imsuperres.cpp";
-        "sci_int_rgb2gray.cpp";
-        "sci_int_rgb2lab.cpp";
         "sci_int_tracker_init.cpp";
         "sci_int_tracker_update.cpp";
         "sci_int_tracker_unloadall.cpp";
@@ -113,7 +111,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

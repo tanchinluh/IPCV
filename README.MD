@@ -29,10 +29,15 @@ Migrated code
    - `imdilate` -> `src/cpp/ipcv_morphology.cpp`
    - `imerode` -> `src/cpp/ipcv_morphology.cpp`
    - `imopen` / `imclose` / `imgradient` / `imtophat` / `imblackhat` / `imhitmiss` -> `src/cpp/ipcv_morphology.cpp`
-7. Gateway image exchange
+7. Color conversion
+   - `rgb2gray` -> `src/cpp/ipcv_color.cpp`
+   - `rgb2lab` -> `src/cpp/ipcv_color.cpp`
+   - `bgr2lab` -> `src/cpp/ipcv_color.cpp`
+   - `rgb2hsv` / `hsv2rgb2` / `rgb2ycbcr` / `ycbcr2rgb` -> `src/cpp/ipcv_color.cpp`
+8. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-8. Current unit tests
+9. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -40,6 +45,7 @@ Migrated code
    - `tests/unit_tests/ipcv_spatial_transform.tst`
    - `tests/unit_tests/ipcv_filtering.tst`
    - `tests/unit_tests/ipcv_morphology.tst`
+   - `tests/unit_tests/ipcv_color.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

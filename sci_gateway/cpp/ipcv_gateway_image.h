@@ -2,6 +2,7 @@
 #define IPCV_GATEWAY_IMAGE_H
 
 #include "ipcv_arithmetic.h"
+#include "ipcv_color.h"
 #include "ipcv_filtering.h"
 #include "ipcv_image_io.h"
 #include "ipcv_morphology.h"
