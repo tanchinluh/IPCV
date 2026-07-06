@@ -1,16 +1,16 @@
-#ifndef IPCV_DECODE_H
-#define IPCV_DECODE_H
+#ifndef IPCV_IMAGE_IO_H
+#define IPCV_IMAGE_IO_H
 
 #include <stddef.h>
 
 #ifdef _WIN32
-#ifdef IPCV_DECODE_EXPORTS
-#define IPCV_DECODE_API __declspec(dllexport)
+#ifdef IPCV_CORE_EXPORTS
+#define IPCV_CORE_API __declspec(dllexport)
 #else
-#define IPCV_DECODE_API __declspec(dllimport)
+#define IPCV_CORE_API __declspec(dllimport)
 #endif
 #else
-#define IPCV_DECODE_API
+#define IPCV_CORE_API
 #endif
 
 #ifdef __cplusplus
@@ -48,10 +48,10 @@ enum
     IPCV_DEPTH_64F = 6
 };
 
-IPCV_DECODE_API int ipcv_decode_image(const char *filename, int flags, IpcvDecodedImage *image);
-IPCV_DECODE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info);
-IPCV_DECODE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size);
-IPCV_DECODE_API void ipcv_free_decoded_image(IpcvDecodedImage *image);
+IPCV_CORE_API int ipcv_decode_image(const char *filename, int flags, IpcvDecodedImage *image);
+IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info);
+IPCV_CORE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size);
+IPCV_CORE_API void ipcv_free_decoded_image(IpcvDecodedImage *image);
 
 #ifdef __cplusplus
 }

@@ -1,5 +1,5 @@
-#define IPCV_DECODE_EXPORTS
-#include "ipcv_decode.h"
+#define IPCV_CORE_EXPORTS
+#include "ipcv_image_io.h"
 
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
@@ -145,7 +145,7 @@ void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination
 }
 }
 
-extern "C" IPCV_DECODE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info)
+extern "C" IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info)
 {
     if (info == NULL)
     {
@@ -194,7 +194,7 @@ extern "C" IPCV_DECODE_API int ipcv_image_info(const char *filename, int flags, 
     }
 }
 
-extern "C" IPCV_DECODE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size)
+extern "C" IPCV_CORE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size)
 {
     if (error != NULL && error_size > 0)
     {
@@ -249,7 +249,7 @@ extern "C" IPCV_DECODE_API int ipcv_write_image(const char *filename, const unsi
     }
 }
 
-extern "C" IPCV_DECODE_API int ipcv_decode_image(const char *filename, int flags, IpcvDecodedImage *image)
+extern "C" IPCV_CORE_API int ipcv_decode_image(const char *filename, int flags, IpcvDecodedImage *image)
 {
     if (image == NULL)
     {
@@ -319,7 +319,7 @@ extern "C" IPCV_DECODE_API int ipcv_decode_image(const char *filename, int flags
     }
 }
 
-extern "C" IPCV_DECODE_API void ipcv_free_decoded_image(IpcvDecodedImage *image)
+extern "C" IPCV_CORE_API void ipcv_free_decoded_image(IpcvDecodedImage *image)
 {
     if (image == NULL)
     {

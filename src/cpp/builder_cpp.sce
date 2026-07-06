@@ -17,8 +17,8 @@ function builder_cpp()
         cflags = cflags + " -std=c++17";
     end
 
-    tbx_build_src(["ipcv_decode"], ..
-        ["ipcv_decode.cpp"], ..
+    tbx_build_src(["ipcv_core"], ..
+        ["ipcv_image_io.cpp"; "ipcv_arithmetic.cpp"], ..
         "cpp", ..
         src_cpp_path, ..
         [opencv_lib], ..

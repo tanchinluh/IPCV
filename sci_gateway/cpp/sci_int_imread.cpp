@@ -23,7 +23,7 @@
 
 
 #include "common.h"
-#include "ipcv_decode.h"
+#include "ipcv_image_io.h"
 #include <string.h>
 
 extern "C" 

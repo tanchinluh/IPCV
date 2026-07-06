@@ -86,7 +86,7 @@ function builder_gateway_cpp()
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
         libs = ["opencv_world500";"opencv_img_hash500"]
         all_libs = [fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs);
-                    fullfile("..","..","src","cpp","libipcv_decode")]; 
+                    fullfile("..","..","src","cpp","libipcv_core")]; 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
         gw_cpp_files = [gw_cpp_files; "common.h"];
@@ -113,7 +113,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

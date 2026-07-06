@@ -19,7 +19,7 @@
 
 
 #include "common.h"
-#include "ipcv_decode.h"
+#include "ipcv_image_io.h"
 
 int sci_int_imfinfo(char *fname, void* pvApiCtx)
 {
