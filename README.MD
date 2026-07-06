@@ -56,6 +56,7 @@ Migrated code
    - `iminpaint` -> `src/cpp/ipcv_enhancement.cpp`
 11. Image transforms and segmentation
    - `imradon` -> `src/cpp/ipcv_image_transform.cpp`
+   - `imlogpolar` -> `src/cpp/ipcv_image_transform.cpp`
    - `imwatershed` -> `src/cpp/ipcv_segmentation.cpp`
 12. Structural analysis
    - `imfindContours` -> `src/cpp/ipcv_structural_analysis.cpp`
@@ -82,6 +83,7 @@ Migrated code
    - `int_imhough` -> `src/cpp/ipcv_hough.cpp`
    - `int_imhoughcircles` -> `src/cpp/ipcv_hough.cpp`
    - `imstitchimage` / `int_imstitchImage` -> `src/cpp/ipcv_stitching.cpp`
+   - `imsuperres` / `int_imsuperres` -> `src/cpp/ipcv_superres.cpp`
 15. Removed obsolete gateways
    - Removed `sci_int_imfindContours2.cpp`
    - Removed `sci_int_imread2.cpp`
@@ -104,6 +106,7 @@ Migrated code
    - `tests/unit_tests/ipcv_structural_analysis.tst`
    - `tests/unit_tests/ipcv_feature_detection.tst`
    - `tests/unit_tests/ipcv_hough_stitching.tst`
+   - `tests/unit_tests/ipcv_superres.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

@@ -40,6 +40,13 @@ typedef struct IpcvDecodedImageStack
     char error[1024];
 } IpcvDecodedImageStack;
 
+typedef struct IpcvImageList
+{
+    int count;
+    IpcvDecodedImage *images;
+    char error[1024];
+} IpcvImageList;
+
 typedef struct IpcvImageInfo
 {
     int width;

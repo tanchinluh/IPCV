@@ -2,6 +2,8 @@
 #include "ipcv_image_transform.h"
 
 #include <cmath>
+#include <opencv2/core.hpp>
+#include <opencv2/imgproc.hpp>
 #include <cstdlib>
 #include <cstring>
 #include <exception>
@@ -17,6 +19,134 @@ void set_error(IpcvRadonResult *result, const char *message)
 
     std::strncpy(result->error, message, sizeof(result->error) - 1);
     result->error[sizeof(result->error) - 1] = 0;
+}
+
+void set_image_error(IpcvDecodedImage *image, const char *message)
+{
+    if (image == NULL)
+    {
+        return;
+    }
+
+    std::strncpy(image->error, message, sizeof(image->error) - 1);
+    image->error[sizeof(image->error) - 1] = 0;
+}
+
+size_t depth_size(int depth)
+{
+    switch (depth)
+    {
+    case IPCV_DEPTH_8U:
+    case IPCV_DEPTH_8S:
+        return 1;
+    case IPCV_DEPTH_16U:
+    case IPCV_DEPTH_16S:
+        return 2;
+    case IPCV_DEPTH_32S:
+    case IPCV_DEPTH_32F:
+        return 4;
+    case IPCV_DEPTH_64F:
+        return 8;
+    default:
+        return 0;
+    }
+}
+
+void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination)
+{
+    const int rows = destination.rows;
+    const int cols = destination.cols;
+    const int channels = destination.channels();
+    const size_t elem_bytes = destination.elemSize1();
+
+    for (int ch = 0; ch < channels; ch++)
+    {
+        int dst_ch = ch;
+        if ((channels == 3 || channels == 4) && ch < 3)
+        {
+            dst_ch = 2 - ch;
+        }
+
+        for (int col = 0; col < cols; col++)
+        {
+            for (int row = 0; row < rows; row++)
+            {
+                const size_t src_offset = (static_cast<size_t>(ch) * rows * cols + static_cast<size_t>(col) * rows + row) * elem_bytes;
+                unsigned char *dst = destination.ptr<unsigned char>(row) + ((col * channels + dst_ch) * elem_bytes);
+                std::memcpy(dst, source + src_offset, elem_bytes);
+            }
+        }
+    }
+}
+
+void copy_mat_to_scilab_layout(const cv::Mat& source, unsigned char *destination)
+{
+    const int rows = source.rows;
+    const int cols = source.cols;
+    const int channels = source.channels();
+    const size_t elem_bytes = source.elemSize1();
+
+    for (int ch = 0; ch < channels; ch++)
+    {
+        int src_ch = ch;
+        if ((channels == 3 || channels == 4) && ch < 3)
+        {
+            src_ch = 2 - ch;
+        }
+
+        for (int col = 0; col < cols; col++)
+        {
+            for (int row = 0; row < rows; row++)
+            {
+                const unsigned char *src = source.ptr<unsigned char>(row) + ((col * channels + src_ch) * elem_bytes);
+                const size_t dst_offset = (static_cast<size_t>(ch) * rows * cols + static_cast<size_t>(col) * rows + row) * elem_bytes;
+                std::memcpy(destination + dst_offset, src, elem_bytes);
+            }
+        }
+    }
+}
+
+bool image_to_mat(const IpcvDecodedImage& image, cv::Mat& mat, char *error)
+{
+    const size_t elem_bytes = depth_size(image.depth);
+    const size_t expected_bytes = static_cast<size_t>(image.rows) * image.cols * image.channels * elem_bytes;
+    if (image.data == NULL || image.rows <= 0 || image.cols <= 0 || image.channels <= 0 || elem_bytes == 0 || image.byte_count != expected_bytes)
+    {
+        if (error != NULL)
+        {
+            std::strcpy(error, "invalid image input");
+        }
+        return false;
+    }
+
+    mat.create(image.rows, image.cols, CV_MAKETYPE(image.depth, image.channels));
+    copy_scilab_layout_to_mat(image.data, mat);
+    return true;
+}
+
+bool mat_to_image(const cv::Mat& image, IpcvDecodedImage *output)
+{
+    if (output == NULL || image.empty())
+    {
+        return false;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    output->rows = image.rows;
+    output->cols = image.cols;
+    output->channels = image.channels();
+    output->depth = image.depth();
+    const size_t elem_bytes = image.elemSize1();
+    output->byte_count = static_cast<size_t>(output->rows) * output->cols * output->channels * elem_bytes;
+    output->data = static_cast<unsigned char*>(std::calloc(output->byte_count == 0 ? 1 : output->byte_count, 1));
+    if (output->data == NULL)
+    {
+        set_image_error(output, "out of memory");
+        return false;
+    }
+
+    copy_mat_to_scilab_layout(image, output->data);
+    return true;
 }
 
 void increment_radon(double *projection, int projection_size, double pixel, double radius)
@@ -164,6 +294,66 @@ extern "C" IPCV_CORE_API int ipcv_radon_transform(const double *image, int rows,
     {
         ipcv_free_radon_result(result);
         set_error(result, "unknown Radon transform failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_log_polar(const IpcvDecodedImage *source, double magnitude_scale, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_image_error(output, "missing log-polar image input");
+        return -1;
+    }
+    if (magnitude_scale <= 0)
+    {
+        set_image_error(output, "log-polar magnitude scale must be positive");
+        return -1;
+    }
+
+    try
+    {
+        cv::Mat source_mat;
+        char error[256] = {0};
+        if (!image_to_mat(*source, source_mat, error))
+        {
+            set_image_error(output, error);
+            return -1;
+        }
+
+        cv::Mat result;
+        cv::Point2f center(source_mat.cols / 2.0f, source_mat.rows / 2.0f);
+        const double max_radius = std::exp(static_cast<double>(source_mat.cols) / magnitude_scale);
+        cv::warpPolar(source_mat, result, source_mat.size(), center, max_radius, cv::INTER_LINEAR | cv::WARP_POLAR_LOG);
+        if (!mat_to_image(result, output))
+        {
+            return -1;
+        }
+
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        ipcv_free_decoded_image(output);
+        set_image_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        ipcv_free_decoded_image(output);
+        set_image_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        ipcv_free_decoded_image(output);
+        set_image_error(output, "unknown log-polar transform failure");
         return -1;
     }
 }

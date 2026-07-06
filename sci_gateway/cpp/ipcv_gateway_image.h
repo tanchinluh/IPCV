@@ -16,6 +16,7 @@
 #include "ipcv_spatial_transform.h"
 #include "ipcv_stitching.h"
 #include "ipcv_structural_analysis.h"
+#include "ipcv_superres.h"
 
 int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image);
 void ipcv_release_image_argument(IpcvDecodedImage& image);

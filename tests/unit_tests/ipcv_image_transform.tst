@@ -12,6 +12,11 @@ assert_checkequal(size(RT), [9 2]);
 assert_checkequal(size(xp), [1 9]);
 assert_checktrue(max(RT) > 0);
 
+checker = imcreatechecker(8, 8, [1 0.5]);
+polar = imlogpolar(checker);
+assert_checkequal(size(polar), size(checker));
+assert_checkequal(typeof(polar), typeof(checker));
+
 rgb = uint8(zeros(10, 10, 3));
 rgb(1:5, :, 1) = uint8(200);
 rgb(6:10, :, 2) = uint8(200);

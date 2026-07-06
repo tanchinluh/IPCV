@@ -18,6 +18,7 @@ typedef struct IpcvRadonResult
 } IpcvRadonResult;
 
 IPCV_CORE_API int ipcv_radon_transform(const double *image, int rows, int cols, const double *theta_degrees, int theta_count, IpcvRadonResult *result);
+IPCV_CORE_API int ipcv_log_polar(const IpcvDecodedImage *source, double magnitude_scale, IpcvDecodedImage *output);
 IPCV_CORE_API void ipcv_free_radon_result(IpcvRadonResult *result);
 
 #ifdef __cplusplus
