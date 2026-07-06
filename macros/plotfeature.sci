@@ -64,6 +64,10 @@ function plotfeature(fobj,ind);
     sz = size(a_handle.children.data);
     a_handle.auto_scale = 'off';
 
+    if fobj.n == 0 | isempty(fobj.x) | isempty(fobj.y) then
+        return;
+    end
+
     xc = fobj.x(ind);
     yc = sz(1) - fobj.y(ind);
 
@@ -88,7 +92,6 @@ function plotfeature(fobj,ind);
 
 
 endfunction
-
 
 
 

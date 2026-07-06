@@ -22,7 +22,9 @@ int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedIma
 int ipcv_get_contour_list_argument(void* pvApiCtx, int nPos, IpcvContourList& list);
 void ipcv_release_contour_list_argument(IpcvContourList& list);
 int ipcv_set_contour_list_argument(void* pvApiCtx, int nPos, const IpcvContourList& list);
+int ipcv_get_keypoint_matrix_argument(void* pvApiCtx, int nPos, IpcvKeypointMatrix& keypoints);
 int ipcv_set_keypoint_matrix_argument(void* pvApiCtx, int nPos, const IpcvKeypointMatrix& keypoints);
+int ipcv_get_match_matrix_argument(void* pvApiCtx, int nPos, IpcvMatchMatrix& matches);
 int ipcv_run_binary_arithmetic(char *fname, void* pvApiCtx, int operation);
 size_t ipcv_depth_size(int depth);
 

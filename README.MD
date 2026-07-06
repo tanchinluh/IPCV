@@ -64,9 +64,19 @@ Migrated code
    - `imboundingRect` -> `src/cpp/ipcv_structural_analysis.cpp`
 13. Feature detection
    - `imdetect_FAST` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_BRISK` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_GFTT` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_MSER` -> `src/cpp/ipcv_feature_detection.cpp`
    - `imdetect_ORB` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_STAR` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdetect_SURF` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imextract_DescriptorBRISK` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imextract_DescriptorORB` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imextract_DescriptorSIFT` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imextract_DescriptorSURF` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `immatch_BruteForce` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `immatch_Flann` -> `src/cpp/ipcv_feature_detection.cpp`
+   - `imdrawmatches` -> `src/cpp/ipcv_feature_detection.cpp`
 14. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`

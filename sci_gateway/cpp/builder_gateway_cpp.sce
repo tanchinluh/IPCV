@@ -38,10 +38,7 @@ function builder_gateway_cpp()
         "sci_int_dnn_unload.cpp";
         "sci_int_dnn_unloadall.cpp";
         "sci_int_imfindContours2.cpp";
-        "sci_int_imdetect_BRISK.cpp";
-        "sci_int_imextract_DescriptorBRISK.cpp";
         "sci_int_imdetect_SIFT.cpp";
-        "sci_int_imextract_DescriptorSIFT.cpp";
         "sci_int_imhough.cpp";
         "sci_int_imhoughcircles.cpp";
         "sci_int_imstitchImage.cpp";
@@ -104,8 +101,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
-
 
 
 

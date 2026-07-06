@@ -79,13 +79,6 @@ function fobj = imdetect_STAR(im,maxSize,responseThreshold,lineThresholdProjecte
         im = im2uint8(im);
     end
     
-    maxSize=16, 
-    responseThreshold=30,
-    lineThresholdProjected = 10,
-    lineThresholdBinarized = 8
-    suppressNonmaxSize=5 
-    
-    
     r = int_imdetect_STAR(im,maxSize,responseThreshold,lineThresholdProjected,lineThresholdBinarized,suppressNonmaxSize);
     
     fobj.type = 'STAR';
@@ -99,7 +92,6 @@ function fobj = imdetect_STAR(im,maxSize,responseThreshold,lineThresholdProjecte
     fobj.class_id = r(7,:);
    
 endfunction
-
 
 
 

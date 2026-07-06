@@ -111,6 +111,7 @@
   "imlogpolar": "TBX/help/en_US/Image Transforms/imlogpolar.xml",
   "imlsusb": "TBX/help/en_US/Utilities and Interactive Tools/imlsusb.xml",
   "immatch_BruteForce": "TBX/help/en_US/Feature Detection, Description and Matching/immatch_BruteForce.xml",
+  "immatch_Flann": "TBX/help/en_US/Feature Detection, Description and Matching/immatch_Flann.xml",
   "immedian": "TBX/help/en_US/Image Enhancement and Restoration/immedian.xml",
   "immesh": "TBX/help/en_US/Filter Design and Visualization/immesh.xml",
   "immultiply": "TBX/help/en_US/Image Arithmetic/immultiply.xml",

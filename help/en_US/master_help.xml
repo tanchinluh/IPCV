@@ -32,6 +32,7 @@
 <!ENTITY a7e0437e949e292f85c822f1e4eaf857f SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSIFT.xml">
 <!ENTITY a67f67423d39369bb6511cc4a436154c0 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Feature Detection, Description and Matching/imextract_DescriptorSURF.xml">
 <!ENTITY a1f8919ffa485207d10a799889db8a6f1 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Feature Detection, Description and Matching/immatch_BruteForce.xml">
+<!ENTITY abe9ec9cb3ec8d48935a9c2921957b1d1 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Feature Detection, Description and Matching/immatch_Flann.xml">
 <!ENTITY ad260dbea0cbaa4164b18c97dea07bba4 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Feature Detection, Description and Matching/plotfeature.xml">
 <!ENTITY a8e113d408f48ecadc397a4cc5e74fae3 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Filter Design and Visualization/fft2pad.xml">
 <!ENTITY a3ca2b0efdce19f2b140c3941cd75c268 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Filter Design and Visualization/immesh.xml">
@@ -229,6 +230,7 @@
 &a7e0437e949e292f85c822f1e4eaf857f;
 &a67f67423d39369bb6511cc4a436154c0;
 &a1f8919ffa485207d10a799889db8a6f1;
+&abe9ec9cb3ec8d48935a9c2921957b1d1;
 &ad260dbea0cbaa4164b18c97dea07bba4;
 </part>
 <part xml:id='section_135e3d584a7be9b5ce22ba820eed69fc'>

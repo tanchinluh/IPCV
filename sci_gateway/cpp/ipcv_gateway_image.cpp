@@ -542,6 +542,40 @@ int ipcv_set_contour_list_argument(void* pvApiCtx, int nPos, const IpcvContourLi
 	return 0;
 }
 
+int ipcv_get_keypoint_matrix_argument(void* pvApiCtx, int nPos, IpcvKeypointMatrix& keypoints)
+{
+	SciErr sciErr;
+	int *piAddr = NULL;
+	int rows = 0;
+	int cols = 0;
+	double *data = NULL;
+
+	memset(&keypoints, 0, sizeof(keypoints));
+	sciErr = getVarAddressFromPosition(pvApiCtx, nPos, &piAddr);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &rows, &cols, &data);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if (rows != 7 || cols < 0 || data == NULL)
+	{
+		return -1;
+	}
+
+	keypoints.rows = rows;
+	keypoints.cols = cols;
+	keypoints.data = data;
+	return 0;
+}
+
 int ipcv_set_keypoint_matrix_argument(void* pvApiCtx, int nPos, const IpcvKeypointMatrix& keypoints)
 {
 	SciErr sciErr;
@@ -561,6 +595,40 @@ int ipcv_set_keypoint_matrix_argument(void* pvApiCtx, int nPos, const IpcvKeypoi
 	}
 
 	AssignOutputVariable(pvApiCtx, nPos) = outVar;
+	return 0;
+}
+
+int ipcv_get_match_matrix_argument(void* pvApiCtx, int nPos, IpcvMatchMatrix& matches)
+{
+	SciErr sciErr;
+	int *piAddr = NULL;
+	int rows = 0;
+	int cols = 0;
+	double *data = NULL;
+
+	memset(&matches, 0, sizeof(matches));
+	sciErr = getVarAddressFromPosition(pvApiCtx, nPos, &piAddr);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &rows, &cols, &data);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return sciErr.iErr;
+	}
+
+	if (rows != 4 || cols < 0 || data == NULL)
+	{
+		return -1;
+	}
+
+	matches.rows = rows;
+	matches.cols = cols;
+	matches.data = data;
 	return 0;
 }
 
