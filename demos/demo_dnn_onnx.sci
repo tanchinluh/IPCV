@@ -19,11 +19,48 @@ function demo_dnn_onnx()
         end
     endfunction
 
+    function label_file = ensure_imagenet_labels(dnn_path)
+        label_file = dnn_path + "classification_classes_ILSVRC2012.txt";
+        legacy_label_file = dnn_path + "labelsimagenet1k.h";
+
+        if isfile(label_file) then
+            return;
+        end
+
+        if isfile(legacy_label_file) then
+            label_file = legacy_label_file;
+            return;
+        end
+
+        label_url = "https://raw.githubusercontent.com/opencv/opencv/5.x/samples/data/dnn/classification_classes_ILSVRC2012.txt";
+        mprintf("Downloading ImageNet labels from OpenCV samples...\n");
+        http_get(label_url, label_file, follow=%t, timeout=120);
+
+        info = fileinfo(label_file);
+        if info == [] | info(1) < 1000 then
+            error("ImageNet label download failed or is incomplete: " + label_file);
+        end
+    endfunction
+
+    function labels = read_imagenet_labels(label_file)
+        raw_labels = mgetl(label_file);
+
+        if grep(raw_labels, "std::vector") <> [] then
+            label_lines = raw_labels(grep(raw_labels, "        """));
+            labels = stripblanks(label_lines);
+            labels = strsubst(labels, """,", "");
+            labels = strsubst(labels, """", "");
+        else
+            labels = stripblanks(raw_labels);
+            labels = labels(find(labels <> ""));
+        end
+    endfunction
+
     dnn_unloadallmodels();
 
     dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
     model_file = ensure_opencv_zoo_model(dnn_path);
-    label_file = dnn_path + "labelsimagenet1k.h";
+    label_file = ensure_imagenet_labels(dnn_path);
 
     net = dnn_readmodel(model_file, "", "onnx");
     net = dnn_setpreferable(net, "opencv", "cpu");
@@ -33,11 +70,7 @@ function demo_dnn_onnx()
     mprintf("Output layer: %s\n", info.outputname($));
     mprintf("Layer count: %d\n", info.layercount);
 
-    raw_labels = mgetl(label_file);
-    label_lines = raw_labels(grep(raw_labels, "        """));
-    labels = stripblanks(label_lines);
-    labels = strsubst(labels, """,", "");
-    labels = strsubst(labels, """", "");
+    labels = read_imagenet_labels(label_file);
 
     // Example 1: run MobileNetV2 and map output index to ImageNet labels.
     S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));

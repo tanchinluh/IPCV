@@ -33,7 +33,7 @@ function dnn_unloadallmodels()
    
    try 
         int_dnn_unloadall();
-        disp('All DNN models have been unloaded, please clear the obj from the workspace manually.');
+        // Models are unloaded silently so scripts and tests remain deterministic.
         //disp('DNN '+ net.name + ' has been unloaded, please clear the obj from the workspace manually.');
    catch
        error(lasterror);

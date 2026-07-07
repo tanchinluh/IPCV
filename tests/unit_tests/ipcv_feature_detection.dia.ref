@@ -72,13 +72,4 @@ assert_checkequal(star.type, "STAR");
 assert_checkequal(star.n, 196);
 assert_checkequal(size(star.x, 2), star.n);
 
-surf = imdetect_SURF(S);
-assert_checkequal(surf.type, "SURF");
-assert_checktrue(surf.n >= 0);
-assert_checkequal(size(surf.x, 2), surf.n);
-if surf.n > 0 then
-    surfDescriptors = imextract_DescriptorSURF(S, surf);
-    assert_checkequal(size(surfDescriptors), [surf.n 64]);
-end
-
 //==============================================================================

@@ -2,13 +2,13 @@ Toolbox: IPCV
 
 Title: Image Processing and Computer Vision Toolbox
 
-Summary: A Module of Image Processing and Computer Vision Toolbox for Scilab
+Summary: Image Processing and Computer Vision Toolbox for Scilab
 
 Version: 5.0.0
 
 Author: Tan Chin Luh
 
-Maintainer: Stéphane MOTTELET <stephane.mottelet@utc.fr>
+Maintainer: Stephane MOTTELET <stephane.mottelet@utc.fr>
  Chin Luh Tan <tanchinluh@gmail.com>
  Vincent COUVERT <vincent.couvert@3ds.com>
 
@@ -18,82 +18,50 @@ Entity:
 
 WebSite: https://github.com/tanchinluh/IPCV
 
-URL: https://atoms.scilab.org/toolboxes/IPCV/4.5.0.2
+URL: https://atoms.scilab.org/toolboxes/IPCV/5.0.0
 
 License: GPL
 
-ScilabVersion: any
+ScilabVersion: >= 2026.1
 
 Depends: 
 
-Date: 2025-10-03 13:48:46
+Date: 2026-07-07
 
-Description: IPCV – Scilab Image Processing &amp; Computer Vision, a module of Image
- Processing and Computer Vision Toolbox for Scilab. Topics covered shown as
- below, for details check out the functions summary in the download section.
+Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
+ This release targets Scilab 2026.1 and OpenCV/OpenCV contrib 5.0.0.
  
- •	Analytic Geometry 
- •	Camera Handling 
- •	Deep Learning 
- •	Feature Detection, Description and Matching 
- •	Filter Design and Visualization 
- •	Image Analysis and Statistics 
- •	Image Arithmetic 
- •	Image Block Processing 
- •	Image Enhancement and Restoration 
- •	Image Linear Filtering 
- •	Image Reading, Display and Exploration 
- •	Image Registration and Image Fusion 
- •	Image Stitching 
- •	Image Transforms 
- •	Image Types and Color Space Conversions 
- •	Morphological Operations 
- •	Object Detection 
- •	Object Tracking 
- •	ROI Processing 
- •	Spatial Transformations 
- •	Structural Analysis and Shape Descriptors 
- •	Super Resolution 
- •	Utilities and Interactive Tools 
- •	Video Handling 
+ OpenCV 5 and C++ Migration:
+ - Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds.
+ - Update gateway linking and C++ compile flags for OpenCV 5.
+ - Provide Windows x64 native binaries for Scilab 2026.1.
  
- Updates on 4.1.2 (2019-11-15)
- •	Deep learning inference = support for ONNX model 
- •	Preparing support for upcoming module to integrate with libTorch (pytorch) 
- •	Update lib to OPENCV 4.1.2
- 
- Version 4.5 (21-Nov-23):
- • Change OpenCV Dependency to 4.5
- • base64toimg, imgtobase64 (20-Sep-2022) - experimental, requite USB E for
- image exchange
- 
- Version 4.5.0.1 (24-Feb-25)
- • backport master branch fixes
- 
- Version 4.5.0.2 (03-Oct-25)
- • Fix compilation warnings
- • Fix call of deprecated macros for Scilab 2026.0.0
- • Use Ninja for thirdparty OpenCV build
- 
-
-OpenCV 5 migration branch
- • Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
- • Update gateway linking and C++ compile flags for OpenCV 5
+ Main topics:
+ - Camera and video handling.
+ - Deep learning inference.
+ - Feature detection, description, and matching.
+ - Image arithmetic, filtering, enhancement, and restoration.
+ - Morphological operations.
+ - Object detection and tracking.
+ - ROI processing and spatial transformations.
+ - Structural analysis, image stitching, and super resolution.
 
 HasNativeCode: Yes
 
-sourceName: IPCV-4.5.0.2.zip
+sourceName: IPCV-5.0.0.zip
 
-sourceMd5: dab2ffcb3207a0da00499f159c1e1f4d
-
-sourceSha1: d8cd1085dec99b3478ec21bd3771e33c8d64a27b
-
-sourceSize: 14260470
-
-sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/4.5.0.2/files/IPCV-4.5.0.2.zip
+sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV-5.0.0.zip
 
 sourceFileClass: source
 
-sourceSupportedScilab: 2026.0
+sourceSupportedScilab: 2026.1
 
+binary64Name: IPCV_5.0.0.bin.x64.Windows.zip
 
+binary64Md5: 5FBE535C5EDEB460B3CA3356EEFA74A8
+
+binary64Sha1: 8B45147D26FEB69B3E3A250FD4053547C00A9AC5
+
+binary64Size: 69657422
+
+binary64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Windows.zip

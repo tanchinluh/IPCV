@@ -43,7 +43,10 @@ function So = imcontour2label(S,Sc)
     So = zeros(S(:,:,1));
     
     for cnt = 1:total_cnts
-        rect_coor = Sc(cnt);
+        rect_coor = Sc(cnt) + 1;
+        rect_coor(rect_coor < 1) = 1;
+        rect_coor(rect_coor(:,1) > size(S,2), 1) = size(S,2);
+        rect_coor(rect_coor(:,2) > size(S,1), 2) = size(S,1);
         i = sub2ind(size(S(:,:,1)),rect_coor(:,$:-1:1));
         So(i) = cnt;
     end

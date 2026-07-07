@@ -1,4 +1,8 @@
-function json = ipcv_opencv_zoo_gui_download_json(model_name, model_url)
+function json = ipcv_opencv_zoo_gui_download_json(model_name, model_url, assets)
+    if argn(2) < 3 then
+        assets = [];
+    end
+
     default_dir = fullpath(getIPCVpath() + "/images/dnn/");
     target_dir = uigetdir(default_dir, "Select folder for OpenCV Zoo model");
 
@@ -16,10 +20,18 @@ function json = ipcv_opencv_zoo_gui_download_json(model_name, model_url)
         return;
     end
 
+    asset_files = ipcv_opencv_zoo_gui_download_assets(assets, target_dir);
+
+    message = "Downloaded " + ipcv_opencv_zoo_gui_json_escape(model_name);
+    if size(asset_files, "*") > 0 then
+        message = message + " and " + string(size(asset_files, "*")) + " companion file(s)";
+    end
+
     json = "{" + ..
         """status"":""ok""," + ..
-        """message"":""Downloaded " + ipcv_opencv_zoo_gui_json_escape(model_name) + """," + ..
+        """message"":""" + message + """," + ..
         """file"":""" + ipcv_opencv_zoo_gui_json_escape(target_file) + """," + ..
+        """assets"":" + string(size(asset_files, "*")) + "," + ..
         """bytes"":" + string(info(1)) + ..
         "}";
 endfunction

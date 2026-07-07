@@ -44,6 +44,7 @@ function result = imroifill(imin,mask)
     interior = im2bw(mask,0.5) & ~im2bw(perimeter,0.5);
 
     idx = find(interior);
+    idx = idx(:);
 
     grid = zeros(mask);
     grid(idx) = 1:length(idx);
@@ -60,24 +61,22 @@ function result = imroifill(imin,mask)
     rightside = rightside(idx);
     i = grid(idx);
     j = grid(idx);
-    s = 4*ones(idx)';            
-    idx = idx';
+    s = 4 * ones(length(idx), 1);
     for k = [-1 M 1 -M]
         // Possible neighbors in the k-th direction
         Q = grid(idx+k);
         // Index of points with interior neighbors
-        q = find(Q)';
+        q = find(Q);
         // Connect interior points to neighbors with -1's.
         //pause
-        i = [i; grid(idx(q))']; //#ok<AGROW>
+        i = [i; grid(idx(q))]; //#ok<AGROW>
         j = [j; Q(q)];
         s = [s; -ones(length(q),1)];
     end
 
-    D = sparse([i,j],s);
+    D = sparse([i(:), j(:)], s(:));
     x = D \ rightside;
     result(idx) = x;
     //end
 
 endfunction
-

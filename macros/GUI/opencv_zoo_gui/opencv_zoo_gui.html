@@ -246,6 +246,10 @@
           <div class="value" id="detailUrl">-</div>
         </div>
         <div class="field">
+          <div class="label">Companion Files</div>
+          <div class="value" id="detailAssets">-</div>
+        </div>
+        <div class="field">
           <div class="label">Default Folder</div>
           <div class="value" id="defaultDir">IPCV/images/dnn</div>
         </div>
@@ -369,6 +373,9 @@
       document.getElementById("detailGroup").textContent = model ? model.group : "-";
       document.getElementById("detailPath").textContent = model ? model.path : "-";
       document.getElementById("detailUrl").textContent = model ? model.url : "-";
+      document.getElementById("detailAssets").textContent = model && model.assets && model.assets.length
+        ? model.assets.map((asset) => asset.name).join(", ")
+        : "-";
       document.getElementById("downloadButton").disabled = !model;
       document.getElementById("scriptButton").disabled = !model;
 
@@ -421,7 +428,8 @@
       scilab({
         type: "download",
         name: state.selected.name,
-        url: state.selected.url
+        url: state.selected.url,
+        assets: state.selected.assets || []
       }, (res) => {
         document.getElementById("downloadButton").disabled = false;
         document.getElementById("scriptButton").disabled = false;
@@ -447,7 +455,8 @@
         name: state.selected.name,
         url: state.selected.url,
         group: state.selected.group,
-        path: state.selected.path
+        path: state.selected.path,
+        assets: state.selected.assets || []
       }, (res) => {
         document.getElementById("downloadButton").disabled = false;
         document.getElementById("scriptButton").disabled = false;

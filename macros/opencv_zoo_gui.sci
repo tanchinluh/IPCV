@@ -12,7 +12,12 @@ function opencv_zoo_gui()
 
     old = findobj("tag", "opencv_zoo_gui");
     if old <> [] then
-        delete(old);
+        set(old, "visible", "on");
+        browser = findobj("tag", "opencv_zoo_gui_browser");
+        if browser <> [] then
+            set(browser, "string", html_file);
+        end
+        return;
     end
 
     f = figure( ...
@@ -24,7 +29,8 @@ function opencv_zoo_gui()
         "default_axes", "off", ...
         "position", [80 80 980 680], ...
         "layout", "border", ...
-        "tag", "opencv_zoo_gui");
+        "tag", "opencv_zoo_gui", ...
+        "visible", "off");
 
     fr = uicontrol(f, ...
         "style", "frame", ...
@@ -37,4 +43,6 @@ function opencv_zoo_gui()
         "string", html_file, ...
         "callback", "ipcv_opencv_zoo_gui_callback", ...
         "tag", "opencv_zoo_gui_browser");
+
+    f.visible = "on";
 endfunction

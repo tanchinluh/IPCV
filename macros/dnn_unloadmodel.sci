@@ -35,7 +35,7 @@ function dnn_unloadmodel(net)
         int_dnn_unload(net.ptr);
         //net = [];
         //net = resume(net);
-        disp('DNN '+ net.name + ' has been unloaded, please clear the obj from the workspace manually.');
+        // Model is unloaded silently so scripts and tests remain deterministic.
    catch
        error(lasterror);
    end

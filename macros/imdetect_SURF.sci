@@ -82,10 +82,23 @@ function fobj = imdetect_SURF(im,hessianThreshold,nOctaves,nOctaveLayers,extende
     
     r = int_imdetect_SURF(im,hessianThreshold,nOctaves,nOctaveLayers,extended,upright);
     
-    if type(r) == 10 then
-        disp(strsplit(r,';')(1));
+    fobj.type = 'SURF';
+    if type(r) == 10 | isempty(r) then
+        fobj.n = 0;
+        fobj.x = [];
+        fobj.y = [];
+        fobj.size = [];
+        fobj.angle = [];
+        fobj.response = [];
+        fobj.octave = [];
+        fobj.class_id = [];
+        fobj.available = %f;
+        if type(r) == 10 then
+            fobj.message = strsplit(r,';')(1);
+        else
+            fobj.message = "SURF returned no features. OpenCV may have been built without OPENCV_ENABLE_NONFREE.";
+        end
     else
-        fobj.type = 'SURF';
         fobj.n = size(r,2);
         fobj.x = r(1,:);
         fobj.y = r(2,:);
@@ -94,12 +107,11 @@ function fobj = imdetect_SURF(im,hessianThreshold,nOctaves,nOctaveLayers,extende
         fobj.response = r(5,:);
         fobj.octave = r(6,:);
         fobj.class_id = r(7,:);
+        fobj.available = %t;
+        fobj.message = "";
     end
     
 endfunction
-
-
-
 
 
 

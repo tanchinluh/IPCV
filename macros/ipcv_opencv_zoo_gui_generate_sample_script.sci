@@ -1,4 +1,8 @@
-function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, model_name, group_name, model_path, model_url, target_dir)
+function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, model_name, group_name, model_path, model_url, target_dir, asset_files)
+    if argn(2) < 7 then
+        asset_files = emptystr(0, 1);
+    end
+
     base_name = model_name;
     if length(base_name) > 5 then
         if ipcv_opencv_zoo_gui_ends_with(convstr(base_name, "l"), ".onnx") then
@@ -12,6 +16,34 @@ function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, mo
     model_file_script = strsubst(model_file, "\", "/");
     loader_file = strsubst(fullpath(getIPCVpath() + "/loader.sce"), "\", "/");
     zoo_model_page = "https://github.com/opencv/opencv_zoo/tree/main/models/" + group_name;
+
+    companion_lines = emptystr(0, 1);
+    for i = 1:size(asset_files, "*")
+        companion_lines($ + 1) = "    """ + strsubst(asset_files(i), "\", "/") + """;";
+    end
+    if size(companion_lines, "*") == 0 then
+        companion_block = [
+            "companion_files = [];";
+            "label_file = """";"
+        ];
+    else
+        companion_block = [
+            "companion_files = [";
+            companion_lines;
+            "];";
+            "label_file = """";";
+            "for k = 1:size(companion_files, ""*"")";
+            "    lower_name = convstr(companion_files(k), ""l"");";
+            "    if strindex(lower_name, ""label"") <> [] | strindex(lower_name, ""class"") <> [] | strindex(lower_name, "".names"") <> [] then";
+            "        label_file = companion_files(k);";
+            "        break;";
+            "    end";
+            "end";
+            "if label_file <> """" then";
+            "    mprintf(""Companion label file: %s\n"", label_file);";
+            "end"
+        ];
+    end
 
     lines = [
         "// IPCV OpenCV Zoo sample script";
@@ -29,6 +61,8 @@ function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, mo
         "if ~isfile(model_file) then";
         "    error(""Model file not found: "" + model_file);";
         "end";
+        "";
+        companion_block;
         "";
         "dnn_unloadallmodels();";
         "net = dnn_readmodel(model_file, """", ""onnx"");";

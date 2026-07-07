@@ -29,7 +29,7 @@ function imtrack_unloadall()
 
     try 
         int_tracker_unloadall();
-        disp('All trackers unloaded, please clear the pointer from the workspace manually.');
+        // Trackers are unloaded silently so scripts and tests remain deterministic.
     catch
         error(lasterror);
     end

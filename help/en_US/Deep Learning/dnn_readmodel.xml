@@ -83,7 +83,7 @@ dnn_unloadmodel(net);
 
    ]]></programlisting>
 
-   <para>Example 2: ONNX MobileNetV2. The model is downloaded from OpenCV Zoo if missing.</para>
+   <para>Example 2: ONNX MobileNetV2. The model and labels are downloaded if missing.</para>
    <programlisting role="example"><![CDATA[
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
@@ -94,12 +94,14 @@ if ~isfile(model_file) then
     model_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/" + model_name;
     http_get(model_url, model_file, follow=%t, timeout=300);
 end
+label_file = dnn_path + "classification_classes_ILSVRC2012.txt";
+if ~isfile(label_file) then
+    label_url = "https://raw.githubusercontent.com/opencv/opencv/5.x/samples/data/dnn/classification_classes_ILSVRC2012.txt";
+    http_get(label_url, label_file, follow=%t, timeout=120);
+end
 net = dnn_readmodel(model_file, "", "onnx");
-raw_labels = mgetl(dnn_path + "labelsimagenet1k.h");
-label_lines = raw_labels(grep(raw_labels, "        """));
-labels = stripblanks(label_lines);
-labels = strsubst(labels, """,", "");
-labels = strsubst(labels, """", "");
+labels = stripblanks(mgetl(label_file));
+labels = labels(find(labels <> ""));
 S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
 out = dnn_forward(net, S, [224, 224], [], 1 / 127.5, [127.5 127.5 127.5], 1, 0);
 [score, index] = max(out);

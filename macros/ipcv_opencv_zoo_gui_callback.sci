@@ -12,9 +12,17 @@ function ipcv_opencv_zoo_gui_callback(msg, cb)
         case "size" then
             cb(ipcv_opencv_zoo_gui_model_size_json(msg.blobUrl, msg.size));
         case "download" then
-            cb(ipcv_opencv_zoo_gui_download_json(msg.name, msg.url));
+            assets = [];
+            if isfield(msg, "assets") then
+                assets = msg.assets;
+            end
+            cb(ipcv_opencv_zoo_gui_download_json(msg.name, msg.url, assets));
         case "downloadScript" then
-            cb(ipcv_opencv_zoo_gui_download_script_json(msg.name, msg.url, msg.group, msg.path));
+            assets = [];
+            if isfield(msg, "assets") then
+                assets = msg.assets;
+            end
+            cb(ipcv_opencv_zoo_gui_download_script_json(msg.name, msg.url, msg.group, msg.path, assets));
         else
             cb(ipcv_opencv_zoo_gui_status_json("error", "Unknown GUI command."));
         end

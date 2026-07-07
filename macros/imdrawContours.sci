@@ -53,7 +53,7 @@ function So = imdrawContours(Slabel,colormap,thickness)
     
     for cnt = 1:total
         Slabel2 = Slabel==cnt;
-        Slabel3 = imdilate(Slabel2,se);
+        Slabel3 = imdilate(Slabel2,se) > 0;
         Sr(Slabel3) = colormap(cnt,1);
         Sg(Slabel3) = colormap(cnt,2);
         Sb(Slabel3) = colormap(cnt,3);        

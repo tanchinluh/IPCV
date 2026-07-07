@@ -27,7 +27,7 @@ function ret = dnn_list()
     //    CL Tan - Trity Technologies.
     //
 
-    rhs=argn(2);
+    [lhs, rhs] = argn(0);
     // Error Checking 
     if rhs ~= 0; error("Function expect no input arguments"); end    
 
@@ -48,7 +48,9 @@ function ret = dnn_list()
                         temp_net_ptr = getfield('ptr',evstr(var_list(cnt2)));
                         if temp_net_ptr == cnt1
                             opened_net(num) = var_list(cnt2);
-                            disp(string(evstr(var_list(cnt2)+'.ptr'))+'. '+ var_list(cnt2) + ': ' + evstr(var_list(cnt2)+'.name'))
+                            if lhs == 0 then
+                                disp(string(evstr(var_list(cnt2)+'.ptr'))+'. '+ var_list(cnt2) + ': ' + evstr(var_list(cnt2)+'.name'));
+                            end
                             num = num + 1;
                         end
                     end
