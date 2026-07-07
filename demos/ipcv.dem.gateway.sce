@@ -10,6 +10,8 @@ function subdemolist = demo_gateway()
                  "Image Analysis and Stats","demo_imagestats.sci"; ..
                  "Image Transformation", "demo_transform.sci"; ..
                  "Deep Learning with OpenCV 5", "demo_dnn.sci"; ..
+                 "Deep Learning ONNX MobileNetV2", "demo_dnn_onnx.sci"; ..
+                 "Deep Learning CLIP Zero-Shot", "demo_dnn_clip.sci"; ..
                  "Image Arithmetic", "demo_arithmetic.sci"];
                  if getos() <> "Darwin"
                      subdemolist = [subdemolist
