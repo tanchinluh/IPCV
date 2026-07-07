@@ -19,7 +19,10 @@ function S = imreadmulti(fn,modes)
     //    
     //    Examples
     //      im = imreadmulti(fullpath(getIPCVpath() + "/images/" + 'img_multipage.tiff'));
-    //      imshow(im(:,:,:,1);
+    //      for i = 1:10
+    //          subplot(2,5,i);
+    //          imshow(im(:,:,:,i));
+    //      end
     //     
     //    See also
     //      imread
@@ -35,7 +38,8 @@ function S = imreadmulti(fn,modes)
     // Checking Input Arguement
     rhs = argn(2);
 
-    if rhs < 1 then error("Expect at least 1 argument, N, which is the Network topology"); end;
+    if rhs < 1 then error("Expect at least 1 argument, image filename."); end;
+    if ~isfile(fn) then error("File not found: " + fn); end
     if rhs == 1 then IMREAD_ANYDEPTH=1,IMREAD_ANYCOLOR = 1, end
     if ~isdef('IMREAD_GRAYSCALE')|IMREAD_GRAYSCALE==[] then IMREAD_GRAYSCALE = 0;end;
     if ~isdef('IMREAD_COLOR')|IMREAD_COLOR==[] then IMREAD_COLOR = 0;end;

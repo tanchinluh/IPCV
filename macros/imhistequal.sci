@@ -36,30 +36,47 @@ function y = imhistequal(x)
     // 1. Wikipedia : http://en.wikipedia.org/wiki/Histogram_equalization
     // 
 
-    x2=im2uint8(x);
-    [Histogram, ListOfBins] = imhist(x2,256);
-    CumHist = cumsum(Histogram);
-    a = find(CumHist~=0);
-    cdfmin = CumHist(a(1));
+    function yplane = equalize_plane(xplane)
+        xplane8 = im2uint8(xplane);
+        [Histogram, ListOfBins] = imhist(xplane8,256);
+        CumHist = cumsum(Histogram);
+        a = find(CumHist~=0);
+        [m,n] = size(xplane8);
 
-    [m,n] = size(x);
+        if size(a, "*") == 0 then
+            yplane = xplane8;
+            return;
+        end
 
-    //for cnt1 = 1:m
-    //    for cnt2 = 1:n
-    //        
-    //        x(cnt1,cnt2) = round((CumHist(x(cnt1,cnt2)+1)-cdfmin)/(m*n-cdfmin)*255);
-    //    end
-    //    
-    //end
+        cdfmin = CumHist(a(1));
+        denom = m*n-cdfmin;
 
-    y2 = round((CumHist(imadd(x2,1))-cdfmin)/(m*n-cdfmin)*255);
-    y3 = matrix(y2,m,n);
+        if denom <= 0 then
+            yplane = xplane8;
+            return;
+        end
 
+        y2 = round((CumHist(imadd(xplane8,1))-cdfmin)/denom*255);
+        yplane = uint8(matrix(y2,m,n));
+    endfunction
 
-    if typeof(x(1)) == 'uint8' then
-        y = uint8(y3);
+    dims = size(x);
+
+    if length(dims) == 2 then
+        y8 = equalize_plane(x);
+    elseif length(dims) == 3 & dims(3) == 3 then
+        x8 = im2uint8(x);
+        lab = rgb2lab(x8);
+        lab(:,:,1) = equalize_plane(lab(:,:,1));
+        y8 = int_cvtcolor(lab, "lab2rgb");
     else
-        y = im2double(y3./255);
+        error("The input image should be a 2D grayscale image or an M x N x 3 RGB image.");
+    end
+
+    if typeof(x(1)) == "uint8" then
+        y = y8;
+    else
+        y = im2double(y8);
     end    
 
 

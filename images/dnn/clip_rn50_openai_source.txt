@@ -1,0 +1,26 @@
+CLIP RN50 OpenAI visual encoder for IPCV OpenCV 5 DNN demo
+
+Model file:
+clip_rn50_openai_visual_fp16.onnx
+
+Distribution note:
+The ONNX model is not bundled and is not auto-downloaded by IPCV because it
+does not come from the official OpenCV Zoo. Developers may place a trusted
+local copy in this folder to run demo_dnn_clip.sci.
+
+Source:
+https://huggingface.co/Marqo/onnx-open_clip-RN50
+
+Original file:
+onnx16-open_clip-RN50-openai-visual.onnx
+
+Text embeddings:
+clip_rn50_openai_text_embeddings.csv was generated from the matching
+onnx32-open_clip-RN50-openai-textual.onnx model using prompts listed in
+clip_rn50_openai_prompts.txt. The text encoder is not bundled because the
+demo uses precomputed prompt embeddings.
+
+Preprocessing:
+Images are resized to 224 x 224, converted to double precision in [0, 1],
+and normalized with CLIP channel mean [0.48145466 0.4578275 0.40821073]
+and channel standard deviation [0.26862954 0.26130258 0.27577711].

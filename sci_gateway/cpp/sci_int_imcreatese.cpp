@@ -3,77 +3,57 @@
  * Copyright (C) 2017  Tan Chin Luh
  ***********************************************************************/
 
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-#include "common.h"
+#include <string.h>
 
-
-/************************************************************
-* se = int_imcreatese(type,r,c);   
-************************************************************/
-
-
-int sci_int_imcreatese(char * fname,void* pvApiCtx)
+int sci_int_imcreatese(char *fname, void *pvApiCtx)
 {
+    SciErr sciErr;
+    int *piAddr = NULL;
+    char shape = 0;
+    char rows = 0;
+    char cols = 0;
+    IpcvDecodedImage output;
 
-	CheckInputArgument(pvApiCtx, 3, 3);
-	CheckOutputArgument(pvApiCtx, 0, 1);
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-	SciErr sciErr;
-	int* piAddr     = NULL;
-	int iType       = 0;
-	int iRet        = 0;
-	int iPrec       = 0;
-	char cData1  = 0;
-	char cData2  = 0;
-	char cData3  = 0;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
+    getScalarInteger8(pvApiCtx, piAddr, &shape);
 
-	getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
-	getScalarInteger8(pvApiCtx, piAddr, &cData1);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
+    getScalarInteger8(pvApiCtx, piAddr, &rows);
 
-	getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
-	getScalarInteger8(pvApiCtx, piAddr, &cData2);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
+    getScalarInteger8(pvApiCtx, piAddr, &cols);
 
-	getVarAddressFromPosition(pvApiCtx, 3, &piAddr);
-	getScalarInteger8(pvApiCtx, piAddr, &cData3);
+    int iRet = ipcv_create_structuring_element(shape, rows, cols, &output);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-
-	//sciprint("%i \t %i \t %i \t\n",cData1,cData2,cData3);
-	//// Initialization
-	Mat element = getStructuringElement( cData1, Size( cData3, cData2 ), Point( -1,-1) );
-	SetImage(1,element,pvApiCtx);
-	
-	//int sRow = 0, sCol = 0, sData = 0;
-	//int mRow = 0, mCol = 0, mData = 0;
-	//int nRow = 0, nCol = 0, nData = 0;
-	//int row = 0, col = 0, shape = 0;
-	//int *oData = NULL;
-	//IplConvKernel *se = NULL;
-
-	//// Check arguments
-
-	//CheckRhs(3, 3);
-	//CheckLhs(1, 1);
-
-	//// Get Parameters
-	//GetRhsVar(1, "i", &sRow, &sCol, &sData);
-	//shape = *istk(sData);
-
-	//GetRhsVar(2, "i", &mRow, &mCol, &mData);
-	//col = *istk(mData);
-
-	//GetRhsVar(3, "i", &nRow, &nCol, &nData);
-	//row = *istk(nData);
-
-	//se = cvCreateStructuringElementEx(col, row, round(col/2),round(row/2), shape, NULL);
-
-	//// Create output
-	//oData = (se->values);
-	//CreateVarFromPtr(Rhs+1,"i",&col,&row,&oData);
-	//LhsVar(1) = Rhs + 1;
-
-	// Cleaning up???
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

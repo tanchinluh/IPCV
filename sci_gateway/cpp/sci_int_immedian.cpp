@@ -1,36 +1,40 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
-***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-#include "common.h"
+#include <math.h>
+#include <string.h>
 
-/************************************************************
-* imout = int_imdilate(imin, se);
-************************************************************/
-
-int sci_int_immedian(char * fname,void* pvApiCtx)
+int sci_int_immedian(char *fname, void *pvApiCtx)
 {
-	Mat pSrcImg, pDstImg;
-	int iRows			= 0;
-	int iCols			= 0;
-	double *sz1 = NULL;
-	int sz2;
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
+    double *kernelSize = NULL;
+    int rows = 0;
+    int cols = 0;
 
-	CheckInputArgument(pvApiCtx, 2, 2);
-	CheckOutputArgument(pvApiCtx, 1, 1);
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	GetImage(1,pSrcImg,pvApiCtx);
-	GetDouble(2,sz1,iRows,iCols,pvApiCtx);
-	
-	sz2 = round(*sz1);
+    GetDouble(2, kernelSize, rows, cols, pvApiCtx);
 
-	medianBlur(pSrcImg, pDstImg, sz2);
-	
-	SetImage(1,pDstImg,pvApiCtx);
+    iRet = ipcv_median_image(&source, static_cast<int>(round(*kernelSize)), &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	return 0;
-
-	
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

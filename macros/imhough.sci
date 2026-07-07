@@ -9,7 +9,7 @@ function [HM, rho, th2] = imhough(S)
     //    [HM, rho, th] = imhough(S)
     //
     // Parameters
-    //    S : Source Image
+    //    S : Source edge image. Boolean and nonzero numeric pixels vote in Hough space.
     //    HM : Hough Matrix
     //    rho : Distance from center to the point
     //    th  : Angle from the center to the point
@@ -30,29 +30,36 @@ function [HM, rho, th2] = imhough(S)
     //    Tan Chin Luh
     //
 
-    
-sz = size(S);
-x_total = sz(2);
-y_total = sz(1);
-
-th = -%pi/2:%pi/180:%pi/2-%pi/180;
-maxrho = round(sqrt(x_total^2 + y_total^2));
-rho = -maxrho:maxrho;
-th_total = size(th,'*');
-HM = zeros(size(rho,'*'),th_total);
-
-
-cc= 0;
-for cnt_x = 1:x_total
-    for cnt_y = 1:y_total
-        if S(cnt_y,cnt_x) == %t
-           r = cnt_x.*cos(th) + cnt_y.*sin(th);
-           ind = sub2ind(size(HM),round(r)+maxrho,1:th_total);
-           HM(ind) = HM(ind) + 1;
-           
-        end            
+    sz = size(S);
+    if size(sz, "*") > 2 then
+        S = rgb2gray(S);
+        sz = size(S);
     end
-end
 
-th2 = th.*180/%pi;
+    x_total = sz(2);
+    y_total = sz(1);
+
+    th = -%pi/2:%pi/180:%pi/2-%pi/180;
+    maxrho = round(sqrt(x_total^2 + y_total^2));
+    rho = -maxrho:maxrho;
+    th_total = size(th, "*");
+    HM = zeros(size(rho, "*"), th_total);
+
+    if typeof(S) == "boolean" then
+        active = S;
+    else
+        active = double(S) <> 0;
+    end
+
+    for cnt_x = 1:x_total
+        for cnt_y = 1:y_total
+            if active(cnt_y, cnt_x) then
+                r = cnt_x.*cos(th) + cnt_y.*sin(th);
+                ind = sub2ind(size(HM), round(r) + maxrho + 1, 1:th_total);
+                HM(ind) = HM(ind) + 1;
+            end
+        end
+    end
+
+    th2 = th.*180/%pi;
 endfunction

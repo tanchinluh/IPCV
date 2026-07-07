@@ -1,59 +1,34 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- ***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
+#include <string.h>
 
-#include "common.h"
-
-/************************************************************
-* y = int_imdct(x);
-************************************************************/
-
-
-int sci_int_imdct(char * fname,void* pvApiCtx)
+int sci_int_imdct(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	//// Initialization
-	//IplImage *pSrcImg = NULL;
-	//IplImage *pDstImg = NULL;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	//// Checking numbers of Arguments
-	//CheckRhs(1, 1);
-	//CheckLhs(1, 1);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Single-channel matrix expected.\n", fname, 1);
+        return iRet;
+    }
 
-	//// Creating images
-	//pSrcImg = Mat2IplImg(1);	
-	//pDstImg = cvCreateImage(cvSize(pSrcImg->width, pSrcImg->height),pSrcImg->depth, pSrcImg->nChannels);
+    iRet = ipcv_dct_image(&source, IPCV_DCT_FORWARD, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	//// Do the transformation
-	//cvDCT( pSrcImg, pDstImg,0);
-
-	////	Export Image
-	//IplImg2Mat(pDstImg, Rhs+1);
-	//LhsVar(1) = Rhs+1;
-
-	//// Cleaning up
-	//cvReleaseImage( &pSrcImg );
-	//cvReleaseImage( &pDstImg );
-	CheckInputArgument(pvApiCtx, 1, 1);
-	CheckOutputArgument(pvApiCtx, 1, 1);
-
-	/////////////////
-	// First Input //
-	/////////////////
-	Mat pSrcImg;
-	GetImage(1,pSrcImg,pvApiCtx);
-	/////////////////
-	Mat pDstImg = pSrcImg;
-	//
-	dct(pSrcImg, pDstImg,0);
-	//sciprint("dims : %i\n",pSrcImg.dims);
-	//sciprint("dims : %i\n",pSrcImg.dims);
-	//
-	SetImage(1,pDstImg,pvApiCtx);
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

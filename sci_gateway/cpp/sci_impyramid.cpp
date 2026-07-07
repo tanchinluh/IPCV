@@ -9,72 +9,64 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *******************************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-int sci_impyramid(char *fname,void* pvApiCtx)
+#include <string.h>
+
+int sci_impyramid(char *fname, void *pvApiCtx)
 {
-	int mR = 0, nR = 0, lR = 0;
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
+    char *directionName = NULL;
+    int direction = IPCV_PYRAMID_REDUCE;
 
-	//IplImage *pSrcImg = NULL;
-	//IplImage *pDstImg = NULL;
-	Mat pSrcImg, pDstImg;
-	char *pstName = NULL;
-	//CheckRhs(2, 2);
-	//CheckLhs(1, 1);
-	CheckInputArgument(pvApiCtx, 2, 2);
-	CheckOutputArgument(pvApiCtx, 1, 1);
-	
-	//load the input image
-	//pSrcImg = Mat2IplImg(1);
-	//if(pSrcImg == NULL)
-	//	Scierror(999, "%s: Internal error for getting the image data.\r\n", fname);
-	GetImage(1,pSrcImg,pvApiCtx);
-	
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	if(nbInputArgument(pvApiCtx) == 2)
-	{
-		GetString(2, pstName,pvApiCtx);
-	}
-	else
-	{
-		pstName = (char *)"reduce";		
-	}
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	//GetRhsVar(2, "c", &mR, &nR, &lR);
+    iRet = GetString(2, directionName, pvApiCtx);
+    if (iRet || directionName == NULL)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: String expected.\n", fname, 2);
+        ipcv_release_image_argument(source);
+        return -1;
+    }
 
-	if(strcmp(pstName, "reduce") == 0)
-	{
-		//double dValueX = (double)(pSrcImg->width / 2);
-		//double dValueY = (double)(pSrcImg->height / 2);
-		//pDstImg = cvCreateImage(cvSize((int)ceil(dValueX), (int)ceil(dValueY)), pSrcImg->depth, pSrcImg->nChannels);
-		pyrDown(pSrcImg, pDstImg);
-	}
-	else if(strcmp(pstName, "expand") == 0)
-	{
-		//pDstImg = cvCreateImage(cvSize(2*pSrcImg->width, 2*pSrcImg->height), pSrcImg->depth, pSrcImg->nChannels);
-		pyrUp(pSrcImg, pDstImg);
-	}
-	else
-	{
-		//cvReleaseImage(&pSrcImg);
-		Scierror(999, "%s, undefined method.\r\n", pstName);
-	}
+    if (strcmp(directionName, "reduce") == 0)
+    {
+        direction = IPCV_PYRAMID_REDUCE;
+    }
+    else if (strcmp(directionName, "expand") == 0)
+    {
+        direction = IPCV_PYRAMID_EXPAND;
+    }
+    else
+    {
+        Scierror(999, "%s: Undefined pyramid direction '%s'.\n", fname, directionName);
+        ipcv_release_image_argument(source);
+        return -1;
+    }
 
-	SetImage(1,pDstImg,pvApiCtx);
+    iRet = ipcv_pyramid_image(&source, direction, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-
-
-	return 0;
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }
-

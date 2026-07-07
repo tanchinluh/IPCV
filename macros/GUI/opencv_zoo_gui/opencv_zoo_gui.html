@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenCV Zoo Model Downloader</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f6f8;
+      color: #1d252d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    header,
+    .toolbar,
+    .status {
+      background: #ffffff;
+      border: 1px solid #d7dde4;
+      border-radius: 6px;
+      padding: 12px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 20px;
+      font-weight: 650;
+    }
+
+    p {
+      margin: 0;
+      color: #53616f;
+      line-height: 1.45;
+    }
+
+    a {
+      color: #075b9a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: auto 1fr auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      height: 34px;
+      padding: 0 14px;
+      border: 1px solid #8aa4bd;
+      border-radius: 5px;
+      background: #0f6da8;
+      color: #ffffff;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    button.secondary {
+      background: #ffffff;
+      color: #1d405c;
+    }
+
+    button:disabled {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    input {
+      height: 34px;
+      border: 1px solid #c9d2dc;
+      border-radius: 5px;
+      padding: 0 10px;
+      font-size: 14px;
+      min-width: 0;
+    }
+
+    main {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(280px, 38%) 1fr;
+      gap: 10px;
+    }
+
+    .panel {
+      background: #ffffff;
+      border: 1px solid #d7dde4;
+      border-radius: 6px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-title {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e4e9ef;
+      font-weight: 650;
+    }
+
+    select {
+      flex: 1;
+      width: 100%;
+      min-height: 0;
+      border: 0;
+      padding: 6px;
+      font: 13px Consolas, "Segoe UI", monospace;
+      outline: none;
+    }
+
+    optgroup {
+      color: #1f3c55;
+      font: 700 13px "Segoe UI", Arial, sans-serif;
+      padding: 4px 0;
+    }
+
+    option {
+      color: #1d252d;
+      font: 13px Consolas, "Segoe UI", monospace;
+      padding: 3px 4px;
+    }
+
+    .details {
+      padding: 12px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      overflow: auto;
+    }
+
+    .field {
+      display: grid;
+      gap: 3px;
+    }
+
+    .label {
+      font-size: 12px;
+      color: #667381;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-weight: 700;
+    }
+
+    .value {
+      word-break: break-all;
+      font-family: Consolas, "Segoe UI", monospace;
+      font-size: 13px;
+      color: #25313b;
+    }
+
+    .status {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      color: #314253;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>OpenCV Zoo Model Downloader</h1>
+      <p>Fetches the official OpenCV Zoo model list and downloads selected ONNX models to a folder you choose.</p>
+    </div>
+    <div class="links">
+      <a href="https://github.com/opencv/opencv_zoo" target="_blank">OpenCV Zoo on GitHub</a>
+      <a href="https://huggingface.co/opencv" target="_blank">OpenCV on Hugging Face</a>
+    </div>
+  </header>
+
+  <section class="toolbar">
+    <button id="fetchButton" onclick="fetchModels()">Fetch</button>
+    <input id="filter" type="search" placeholder="Filter models by name or category" oninput="renderModels()">
+    <button id="downloadButton" class="secondary" onclick="downloadSelected()" disabled>Download</button>
+    <button id="scriptButton" class="secondary" onclick="downloadScriptSelected()" disabled>Download + Script</button>
+  </section>
+
+  <main>
+    <section class="panel">
+      <div class="panel-title"><span id="count">No models loaded</span></div>
+      <select id="models" size="20" onchange="showSelected()"></select>
+    </section>
+
+    <section class="panel">
+      <div class="panel-title">Selected Model</div>
+      <div class="details">
+        <div class="field">
+          <div class="label">Name</div>
+          <div class="value" id="detailName">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Category</div>
+          <div class="value" id="detailGroup">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Model Size</div>
+          <div class="value" id="detailSize">-</div>
+        </div>
+        <div class="field">
+          <div class="label">OpenCV Zoo Path</div>
+          <div class="value" id="detailPath">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Download URL</div>
+          <div class="value" id="detailUrl">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Default Folder</div>
+          <div class="value" id="defaultDir">IPCV/images/dnn</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="status" id="status">Click Fetch to load available ONNX models from OpenCV Zoo.</section>
+
+  <script>
+    const state = {
+      models: [],
+      visible: [],
+      selected: null,
+      sizeRequestId: 0
+    };
+
+    function setStatus(message) {
+      document.getElementById("status").textContent = message;
+    }
+
+    function parseResponse(payload) {
+      if (typeof payload === "string") {
+        return JSON.parse(payload);
+      }
+      return payload;
+    }
+
+    function formatBytes(bytes) {
+      const value = Number(bytes);
+      if (!Number.isFinite(value) || value <= 0) {
+        return "Unknown";
+      }
+
+      const units = ["bytes", "KB", "MB", "GB"];
+      let size = value;
+      let unitIndex = 0;
+      while (size >= 1024 && unitIndex < units.length - 1) {
+        size = size / 1024;
+        unitIndex += 1;
+      }
+
+      if (unitIndex === 0) {
+        return String(value) + " bytes";
+      }
+      return size.toFixed(size >= 10 ? 1 : 2) + " " + units[unitIndex] + " (" + value + " bytes)";
+    }
+
+    function scilab(command, callback) {
+      toScilab(command, (payload) => {
+        try {
+          callback(parseResponse(payload));
+        } catch (error) {
+          setStatus("Could not parse Scilab response: " + error.message);
+        }
+      });
+    }
+
+    function fetchModels() {
+      const button = document.getElementById("fetchButton");
+      button.disabled = true;
+      setStatus("Fetching OpenCV Zoo model list...");
+      scilab({ type: "fetch" }, (res) => {
+        button.disabled = false;
+        if (res.status !== "ok") {
+          setStatus(res.message || "Fetch failed.");
+          return;
+        }
+
+        state.models = (res.models || []).sort((a, b) => {
+          const ga = (a.group + "/" + a.name).toLowerCase();
+          const gb = (b.group + "/" + b.name).toLowerCase();
+          return ga.localeCompare(gb);
+        });
+        state.selected = null;
+        renderModels();
+        setStatus("Loaded " + state.models.length + " ONNX models from OpenCV Zoo.");
+      });
+    }
+
+    function renderModels() {
+      const filter = document.getElementById("filter").value.toLowerCase();
+      const select = document.getElementById("models");
+      select.innerHTML = "";
+
+      state.visible = state.models.filter((model) => {
+        const text = (model.group + " " + model.name + " " + model.path).toLowerCase();
+        return text.indexOf(filter) >= 0;
+      });
+
+      const groups = {};
+      state.visible.forEach((model, index) => {
+        const groupName = model.group || "Other";
+        let group = groups[groupName];
+        if (!group) {
+          group = document.createElement("optgroup");
+          group.label = groupName;
+          groups[groupName] = group;
+          select.appendChild(group);
+        }
+
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = model.name;
+        group.appendChild(option);
+      });
+
+      document.getElementById("count").textContent = state.visible.length + " model(s)";
+      document.getElementById("downloadButton").disabled = true;
+      document.getElementById("scriptButton").disabled = true;
+      showSelected();
+    }
+
+    function showSelected() {
+      const select = document.getElementById("models");
+      const index = Number(select.value);
+      state.selected = Number.isFinite(index) ? state.visible[index] : null;
+
+      const model = state.selected;
+      document.getElementById("detailName").textContent = model ? model.name : "-";
+      document.getElementById("detailGroup").textContent = model ? model.group : "-";
+      document.getElementById("detailPath").textContent = model ? model.path : "-";
+      document.getElementById("detailUrl").textContent = model ? model.url : "-";
+      document.getElementById("downloadButton").disabled = !model;
+      document.getElementById("scriptButton").disabled = !model;
+
+      if (!model) {
+        document.getElementById("detailSize").textContent = "-";
+        return;
+      }
+
+      if (model.lfsPointer && !model.sizeResolved) {
+        document.getElementById("detailSize").textContent = "Checking Git LFS metadata...";
+        loadModelSize(model);
+      } else {
+        document.getElementById("detailSize").textContent = formatBytes(model.size);
+      }
+    }
+
+    function loadModelSize(model) {
+      const requestId = state.sizeRequestId + 1;
+      state.sizeRequestId = requestId;
+
+      scilab({
+        type: "size",
+        blobUrl: model.blobUrl,
+        size: model.size
+      }, (res) => {
+        if (requestId !== state.sizeRequestId || state.selected !== model) {
+          return;
+        }
+
+        const size = Number(res.size);
+        if (res.status === "ok" && Number.isFinite(size) && size > 0) {
+          model.size = size;
+          model.sizeResolved = true;
+          document.getElementById("detailSize").textContent = formatBytes(size);
+        } else {
+          document.getElementById("detailSize").textContent = "Unknown";
+        }
+      });
+    }
+
+    function downloadSelected() {
+      if (!state.selected) {
+        setStatus("Select a model first.");
+        return;
+      }
+
+      document.getElementById("downloadButton").disabled = true;
+      document.getElementById("scriptButton").disabled = true;
+      setStatus("Choose a folder in Scilab to download " + state.selected.name + ".");
+      scilab({
+        type: "download",
+        name: state.selected.name,
+        url: state.selected.url
+      }, (res) => {
+        document.getElementById("downloadButton").disabled = false;
+        document.getElementById("scriptButton").disabled = false;
+        if (res.status === "ok") {
+          setStatus(res.message + " to " + res.file + " (" + res.bytes + " bytes).");
+        } else {
+          setStatus(res.message || "Download failed.");
+        }
+      });
+    }
+
+    function downloadScriptSelected() {
+      if (!state.selected) {
+        setStatus("Select a model first.");
+        return;
+      }
+
+      document.getElementById("downloadButton").disabled = true;
+      document.getElementById("scriptButton").disabled = true;
+      setStatus("Choose a folder in Scilab to download " + state.selected.name + " and create a sample script.");
+      scilab({
+        type: "downloadScript",
+        name: state.selected.name,
+        url: state.selected.url,
+        group: state.selected.group,
+        path: state.selected.path
+      }, (res) => {
+        document.getElementById("downloadButton").disabled = false;
+        document.getElementById("scriptButton").disabled = false;
+        if (res.status === "ok") {
+          setStatus(res.message + " Model: " + res.file + ". Script: " + res.script + ".");
+        } else {
+          setStatus(res.message || "Download/script generation failed.");
+        }
+      });
+    }
+
+    function fromScilab(data) {
+      const res = parseResponse(data);
+      if (res.defaultDir) {
+        document.getElementById("defaultDir").textContent = res.defaultDir;
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      scilab({ type: "init" }, (res) => {
+        if (res.defaultDir) {
+          document.getElementById("defaultDir").textContent = res.defaultDir;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

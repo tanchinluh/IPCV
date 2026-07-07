@@ -2,46 +2,38 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
-function [HM, rho, th2] = imhoughc(S)
-    // Image Hough transformation for Circle Detection
+function circles = imhoughc(S)
+    // Hough circle detection
     //
     // Syntax
-    //    
+    //    circles = imhoughc(S)
+    //
     // Parameters
+    //    S : Source image.
+    //    circles : A 3-by-N matrix. Each column contains [x; y; radius].
     //
     // Description
+    //    Detects circles in an image using OpenCV HoughCircles.
     //
     // Examples
+    //    S = uint8(zeros(120, 120));
+    //    t = 0:%pi/180:2*%pi;
+    //    x = round(60 + 30*cos(t));
+    //    y = round(60 + 30*sin(t));
+    //    S(sub2ind(size(S), y, x)) = 255;
+    //    circles = imhoughc(S);
     //
     // See also
+    //    imhough
     //    imradon
     //
     // Authors
     //    Tan Chin Luh
-    //
-    
-sz = size(S);
-x_total = sz(2);
-y_total = sz(1);
 
-th = -%pi/2:%pi/180:%pi/2-%pi/180;
-maxrho = round(sqrt(x_total^2 + y_total^2));
-rho = -maxrho:maxrho;
-th_total = size(th,'*');
-HM = zeros(size(rho,'*'),th_total);
-
-cc= 0;
-for cnt_x = 1:x_total
-    for cnt_y = 1:y_total
-        if S(cnt_y,cnt_x) == %t
-           r = cnt_x.*cos(th) + cnt_y.*sin(th);
-           ind = sub2ind(size(HM),round(r)+maxrho,1:th_total);
-           HM(ind) = HM(ind) + 1;
-           
-        end            
+    rhs = argn(2);
+    if rhs < 1 then
+        error("At least 1 argument expected, an image");
     end
-end
 
-th2 = th.*180/%pi;
-
+    circles = int_imhoughcircles(S);
 endfunction

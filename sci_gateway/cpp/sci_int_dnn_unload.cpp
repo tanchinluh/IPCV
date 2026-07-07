@@ -3,46 +3,25 @@
  * Copyright (C) 2017  Tan Chin Luh
 ***********************************************************************/
 
-#include "common.h"
-
-/************************************************************
-*  sci_int_dnn_unload(char * fname,void* pvApiCtx)
-************************************************************/
-
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
 int sci_int_dnn_unload(char * fname,void* pvApiCtx)
 {
-
-	int nFile;
-	double *out = NULL;
-	int iRows = 0;
-	int iCols = 0;
-
 	CheckInputArgument(pvApiCtx, 1, 1);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
-	GetDouble(1, out, iRows, iCols, pvApiCtx);
-	nFile = round(*out);
+	double *handleValue = NULL;
+	int iRows = 0;
+	int iCols = 0;
+	GetDouble(1, handleValue, iRows, iCols, pvApiCtx);
 
-	//nFile = *((int *)(istk(lR)));
-	nFile = nFile - 1;
-
-	if (nFile >= 0 && nFile < MAX_DL_NUM)
+	char error[1024] = {0};
+	int iRet = ipcv_dnn_unload(static_cast<int>(round(*handleValue)), error, static_cast<int>(sizeof(error)));
+	if (iRet)
 	{
-		if (!(DeepNet[nFile].net.empty()))
-		{
-			
-			DeepNet[nFile].net = dnn::Net();
-		}
-		else
-		{
-			Scierror(999, "%s: The %d'th DNN is not opened.\r\n", fname, nFile + 1);
-		}
+		Scierror(999, "%s: %s\n", fname, error);
+		return iRet;
 	}
-	else
-	{
-		Scierror(999, "%s: The argument should >=1 and <= %d.\r\n", fname, MAX_DL_NUM);
-	}
-
 	return 0;
 }

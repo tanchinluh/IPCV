@@ -24,6 +24,10 @@ function builder_gateway_cpp()
 
     gw_cpp_path = get_absolute_file_path('builder_gateway_cpp.sce');
     gw_cpp_files = findfiles(gw_cpp_path, '*.cpp');
+    skip_cpp_files = [];
+    for i = 1:size(skip_cpp_files, "*")
+        gw_cpp_files(gw_cpp_files == skip_cpp_files(i)) = [];
+    end
     scifunctions_name = gw_cpp_files(grep(gw_cpp_files, 'sci_'));
     scifunctions_name = strsubst(scifunctions_name, 'sci_', '');
     scifunctions_name = strsubst(scifunctions_name, 'percent', '%');
@@ -33,7 +37,10 @@ function builder_gateway_cpp()
     gw_tables = [scifunctions_name, cppfunctions_name];
 
     if  getos() == "Windows"
-        ARCH = getenv("PROCESSOR_ARCHITECTURE");        
+        ARCH = getenv("PROCESSOR_ARCHITECTURE");
+        if ARCH == "AMD64" then
+            setenv("WIN64", "OK");
+        end
     else
         [_,ARCH] = host("uname -m");
     end
@@ -43,14 +50,19 @@ function builder_gateway_cpp()
     all_libs = [];
     if getos() == "Windows"
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
-        libs = ["opencv_world450";"opencv_img_hash450"]
-        all_libs = fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs); 
+        libs = ["opencv_world500";"opencv_img_hash500"]
+        all_libs = [fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs);
+                    fullfile("..","..","src","cpp","libipcv_core")]; 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
-        gw_cpp_files = [gw_cpp_files; "common.h"];
     end
 
-    inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path]); 
+    inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path,fullfile(gw_cpp_path,"..","..","src","cpp")]); 
+    if getos() == "Windows" then
+        inter_cflags = inter_cflags + " /std:c++17";
+    else
+        inter_cflags = inter_cflags + " -std=c++17";
+    end
     inter_ldflags = "";
 
     tbx_build_gateway('gw_ipcv', ..
@@ -66,28 +78,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

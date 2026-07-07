@@ -1,73 +1,44 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- ***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
+#include <string.h>
 
-#include "common.h"
-
-/************************************************************
-* imout = sci_getperspectivetransform(imin,src,dst);
-************************************************************/
-
-
-int sci_int_getperspectivetransform(char * fname,void* pvApiCtx)
+int sci_int_getperspectivetransform(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage sourcePoints;
+    IpcvDecodedImage targetPoints;
+    IpcvDecodedImage output;
 
-	// Initialization
-	SciErr sciErr;
-	//CvMat* warp_mat  = cvCreateMat(3,3,CV_64F); // Extra
-	Point2f srcTri[4];
-	Point2f dstTri[4];
-	int mRow = 0, mCol = 0, nRow = 0, nCol = 0;
-	int mOne = 1;
-	int oRow = 0,oCol = 0;
-	double *oData = NULL;
-	int iRows1 = 0;
-	int iCols1 = 0;
-	int iRows2 = 0;
-	int iCols2 = 0;
-	int iRows			= 0;
-	int iCols			= 0;
-	double* mData = NULL;
-	double* nData = NULL;
-	// Checking numbers of Arguments
-	CheckInputArgument(pvApiCtx, 2, 2);
-	CheckOutputArgument(pvApiCtx, 0, 3);
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, sourcePoints);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: 4x2 source point matrix expected.\n", fname, 1);
+        return iRet;
+    }
 
-	GetDouble(1,mData,iRows1,iCols1,pvApiCtx);
-	GetDouble(2,nData,iRows1,iCols1,pvApiCtx);
+    iRet = ipcv_get_image_argument(pvApiCtx, 2, targetPoints);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: 4x2 target point matrix expected.\n", fname, 2);
+        ipcv_release_image_argument(sourcePoints);
+        return iRet;
+    }
 
-	//srcTri[0] = cvPoint2D32f(stk(mData)[0],stk(mData)[4]);
-	//srcTri[1] = cvPoint2D32f(stk(mData)[1],stk(mData)[5]);
-	//srcTri[2] = cvPoint2D32f(stk(mData)[2],stk(mData)[6]);
-	//srcTri[3] = cvPoint2D32f(stk(mData)[3],stk(mData)[7]);
-	srcTri[0] = Point2f(*(mData),*(mData+4));
-	srcTri[1] = Point2f(*(mData+1),*(mData+5));
-	srcTri[2] = Point2f(*(mData+2),*(mData+6));
-	srcTri[3] = Point2f(*(mData+3),*(mData+7));
+    iRet = ipcv_get_perspective_transform_matrix(&sourcePoints, &targetPoints, &output);
+    ipcv_release_image_argument(sourcePoints);
+    ipcv_release_image_argument(targetPoints);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-
-	//dstTri[0] = cvPoint2D32f(stk(nData)[0],stk(nData)[4]);
-	//dstTri[1] = cvPoint2D32f(stk(nData)[1],stk(nData)[5]);
-	//dstTri[2] = cvPoint2D32f(stk(nData)[2],stk(nData)[6]);
-	//dstTri[3] = cvPoint2D32f(stk(nData)[3],stk(nData)[7]);
-	dstTri[0] = Point2f(*(nData),*(nData+4));
-	dstTri[1] = Point2f(*(nData+1),*(nData+5));
-	dstTri[2] = Point2f(*(nData+2),*(nData+6));
-	dstTri[3] = Point2f(*(nData+3),*(nData+7));
-
-	// Get the Affine Transform
-	Mat warp_mat = getPerspectiveTransform( srcTri, dstTri);
-
-	// Apply the Affine Transform just found to the src image
-	//cvWarpAffine( pSrcImg, pDstImg, warp_mat);
-
-	SetImage(1, warp_mat, pvApiCtx);
-
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_getlayertypes" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>dnn_getlayertypes</refname>
+    <refpurpose>Get OpenCV DNN layer types used by a model</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>types = dnn_getlayertypes(net)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry><term>net :</term><listitem><para>DNN object loaded by dnn_readmodel.</para></listitem></varlistentry>
+      <varlistentry><term>types :</term><listitem><para>String matrix of layer type names.</para></listitem></varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+types = dnn_getlayertypes(net)
+dnn_unloadmodel(net);
+    ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="dnn_readmodel">dnn_readmodel</link></member>
+      <member><link linkend="dnn_info">dnn_info</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

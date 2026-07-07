@@ -2,7 +2,10 @@
 *.a
 *.bin
 *.dll
+*.def
+*.exp
 *.lib
+*.obj
 
 
 # but do track lib.a, even though you're ignoring .a files above
@@ -13,6 +16,7 @@ loader.sce
 unloader.sce
 cleaner.sce
 cleaner_gateway.sce
+cleaner_src.sce
 Makelib.mak
 gw_ipcv*
 libgw*
@@ -25,6 +29,20 @@ Release/
 jar/
 2.0/
 **/testing
+
+# ignore bundled thirdparty payloads, but keep build helper scripts tracked
+thirdparty/*
+!thirdparty/build/
+thirdparty/build/*
+!thirdparty/build/README.txt
+!thirdparty/build/build.bat
+!thirdparty/build/build.sh
+
+# generated help output
+help/en_US/scilab_en_US_help/
+
+# DNN models are downloaded on demand by demos/tests.
+*.onnx
 
 # ignore doc/notes.txt, but not doc/server/arch.txt
 #doc/*.txt

@@ -1,0 +1,12 @@
+OpenCV Zoo DNN assets used by IPCV demos
+
+MobileNetV2 image classification:
+Local cache file:
+image_classification_mobilenetv2_2022apr.onnx
+
+Trusted source:
+https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/image_classification_mobilenetv2_2022apr.onnx
+
+The ONNX file is intentionally not bundled in IPCV. demo_dnn_onnx.sci and
+the DNN unit test download it on demand from the official OpenCV Zoo source
+when it is missing locally.

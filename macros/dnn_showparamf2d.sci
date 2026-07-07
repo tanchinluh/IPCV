@@ -53,6 +53,7 @@ function dnn_showparamf2d(para_map,out_num,c)
     // Check for empty optional inputs
     if isempty(out_num); out_num = %inf; end
     if isempty(c); c = jet(256); end
+    csize = size(c, 1);
 
     drawlater();
     para_map_n = para_map; //(para_map - min(para_map))./(max(para_map)-min(para_map)).*255;
@@ -75,13 +76,17 @@ function dnn_showparamf2d(para_map,out_num,c)
         para_map_cnt2 = squeeze(para_map_cnt);
         F = fftshift(fft2pad(para_map_cnt2,256,256));
         F2 = abs(F);
-        F_n = (F2 - min(F2))./(max(F2)-min(F2)).*255;
-        imshow(F_n');
+        F_min = min(F2);
+        F_max = max(F2);
+        if F_max == F_min then
+            F_n = F2 * 0 + ceil(csize / 2);
+        else
+            F_n = round((F2 - F_min) ./ (F_max - F_min) .* (csize - 1)) + 1;
+        end
+        imshow(F_n', c);
         a = gca();
         a.axes_bounds = a.axes_bounds.*[0.8 1 0.8 1];
         title(string(cnt));
-        e = gce();
-        e.image_type = 'index';
     end
     drawnow();
     f.visible = "on";

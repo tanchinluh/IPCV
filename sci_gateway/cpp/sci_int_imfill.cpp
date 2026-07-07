@@ -1,51 +1,34 @@
-/***********************************************************************
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- ***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-#include "common.h"
+#include <string.h>
 
-/************************************************************
-*  imout = sci_int_imfill(imin);
-************************************************************/
-
-
-int sci_int_imfill(char * fname,void* pvApiCtx)
+int sci_int_imfill(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	CheckInputArgument(pvApiCtx, 1, 1);
-	CheckOutputArgument(pvApiCtx, 0, 1);
-		
-	///////////////////
-	//// First Input //
-	///////////////////
-	Mat src;
-	GetImage(1,src,pvApiCtx);
-	///////////////////
-	Mat dst;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-		
-	vector<vector<cv::Point> > contours;
-    vector<Vec4i> hierarchy;
-
-    findContours(src,contours,hierarchy,RETR_CCOMP,CHAIN_APPROX_SIMPLE,cv::Point(0,0));
-    CvScalar color=cvScalar(255);
-    dst=Mat::zeros(src.size(),CV_8UC1);
-
-    for(int i=0;i<contours.size();i++)
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
     {
-        drawContours(dst,contours,i,color,-1,8,hierarchy,0,cv::Point());
+        Scierror(999, "%s: Wrong type for input argument #%d: Binary image expected.\n", fname, 1);
+        return iRet;
     }
 
-	//floodFill(src,cvPoint(0,0),cvScalar(255));
+    iRet = ipcv_fill_binary_image(&source, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	
-
-	SetImage(1,dst,pvApiCtx);
-
-
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

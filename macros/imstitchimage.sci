@@ -58,7 +58,7 @@ function imout = imstitchimage(imvec,params)
     WaveCorrection = params.WaveCorrection;
     BlenderBands = params.BlenderBands;
     
-imout  = int_imstitchImage(S,RegistrationResol,SeamEstimationResol,CompositingResol,PanoConfidenceThresh,WaveCorrection,BlenderBands);
+imout  = int_imstitchImage(imvec,RegistrationResol,SeamEstimationResol,CompositingResol,PanoConfidenceThresh,WaveCorrection,BlenderBands);
 
 
 endfunction

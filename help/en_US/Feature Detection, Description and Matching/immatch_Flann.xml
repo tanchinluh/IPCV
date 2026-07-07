@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file documents immatch_Flann().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="immatch_Flann" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>immatch_Flann</refname>
+    <refpurpose>FLANN-based matcher for feature descriptors.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   m = immatch_Flann(des1, des2);
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>des1 :</term>
+            <listitem><para>First descriptor matrix.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>des2 :</term>
+            <listitem><para>Second descriptor matrix.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>m :</term>
+            <listitem><para>Matching matrix. Rows contain query index, train index, image index, and distance.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+This function matches two descriptor matrices using OpenCV FLANN-based matching. The returned matrix uses Scilab one-based feature indices.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// Read the image and rotate it by 45 degrees
+S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
+S2 = imrotate(S, 45);
+
+// Detect ORB features
+f1 = imdetect_ORB(S);
+f2 = imdetect_ORB(S2);
+
+// Extract descriptors
+d1 = imextract_DescriptorORB(S, f1);
+d2 = imextract_DescriptorORB(S2, f2);
+
+// Match descriptors with FLANN
+m = immatch_Flann(d1, d2);
+
+// Keep the 10 best matches and draw them
+[fout1, fout2, mout] = imbestmatches(f1, f2, m, 10);
+SS = imdrawmatches(S, S2, fout1, fout2, mout);
+imshow(SS);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="immatch_BruteForce">immatch_BruteForce</link></member>
+   <member><link linkend="imbestmatches">imbestmatches</link></member>
+   <member><link linkend="imdrawmatches">imdrawmatches</link></member>
+   <member><link linkend="imextract_DescriptorORB">imextract_DescriptorORB</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Bibliography</title>
+   <para>OpenCV FLANN-based matcher documentation.</para>
+</refsection>
+</refentry>

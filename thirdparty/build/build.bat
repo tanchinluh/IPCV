@@ -7,7 +7,7 @@
 :: openCV build script for Windows
 :: cmake.exe (standalone or Visual Studio cmake.exe) and ninja.exe should be in the PATH
 
-set OPENCV_VER=4.5.0
+set OPENCV_VER=5.0.0
 curl -o opencv.tgz https://codeload.github.com/opencv/opencv/tar.gz/refs/tags/%OPENCV_VER%
 curl -o opencv_contrib.tgz https://codeload.github.com/opencv/opencv_contrib/tar.gz/refs/tags/%OPENCV_VER%
 tar -xf opencv.tgz
@@ -16,10 +16,13 @@ cd ..
 set THIRDPARTY=%cd%
 set PREFIX=%THIRDPARTY%\Windows\%PROCESSOR_ARCHITECTURE%
 cd build\opencv-%OPENCV_VER%
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$p='modules\dnn\CMakeLists.txt'; $lines=Get-Content $p; $seen=$false; $out=foreach($line in $lines){ if($line -eq '# Vendored MLAS (Microsoft Linear Algebra Subprograms) from ONNX Runtime.'){ $seen=$true; $line } elseif($seen -and $line -eq 'if(NOT EMSCRIPTEN)'){ $seen=$false; 'if(FALSE) # IPCV local Windows build: skip MLAS; MSVC/Ninja ASM runtime mapping fails.' } else { $line } }; Set-Content -Path $p -Value $out"
 mkdir build
 cd build
 cmake -G Ninja -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
 -DCMAKE_BUILD_TYPE=Release ^
+-DCMAKE_CXX_STANDARD=17 ^
+-DCMAKE_CXX_STANDARD_REQUIRED=ON ^
 -DWITH_VTK=OFF ^
 -DOPENCV_EXTRA_MODULES_PATH="%THIRDPARTY%\build\opencv_contrib-%OPENCV_VER%\modules" ^
 -DBUILD_ZLIB=ON ^
@@ -50,4 +53,7 @@ cmake -G Ninja -DCMAKE_INSTALL_PREFIX="%PREFIX%" ^
 cd %THIRDPARTY%\build
 cmake --build opencv-%OPENCV_VER%\build --config Release
 cmake --install opencv-%OPENCV_VER%\build
-move "%PREFIX%\bin\*.dll"  "%PREFIX%\lib"
+if exist "%PREFIX%\bin\*.dll" move /Y "%PREFIX%\bin\*.dll" "%PREFIX%\lib"
+if exist "%PREFIX%\x64\vc17\bin\*.dll" copy /Y "%PREFIX%\x64\vc17\bin\*.dll" "%PREFIX%\lib"
+if exist "%PREFIX%\x64\vc17\lib\opencv*.lib" copy /Y "%PREFIX%\x64\vc17\lib\opencv*.lib" "%PREFIX%\lib"
+if exist "%PREFIX%\x64\vc17\lib\OpenCV*.cmake" copy /Y "%PREFIX%\x64\vc17\lib\OpenCV*.cmake" "%PREFIX%\lib"

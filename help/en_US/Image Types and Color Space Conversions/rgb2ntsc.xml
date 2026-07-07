@@ -81,7 +81,7 @@ imshow(RGB);
    <member><link linkend="rgb2gray">rgb2gray</link></member>
    <member><link linkend="mat2gray">mat2gray</link></member>
    <member><link linkend="rgb2hsv">rgb2hsv</link></member>
-   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="hsv2rgb2">hsv2rgb2</link></member>
    <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
    <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
    <member><link linkend="ntsc2rgb">ntsc2rgb</link></member>

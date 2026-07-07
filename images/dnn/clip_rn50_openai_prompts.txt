@@ -1,0 +1,10 @@
+baboon|a photo of a baboon
+monkey|a photo of a monkey
+person|a photo of a person
+dog|a photo of a dog
+cat|a photo of a cat
+car|a photo of a car
+building|a photo of a building
+fruit|a photo of a fruit
+flower|a photo of a flower
+document|a photo of a document

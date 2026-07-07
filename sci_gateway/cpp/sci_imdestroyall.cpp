@@ -3,7 +3,7 @@
  * Copyright (C) 2017  Tan Chin Luh
  ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 
 /**********************************************************************
 * This function is used to close the windows created using highgui

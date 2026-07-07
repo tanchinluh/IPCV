@@ -1,77 +1,34 @@
-/***********************************************************************
- *
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- *
- ***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-#include "common.h"
+#include <string.h>
 
-/************************************************************
-* imout = int_rgb2lab(imin, se);
-************************************************************/
-
-
-int sci_int_rgb2gray(char * fname,void* pvApiCtx)
+int sci_int_rgb2gray(char *fname, void *pvApiCtx)
 {
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	// Initialization
-	Mat src;
-	Mat dst;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 1, 1);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-	// Check arguments
-	CheckInputArgument(pvApiCtx, 1, 1);
-	CheckOutputArgument(pvApiCtx, 1, 1);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: RGB image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	// Creating images
-	GetImage(1,src,pvApiCtx);
+    iRet = ipcv_convert_color_image(&source, IPCV_COLOR_RGB2GRAY, &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-	uchar depth = src.type() & CV_MAT_DEPTH_MASK;
-
-	//sciprint("CheckPoint : %i\n",depth);
-	// Conversion
-
-  switch ( depth ) {
-	case CV_8U: 
-	case CV_16U:
-	case CV_32F:  
-		{
-			//sciprint("CV_8U | CV_16U | CV_32F");
-			cvtColor( src, dst, COLOR_RGB2GRAY); 
-			break;
-		}
-	case CV_8S:
-	case CV_16S:
-	case CV_32S:  
-		{
-			//sciprint("CV_8S | CV_16S | CV_32S");
-			Scierror(999,"rgb2gray only support image of uint8, uint16 or double.",fname);
-			return -1; 
-			break;
-		}
-    case CV_64F: 
-		{
-			src.convertTo(src,CV_32F);
-			cvtColor( src, dst, COLOR_RGB2GRAY);
-			break;
-		}
-    default:     
-		{
-			Scierror(999,"rgb2gray only support image of uint8, uint16 or double.",fname); 
-			return -1; 
-			break;
-		}
-  }
-	//cvCvtColor(pSrcImg, pDstImg, CV_RGB2Lab);
-  	//cvtColor( src, dst, CV_RGB2GRAY);
-	//sciprint("CheckPoint : 2\n");
-	// Creating output image
-	
-	SetImage(1,dst,pvApiCtx);
-
-	//free(dst);
-	//free(src);
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

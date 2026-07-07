@@ -1,65 +1,67 @@
-/***********************************************************************
- *
- * IPCV - Scilab Image Processing and Computer Vision toolbox
- * Copyright (C) 2017  Tan Chin Luh
- *
- ***********************************************************************/
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
-#include "common.h"
+#include <string.h>
 
-using namespace cv;
-using namespace std;
-
-/************************************************************
-*  imout = int_imrotate(im2,deg);
-************************************************************/
-
-
-int sci_int_imrotate(char * fname,void* pvApiCtx)
+int sci_int_imrotate(char *fname, void *pvApiCtx)
 {
+    SciErr sciErr;
+    int *angleAddr = NULL;
+    int *cropAddr = NULL;
+    double angle = 0.0;
+    double crop = 0.0;
+    IpcvDecodedImage source;
+    IpcvDecodedImage output;
 
-	CheckInputArgument(pvApiCtx, 3, 3);
-	CheckOutputArgument(pvApiCtx, 0, 1);
-		
-	// First Input - Image
-	Mat src;
-	GetImage(1,src,pvApiCtx);
-	Mat dst;
+    memset(&output, 0, sizeof(output));
+    CheckInputArgument(pvApiCtx, 3, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
-	// Second Input - Rotation angle
-	int *piAddr2 = NULL;
-	double angle	= 0;
-	getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
-	getScalarDouble(pvApiCtx, piAddr2, &angle);
-	
-	// Third Input - Crop
-	int *piAddr3 = NULL;
-	double crop = 0;
-	getVarAddressFromPosition(pvApiCtx, 3, &piAddr3);
-	getScalarDouble(pvApiCtx, piAddr3, &crop);
+    int iRet = ipcv_get_image_argument(pvApiCtx, 1, source);
+    if (iRet)
+    {
+        Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+        return iRet;
+    }
 
-	// Process
-	Point2f center(src.cols/2.0, src.rows/2.0);
-    Mat rot = getRotationMatrix2D(center, angle, 1.0);
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &angleAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        ipcv_release_image_argument(source);
+        return sciErr.iErr;
+    }
+    iRet = getScalarDouble(pvApiCtx, angleAddr, &angle);
+    if (iRet)
+    {
+        ipcv_release_image_argument(source);
+        return iRet;
+    }
 
-	if (crop == 1) {
-		warpAffine(src, dst, rot, src.size());
-	}
-	else {
-		// determine bounding rectangle
-		Rect bbox = RotatedRect(center, src.size(), angle).boundingRect();
-		// adjust transformation matrix
-		rot.at<double>(0, 2) += bbox.width / 2.0 - center.x;
-		rot.at<double>(1, 2) += bbox.height / 2.0 - center.y;
-		warpAffine(src, dst, rot, bbox.size());
-	}
-	//waitKey(0);  
+    sciErr = getVarAddressFromPosition(pvApiCtx, 3, &cropAddr);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        ipcv_release_image_argument(source);
+        return sciErr.iErr;
+    }
+    iRet = getScalarDouble(pvApiCtx, cropAddr, &crop);
+    if (iRet)
+    {
+        ipcv_release_image_argument(source);
+        return iRet;
+    }
 
-	SetImage(1,dst,pvApiCtx);
+    iRet = ipcv_rotate_image(&source, angle, static_cast<int>(crop), &output);
+    ipcv_release_image_argument(source);
+    if (iRet)
+    {
+        Scierror(999, "%s: %s\n", fname, output.error);
+        ipcv_free_decoded_image(&output);
+        return iRet;
+    }
 
-
-
-	return 0;
-
-
+    iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+    ipcv_free_decoded_image(&output);
+    return iRet;
 }

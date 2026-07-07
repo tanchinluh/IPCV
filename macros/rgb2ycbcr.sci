@@ -37,7 +37,7 @@ function [ycc] = rgb2ycbcr(rgb)
     //      rgb2gray
     //      mat2gray
     //      rgb2hsv
-    //      hsv2rgb
+    //      hsv2rgb2
     //      ycbcr2rgb
     //      rgb2ntsc
     //      ntsc2rgb 

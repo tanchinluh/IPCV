@@ -3,94 +3,55 @@
  * Copyright (C) 2017  Tan Chin Luh
 ***********************************************************************/
 
-#include "common.h"
-#include <iostream>
-
-#include <opencv2/dnn_superres.hpp>
-
-/************************************************************
-* imout = sci_int_dnn_init(imin, se);
-************************************************************/
-
-/* Find best class for the blob (i. e. class with maximal probability) */
+#include "ipcv_gateway_common.h"
+#include "ipcv_gateway_image.h"
 
 int sci_int_dnn_superres(char * fname, void* pvApiCtx)
 {
-
-	CheckInputArgument(pvApiCtx, 0, 3);
+	CheckInputArgument(pvApiCtx, 4, 4);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
-
-	string img_path = "orig_butterfly.jpg";
-	string algorithm = "fsrcnn";
-	int scale = 4;
-	string path = "FSRCNN_x4.pb";
-
-
-	// Load the image
-	Mat img = cv::imread(img_path);
-	Mat original_img(img);
-	if (img.empty())
+	IpcvDecodedImage image;
+	IpcvDecodedImage output;
+	memset(&output, 0, sizeof(output));
+	int iRet = ipcv_get_image_argument(pvApiCtx, 1, image);
+	if (iRet)
 	{
-		Scierror(999, "%s: Couldn't load image: \n", img_path.c_str());
-		return -2;
+		Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+		return iRet;
 	}
 
-	//Make dnn super resolution instance
-	dnn_superres::DnnSuperResImpl sr;
+	char *model = NULL;
+	double *scale = NULL;
+	double *algorithmType = NULL;
+	int iRows = 0;
+	int iCols = 0;
 
-	Mat img_new;
+	GetString(2, model, pvApiCtx);
+	GetDouble(3, scale, iRows, iCols, pvApiCtx);
+	GetDouble(4, algorithmType, iRows, iCols, pvApiCtx);
 
-	try
+	int handle = -1;
+	char error[1024] = {0};
+	iRet = ipcv_dnn_superres_load(model, static_cast<int>(round(*scale)), static_cast<int>(round(*algorithmType)), &handle, error, static_cast<int>(sizeof(error)));
+	if (iRet)
 	{
-
-		if (algorithm == "bilinear") {
-			resize(img, img_new, Size(), scale, scale, 2);
-		}
-		else if (algorithm == "bicubic")
-		{
-			resize(img, img_new, Size(), scale, scale, 3);
-		}
-		else if (algorithm == "edsr" || algorithm == "espcn" || algorithm == "fsrcnn" || algorithm == "lapsrn")
-		{
-			sr.readModel(path);
-			sciprint("%s\n", sr.getAlgorithm().c_str());
-			sciprint("%f\n", sr.getScale());
-			sr.setModel(algorithm, scale);
-			sciprint("%s\n", sr.getAlgorithm().c_str());
-			sciprint("%f\n", sr.getScale());
-			sr.upsample(img, img_new);
-
-		}
-		else {
-			Scierror(999, "Algorithm not recognized. \n");
-		}
-
-	}
-	catch (const cv::Exception& e)
-	{
-
-		sciprint("Error: %s \n\n\n", e.err.c_str());
-		sciprint("Error: %s \n", e.what());
-		//iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, -1);
-		//AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-
+		ipcv_release_image_argument(image);
+		Scierror(999, "%s: %s\n", fname, error);
+		return iRet;
 	}
 
-	if (img_new.empty())
+	iRet = ipcv_dnn_superres_upsample(handle, &image, &output);
+	ipcv_release_image_argument(image);
+	ipcv_dnn_unload(handle, error, static_cast<int>(sizeof(error)));
+	if (iRet)
 	{
-		Scierror(999, "Upsampling failed. \n");
-		return -3;
+		Scierror(999, "%s: %s\n", fname, output.error);
+		ipcv_free_decoded_image(&output);
+		return iRet;
 	}
-	sciprint("Upsampling succeeded. \n");
 
-	// Display image
-	//cv::namedWindow("Initial Image", WINDOW_AUTOSIZE);
-	//cv::imshow("Initial Image", img_new);
-	//cv::imwrite("saved.jpg", img_new);
-	//cv::waitKey(0);
-
-	SetImage(1, img_new, pvApiCtx);
-	return 0;
-
+	iRet = ipcv_set_image_argument(pvApiCtx, 1, output);
+	ipcv_free_decoded_image(&output);
+	return iRet;
 }

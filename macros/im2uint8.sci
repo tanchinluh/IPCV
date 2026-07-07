@@ -45,6 +45,8 @@ function [im2] = im2uint8(im)
         im2 = uint8(round(double(im)*(2^8-1)/(2^16-1)));
     case 'int16' then
         im2 = uint8(round((double(im) + 2^15)*(2^8-1)/(2^16-1)));
+    case 'uint32' then
+        im2 = uint8(round(double(im) * (2^8-1)/(2^32-1)));
     case 'int32' then
         im2 = uint8(round((double(im)+2^31) * (2^8-1)/(2^32-1)));
     case 'constant' then

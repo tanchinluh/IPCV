@@ -34,15 +34,15 @@
    <variablelist>
         <varlistentry>
             <term>model :</term>
-            <listitem><para> Model binary (Caffe -&gt; .caffemodel file, TF -&gt; .pb file).</para></listitem>
+            <listitem><para> Model binary (.caffemodel, .pb, .weights, .onnx, .t7, or .tflite).</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modelinfo :</term>
-            <listitem><para> Model info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
+            <listitem><para> Model info/config file, if required by the framework.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modeltype :</term>
-            <listitem><para> Model type, currently support Caffe and Tensorflow model.</para></listitem>
+            <listitem><para> Model type. Use "auto", "caffe", "tensorflow", "yolo", "darknet", "onnx", "torch", or "tflite". Numeric values 0 to 6 are also accepted.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>net :</term>
@@ -62,17 +62,82 @@ This function is used for loading DNN model and used in Scilab for inference sys
 
 <refsection>
    <title>Examples</title>
+   <para>Example 1: TensorFlow LeNet</para>
    <programlisting role="example"><![CDATA[
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-S = imread(dnn_path + '3.jpg');
-imshow(S);
-out = dnn_forward(net,~S,[28,28]);
-[maxV,maxI]=max(out);
-xnumb(10,10,maxI-1);
-e = gce();
-e.font_size = 10;
-e.font_color = 5;
+dnn_unloadallmodels();
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+
+net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_setpreferable(net, "opencv", "cpu");
+
+info = dnn_info(net, [28, 28], 1);
+disp(info.outputname);
+disp(info.flops);
+
+S = imread(dnn_path + "3.jpg");
+out = dnn_forward(net, ~S, [28, 28]);
+[score, index] = max(out);
+prediction = index - 1
+
+dnn_unloadmodel(net);
+
+   ]]></programlisting>
+
+   <para>Example 2: ONNX MobileNetV2. The model is downloaded from OpenCV Zoo if missing.</para>
+   <programlisting role="example"><![CDATA[
+dnn_unloadallmodels();
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+
+model_name = "image_classification_mobilenetv2_2022apr.onnx";
+model_file = dnn_path + model_name;
+if ~isfile(model_file) then
+    model_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/" + model_name;
+    http_get(model_url, model_file, follow=%t, timeout=300);
+end
+net = dnn_readmodel(model_file, "", "onnx");
+raw_labels = mgetl(dnn_path + "labelsimagenet1k.h");
+label_lines = raw_labels(grep(raw_labels, "        """));
+labels = stripblanks(label_lines);
+labels = strsubst(labels, """,", "");
+labels = strsubst(labels, """", "");
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+out = dnn_forward(net, S, [224, 224], [], 1 / 127.5, [127.5 127.5 127.5], 1, 0);
+[score, index] = max(out);
+prediction = labels(index)
+scf(); imshow(S);
+title("MobileNetV2 ONNX: " + prediction + " (" + msprintf("%.4f", score) + ")");
+dnn_unloadmodel(net);
+
+   ]]></programlisting>
+
+   <para>Example 3: CLIP zero-shot image classification with precomputed text embeddings.</para>
+   <programlisting role="example"><![CDATA[
+// The CLIP ONNX model is not auto-downloaded because it is not from OpenCV Zoo.
+dnn_unloadallmodels();
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+
+clip_model = dnn_path + "clip_rn50_openai_visual_fp16.onnx";
+if ~isfile(clip_model) then
+    error("Place a trusted local CLIP image encoder at: " + clip_model);
+end
+net = dnn_readmodel(clip_model, "", "onnx");
+prompts = mgetl(dnn_path + "clip_rn50_openai_prompts.txt");
+text_embeddings = csvRead(dnn_path + "clip_rn50_openai_text_embeddings.csv");
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+S = im2double(imresize(S, [224 224]));
+clip_mean = [0.48145466 0.4578275 0.40821073];
+clip_std = [0.26862954 0.26130258 0.27577711];
+for c = 1:3
+    S(:,:,c) = (S(:,:,c) - clip_mean(c)) ./ clip_std(c);
+end
+image_embedding = dnn_forward(net, S, [224, 224], [], 1, [0 0 0], 0, 0);
+image_embedding = image_embedding(:)';
+image_embedding = image_embedding ./ sqrt(sum(image_embedding .* image_embedding));
+scores = text_embeddings * image_embedding';
+[score, index] = max(scores);
+label = strsplit(prompts(index), "|");
+prediction = label(1)
+dnn_unloadmodel(net);
 
    ]]></programlisting>
 </refsection>
@@ -86,6 +151,8 @@ e.font_color = 5;
    <member><link linkend="dnn_unloadallmodels">dnn_unloadallmodels</link></member>
    <member><link linkend="dnn_forward">dnn_forward</link></member>
    <member><link linkend="dnn_getparam">dnn_getparam</link></member>
+   <member><link linkend="dnn_info">dnn_info</link></member>
+   <member><link linkend="dnn_setpreferable">dnn_setpreferable</link></member>
    </simplelist>
 </refsection>
 

@@ -24,13 +24,13 @@ function [hsv] = rgb2hsv(rgb)
     // Examples
     //    RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
     //    HSV = rgb2hsv(RGB);
-    //    RGB = hsv2rgb(HSV);
+    //    RGB = hsv2rgb2(HSV);
     //    imshow(RGB);
     //
     // See also
     //    rgb2gray
     //    mat2gray
-    //    hsv2rgb
+    //    hsv2rgb2
     //    rgb2ycbcr
     //    ycbcr2rgb
     //    rgb2ntsc

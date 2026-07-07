@@ -46,6 +46,14 @@ function imshow(im, varargin)
     //
 
 
+    function imout = imshow_display_image(im, ColorMap)
+        if ColorMap == [] then
+            imout = im2uint8(im);
+        else
+            imout = im;
+        end
+    endfunction
+    //==============================================================================
     function r = imshow_tcltk(im)
         r = [];
         if ~with_tk() then
@@ -96,14 +104,8 @@ function imshow(im, varargin)
                 imdraw = gcf().immediate_drawing;
                 gcf().immediate_drawing = "off";
                 dim = size(im);
-
-                if typeof(im) == 'boolean' //boolean
-                    Matplot((2 ^ 8 - 1) *im, '082');
-                elseif typeof(im(1)) == 'int8' | typeof(im(1)) == 'int16' |  typeof(im(1)) == 'uint16' | typeof(im(1)) == 'uint32'   
-                    Matplot(im2double(im), '082');           
-                else
-                    Matplot(im, '082');
-                end
+                imDisplay = imshow_display_image(im, ColorMap);
+                Matplot(imDisplay, '082');
 
                 if size(dim,2) == 2 & ColorMap == []
                     e = gce();
@@ -121,16 +123,7 @@ function imshow(im, varargin)
             else
                 imChildren = imParent.children($);
                 dim = size(im);
-                if typeof(im) == 'boolean' //boolean
-//                    imParent.children.data = (2 ^ 8 - 1) *im;
-                    imChildren.data = (2 ^ 8 - 1) *im;
-                elseif typeof(im(1)) == 'int8' | typeof(im(1)) == 'int16' |  typeof(im(1)) == 'uint16' | typeof(im(1)) == 'uint32'   
-//                    imParent.children.data = im2double(im);   
-                    imChildren.data = im2double(im);   
-                else
-//                    imParent.children.data = im;
-                    imChildren.data = im;
-                end
+                imChildren.data = imshow_display_image(im, ColorMap);
 
                 if size(dim,2) == 2 & ColorMap == []
 //                    e = gce();
