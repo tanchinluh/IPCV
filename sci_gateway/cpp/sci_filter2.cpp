@@ -8,7 +8,7 @@
  * (at your option) any later version.
  ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_gateway_image.h"
 
 #include <string.h>

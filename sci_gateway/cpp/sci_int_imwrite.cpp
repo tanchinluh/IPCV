@@ -3,7 +3,7 @@
  * Copyright (C) 2017  Tan Chin Luh
  ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_image_io.h"
 #include <string.h>
 
@@ -188,12 +188,9 @@ int sci_int_imwrite(char * fname,void* pvApiCtx)
 		if (dbg) { fclose(dbg); }
 		return -1;
 	}
-	int iRows1 = 1;
-	int iCols1 = 1;
 	double pdblReal1;
 	pdblReal1 = double(retval);
 
-	//SetDouble(1, pdblReal1, iRows1, iCols1, pvApiCtx);
 	iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, pdblReal1);
 	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	if (dbg) { fprintf(dbg, "int_imwrite: exit\n"); fclose(dbg); }

@@ -21,15 +21,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ***********************************************************************/
 
-#include "common.h"
-DeepNetwork DeepNet[MAX_DL_NUM];
-ObjectTracker ObjTrack[MAX_TRACK_NUM];
-DeepSRNetwork DeepSRNet[MAX_DL_NUM];
-
-//extern "C" 
-//{
-//int sci_ipcv_init(char * fname,void* pvApiCtx);
-//}
+#include "ipcv_gateway_common.h"
 
 /*--------------------------------------------------------------------------*/
 char sIPCV_PATH[MAX_FILENAME_LENGTH];
@@ -66,7 +58,7 @@ int sci_ipcv_init(char * fname,void* pvApiCtx)
 		return 0;
 	}
 
-	//get the directory where IPCV is intalled
+	//get the directory where IPCV is installed
 	if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &pStr) != 0)
 	{
 		Scierror(999, ("%s: No more memory.\n"), fname);
@@ -85,7 +77,6 @@ int sci_ipcv_init(char * fname,void* pvApiCtx)
 		pStr = NULL;
 	}
 
-	//cvSetErrMode(CV_ErrModeParent);
 	return 0;
 
 }

@@ -22,7 +22,7 @@
 
 
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_image_io.h"
 #include <string.h>
 
@@ -229,20 +229,7 @@ int sci_int_imread(char * fname,void* pvApiCtx)
 		if (dbg) { fprintf(dbg, "int_imread: getScalarInteger8 failed %d\n", iRet); fclose(dbg); }
 		return iRet;
 	}
-	//
-	////pImage = cvLoadImage(cstk(lR), CV_LOAD_IMAGE_ANYDEPTH|CV_LOAD_IMAGE_ANYCOLOR);
-	////pImage = imread(pstName,CV_LOAD_IMAGE_ANYDEPTH|CV_LOAD_IMAGE_ANYCOLOR);
-	
-	/*string str1(pstName);
 
-	if ((str1.find(str2) != std::string::npos))
-	{
-		pImage = imread(pstName, IMREAD_LOAD_GDAL | IMREAD_ANYDEPTH | IMREAD_ANYCOLOR);
-	}
-	else
-	{
-		pImage = imread(pstName, IMREAD_ANYDEPTH | IMREAD_ANYCOLOR);
-	}*/
 	int flags = static_cast<int>(cData);
 	if (flags < 0 && flags != IMREAD_UNCHANGED)
 	{

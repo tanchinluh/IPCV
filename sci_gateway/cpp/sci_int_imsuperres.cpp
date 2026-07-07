@@ -5,7 +5,7 @@
 * Super resolution with Bilateral Total Variation
 ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_gateway_image.h"
 
 int sci_int_imsuperres(char * fname,void* pvApiCtx)

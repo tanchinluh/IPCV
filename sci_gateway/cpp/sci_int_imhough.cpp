@@ -5,7 +5,7 @@
  *
 ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_gateway_image.h"
 
 int sci_int_imhough(char * fname,void* pvApiCtx)

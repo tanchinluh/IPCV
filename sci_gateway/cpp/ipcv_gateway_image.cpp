@@ -1,4 +1,4 @@
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_gateway_image.h"
 
 #include <algorithm>

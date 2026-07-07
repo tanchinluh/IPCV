@@ -55,7 +55,6 @@ function builder_gateway_cpp()
                     fullfile("..","..","src","cpp","libipcv_core")]; 
     else  // Darwin, Linux
         OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
-        gw_cpp_files = [gw_cpp_files; "common.h"];
     end
 
     inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path,fullfile(gw_cpp_path,"..","..","src","cpp")]); 
@@ -79,7 +78,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 

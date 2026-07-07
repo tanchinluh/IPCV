@@ -3,7 +3,7 @@
 * http://www.gnu.org/licenses/gpl-2.0.txt
 ***********************************************************************/
 
-#include "common.h"
+#include "ipcv_gateway_common.h"
 #include "ipcv_gateway_image.h"
 
 int sci_int_imextract_DescriptorBRISK(char * fname,void* pvApiCtx)
