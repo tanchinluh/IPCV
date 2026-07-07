@@ -3,6 +3,11 @@ CLIP RN50 OpenAI visual encoder for IPCV OpenCV 5 DNN demo
 Model file:
 clip_rn50_openai_visual_fp16.onnx
 
+Distribution note:
+The ONNX model is not bundled and is not auto-downloaded by IPCV because it
+does not come from the official OpenCV Zoo. Developers may place a trusted
+local copy in this folder to run demo_dnn_clip.sci.
+
 Source:
 https://huggingface.co/Marqo/onnx-open_clip-RN50
 

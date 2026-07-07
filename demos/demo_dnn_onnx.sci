@@ -3,10 +3,26 @@
 ////////////////////////////////////////////////////////////
 function demo_dnn_onnx()
 
+    function model_file = ensure_opencv_zoo_model(dnn_path)
+        model_name = "image_classification_mobilenetv2_2022apr.onnx";
+        model_file = dnn_path + model_name;
+        model_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/" + model_name;
+
+        if ~isfile(model_file) then
+            mprintf("Downloading %s from OpenCV Zoo...\n", model_name);
+            http_get(model_url, model_file, follow=%t, timeout=300);
+        end
+
+        info = fileinfo(model_file);
+        if info == [] | info(1) < 1000000 then
+            error("OpenCV Zoo MobileNetV2 model download failed or is incomplete: " + model_file);
+        end
+    endfunction
+
     dnn_unloadallmodels();
 
     dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    model_file = dnn_path + "image_classification_mobilenetv2_2022apr.onnx";
+    model_file = ensure_opencv_zoo_model(dnn_path);
     label_file = dnn_path + "labelsimagenet1k.h";
 
     net = dnn_readmodel(model_file, "", "onnx");

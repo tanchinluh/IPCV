@@ -18,6 +18,7 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    This function is used for loading DNN model and used in Scilab for inference system.
     //
     // Examples
+    //    // Example 1: TensorFlow LeNet
     //    dnn_unloadallmodels();
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
     //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
@@ -29,8 +30,14 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    prediction = index - 1
     //    dnn_unloadmodel(net);
     //
-    //    // ONNX MobileNetV2 example
-    //    net = dnn_readmodel(dnn_path + "image_classification_mobilenetv2_2022apr.onnx", "", "onnx");
+    //    // Example 2: ONNX MobileNetV2. The model is downloaded from OpenCV Zoo if missing.
+    //    model_name = "image_classification_mobilenetv2_2022apr.onnx";
+    //    model_file = dnn_path + model_name;
+    //    if ~isfile(model_file) then
+    //        model_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/" + model_name;
+    //        http_get(model_url, model_file, follow=%t, timeout=300);
+    //    end
+    //    net = dnn_readmodel(model_file, "", "onnx");
     //    raw_labels = mgetl(dnn_path + "labelsimagenet1k.h");
     //    label_lines = raw_labels(grep(raw_labels, "        """));
     //    labels = stripblanks(label_lines);
@@ -44,8 +51,13 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    title("MobileNetV2 ONNX: " + prediction + " (" + msprintf("%.4f", score) + ")");
     //    dnn_unloadmodel(net);
     //
-    //    // CLIP zero-shot image classification with precomputed text embeddings
-    //    net = dnn_readmodel(dnn_path + "clip_rn50_openai_visual_fp16.onnx", "", "onnx");
+    //    // Example 3: CLIP zero-shot image classification with precomputed text embeddings.
+    //    // The CLIP ONNX model is not auto-downloaded because it is not from OpenCV Zoo.
+    //    clip_model = dnn_path + "clip_rn50_openai_visual_fp16.onnx";
+    //    if ~isfile(clip_model) then
+    //        error("Place a trusted local CLIP image encoder at: " + clip_model);
+    //    end
+    //    net = dnn_readmodel(clip_model, "", "onnx");
     //    prompts = mgetl(dnn_path + "clip_rn50_openai_prompts.txt");
     //    text_embeddings = csvRead(dnn_path + "clip_rn50_openai_text_embeddings.csv");
     //    S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));

@@ -40,6 +40,10 @@ function demo_dnn_clip()
     dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
     model_file = dnn_path + "clip_rn50_openai_visual_fp16.onnx";
 
+    if ~isfile(model_file) then
+        error("CLIP demo model is not bundled and is not auto-downloaded because it is not from the official OpenCV Zoo. Put a trusted local CLIP image encoder here: " + model_file);
+    end
+
     net = dnn_readmodel(model_file, "", "onnx");
     net = dnn_setpreferable(net, "opencv", "cpu");
     [labels, prompts, text_embeddings] = load_clip_prompts(dnn_path);
