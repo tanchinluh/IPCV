@@ -34,15 +34,15 @@
    <variablelist>
         <varlistentry>
             <term>model :</term>
-            <listitem><para> Model binary (Caffe -&gt; .caffemodel file, TF -&gt; .pb file).</para></listitem>
+            <listitem><para> Model binary (.caffemodel, .pb, .weights, .onnx, .t7, or .tflite).</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modelinfo :</term>
-            <listitem><para> Model info (Caffe - &gt; .prototxt file. TF -&gt; .pbtxt file).</para></listitem>
+            <listitem><para> Model info/config file, if required by the framework.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modeltype :</term>
-            <listitem><para> Model type, currently support Caffe and Tensorflow model.</para></listitem>
+            <listitem><para> Model type. Use "auto", "caffe", "tensorflow", "yolo", "darknet", "onnx", "torch", or "tflite". Numeric values 0 to 6 are also accepted.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>net :</term>
@@ -63,16 +63,22 @@ This function is used for loading DNN model and used in Scilab for inference sys
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-S = imread(dnn_path + '3.jpg');
-imshow(S);
-out = dnn_forward(net,~S,[28,28]);
-[maxV,maxI]=max(out);
-xnumb(10,10,maxI-1);
-e = gce();
-e.font_size = 10;
-e.font_color = 5;
+dnn_unloadallmodels();
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+
+net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_setpreferable(net, "opencv", "cpu");
+
+info = dnn_info(net, [28, 28], 1);
+disp(info.outputname);
+disp(info.flops);
+
+S = imread(dnn_path + "3.jpg");
+out = dnn_forward(net, ~S, [28, 28]);
+[score, index] = max(out);
+prediction = index - 1
+
+dnn_unloadmodel(net);
 
    ]]></programlisting>
 </refsection>
@@ -86,6 +92,8 @@ e.font_color = 5;
    <member><link linkend="dnn_unloadallmodels">dnn_unloadallmodels</link></member>
    <member><link linkend="dnn_forward">dnn_forward</link></member>
    <member><link linkend="dnn_getparam">dnn_getparam</link></member>
+   <member><link linkend="dnn_info">dnn_info</link></member>
+   <member><link linkend="dnn_setpreferable">dnn_setpreferable</link></member>
    </simplelist>
 </refsection>
 

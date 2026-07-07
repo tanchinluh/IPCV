@@ -24,7 +24,8 @@
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   out = dnn_forward(net,img,scalefactor,image_size,rgb_mean,swapRB,layer_name);
+   out = dnn_forward(net,img,input_size)
+   out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop)
    
    </synopsis>
 </refsynopsisdiv>
@@ -83,16 +84,19 @@ This function is used to run forward pass to compute output of layer with name l
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-S = imread(dnn_path + '3.jpg');
-imshow(S);
-out = dnn_forward(net,~S,[28,28]);
-[maxV,maxI]=max(out);
-xnumb(10,10,maxI-1);
-e = gce();
-e.font_size = 10;
-e.font_color = 5;
+dnn_unloadallmodels();
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+
+S = imread(dnn_path + "3.jpg");
+out = dnn_forward(net, ~S, [28, 28]);
+[score, index] = max(out);
+prediction = index - 1
+
+conv_output = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
+size(conv_output)
+
+dnn_unloadmodel(net);
 
    ]]></programlisting>
 </refsection>
@@ -106,6 +110,7 @@ e.font_color = 5;
    <member><link linkend="dnn_unloadallmodels">dnn_unloadallmodels</link></member>
    <member><link linkend="dnn_forward">dnn_forward</link></member>
    <member><link linkend="dnn_getparam">dnn_getparam</link></member>
+   <member><link linkend="dnn_getoutputs">dnn_getoutputs</link></member>
    </simplelist>
 </refsection>
 

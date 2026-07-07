@@ -8,9 +8,14 @@
 <!ENTITY a419c6de803a4e5b9b0f82aaeae38d215 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Camera Handling/camopen.xml">
 <!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Camera Handling/camread.xml">
 <!ENTITY a8351b08ca2f4c8491063d4a6bf0a0f46 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_forward.xml">
+<!ENTITY a3e3712481cfbd1422577950e57d41473 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_getflops.xml">
+<!ENTITY a8e0f8b0be3700adbcfe6f7d1c9ce223a SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_getlayertypes.xml">
+<!ENTITY adbc6be5cdf2bebc1397c69994e682fcd SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_getoutputs.xml">
 <!ENTITY a6c87ce05f5728e69e98e4d1731cf9ab5 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_getparam.xml">
+<!ENTITY a268e680d49717124627671f25367f58d SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_info.xml">
 <!ENTITY a8db86126763070f0bb05f036119b3ecd SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_list.xml">
 <!ENTITY af3e51ce05d42d970888cc187fdec05cd SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_readmodel.xml">
+<!ENTITY a48a5d6df47aff98af4242c4aec41619b SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_setpreferable.xml">
 <!ENTITY a3ea6ca2ef7097637a477381826d77dbd SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_showfeature.xml">
 <!ENTITY a6d2f7dab4a299814da917608e14b2e7c SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_showparam.xml">
 <!ENTITY a167f15aa118d3c950bfc88d5f0bc89d4 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Deep Learning/dnn_showparamf2d.xml">
@@ -202,9 +207,14 @@
 <part xml:id='section_a25500554379bf5680a9653fe3f13876'>
 <title>Deep Learning</title>
 &a8351b08ca2f4c8491063d4a6bf0a0f46;
+&a3e3712481cfbd1422577950e57d41473;
+&a8e0f8b0be3700adbcfe6f7d1c9ce223a;
+&adbc6be5cdf2bebc1397c69994e682fcd;
 &a6c87ce05f5728e69e98e4d1731cf9ab5;
+&a268e680d49717124627671f25367f58d;
 &a8db86126763070f0bb05f036119b3ecd;
 &af3e51ce05d42d970888cc187fdec05cd;
+&a48a5d6df47aff98af4242c4aec41619b;
 &a3ea6ca2ef7097637a477381826d77dbd;
 &a6d2f7dab4a299814da917608e14b2e7c;
 &a167f15aa118d3c950bfc88d5f0bc89d4;

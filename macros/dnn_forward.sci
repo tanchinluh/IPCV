@@ -23,16 +23,15 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //    This function is used to run forward pass to compute output of layer with name layer_name
     //
     // Examples
-    //    dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-    //    net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-    //    S = imread(dnn_path + '3.jpg');
-    //    imshow(S);
-    //    out = dnn_forward(net,~S,[28,28]);
-    //    [maxV,maxI]=max(out);
-    //    xnumb(10,10,maxI-1);
-    //    e = gce();
-    //    e.font_size = 10;
-    //    e.font_color = 5;
+    //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    S = imread(dnn_path + "3.jpg");
+    //    out = dnn_forward(net, ~S, [28, 28]);
+    //    [score, index] = max(out);
+    //    prediction = index - 1
+    //    conv_output = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
+    //    size(conv_output)
+    //    dnn_unloadmodel(net);
     //
     // See also
     //     dnn_readmodel
@@ -41,6 +40,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //     dnn_unloadallmodels
     //     dnn_forward 
     //     dnn_getparam
+    //     dnn_getoutputs
     //
     // Authors
     //    CL Tan - Trity Technologies.
@@ -50,14 +50,28 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     rhs=argn(2);
     // Error Checking 
     if rhs < 3; error("At least 3 arguments expected, DNN model, input image, and the dnn input size"); end    
-    if rhs < 4; layer_name = net.layername($); end
+    if rhs < 4 then
+        layer_name = net.layername($);
+        if isfield(net, "outputname") then
+            if size(net.outputname, "*") > 0 then
+                layer_name = net.outputname($);
+            end
+        end
+    end
     if rhs < 5; scalefactor = 1; end
     if rhs < 6; rgb_mean = [0, 0, 0]; end
     if rhs < 7; swapRB = 1; end
     if rhs < 8; crop = 0; end
 
     // Check for empty optional inputs
-    if isempty(layer_name); layer_name = net.layername($); end
+    if isempty(layer_name) then
+        layer_name = net.layername($);
+        if isfield(net, "outputname") then
+            if size(net.outputname, "*") > 0 then
+                layer_name = net.outputname($);
+            end
+        end
+    end
     if isempty(scalefactor); scalefactor = 1; end
     if isempty(rgb_mean); rgb_mean = [0, 0, 0]; end
     if isempty(swapRB); swapRB = 1; end
@@ -79,7 +93,12 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
         error("Input layer_name must be a string"); 
     end
     
-    if sum(net.layername==layer_name)~=1 then
+    valid_layers = net.layername;
+    if isfield(net, "outputname") then
+        valid_layers = [valid_layers; net.outputname];
+    end
+
+    if sum(valid_layers==layer_name)<1 then
         error("Layer name not found in the DNN structure."); 
     end
     

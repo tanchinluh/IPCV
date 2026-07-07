@@ -100,11 +100,15 @@ extern "C"
 	int sci_int_cvtcolor(char *fname, void* pvApiCtx);
 	int sci_int_detectobjects(char * fname, void* pvApiCtx);
 	int sci_int_dnn_forward(char * fname, void* pvApiCtx);
+	int sci_int_dnn_getFLOPS(char * fname, void* pvApiCtx);
 	int sci_int_dnn_getLayerNames(char * fname, void* pvApiCtx);
 	int sci_int_dnn_getLayersCount(char * fname, void* pvApiCtx);
+	int sci_int_dnn_getLayerTypes(char * fname, void* pvApiCtx);
+	int sci_int_dnn_getUnconnectedOutLayerNames(char * fname, void* pvApiCtx);
 	int sci_int_dnn_getParam(char * fname, void* pvApiCtx);
 	int sci_int_dnn_init(char * fname, void* pvApiCtx);
 	int sci_int_dnn_list(char * fname, void* pvApiCtx);
+	int sci_int_dnn_setPreferableBackendTarget(char * fname, void* pvApiCtx);
 	int sci_int_dnn_superres(char * fname, void* pvApiCtx);
 	int sci_int_dnn_superres_init(char * fname, void* pvApiCtx);
 	int sci_int_dnn_superres_upsample(char * fname, void* pvApiCtx);

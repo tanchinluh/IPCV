@@ -54,17 +54,24 @@ function dnn_showfeature(feature_map,out_num,c)
     if isempty(out_num); out_num = %inf; end
     if isempty(c); c = jet(256); end
 
-    feature_map_n = (feature_map - min(feature_map))./(max(feature_map)-min(feature_map)).*255;
+    csize = size(c, 1);
+    feature_min = min(feature_map);
+    feature_max = max(feature_map);
+    if feature_max == feature_min then
+        feature_map_n = feature_map * 0 + ceil(csize / 2);
+    else
+        feature_map_n = round((feature_map - feature_min) ./ (feature_max - feature_min) .* (csize - 1)) + 1;
+    end
     //feature_map_n = (feature_map - min(feature_map))./(max(feature_map)-min(feature_map));
     feature_map_n = squeeze(feature_map_n);
     f = gcf();
     f.visible = "off";
     f.color_map = c;
 
-    if  max(feature_map) > 10 then
-        colorbar(min(feature_map),max(feature_map),fmt="%.0f");
+    if  feature_max > 10 then
+        colorbar(feature_min,feature_max,fmt="%.0f");
     else
-        colorbar(min(feature_map),max(feature_map),fmt="%.2f");
+        colorbar(feature_min,feature_max,fmt="%.2f");
     end
     
     num = min(out_num,size(feature_map_n,3));
@@ -74,12 +81,10 @@ function dnn_showfeature(feature_map,out_num,c)
 //        subplot(1,num,cnt)
         feature_map_cnt = feature_map_n(:,:,cnt);//(aa(1,cnt,:,:) - min(aa))./(max(aa) - min(aa));
         feature_map_cnt2 = squeeze(feature_map_cnt);
-        imshow(feature_map_cnt2');
+        imshow(feature_map_cnt2', c);
         a = gca();
         a.axes_bounds = a.axes_bounds.*[0.8 1 0.8 1];
         title(string(cnt));
-        e = gce();
-        e.image_type = 'index';
     end
 
     f.visible = "on";

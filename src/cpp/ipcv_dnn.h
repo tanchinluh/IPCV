@@ -28,8 +28,12 @@ typedef struct IpcvStringList
 IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config, int model_type, int *handle, char *error, int error_size);
 IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage *source, int width, int height, const char *layer_name, double scale_factor, const double mean[3], int swap_rb, int crop, IpcvDnnTensor *output);
 IPCV_CORE_API int ipcv_dnn_get_layer_names(int handle, IpcvStringList *names);
+IPCV_CORE_API int ipcv_dnn_get_unconnected_output_names(int handle, IpcvStringList *names);
+IPCV_CORE_API int ipcv_dnn_get_layer_types(int handle, IpcvStringList *types);
 IPCV_CORE_API int ipcv_dnn_get_layer_count(int handle, int *count, char *error, int error_size);
 IPCV_CORE_API int ipcv_dnn_get_param(int handle, const char *layer_name, int param_index, IpcvDnnTensor *output);
+IPCV_CORE_API int ipcv_dnn_get_flops(int handle, int width, int height, int channels, double *flops, char *error, int error_size);
+IPCV_CORE_API int ipcv_dnn_set_preferable_backend_target(int handle, int backend, int target, char *error, int error_size);
 IPCV_CORE_API int ipcv_dnn_list(double *handles, int max_handles, int *count);
 IPCV_CORE_API int ipcv_dnn_unload(int handle, char *error, int error_size);
 IPCV_CORE_API void ipcv_dnn_unload_all(void);

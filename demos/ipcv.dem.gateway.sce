@@ -9,6 +9,7 @@ function subdemolist = demo_gateway()
                  "Frequency Domain Filter Design","demo_filter2.sci"; ..
                  "Image Analysis and Stats","demo_imagestats.sci"; ..
                  "Image Transformation", "demo_transform.sci"; ..
+                 "Deep Learning with OpenCV 5", "demo_dnn.sci"; ..
                  "Image Arithmetic", "demo_arithmetic.sci"];
                  if getos() <> "Darwin"
                      subdemolist = [subdemolist

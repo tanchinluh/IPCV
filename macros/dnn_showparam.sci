@@ -54,16 +54,23 @@ function dnn_showparam(para_map,out_num,c)
     if isempty(out_num); out_num = %inf; end
     if isempty(c); c = jet(256); end
     
-    para_map_n = (para_map - min(para_map))./(max(para_map)-min(para_map)).*255;
+    csize = size(c, 1);
+    para_min = min(para_map);
+    para_max = max(para_map);
+    if para_max == para_min then
+        para_map_n = para_map * 0 + ceil(csize / 2);
+    else
+        para_map_n = round((para_map - para_min) ./ (para_max - para_min) .* (csize - 1)) + 1;
+    end
     para_map_n = squeeze(para_map_n);
     f = gcf();
     f.visible = "off";
     f.color_map = c;
     
-    if  max(para_map) > 10 then
-        colorbar(min(para_map),max(para_map),fmt="%.0f");
+    if  para_max > 10 then
+        colorbar(para_min,para_max,fmt="%.0f");
     else
-        colorbar(min(para_map),max(para_map),fmt="%.2f");
+        colorbar(para_min,para_max,fmt="%.2f");
     end
     
     num = min(out_num,size(para_map_n,3));
@@ -72,12 +79,10 @@ function dnn_showparam(para_map,out_num,c)
         subplot(ceil(sqrt(num)),ceil(num/ceil(sqrt(num))),cnt)
         para_map_cnt = para_map_n(:,:,cnt);//(aa(1,cnt,:,:) - min(aa))./(max(aa) - min(aa));
         para_map_cnt2 = squeeze(para_map_cnt);
-        imshow(para_map_cnt2');
+        imshow(para_map_cnt2', c);
         a = gca();
         a.axes_bounds = a.axes_bounds.*[0.8 1 0.8 1];
         title(string(cnt));
-        e = gce();
-        e.image_type = 'index';
     end
 
     f.visible = "on";

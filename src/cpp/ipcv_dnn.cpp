@@ -202,6 +202,43 @@ int first_free_superres()
     return -1;
 }
 
+bool fill_string_list(const std::vector<cv::String>& source, IpcvStringList *list)
+{
+    if (list == NULL)
+    {
+        return false;
+    }
+
+    std::memset(list, 0, sizeof(*list));
+    if (source.empty())
+    {
+        return true;
+    }
+
+    list->items = static_cast<char**>(std::calloc(source.size(), sizeof(char*)));
+    if (list->items == NULL)
+    {
+        copy_error(list->error, static_cast<int>(sizeof(list->error)), "out of memory");
+        return false;
+    }
+    list->count = static_cast<int>(source.size());
+
+    for (int i = 0; i < list->count; i++)
+    {
+        const size_t length = source[i].size();
+        list->items[i] = static_cast<char*>(std::malloc(length + 1));
+        if (list->items[i] == NULL)
+        {
+            ipcv_free_string_list(list);
+            copy_error(list->error, static_cast<int>(sizeof(list->error)), "out of memory");
+            return false;
+        }
+        std::memcpy(list->items[i], source[i].c_str(), length + 1);
+    }
+
+    return true;
+}
+
 const char *superres_algorithm(int algorithm_type)
 {
     switch (algorithm_type)
@@ -296,6 +333,9 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
         cv::String framework;
         switch (model_type)
         {
+        case 0:
+            framework = "";
+            break;
         case 1:
             framework = "caffe";
             break;
@@ -310,6 +350,9 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
             break;
         case 5:
             framework = "torch";
+            break;
+        case 6:
+            framework = "tflite";
             break;
         default:
             copy_error(error, error_size, "unsupported DNN model type");
@@ -425,36 +468,65 @@ extern "C" IPCV_CORE_API int ipcv_dnn_get_layer_names(int handle, IpcvStringList
 
     try
     {
-        std::vector<cv::String> layer_names = g_nets[handle - 1].getLayerNames();
-        if (layer_names.empty())
-        {
-            return 0;
-        }
-
-        names->items = static_cast<char**>(std::calloc(layer_names.size(), sizeof(char*)));
-        if (names->items == NULL)
-        {
-            copy_error(names->error, static_cast<int>(sizeof(names->error)), "out of memory");
-            return -1;
-        }
-        names->count = static_cast<int>(layer_names.size());
-
-        for (int i = 0; i < names->count; i++)
-        {
-            const size_t length = layer_names[i].size();
-            names->items[i] = static_cast<char*>(std::malloc(length + 1));
-            if (names->items[i] == NULL)
-            {
-                copy_error(names->error, static_cast<int>(sizeof(names->error)), "out of memory");
-                return -1;
-            }
-            std::memcpy(names->items[i], layer_names[i].c_str(), length + 1);
-        }
-        return 0;
+        return fill_string_list(g_nets[handle - 1].getLayerNames(), names) ? 0 : -1;
     }
     catch (const cv::Exception& e)
     {
         copy_error(names->error, static_cast<int>(sizeof(names->error)), e.what());
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_dnn_get_unconnected_output_names(int handle, IpcvStringList *names)
+{
+    if (names != NULL)
+    {
+        std::memset(names, 0, sizeof(*names));
+    }
+    if (!valid_handle(handle) || g_nets[handle - 1].empty())
+    {
+        if (names != NULL)
+        {
+            copy_error(names->error, static_cast<int>(sizeof(names->error)), "invalid DNN handle");
+        }
+        return -1;
+    }
+
+    try
+    {
+        return fill_string_list(g_nets[handle - 1].getUnconnectedOutLayersNames(), names) ? 0 : -1;
+    }
+    catch (const cv::Exception& e)
+    {
+        copy_error(names->error, static_cast<int>(sizeof(names->error)), e.what());
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_dnn_get_layer_types(int handle, IpcvStringList *types)
+{
+    if (types != NULL)
+    {
+        std::memset(types, 0, sizeof(*types));
+    }
+    if (!valid_handle(handle) || g_nets[handle - 1].empty())
+    {
+        if (types != NULL)
+        {
+            copy_error(types->error, static_cast<int>(sizeof(types->error)), "invalid DNN handle");
+        }
+        return -1;
+    }
+
+    try
+    {
+        std::vector<cv::String> layer_types;
+        g_nets[handle - 1].getLayerTypes(layer_types);
+        return fill_string_list(layer_types, types) ? 0 : -1;
+    }
+    catch (const cv::Exception& e)
+    {
+        copy_error(types->error, static_cast<int>(sizeof(types->error)), e.what());
         return -1;
     }
 }
@@ -477,6 +549,69 @@ extern "C" IPCV_CORE_API int ipcv_dnn_get_layer_count(int handle, int *count, ch
         {
             *count = static_cast<int>(g_nets[handle - 1].getLayerNames().size());
         }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        copy_error(error, error_size, e.what());
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_dnn_get_flops(int handle, int width, int height, int channels, double *flops, char *error, int error_size)
+{
+    if (flops != NULL)
+    {
+        *flops = 0.0;
+    }
+    if (!valid_handle(handle) || g_nets[handle - 1].empty())
+    {
+        copy_error(error, error_size, "invalid DNN handle");
+        return -1;
+    }
+    if (width <= 0 || height <= 0 || channels <= 0)
+    {
+        copy_error(error, error_size, "DNN input width, height, and channels must be positive");
+        return -1;
+    }
+
+    try
+    {
+        std::vector<cv::MatShape> input_shapes(1);
+        input_shapes[0].push_back(1);
+        input_shapes[0].push_back(channels);
+        input_shapes[0].push_back(height);
+        input_shapes[0].push_back(width);
+
+        std::vector<int> input_types(1, CV_32F);
+        const double flops_value = static_cast<double>(g_nets[handle - 1].getFLOPS(input_shapes, input_types));
+        if (flops != NULL)
+        {
+            *flops = flops_value;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        copy_error(error, error_size, e.what());
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_dnn_set_preferable_backend_target(int handle, int backend, int target, char *error, int error_size)
+{
+    if (!valid_handle(handle) || g_nets[handle - 1].empty())
+    {
+        copy_error(error, error_size, "invalid DNN handle");
+        return -1;
+    }
+
+    try
+    {
+        cv::dnn::Net& net = g_nets[handle - 1];
+        net.setPreferableBackend(backend);
+        net.setPreferableTarget(target);
+        net.finalizeNet();
         return 0;
     }
     catch (const cv::Exception& e)
