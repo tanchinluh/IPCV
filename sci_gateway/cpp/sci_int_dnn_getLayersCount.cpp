@@ -4,40 +4,32 @@
 ***********************************************************************/
 
 #include "common.h"
-
-/************************************************************
-* imout = sci_int_dnn_forward(imin, se);
-************************************************************/
-
+#include "ipcv_gateway_image.h"
 
 int sci_int_dnn_getLayersCount(char * fname,void* pvApiCtx)
 {
-
-	int iRows			= 0;
-	int iCols			= 0;
-	int nFile;
-	double *out = NULL;
-
 	CheckInputArgument(pvApiCtx, 1, 1);
 	CheckOutputArgument(pvApiCtx, 0, 1);
-	
-	GetDouble(1, out, iRows, iCols, pvApiCtx);
-	nFile = round(*out);
-	nFile -= 1;
-	
-	GetDouble(1, out, iRows, iCols, pvApiCtx);
-	nFile = round(*out);
-	nFile -= 1;
 
-	if (DeepNet[nFile].net.empty())
+	double *handleValue = NULL;
+	int iRows = 0;
+	int iCols = 0;
+	GetDouble(1, handleValue, iRows, iCols, pvApiCtx);
+
+	int count = 0;
+	char error[1024] = {0};
+	int iRet = ipcv_dnn_get_layer_count(static_cast<int>(round(*handleValue)), &count, error, static_cast<int>(sizeof(error)));
+	if (iRet)
 	{
-		Scierror(999, "%s: Not a valid image\n", fname, MAX_AVI_FILE_NUM);
-		return -1;
+		Scierror(999, "%s: %s\n", fname, error);
+		return iRet;
 	}
-	
 
-
+	iRet = createScalarDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, static_cast<double>(count));
+	if (iRet)
+	{
+		return iRet;
+	}
+	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
 	return 0;
-
-	
 }

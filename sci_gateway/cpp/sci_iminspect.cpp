@@ -4,49 +4,39 @@
 ***********************************************************************/
 
 #include "common.h"
+#include "ipcv_gateway_image.h"
 
-/**********************************************************************
-* This function is using the OpenCV highgui function for plotting image
-* imdisplay(imin);
-**********************************************************************/
-int sci_iminspect(char * fname,void* pvApiCtx)
+int sci_iminspect(char * fname, void* pvApiCtx)
 {
-
 	CheckInputArgument(pvApiCtx, 1, 2);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
-	/////////////////
-	// First Input //
-	/////////////////
-	Mat pSrcImg;
-	GetImage(1,pSrcImg,pvApiCtx);
-
-	
-	char *pstName = NULL;
-
-	if(nbInputArgument(pvApiCtx) == 2)
+	IpcvDecodedImage image;
+	int iRet = ipcv_get_image_argument(pvApiCtx, 1, image);
+	if (iRet)
 	{
-		GetString(2, pstName,pvApiCtx);
+		Scierror(999, "%s: Wrong type for input argument #%d: Image expected.\n", fname, 1);
+		return iRet;
+	}
+
+	char *windowName = NULL;
+	if (nbInputArgument(pvApiCtx) == 2)
+	{
+		GetString(2, windowName, pvApiCtx);
 	}
 	else
 	{
-		pstName = (char *)"Inspect Window";		
+		windowName = (char *)"Inspect Window";
 	}
-	 
-	for(;;)
+
+	char error[1024] = {0};
+	iRet = ipcv_inspect_image(&image, windowName, error, static_cast<int>(sizeof(error)));
+	ipcv_release_image_argument(image);
+	if (iRet)
 	{
-
-	namedWindow(pstName, WINDOW_NORMAL | WINDOW_KEEPRATIO | WINDOW_GUI_EXPANDED);// Create a window for display.
-	imshow(pstName, pSrcImg );   
-	// Show our image inside it.
-
-	if(waitKey(30) >= 0) break;
-
+		Scierror(999, "%s: %s.\r\n", fname, error);
+		return iRet;
 	}
-	
-	destroyWindow(pstName);
 
 	return 0;
-
-
 }

@@ -95,13 +95,23 @@ Migrated code
    - `aviclose`, `avicloseall` -> `src/cpp/ipcv_video_camera.cpp`
    - `camopen`, `camread`, `camlistopened` -> `src/cpp/ipcv_video_camera.cpp`
    - `camclose`, `camcloseall` -> `src/cpp/ipcv_video_camera.cpp`
-17. Removed obsolete gateways
+17. Display utilities
+   - `imdisplay` -> `src/cpp/ipcv_display_utils.cpp`
+   - `iminspect` -> `src/cpp/ipcv_display_utils.cpp`
+   - `mat2utfimg` -> `src/cpp/ipcv_display_utils.cpp`
+18. Deep learning
+   - `dnn_readmodel` / `int_dnn_init` -> `src/cpp/ipcv_dnn.cpp`
+   - `dnn_forward` / `int_dnn_forward` -> `src/cpp/ipcv_dnn.cpp`
+   - `dnn_getparam` / `int_dnn_getParam` -> `src/cpp/ipcv_dnn.cpp`
+   - `dnn_list`, `dnn_unloadmodel`, `dnn_unloadallmodels` -> `src/cpp/ipcv_dnn.cpp`
+   - `int_dnn_superres`, `int_dnn_superres_init`, `int_dnn_superres_upsample` -> `src/cpp/ipcv_dnn.cpp`
+19. Removed obsolete gateways
    - Removed `sci_int_imfindContours2.cpp`
    - Removed `sci_int_imread2.cpp`
-18. Gateway image exchange
+20. Gateway image exchange
    - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
    - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-19. Current unit tests
+21. Current unit tests
    - Current OpenCV 5 migration tests are in `tests/unit_tests`
    - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
    - `tests/unit_tests/ipcv_image_io.tst`
@@ -120,6 +130,8 @@ Migrated code
    - `tests/unit_tests/ipcv_superres.tst`
    - `tests/unit_tests/ipcv_detection_tracking.tst`
    - `tests/unit_tests/ipcv_video_camera.tst`
+   - `tests/unit_tests/ipcv_display_utils.tst`
+   - `tests/unit_tests/ipcv_dnn.tst`
    - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
 
 Version 4.5.0.2 (03-Oct-25)

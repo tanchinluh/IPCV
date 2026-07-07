@@ -5,6 +5,8 @@
 #include "ipcv_binary_analysis.h"
 #include "ipcv_color.h"
 #include "ipcv_detection_tracking.h"
+#include "ipcv_display_utils.h"
+#include "ipcv_dnn.h"
 #include "ipcv_edge_filter.h"
 #include "ipcv_enhancement.h"
 #include "ipcv_feature_detection.h"

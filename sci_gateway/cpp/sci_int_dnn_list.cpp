@@ -4,39 +4,25 @@
 ***********************************************************************/
 
 #include "common.h"
-
-/************************************************************
-* sci_int_dnn_list(char * fname,void* pvApiCtx)
-************************************************************/
-
+#include "ipcv_gateway_image.h"
 
 int sci_int_dnn_list(char * fname,void* pvApiCtx)
 {
-	int One = 1;
-	int i;
-	SciErr sciErr;
-	int count = 0;
-	int offset = 0;
-
-	double dIndices[MAX_DL_NUM];
-	double * dIdx = dIndices;
-	
-
 	CheckInputArgument(pvApiCtx, 0, 0);
 	CheckOutputArgument(pvApiCtx, 1, 1);
 
-	for (i = 0; i < MAX_DL_NUM; i++)
+	double handles[3] = {0, 0, 0};
+	int count = 0;
+	ipcv_dnn_list(handles, 3, &count);
+
+	const int outVar = nbInputArgument(pvApiCtx) + 1;
+	SciErr sciErr = createMatrixOfDouble(pvApiCtx, outVar, count, 1, handles);
+	if (sciErr.iErr)
 	{
-		if (!(DeepNet[i].net.empty()))
-		{
-			dIndices[count] = i + 1;
-			count++;
-		}
+		printError(&sciErr, 0);
+		return sciErr.iErr;
 	}
 
-	// ToDo : To be replaced with cleaner SetDouble.
-	sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, count, One, dIdx);
-	AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-
+	AssignOutputVariable(pvApiCtx, 1) = outVar;
 	return 0;
 }

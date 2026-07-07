@@ -24,19 +24,7 @@ function builder_gateway_cpp()
 
     gw_cpp_path = get_absolute_file_path('builder_gateway_cpp.sce');
     gw_cpp_files = findfiles(gw_cpp_path, '*.cpp');
-    skip_cpp_files = [
-        "sci_int_dnn_init.cpp";
-        "sci_int_dnn_forward.cpp";
-        "sci_int_dnn_getLayerNames.cpp";
-        "sci_int_dnn_getLayersCount.cpp";
-        "sci_int_dnn_getParam.cpp";
-        "sci_int_dnn_list.cpp";
-        "sci_int_dnn_superres.cpp";
-        "sci_int_dnn_superres_init.cpp";
-        "sci_int_dnn_superres_upsample.cpp";
-        "sci_int_dnn_unload.cpp";
-        "sci_int_dnn_unloadall.cpp";
-    ];
+    skip_cpp_files = [];
     for i = 1:size(skip_cpp_files, "*")
         gw_cpp_files(gw_cpp_files == skip_cpp_files(i)) = [];
     end
@@ -91,7 +79,6 @@ endfunction
 builder_gateway_cpp();
 clear builder_gateway_cpp;
 // ====================================================================
-
 
 
 
