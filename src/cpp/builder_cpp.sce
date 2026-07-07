@@ -1,14 +1,23 @@
 function builder_cpp()
     src_cpp_path = get_absolute_file_path("builder_cpp.sce");
 
-    ARCH = getenv("PROCESSOR_ARCHITECTURE");
-    if ARCH == "" then
-        ARCH = "AMD64";
+    if getos() == "Windows" then
+        ARCH = getenv("PROCESSOR_ARCHITECTURE");
+        if ARCH == "" then
+            ARCH = "AMD64";
+        end
+    else
+        [_, ARCH] = host("uname -m");
     end
 
     thirdparty_path = fullpath(fullfile(src_cpp_path, "..", "..", "thirdparty"));
-    opencv_include = fullfile(thirdparty_path, "Windows", ARCH, "include");
-    opencv_lib = fullfile("..", "..", "thirdparty", "Windows", ARCH, "lib", "opencv_world500");
+    if getos() == "Windows" then
+        opencv_include = fullfile(thirdparty_path, "Windows", ARCH, "include");
+        opencv_lib = fullfile("..", "..", "thirdparty", "Windows", ARCH, "lib", "opencv_world500");
+    else
+        opencv_include = fullfile(thirdparty_path, getos(), ARCH, "include", "opencv5");
+        opencv_lib = fullfile("..", "..", "thirdparty", getos(), ARCH, "lib", "libopencv_world");
+    end
 
     cflags = ilib_include_flag([src_cpp_path, opencv_include]);
     if getos() == "Windows" then

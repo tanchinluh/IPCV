@@ -54,7 +54,10 @@ function builder_gateway_cpp()
         all_libs = [fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs);
                     fullfile("..","..","src","cpp","libipcv_core")]; 
     else  // Darwin, Linux
-        OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv4");
+        OPENCV_INCLUDE = fullfile(THIRDPARTY,getos(),ARCH,"include","opencv5");
+        libs = ["libopencv_world";"libopencv_img_hash"]
+        all_libs = [fullfile("..","..","thirdparty",getos(),ARCH,"lib",libs);
+                    fullfile("..","..","src","cpp","libipcv_core")];
     end
 
     inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path,fullfile(gw_cpp_path,"..","..","src","cpp")]); 

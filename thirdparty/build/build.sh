@@ -12,6 +12,13 @@ THIRDPARTY="$(cd ..; pwd)"
 PREFIX="${THIRDPARTY}/$(uname -s)/$(uname -m)"
 OPENCV_VER=5.0.0
 FFMPEG_VER=4.3.6
+if [ "$(uname -s)" = "Darwin" ]; then
+    INSTALL_RPATH="${PREFIX}/lib"
+    SHARED_LINKER_FLAGS="-Wl,-rpath,${PREFIX}/lib"
+else
+    INSTALL_RPATH="\$ORIGIN"
+    SHARED_LINKER_FLAGS="-Wl,-rpath,\$ORIGIN"
+fi
 
 # ffmpeg build
 [ ! -f opencv-${OPENCV_VER}.tar.gz ] && curl -LO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz
@@ -28,6 +35,15 @@ cd ..
 tar -xf opencv-${OPENCV_VER}.tar.gz
 tar -xf opencv_contrib-${OPENCV_VER}.tar.gz
 cd opencv-${OPENCV_VER}
+awk '
+    $0 == "# Vendored MLAS (Microsoft Linear Algebra Subprograms) from ONNX Runtime." { seen = 1 }
+    seen && $0 == "if(NOT EMSCRIPTEN)" {
+        print "if(FALSE) # IPCV local Unix build: skip MLAS; OpenCV 5 MLAS link symbols are incomplete."
+        seen = 0
+        next
+    }
+    { print }
+' modules/dnn/CMakeLists.txt > modules/dnn/CMakeLists.txt.tmp && mv modules/dnn/CMakeLists.txt.tmp modules/dnn/CMakeLists.txt
 rm -rf build
 mkdir -p build
 cd build
@@ -38,8 +54,8 @@ cmake -G Ninja -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
 -DCMAKE_CXX_STANDARD_REQUIRED=ON \
 -DWITH_VTK=OFF \
 -DCMAKE_MACOSX_RPATH=ON \
--DCMAKE_SHARED_LINKER_FLAGS="-Wl,-rpath,${PREFIX}/lib" \
--DCMAKE_INSTALL_RPATH="${PREFIX}/lib" \
+-DCMAKE_SHARED_LINKER_FLAGS="${SHARED_LINKER_FLAGS}" \
+-DCMAKE_INSTALL_RPATH="${INSTALL_RPATH}" \
 -DOPENCV_EXTRA_MODULES_PATH=${THIRDPARTY}/build/opencv_contrib-${OPENCV_VER}/modules \
 -DBUILD_ZLIB=ON \
 -DBUILD_JPEG=ON \
