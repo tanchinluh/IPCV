@@ -18,7 +18,7 @@ function [rgb] = hsv2rgb2(hsv)
     //    RGB : Output image, which has the same size and type as HSV.
     //
     // Description
-    //    hsv2rgb convert a HSV image to the equivalent RGB image. 
+    //    hsv2rgb2 converts a HSV image to the equivalent RGB image.
     //
     //    Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE. 
     //
@@ -46,7 +46,7 @@ function [rgb] = hsv2rgb2(hsv)
 
 endfunction
 
-//hsv2rgb convert a HSV image to the equivalent RGB image. The relationship between RGB and HSV described as follows:
+//hsv2rgb2 converts a HSV image to the equivalent RGB image. The relationship between RGB and HSV described as follows:
 //V = max(R,G,B)
 //S = (V-min(R,G,B))/V if V<>0, 0 otherwise
 //H =

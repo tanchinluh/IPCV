@@ -41,7 +41,7 @@ function yiqm = rgb2ntsc (rgbm)
 //      rgb2gray
 //      mat2gray
 //      rgb2hsv
-//      hsv2rgb
+//      hsv2rgb2
 //      rgb2ycbcr
 //      ycbcr2rgb
 //      ntsc2rgb

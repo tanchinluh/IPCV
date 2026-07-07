@@ -29,7 +29,6 @@
   "fft2pad": "TBX/help/en_US/Filter Design and Visualization/fft2pad.xml",
   "filter2": "TBX/help/en_US/Image Linear Filtering/filter2.xml",
   "fspecial": "TBX/help/en_US/Image Linear Filtering/fspecial.xml",
-  "hsv2rgb": "TBX/help/en_US/Image Types and Color Space Conversions/hsv2rgb.xml",
   "hsv2rgb2": "TBX/help/en_US/Image Types and Color Space Conversions/hsv2rgb2.xml",
   "im2bw": "TBX/help/en_US/Image Types and Color Space Conversions/im2bw.xml",
   "im2col": "TBX/help/en_US/Image Block Processing/im2col.xml",

@@ -42,7 +42,7 @@ function rgbm = ntsc2rgb (yiqm)
     //      rgb2gray
     //      mat2gray
     //      rgb2hsv
-    //      hsv2rgb
+    //      hsv2rgb2
     //      rgb2ycbcr
     //      ycbcr2rgb
     //      rgb2ntsc 
@@ -82,4 +82,3 @@ function rgbm = ntsc2rgb (yiqm)
     end
 
 endfunction
-

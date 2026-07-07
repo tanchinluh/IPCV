@@ -96,7 +96,6 @@
 <!ENTITY ab4d707861d81a451a498918998653d72 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Transforms/imlogpolar.xml">
 <!ENTITY a3b6459699d2f5d0d587bdca290448852 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Transforms/imradon.xml">
 <!ENTITY a158e975e3e755e4c75438b465339da4c SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Transforms/imwatershed.xml">
-<!ENTITY ae516186c5447880072e1d5c223af94b2 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb.xml">
 <!ENTITY a20170ba23f27c24e6d375a14169c589e SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Types and Color Space Conversions/hsv2rgb2.xml">
 <!ENTITY a5d83824c39f5e3b07ca3762276a985d8 SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Types and Color Space Conversions/im2bw.xml">
 <!ENTITY a3102416827154fd8bb31c209cb7d174e SYSTEM "file:///F:/ScilabModules/IPCV/help/en_US/Image Types and Color Space Conversions/im2double.xml">
@@ -327,7 +326,6 @@
 </part>
 <part xml:id='section_9ff8ea416ae64f5b1bc37bf834228a00'>
 <title>Image Types and Color Space Conversions</title>
-&ae516186c5447880072e1d5c223af94b2;
 &a20170ba23f27c24e6d375a14169c589e;
 &a5d83824c39f5e3b07ca3762276a985d8;
 &a3102416827154fd8bb31c209cb7d174e;

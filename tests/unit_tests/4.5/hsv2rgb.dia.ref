@@ -4,7 +4,7 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //==============================================================================
-// unit test hsv2rgb
+// unit test hsv2rgb2
 //==============================================================================
 
 RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));

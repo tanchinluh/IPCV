@@ -60,7 +60,7 @@ Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
    <programlisting role="example"><![CDATA[
 RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
 HSV = rgb2hsv(RGB);
-RGB = hsv2rgb(HSV);
+RGB = hsv2rgb2(HSV);
 imshow(RGB);
 
    ]]></programlisting>
@@ -71,7 +71,7 @@ imshow(RGB);
    <simplelist type="inline">
    <member><link linkend="rgb2gray">rgb2gray</link></member>
    <member><link linkend="mat2gray">mat2gray</link></member>
-   <member><link linkend="hsv2rgb">hsv2rgb</link></member>
+   <member><link linkend="hsv2rgb2">hsv2rgb2</link></member>
    <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
    <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
    <member><link linkend="rgb2ntsc">rgb2ntsc</link></member>
