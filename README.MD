@@ -1,220 +1,234 @@
-# IPCV OpenCV 5 and C++ Migration
+# IPCV
 
-OpenCV 5 migration branch
-1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds
-2. Update gateway linking and C++ compile flags for OpenCV 5
+IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides Scilab macros and native gateways for image I/O, filtering, morphology, feature detection, DNN inference, video/camera handling, object tracking, and other OpenCV-backed workflows.
 
-Migrated code
-1. Core source library
-   - Renamed source DLL target from `libipcv_decode` to `libipcv_core`
-   - Split source C++ into category files under `src/cpp`
-2. Image I/O
-   - `imread` -> `src/cpp/ipcv_image_io.cpp`
-   - `imreadmulti` -> `src/cpp/ipcv_image_io.cpp`
-   - `imfinfo` -> `src/cpp/ipcv_image_io.cpp`
-   - `imwrite` -> `src/cpp/ipcv_image_io.cpp`
-3. Arithmetic
-   - `imadd` -> `src/cpp/ipcv_arithmetic.cpp`
-   - `imsubtract` -> `src/cpp/ipcv_arithmetic.cpp`
-   - `immultiply` -> `src/cpp/ipcv_arithmetic.cpp`
-   - `imdivide` -> `src/cpp/ipcv_arithmetic.cpp`
-   - `imabsdiff` -> `src/cpp/ipcv_arithmetic.cpp`
-4. Spatial transformations
-   - `imresize` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `impyramid` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `imtransform(..., "affine", ...)` / `int_affinetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `imtransform(..., "perspective", ...)` / `int_perspectivetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `imgettransform(..., "affine", ...)` / `int_getaffinetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `imgettransform(..., "perspective", ...)` / `int_getperspectivetransform` -> `src/cpp/ipcv_spatial_transform.cpp`
-   - `imrotate` -> `src/cpp/ipcv_spatial_transform.cpp`
-5. Filtering
-   - `filter2` -> `src/cpp/ipcv_filtering.cpp`
-   - `imfilter` -> `src/cpp/ipcv_filtering.cpp`
-6. Morphology
-   - `imcreatese` -> `src/cpp/ipcv_morphology.cpp`
-   - `imdilate` -> `src/cpp/ipcv_morphology.cpp`
-   - `imerode` -> `src/cpp/ipcv_morphology.cpp`
-   - `imopen` / `imclose` / `imgradient` / `imtophat` / `imblackhat` / `imhitmiss` -> `src/cpp/ipcv_morphology.cpp`
-7. Color conversion
-   - `rgb2gray` -> `src/cpp/ipcv_color.cpp`
-   - `rgb2lab` -> `src/cpp/ipcv_color.cpp`
-   - `bgr2lab` -> `src/cpp/ipcv_color.cpp`
-   - `rgb2hsv` / `hsv2rgb2` / `rgb2ycbcr` / `ycbcr2rgb` -> `src/cpp/ipcv_color.cpp`
-8. Edge/detail filtering
-   - `edge(..., "sobel", ...)` / `int_sobel` -> `src/cpp/ipcv_edge_filter.cpp`
-   - `edge(..., "canny", ...)` / `int_canny` -> `src/cpp/ipcv_edge_filter.cpp`
-   - `immedian` -> `src/cpp/ipcv_edge_filter.cpp`
-9. Binary analysis
-   - `imdist` -> `src/cpp/ipcv_binary_analysis.cpp`
-   - `imdistransf` -> `src/cpp/ipcv_binary_analysis.cpp`
-   - `imfill` -> `src/cpp/ipcv_binary_analysis.cpp`
-   - `imlabel` -> `src/cpp/ipcv_binary_analysis.cpp`
-10. Enhancement and restoration
-   - `imdct` -> `src/cpp/ipcv_enhancement.cpp`
-   - `imidct` -> `src/cpp/ipcv_enhancement.cpp`
-   - `imadapthistequal` -> `src/cpp/ipcv_enhancement.cpp`
-   - `iminpaint` -> `src/cpp/ipcv_enhancement.cpp`
-11. Image transforms and segmentation
-   - `imradon` -> `src/cpp/ipcv_image_transform.cpp`
-   - `imlogpolar` -> `src/cpp/ipcv_image_transform.cpp`
-   - `imwatershed` -> `src/cpp/ipcv_segmentation.cpp`
-12. Structural analysis
-   - `imfindContours` -> `src/cpp/ipcv_structural_analysis.cpp`
-   - `imconvexHull` -> `src/cpp/ipcv_structural_analysis.cpp`
-   - `imconvexityDefects` -> `src/cpp/ipcv_structural_analysis.cpp`
-   - `imboundingRect` -> `src/cpp/ipcv_structural_analysis.cpp`
-13. Feature detection
-   - `imdetect_FAST` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_BRISK` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_GFTT` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_MSER` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_ORB` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_SIFT` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_STAR` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdetect_SURF` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imextract_DescriptorBRISK` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imextract_DescriptorORB` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imextract_DescriptorSIFT` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imextract_DescriptorSURF` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `immatch_BruteForce` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `immatch_Flann` -> `src/cpp/ipcv_feature_detection.cpp`
-   - `imdrawmatches` -> `src/cpp/ipcv_feature_detection.cpp`
-14. Hough and stitching
-   - `int_imhough` -> `src/cpp/ipcv_hough.cpp`
-   - `int_imhoughcircles` -> `src/cpp/ipcv_hough.cpp`
-   - `imstitchimage` / `int_imstitchImage` -> `src/cpp/ipcv_stitching.cpp`
-   - `imsuperres` / `int_imsuperres` -> `src/cpp/ipcv_superres.cpp`
-15. Object detection and tracking
-   - `imdetectobjects` / `int_detectobjects` -> `src/cpp/ipcv_detection_tracking.cpp`
-   - `imtrack_init` / `int_tracker_init` -> `src/cpp/ipcv_detection_tracking.cpp`
-   - `imtrack_update` / `int_tracker_update` -> `src/cpp/ipcv_detection_tracking.cpp`
-   - `imtrack_unloadall` / `int_tracker_unloadall` -> `src/cpp/ipcv_detection_tracking.cpp`
-16. Video and camera handling
-   - `aviopen`, `avifile`, `aviinfo`, `avilistopened` -> `src/cpp/ipcv_video_camera.cpp`
-   - `avireadframe`, `aviaddframe`, `addframe` -> `src/cpp/ipcv_video_camera.cpp`
-   - `aviclose`, `avicloseall` -> `src/cpp/ipcv_video_camera.cpp`
-   - `camopen`, `camread`, `camlistopened` -> `src/cpp/ipcv_video_camera.cpp`
-   - `camclose`, `camcloseall` -> `src/cpp/ipcv_video_camera.cpp`
-17. Display utilities
-   - `imdisplay` -> `src/cpp/ipcv_display_utils.cpp`
-   - `iminspect` -> `src/cpp/ipcv_display_utils.cpp`
-   - `mat2utfimg` -> `src/cpp/ipcv_display_utils.cpp`
-18. Deep learning
-   - `dnn_readmodel` / `int_dnn_init` -> `src/cpp/ipcv_dnn.cpp`
-   - `dnn_forward` / `int_dnn_forward` -> `src/cpp/ipcv_dnn.cpp`
-   - `dnn_getparam` / `int_dnn_getParam` -> `src/cpp/ipcv_dnn.cpp`
-   - `dnn_list`, `dnn_unloadmodel`, `dnn_unloadallmodels` -> `src/cpp/ipcv_dnn.cpp`
-   - `int_dnn_superres`, `int_dnn_superres_init`, `int_dnn_superres_upsample` -> `src/cpp/ipcv_dnn.cpp`
-19. Removed obsolete gateways
-   - Removed `sci_int_imfindContours2.cpp`
-   - Removed `sci_int_imread2.cpp`
-20. Gateway image exchange
-   - Added `sci_gateway/cpp/ipcv_gateway_image.cpp`
-   - Added `sci_gateway/cpp/ipcv_gateway_image.h`
-21. Current unit tests
-   - Current OpenCV 5 migration tests are in `tests/unit_tests`
-   - Previous 4.5 unit tests are archived in `tests/unit_tests/4.5`
-   - `tests/unit_tests/ipcv_image_io.tst`
-   - `tests/unit_tests/ipcv_arithmetic.tst`
-   - `tests/unit_tests/ipcv_spatial_transform.tst`
-   - `tests/unit_tests/ipcv_filtering.tst`
-   - `tests/unit_tests/ipcv_morphology.tst`
-   - `tests/unit_tests/ipcv_color.tst`
-   - `tests/unit_tests/ipcv_edge_filter.tst`
-   - `tests/unit_tests/ipcv_binary_analysis.tst`
-   - `tests/unit_tests/ipcv_enhancement.tst`
-   - `tests/unit_tests/ipcv_image_transform.tst`
-   - `tests/unit_tests/ipcv_structural_analysis.tst`
-   - `tests/unit_tests/ipcv_feature_detection.tst`
-   - `tests/unit_tests/ipcv_hough_stitching.tst`
-   - `tests/unit_tests/ipcv_superres.tst`
-   - `tests/unit_tests/ipcv_detection_tracking.tst`
-   - `tests/unit_tests/ipcv_video_camera.tst`
-   - `tests/unit_tests/ipcv_display_utils.tst`
-   - `tests/unit_tests/ipcv_dnn.tst`
-   - `tests/unit_tests/ipcv_gateway_image_exchange.tst`
+The current development line is the OpenCV 5 and C++ migration of IPCV. The native implementation targets OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.x, with the legacy gateway helpers replaced by category-based C++ source modules.
 
-Version 4.5.0.2 (03-Oct-25)
-1. Fix compilation warnings
-2. Fix call of deprecated macros for Scilab 2026.0.0
-3. Use Ninja for thirdparty OpenCV build
+## Highlights
 
-Version 4.5.0.1 (24-Feb-25)
-1. backport master branch fixes
+- OpenCV 5 native backend with category-based C++ source files under `src/cpp`.
+- Scilab gateway image exchange rewritten for the current Scilab API.
+- DNN support updated for OpenCV 5, including ONNX examples and OpenCV Zoo model download support.
+- OpenCV Zoo browser GUI: `opencv_zoo_gui()`.
+- Current unit tests are in `tests/unit_tests`; older 4.5 tests are archived in `tests/unit_tests/4.5`.
+- Large DNN `.onnx` models are excluded from git and downloaded on demand.
 
-Version 4.5 (21-Nov-23):
-1. Change OpenCV Dependency to 4.5
-2. base64toimg, imgtobase64 (20-Sep-2022) - experimental, requite USB E for image exchange
+## Requirements
 
-Version 4.1.2.2 (24-Jul-20):
-1. Add imreadmulti
-2. Add modes for imread
+- Scilab 2026.x
+- Windows build tools for native compilation
+- OpenCV/OpenCV contrib 5.0.0 thirdparty build for the IPCV native gateway
 
-Version 4.1.2.1 (Jun-20):
-1. Fix imrotate
+For native builds on Windows, start Scilab from a Visual Studio native tools command prompt so the compiler environment is available.
 
-Version 4.1-2 (15-Nov-19):
-1. Change dnn_readmodel 4th options from torch to ONNX
-Affected files : dnn_readmodel.sci, int_dnn_init.cpp
-2. Update to OpenCV 4.1.2 engine
-3. Changes of extern C to prepare for the sciTorch integration
+## Load IPCV
 
-Version 4.1 (17-Juy-19):
-Update OPENCV to 4.1, subsequence versioning will follow the OPENCV versionn number
-1. Updated imfinfo for Scilab 6.0.2
-2. imroi and imselect to cater the zoom image
-3. imread to be able to read alpha channels, and convert to binary when all values are ones and zeros.
-4. Add tracking features
-5. Better Deep Neural Network (DNN) support
-6. Remove unsupported functions by CV4
-7. RaspberryPi Ready. :)
+From Scilab:
 
-Version 2.1 (10-Mar-19):
-1799	Problem with function "imblobprop", Modified imlabel to use double, and imblobprop to return 0 when the sequence labels are skipped
-1797	Proposed correct way of using function
-1791	Issue related for previous version. 
-1788	Invalid, user error
-1790	Issue related of the way of using this function, propose 1823 as new feature
+```scilab
+exec("loader.sce", -1);
+```
 
-Enhancement
-1. Upgrading OpenCV Library to 3.4.3
-2. imshow now able to show image with alpha layer.
-3. aviinfo added
-4. avireadframe now allows to choose which frame to read
-5. improve api to support multi layers images, such as png with alpha channels, and for future multilayers image support
+Then call IPCV functions directly, for example:
 
+```scilab
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+imshow(S);
+```
 
-Version 2.0 (11-July-18): 
-Bugs fixed:
-1739	Error function "edge" with method "canny"
-1740	Some problem with the function: imaddtext - Won't fix
-1736	Error function "imwrite"
-1737	Error function "imlogpolar"
-1686	imshow() example yields an error about mat2utfimg
-1715	On your watch list. -error1000 while installing IPCV - Won't fix
-1691	ind2rgb function is missing
+## Build From Source
 
-Major Changes
-1. Upgrading OpenCV Library to 3.4.1
-2. Changes in Features detection and extraction, some functions removed due to changes in lib. More algo will be supported in coming release
-3. Video and camera handling has been seperated.
+Build order:
 
-New Features
-1. Deep Learning Network Inference system support 
+1. Prepare compiler tools.
+2. Build OpenCV/OpenCV contrib 5.0.0 into `thirdparty`.
+3. Start Scilab from the compiler environment.
+4. Run IPCV `builder.sce`.
+5. Load IPCV and run a quick smoke test.
 
-Version 1.2 (7-Dec-17): 
-Bugs fixed:
-1701 - Image Flood Fill (imfloodfill) function name
-1702 - imwrite unable to save 16 bit tif
-1703 - Imlabel to output more than 255 objects
+### 1. Prepare Compiler Tools
 
-New functions:
-1. imconvexHull
-2. imfindContours
-3. imfill
-4. imsuperres
-5. imstitch
+On Windows, install Visual Studio 2022 Build Tools or Visual Studio with the C++ workload. Make sure `cmake`, `ninja`, `curl`, and `tar` are available in the command prompt used for the build.
 
-Version 1.1 (6-Apr-17): Add features and tests, improved start file
+On Linux or macOS, install CMake, Ninja, a C/C++ compiler toolchain, `curl`, `make`, and common build utilities.
 
-Version 1.0 (17-Mar-17): Initial Release 
+### 2. Build OpenCV 5 Thirdparty
+
+IPCV expects a local OpenCV/OpenCV contrib 5.0.0 build under `thirdparty`. The helper scripts in `thirdparty/build` download OpenCV sources, configure CMake with Ninja, build `opencv_world`, and install headers/libraries into the platform-specific thirdparty folder.
+
+#### Windows
+
+Open a Visual Studio x64 native tools command prompt, then run:
+
+```bat
+cd thirdparty\build
+build.bat
+```
+
+The script:
+
+- Downloads OpenCV and OpenCV contrib `5.0.0`.
+- Applies the IPCV local MLAS skip patch for the OpenCV DNN Windows build.
+- Configures OpenCV with `-G Ninja`.
+- Builds and installs into `thirdparty\Windows\%PROCESSOR_ARCHITECTURE%`.
+- Copies generated OpenCV DLL/import-library files into the local `lib` folder expected by IPCV.
+
+Expected Windows layout after installation:
+
+```text
+thirdparty/Windows/AMD64/include/
+thirdparty/Windows/AMD64/lib/
+```
+
+#### Linux And macOS
+
+Run:
+
+```sh
+cd thirdparty/build
+./build.sh
+```
+
+The script first builds a local shared FFmpeg dependency, then downloads and builds OpenCV/OpenCV contrib `5.0.0`.
+
+Expected layout after installation:
+
+```text
+thirdparty/Linux/<architecture>/
+thirdparty/Darwin/<architecture>/
+```
+
+### 3. Start Scilab From The Compiler Environment
+
+On Windows, keep using the Visual Studio x64 native tools command prompt and launch Scilab from there, for example:
+
+```bat
+"<SCILAB_INSTALL_DIR>\bin\WScilex.exe"
+```
+
+Using the native tools prompt matters because IPCV builds C++ gateways and must see the same MSVC compiler environment used by OpenCV.
+
+On Linux or macOS, start Scilab from a shell where the compiler, CMake, and OpenCV thirdparty library paths are available.
+
+### 4. Build IPCV
+
+In Scilab, change to the IPCV root folder and run:
+
+```scilab
+cd("<IPCV_ROOT>");
+exec("builder.sce", -1);
+```
+
+The top-level builder compiles macros, native source code, gateways, help, loader, and cleaner files. The source build is organized around `src/cpp/builder_cpp.sce`, which builds the native `libipcv_core` library from category files such as `ipcv_image_io.cpp`, `ipcv_filtering.cpp`, `ipcv_feature_detection.cpp`, and `ipcv_dnn.cpp`.
+
+Expected generated build outputs include:
+
+```text
+src/cpp/libipcv_core.*
+sci_gateway/cpp/gw_ipcv.*
+loader.sce
+```
+
+### 5. Load And Smoke Test
+
+After the build completes, load IPCV:
+
+```scilab
+exec("loader.sce", -1);
+```
+
+Then run a small image I/O and display check:
+
+```scilab
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+disp(size(S));
+imshow(S);
+```
+
+For a focused command-line check, run a current unit test from `tests/unit_tests`, for example:
+
+```scilab
+test_run(getIPCVpath(), "ipcv_image_io");
+```
+
+## OpenCV Zoo Models
+
+IPCV includes a Scilab browser GUI for OpenCV Zoo models:
+
+```scilab
+opencv_zoo_gui();
+```
+
+The GUI can:
+
+- Fetch available ONNX models from the official OpenCV Zoo.
+- Group models by category.
+- Show real Git LFS model sizes.
+- Download a selected model.
+- Download a selected model, generate a starter Scilab script, and open it in the Scilab editor.
+
+Downloaded `.onnx` files are ignored by git. The default download folder is:
+
+```text
+images/dnn
+```
+
+## DNN Example
+
+```scilab
+dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
+model_name = "image_classification_mobilenetv2_2022apr.onnx";
+model_file = dnn_path + model_name;
+
+if ~isfile(model_file) then
+    model_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/" + model_name;
+    http_get(model_url, model_file, follow=%t, timeout=300);
+end
+
+net = dnn_readmodel(model_file, "", "onnx");
+net = dnn_setpreferable(net, "opencv", "cpu");
+
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+out = dnn_forward(net, S, [224, 224], [], 1 / 127.5, [127.5 127.5 127.5], 1, 0);
+
+[score, index] = max(out);
+disp([index, score]);
+dnn_unloadmodel(net);
+```
+
+## Tests
+
+Current migration tests:
+
+```text
+tests/unit_tests
+```
+
+Legacy IPCV 4.5 tests:
+
+```text
+tests/unit_tests/4.5
+```
+
+Run tests from Scilab after loading/building the toolbox as needed. For focused migration checks, run the relevant `.tst` file directly or use Scilab's `test_run` workflow.
+
+## Repository Layout
+
+```text
+macros/              Scilab user-facing functions
+sci_gateway/cpp/     Scilab gateway wrappers
+src/cpp/             OpenCV-backed C++ implementation
+help/en_US/          Help pages
+demos/               Demo scripts
+tests/unit_tests/    Current unit tests
+thirdparty/          Local thirdparty build area
+images/              Sample images and downloaded model location
+```
+
+## Change History
+
+Detailed release notes, migration notes, and the converted-function list are maintained in `ChangeLog.txt`.
+
+## License
+
+GPL. See the repository license and source headers for details.
