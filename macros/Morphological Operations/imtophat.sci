@@ -2,12 +2,11 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
-
-function imout = imerode(imin,se)
-    // Image erosion
+function imout = imtophat(imin,se,iterations,anchor,borderType,borderValue)
+    // Image tophat
     //
     // Syntax
-    //    imout = imerode(imin,se)
+    //    imout = imtophat(imin,se)
     //
     // Parameters
     //    imin : Input image
@@ -15,15 +14,13 @@ function imout = imerode(imin,se)
     //    imout : Output image
     //
     // Description
-    //    The function erodes the source image using the specified structuring element 
-    //    that determines the shape of a pixel neighborhood over which the minimum is taken.
-    // 
+    //    This operation is the difference between an input image and its opening
+    //
     // Examples
-    //    a = zeros(10,10);
-    //    a(4:7,4:7) = 1;
-    //    se = imcreatese('rect',3,3);
-    //    b = imerode(a,se);
-    //    disp(b);
+    //    S = imread(fullpath(getIPCVpath() + "/images/morpex.png"));
+    //    se = imcreatese('ellipse',7,7);
+    //    S2 = imtophat(S,se);
+    //    imshow(S2);
     //
     // See also
     //    imcreatese
@@ -46,20 +43,25 @@ function imout = imerode(imin,se)
     rhs=argn(2);
 
     if rhs < 2; error("Expect 2 arguments, input image and structure element"); end
+    if rhs < 3 then iterations = 1; end
+    if rhs < 4 then anchor = [-1 -1]; end
+    if rhs < 5 then borderType = "constant"; end
+    if rhs < 6 then borderValue = []; end
     // End of Error Checking
 
 
 //    if type(imin(1)) == 1 | type(imin(1)) == 4 then
 //        imin = im2uint8(imin);
-//        imout = im2double(int_imerode(imin,se));
+//        imout = im2double(int_immorphologyex(imin,se,int8(5)));
+//
 //    else type(imin(1)) == 8
-        imout = int_imerode(imin,se);
+        if rhs < 6 then
+            imout = immorphologyex(imin,se,"tophat",iterations,anchor,borderType);
+        else
+            imout = immorphologyex(imin,se,"tophat",iterations,anchor,borderType,borderValue);
+        end
 //    end
 
 
 
-
-
-
 endfunction
-

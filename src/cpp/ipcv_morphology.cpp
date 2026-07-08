@@ -3,6 +3,7 @@
 
 #include <opencv2/core.hpp>
 #include <opencv2/imgproc.hpp>
+#include <opencv2/ximgproc.hpp>
 
 #include <cstdlib>
 #include <cstring>
@@ -184,6 +185,11 @@ extern "C" IPCV_CORE_API int ipcv_create_structuring_element(int shape, int rows
         set_error(output, "structuring element size must be positive");
         return -1;
     }
+    if (shape < cv::MORPH_RECT || shape > cv::MORPH_DIAMOND)
+    {
+        set_error(output, "unsupported structuring element shape");
+        return -1;
+    }
 
     try
     {
@@ -215,7 +221,16 @@ extern "C" IPCV_CORE_API int ipcv_create_structuring_element(int shape, int rows
     }
 }
 
-extern "C" IPCV_CORE_API int ipcv_morphology_image(const IpcvDecodedImage *source, const IpcvDecodedImage *element, int operation, IpcvDecodedImage *output)
+extern "C" IPCV_CORE_API int ipcv_morphology_image(const IpcvDecodedImage *source,
+                                                   const IpcvDecodedImage *element,
+                                                   int operation,
+                                                   int iterations,
+                                                   int anchor_row,
+                                                   int anchor_col,
+                                                   int border_type,
+                                                   int use_default_border_value,
+                                                   double border_value,
+                                                   IpcvDecodedImage *output)
 {
     if (output == NULL)
     {
@@ -226,6 +241,11 @@ extern "C" IPCV_CORE_API int ipcv_morphology_image(const IpcvDecodedImage *sourc
     if (source == NULL || element == NULL)
     {
         set_error(output, "missing image or structuring element input");
+        return -1;
+    }
+    if (iterations < 1)
+    {
+        set_error(output, "iterations must be greater than zero");
         return -1;
     }
 
@@ -254,17 +274,20 @@ extern "C" IPCV_CORE_API int ipcv_morphology_image(const IpcvDecodedImage *sourc
             return -1;
         }
 
+        cv::Point anchor(anchor_col, anchor_row);
+        cv::Scalar borderScalar = use_default_border_value ? cv::morphologyDefaultBorderValue() : cv::Scalar::all(border_value);
+
         if (operation == cv::MORPH_ERODE)
         {
-            cv::erode(sourceMat, result, elementMat);
+            cv::erode(sourceMat, result, elementMat, anchor, iterations, border_type, borderScalar);
         }
         else if (operation == cv::MORPH_DILATE)
         {
-            cv::dilate(sourceMat, result, elementMat);
+            cv::dilate(sourceMat, result, elementMat, anchor, iterations, border_type, borderScalar);
         }
         else
         {
-            cv::morphologyEx(sourceMat, result, operation, elementMat);
+            cv::morphologyEx(sourceMat, result, operation, elementMat, anchor, iterations, border_type, borderScalar);
         }
 
         if (!mat_to_image(result, output))
@@ -290,6 +313,75 @@ extern "C" IPCV_CORE_API int ipcv_morphology_image(const IpcvDecodedImage *sourc
     catch (...)
     {
         set_error(output, "unknown morphology failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_thin_image(const IpcvDecodedImage *source, int thinning_type, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+    if (thinning_type != cv::ximgproc::THINNING_ZHANGSUEN && thinning_type != cv::ximgproc::THINNING_GUOHALL)
+    {
+        set_error(output, "unsupported thinning method");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat binary;
+        cv::Mat result;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (sourceMat.channels() != 1)
+        {
+            set_error(output, "thinning expects a single channel image");
+            return -1;
+        }
+
+        cv::compare(sourceMat, cv::Scalar::all(0), binary, cv::CMP_GT);
+        cv::ximgproc::thinning(binary, result, thinning_type);
+
+        if (!mat_to_image(result, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert thinning result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown thinning failure");
         return -1;
     }
 }

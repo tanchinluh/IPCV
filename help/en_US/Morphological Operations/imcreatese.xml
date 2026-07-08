@@ -29,12 +29,12 @@
    </synopsis>
 </refsynopsisdiv>
 
-<refsection>
-   <title>Parameters</title>
+<refsection role="arguments">
+   <title>Arguments</title>
    <variablelist>
         <varlistentry>
             <term>setype :</term>
-            <listitem><para> Type of structure element, currently support 'rect', 'ellipse' and 'cross'</para></listitem>
+            <listitem><para> Type of structure element, currently support 'rect', 'ellipse', 'cross' and 'diamond'</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>r :</term>
@@ -70,6 +70,9 @@ a(4:7,4:7) = 1;
 se = imcreatese('rect',3,3);
 b = imdilate(a,se);
 disp(b);
+
+diamond = imcreatese('diamond',5,5);
+disp(diamond);
 
    ]]></programlisting>
 </refsection>

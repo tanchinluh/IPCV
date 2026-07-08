@@ -153,6 +153,7 @@ extern "C"
 	int sci_int_immatch_Flann(char * fname, void* pvApiCtx);
 	int sci_int_immedian(char * fname, void* pvApiCtx);
 	int sci_int_immorphologyex(char * fname, void* pvApiCtx);
+	int sci_int_imthin(char * fname, void* pvApiCtx);
 	int sci_int_imradon(char * fname, void* pvApiCtx);
 	int sci_int_imread(char * fname, void* pvApiCtx);
 	int sci_int_imreadmulti(char * fname, void* pvApiCtx);

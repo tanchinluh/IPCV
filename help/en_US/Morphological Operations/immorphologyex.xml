@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from imerode.sci using help_from_sci().
- *
- -->
-
-<refentry version="5.0-subset Scilab" xml:id="imerode" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="immorphologyex" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,18 +9,16 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>imerode</refname>
-    <refpurpose>Image erosion</refpurpose>
+    <refname>immorphologyex</refname>
+    <refpurpose>Generic OpenCV morphology operation</refpurpose>
   </refnamediv>
-
 
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   imout = imerode(imin,se)
-   imout = imerode(imin,se,iterations)
-   imout = imerode(imin,se,iterations,anchor,borderType,borderValue)
-   
+   imout = immorphologyex(imin, se, operation)
+   imout = immorphologyex(imin, se, operation, iterations)
+   imout = immorphologyex(imin, se, operation, iterations, anchor, borderType, borderValue)
    </synopsis>
 </refsynopsisdiv>
 
@@ -40,11 +31,15 @@
         </varlistentry>
         <varlistentry>
             <term>se :</term>
-            <listitem><para> Structure element</para></listitem>
+            <listitem><para> Structuring element</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>operation :</term>
+            <listitem><para> Operation name: "erode", "dilate", "open", "close", "gradient", "tophat", "blackhat" or "hitmiss"</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>iterations :</term>
-            <listitem><para> Number of erosion iterations. Default is 1</para></listitem>
+            <listitem><para> Number of operation iterations. Default is 1</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>anchor :</term>
@@ -68,26 +63,20 @@
 <refsection>
    <title>Description</title>
    <para>
-The function erodes the source image using the specified structuring element
-that determines the shape of a pixel neighborhood over which the minimum is taken.
+Applies OpenCV morphologyEx using IPCV image exchange. It is the generic entry point behind the named morphology wrappers.
    </para>
-   <para>
-</para>
 </refsection>
 
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-a = zeros(10,10);
-a(4:7,4:7) = 1;
-se = imcreatese('rect',3,3);
-b = imerode(a,se);
-disp(b);
+S = imread(fullpath(getIPCVpath() + "/images/morpex.png"));
+se = imcreatese("diamond", 5, 5);
+S2 = immorphologyex(S, se, "gradient", 2);
+imshow(S2);
 
-wide = imdilate(a,se,2);
-thin = imerode(wide,se,2);
-disp(thin);
-
+S3 = immorphologyex(S, se, "tophat", 1, [-1 -1], "reflect101");
+imshow(S3);
    ]]></programlisting>
 </refsection>
 
@@ -99,17 +88,7 @@ disp(thin);
    <member><link linkend="imerode">imerode</link></member>
    <member><link linkend="imopen">imopen</link></member>
    <member><link linkend="imclose">imclose</link></member>
-   <member><link linkend="imgradient">imgradient</link></member>
-   <member><link linkend="imtophat">imtophat</link></member>
-   <member><link linkend="imblackhat">imblackhat</link></member>
-   <member><link linkend="imhitmiss">imhitmiss</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Tan Chin Luh</member>
+   <member><link linkend="imthin">imthin</link></member>
    </simplelist>
 </refsection>
 </refentry>

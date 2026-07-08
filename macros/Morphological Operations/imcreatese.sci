@@ -9,7 +9,7 @@ function se = imcreatese(setype,r,c)
     //    se = imcreatese(setype,r,c)
     //
     // Parameters
-    //    setype : Type of structure element, currently support 'rect', 'ellipse' and 'cross'
+    //    setype : Type of structure element, currently support 'rect', 'ellipse', 'cross' and 'diamond'
     //    r : Number of rows
     //    c : Number of colomns
     //    se : Created structure element
@@ -49,27 +49,23 @@ function se = imcreatese(setype,r,c)
     if rhs < 3; error("Expect 3 arguments, se type, rows and cols"); end
     // End of Error Checking
 
-    str = strstr(['rect','ellipse','cross'],setype);
+    setype = convstr(setype, "l");
 
-    if isempty(str)|sum(length(str)~=0)>1 then
-        error('SE tpye must be either ''rect'', ''ellipse'' and ''cross''');
-    end
-
-
-    select strcat(str)
-    case 'rect'
+    select setype
+    case 'rect' then
         se = int_imcreatese(int8(0),int8(r),int8(c));
     case 'cross' then
         se = int_imcreatese(int8(1),int8(r),int8(c));
     case 'ellipse' then
         se = int_imcreatese(int8(2),int8(r),int8(c));    
+    case 'diamond' then
+        se = int_imcreatese(int8(3),int8(r),int8(c));
     else
-        error('unexpected error');
+        error('SE type must be either ''rect'', ''ellipse'', ''cross'' or ''diamond''');
     end
 
 
 
 endfunction
-
 
 

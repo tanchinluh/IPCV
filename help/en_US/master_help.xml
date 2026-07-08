@@ -133,7 +133,9 @@
 <!ENTITY a8390a56b78d9247cfb764ccc17aa5283 SYSTEM "Morphological Operations/imgradient.xml">
 <!ENTITY a4af0a682b797fe10835f941da8d0f3a4 SYSTEM "Morphological Operations/imhitmiss.xml">
 <!ENTITY a637820c17274033f40904e4be48fb9d1 SYSTEM "Morphological Operations/imlabel.xml">
+<!ENTITY a085831ea6e7dc9fbfd6485e5505d6578 SYSTEM "Morphological Operations/immorphologyex.xml">
 <!ENTITY a737e2c11e573c02d33b9d05da65e7e8b SYSTEM "Morphological Operations/imopen.xml">
+<!ENTITY ac7c81674d4d15bbd63f6d3caba401081 SYSTEM "Morphological Operations/imthin.xml">
 <!ENTITY a71fca739882ec8fdd48f6a8d1b3f172c SYSTEM "Morphological Operations/imtophat.xml">
 <!ENTITY a1071ccbf87d9c56650a3e8ba27b360d5 SYSTEM "Object Detection/imdetectobjects.xml">
 <!ENTITY a171c2af2ffdbbbe97c9bd69d29f92e96 SYSTEM "Object Tracking/imtrack_init.xml">
@@ -188,8 +190,8 @@
       xmlns:mml="http://www.w3.org/1998/Math/MathML"
       xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns:db="http://docbook.org/ns/docbook">
-  <info xml:id='ipcv_manual'>
-    <title>IPCV</title>
+  <info xml:id='ipcv_-_image_processing_and_computer_vision_toolbox_for_scilab_manual'>
+    <title>IPCV - Image Processing and Computer Vision Toolbox for Scilab</title>
   </info>
 
 <part xml:id='section_64c1abd1cfbadfbd1e0e81ebdc661443'>
@@ -371,7 +373,9 @@
 &a8390a56b78d9247cfb764ccc17aa5283;
 &a4af0a682b797fe10835f941da8d0f3a4;
 &a637820c17274033f40904e4be48fb9d1;
+&a085831ea6e7dc9fbfd6485e5505d6578;
 &a737e2c11e573c02d33b9d05da65e7e8b;
+&ac7c81674d4d15bbd63f6d3caba401081;
 &a71fca739882ec8fdd48f6a8d1b3f172c;
 </part>
 <part xml:id='section_5bc24668dfefb008d0a6d0874f6af432'>

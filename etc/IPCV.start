@@ -20,11 +20,36 @@ function ipcvlib = startModule()
         return;
     end
 
-    //Load  functions library
+    function libdirs = findMacroLibraries(path)
+        path = pathconvert(path, %F);
+        libdirs = [];
+        if isfile(path + filesep() + "lib") then
+            libdirs = path + filesep();
+        end
+
+        entries = ls(path + filesep() + "*");
+        for i = 1:size(entries, "*")
+            if isdir(entries(i)) then
+                child = pathconvert(entries(i), %F);
+                child_libdirs = findMacroLibraries(child);
+                libdirs = [libdirs; child_libdirs];
+            end
+        end
+    endfunction
+
+    //Load  functions libraries
     // =============================================================================
     mprintf("load macros");
-    pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-    ipcvlib = lib(pathmacros);
+    pathmacros = pathconvert( root_tlbx ) + "macros";
+    macro_libdirs = findMacroLibraries(pathmacros);
+    ipcvlib = lib(pathmacros + filesep());
+    for i = 1:size(macro_libdirs, "*")
+        if macro_libdirs(i) <> pathmacros + filesep() then
+            libvar = "ipcv_categorylib_" + string(i);
+            execstr("global " + libvar);
+            execstr(libvar + " = lib(" + sci2exp(macro_libdirs(i)) + ");");
+        end
+    end
 
     verboseMode = ilib_verbose();
     ilib_verbose(0);

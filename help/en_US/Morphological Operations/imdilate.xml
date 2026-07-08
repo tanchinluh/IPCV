@@ -25,6 +25,8 @@
    <title>Syntax</title>
    <synopsis>
    imout = imdilate(imin,se)
+   imout = imdilate(imin,se,iterations)
+   imout = imdilate(imin,se,iterations,anchor,borderType,borderValue)
    
    </synopsis>
 </refsynopsisdiv>
@@ -39,6 +41,22 @@
         <varlistentry>
             <term>se :</term>
             <listitem><para> Structure element</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>iterations :</term>
+            <listitem><para> Number of dilation iterations. Default is 1</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>anchor :</term>
+            <listitem><para> Two element [row col] anchor. Default is [-1 -1]</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>borderType :</term>
+            <listitem><para> Border mode name or OpenCV numeric border constant. Default is "constant"</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>borderValue :</term>
+            <listitem><para> Constant border value. If omitted, OpenCV default morphology border value is used</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>imout :</term>
@@ -65,6 +83,9 @@ a(4:7,4:7) = 1;
 se = imcreatese('rect',3,3);
 b = imdilate(a,se);
 disp(b);
+
+b2 = imdilate(a,se,2);
+disp(b2);
 
    ]]></programlisting>
 </refsection>

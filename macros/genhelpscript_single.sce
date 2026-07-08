@@ -235,14 +235,15 @@ path_macros = fullpath(current_path) + filesep();
 //help_from_sci(path_macros + 'imsuperres.sci', p19Help);
 //help_from_sci(path_macros + 'imsuperres_params.sci', p19Help);
 //
-//Structural Analysis and Shape Descriptors
+// Structural Analysis and Shape Descriptors
 p20Help = fullpath(current_path + '/../help/en_US/Structural Analysis and Shape Descriptors');
-help_from_sci(path_macros + 'imconvexHull.sci', p20Help);
-help_from_sci(path_macros + 'imfindContours.sci', p20Help);
-help_from_sci(path_macros + 'implotContours.sci', p20Help);
-help_from_sci(path_macros + 'imconvexityDefects.sci', p20Help);
-help_from_sci(path_macros + 'imdrawContours.sci', p20Help);
-help_from_sci(path_macros + 'imcontour2label.sci', p20Help);
+p20Macros = path_macros + 'Structural Analysis and Shape Descriptors/';
+help_from_sci(p20Macros + 'imconvexHull.sci', p20Help);
+help_from_sci(p20Macros + 'imfindContours.sci', p20Help);
+help_from_sci(p20Macros + 'implotContours.sci', p20Help);
+help_from_sci(p20Macros + 'imconvexityDefects.sci', p20Help);
+help_from_sci(p20Macros + 'imdrawContours.sci', p20Help);
+help_from_sci(p20Macros + 'imcontour2label.sci', p20Help);
 
 ////Deep Learning 
 //p21Help = fullpath(current_path + '/../help/en_US/Deep Learning');
@@ -263,4 +264,3 @@ help_from_sci(path_macros + 'imcontour2label.sci', p20Help);
 //help_from_sci(path_macros + 'imtrack_init.sci', p22Help);
 //help_from_sci(path_macros + 'imtrack_update.sci', p22Help);
 //help_from_sci(path_macros + 'imtrack_unloadall.sci', p22Help);
-

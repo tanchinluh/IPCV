@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imthin" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imthin</refname>
+    <refpurpose>Binary image thinning</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imthin(imin)
+   imout = imthin(imin, method)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para> Single channel input image</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>method :</term>
+            <listitem><para> Thinning method, "zhang-suen" or "guo-hall". Default is "zhang-suen"</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para> Output skeleton image</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+Applies OpenCV ximgproc thinning to a single channel image. Non-zero pixels are treated as foreground and the result is returned as a uint8 binary image.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+a = uint8(zeros(9, 9));
+a(3:7, 5) = 255;
+a(5, 3:7) = 255;
+b = imthin(a, "guo-hall");
+disp(b);
+
+S = imread(fullpath(getIPCVpath() + "/images/morpex.png"));
+S = im2bw(S);
+T = imthin(S, "zhang-suen");
+imshow(T);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imcreatese">imcreatese</link></member>
+   <member><link linkend="imdilate">imdilate</link></member>
+   <member><link linkend="imerode">imerode</link></member>
+   <member><link linkend="immorphologyex">immorphologyex</link></member>
+   </simplelist>
+</refsection>
+</refentry>

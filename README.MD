@@ -221,7 +221,8 @@ Run tests from Scilab after loading/building the toolbox as needed. For focused 
 ## Repository Layout
 
 ```text
-macros/              Scilab user-facing functions
+macros/              Scilab user-facing functions grouped by help category
+macros/GUI/          Browser/UI assets and GUI-specific macros
 sci_gateway/cpp/     Scilab gateway wrappers
 src/cpp/             OpenCV-backed C++ implementation
 help/en_US/          Help pages

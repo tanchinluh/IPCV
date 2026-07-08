@@ -1,2 +1,16 @@
+function ipcv_build_macro_tree(path)
+    sci_files = findfiles(path, "*.sci");
+    if ~isempty(sci_files) then
+        tbx_build_macros(TOOLBOX_NAME, path);
+    end
 
-tbx_build_macros(TOOLBOX_NAME,get_absolute_file_path("buildmacros.sce"));
+    entries = ls(path + filesep() + "*");
+    for i = 1:size(entries, "*")
+        if isdir(entries(i)) then
+            ipcv_build_macro_tree(pathconvert(entries(i), %F));
+        end
+    end
+endfunction
+
+ipcv_build_macro_tree(get_absolute_file_path("buildmacros.sce"));
+clear ipcv_build_macro_tree;

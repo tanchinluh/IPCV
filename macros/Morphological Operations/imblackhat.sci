@@ -2,11 +2,11 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
-function imout = imdilate(imin,se)
-    // Image dilation
+function imout = imblackhat(imin,se,iterations,anchor,borderType,borderValue)
+    // Image blackhat
     //
     // Syntax
-    //    imout = imdilate(imin,se)
+    //    imout = imblackhat(imin,se)
     //
     // Parameters
     //    imin : Input image
@@ -14,15 +14,13 @@ function imout = imdilate(imin,se)
     //    imout : Output image
     //
     // Description
-    //    The function dilates the source image using the specified structuring element 
-    //    that determines the shape of a pixel neighborhood over which the maximum is taken.
+    //    This operation is the difference between an input image and its opening
     //
     // Examples
-    //    a = zeros(10,10);
-    //    a(4:7,4:7) = 1;
-    //    se = imcreatese('rect',3,3);
-    //    b = imdilate(a,se);
-    //    disp(b);
+    //    S = imread(fullpath(getIPCVpath() + "/images/morpex.png"));
+    //    se = imcreatese('ellipse',7,7);
+    //    S2 = imblackhat(S,se);
+    //    imshow(S2);
     //
     // See also
     //    imcreatese
@@ -37,27 +35,31 @@ function imout = imdilate(imin,se)
     //
     // Authors
     //    Tan Chin Luh
-    //
 
 
-    //
 
     rhs=argn(2);
 
     if rhs < 2; error("Expect 2 arguments, input image and structure element"); end
+    if rhs < 3 then iterations = 1; end
+    if rhs < 4 then anchor = [-1 -1]; end
+    if rhs < 5 then borderType = "constant"; end
+    if rhs < 6 then borderValue = []; end
     // End of Error Checking
 
-    imout = int_imdilate(imin,se);
+
 //    if type(imin(1)) == 1 | type(imin(1)) == 4 then
 //        imin = im2uint8(imin);
-//        imout = im2double(int_imdilate(imin,se));
+//        imout = im2double(int_immorphologyex(imin,se,int8(6)));
+//
 //    else type(imin(1)) == 8
-//        imout = int_imdilate(imin,se);
+        if rhs < 6 then
+            imout = immorphologyex(imin,se,"blackhat",iterations,anchor,borderType);
+        else
+            imout = immorphologyex(imin,se,"blackhat",iterations,anchor,borderType,borderValue);
+        end
 //    end
 
 
 
 endfunction
-
-
-
