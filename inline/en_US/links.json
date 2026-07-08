@@ -100,6 +100,7 @@
   "imfill": "TBX/help/en_US/Morphological Operations/imfill.xml",
   "imfilter": "TBX/help/en_US/Image Linear Filtering/imfilter.xml",
   "imfindContours": "TBX/help/en_US/Structural Analysis and Shape Descriptors/imfindcontours.xml",
+  "imfinfo": "TBX/help/en_US/Image Reading, Display and Exploration/imfinfo.xml",
   "imfuse": "TBX/help/en_US/Image Registration and Image Fusion/imfuse.xml",
   "imgettransform": "TBX/help/en_US/Image Registration and Image Fusion/imgettransform.xml",
   "imgradient": "TBX/help/en_US/Morphological Operations/imgradient.xml",

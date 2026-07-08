@@ -81,6 +81,7 @@
 <!ENTITY ad8f45503de12f28f929710960a018f28 SYSTEM "Image Reading, Display and Exploration/imdestroy.xml">
 <!ENTITY a2a93cd63ada3149c3fdc34a9cebe5f33 SYSTEM "Image Reading, Display and Exploration/imdestroyall.xml">
 <!ENTITY a3b34143c015a1f45024eb36730110259 SYSTEM "Image Reading, Display and Exploration/imdisplay.xml">
+<!ENTITY a29ea542de6ef5f069206613bd218c0ac SYSTEM "Image Reading, Display and Exploration/imfinfo.xml">
 <!ENTITY aa769d0aafe9607b75ccfcf42759d223e SYSTEM "Image Reading, Display and Exploration/imread.xml">
 <!ENTITY a59f065228cdb052f313dbbb6313adac0 SYSTEM "Image Reading, Display and Exploration/imreadmulti.xml">
 <!ENTITY a0e7d9247c4ff6315150130ac9aecc0b4 SYSTEM "Image Reading, Display and Exploration/imshow.xml">
@@ -307,6 +308,7 @@
 &ad8f45503de12f28f929710960a018f28;
 &a2a93cd63ada3149c3fdc34a9cebe5f33;
 &a3b34143c015a1f45024eb36730110259;
+&a29ea542de6ef5f069206613bd218c0ac;
 &aa769d0aafe9607b75ccfcf42759d223e;
 &a59f065228cdb052f313dbbb6313adac0;
 &a0e7d9247c4ff6315150130ac9aecc0b4;
