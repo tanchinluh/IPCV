@@ -23,6 +23,18 @@ roundtrip = imread(outPath);
 assert_checkequal(size(roundtrip), [16 16 3]);
 assert_checkequal(roundtrip, patch);
 
+compressedPngPath = fullpath(TMPDIR + "/ipcv_image_io_compressed.png");
+ret = imwrite(patch, compressedPngPath, 9);
+assert_checkequal(ret, 1);
+compressedPngRoundtrip = imread(compressedPngPath);
+assert_checkequal(compressedPngRoundtrip, patch);
+
+jpegPath = fullpath(TMPDIR + "/ipcv_image_io.jpg");
+ret = imwrite(patch, jpegPath, 90);
+assert_checkequal(ret, 1);
+jpegRoundtrip = imread(jpegPath);
+assert_checkequal(size(jpegRoundtrip), [16 16 3]);
+
 multiPath = fullpath(getIPCVpath() + "/images/circbw.tif");
 multi = imreadmulti(multiPath);
 assert_checkequal(typeof(multi), "uint8");

@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <exception>
+#include <string>
 #include <vector>
 
 namespace
@@ -191,6 +192,48 @@ bool copy_page_to_stack_layout(const cv::Mat& page, int pageIndex, int rows, int
 
     return true;
 }
+
+bool has_jpeg_extension(const char *filename)
+{
+    std::string path(filename == NULL ? "" : filename);
+    const std::string::size_type dot = path.find_last_of('.');
+    if (dot == std::string::npos)
+    {
+        return false;
+    }
+
+    std::string ext = path.substr(dot + 1);
+    for (std::string::size_type i = 0; i < ext.size(); i++)
+    {
+        if (ext[i] >= 'A' && ext[i] <= 'Z')
+        {
+            ext[i] = static_cast<char>(ext[i] - 'A' + 'a');
+        }
+    }
+
+    return ext == "jpg" || ext == "jpeg" || ext == "jpe";
+}
+
+bool has_png_extension(const char *filename)
+{
+    std::string path(filename == NULL ? "" : filename);
+    const std::string::size_type dot = path.find_last_of('.');
+    if (dot == std::string::npos)
+    {
+        return false;
+    }
+
+    std::string ext = path.substr(dot + 1);
+    for (std::string::size_type i = 0; i < ext.size(); i++)
+    {
+        if (ext[i] >= 'A' && ext[i] <= 'Z')
+        {
+            ext[i] = static_cast<char>(ext[i] - 'A' + 'a');
+        }
+    }
+
+    return ext == "png";
+}
 }
 
 extern "C" IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info)
@@ -275,8 +318,16 @@ extern "C" IPCV_CORE_API int ipcv_write_image(const char *filename, const unsign
         cv::Mat image(rows, cols, CV_MAKETYPE(depth, channels));
         copy_scilab_layout_to_mat(data, image);
         std::vector<int> params;
-        params.push_back(cv::IMWRITE_JPEG_QUALITY);
-        params.push_back(jpeg_quality);
+        if (has_jpeg_extension(filename))
+        {
+            params.push_back(cv::IMWRITE_JPEG_QUALITY);
+            params.push_back(jpeg_quality);
+        }
+        else if (has_png_extension(filename) && jpeg_quality >= 0 && jpeg_quality <= 9)
+        {
+            params.push_back(cv::IMWRITE_PNG_COMPRESSION);
+            params.push_back(jpeg_quality);
+        }
 
         return cv::imwrite(filename, image, params) ? 1 : 0;
     }
