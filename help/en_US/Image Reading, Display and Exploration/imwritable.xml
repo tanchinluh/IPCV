@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<refentry version="5.0-subset Scilab" xml:id="imwritable" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imwritable</refname>
+    <refpurpose>Check whether OpenCV can write an image format</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   supported = imwritable(filename)
+   supported = imwritable(extension)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>filename :</term>
+            <listitem><para> A string, the image filename or extension to check.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>extension :</term>
+            <listitem><para> A string with a leading period, such as ".png" or ".jpg".</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>supported :</term>
+            <listitem><para> Boolean value. %t means OpenCV has a writer for the format.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imwritable checks OpenCV image writer support for a filename or extension.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+imwritable(".png")
+imwritable(".jpg")
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imwrite">imwrite</link></member>
+   <member><link linkend="imreadable">imreadable</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

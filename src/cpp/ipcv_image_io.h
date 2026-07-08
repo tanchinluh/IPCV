@@ -71,6 +71,8 @@ enum
 IPCV_CORE_API int ipcv_decode_image(const char *filename, int flags, IpcvDecodedImage *image);
 IPCV_CORE_API int ipcv_decode_image_stack(const char *filename, int flags, IpcvDecodedImageStack *stack);
 IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, IpcvImageInfo *info);
+IPCV_CORE_API int ipcv_have_image_reader(const char *filename, int *supported, char *error, size_t error_size);
+IPCV_CORE_API int ipcv_have_image_writer(const char *filename, int *supported, char *error, size_t error_size);
 IPCV_CORE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size);
 IPCV_CORE_API void ipcv_free_decoded_image(IpcvDecodedImage *image);
 IPCV_CORE_API void ipcv_free_decoded_image_stack(IpcvDecodedImageStack *stack);

@@ -288,6 +288,90 @@ extern "C" IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, Ip
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_have_image_reader(const char *filename, int *supported, char *error, size_t error_size)
+{
+    if (error != NULL && error_size > 0)
+    {
+        error[0] = 0;
+    }
+    if (supported == NULL)
+    {
+        set_buffer_error(error, error_size, "empty output pointer");
+        return -1;
+    }
+    *supported = 0;
+    if (filename == NULL || filename[0] == 0)
+    {
+        set_buffer_error(error, error_size, "empty filename");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+        *supported = cv::haveImageReader(filename) ? 1 : 0;
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_buffer_error(error, error_size, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_buffer_error(error, error_size, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_buffer_error(error, error_size, "unknown image reader capability failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_have_image_writer(const char *filename, int *supported, char *error, size_t error_size)
+{
+    if (error != NULL && error_size > 0)
+    {
+        error[0] = 0;
+    }
+    if (supported == NULL)
+    {
+        set_buffer_error(error, error_size, "empty output pointer");
+        return -1;
+    }
+    *supported = 0;
+    if (filename == NULL || filename[0] == 0)
+    {
+        set_buffer_error(error, error_size, "empty filename");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+        *supported = cv::haveImageWriter(filename) ? 1 : 0;
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_buffer_error(error, error_size, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_buffer_error(error, error_size, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_buffer_error(error, error_size, "unknown image writer capability failure");
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API int ipcv_write_image(const char *filename, const unsigned char *data, int rows, int cols, int channels, int depth, int jpeg_quality, char *error, size_t error_size)
 {
     if (error != NULL && error_size > 0)

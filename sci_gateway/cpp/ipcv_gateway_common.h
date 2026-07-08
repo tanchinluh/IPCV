@@ -143,6 +143,7 @@ extern "C"
 	int sci_int_imfilter(char * fname, void* pvApiCtx);
 	int sci_int_imfindContours(char * fname, void* pvApiCtx);
 	int sci_int_imfinfo(char *fname, void* pvApiCtx);
+	int sci_int_imreadable(char *fname, void* pvApiCtx);
 	int sci_int_imhough(char * fname, void* pvApiCtx);
 	int sci_int_imhoughcircles(char * fname, void* pvApiCtx);
 	int sci_int_imidct(char * fname, void* pvApiCtx);
@@ -162,6 +163,7 @@ extern "C"
 	int sci_int_imsuperres(char * fname, void* pvApiCtx);
 	int sci_int_imwatershed(char * fname, void* pvApiCtx);
 	int sci_int_imwrite(char * fname, void* pvApiCtx);
+	int sci_int_imwritable(char *fname, void* pvApiCtx);
 	int sci_int_perspectivetransform(char * fname, void* pvApiCtx);
 	int sci_int_rgb2gray(char * fname, void* pvApiCtx);
 	int sci_int_rgb2lab(char * fname, void* pvApiCtx);

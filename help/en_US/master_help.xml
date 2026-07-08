@@ -77,14 +77,17 @@
 <!ENTITY ae53a585b8bd49e5fbd145f83825724f9 SYSTEM "Image Linear Filtering/filter2.xml">
 <!ENTITY a87a16d7ef81f9289efb22ea9558af05f SYSTEM "Image Linear Filtering/fspecial.xml">
 <!ENTITY aa5e22b79b2543f513fe28ba0fa6b910b SYSTEM "Image Linear Filtering/imfilter.xml">
+<!ENTITY a560fa58746edc10006dc8da3c621cdff SYSTEM "Image Reading, Display and Exploration/imcount.xml">
 <!ENTITY a62ebabd8203505890e52a55178f3664c SYSTEM "Image Reading, Display and Exploration/imcreatechecker.xml">
 <!ENTITY ad8f45503de12f28f929710960a018f28 SYSTEM "Image Reading, Display and Exploration/imdestroy.xml">
 <!ENTITY a2a93cd63ada3149c3fdc34a9cebe5f33 SYSTEM "Image Reading, Display and Exploration/imdestroyall.xml">
 <!ENTITY a3b34143c015a1f45024eb36730110259 SYSTEM "Image Reading, Display and Exploration/imdisplay.xml">
 <!ENTITY a29ea542de6ef5f069206613bd218c0ac SYSTEM "Image Reading, Display and Exploration/imfinfo.xml">
 <!ENTITY aa769d0aafe9607b75ccfcf42759d223e SYSTEM "Image Reading, Display and Exploration/imread.xml">
+<!ENTITY aa995a5ce2d54d62332a44216d6c41822 SYSTEM "Image Reading, Display and Exploration/imreadable.xml">
 <!ENTITY a59f065228cdb052f313dbbb6313adac0 SYSTEM "Image Reading, Display and Exploration/imreadmulti.xml">
 <!ENTITY a0e7d9247c4ff6315150130ac9aecc0b4 SYSTEM "Image Reading, Display and Exploration/imshow.xml">
+<!ENTITY aa6f8707915b1588b1a2a0b6c2bbbd18c SYSTEM "Image Reading, Display and Exploration/imwritable.xml">
 <!ENTITY a54b02642fcd3ed306a65d87c28fdc78a SYSTEM "Image Reading, Display and Exploration/imwrite.xml">
 <!ENTITY a3fc7cbd06921d7084b15cb000a945c0f SYSTEM "Image Reading, Display and Exploration/tifread.xml">
 <!ENTITY a4ac49a003ba3b729c9436a0600bc589e SYSTEM "Image Registration and Image Fusion/imfuse.xml">
@@ -304,14 +307,17 @@
 </part>
 <part xml:id='section_ecece74f539adeeee3b98a7bcf8d5106'>
 <title>Image Reading, Display and Exploration</title>
+&a560fa58746edc10006dc8da3c621cdff;
 &a62ebabd8203505890e52a55178f3664c;
 &ad8f45503de12f28f929710960a018f28;
 &a2a93cd63ada3149c3fdc34a9cebe5f33;
 &a3b34143c015a1f45024eb36730110259;
 &a29ea542de6ef5f069206613bd218c0ac;
 &aa769d0aafe9607b75ccfcf42759d223e;
+&aa995a5ce2d54d62332a44216d6c41822;
 &a59f065228cdb052f313dbbb6313adac0;
 &a0e7d9247c4ff6315150130ac9aecc0b4;
+&aa6f8707915b1588b1a2a0b6c2bbbd18c;
 &a54b02642fcd3ed306a65d87c28fdc78a;
 &a3fc7cbd06921d7084b15cb000a945c0f;
 </part>
