@@ -10,11 +10,11 @@ function info = imfinfo(filename)
     //
     //    Parameters
     //      filename : A string, the image filename to inspect.
-    //      info : A list containing image size, OpenCV depth code, and channel count.
+    //      info : A list containing image size, OpenCV depth code, channel count, and page count.
     //
     //    Description
     //      imfinfo reads basic image metadata without returning image pixels.
-    //      info(1) is [width height], info(2) is the OpenCV depth code, and info(3) is the channel count.
+    //      info(1) is [width height], info(2) is the OpenCV depth code, info(3) is the channel count, and info(4) is the page or frame count.
     //      Depth codes are 0=uint8, 1=int8, 2=uint16, 3=int16, 4=int32, 5=single, and 6=double.
     //
     //    Examples
@@ -22,6 +22,7 @@ function info = imfinfo(filename)
     //      info = imfinfo(filename);
     //      info(1)
     //      info(3)
+    //      info(4)
     //
     //    See also
     //      imread

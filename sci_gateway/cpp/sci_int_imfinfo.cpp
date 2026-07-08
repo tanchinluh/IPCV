@@ -29,6 +29,7 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 	double pdblData1[] = {0,0};
 	double pdb1_depth;
 	double pdb1_channel;
+	double pdb1_pages;
 
 	CheckInputArgument(pvApiCtx, 1, 1);
 	CheckOutputArgument(pvApiCtx, 1, 1);
@@ -45,7 +46,7 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 	}
 	freeAllocatedSingleString(pstName);
 
-	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 3, &piAddr);
+	sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 4, &piAddr);
 	if (sciErr.iErr)
 	{
 		printError(&sciErr, 0);
@@ -56,6 +57,7 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 	pdblData1[1] = imageInfo.height;
 	pdb1_depth = imageInfo.depth & 0x0FFFFFFF;
 	pdb1_channel = imageInfo.channels;
+	pdb1_pages = imageInfo.pages;
 
 	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 1, 1, 2, pdblData1);
 	if (sciErr.iErr)
@@ -72,6 +74,13 @@ int sci_int_imfinfo(char *fname, void* pvApiCtx)
 	}
 
 	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 3, 1, 1, &pdb1_channel);
+	if (sciErr.iErr)
+	{
+		printError(&sciErr, 0);
+		return 0;
+	}
+
+	sciErr = createMatrixOfDoubleInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 4, 1, 1, &pdb1_pages);
 	if (sciErr.iErr)
 	{
 		printError(&sciErr, 0);

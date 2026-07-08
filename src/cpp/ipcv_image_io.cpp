@@ -4,6 +4,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 
+#include <climits>
 #include <cstdlib>
 #include <cstring>
 #include <exception>
@@ -266,6 +267,8 @@ extern "C" IPCV_CORE_API int ipcv_image_info(const char *filename, int flags, Ip
         info->height = image.rows;
         info->depth = image.depth();
         info->channels = image.channels();
+        const size_t pageCount = cv::imcount(filename, flags);
+        info->pages = pageCount > static_cast<size_t>(INT_MAX) ? INT_MAX : static_cast<int>(pageCount);
         return 0;
     }
     catch (const cv::Exception& e)

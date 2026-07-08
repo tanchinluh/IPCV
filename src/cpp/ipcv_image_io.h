@@ -53,6 +53,7 @@ typedef struct IpcvImageInfo
     int height;
     int depth;
     int channels;
+    int pages;
     char error[1024];
 } IpcvImageInfo;
 
