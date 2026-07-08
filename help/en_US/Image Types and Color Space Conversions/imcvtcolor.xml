@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcvtcolor" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imcvtcolor</refname>
+    <refpurpose>Convert an image between common OpenCV color spaces</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>out = imcvtcolor(im, code)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>im :</term>
+        <listitem><para>Input image.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>code :</term>
+        <listitem><para>Conversion code string.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out :</term>
+        <listitem><para>Converted image.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      <literal>imcvtcolor</literal> converts images through the OpenCV 5 <literal>cvtColor</literal> implementation.
+      RGB images use IPCV channel order on the Scilab side. OpenCV-native intermediate spaces keep their documented channel order.
+    </para>
+    <para>
+      Supported conversion codes are <literal>rgb2gray</literal>, <literal>gray2rgb</literal>,
+      <literal>rgb2hsv</literal>, <literal>hsv2rgb</literal>, <literal>rgb2hls</literal>,
+      <literal>hls2rgb</literal>, <literal>rgb2lab</literal>, <literal>lab2rgb</literal>,
+      <literal>rgb2xyz</literal>, <literal>xyz2rgb</literal>, <literal>rgb2luv</literal>,
+      <literal>luv2rgb</literal>, <literal>rgb2ycrcb</literal>, <literal>ycrcb2rgb</literal>,
+      <literal>rgb2yuv</literal>, and <literal>yuv2rgb</literal>.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+HSV = imcvtcolor(RGB, "rgb2hsv");
+RGB2 = imcvtcolor(HSV, "hsv2rgb");
+imshow(RGB2);
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+RGB = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+G = imcvtcolor(RGB, "rgb2gray");
+RGB3 = imcvtcolor(G, "gray2rgb");
+imshow(RGB3);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="rgb2gray">rgb2gray</link></member>
+      <member><link linkend="rgb2hsv">rgb2hsv</link></member>
+      <member><link linkend="hsv2rgb2">hsv2rgb2</link></member>
+      <member><link linkend="rgb2lab">rgb2lab</link></member>
+      <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
+      <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+</refentry>

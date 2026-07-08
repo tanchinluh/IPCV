@@ -47,12 +47,8 @@ function [ycc] = rgb2ycbcr(rgb)
     //      Tan Chin Luh
 
     
-    //rgb=im2double(rgb);
-    ycc=int_cvtcolor(rgb, 'rgb2ycrcb');
-//    ycc=zeros(tmp);
-//
-//    ycc(:,:,1) = tmp(:,:,1);
-//    ycc(:,:,2) = tmp(:,:,3);
-//    ycc(:,:,3) = tmp(:,:,2);
-//    clear tmp;
+    tmp = int_cvtcolor(rgb, 'rgb2ycrcb');
+    ycc = tmp;
+    ycc(:,:,2) = tmp(:,:,3);
+    ycc(:,:,3) = tmp(:,:,2);
 endfunction

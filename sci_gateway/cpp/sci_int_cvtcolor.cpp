@@ -9,6 +9,14 @@ static int ipcv_color_conversion_from_string(const char *code)
     {
         return IPCV_COLOR_RGB2HSV;
     }
+    if (strcmp(code, "rgb2lab") == 0)
+    {
+        return IPCV_COLOR_RGB2LAB;
+    }
+    if (strcmp(code, "bgr2lab") == 0)
+    {
+        return IPCV_COLOR_BGR2LAB;
+    }
     if (strcmp(code, "hsv2rgb") == 0)
     {
         return IPCV_COLOR_HSV2RGB;
@@ -24,6 +32,46 @@ static int ipcv_color_conversion_from_string(const char *code)
     if (strcmp(code, "lab2rgb") == 0)
     {
         return IPCV_COLOR_LAB2RGB;
+    }
+    if (strcmp(code, "rgb2gray") == 0)
+    {
+        return IPCV_COLOR_RGB2GRAY;
+    }
+    if (strcmp(code, "gray2rgb") == 0)
+    {
+        return IPCV_COLOR_GRAY2RGB;
+    }
+    if (strcmp(code, "rgb2hls") == 0)
+    {
+        return IPCV_COLOR_RGB2HLS;
+    }
+    if (strcmp(code, "hls2rgb") == 0)
+    {
+        return IPCV_COLOR_HLS2RGB;
+    }
+    if (strcmp(code, "rgb2xyz") == 0)
+    {
+        return IPCV_COLOR_RGB2XYZ;
+    }
+    if (strcmp(code, "xyz2rgb") == 0)
+    {
+        return IPCV_COLOR_XYZ2RGB;
+    }
+    if (strcmp(code, "rgb2luv") == 0)
+    {
+        return IPCV_COLOR_RGB2LUV;
+    }
+    if (strcmp(code, "luv2rgb") == 0)
+    {
+        return IPCV_COLOR_LUV2RGB;
+    }
+    if (strcmp(code, "rgb2yuv") == 0)
+    {
+        return IPCV_COLOR_RGB2YUV;
+    }
+    if (strcmp(code, "yuv2rgb") == 0)
+    {
+        return IPCV_COLOR_YUV2RGB;
     }
     return -1;
 }

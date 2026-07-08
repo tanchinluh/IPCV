@@ -47,6 +47,8 @@ function [im2] = im2int8(im)
         im2 = int8(round(double(im)*(2^8-1)/(2^16-1) - 128));
     case 'int16' then
         im2 = int8(round((double(im) + 2^15)*(2^8-1)/(2^16-1) - 128));
+    case 'uint32' then
+        im2 = int8(round(double(im) * (2^8-1)/(2^32-1) - 128));
     case 'int32' then
         im2 = int8(round((double(im)+2^31) * (2^8-1)/(2^32-1) - 128));
     case 'constant' then

@@ -46,6 +46,8 @@ function [im2] = im2int32(im)
         im2 = int32(double(im)*(2^32-1)/(2^16-1) - 2^31);
     case 'int16' then
         im2 = int32((double(im)+2^15)*(2^32-1)/(2^16-1) - 2^31 );
+    case 'uint32' then
+        im2 = int32(double(im) - 2^31);
     case 'int32' then
         im2 = im;
     case 'constant' then

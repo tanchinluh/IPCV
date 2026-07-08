@@ -32,13 +32,41 @@ assert_checktrue(max(abs(double(labRoundTrip) - double(rgb))) <= 8);
 hsv = rgb2hsv(rgb);
 assert_checkequal(typeof(hsv), "uint8");
 assert_checkequal(size(hsv), [2 2 3]);
+assert_checkequal(hsv(1, 1, 1), uint8(0));
+assert_checkequal(hsv(1, 1, 2), uint8(255));
+assert_checkequal(hsv(1, 1, 3), uint8(255));
 hsvRoundTrip = hsv2rgb2(hsv);
 assert_checktrue(max(abs(double(hsvRoundTrip) - double(rgb))) <= 1);
 
 ycc = rgb2ycbcr(rgb);
 assert_checkequal(typeof(ycc), "uint8");
 assert_checkequal(size(ycc), [2 2 3]);
+assert_checkequal(matrix(ycc(1, 1, :), 1, 3), uint8([76 85 255]));
 yccRoundTrip = ycbcr2rgb(ycc);
 assert_checktrue(max(abs(double(yccRoundTrip) - double(rgb))) <= 1);
+
+rawYCrCb = imcvtcolor(rgb, "rgb2ycrcb");
+assert_checkequal(matrix(rawYCrCb(1, 1, :), 1, 3), uint8([76 255 85]));
+
+hls = imcvtcolor(rgb, "rgb2hls");
+assert_checkequal(typeof(hls), "uint8");
+assert_checkequal(size(hls), [2 2 3]);
+hlsRoundTrip = imcvtcolor(hls, "hls2rgb");
+assert_checktrue(max(abs(double(hlsRoundTrip) - double(rgb))) <= 1);
+
+grayViaGeneric = imcvtcolor(rgb, "rgb2gray");
+rgbViaGeneric = imcvtcolor(grayViaGeneric, "gray2rgb");
+assert_checkequal(size(rgbViaGeneric), [2 2 3]);
+assert_checkequal(rgbViaGeneric(:, :, 1), grayViaGeneric);
+assert_checkequal(rgbViaGeneric(:, :, 2), grayViaGeneric);
+assert_checkequal(rgbViaGeneric(:, :, 3), grayViaGeneric);
+
+xyz = imcvtcolor(rgb, "rgb2xyz");
+assert_checkequal(typeof(xyz), "uint8");
+assert_checkequal(size(xyz), [2 2 3]);
+
+luv = imcvtcolor(rgb, "rgb2luv");
+assert_checkequal(typeof(luv), "uint8");
+assert_checkequal(size(luv), [2 2 3]);
 
 //==============================================================================

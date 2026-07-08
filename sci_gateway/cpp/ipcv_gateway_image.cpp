@@ -132,12 +132,26 @@ int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image)
 				image.data = data;
 				image.depth = IPCV_DEPTH_8U;
 			}
+			else if (precision == SCI_INT8)
+			{
+				char *data = NULL;
+				sciErr = getHypermatOfInteger8(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_8S;
+			}
 			else if (precision == SCI_UINT16)
 			{
 				unsigned short *data = NULL;
 				sciErr = getHypermatOfUnsignedInteger16(pvApiCtx, piAddr, &dims, &ndims, &data);
 				image.data = reinterpret_cast<unsigned char*>(data);
 				image.depth = IPCV_DEPTH_16U;
+			}
+			else if (precision == SCI_INT16)
+			{
+				short *data = NULL;
+				sciErr = getHypermatOfInteger16(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_16S;
 			}
 			else if (precision == SCI_INT32)
 			{
@@ -226,12 +240,26 @@ int ipcv_get_image_argument(void* pvApiCtx, int nPos, IpcvDecodedImage& image)
 		image.data = data;
 		image.depth = IPCV_DEPTH_8U;
 	}
+	else if (precision == SCI_INT8)
+	{
+		char *data = NULL;
+		sciErr = getMatrixOfInteger8(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_8S;
+	}
 	else if (precision == SCI_UINT16)
 	{
 		unsigned short *data = NULL;
 		sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &data);
 		image.data = reinterpret_cast<unsigned char*>(data);
 		image.depth = IPCV_DEPTH_16U;
+	}
+	else if (precision == SCI_INT16)
+	{
+		short *data = NULL;
+		sciErr = getMatrixOfInteger16(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_16S;
 	}
 	else if (precision == SCI_INT32)
 	{
@@ -472,12 +500,26 @@ static int ipcv_get_image_from_address(void* pvApiCtx, int *piAddr, IpcvDecodedI
 				image.data = data;
 				image.depth = IPCV_DEPTH_8U;
 			}
+			else if (precision == SCI_INT8)
+			{
+				char *data = NULL;
+				sciErr = getHypermatOfInteger8(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_8S;
+			}
 			else if (precision == SCI_UINT16)
 			{
 				unsigned short *data = NULL;
 				sciErr = getHypermatOfUnsignedInteger16(pvApiCtx, piAddr, &dims, &ndims, &data);
 				image.data = reinterpret_cast<unsigned char*>(data);
 				image.depth = IPCV_DEPTH_16U;
+			}
+			else if (precision == SCI_INT16)
+			{
+				short *data = NULL;
+				sciErr = getHypermatOfInteger16(pvApiCtx, piAddr, &dims, &ndims, &data);
+				image.data = reinterpret_cast<unsigned char*>(data);
+				image.depth = IPCV_DEPTH_16S;
 			}
 			else if (precision == SCI_INT32)
 			{
@@ -566,12 +608,26 @@ static int ipcv_get_image_from_address(void* pvApiCtx, int *piAddr, IpcvDecodedI
 		image.data = data;
 		image.depth = IPCV_DEPTH_8U;
 	}
+	else if (precision == SCI_INT8)
+	{
+		char *data = NULL;
+		sciErr = getMatrixOfInteger8(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_8S;
+	}
 	else if (precision == SCI_UINT16)
 	{
 		unsigned short *data = NULL;
 		sciErr = getMatrixOfUnsignedInteger16(pvApiCtx, piAddr, &iRows, &iCols, &data);
 		image.data = reinterpret_cast<unsigned char*>(data);
 		image.depth = IPCV_DEPTH_16U;
+	}
+	else if (precision == SCI_INT16)
+	{
+		short *data = NULL;
+		sciErr = getMatrixOfInteger16(pvApiCtx, piAddr, &iRows, &iCols, &data);
+		image.data = reinterpret_cast<unsigned char*>(data);
+		image.depth = IPCV_DEPTH_16S;
 	}
 	else if (precision == SCI_INT32)
 	{

@@ -109,6 +109,7 @@
 <!ENTITY aed0b414315ed4a4eec7cef0bd0e472da SYSTEM "Image Types and Color Space Conversions/im2int8.xml">
 <!ENTITY ac10b8c20923fc8b9f57c81e9f075dbc6 SYSTEM "Image Types and Color Space Conversions/im2uint16.xml">
 <!ENTITY af3861db2ad08f65f4c3f57d191ce9f67 SYSTEM "Image Types and Color Space Conversions/im2uint8.xml">
+<!ENTITY a72cfa66e5938c7a2bf974452de30eabf SYSTEM "Image Types and Color Space Conversions/imcvtcolor.xml">
 <!ENTITY ae3e32604087c434af3143fbd1ab64470 SYSTEM "Image Types and Color Space Conversions/imgraythresh.xml">
 <!ENTITY af035f45cbe1cadea59ef60c34213b336 SYSTEM "Image Types and Color Space Conversions/imnorm.xml">
 <!ENTITY aea2544c4a3c8e5b873e2c0587f8cba36 SYSTEM "Image Types and Color Space Conversions/ind2rgb.xml">
@@ -346,6 +347,7 @@
 &aed0b414315ed4a4eec7cef0bd0e472da;
 &ac10b8c20923fc8b9f57c81e9f075dbc6;
 &af3861db2ad08f65f4c3f57d191ce9f67;
+&a72cfa66e5938c7a2bf974452de30eabf;
 &ae3e32604087c434af3143fbd1ab64470;
 &af035f45cbe1cadea59ef60c34213b336;
 &aea2544c4a3c8e5b873e2c0587f8cba36;

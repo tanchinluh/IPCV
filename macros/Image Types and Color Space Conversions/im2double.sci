@@ -47,7 +47,7 @@ function [im2] = im2double(im)
     case 'int16' then
         im2 = (double(im) + 2^15) / (2^16-1);
     case 'uint32' then
-        im2 = (double(im) + 2^32-1);
+        im2 = double(im) / (2^32-1);
     case 'int32' then
         im2 = (double(im) + 2^31) / (2^32-1);
     case 'constant' then

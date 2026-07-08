@@ -45,6 +45,8 @@ function [im2] = im2uint16(im)
         im2 = im; 
     case 'int16' then
         im2 = uint16(int32(im) + 2^15);
+    case 'uint32' then
+        im2 = uint16(round(double(im)*(2^16-1)/(2^32-1)));
     case 'int32' then
         im2 = uint16(round((double(im)+2^31)*(2^16-1)/(2^32-1)));
     case 'constant' then

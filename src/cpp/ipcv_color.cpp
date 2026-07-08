@@ -41,7 +41,7 @@ size_t depth_size(int depth)
     }
 }
 
-void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination)
+void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination, bool swapRgbChannels)
 {
     const int rows = destination.rows;
     const int cols = destination.cols;
@@ -51,7 +51,7 @@ void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination
     for (int ch = 0; ch < channels; ch++)
     {
         int dstCh = ch;
-        if ((channels == 3 || channels == 4) && ch < 3)
+        if (swapRgbChannels && (channels == 3 || channels == 4) && ch < 3)
         {
             dstCh = 2 - ch;
         }
@@ -68,7 +68,7 @@ void copy_scilab_layout_to_mat(const unsigned char *source, cv::Mat& destination
     }
 }
 
-void copy_to_scilab_layout(const cv::Mat& source, unsigned char *destination)
+void copy_to_scilab_layout(const cv::Mat& source, unsigned char *destination, bool swapRgbChannels)
 {
     const int rows = source.rows;
     const int cols = source.cols;
@@ -78,7 +78,7 @@ void copy_to_scilab_layout(const cv::Mat& source, unsigned char *destination)
     for (int ch = 0; ch < channels; ch++)
     {
         int srcCh = ch;
-        if ((channels == 3 || channels == 4) && ch < 3)
+        if (swapRgbChannels && (channels == 3 || channels == 4) && ch < 3)
         {
             srcCh = 2 - ch;
         }
@@ -95,7 +95,7 @@ void copy_to_scilab_layout(const cv::Mat& source, unsigned char *destination)
     }
 }
 
-void copy_float_to_double_scilab_layout(const cv::Mat& source, double *destination)
+void copy_float_to_double_scilab_layout(const cv::Mat& source, double *destination, bool swapRgbChannels)
 {
     const int rows = source.rows;
     const int cols = source.cols;
@@ -104,7 +104,7 @@ void copy_float_to_double_scilab_layout(const cv::Mat& source, double *destinati
     for (int ch = 0; ch < channels; ch++)
     {
         int srcCh = ch;
-        if ((channels == 3 || channels == 4) && ch < 3)
+        if (swapRgbChannels && (channels == 3 || channels == 4) && ch < 3)
         {
             srcCh = 2 - ch;
         }
@@ -121,7 +121,7 @@ void copy_float_to_double_scilab_layout(const cv::Mat& source, double *destinati
     }
 }
 
-bool image_to_mat(const IpcvDecodedImage& image, cv::Mat& mat, char *error)
+bool image_to_mat(const IpcvDecodedImage& image, cv::Mat& mat, bool swapRgbChannels, char *error)
 {
     const size_t elemBytes = depth_size(image.depth);
     const size_t expectedBytes = static_cast<size_t>(image.rows) * image.cols * image.channels * elemBytes;
@@ -135,11 +135,11 @@ bool image_to_mat(const IpcvDecodedImage& image, cv::Mat& mat, char *error)
     }
 
     mat.create(image.rows, image.cols, CV_MAKETYPE(image.depth, image.channels));
-    copy_scilab_layout_to_mat(image.data, mat);
+    copy_scilab_layout_to_mat(image.data, mat, swapRgbChannels);
     return true;
 }
 
-bool mat_to_image(const cv::Mat& mat, IpcvDecodedImage *image)
+bool mat_to_image(const cv::Mat& mat, bool swapRgbChannels, IpcvDecodedImage *image)
 {
     if (image == NULL || mat.empty())
     {
@@ -161,11 +161,11 @@ bool mat_to_image(const cv::Mat& mat, IpcvDecodedImage *image)
 
     if (mat.depth() == CV_32F)
     {
-        copy_float_to_double_scilab_layout(mat, reinterpret_cast<double*>(image->data));
+        copy_float_to_double_scilab_layout(mat, reinterpret_cast<double*>(image->data), swapRgbChannels);
     }
     else
     {
-        copy_to_scilab_layout(mat, image->data);
+        copy_to_scilab_layout(mat, image->data, swapRgbChannels);
     }
     return true;
 }
@@ -190,14 +190,68 @@ int opencv_conversion_code(int conversion)
         return cv::COLOR_YCrCb2BGR;
     case IPCV_COLOR_LAB2RGB:
         return cv::COLOR_Lab2BGR;
+    case IPCV_COLOR_GRAY2RGB:
+        return cv::COLOR_GRAY2BGR;
+    case IPCV_COLOR_RGB2HLS:
+        return cv::COLOR_BGR2HLS;
+    case IPCV_COLOR_HLS2RGB:
+        return cv::COLOR_HLS2BGR;
+    case IPCV_COLOR_RGB2XYZ:
+        return cv::COLOR_BGR2XYZ;
+    case IPCV_COLOR_XYZ2RGB:
+        return cv::COLOR_XYZ2BGR;
+    case IPCV_COLOR_RGB2LUV:
+        return cv::COLOR_BGR2Luv;
+    case IPCV_COLOR_LUV2RGB:
+        return cv::COLOR_Luv2BGR;
+    case IPCV_COLOR_RGB2YUV:
+        return cv::COLOR_BGR2YUV;
+    case IPCV_COLOR_YUV2RGB:
+        return cv::COLOR_YUV2BGR;
     default:
         return -1;
     }
 }
 
-bool conversion_requires_three_channels(int conversion)
+int expected_input_channels(int conversion)
 {
-    return conversion != IPCV_COLOR_RGB2GRAY;
+    return conversion == IPCV_COLOR_GRAY2RGB ? 1 : 3;
+}
+
+bool conversion_input_is_rgb(int conversion)
+{
+    switch (conversion)
+    {
+    case IPCV_COLOR_RGB2GRAY:
+    case IPCV_COLOR_RGB2LAB:
+    case IPCV_COLOR_RGB2HSV:
+    case IPCV_COLOR_RGB2YCRCB:
+    case IPCV_COLOR_RGB2HLS:
+    case IPCV_COLOR_RGB2XYZ:
+    case IPCV_COLOR_RGB2LUV:
+    case IPCV_COLOR_RGB2YUV:
+        return true;
+    default:
+        return false;
+    }
+}
+
+bool conversion_output_is_rgb(int conversion)
+{
+    switch (conversion)
+    {
+    case IPCV_COLOR_HSV2RGB:
+    case IPCV_COLOR_YCRCB2RGB:
+    case IPCV_COLOR_LAB2RGB:
+    case IPCV_COLOR_GRAY2RGB:
+    case IPCV_COLOR_HLS2RGB:
+    case IPCV_COLOR_XYZ2RGB:
+    case IPCV_COLOR_LUV2RGB:
+    case IPCV_COLOR_YUV2RGB:
+        return true;
+    default:
+        return false;
+    }
 }
 }
 
@@ -230,19 +284,22 @@ extern "C" IPCV_CORE_API int ipcv_convert_color_image(const IpcvDecodedImage *so
         cv::Mat sourceMat;
         cv::Mat converted;
         char error[256] = {0};
-        if (!image_to_mat(*source, sourceMat, error))
+        if (!image_to_mat(*source, sourceMat, conversion_input_is_rgb(conversion), error))
         {
             set_error(output, error);
             return -1;
         }
-        if (conversion_requires_three_channels(conversion) && sourceMat.channels() != 3)
+        const int expectedChannels = expected_input_channels(conversion);
+        if (sourceMat.channels() != expectedChannels)
         {
-            set_error(output, "color conversion requires a 3-channel image");
-            return -1;
-        }
-        if (conversion == IPCV_COLOR_RGB2GRAY && sourceMat.channels() != 3)
-        {
-            set_error(output, "rgb2gray requires a 3-channel image");
+            if (expectedChannels == 1)
+            {
+                set_error(output, "color conversion requires a single-channel image");
+            }
+            else
+            {
+                set_error(output, "color conversion requires a 3-channel image");
+            }
             return -1;
         }
         if (sourceMat.depth() == CV_64F)
@@ -251,7 +308,7 @@ extern "C" IPCV_CORE_API int ipcv_convert_color_image(const IpcvDecodedImage *so
         }
 
         cv::cvtColor(sourceMat, converted, code);
-        if (!mat_to_image(converted, output))
+        if (!mat_to_image(converted, conversion_output_is_rgb(conversion), output))
         {
             if (output->error[0] == 0)
             {

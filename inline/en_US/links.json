@@ -68,6 +68,7 @@
   "imcreatese": "TBX/help/en_US/Morphological Operations/imcreatese.xml",
   "imcrop": "TBX/help/en_US/Spatial Transformations/imcrop.xml",
   "imcropm": "TBX/help/en_US/Spatial Transformations/imcropm.xml",
+  "imcvtcolor": "TBX/help/en_US/Image Types and Color Space Conversions/imcvtcolor.xml",
   "imdct": "TBX/help/en_US/Image Transforms/imdct.xml",
   "imdeconvl2": "TBX/help/en_US/Image Enhancement and Restoration/imdeconvl2.xml",
   "imdeconvsobolev": "TBX/help/en_US/Image Enhancement and Restoration/imdeconvsobolev.xml",
