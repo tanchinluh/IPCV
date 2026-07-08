@@ -10,7 +10,7 @@ The current development line is the OpenCV 5 and C++ migration of IPCV. The nati
 - Scilab gateway image exchange rewritten for the current Scilab API.
 - DNN support updated for OpenCV 5, including ONNX examples and OpenCV Zoo model download support.
 - OpenCV Zoo browser GUI: `opencv_zoo_gui()`.
-- Current unit tests are in `tests/unit_tests`; older 4.5 tests are archived in `tests/unit_tests/4.5`.
+- Current OpenCV 5 migration tests are in `tests/unit_tests`; legacy 4.5 tests are kept only as an optional archive/reference set.
 - Large DNN `.onnx` models are excluded from git and downloaded on demand.
 
 ## Requirements
@@ -200,17 +200,21 @@ dnn_unloadmodel(net);
 
 ## Tests
 
-Current migration tests:
+Current OpenCV 5 migration tests:
 
 ```text
 tests/unit_tests
 ```
 
-Legacy IPCV 4.5 tests:
+These are the active tests for the C++/OpenCV 5 code path and are the default place for new regression coverage.
+
+Legacy IPCV 4.5 tests are not part of the default 5.0.0 test run. If they are kept for migration comparison, keep them isolated under:
 
 ```text
 tests/unit_tests/4.5
 ```
+
+That archive path is only for historical behavior checks and should not be mixed with the active OpenCV 5 `.tst` and `.dia.ref` files.
 
 Run tests from Scilab after loading/building the toolbox as needed. For focused migration checks, run the relevant `.tst` file directly or use Scilab's `test_run` workflow.
 
