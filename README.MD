@@ -56,6 +56,8 @@ On Linux or macOS, install CMake, Ninja, a C/C++ compiler toolchain, `curl`, `ma
 
 IPCV expects a local OpenCV/OpenCV contrib 5.0.0 build under `thirdparty`. The helper scripts in `thirdparty/build` download OpenCV sources, configure CMake with Ninja, build `opencv_world`, and install headers/libraries into the platform-specific thirdparty folder.
 
+For a detailed Windows and Linux thirdparty build guide, see `thirdparty/build/README.txt`.
+
 #### Windows
 
 Open a Visual Studio x64 native tools command prompt, then run:
