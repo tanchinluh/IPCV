@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from xyz2rgb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="xyz2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>xyz2rgb</refname>
+    <refpurpose>Convert an XYZ image to RGB.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   rgb = xyz2rgb(xyz)
+
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>xyz :</term>
+            <listitem><para> CIE XYZ image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rgb :</term>
+            <listitem><para> RGB image.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+xyz2rgb converts a CIE XYZ image to RGB using OpenCV 5 cvtColor.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+rgb = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+xyz = rgb2xyz(rgb);
+rgb2 = xyz2rgb(xyz);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2xyz">rgb2xyz</link></member>
+   <member><link linkend="imcvtcolor">imcvtcolor</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

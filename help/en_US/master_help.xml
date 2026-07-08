@@ -105,6 +105,8 @@
 <!ENTITY ab4d707861d81a451a498918998653d72 SYSTEM "Image Transforms/imlogpolar.xml">
 <!ENTITY a3b6459699d2f5d0d587bdca290448852 SYSTEM "Image Transforms/imradon.xml">
 <!ENTITY a158e975e3e755e4c75438b465339da4c SYSTEM "Image Transforms/imwatershed.xml">
+<!ENTITY a39b2d7c00818b9c5692870734a306d4a SYSTEM "Image Types and Color Space Conversions/gray2rgb.xml">
+<!ENTITY a49714b4a0294670eb13112ece86676f9 SYSTEM "Image Types and Color Space Conversions/hls2rgb.xml">
 <!ENTITY a20170ba23f27c24e6d375a14169c589e SYSTEM "Image Types and Color Space Conversions/hsv2rgb2.xml">
 <!ENTITY a5d83824c39f5e3b07ca3762276a985d8 SYSTEM "Image Types and Color Space Conversions/im2bw.xml">
 <!ENTITY a3102416827154fd8bb31c209cb7d174e SYSTEM "Image Types and Color Space Conversions/im2double.xml">
@@ -117,16 +119,24 @@
 <!ENTITY ae3e32604087c434af3143fbd1ab64470 SYSTEM "Image Types and Color Space Conversions/imgraythresh.xml">
 <!ENTITY af035f45cbe1cadea59ef60c34213b336 SYSTEM "Image Types and Color Space Conversions/imnorm.xml">
 <!ENTITY aea2544c4a3c8e5b873e2c0587f8cba36 SYSTEM "Image Types and Color Space Conversions/ind2rgb.xml">
+<!ENTITY abbd73b33f8735a63db5daf8bad464094 SYSTEM "Image Types and Color Space Conversions/lab2rgb.xml">
+<!ENTITY a0f6016ea990f9a9ad7912944adf8ce46 SYSTEM "Image Types and Color Space Conversions/luv2rgb.xml">
 <!ENTITY a9db4e8a9866561d9307c5b56df573d77 SYSTEM "Image Types and Color Space Conversions/mat2gray.xml">
 <!ENTITY a635a8b504c7aac1503c65079a0c48d06 SYSTEM "Image Types and Color Space Conversions/ntsc2rgb.xml">
 <!ENTITY a4a76504045399a141e73fc213a5f0ef4 SYSTEM "Image Types and Color Space Conversions/rgb2gray.xml">
+<!ENTITY a863fb69cd2db31346f13d675eddbc440 SYSTEM "Image Types and Color Space Conversions/rgb2hls.xml">
 <!ENTITY a83f6dd11391dea5379dab22fb18bf2b2 SYSTEM "Image Types and Color Space Conversions/rgb2hsv.xml">
 <!ENTITY a6b02de5d3092a587b6e1c042f4d6ab59 SYSTEM "Image Types and Color Space Conversions/rgb2ind.xml">
 <!ENTITY aa8a19da500e52950aec94391060f6d89 SYSTEM "Image Types and Color Space Conversions/rgb2lab.xml">
+<!ENTITY ac9cf5d6f0019242c72c135abc6399244 SYSTEM "Image Types and Color Space Conversions/rgb2luv.xml">
 <!ENTITY a2ae8ac56a3395cafbe0258f747ab6f30 SYSTEM "Image Types and Color Space Conversions/rgb2ntsc.xml">
+<!ENTITY a6376aae2b90ca42018ab724e89c1aabe SYSTEM "Image Types and Color Space Conversions/rgb2xyz.xml">
 <!ENTITY aa3577d2f7a3d74f5dced1c17e0faac72 SYSTEM "Image Types and Color Space Conversions/rgb2ycbcr.xml">
+<!ENTITY ad45e9d1d9a115d41a24c1f88c2a28593 SYSTEM "Image Types and Color Space Conversions/rgb2yuv.xml">
 <!ENTITY a3ac91336d9d00f8d9d8be11ca1a28601 SYSTEM "Image Types and Color Space Conversions/xs2im.xml">
+<!ENTITY aa8a805e35906bd777e91aa8902c5dd16 SYSTEM "Image Types and Color Space Conversions/xyz2rgb.xml">
 <!ENTITY ae5721f96e1fda78f7258bf46b4bdd3be SYSTEM "Image Types and Color Space Conversions/ycbcr2rgb.xml">
+<!ENTITY a27dd83d7e0f2e974815e481935ccf54b SYSTEM "Image Types and Color Space Conversions/yuv2rgb.xml">
 <!ENTITY a37db7d37f6f0fe98d5bea8fc938142e4 SYSTEM "Morphological Operations/bwborder.xml">
 <!ENTITY a99ca39cdabf12df7322d9f8f9a8bb640 SYSTEM "Morphological Operations/imblackhat.xml">
 <!ENTITY ac6d7198a87d22fc1bdc5cb5946615842 SYSTEM "Morphological Operations/imblobprop.xml">
@@ -347,6 +357,8 @@
 </part>
 <part xml:id='section_9ff8ea416ae64f5b1bc37bf834228a00'>
 <title>Image Types and Color Space Conversions</title>
+&a39b2d7c00818b9c5692870734a306d4a;
+&a49714b4a0294670eb13112ece86676f9;
 &a20170ba23f27c24e6d375a14169c589e;
 &a5d83824c39f5e3b07ca3762276a985d8;
 &a3102416827154fd8bb31c209cb7d174e;
@@ -359,16 +371,24 @@
 &ae3e32604087c434af3143fbd1ab64470;
 &af035f45cbe1cadea59ef60c34213b336;
 &aea2544c4a3c8e5b873e2c0587f8cba36;
+&abbd73b33f8735a63db5daf8bad464094;
+&a0f6016ea990f9a9ad7912944adf8ce46;
 &a9db4e8a9866561d9307c5b56df573d77;
 &a635a8b504c7aac1503c65079a0c48d06;
 &a4a76504045399a141e73fc213a5f0ef4;
+&a863fb69cd2db31346f13d675eddbc440;
 &a83f6dd11391dea5379dab22fb18bf2b2;
 &a6b02de5d3092a587b6e1c042f4d6ab59;
 &aa8a19da500e52950aec94391060f6d89;
+&ac9cf5d6f0019242c72c135abc6399244;
 &a2ae8ac56a3395cafbe0258f747ab6f30;
+&a6376aae2b90ca42018ab724e89c1aabe;
 &aa3577d2f7a3d74f5dced1c17e0faac72;
+&ad45e9d1d9a115d41a24c1f88c2a28593;
 &a3ac91336d9d00f8d9d8be11ca1a28601;
+&aa8a805e35906bd777e91aa8902c5dd16;
 &ae5721f96e1fda78f7258bf46b4bdd3be;
+&a27dd83d7e0f2e974815e481935ccf54b;
 </part>
 <part xml:id='section_c434948b09cbf4ac05d93061973fc710'>
 <title>Morphological Operations</title>

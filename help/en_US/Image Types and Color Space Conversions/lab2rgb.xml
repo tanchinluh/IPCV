@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from lab2rgb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="lab2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>lab2rgb</refname>
+    <refpurpose>Convert a Lab image to RGB.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   rgb = lab2rgb(lab)
+
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>lab :</term>
+            <listitem><para> Lab image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rgb :</term>
+            <listitem><para> RGB image.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+lab2rgb converts a CIE Lab image to RGB using OpenCV 5 cvtColor.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+rgb = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+lab = rgb2lab(rgb);
+rgb2 = lab2rgb(lab);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2lab">rgb2lab</link></member>
+   <member><link linkend="imcvtcolor">imcvtcolor</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>

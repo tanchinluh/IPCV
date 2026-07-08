@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from hls2rgb.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="hls2rgb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>hls2rgb</refname>
+    <refpurpose>Convert an HLS image to RGB.</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   rgb = hls2rgb(hls)
+
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>hls :</term>
+            <listitem><para> HLS image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rgb :</term>
+            <listitem><para> RGB image.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+hls2rgb converts an HLS image to RGB using OpenCV 5 cvtColor.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+rgb = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+hls = rgb2hls(rgb);
+rgb2 = hls2rgb(hls);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="rgb2hls">rgb2hls</link></member>
+   <member><link linkend="imcvtcolor">imcvtcolor</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+</refentry>
