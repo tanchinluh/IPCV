@@ -83,7 +83,7 @@ dnn_unloadmodel(net);
 
    ]]></programlisting>
 
-   <para>Example 2: ONNX MobileNetV2. The model and labels are downloaded if missing.</para>
+   <para>Example 2: ONNX MobileNetV2. The model is downloaded if missing.</para>
    <programlisting role="example"><![CDATA[
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
@@ -96,8 +96,7 @@ if ~isfile(model_file) then
 end
 label_file = dnn_path + "classification_classes_ILSVRC2012.txt";
 if ~isfile(label_file) then
-    label_url = "https://raw.githubusercontent.com/opencv/opencv/5.x/samples/data/dnn/classification_classes_ILSVRC2012.txt";
-    http_get(label_url, label_file, follow=%t, timeout=120);
+    error("ImageNet labels are missing. Expected: " + label_file);
 end
 net = dnn_readmodel(model_file, "", "onnx");
 labels = stripblanks(mgetl(label_file));

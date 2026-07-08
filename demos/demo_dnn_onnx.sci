@@ -32,14 +32,7 @@ function demo_dnn_onnx()
             return;
         end
 
-        label_url = "https://raw.githubusercontent.com/opencv/opencv/5.x/samples/data/dnn/classification_classes_ILSVRC2012.txt";
-        mprintf("Downloading ImageNet labels from OpenCV samples...\n");
-        http_get(label_url, label_file, follow=%t, timeout=120);
-
-        info = fileinfo(label_file);
-        if info == [] | info(1) < 1000 then
-            error("ImageNet label download failed or is incomplete: " + label_file);
-        end
+        error("ImageNet labels are missing. Expected: " + label_file);
     endfunction
 
     function labels = read_imagenet_labels(label_file)

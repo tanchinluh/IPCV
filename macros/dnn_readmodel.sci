@@ -30,7 +30,7 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    prediction = index - 1
     //    dnn_unloadmodel(net);
     //
-    //    // Example 2: ONNX MobileNetV2. The model and labels are downloaded if missing.
+    //    // Example 2: ONNX MobileNetV2. The model is downloaded if missing.
     //    model_name = "image_classification_mobilenetv2_2022apr.onnx";
     //    model_file = dnn_path + model_name;
     //    if ~isfile(model_file) then
@@ -39,8 +39,7 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    end
     //    label_file = dnn_path + "classification_classes_ILSVRC2012.txt";
     //    if ~isfile(label_file) then
-    //        label_url = "https://raw.githubusercontent.com/opencv/opencv/5.x/samples/data/dnn/classification_classes_ILSVRC2012.txt";
-    //        http_get(label_url, label_file, follow=%t, timeout=120);
+    //        error("ImageNet labels are missing. Expected: " + label_file);
     //    end
     //    net = dnn_readmodel(model_file, "", "onnx");
     //    labels = stripblanks(mgetl(label_file));
