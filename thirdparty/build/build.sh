@@ -21,7 +21,7 @@ else
 fi
 
 # ffmpeg build
-[ ! -f opencv-${OPENCV_VER}.tar.gz ] && curl -LO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz
+[ ! -f ffmpeg-${FFMPEG_VER}.tar.gz ] && curl -LO https://ffmpeg.org/releases/ffmpeg-${FFMPEG_VER}.tar.gz
 tar -xf ffmpeg-${FFMPEG_VER}.tar.gz
 cd ffmpeg-${FFMPEG_VER}
 ./configure --enable-shared --enable-rpath --disable-static --disable-programs --disable-x86asm --prefix="${PREFIX}"
