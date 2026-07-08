@@ -103,6 +103,9 @@ IMREAD_REDUCED_COLOR_8 (convert image to the 3 channelcolor image and the image 
 IMREAD_IGNORE_ORIENTATION (do not rotate the image according to EXIF's orientation flag)
    </para>
    <para>
+IMREAD_BINARY (convert a single-channel 0/255 image to a Scilab boolean matrix)
+   </para>
+   <para>
 </para>
 </refsection>
 
@@ -114,6 +117,9 @@ imshow(im);
 
 im = imread(fullpath(getIPCVpath() + "/images/" + 'puffin.png'),IMREAD_UNCHANGED=1);
 imshow(im);
+
+im = imread(fullpath(getIPCVpath() + "/images/" + 'big_sq.png'), IMREAD_GRAYSCALE=1);
+imbw = imread(fullpath(getIPCVpath() + "/images/" + 'big_sq.png'), IMREAD_GRAYSCALE=1, IMREAD_BINARY=1);
    ]]></programlisting>
 </refsection>
 

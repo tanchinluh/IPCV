@@ -3,7 +3,7 @@
 // Copyright (C) 2017  Tan Chin Luh
 // Copyright (C) 2025 - UTC - Stéphane Mottelet
 //=============================================================================
-function S = imread(fn,modes)
+function S = imread(fn, modes, IMREAD_UNCHANGED, IMREAD_GRAYSCALE, IMREAD_COLOR, IMREAD_ANYDEPTH, IMREAD_ANYCOLOR, IMREAD_LOAD_GDAL, IMREAD_REDUCED_GRAYSCALE_2, IMREAD_REDUCED_COLOR_2, IMREAD_REDUCED_GRAYSCALE_4, IMREAD_REDUCED_COLOR_4, IMREAD_REDUCED_GRAYSCALE_8, IMREAD_REDUCED_COLOR_8, IMREAD_IGNORE_ORIENTATION, IMREAD_BINARY)
     //    Reads image file - Add modes support
     //    
     //    Syntax
@@ -51,6 +51,8 @@ function S = imread(fn,modes)
     //    IMREAD_REDUCED_COLOR_8 (convert image to the 3 channelcolor image and the image size reduced 1/8)
     //
     //    IMREAD_IGNORE_ORIENTATION (do not rotate the image according to EXIF's orientation flag)
+    //
+    //    IMREAD_BINARY (convert a single-channel 0/255 image to a Scilab boolean matrix)
     //    
     //    Examples
     //      im = imread(fullpath(getIPCVpath() + "/images/" + 'baboon.png'));
@@ -71,7 +73,7 @@ function S = imread(fn,modes)
     // Checking Input Arguement
     rhs = argn(2);
 
-    if rhs < 1 then error("Expect at least 1 argument, N, which is the Network topology"); end;
+    if rhs < 1 then error("imread: Expect at least 1 argument, filename."); end;
     if rhs == 1 then IMREAD_ANYCOLOR=1,IMREAD_ANYDEPTH=1 end
     if ~isdef('IMREAD_UNCHANGED')|IMREAD_UNCHANGED==[] then IMREAD_UNCHANGED = 0;end;
     if ~isdef('IMREAD_GRAYSCALE')|IMREAD_GRAYSCALE==[] then IMREAD_GRAYSCALE = 0;end;
@@ -86,6 +88,7 @@ function S = imread(fn,modes)
     if ~isdef('IMREAD_REDUCED_GRAYSCALE_8')|IMREAD_REDUCED_GRAYSCALE_8==[] then IMREAD_REDUCED_GRAYSCALE_8 = 0;end;
     if ~isdef('IMREAD_REDUCED_COLOR_8')|IMREAD_REDUCED_COLOR_8==[] then IMREAD_REDUCED_COLOR_8 = 0;end;
     if ~isdef('IMREAD_IGNORE_ORIENTATION')|IMREAD_IGNORE_ORIENTATION==[] then IMREAD_IGNORE_ORIENTATION = 0;end;
+    if ~isdef('IMREAD_BINARY')|IMREAD_BINARY==[] then IMREAD_BINARY = 0;end;
 
     modes =  IMREAD_UNCHANGED * int8(-1) | ..
     IMREAD_GRAYSCALE * int8(0) | ..
@@ -106,7 +109,7 @@ function S = imread(fn,modes)
     end
     S = int_imread(fn,modes);
 
-    if size(S,3)==1 && (sum(S==0)+sum(S==255)) == prod(size(S))
+    if IMREAD_BINARY == 1 & size(S,3)==1 & (sum(S==0)+sum(S==255)) == prod(size(S))
         S = im2bw(S,0.5);
     end
 
