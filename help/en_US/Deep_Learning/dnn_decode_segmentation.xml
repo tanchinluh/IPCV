@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="dnn_decode_segmentation" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
-<refnamediv><refname>dnn_decode_segmentation</refname><refpurpose>Convert class-score tensors to a label mask.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>mask = dnn_decode_segmentation(output)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para><function>dnn_decode_segmentation</function> selects the highest scoring class for every pixel in an H-by-W-by-C tensor.</para></refsection>
+<refnamediv><refname>dnn_decode_segmentation</refname><refpurpose>Convert segmentation class-score tensors to a label mask.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mask = dnn_decode_segmentation(output)
+mask = dnn_decode_segmentation(output, layout)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>output :</term><listitem><para>Segmentation score tensor.</para></listitem></varlistentry><varlistentry><term>layout :</term><listitem><para>Tensor layout: <literal>"auto"</literal>, <literal>"whc"</literal>, <literal>"hwc"</literal>, or <literal>"chw"</literal>. The default is <literal>"auto"</literal>.</para></listitem></varlistentry><varlistentry><term>mask :</term><listitem><para>Label image whose value is the winning class index for each pixel.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>dnn_decode_segmentation</function> selects the highest scoring class for every pixel. Use the <literal>layout</literal> argument when the model output order is known; OpenCV Zoo PP-HumanSeg output from IPCV is commonly decoded as <literal>"whc"</literal>.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
-scores = cat(3, [1 0; 0 1], [0 1; 1 0]);
-mask = dnn_decode_segmentation(scores);
+scores = cat(3, [0.9 0.1; 0.1 0.2], [0.1 0.9; 0.8 0.7]);
+mask = dnn_decode_segmentation(scores, "hwc");
+]]></programlisting><programlisting role="example"><![CDATA[
+image = uint8(zeros(120, 160, 3));
+mask = uint8(zeros(120, 160));
+mask(30:90, 50:120) = 1;
+imshow_segmentation(image, mask);
 ]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_forward">dnn_forward</link></member><member><link linkend="imoverlaymask">imoverlaymask</link></member><member><link linkend="imshow_segmentation">imshow_segmentation</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
 <refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
 </refentry>

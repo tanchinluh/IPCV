@@ -60,6 +60,12 @@ assert_checktrue(or(keep == 3));
 yolo = dnn_decode_yolo([0.5 0.5 0.2 0.2 0.9 0.1 0.8], [640 480], 0.25, 0.45);
 assert_checkequal(size(yolo.boxes), [1 4]);
 assert_checkequal(yolo.classIds, 2);
+yoloxOutput = zeros(1, 85);
+yoloxOutput(1, 1:5) = [0.5 0.5 0 0 0.9];
+yoloxOutput(1, 8) = 0.8;
+yolox = dnn_decode_yolo(yoloxOutput, [640 480], 0.25, 0.45, "yolox", [640 640], [8 16 32]);
+assert_checkequal(size(yolox.boxes), [1 4]);
+assert_checkequal(yolox.classIds, 3);
 nanodetBbox = zeros(1, 32);
 nanodetBbox(1, [2 10 18 26]) = 8;
 nanodet = dnn_decode_nanodet(list([0.1 0.9], nanodetBbox), [640 480], [8 8], 0.25, 0.6, 8, 7);
@@ -72,8 +78,11 @@ yunet = dnn_decode_yunet([10 20 80 80 20 30 60 30 40 50 25 70 55 70 0.95], [640 
 assert_checkequal(size(yunet.boxes), [1 4]);
 assert_checkequal(size(yunet.landmarks), [1 10]);
 segScores = cat(3, [0.9 0.1; 0.1 0.2], [0.1 0.9; 0.8 0.7]);
-segMask = dnn_decode_segmentation(segScores);
+segMask = dnn_decode_segmentation(segScores, "hwc");
 assert_checkequal(segMask, [1 2; 2 2]);
+segScoresWhc = cat(3, segScores(:, :, 1)', segScores(:, :, 2)');
+segMaskWhc = dnn_decode_segmentation(segScoresWhc, "whc");
+assert_checkequal(segMaskWhc, [1 2; 2 2]);
 
 S = imread(dnn_path + "3.jpg");
 out = dnn_forward(net, ~S, [28, 28]);
