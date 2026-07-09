@@ -44,6 +44,9 @@ help/en_US/scilab_en_US_help/
 # DNN models are downloaded on demand by demos/tests.
 *.onnx
 
+# OpenCV Zoo GUI generated starter scripts in the default DNN download folder.
+images/dnn/*_sample.sce
+
 # ignore doc/notes.txt, but not doc/server/arch.txt
 #doc/*.txt
 

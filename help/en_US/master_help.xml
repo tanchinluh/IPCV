@@ -11,6 +11,7 @@
 <!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "Camera Handling/camread.xml">
 <!ENTITY a365d491f9ac661a295f36a914ecb23b6 SYSTEM "Camera Handling/camset.xml">
 <!ENTITY abca280b80c84194e04a19b8955c9eb69 SYSTEM "Deep Learning/dnn_decode_classification.xml">
+<!ENTITY aa9f41b471415124047b42d6fd7492f61 SYSTEM "Deep Learning/dnn_decode_nanodet.xml">
 <!ENTITY ac7969b26dede926148833cc99b352314 SYSTEM "Deep Learning/dnn_decode_segmentation.xml">
 <!ENTITY ab0173f6a1359eb81ebfdbdca5b6cca57 SYSTEM "Deep Learning/dnn_decode_ssd.xml">
 <!ENTITY acf79ae117393265197cff7d771c42f99 SYSTEM "Deep Learning/dnn_decode_yolo.xml">
@@ -276,6 +277,7 @@
 <part xml:id='section_a25500554379bf5680a9653fe3f13876'>
 <title>Deep Learning</title>
 &abca280b80c84194e04a19b8955c9eb69;
+&aa9f41b471415124047b42d6fd7492f61;
 &ac7969b26dede926148833cc99b352314;
 &ab0173f6a1359eb81ebfdbdca5b6cca57;
 &acf79ae117393265197cff7d771c42f99;

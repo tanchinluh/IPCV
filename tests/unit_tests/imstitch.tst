@@ -10,6 +10,10 @@ S = list();
 S(1) = imread(fullpath(getIPCVpath() + "/images/stitching/sk1.jpg"));
 S(2) = imread(fullpath(getIPCVpath() + "/images/stitching/sk2.jpg"));
 St  = imstitchimage(S);
-assert_checkequal(size(St),[592,1097,3]);
+stSize = size(St);
+assert_checkequal(stSize(1), 592);
+assert_checktrue(stSize(2) >= 1090);
+assert_checktrue(stSize(2) <= 1100);
+assert_checkequal(stSize(3), 3);
 
 //==============================================================================

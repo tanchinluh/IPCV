@@ -37,7 +37,15 @@ function info = dnn_zoo_modelinfo(modelName, groupName)
         info.notes = "Runs ImageNet-style classification and decodes top labels when a companion label/class file is available.";
     end
 
-    if ipcv_dnn_zoo_contains(text, "yolo") then
+    if ipcv_dnn_zoo_contains(text, "nanodet") then
+        info.task = "object_detection";
+        info.inputSize = [416 416];
+        info.scale = 1;
+        info.mean = [103.53 116.28 123.675];
+        info.swapRB = 1;
+        info.decoder = "nanodet";
+        info.notes = "Runs NanoDet output tensors through dnn_decode_nanodet. OpenCV Zoo NanoDet also uses per-channel std normalization, so exact accuracy may need model-specific preprocessing.";
+    elseif ipcv_dnn_zoo_contains(text, "yolo") then
         info.task = "object_detection";
         info.inputSize = [640 640];
         info.scale = 1 / 255;

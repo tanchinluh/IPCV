@@ -73,12 +73,17 @@ function [] = immesh(imin,n,plotop);
 
     //plot3d(y,x,imin(ind1,ind2));
 
-    f=gcf();
-    f.background = -2;    
-    f.children.children.color_mode = 0;
+    h = gce();
+    f = gcf();
+    f.background = -2;
+    try
+        h.color_mode = 0;
+    catch
+        // Scilab graphics handles changed across releases; the mesh is still valid
+        // when this visual-only property is unavailable.
+    end
 
 endfunction
-
 
 
 

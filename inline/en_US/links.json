@@ -24,6 +24,7 @@
   "camset": "TBX/help/en_US/Camera Handling/camset.xml",
   "corr2": "TBX/help/en_US/Image Analysis and Statistics/corr2.xml",
   "dnn_decode_classification": "TBX/help/en_US/Deep Learning/dnn_decode_classification.xml",
+  "dnn_decode_nanodet": "TBX/help/en_US/Deep Learning/dnn_decode_nanodet.xml",
   "dnn_decode_segmentation": "TBX/help/en_US/Deep Learning/dnn_decode_segmentation.xml",
   "dnn_decode_ssd": "TBX/help/en_US/Deep Learning/dnn_decode_ssd.xml",
   "dnn_decode_yolo": "TBX/help/en_US/Deep Learning/dnn_decode_yolo.xml",
