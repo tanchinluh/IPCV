@@ -437,6 +437,57 @@ extern "C" IPCV_CORE_API int ipcv_avi_close(int handle, char *error, int error_s
     return 0;
 }
 
+extern "C" IPCV_CORE_API int ipcv_avi_get_property(int handle, int property_id, double *value, char *error, int error_size)
+{
+    if (value != NULL)
+    {
+        *value = 0;
+    }
+    if (!valid_handle(handle))
+    {
+        copy_error(error, error_size, "video handle is out of range");
+        return -1;
+    }
+    if (value == NULL)
+    {
+        copy_error(error, error_size, "missing property output");
+        return -1;
+    }
+
+    VideoSlot& slot = avi_slots[handle - 1];
+    if (slot.is_writer || !slot.cap.isOpened())
+    {
+        copy_error(error, error_size, "the opened file is not a readable video capture");
+        return -1;
+    }
+
+    *value = slot.cap.get(property_id);
+    return 0;
+}
+
+extern "C" IPCV_CORE_API int ipcv_avi_set_property(int handle, int property_id, double value, char *error, int error_size)
+{
+    if (!valid_handle(handle))
+    {
+        copy_error(error, error_size, "video handle is out of range");
+        return -1;
+    }
+
+    VideoSlot& slot = avi_slots[handle - 1];
+    if (slot.is_writer || !slot.cap.isOpened())
+    {
+        copy_error(error, error_size, "the opened file is not a readable video capture");
+        return -1;
+    }
+    if (!slot.cap.set(property_id, value))
+    {
+        copy_error(error, error_size, "the video property is not supported by this backend");
+        return -1;
+    }
+
+    return 0;
+}
+
 extern "C" IPCV_CORE_API void ipcv_avi_close_all(void)
 {
     for (int i = 0; i < IPCV_MAX_VIDEO_HANDLES; i++)
@@ -591,6 +642,57 @@ extern "C" IPCV_CORE_API int ipcv_cam_close(int handle, char *error, int error_s
     }
 
     reset_slot(slot);
+    return 0;
+}
+
+extern "C" IPCV_CORE_API int ipcv_cam_get_property(int handle, int property_id, double *value, char *error, int error_size)
+{
+    if (value != NULL)
+    {
+        *value = 0;
+    }
+    if (!valid_handle(handle))
+    {
+        copy_error(error, error_size, "camera handle is out of range");
+        return -1;
+    }
+    if (value == NULL)
+    {
+        copy_error(error, error_size, "missing property output");
+        return -1;
+    }
+
+    VideoSlot& slot = cam_slots[handle - 1];
+    if (!slot.cap.isOpened())
+    {
+        copy_error(error, error_size, "camera is not opened");
+        return -1;
+    }
+
+    *value = slot.cap.get(property_id);
+    return 0;
+}
+
+extern "C" IPCV_CORE_API int ipcv_cam_set_property(int handle, int property_id, double value, char *error, int error_size)
+{
+    if (!valid_handle(handle))
+    {
+        copy_error(error, error_size, "camera handle is out of range");
+        return -1;
+    }
+
+    VideoSlot& slot = cam_slots[handle - 1];
+    if (!slot.cap.isOpened())
+    {
+        copy_error(error, error_size, "camera is not opened");
+        return -1;
+    }
+    if (!slot.cap.set(property_id, value))
+    {
+        copy_error(error, error_size, "the camera property is not supported by this backend");
+        return -1;
+    }
+
     return 0;
 }
 

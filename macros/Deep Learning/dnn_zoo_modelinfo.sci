@@ -45,6 +45,14 @@ function info = dnn_zoo_modelinfo(modelName, groupName)
         info.swapRB = 1;
         info.decoder = "yolo";
         info.notes = "Runs YOLO-style output through dnn_decode_yolo when the output is [cx cy w h objectness class...].";
+    elseif ipcv_dnn_zoo_contains(text, "ssd") then
+        info.task = "object_detection";
+        info.inputSize = [320 320];
+        info.scale = 1 / 127.5;
+        info.mean = [127.5 127.5 127.5];
+        info.swapRB = 1;
+        info.decoder = "ssd";
+        info.notes = "Runs SSD-style detections through dnn_decode_ssd when the output is [batch class confidence x1 y1 x2 y2].";
     elseif ipcv_dnn_zoo_contains(text, "object_detection") | ipcv_dnn_zoo_contains(text, "license_plate_detection") then
         info.task = "object_detection";
         info.inputSize = [320 320];
@@ -65,14 +73,14 @@ function info = dnn_zoo_modelinfo(modelName, groupName)
         info.notes = "Runs class-score maps through dnn_decode_segmentation when the output is H-by-W-by-C.";
     end
 
-    if ipcv_dnn_zoo_contains(text, "face_detection_yunet") then
+    if ipcv_dnn_zoo_contains(text, "yunet") then
         info.task = "face_detection";
         info.inputSize = [320 320];
         info.scale = 1;
         info.mean = [0 0 0];
         info.swapRB = 1;
-        info.decoder = "raw";
-        info.notes = "YuNet uses a dedicated face-detection output layout; the sample loads and forwards the model.";
+        info.decoder = "yunet";
+        info.notes = "Runs YuNet-style face rows through dnn_decode_yunet when output contains [x y w h landmarks... score].";
     end
 
     if ipcv_dnn_zoo_contains(text, "handpose") | ipcv_dnn_zoo_contains(text, "palm_detection") | ipcv_dnn_zoo_contains(text, "pose") then

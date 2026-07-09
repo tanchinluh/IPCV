@@ -4,12 +4,17 @@
 <!ENTITY a270a59c317e1c8512365cea2e52c484c SYSTEM "Analytic Geometry/plot3dot.xml">
 <!ENTITY a602a49dd46591bfb55735733348d3a30 SYSTEM "Camera Handling/camclose.xml">
 <!ENTITY a265655c42c1b1485d6020d85cb0442a8 SYSTEM "Camera Handling/camcloseall.xml">
+<!ENTITY ace987250764b75fbc0f5fcaa3792ed69 SYSTEM "Camera Handling/camget.xml">
 <!ENTITY a0e0583eaa64f6590df7e28936d7b88ae SYSTEM "Camera Handling/camlistopened.xml">
 <!ENTITY a419c6de803a4e5b9b0f82aaeae38d215 SYSTEM "Camera Handling/camopen.xml">
+<!ENTITY a2dd4aeaf2e8cdf87583a28132f9ddfb4 SYSTEM "Camera Handling/camprops.xml">
 <!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "Camera Handling/camread.xml">
+<!ENTITY a365d491f9ac661a295f36a914ecb23b6 SYSTEM "Camera Handling/camset.xml">
 <!ENTITY abca280b80c84194e04a19b8955c9eb69 SYSTEM "Deep Learning/dnn_decode_classification.xml">
 <!ENTITY ac7969b26dede926148833cc99b352314 SYSTEM "Deep Learning/dnn_decode_segmentation.xml">
+<!ENTITY ab0173f6a1359eb81ebfdbdca5b6cca57 SYSTEM "Deep Learning/dnn_decode_ssd.xml">
 <!ENTITY acf79ae117393265197cff7d771c42f99 SYSTEM "Deep Learning/dnn_decode_yolo.xml">
+<!ENTITY a2a70522023d7c401748829394050319e SYSTEM "Deep Learning/dnn_decode_yunet.xml">
 <!ENTITY a8351b08ca2f4c8491063d4a6bf0a0f46 SYSTEM "Deep Learning/dnn_forward.xml">
 <!ENTITY a3e3712481cfbd1422577950e57d41473 SYSTEM "Deep Learning/dnn_getflops.xml">
 <!ENTITY a8e0f8b0be3700adbcfe6f7d1c9ce223a SYSTEM "Deep Learning/dnn_getlayertypes.xml">
@@ -227,11 +232,17 @@
 <!ENTITY a78e620f02445fdd21a41ca171b24ce86 SYSTEM "Video Handling/aviclose.xml">
 <!ENTITY a58ac8d170ea24d93d3f1e9bf855a1499 SYSTEM "Video Handling/avicloseall.xml">
 <!ENTITY a6f6d1254782b7d8b99b1f64ab6b14fb4 SYSTEM "Video Handling/avifile.xml">
+<!ENTITY a618e97c4a2adaafbe932c5a692e1e1a4 SYSTEM "Video Handling/aviget.xml">
 <!ENTITY ab455a000060a5257c93e171dd095663b SYSTEM "Video Handling/aviinfo.xml">
 <!ENTITY a7dab8411a30ab38bb32d8a6cb382d091 SYSTEM "Video Handling/avilistopened.xml">
 <!ENTITY a04c09cc82e552dfddc2df535c237784d SYSTEM "Video Handling/aviopen.xml">
+<!ENTITY a3b333d87d664a9f988ae41e7ad6d4ef3 SYSTEM "Video Handling/avipos.xml">
+<!ENTITY abe453b38858b0e2157f616fae73bbf40 SYSTEM "Video Handling/aviprops.xml">
 <!ENTITY a4f444772ef6e1e33c0857c1f2223a46d SYSTEM "Video Handling/avireadframe.xml">
+<!ENTITY abcc15da4eb648cbb338aaaad9d62b931 SYSTEM "Video Handling/aviseek.xml">
+<!ENTITY a36199eb7d918ebd176813cedac5e31af SYSTEM "Video Handling/aviset.xml">
 <!ENTITY aa4454f551f863eb0c29c3a7834d52089 SYSTEM "Video Handling/imvideocapabilities.xml">
+<!ENTITY a31a489359a80825e1d92e576b6a7cba4 SYSTEM "Video Handling/imvideopropid.xml">
 <!ENTITY a9263c04cc8830e3676cf4992c683e874 SYSTEM "Video Handling/imvideoprops.xml">
 <!--End Entities-->
 ]>
@@ -255,15 +266,20 @@
 <title>Camera Handling</title>
 &a602a49dd46591bfb55735733348d3a30;
 &a265655c42c1b1485d6020d85cb0442a8;
+&ace987250764b75fbc0f5fcaa3792ed69;
 &a0e0583eaa64f6590df7e28936d7b88ae;
 &a419c6de803a4e5b9b0f82aaeae38d215;
+&a2dd4aeaf2e8cdf87583a28132f9ddfb4;
 &a24915b2a62ef449b07c9cc8f2d72eef6;
+&a365d491f9ac661a295f36a914ecb23b6;
 </part>
 <part xml:id='section_a25500554379bf5680a9653fe3f13876'>
 <title>Deep Learning</title>
 &abca280b80c84194e04a19b8955c9eb69;
 &ac7969b26dede926148833cc99b352314;
+&ab0173f6a1359eb81ebfdbdca5b6cca57;
 &acf79ae117393265197cff7d771c42f99;
+&a2a70522023d7c401748829394050319e;
 &a8351b08ca2f4c8491063d4a6bf0a0f46;
 &a3e3712481cfbd1422577950e57d41473;
 &a8e0f8b0be3700adbcfe6f7d1c9ce223a;
@@ -544,11 +560,17 @@
 &a78e620f02445fdd21a41ca171b24ce86;
 &a58ac8d170ea24d93d3f1e9bf855a1499;
 &a6f6d1254782b7d8b99b1f64ab6b14fb4;
+&a618e97c4a2adaafbe932c5a692e1e1a4;
 &ab455a000060a5257c93e171dd095663b;
 &a7dab8411a30ab38bb32d8a6cb382d091;
 &a04c09cc82e552dfddc2df535c237784d;
+&a3b333d87d664a9f988ae41e7ad6d4ef3;
+&abe453b38858b0e2157f616fae73bbf40;
 &a4f444772ef6e1e33c0857c1f2223a46d;
+&abcc15da4eb648cbb338aaaad9d62b931;
+&a36199eb7d918ebd176813cedac5e31af;
 &aa4454f551f863eb0c29c3a7834d52089;
+&a31a489359a80825e1d92e576b6a7cba4;
 &a9263c04cc8830e3676cf4992c683e874;
 </part>
 </book>

@@ -13,7 +13,7 @@ assert_checktrue(height > 0);
 capabilities = imvideocapabilities();
 assert_checktrue(capabilities.readFrame);
 assert_checktrue(capabilities.writeVideo);
-assert_checkequal(capabilities.propertyGetSet, %f);
+assert_checkequal(capabilities.propertyGetSet, %t);
 
 n = aviopen(videoPath);
 opened = avilistopened();

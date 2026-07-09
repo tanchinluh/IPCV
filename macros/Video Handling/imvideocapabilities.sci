@@ -16,6 +16,7 @@ function capabilities = imvideocapabilities()
     capabilities.writeVideo = %t;
     capabilities.openCamera = %t;
     capabilities.readCamera = %t;
-    capabilities.propertyGetSet = %f;
-    capabilities.propertyGetSetReason = "No video/camera property gateway is exposed in this IPCV build.";
+    capabilities.propertyGetSet = %t;
+    capabilities.seekVideo = %t;
+    capabilities.propertyGetSetReason = "OpenCV backend support varies by property and device.";
 endfunction

@@ -103,6 +103,12 @@ function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, mo
         "        case ""yolo"" then";
         "            detections = dnn_decode_yolo(matrix(out, -1, size(out, ""*"")), [size(S, 2) size(S, 1)]);";
         "            disp(detections);";
+        "        case ""ssd"" then";
+        "            detections = dnn_decode_ssd(out, [size(S, 2) size(S, 1)]);";
+        "            disp(detections);";
+        "        case ""yunet"" then";
+        "            detections = dnn_decode_yunet(out, [size(S, 2) size(S, 1)]);";
+        "            disp(detections);";
         "        case ""segmentation"" then";
         "            if size(size(out), ""*"") >= 3 then";
         "                mask = dnn_decode_segmentation(out);";

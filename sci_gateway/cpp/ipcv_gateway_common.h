@@ -95,8 +95,12 @@ extern "C"
 	int sci_imresize(char * fname, void* pvApiCtx);
 	int sci_imsubtract(char * fname, void* pvApiCtx);
 	int sci_int_affinetransform(char * fname, void* pvApiCtx);
+	int sci_int_avi_getproperty(char * fname, void* pvApiCtx);
+	int sci_int_avi_setproperty(char * fname, void* pvApiCtx);
 	int sci_int_bgr2lab(char * fname, void* pvApiCtx);
 	int sci_int_canny(char *fname, void* pvApiCtx);
+	int sci_int_cam_getproperty(char * fname, void* pvApiCtx);
+	int sci_int_cam_setproperty(char * fname, void* pvApiCtx);
 	int sci_int_cvtcolor(char *fname, void* pvApiCtx);
 	int sci_int_detectobjects(char * fname, void* pvApiCtx);
 	int sci_int_dnn_forward(char * fname, void* pvApiCtx);
