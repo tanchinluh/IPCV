@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imwarpPerspective" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imwarpPerspective</refname><refpurpose>Apply a perspective image warp.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>imout = imwarpPerspective(imin, warpmat)
+imout = imwarpPerspective(imin, warpmat, width, height)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imwarpPerspective</function> is a convenience wrapper over <function>imtransform</function> with perspective mode.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+mat = eye(3, 3);
+out = imwarpPerspective(im, mat);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imwarpAffine">imwarpAffine</link></member><member><link linkend="imtransform">imtransform</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

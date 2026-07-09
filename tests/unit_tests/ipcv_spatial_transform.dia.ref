@@ -37,6 +37,8 @@ affinePublic = imtransform(small, affineMat, "affine", 3, 2);
 assert_checkequal(typeof(affinePublic), "uint8");
 assert_checkequal(size(affinePublic), [2 3]);
 assert_checkequal(affinePublic, small);
+affineWarp = imwarpAffine(small, affineMat, 3, 2);
+assert_checkequal(affineWarp, small);
 
 perspectiveIdentity = [1 0 0; 0 1 0; 0 0 1];
 perspectiveOut = int_perspectivetransform(small, perspectiveIdentity, 3, 2);
@@ -51,6 +53,8 @@ perspectivePublic = imtransform(small, perspectiveMat, "perspective", 3, 2);
 assert_checkequal(typeof(perspectivePublic), "uint8");
 assert_checkequal(size(perspectivePublic), [2 3]);
 assert_checkequal(perspectivePublic, small);
+perspectiveWarp = imwarpPerspective(small, perspectiveMat, 3, 2);
+assert_checkequal(perspectiveWarp, small);
 
 rotatedCropped = imrotate(small, 0, 1);
 assert_checkequal(typeof(rotatedCropped), "uint8");

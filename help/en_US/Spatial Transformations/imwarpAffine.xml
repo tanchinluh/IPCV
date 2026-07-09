@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imwarpAffine" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imwarpAffine</refname><refpurpose>Apply an affine image warp.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>imout = imwarpAffine(imin, warpmat)
+imout = imwarpAffine(imin, warpmat, width, height)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imwarpAffine</function> is a convenience wrapper over <function>imtransform</function> with affine mode.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+mat = [1 0 0; 0 1 0];
+out = imwarpAffine(im, mat);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imwarpPerspective">imwarpPerspective</link></member><member><link linkend="imtransform">imtransform</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

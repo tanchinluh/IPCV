@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immatch" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immatch</refname><refpurpose>Match feature descriptors.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>m = immatch(des1, des2)
+m = immatch(des1, des2, method)
+m = immatch(des1, des2, method, normType)</synopsis></refsynopsisdiv>
+<refsection role="arguments"><title>Arguments</title><variablelist>
+<varlistentry><term>des1, des2 :</term><listitem><para>Descriptor matrices.</para></listitem></varlistentry>
+<varlistentry><term>method :</term><listitem><para><literal>BruteForce</literal> or <literal>FLANN</literal>. Default is <literal>BruteForce</literal>.</para></listitem></varlistentry>
+<varlistentry><term>normType :</term><listitem><para>OpenCV norm type used by brute-force matching.</para></listitem></varlistentry>
+<varlistentry><term>m :</term><listitem><para>Matching matrix.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>immatch</function> dispatches to the existing brute-force or FLANN matcher wrappers.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "balloons_gray.png"));
+f = imdetect(im, "ORB");
+d = imextract(im, f);
+m = immatch(d, d);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect">imdetect</link></member><member><link linkend="imextract">imextract</link></member><member><link linkend="imbestmatches">imbestmatches</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -10,6 +10,10 @@ videoPath = fullpath(getIPCVpath() + "/images/video.avi");
 assert_checktrue(frames > 0);
 assert_checktrue(width > 0);
 assert_checktrue(height > 0);
+props = imvideoprops();
+assert_checkequal(props.frame_width, 3);
+assert_checkequal(props.frame_height, 4);
+assert_checkequal(props.fps, 5);
 
 n = aviopen(videoPath);
 opened = avilistopened();

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="impsnr" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>impsnr</refname><refpurpose>Compute peak signal-to-noise ratio between two images.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = impsnr(im1, im2)
+value = impsnr(im1, im2, peak)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>impsnr</function> reports PSNR in dB using <function>immse</function>.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+value = impsnr(im, im);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="immse">immse</link></member><member><link linkend="imssim">imssim</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

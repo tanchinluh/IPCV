@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imdetect" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imdetect</refname><refpurpose>Detect image features using a named detector.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>fobj = imdetect(im)
+fobj = imdetect(im, method)</synopsis></refsynopsisdiv>
+<refsection role="arguments"><title>Arguments</title><variablelist>
+<varlistentry><term>im :</term><listitem><para>Input image.</para></listitem></varlistentry>
+<varlistentry><term>method :</term><listitem><para>Detector name: <literal>ORB</literal>, <literal>SIFT</literal>, <literal>BRISK</literal>, <literal>FAST</literal>, <literal>GFTT</literal>, <literal>MSER</literal>, <literal>STAR</literal>, or <literal>SURF</literal>. Default is <literal>ORB</literal>.</para></listitem></varlistentry>
+<varlistentry><term>fobj :</term><listitem><para>Feature object returned by the selected detector.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>imdetect</function> dispatches to the individual OpenCV 5 feature detector wrappers.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "balloons_gray.png"));
+f = imdetect(im, "ORB");
+imshow(im); plotfeature(f);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imextract">imextract</link></member><member><link linkend="immatch">immatch</link></member><member><link linkend="plotfeature">plotfeature</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

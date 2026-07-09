@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immse" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immse</refname><refpurpose>Compute mean squared error between two images.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = immse(im1, im2)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>immse</function> computes the mean squared pixel difference across all channels.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = uint8([0 10; 20 30]);
+value = immse(im, im);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="impsnr">impsnr</link></member><member><link linkend="imssim">imssim</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imvideoprops" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imvideoprops</refname><refpurpose>Return common OpenCV video capture property IDs.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>props = imvideoprops()</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imvideoprops</function> returns a struct of common OpenCV video capture property IDs.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+props = imvideoprops();
+disp(props.frame_width);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="aviinfo">aviinfo</link></member><member><link linkend="avireadframe">avireadframe</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imminmaxloc" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imminmaxloc</refname><refpurpose>Compute per-channel extrema and their first locations.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[minValue, maxValue, minLocation, maxLocation] = imminmaxloc(im)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imminmaxloc</function> returns per-channel minimum and maximum values with first [row column] locations.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = uint8([0 10; 20 30]);
+[lo, hi, loLoc, hiLoc] = imminmaxloc(im);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imminmax">imminmax</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

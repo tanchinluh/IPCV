@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imextract" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imextract</refname><refpurpose>Extract descriptors for a feature object.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>des = imextract(im, fobj)
+des = imextract(im, fobj, method)</synopsis></refsynopsisdiv>
+<refsection role="arguments"><title>Arguments</title><variablelist>
+<varlistentry><term>im :</term><listitem><para>Input image.</para></listitem></varlistentry>
+<varlistentry><term>fobj :</term><listitem><para>Feature object returned by <function>imdetect</function> or an individual detector.</para></listitem></varlistentry>
+<varlistentry><term>method :</term><listitem><para>Descriptor method. Default is <literal>fobj.type</literal>.</para></listitem></varlistentry>
+<varlistentry><term>des :</term><listitem><para>Descriptor matrix.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>imextract</function> dispatches to ORB, SIFT, BRISK, or SURF descriptor extractors.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "balloons_gray.png"));
+f = imdetect(im, "ORB");
+d = imextract(im, f);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect">imdetect</link></member><member><link linkend="immatch">immatch</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

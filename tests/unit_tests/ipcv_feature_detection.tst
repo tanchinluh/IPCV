@@ -41,6 +41,12 @@ assert_checkequal(size(orb.x, 2), orb.n);
 orbDescriptors = imextract_DescriptorORB(S, orb);
 assert_checkequal(size(orbDescriptors), [orb.n 32]);
 
+orbUnified = imdetect(S, "ORB");
+assert_checkequal(orbUnified.type, "ORB");
+assert_checkequal(orbUnified.n, orb.n);
+orbUnifiedDescriptors = imextract(S, orbUnified);
+assert_checkequal(size(orbUnifiedDescriptors), [orbUnified.n 32]);
+
 sift = imdetect_SIFT(S);
 assert_checkequal(sift.type, "SIFT");
 assert_checktrue(sift.n >= 0);
@@ -56,6 +62,10 @@ orbDescriptors2 = imextract_DescriptorORB(S2, orb2);
 matches = immatch_BruteForce(orbDescriptors, orbDescriptors2, 4);
 assert_checkequal(size(matches, 1), 4);
 assert_checkequal(size(matches, 2), orb.n);
+
+matchesUnified = immatch(orbDescriptors, orbDescriptors2);
+assert_checkequal(size(matchesUnified, 1), 4);
+assert_checkequal(size(matchesUnified, 2), orb.n);
 
 flannMatches = immatch_Flann(orbDescriptors, orbDescriptors2);
 assert_checkequal(size(flannMatches, 1), 4);

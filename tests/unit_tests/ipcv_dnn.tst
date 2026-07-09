@@ -22,6 +22,9 @@ info = dnn_info(net, [28, 28], 1);
 assert_checkequal(info.ptr, net.ptr);
 assert_checktrue(info.layercount > 0);
 assert_checktrue(info.flops > 0);
+presets = dnn_presets();
+assert_checkequal(presets.imagenet.size, [224 224]);
+assert_checkequal(presets.clip.size, [224 224]);
 
 S = imread(dnn_path + "3.jpg");
 out = dnn_forward(net, ~S, [28, 28]);

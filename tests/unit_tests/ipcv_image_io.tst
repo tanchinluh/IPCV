@@ -22,6 +22,12 @@ assert_checktrue(imwritable(fullpath(TMPDIR + "/ipcv_image_io_capability.jpg")))
 assert_checkfalse(imwritable(".ipcv_unknown"));
 extensions = imwritableexts();
 assert_checktrue(or(extensions == ".png"));
+readFlags = imreadflags();
+assert_checkequal(readFlags.grayscale, 0);
+assert_checkequal(readFlags.color, 1);
+writeParams = imwriteparams();
+assert_checkequal(writeParams.png_compression_min, 0);
+assert_checkequal(writeParams.png_compression_max, 9);
 
 patch = img(1:16, 1:16, :);
 outPath = fullpath(TMPDIR + "/ipcv_image_io.png");

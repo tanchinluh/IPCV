@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imnormalize" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imnormalize</refname><refpurpose>Normalize image values to a target range.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imnormalize(im)
+out = imnormalize(im, alpha, beta)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imnormalize</function> scales each channel independently to <literal>[alpha, beta]</literal>.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imnormalize(im);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imminmax">imminmax</link></member><member><link linkend="immeanstddev">immeanstddev</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>
