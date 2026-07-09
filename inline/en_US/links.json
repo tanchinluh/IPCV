@@ -37,6 +37,7 @@
   "dnn_topk": "TBX/help/en_US/Deep Learning/dnn_topk.xml",
   "dnn_unloadallmodels": "TBX/help/en_US/Deep Learning/dnn_unloadallmodels.xml",
   "dnn_unloadmodel": "TBX/help/en_US/Deep Learning/dnn_unloadmodel.xml",
+  "dnn_zoo_modelinfo": "TBX/help/en_US/Deep Learning/dnn_zoo_modelinfo.xml",
   "edge": "TBX/help/en_US/Image Analysis and Statistics/edge.xml",
   "fft2pad": "TBX/help/en_US/Filter Design and Visualization/fft2pad.xml",
   "filter2": "TBX/help/en_US/Image Linear Filtering/filter2.xml",

@@ -238,6 +238,18 @@
           <div class="value" id="detailSize">-</div>
         </div>
         <div class="field">
+          <div class="label">Task</div>
+          <div class="value" id="detailTask">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Suggested Input</div>
+          <div class="value" id="detailInput">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Sample Decoder</div>
+          <div class="value" id="detailDecoder">-</div>
+        </div>
+        <div class="field">
           <div class="label">OpenCV Zoo Path</div>
           <div class="value" id="detailPath">-</div>
         </div>
@@ -248,6 +260,10 @@
         <div class="field">
           <div class="label">Companion Files</div>
           <div class="value" id="detailAssets">-</div>
+        </div>
+        <div class="field">
+          <div class="label">Notes</div>
+          <div class="value" id="detailNotes">-</div>
         </div>
         <div class="field">
           <div class="label">Default Folder</div>
@@ -371,11 +387,17 @@
       const model = state.selected;
       document.getElementById("detailName").textContent = model ? model.name : "-";
       document.getElementById("detailGroup").textContent = model ? model.group : "-";
+      document.getElementById("detailTask").textContent = model ? (model.task || "-") : "-";
+      document.getElementById("detailInput").textContent = model && model.inputSize
+        ? model.inputSize.join(" x ")
+        : "-";
+      document.getElementById("detailDecoder").textContent = model ? (model.decoder || "-") : "-";
       document.getElementById("detailPath").textContent = model ? model.path : "-";
       document.getElementById("detailUrl").textContent = model ? model.url : "-";
       document.getElementById("detailAssets").textContent = model && model.assets && model.assets.length
         ? model.assets.map((asset) => asset.name).join(", ")
         : "-";
+      document.getElementById("detailNotes").textContent = model ? (model.notes || "-") : "-";
       document.getElementById("downloadButton").disabled = !model;
       document.getElementById("scriptButton").disabled = !model;
 

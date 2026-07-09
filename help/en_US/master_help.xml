@@ -29,6 +29,7 @@
 <!ENTITY ae371b2e26df0d6ee67ceb117fcee32ae SYSTEM "Deep Learning/dnn_topk.xml">
 <!ENTITY add6f7b0b17190308a200d55aa243f52d SYSTEM "Deep Learning/dnn_unloadallmodels.xml">
 <!ENTITY aefeba08fae178e1dc9564d416d439e1f SYSTEM "Deep Learning/dnn_unloadmodel.xml">
+<!ENTITY a8ffceec58fc1d65006b65b162fe45aa5 SYSTEM "Deep Learning/dnn_zoo_modelinfo.xml">
 <!ENTITY aa11dba09d05915608ef73f144ad78ef9 SYSTEM "Feature Detection, Description and Matching/imbestmatches.xml">
 <!ENTITY ac9c7133c8a11a346b9cc245fd621f009 SYSTEM "Feature Detection, Description and Matching/imdetect.xml">
 <!ENTITY a51b60c7eb38737b6719d4c0801770ca2 SYSTEM "Feature Detection, Description and Matching/imdetect_BRISK.xml">
@@ -282,6 +283,7 @@
 &ae371b2e26df0d6ee67ceb117fcee32ae;
 &add6f7b0b17190308a200d55aa243f52d;
 &aefeba08fae178e1dc9564d416d439e1f;
+&a8ffceec58fc1d65006b65b162fe45aa5;
 </part>
 <part xml:id='section_bb30ff308ed17b65b9dd2a1108716647'>
 <title>Feature Detection, Description and Matching</title>

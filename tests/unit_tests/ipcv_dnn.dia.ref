@@ -25,6 +25,17 @@ assert_checktrue(info.flops > 0);
 presets = dnn_presets();
 assert_checkequal(presets.imagenet.size, [224 224]);
 assert_checkequal(presets.clip.size, [224 224]);
+zooClass = dnn_zoo_modelinfo("image_classification_mobilenetv2_2022apr.onnx", "image_classification_mobilenet");
+assert_checkequal(zooClass.task, "classification");
+assert_checkequal(zooClass.inputSize, [224 224]);
+assert_checkequal(zooClass.decoder, "classification");
+zooYolo = dnn_zoo_modelinfo("object_detection_yolox_2022nov.onnx", "object_detection_yolox");
+assert_checkequal(zooYolo.task, "object_detection");
+assert_checkequal(zooYolo.inputSize, [640 640]);
+assert_checkequal(zooYolo.decoder, "yolo");
+zooSeg = dnn_zoo_modelinfo("image_segmentation_efficientvit.onnx", "image_segmentation_efficientvit");
+assert_checkequal(zooSeg.task, "segmentation");
+assert_checkequal(zooSeg.decoder, "segmentation");
 
 probs = dnn_softmax([1; 2; 3]);
 assert_checktrue(abs(sum(probs) - 1) < 0.000001);

@@ -26,6 +26,7 @@ function json = ipcv_opencv_zoo_gui_fetch_models_json()
 
         group_name = parts(2);
         model_name = parts($);
+        model_info = dnn_zoo_modelinfo(model_name, group_name);
         group_prefix = "models/" + group_name + "/";
         size_value = 0;
         lfs_pointer = %f;
@@ -113,6 +114,10 @@ function json = ipcv_opencv_zoo_gui_fetch_models_json()
             """blobUrl"":""" + ipcv_opencv_zoo_gui_json_escape(entry.url) + """," + ..
             """size"":" + string(size_value) + "," + ..
             """lfsPointer"":" + lfs_pointer_json + "," + ..
+            """task"":""" + ipcv_opencv_zoo_gui_json_escape(model_info.task) + """," + ..
+            """inputSize"":[" + string(model_info.inputSize(1)) + "," + string(model_info.inputSize(2)) + "]," + ..
+            """decoder"":""" + ipcv_opencv_zoo_gui_json_escape(model_info.decoder) + """," + ..
+            """notes"":""" + ipcv_opencv_zoo_gui_json_escape(model_info.notes) + """," + ..
             """assets"":" + assets_json + ..
             "}";
     end
