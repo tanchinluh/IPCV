@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_softmax" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>dnn_softmax</refname><refpurpose>Compute softmax probabilities.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>y = dnn_softmax(x)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>dnn_softmax</function> converts raw scores to probabilities.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+p = dnn_softmax([1; 2; 3]);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_topk">dnn_topk</link></member><member><link linkend="dnn_decode_classification">dnn_decode_classification</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

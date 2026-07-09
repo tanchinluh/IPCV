@@ -7,6 +7,9 @@
 <!ENTITY a0e0583eaa64f6590df7e28936d7b88ae SYSTEM "Camera Handling/camlistopened.xml">
 <!ENTITY a419c6de803a4e5b9b0f82aaeae38d215 SYSTEM "Camera Handling/camopen.xml">
 <!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "Camera Handling/camread.xml">
+<!ENTITY abca280b80c84194e04a19b8955c9eb69 SYSTEM "Deep Learning/dnn_decode_classification.xml">
+<!ENTITY ac7969b26dede926148833cc99b352314 SYSTEM "Deep Learning/dnn_decode_segmentation.xml">
+<!ENTITY acf79ae117393265197cff7d771c42f99 SYSTEM "Deep Learning/dnn_decode_yolo.xml">
 <!ENTITY a8351b08ca2f4c8491063d4a6bf0a0f46 SYSTEM "Deep Learning/dnn_forward.xml">
 <!ENTITY a3e3712481cfbd1422577950e57d41473 SYSTEM "Deep Learning/dnn_getflops.xml">
 <!ENTITY a8e0f8b0be3700adbcfe6f7d1c9ce223a SYSTEM "Deep Learning/dnn_getlayertypes.xml">
@@ -14,6 +17,7 @@
 <!ENTITY a6c87ce05f5728e69e98e4d1731cf9ab5 SYSTEM "Deep Learning/dnn_getparam.xml">
 <!ENTITY a268e680d49717124627671f25367f58d SYSTEM "Deep Learning/dnn_info.xml">
 <!ENTITY a8db86126763070f0bb05f036119b3ecd SYSTEM "Deep Learning/dnn_list.xml">
+<!ENTITY a5d1fc8e2af6ae9f85afac72533c8c6dc SYSTEM "Deep Learning/dnn_nms.xml">
 <!ENTITY ac41c8135afdf47bea3d5da721766edcd SYSTEM "Deep Learning/dnn_presets.xml">
 <!ENTITY af3e51ce05d42d970888cc187fdec05cd SYSTEM "Deep Learning/dnn_readmodel.xml">
 <!ENTITY a48a5d6df47aff98af4242c4aec41619b SYSTEM "Deep Learning/dnn_setpreferable.xml">
@@ -21,6 +25,8 @@
 <!ENTITY a6d2f7dab4a299814da917608e14b2e7c SYSTEM "Deep Learning/dnn_showparam.xml">
 <!ENTITY a167f15aa118d3c950bfc88d5f0bc89d4 SYSTEM "Deep Learning/dnn_showparamf2d.xml">
 <!ENTITY a8559ac863d95cfb86b22e5d064a6fa7e SYSTEM "Deep Learning/dnn_showparamf3d.xml">
+<!ENTITY a00298296be3ccf36ed236171899aed50 SYSTEM "Deep Learning/dnn_softmax.xml">
+<!ENTITY ae371b2e26df0d6ee67ceb117fcee32ae SYSTEM "Deep Learning/dnn_topk.xml">
 <!ENTITY add6f7b0b17190308a200d55aa243f52d SYSTEM "Deep Learning/dnn_unloadallmodels.xml">
 <!ENTITY aefeba08fae178e1dc9564d416d439e1f SYSTEM "Deep Learning/dnn_unloadmodel.xml">
 <!ENTITY aa11dba09d05915608ef73f144ad78ef9 SYSTEM "Feature Detection, Description and Matching/imbestmatches.xml">
@@ -42,6 +48,7 @@
 <!ENTITY afe251cdd9cfd8b6d1bcd76162c481ca6 SYSTEM "Feature Detection, Description and Matching/immatch.xml">
 <!ENTITY a1f8919ffa485207d10a799889db8a6f1 SYSTEM "Feature Detection, Description and Matching/immatch_BruteForce.xml">
 <!ENTITY abe9ec9cb3ec8d48935a9c2921957b1d1 SYSTEM "Feature Detection, Description and Matching/immatch_Flann.xml">
+<!ENTITY ac24b36c7181b138046afa38afdea82ce SYSTEM "Feature Detection, Description and Matching/immatchimages.xml">
 <!ENTITY ad260dbea0cbaa4164b18c97dea07bba4 SYSTEM "Feature Detection, Description and Matching/plotfeature.xml">
 <!ENTITY a8e113d408f48ecadc397a4cc5e74fae3 SYSTEM "Filter Design and Visualization/fft2pad.xml">
 <!ENTITY a3ca2b0efdce19f2b140c3941cd75c268 SYSTEM "Filter Design and Visualization/immesh.xml">
@@ -50,8 +57,11 @@
 <!ENTITY a4aed5f460ba5e42729e99e0a1c25858b SYSTEM "Filter Design and Visualization/mkfftfilter.xml">
 <!ENTITY a1b861fd021e04a44ca7a3a29ab4dd502 SYSTEM "Image Analysis and Statistics/corr2.xml">
 <!ENTITY a462f305ab08e025e3ac69ec551f1761c SYSTEM "Image Analysis and Statistics/edge.xml">
+<!ENTITY af430efbb18b947513f90634d566ca45f SYSTEM "Image Analysis and Statistics/imcalchist.xml">
+<!ENTITY a9dc9ac973150ca5ff1fced6689cad2ab SYSTEM "Image Analysis and Statistics/imcomparehist.xml">
 <!ENTITY a886482e8f59b6f3ba105de4b2357e117 SYSTEM "Image Analysis and Statistics/imcountnonzero.xml">
 <!ENTITY adfc1d4e58c8e71bc204b3d78e42533c1 SYSTEM "Image Analysis and Statistics/imhist.xml">
+<!ENTITY ad6375ded0258c63333358bd59d927de5 SYSTEM "Image Analysis and Statistics/imhist2.xml">
 <!ENTITY a942b45e29b96ccbf3863abdfd238fc56 SYSTEM "Image Analysis and Statistics/immeanstddev.xml">
 <!ENTITY afa7ffaf4966e4f677e94437321243777 SYSTEM "Image Analysis and Statistics/imminmax.xml">
 <!ENTITY a93440879994b4605f250cdb72c3e1af9 SYSTEM "Image Analysis and Statistics/imminmaxloc.xml">
@@ -181,6 +191,7 @@
 <!ENTITY a947d15413cea1f8103c2258099f73b90 SYSTEM "Spatial Transformations/imcrop.xml">
 <!ENTITY aa6009432c4bf7022315e8e496277df99 SYSTEM "Spatial Transformations/imcropm.xml">
 <!ENTITY a72492677a58f4af6e2e445e259453551 SYSTEM "Spatial Transformations/impyramid.xml">
+<!ENTITY a73f5a8a9a95d150d24da21325b965c63 SYSTEM "Spatial Transformations/imremap.xml">
 <!ENTITY aec8de7023eb8d64453c151ad8f4df2d1 SYSTEM "Spatial Transformations/imresize.xml">
 <!ENTITY abbb05ab99863797d2c530ab2858fe0d9 SYSTEM "Spatial Transformations/imrotate.xml">
 <!ENTITY a743cdd0060309542ce4c1544da37eac7 SYSTEM "Spatial Transformations/imwarpAffine.xml">
@@ -219,6 +230,7 @@
 <!ENTITY a7dab8411a30ab38bb32d8a6cb382d091 SYSTEM "Video Handling/avilistopened.xml">
 <!ENTITY a04c09cc82e552dfddc2df535c237784d SYSTEM "Video Handling/aviopen.xml">
 <!ENTITY a4f444772ef6e1e33c0857c1f2223a46d SYSTEM "Video Handling/avireadframe.xml">
+<!ENTITY aa4454f551f863eb0c29c3a7834d52089 SYSTEM "Video Handling/imvideocapabilities.xml">
 <!ENTITY a9263c04cc8830e3676cf4992c683e874 SYSTEM "Video Handling/imvideoprops.xml">
 <!--End Entities-->
 ]>
@@ -248,6 +260,9 @@
 </part>
 <part xml:id='section_a25500554379bf5680a9653fe3f13876'>
 <title>Deep Learning</title>
+&abca280b80c84194e04a19b8955c9eb69;
+&ac7969b26dede926148833cc99b352314;
+&acf79ae117393265197cff7d771c42f99;
 &a8351b08ca2f4c8491063d4a6bf0a0f46;
 &a3e3712481cfbd1422577950e57d41473;
 &a8e0f8b0be3700adbcfe6f7d1c9ce223a;
@@ -255,6 +270,7 @@
 &a6c87ce05f5728e69e98e4d1731cf9ab5;
 &a268e680d49717124627671f25367f58d;
 &a8db86126763070f0bb05f036119b3ecd;
+&a5d1fc8e2af6ae9f85afac72533c8c6dc;
 &ac41c8135afdf47bea3d5da721766edcd;
 &af3e51ce05d42d970888cc187fdec05cd;
 &a48a5d6df47aff98af4242c4aec41619b;
@@ -262,6 +278,8 @@
 &a6d2f7dab4a299814da917608e14b2e7c;
 &a167f15aa118d3c950bfc88d5f0bc89d4;
 &a8559ac863d95cfb86b22e5d064a6fa7e;
+&a00298296be3ccf36ed236171899aed50;
+&ae371b2e26df0d6ee67ceb117fcee32ae;
 &add6f7b0b17190308a200d55aa243f52d;
 &aefeba08fae178e1dc9564d416d439e1f;
 </part>
@@ -286,6 +304,7 @@
 &afe251cdd9cfd8b6d1bcd76162c481ca6;
 &a1f8919ffa485207d10a799889db8a6f1;
 &abe9ec9cb3ec8d48935a9c2921957b1d1;
+&ac24b36c7181b138046afa38afdea82ce;
 &ad260dbea0cbaa4164b18c97dea07bba4;
 </part>
 <part xml:id='section_135e3d584a7be9b5ce22ba820eed69fc'>
@@ -300,8 +319,11 @@
 <title>Image Analysis and Statistics</title>
 &a1b861fd021e04a44ca7a3a29ab4dd502;
 &a462f305ab08e025e3ac69ec551f1761c;
+&af430efbb18b947513f90634d566ca45f;
+&a9dc9ac973150ca5ff1fced6689cad2ab;
 &a886482e8f59b6f3ba105de4b2357e117;
 &adfc1d4e58c8e71bc204b3d78e42533c1;
+&ad6375ded0258c63333358bd59d927de5;
 &a942b45e29b96ccbf3863abdfd238fc56;
 &afa7ffaf4966e4f677e94437321243777;
 &a93440879994b4605f250cdb72c3e1af9;
@@ -473,6 +495,7 @@
 &a947d15413cea1f8103c2258099f73b90;
 &aa6009432c4bf7022315e8e496277df99;
 &a72492677a58f4af6e2e445e259453551;
+&a73f5a8a9a95d150d24da21325b965c63;
 &aec8de7023eb8d64453c151ad8f4df2d1;
 &abbb05ab99863797d2c530ab2858fe0d9;
 &a743cdd0060309542ce4c1544da37eac7;
@@ -523,6 +546,7 @@
 &a7dab8411a30ab38bb32d8a6cb382d091;
 &a04c09cc82e552dfddc2df535c237784d;
 &a4f444772ef6e1e33c0857c1f2223a46d;
+&aa4454f551f863eb0c29c3a7834d52089;
 &a9263c04cc8830e3676cf4992c683e874;
 </part>
 </book>

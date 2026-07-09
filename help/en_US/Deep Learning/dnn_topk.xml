@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_topk" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>dnn_topk</refname><refpurpose>Return top K scores and indices.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[scores, indices, labels] = dnn_topk(x, k, labels)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>dnn_topk</function> sorts a score vector in descending order and returns the top entries.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+[scores, indices] = dnn_topk([0.1; 0.8; 0.2], 2);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_softmax">dnn_softmax</link></member><member><link linkend="dnn_decode_classification">dnn_decode_classification</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

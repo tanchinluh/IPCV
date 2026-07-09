@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcalchist" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imcalchist</refname><refpurpose>Compute per-channel image histograms.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[counts, cells] = imcalchist(im, bins)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imcalchist</function> extends <function>imhist</function> to return one histogram per channel.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+[counts, cells] = imcalchist(im, 16);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhist">imhist</link></member><member><link linkend="imcomparehist">imcomparehist</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

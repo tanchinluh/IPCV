@@ -26,6 +26,25 @@ presets = dnn_presets();
 assert_checkequal(presets.imagenet.size, [224 224]);
 assert_checkequal(presets.clip.size, [224 224]);
 
+probs = dnn_softmax([1; 2; 3]);
+assert_checktrue(abs(sum(probs) - 1) < 0.000001);
+assert_checkequal(find(probs == max(probs)), 3);
+[topScores, topIndices, topLabels] = dnn_topk([0.1; 0.8; 0.2], 2, ["a"; "b"; "c"]);
+assert_checkequal(topIndices, [2; 3]);
+assert_checkequal(topLabels, ["b"; "c"]);
+decoded = dnn_decode_classification([0.1; 0.8; 0.2], ["a"; "b"; "c"], 2, %f);
+assert_checkequal(decoded.indices, [2; 3]);
+assert_checkequal(decoded.labels, ["b"; "c"]);
+keep = dnn_nms([0 0 10 10; 1 1 10 10; 50 50 10 10], [0.9; 0.8; 0.7], 0.1, 0.4);
+assert_checktrue(or(keep == 1));
+assert_checktrue(or(keep == 3));
+yolo = dnn_decode_yolo([0.5 0.5 0.2 0.2 0.9 0.1 0.8], [640 480], 0.25, 0.45);
+assert_checkequal(size(yolo.boxes), [1 4]);
+assert_checkequal(yolo.classIds, 2);
+segScores = cat(3, [0.9 0.1; 0.1 0.2], [0.1 0.9; 0.8 0.7]);
+segMask = dnn_decode_segmentation(segScores);
+assert_checkequal(segMask, [1 2; 2 2]);
+
 S = imread(dnn_path + "3.jpg");
 out = dnn_forward(net, ~S, [28, 28]);
 assert_checktrue(size(out, "*") > 0);

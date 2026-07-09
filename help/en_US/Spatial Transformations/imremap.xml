@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imremap" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imremap</refname><refpurpose>Remap an image using x/y coordinate maps.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>imout = imremap(imin, mapx, mapy, method)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imremap</function> is a macro implementation of nearest-neighbor coordinate remapping.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = uint8([1 2; 3 4]);
+out = imremap(im, [1 2; 1 2], [1 1; 2 2]);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imwarpAffine">imwarpAffine</link></member><member><link linkend="imwarpPerspective">imwarpPerspective</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

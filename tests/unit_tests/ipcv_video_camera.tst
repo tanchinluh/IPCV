@@ -14,6 +14,10 @@ props = imvideoprops();
 assert_checkequal(props.frame_width, 3);
 assert_checkequal(props.frame_height, 4);
 assert_checkequal(props.fps, 5);
+capabilities = imvideocapabilities();
+assert_checktrue(capabilities.readFrame);
+assert_checktrue(capabilities.writeVideo);
+assert_checkequal(capabilities.propertyGetSet, %f);
 
 n = aviopen(videoPath);
 opened = avilistopened();

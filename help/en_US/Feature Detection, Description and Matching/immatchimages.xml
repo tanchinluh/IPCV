@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immatchimages" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immatchimages</refname><refpurpose>Detect, describe, match, and draw image matches.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = immatchimages(im1, im2)
+[out, f1, f2, matches] = immatchimages(im1, im2, method, n, draw)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>immatchimages</function> runs the common detect-extract-match-best-draw workflow.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+im = imcreatechecker(8, 8, [1 0.5]);
+out = immatchimages(im, im, "ORB", 10, %t);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect">imdetect</link></member><member><link linkend="imextract">imextract</link></member><member><link linkend="immatch">immatch</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

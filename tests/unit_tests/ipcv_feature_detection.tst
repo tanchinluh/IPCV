@@ -77,6 +77,11 @@ assert_checkequal(size(drawn, 3), 3);
 assert_checktrue(size(drawn, 1) > 0);
 assert_checktrue(size(drawn, 2) > 0);
 
+drawnUnified = immatchimages(S, S2, "ORB", 5, %t);
+assert_checkequal(size(drawnUnified, 3), 3);
+assert_checktrue(size(drawnUnified, 1) > 0);
+assert_checktrue(size(drawnUnified, 2) > 0);
+
 star = imdetect_STAR(S);
 assert_checkequal(star.type, "STAR");
 assert_checkequal(star.n, 196);

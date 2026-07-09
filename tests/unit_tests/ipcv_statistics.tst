@@ -46,4 +46,17 @@ assert_checkequal(impsnr(gray, gray), %inf);
 assert_checkequal(imssim(gray, gray), 1);
 assert_checktrue(immse(gray, gray + 1) > 0);
 
+[histCounts, histCells] = imcalchist(gray, 6);
+assert_checkequal(size(histCounts, "*"), 6);
+assert_checkequal(size(histCells, "*"), 6);
+[rgbHist, rgbHistCells] = imcalchist(rgb, 6);
+assert_checkequal(size(rgbHist), [6 3]);
+assert_checkequal(size(rgbHistCells, "*"), 6);
+assert_checktrue(abs(imcomparehist(histCounts, histCounts) - 1) < 0.000001);
+assert_checkequal(imcomparehist(histCounts, histCounts, "intersection"), sum(histCounts));
+[hist2Counts, xcells, ycells] = imhist2([0 1; 1 2], [0 0; 1 1], [3 2]);
+assert_checkequal(sum(hist2Counts), 4);
+assert_checkequal(size(xcells, "*"), 3);
+assert_checkequal(size(ycells, "*"), 2);
+
 //==============================================================================

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_decode_yolo" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>dnn_decode_yolo</refname><refpurpose>Decode simple YOLO-style detection output.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>detections = dnn_decode_yolo(output, imageSize, confThreshold, nmsThreshold)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>dnn_decode_yolo</function> expects rows of <literal>[cx cy w h objectness class...]</literal> normalized to image size.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+out = [0.5 0.5 0.2 0.2 0.9 0.1 0.8];
+detections = dnn_decode_yolo(out, [640 480]);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_nms">dnn_nms</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

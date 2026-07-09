@@ -66,4 +66,8 @@ assert_checkequal(typeof(rotatedExpanded), "uint8");
 assert_checktrue(size(rotatedExpanded, 1) >= 3);
 assert_checktrue(size(rotatedExpanded, 2) >= 2);
 
+remapped = imremap(small, [1 2 3; 1 2 3], [1 1 1; 2 2 2]);
+assert_checkequal(typeof(remapped), "uint8");
+assert_checkequal(remapped, small);
+
 //==============================================================================

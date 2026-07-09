@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imvideocapabilities" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imvideocapabilities</refname><refpurpose>Report exposed video and camera capabilities.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>capabilities = imvideocapabilities()</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imvideocapabilities</function> reports whether video read/write, camera read, and property get/set wrappers are exposed in this build.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+capabilities = imvideocapabilities();
+disp(capabilities.propertyGetSet);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imvideoprops">imvideoprops</link></member><member><link linkend="aviinfo">aviinfo</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>
