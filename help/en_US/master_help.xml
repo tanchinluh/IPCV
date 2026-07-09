@@ -1,250 +1,250 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
 <!--Begin Entities-->
-<!ENTITY a270a59c317e1c8512365cea2e52c484c SYSTEM "Analytic Geometry/plot3dot.xml">
-<!ENTITY a602a49dd46591bfb55735733348d3a30 SYSTEM "Camera Handling/camclose.xml">
-<!ENTITY a265655c42c1b1485d6020d85cb0442a8 SYSTEM "Camera Handling/camcloseall.xml">
-<!ENTITY ace987250764b75fbc0f5fcaa3792ed69 SYSTEM "Camera Handling/camget.xml">
-<!ENTITY a0e0583eaa64f6590df7e28936d7b88ae SYSTEM "Camera Handling/camlistopened.xml">
-<!ENTITY a419c6de803a4e5b9b0f82aaeae38d215 SYSTEM "Camera Handling/camopen.xml">
-<!ENTITY a2dd4aeaf2e8cdf87583a28132f9ddfb4 SYSTEM "Camera Handling/camprops.xml">
-<!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "Camera Handling/camread.xml">
-<!ENTITY a365d491f9ac661a295f36a914ecb23b6 SYSTEM "Camera Handling/camset.xml">
-<!ENTITY abca280b80c84194e04a19b8955c9eb69 SYSTEM "Deep Learning/dnn_decode_classification.xml">
-<!ENTITY aa9f41b471415124047b42d6fd7492f61 SYSTEM "Deep Learning/dnn_decode_nanodet.xml">
-<!ENTITY ac7969b26dede926148833cc99b352314 SYSTEM "Deep Learning/dnn_decode_segmentation.xml">
-<!ENTITY ab0173f6a1359eb81ebfdbdca5b6cca57 SYSTEM "Deep Learning/dnn_decode_ssd.xml">
-<!ENTITY acf79ae117393265197cff7d771c42f99 SYSTEM "Deep Learning/dnn_decode_yolo.xml">
-<!ENTITY a2a70522023d7c401748829394050319e SYSTEM "Deep Learning/dnn_decode_yunet.xml">
-<!ENTITY a8351b08ca2f4c8491063d4a6bf0a0f46 SYSTEM "Deep Learning/dnn_forward.xml">
-<!ENTITY a3e3712481cfbd1422577950e57d41473 SYSTEM "Deep Learning/dnn_getflops.xml">
-<!ENTITY a8e0f8b0be3700adbcfe6f7d1c9ce223a SYSTEM "Deep Learning/dnn_getlayertypes.xml">
-<!ENTITY adbc6be5cdf2bebc1397c69994e682fcd SYSTEM "Deep Learning/dnn_getoutputs.xml">
-<!ENTITY a6c87ce05f5728e69e98e4d1731cf9ab5 SYSTEM "Deep Learning/dnn_getparam.xml">
-<!ENTITY a268e680d49717124627671f25367f58d SYSTEM "Deep Learning/dnn_info.xml">
-<!ENTITY a8db86126763070f0bb05f036119b3ecd SYSTEM "Deep Learning/dnn_list.xml">
-<!ENTITY a5d1fc8e2af6ae9f85afac72533c8c6dc SYSTEM "Deep Learning/dnn_nms.xml">
-<!ENTITY ac41c8135afdf47bea3d5da721766edcd SYSTEM "Deep Learning/dnn_presets.xml">
-<!ENTITY af3e51ce05d42d970888cc187fdec05cd SYSTEM "Deep Learning/dnn_readmodel.xml">
-<!ENTITY a48a5d6df47aff98af4242c4aec41619b SYSTEM "Deep Learning/dnn_setpreferable.xml">
-<!ENTITY a3ea6ca2ef7097637a477381826d77dbd SYSTEM "Deep Learning/dnn_showfeature.xml">
-<!ENTITY a6d2f7dab4a299814da917608e14b2e7c SYSTEM "Deep Learning/dnn_showparam.xml">
-<!ENTITY a167f15aa118d3c950bfc88d5f0bc89d4 SYSTEM "Deep Learning/dnn_showparamf2d.xml">
-<!ENTITY a8559ac863d95cfb86b22e5d064a6fa7e SYSTEM "Deep Learning/dnn_showparamf3d.xml">
-<!ENTITY a00298296be3ccf36ed236171899aed50 SYSTEM "Deep Learning/dnn_softmax.xml">
-<!ENTITY ae371b2e26df0d6ee67ceb117fcee32ae SYSTEM "Deep Learning/dnn_topk.xml">
-<!ENTITY add6f7b0b17190308a200d55aa243f52d SYSTEM "Deep Learning/dnn_unloadallmodels.xml">
-<!ENTITY aefeba08fae178e1dc9564d416d439e1f SYSTEM "Deep Learning/dnn_unloadmodel.xml">
-<!ENTITY a8ffceec58fc1d65006b65b162fe45aa5 SYSTEM "Deep Learning/dnn_zoo_modelinfo.xml">
-<!ENTITY aa11dba09d05915608ef73f144ad78ef9 SYSTEM "Feature Detection, Description and Matching/imbestmatches.xml">
-<!ENTITY ac9c7133c8a11a346b9cc245fd621f009 SYSTEM "Feature Detection, Description and Matching/imdetect.xml">
-<!ENTITY a51b60c7eb38737b6719d4c0801770ca2 SYSTEM "Feature Detection, Description and Matching/imdetect_BRISK.xml">
-<!ENTITY a716087f3d66875838117333e55129964 SYSTEM "Feature Detection, Description and Matching/imdetect_FAST.xml">
-<!ENTITY a1ade51fcda132d3c1d4f8188b04feb9e SYSTEM "Feature Detection, Description and Matching/imdetect_GFTT.xml">
-<!ENTITY a4ad007ebd5c0d11be5942ee750d7d1dd SYSTEM "Feature Detection, Description and Matching/imdetect_MSER.xml">
-<!ENTITY a3134395ea9f231bf44f6db8d48be533d SYSTEM "Feature Detection, Description and Matching/imdetect_ORB.xml">
-<!ENTITY a9c94e228be7bfcba715d38643ab8eff5 SYSTEM "Feature Detection, Description and Matching/imdetect_SIFT.xml">
-<!ENTITY a25565bd75eb5a6f26ce77f840ecc141e SYSTEM "Feature Detection, Description and Matching/imdetect_STAR.xml">
-<!ENTITY a84fd521ac95a22dab6bf42f4a31da67d SYSTEM "Feature Detection, Description and Matching/imdetect_SURF.xml">
-<!ENTITY a3eadd89490864b883b0c5f4b94739c09 SYSTEM "Feature Detection, Description and Matching/imdrawmatches.xml">
-<!ENTITY ad5f55f8636e58953ca9df2a452959928 SYSTEM "Feature Detection, Description and Matching/imextract.xml">
-<!ENTITY a290fd032c23c9d57a41bc13c6265263d SYSTEM "Feature Detection, Description and Matching/imextract_DescriptorBRISK.xml">
-<!ENTITY aef6d3e986696e004265a0ea0516afd23 SYSTEM "Feature Detection, Description and Matching/imextract_DescriptorORB.xml">
-<!ENTITY a7e0437e949e292f85c822f1e4eaf857f SYSTEM "Feature Detection, Description and Matching/imextract_DescriptorSIFT.xml">
-<!ENTITY a67f67423d39369bb6511cc4a436154c0 SYSTEM "Feature Detection, Description and Matching/imextract_DescriptorSURF.xml">
-<!ENTITY afe251cdd9cfd8b6d1bcd76162c481ca6 SYSTEM "Feature Detection, Description and Matching/immatch.xml">
-<!ENTITY a1f8919ffa485207d10a799889db8a6f1 SYSTEM "Feature Detection, Description and Matching/immatch_BruteForce.xml">
-<!ENTITY abe9ec9cb3ec8d48935a9c2921957b1d1 SYSTEM "Feature Detection, Description and Matching/immatch_Flann.xml">
-<!ENTITY ac24b36c7181b138046afa38afdea82ce SYSTEM "Feature Detection, Description and Matching/immatchimages.xml">
-<!ENTITY ad260dbea0cbaa4164b18c97dea07bba4 SYSTEM "Feature Detection, Description and Matching/plotfeature.xml">
-<!ENTITY a8e113d408f48ecadc397a4cc5e74fae3 SYSTEM "Filter Design and Visualization/fft2pad.xml">
-<!ENTITY a3ca2b0efdce19f2b140c3941cd75c268 SYSTEM "Filter Design and Visualization/immesh.xml">
-<!ENTITY abc912734e97747645030328e183d6604 SYSTEM "Filter Design and Visualization/imsmoothsurf.xml">
-<!ENTITY a62f7b21454f757fba904428a4168c2bd SYSTEM "Filter Design and Visualization/imsurf.xml">
-<!ENTITY a4aed5f460ba5e42729e99e0a1c25858b SYSTEM "Filter Design and Visualization/mkfftfilter.xml">
-<!ENTITY a1b861fd021e04a44ca7a3a29ab4dd502 SYSTEM "Image Analysis and Statistics/corr2.xml">
-<!ENTITY a462f305ab08e025e3ac69ec551f1761c SYSTEM "Image Analysis and Statistics/edge.xml">
-<!ENTITY af430efbb18b947513f90634d566ca45f SYSTEM "Image Analysis and Statistics/imcalchist.xml">
-<!ENTITY a9dc9ac973150ca5ff1fced6689cad2ab SYSTEM "Image Analysis and Statistics/imcomparehist.xml">
-<!ENTITY a886482e8f59b6f3ba105de4b2357e117 SYSTEM "Image Analysis and Statistics/imcountnonzero.xml">
-<!ENTITY adfc1d4e58c8e71bc204b3d78e42533c1 SYSTEM "Image Analysis and Statistics/imhist.xml">
-<!ENTITY ad6375ded0258c63333358bd59d927de5 SYSTEM "Image Analysis and Statistics/imhist2.xml">
-<!ENTITY a942b45e29b96ccbf3863abdfd238fc56 SYSTEM "Image Analysis and Statistics/immeanstddev.xml">
-<!ENTITY afa7ffaf4966e4f677e94437321243777 SYSTEM "Image Analysis and Statistics/imminmax.xml">
-<!ENTITY a93440879994b4605f250cdb72c3e1af9 SYSTEM "Image Analysis and Statistics/imminmaxloc.xml">
-<!ENTITY af2a190fd239a843a52f387cc3f7bf343 SYSTEM "Image Analysis and Statistics/immse.xml">
-<!ENTITY a142722e1a5715334ec27b64e754ef398 SYSTEM "Image Analysis and Statistics/imnormalize.xml">
-<!ENTITY a438c36c2fc4efa2b19aca0e50126742d SYSTEM "Image Analysis and Statistics/impixel.xml">
-<!ENTITY a086232b25a0fe2a1dfb00fb215c2ea3e SYSTEM "Image Analysis and Statistics/improfile.xml">
-<!ENTITY a2783024745cfadfc67ec854e4b371109 SYSTEM "Image Analysis and Statistics/impsnr.xml">
-<!ENTITY aab7a6bcdb8e18fdee993a0f87fd75a36 SYSTEM "Image Analysis and Statistics/imssim.xml">
-<!ENTITY a17ec432bcf2950de694f0150ec4c0148 SYSTEM "Image Analysis and Statistics/mean2.xml">
-<!ENTITY a5efcbef4dacfd4b2f9eaa3b84bc66665 SYSTEM "Image Analysis and Statistics/std2.xml">
-<!ENTITY aa742eae7f1a4f836b3d385b34d3aeb27 SYSTEM "Image Analysis and Statistics/stdev2.xml">
-<!ENTITY ae9c82fa1c558dd3ef5087d149edfb2c5 SYSTEM "Image Arithmetic/imabsdiff.xml">
-<!ENTITY ad9cfbc7c389d0ff1fd29f4f30892ad60 SYSTEM "Image Arithmetic/imadd.xml">
-<!ENTITY a1bfa161ef90462d547685ea94b2b5598 SYSTEM "Image Arithmetic/imcomplement.xml">
-<!ENTITY aebc81351662b890de71e7b09717f6c4e SYSTEM "Image Arithmetic/imdivide.xml">
-<!ENTITY afb4fd706adaae574ac74554c8f626ce5 SYSTEM "Image Arithmetic/imlincomb.xml">
-<!ENTITY afd8955b5318a12b1e36409743fc98cd0 SYSTEM "Image Arithmetic/immultiply.xml">
-<!ENTITY a590057cdceaca99fe14eeeb4b3eff365 SYSTEM "Image Arithmetic/imsubtract.xml">
-<!ENTITY a05fe31b7a4f0b677ce40570f89887d7d SYSTEM "Image Block Processing/im2col.xml">
-<!ENTITY a975f89b3a733d9922c2453c8fcbbbdb1 SYSTEM "Image Block Processing/imblockproc.xml">
-<!ENTITY a160c43a92e93dcefe1e12a79dd1f7298 SYSTEM "Image Block Processing/imblockslide.xml">
-<!ENTITY a403a85a8b8a3470b0a60c5ba9116999f SYSTEM "Image Block Processing/imcolproc.xml">
-<!ENTITY af7c55c1944b90c53bdbaa98603e70f67 SYSTEM "Image Enhancement and Restoration/imadapthistequal.xml">
-<!ENTITY a40c169e8596b2496f090874edc544ac6 SYSTEM "Image Enhancement and Restoration/imadjust.xml">
-<!ENTITY abedacb7d863ff524666f6f6bdaac56cb SYSTEM "Image Enhancement and Restoration/imdeconvl2.xml">
-<!ENTITY a035314f7fb98e5e3e762a82e9f874e64 SYSTEM "Image Enhancement and Restoration/imdeconvsobolev.xml">
-<!ENTITY a9e52b877f2ceb6870697c423a2ca11c1 SYSTEM "Image Enhancement and Restoration/imdeconvwiener.xml">
-<!ENTITY a160bb85e0dd8ed97061d3c55df76fb4e SYSTEM "Image Enhancement and Restoration/imdecorrstretch.xml">
-<!ENTITY a736e6f94b6494c58410076df4268a2f7 SYSTEM "Image Enhancement and Restoration/imdenoise.xml">
-<!ENTITY acc53524936ebb863f725f8ee623c9c6f SYSTEM "Image Enhancement and Restoration/imhistequal.xml">
-<!ENTITY ac8c7150632d5882cb20b263f73c49d8e SYSTEM "Image Enhancement and Restoration/iminpaint.xml">
-<!ENTITY ad326e496d2de952a13ad9f5bff550a97 SYSTEM "Image Enhancement and Restoration/immedian.xml">
-<!ENTITY a02170175f90ab496f1190d9d036afc26 SYSTEM "Image Enhancement and Restoration/imnoise.xml">
-<!ENTITY ad4467bfa485a72aa89b94019579c959d SYSTEM "Image Enhancement and Restoration/imwiener2.xml">
-<!ENTITY ae53a585b8bd49e5fbd145f83825724f9 SYSTEM "Image Linear Filtering/filter2.xml">
-<!ENTITY a87a16d7ef81f9289efb22ea9558af05f SYSTEM "Image Linear Filtering/fspecial.xml">
-<!ENTITY a707cbd3de04a818c13627f3e5bf05e5f SYSTEM "Image Linear Filtering/imbilateralfilter.xml">
-<!ENTITY a3ddee09cc31a6e5fb942bcf8357c2dff SYSTEM "Image Linear Filtering/imblur.xml">
-<!ENTITY a7583881b158a4198b5425980463ab548 SYSTEM "Image Linear Filtering/imboxfilter.xml">
-<!ENTITY aa5e22b79b2543f513fe28ba0fa6b910b SYSTEM "Image Linear Filtering/imfilter.xml">
-<!ENTITY a9baa26d6dc0e6e914d637f1fa0af083e SYSTEM "Image Linear Filtering/imgaussianblur.xml">
-<!ENTITY a560fa58746edc10006dc8da3c621cdff SYSTEM "Image Reading, Display and Exploration/imcount.xml">
-<!ENTITY a62ebabd8203505890e52a55178f3664c SYSTEM "Image Reading, Display and Exploration/imcreatechecker.xml">
-<!ENTITY ad8f45503de12f28f929710960a018f28 SYSTEM "Image Reading, Display and Exploration/imdestroy.xml">
-<!ENTITY a2a93cd63ada3149c3fdc34a9cebe5f33 SYSTEM "Image Reading, Display and Exploration/imdestroyall.xml">
-<!ENTITY a3b34143c015a1f45024eb36730110259 SYSTEM "Image Reading, Display and Exploration/imdisplay.xml">
-<!ENTITY a29ea542de6ef5f069206613bd218c0ac SYSTEM "Image Reading, Display and Exploration/imfinfo.xml">
-<!ENTITY aa769d0aafe9607b75ccfcf42759d223e SYSTEM "Image Reading, Display and Exploration/imread.xml">
-<!ENTITY aa995a5ce2d54d62332a44216d6c41822 SYSTEM "Image Reading, Display and Exploration/imreadable.xml">
-<!ENTITY aca57c64ccc6f0c6044a67a400f3e1911 SYSTEM "Image Reading, Display and Exploration/imreadflags.xml">
-<!ENTITY a59f065228cdb052f313dbbb6313adac0 SYSTEM "Image Reading, Display and Exploration/imreadmulti.xml">
-<!ENTITY a0e7d9247c4ff6315150130ac9aecc0b4 SYSTEM "Image Reading, Display and Exploration/imshow.xml">
-<!ENTITY aa6f8707915b1588b1a2a0b6c2bbbd18c SYSTEM "Image Reading, Display and Exploration/imwritable.xml">
-<!ENTITY aa494dee0bb1fd0a2e5bbe908f5d5c8b6 SYSTEM "Image Reading, Display and Exploration/imwritableexts.xml">
-<!ENTITY a54b02642fcd3ed306a65d87c28fdc78a SYSTEM "Image Reading, Display and Exploration/imwrite.xml">
-<!ENTITY a9d122ed91c8ff681795dfac1ed6277c1 SYSTEM "Image Reading, Display and Exploration/imwriteparams.xml">
-<!ENTITY a3fc7cbd06921d7084b15cb000a945c0f SYSTEM "Image Reading, Display and Exploration/tifread.xml">
-<!ENTITY a4ac49a003ba3b729c9436a0600bc589e SYSTEM "Image Registration and Image Fusion/imfuse.xml">
-<!ENTITY aa00477f202513a0a22271c8ed68cf368 SYSTEM "Image Registration and Image Fusion/imgettransform.xml">
-<!ENTITY a1adbe4322eb1b48a4069516a934669df SYSTEM "Image Registration and Image Fusion/imphasecorr.xml">
-<!ENTITY a2ebd66f6e54f980e53587cefc0b2b029 SYSTEM "Image Registration and Image Fusion/imtransform.xml">
-<!ENTITY a67bf6bb0cfcf8a1562ab6927f9a7969e SYSTEM "Image Registration and Image Fusion/warpmatselect.xml">
-<!ENTITY aaa7215ba9e4cf727b77cb7caa56bdcbf SYSTEM "Image Stitching/imstitchimage.xml">
-<!ENTITY a3228656a3505867ceb6dd26e5320bb45 SYSTEM "Image Stitching/imstitchimage_params.xml">
-<!ENTITY acc173f64be821ae2c9c47187b16e5768 SYSTEM "Image Transforms/imdct.xml">
-<!ENTITY aa2d226d62e98382d70d291707b555ec9 SYSTEM "Image Transforms/imdistransf.xml">
-<!ENTITY ab8675b89f04d804f45496552d6a15b0a SYSTEM "Image Transforms/imhough.xml">
-<!ENTITY a6c3cdf6ac9ac1dbb58e2e9a6c5c0d8ad SYSTEM "Image Transforms/imhoughc.xml">
-<!ENTITY a909e7d0607cb483a5dfa6733b9f5f0b7 SYSTEM "Image Transforms/imidct.xml">
-<!ENTITY ab4d707861d81a451a498918998653d72 SYSTEM "Image Transforms/imlogpolar.xml">
-<!ENTITY a3b6459699d2f5d0d587bdca290448852 SYSTEM "Image Transforms/imradon.xml">
-<!ENTITY a158e975e3e755e4c75438b465339da4c SYSTEM "Image Transforms/imwatershed.xml">
-<!ENTITY a39b2d7c00818b9c5692870734a306d4a SYSTEM "Image Types and Color Space Conversions/gray2rgb.xml">
-<!ENTITY a49714b4a0294670eb13112ece86676f9 SYSTEM "Image Types and Color Space Conversions/hls2rgb.xml">
-<!ENTITY a20170ba23f27c24e6d375a14169c589e SYSTEM "Image Types and Color Space Conversions/hsv2rgb2.xml">
-<!ENTITY a5d83824c39f5e3b07ca3762276a985d8 SYSTEM "Image Types and Color Space Conversions/im2bw.xml">
-<!ENTITY a3102416827154fd8bb31c209cb7d174e SYSTEM "Image Types and Color Space Conversions/im2double.xml">
-<!ENTITY ad224b95b85e5ca95aadeb8e3347ff49d SYSTEM "Image Types and Color Space Conversions/im2int16.xml">
-<!ENTITY af30dfce7b250f9308f1307fe78ba7890 SYSTEM "Image Types and Color Space Conversions/im2int32.xml">
-<!ENTITY aed0b414315ed4a4eec7cef0bd0e472da SYSTEM "Image Types and Color Space Conversions/im2int8.xml">
-<!ENTITY ac10b8c20923fc8b9f57c81e9f075dbc6 SYSTEM "Image Types and Color Space Conversions/im2uint16.xml">
-<!ENTITY af3861db2ad08f65f4c3f57d191ce9f67 SYSTEM "Image Types and Color Space Conversions/im2uint8.xml">
-<!ENTITY a72cfa66e5938c7a2bf974452de30eabf SYSTEM "Image Types and Color Space Conversions/imcvtcolor.xml">
-<!ENTITY ae3e32604087c434af3143fbd1ab64470 SYSTEM "Image Types and Color Space Conversions/imgraythresh.xml">
-<!ENTITY af035f45cbe1cadea59ef60c34213b336 SYSTEM "Image Types and Color Space Conversions/imnorm.xml">
-<!ENTITY aea2544c4a3c8e5b873e2c0587f8cba36 SYSTEM "Image Types and Color Space Conversions/ind2rgb.xml">
-<!ENTITY abbd73b33f8735a63db5daf8bad464094 SYSTEM "Image Types and Color Space Conversions/lab2rgb.xml">
-<!ENTITY a0f6016ea990f9a9ad7912944adf8ce46 SYSTEM "Image Types and Color Space Conversions/luv2rgb.xml">
-<!ENTITY a9db4e8a9866561d9307c5b56df573d77 SYSTEM "Image Types and Color Space Conversions/mat2gray.xml">
-<!ENTITY a635a8b504c7aac1503c65079a0c48d06 SYSTEM "Image Types and Color Space Conversions/ntsc2rgb.xml">
-<!ENTITY a4a76504045399a141e73fc213a5f0ef4 SYSTEM "Image Types and Color Space Conversions/rgb2gray.xml">
-<!ENTITY a863fb69cd2db31346f13d675eddbc440 SYSTEM "Image Types and Color Space Conversions/rgb2hls.xml">
-<!ENTITY a83f6dd11391dea5379dab22fb18bf2b2 SYSTEM "Image Types and Color Space Conversions/rgb2hsv.xml">
-<!ENTITY a6b02de5d3092a587b6e1c042f4d6ab59 SYSTEM "Image Types and Color Space Conversions/rgb2ind.xml">
-<!ENTITY aa8a19da500e52950aec94391060f6d89 SYSTEM "Image Types and Color Space Conversions/rgb2lab.xml">
-<!ENTITY ac9cf5d6f0019242c72c135abc6399244 SYSTEM "Image Types and Color Space Conversions/rgb2luv.xml">
-<!ENTITY a2ae8ac56a3395cafbe0258f747ab6f30 SYSTEM "Image Types and Color Space Conversions/rgb2ntsc.xml">
-<!ENTITY a6376aae2b90ca42018ab724e89c1aabe SYSTEM "Image Types and Color Space Conversions/rgb2xyz.xml">
-<!ENTITY aa3577d2f7a3d74f5dced1c17e0faac72 SYSTEM "Image Types and Color Space Conversions/rgb2ycbcr.xml">
-<!ENTITY ad45e9d1d9a115d41a24c1f88c2a28593 SYSTEM "Image Types and Color Space Conversions/rgb2yuv.xml">
-<!ENTITY a3ac91336d9d00f8d9d8be11ca1a28601 SYSTEM "Image Types and Color Space Conversions/xs2im.xml">
-<!ENTITY aa8a805e35906bd777e91aa8902c5dd16 SYSTEM "Image Types and Color Space Conversions/xyz2rgb.xml">
-<!ENTITY ae5721f96e1fda78f7258bf46b4bdd3be SYSTEM "Image Types and Color Space Conversions/ycbcr2rgb.xml">
-<!ENTITY a27dd83d7e0f2e974815e481935ccf54b SYSTEM "Image Types and Color Space Conversions/yuv2rgb.xml">
-<!ENTITY a37db7d37f6f0fe98d5bea8fc938142e4 SYSTEM "Morphological Operations/bwborder.xml">
-<!ENTITY a99ca39cdabf12df7322d9f8f9a8bb640 SYSTEM "Morphological Operations/imblackhat.xml">
-<!ENTITY ac6d7198a87d22fc1bdc5cb5946615842 SYSTEM "Morphological Operations/imblobprop.xml">
-<!ENTITY a0acbd8cee541cf4a9fdef501d8e32705 SYSTEM "Morphological Operations/imclose.xml">
-<!ENTITY ac8423ce094da564a1fa5f7e9ddd1c86a SYSTEM "Morphological Operations/imcreatese.xml">
-<!ENTITY ae1d5e1e6e2b021e5df8cd9205670b402 SYSTEM "Morphological Operations/imdilate.xml">
-<!ENTITY a0c71054e880378d70c776c847839e819 SYSTEM "Morphological Operations/imerode.xml">
-<!ENTITY a3a8f941e93349ac75c33b3456c5005cb SYSTEM "Morphological Operations/imfill.xml">
-<!ENTITY a8390a56b78d9247cfb764ccc17aa5283 SYSTEM "Morphological Operations/imgradient.xml">
-<!ENTITY a4af0a682b797fe10835f941da8d0f3a4 SYSTEM "Morphological Operations/imhitmiss.xml">
-<!ENTITY a637820c17274033f40904e4be48fb9d1 SYSTEM "Morphological Operations/imlabel.xml">
-<!ENTITY a085831ea6e7dc9fbfd6485e5505d6578 SYSTEM "Morphological Operations/immorphologyex.xml">
-<!ENTITY a737e2c11e573c02d33b9d05da65e7e8b SYSTEM "Morphological Operations/imopen.xml">
-<!ENTITY ac7c81674d4d15bbd63f6d3caba401081 SYSTEM "Morphological Operations/imthin.xml">
-<!ENTITY a71fca739882ec8fdd48f6a8d1b3f172c SYSTEM "Morphological Operations/imtophat.xml">
-<!ENTITY a1071ccbf87d9c56650a3e8ba27b360d5 SYSTEM "Object Detection/imdetectobjects.xml">
-<!ENTITY a171c2af2ffdbbbe97c9bd69d29f92e96 SYSTEM "Object Tracking/imtrack_init.xml">
-<!ENTITY a692f50a0e8808ef8731045e9809b198c SYSTEM "Object Tracking/imtrack_unloadall.xml">
-<!ENTITY a8d9bb1b9ed6d99b2549ec496e53729a2 SYSTEM "Object Tracking/imtrack_update.xml">
-<!ENTITY a828babe5073be18db79503edd1e98608 SYSTEM "ROI Processing/imroifill.xml">
-<!ENTITY aee4e49097d01904f2d1d0849fa975c4e SYSTEM "ROI Processing/imroifilt.xml">
-<!ENTITY a947d15413cea1f8103c2258099f73b90 SYSTEM "Spatial Transformations/imcrop.xml">
-<!ENTITY aa6009432c4bf7022315e8e496277df99 SYSTEM "Spatial Transformations/imcropm.xml">
-<!ENTITY a72492677a58f4af6e2e445e259453551 SYSTEM "Spatial Transformations/impyramid.xml">
-<!ENTITY a73f5a8a9a95d150d24da21325b965c63 SYSTEM "Spatial Transformations/imremap.xml">
-<!ENTITY aec8de7023eb8d64453c151ad8f4df2d1 SYSTEM "Spatial Transformations/imresize.xml">
-<!ENTITY abbb05ab99863797d2c530ab2858fe0d9 SYSTEM "Spatial Transformations/imrotate.xml">
-<!ENTITY a743cdd0060309542ce4c1544da37eac7 SYSTEM "Spatial Transformations/imwarpAffine.xml">
-<!ENTITY a5f87db2aeae5411d2eeba782a947a5c5 SYSTEM "Spatial Transformations/imwarpPerspective.xml">
-<!ENTITY abcdc0bfa1ea7b9603589b1b6e8bfab62 SYSTEM "Structural Analysis and Shape Descriptors/imarclength.xml">
-<!ENTITY a8720be8de4b89c5de210f7f435ac4df3 SYSTEM "Structural Analysis and Shape Descriptors/imcontour2label.xml">
-<!ENTITY a76a355160eef2c4866180da4aad996fb SYSTEM "Structural Analysis and Shape Descriptors/imcontourarea.xml">
-<!ENTITY a49962d26d54cd5e1a159dc2633001580 SYSTEM "Structural Analysis and Shape Descriptors/imconvexHull.xml">
-<!ENTITY a6686bad52072ac3d0639360399ae9a2d SYSTEM "Structural Analysis and Shape Descriptors/imconvexityDefects.xml">
-<!ENTITY a9c37056120dac0736ef82007babbcb18 SYSTEM "Structural Analysis and Shape Descriptors/imdrawcontours.xml">
-<!ENTITY a75b524624de82c54789d14ab8afc338d SYSTEM "Structural Analysis and Shape Descriptors/imfindcontours.xml">
-<!ENTITY ac541e4d21d07dfb08beb20ebe565dfa3 SYSTEM "Structural Analysis and Shape Descriptors/implotContours.xml">
-<!ENTITY a74fdbb9b0dbe721ff6b53749aa1fd710 SYSTEM "Super Resolution/imsuperres.xml">
-<!ENTITY abb8b2825b47a2bdb5f28f006c63b6508 SYSTEM "Super Resolution/imsuperres_params.xml">
-<!ENTITY a4176c7b5268cab0fd3a5349a7543a98e SYSTEM "Utilities and Interactive Tools/im2movie.xml">
-<!ENTITY aecbceeb00284cc7634226d49b5179c0e SYSTEM "Utilities and Interactive Tools/imaddtext.xml">
-<!ENTITY a0211e2f091100b6c4b86163835813aeb SYSTEM "Utilities and Interactive Tools/imbreakset.xml">
-<!ENTITY a020968b6074cd012696aeeb74931d27b SYSTEM "Utilities and Interactive Tools/imbreakunset.xml">
-<!ENTITY ae2859586c11ab8cd2cc48d28d59cad05 SYSTEM "Utilities and Interactive Tools/imcaminfo.xml">
-<!ENTITY a344ae7a0033465c914f498f146985a56 SYSTEM "Utilities and Interactive Tools/imchoose.xml">
-<!ENTITY afef23cfae889eee373c84ebf30892369 SYSTEM "Utilities and Interactive Tools/imdistline.xml">
-<!ENTITY a512f63217eec8305f3d3b41e836b6988 SYSTEM "Utilities and Interactive Tools/imlsusb.xml">
-<!ENTITY a9b30adeccd52c97f5f7b3dd792a588bc SYSTEM "Utilities and Interactive Tools/impixelval.xml">
-<!ENTITY a4b3a2903a5e353de7b4185917f255010 SYSTEM "Utilities and Interactive Tools/imrects.xml">
-<!ENTITY a53042611d98c94b7ec8b815997544fe8 SYSTEM "Utilities and Interactive Tools/imroi.xml">
-<!ENTITY a41a32f3d3dc96c23fc92475989e53cb3 SYSTEM "Utilities and Interactive Tools/imselect.xml">
-<!ENTITY a2c2ecc8c53bdd3c7966d08dec26a3a0d SYSTEM "Utilities and Interactive Tools/rect2cart.xml">
-<!ENTITY a5f5b217309c3af066bdd0ccaf64ce738 SYSTEM "Utilities and Interactive Tools/rectangle.xml">
-<!ENTITY a151c7390e55e516e65668ff2c4272706 SYSTEM "Utilities and Interactive Tools/sub2cart.xml">
-<!ENTITY a21f51e6298f9b7d90728e877dea19c46 SYSTEM "Video Handling/addframe.xml">
-<!ENTITY abeb459362f1c446a471effff149bf657 SYSTEM "Video Handling/aviaddframe.xml">
-<!ENTITY a78e620f02445fdd21a41ca171b24ce86 SYSTEM "Video Handling/aviclose.xml">
-<!ENTITY a58ac8d170ea24d93d3f1e9bf855a1499 SYSTEM "Video Handling/avicloseall.xml">
-<!ENTITY a6f6d1254782b7d8b99b1f64ab6b14fb4 SYSTEM "Video Handling/avifile.xml">
-<!ENTITY a618e97c4a2adaafbe932c5a692e1e1a4 SYSTEM "Video Handling/aviget.xml">
-<!ENTITY ab455a000060a5257c93e171dd095663b SYSTEM "Video Handling/aviinfo.xml">
-<!ENTITY a7dab8411a30ab38bb32d8a6cb382d091 SYSTEM "Video Handling/avilistopened.xml">
-<!ENTITY a04c09cc82e552dfddc2df535c237784d SYSTEM "Video Handling/aviopen.xml">
-<!ENTITY a3b333d87d664a9f988ae41e7ad6d4ef3 SYSTEM "Video Handling/avipos.xml">
-<!ENTITY abe453b38858b0e2157f616fae73bbf40 SYSTEM "Video Handling/aviprops.xml">
-<!ENTITY a4f444772ef6e1e33c0857c1f2223a46d SYSTEM "Video Handling/avireadframe.xml">
-<!ENTITY abcc15da4eb648cbb338aaaad9d62b931 SYSTEM "Video Handling/aviseek.xml">
-<!ENTITY a36199eb7d918ebd176813cedac5e31af SYSTEM "Video Handling/aviset.xml">
-<!ENTITY aa4454f551f863eb0c29c3a7834d52089 SYSTEM "Video Handling/imvideocapabilities.xml">
-<!ENTITY a31a489359a80825e1d92e576b6a7cba4 SYSTEM "Video Handling/imvideopropid.xml">
-<!ENTITY a9263c04cc8830e3676cf4992c683e874 SYSTEM "Video Handling/imvideoprops.xml">
+<!ENTITY a270a59c317e1c8512365cea2e52c484c SYSTEM "Analytic%20Geometry/plot3dot.xml">
+<!ENTITY a602a49dd46591bfb55735733348d3a30 SYSTEM "Camera%20Handling/camclose.xml">
+<!ENTITY a265655c42c1b1485d6020d85cb0442a8 SYSTEM "Camera%20Handling/camcloseall.xml">
+<!ENTITY ace987250764b75fbc0f5fcaa3792ed69 SYSTEM "Camera%20Handling/camget.xml">
+<!ENTITY a0e0583eaa64f6590df7e28936d7b88ae SYSTEM "Camera%20Handling/camlistopened.xml">
+<!ENTITY a419c6de803a4e5b9b0f82aaeae38d215 SYSTEM "Camera%20Handling/camopen.xml">
+<!ENTITY a2dd4aeaf2e8cdf87583a28132f9ddfb4 SYSTEM "Camera%20Handling/camprops.xml">
+<!ENTITY a24915b2a62ef449b07c9cc8f2d72eef6 SYSTEM "Camera%20Handling/camread.xml">
+<!ENTITY a365d491f9ac661a295f36a914ecb23b6 SYSTEM "Camera%20Handling/camset.xml">
+<!ENTITY abca280b80c84194e04a19b8955c9eb69 SYSTEM "Deep%20Learning/dnn_decode_classification.xml">
+<!ENTITY aa9f41b471415124047b42d6fd7492f61 SYSTEM "Deep%20Learning/dnn_decode_nanodet.xml">
+<!ENTITY ac7969b26dede926148833cc99b352314 SYSTEM "Deep%20Learning/dnn_decode_segmentation.xml">
+<!ENTITY ab0173f6a1359eb81ebfdbdca5b6cca57 SYSTEM "Deep%20Learning/dnn_decode_ssd.xml">
+<!ENTITY acf79ae117393265197cff7d771c42f99 SYSTEM "Deep%20Learning/dnn_decode_yolo.xml">
+<!ENTITY a2a70522023d7c401748829394050319e SYSTEM "Deep%20Learning/dnn_decode_yunet.xml">
+<!ENTITY a8351b08ca2f4c8491063d4a6bf0a0f46 SYSTEM "Deep%20Learning/dnn_forward.xml">
+<!ENTITY a3e3712481cfbd1422577950e57d41473 SYSTEM "Deep%20Learning/dnn_getflops.xml">
+<!ENTITY a8e0f8b0be3700adbcfe6f7d1c9ce223a SYSTEM "Deep%20Learning/dnn_getlayertypes.xml">
+<!ENTITY adbc6be5cdf2bebc1397c69994e682fcd SYSTEM "Deep%20Learning/dnn_getoutputs.xml">
+<!ENTITY a6c87ce05f5728e69e98e4d1731cf9ab5 SYSTEM "Deep%20Learning/dnn_getparam.xml">
+<!ENTITY a268e680d49717124627671f25367f58d SYSTEM "Deep%20Learning/dnn_info.xml">
+<!ENTITY a8db86126763070f0bb05f036119b3ecd SYSTEM "Deep%20Learning/dnn_list.xml">
+<!ENTITY a5d1fc8e2af6ae9f85afac72533c8c6dc SYSTEM "Deep%20Learning/dnn_nms.xml">
+<!ENTITY ac41c8135afdf47bea3d5da721766edcd SYSTEM "Deep%20Learning/dnn_presets.xml">
+<!ENTITY af3e51ce05d42d970888cc187fdec05cd SYSTEM "Deep%20Learning/dnn_readmodel.xml">
+<!ENTITY a48a5d6df47aff98af4242c4aec41619b SYSTEM "Deep%20Learning/dnn_setpreferable.xml">
+<!ENTITY a3ea6ca2ef7097637a477381826d77dbd SYSTEM "Deep%20Learning/dnn_showfeature.xml">
+<!ENTITY a6d2f7dab4a299814da917608e14b2e7c SYSTEM "Deep%20Learning/dnn_showparam.xml">
+<!ENTITY a167f15aa118d3c950bfc88d5f0bc89d4 SYSTEM "Deep%20Learning/dnn_showparamf2d.xml">
+<!ENTITY a8559ac863d95cfb86b22e5d064a6fa7e SYSTEM "Deep%20Learning/dnn_showparamf3d.xml">
+<!ENTITY a00298296be3ccf36ed236171899aed50 SYSTEM "Deep%20Learning/dnn_softmax.xml">
+<!ENTITY ae371b2e26df0d6ee67ceb117fcee32ae SYSTEM "Deep%20Learning/dnn_topk.xml">
+<!ENTITY add6f7b0b17190308a200d55aa243f52d SYSTEM "Deep%20Learning/dnn_unloadallmodels.xml">
+<!ENTITY aefeba08fae178e1dc9564d416d439e1f SYSTEM "Deep%20Learning/dnn_unloadmodel.xml">
+<!ENTITY a8ffceec58fc1d65006b65b162fe45aa5 SYSTEM "Deep%20Learning/dnn_zoo_modelinfo.xml">
+<!ENTITY aa11dba09d05915608ef73f144ad78ef9 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imbestmatches.xml">
+<!ENTITY ac9c7133c8a11a346b9cc245fd621f009 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect.xml">
+<!ENTITY a51b60c7eb38737b6719d4c0801770ca2 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_BRISK.xml">
+<!ENTITY a716087f3d66875838117333e55129964 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_FAST.xml">
+<!ENTITY a1ade51fcda132d3c1d4f8188b04feb9e SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_GFTT.xml">
+<!ENTITY a4ad007ebd5c0d11be5942ee750d7d1dd SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_MSER.xml">
+<!ENTITY a3134395ea9f231bf44f6db8d48be533d SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_ORB.xml">
+<!ENTITY a9c94e228be7bfcba715d38643ab8eff5 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_SIFT.xml">
+<!ENTITY a25565bd75eb5a6f26ce77f840ecc141e SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_STAR.xml">
+<!ENTITY a84fd521ac95a22dab6bf42f4a31da67d SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdetect_SURF.xml">
+<!ENTITY a3eadd89490864b883b0c5f4b94739c09 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imdrawmatches.xml">
+<!ENTITY ad5f55f8636e58953ca9df2a452959928 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imextract.xml">
+<!ENTITY a290fd032c23c9d57a41bc13c6265263d SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imextract_DescriptorBRISK.xml">
+<!ENTITY aef6d3e986696e004265a0ea0516afd23 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imextract_DescriptorORB.xml">
+<!ENTITY a7e0437e949e292f85c822f1e4eaf857f SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imextract_DescriptorSIFT.xml">
+<!ENTITY a67f67423d39369bb6511cc4a436154c0 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/imextract_DescriptorSURF.xml">
+<!ENTITY afe251cdd9cfd8b6d1bcd76162c481ca6 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/immatch.xml">
+<!ENTITY a1f8919ffa485207d10a799889db8a6f1 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/immatch_BruteForce.xml">
+<!ENTITY abe9ec9cb3ec8d48935a9c2921957b1d1 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/immatch_Flann.xml">
+<!ENTITY ac24b36c7181b138046afa38afdea82ce SYSTEM "Feature%20Detection,%20Description%20and%20Matching/immatchimages.xml">
+<!ENTITY ad260dbea0cbaa4164b18c97dea07bba4 SYSTEM "Feature%20Detection,%20Description%20and%20Matching/plotfeature.xml">
+<!ENTITY a8e113d408f48ecadc397a4cc5e74fae3 SYSTEM "Filter%20Design%20and%20Visualization/fft2pad.xml">
+<!ENTITY a3ca2b0efdce19f2b140c3941cd75c268 SYSTEM "Filter%20Design%20and%20Visualization/immesh.xml">
+<!ENTITY abc912734e97747645030328e183d6604 SYSTEM "Filter%20Design%20and%20Visualization/imsmoothsurf.xml">
+<!ENTITY a62f7b21454f757fba904428a4168c2bd SYSTEM "Filter%20Design%20and%20Visualization/imsurf.xml">
+<!ENTITY a4aed5f460ba5e42729e99e0a1c25858b SYSTEM "Filter%20Design%20and%20Visualization/mkfftfilter.xml">
+<!ENTITY a1b861fd021e04a44ca7a3a29ab4dd502 SYSTEM "Image%20Analysis%20and%20Statistics/corr2.xml">
+<!ENTITY a462f305ab08e025e3ac69ec551f1761c SYSTEM "Image%20Analysis%20and%20Statistics/edge.xml">
+<!ENTITY af430efbb18b947513f90634d566ca45f SYSTEM "Image%20Analysis%20and%20Statistics/imcalchist.xml">
+<!ENTITY a9dc9ac973150ca5ff1fced6689cad2ab SYSTEM "Image%20Analysis%20and%20Statistics/imcomparehist.xml">
+<!ENTITY a886482e8f59b6f3ba105de4b2357e117 SYSTEM "Image%20Analysis%20and%20Statistics/imcountnonzero.xml">
+<!ENTITY adfc1d4e58c8e71bc204b3d78e42533c1 SYSTEM "Image%20Analysis%20and%20Statistics/imhist.xml">
+<!ENTITY ad6375ded0258c63333358bd59d927de5 SYSTEM "Image%20Analysis%20and%20Statistics/imhist2.xml">
+<!ENTITY a942b45e29b96ccbf3863abdfd238fc56 SYSTEM "Image%20Analysis%20and%20Statistics/immeanstddev.xml">
+<!ENTITY afa7ffaf4966e4f677e94437321243777 SYSTEM "Image%20Analysis%20and%20Statistics/imminmax.xml">
+<!ENTITY a93440879994b4605f250cdb72c3e1af9 SYSTEM "Image%20Analysis%20and%20Statistics/imminmaxloc.xml">
+<!ENTITY af2a190fd239a843a52f387cc3f7bf343 SYSTEM "Image%20Analysis%20and%20Statistics/immse.xml">
+<!ENTITY a142722e1a5715334ec27b64e754ef398 SYSTEM "Image%20Analysis%20and%20Statistics/imnormalize.xml">
+<!ENTITY a438c36c2fc4efa2b19aca0e50126742d SYSTEM "Image%20Analysis%20and%20Statistics/impixel.xml">
+<!ENTITY a086232b25a0fe2a1dfb00fb215c2ea3e SYSTEM "Image%20Analysis%20and%20Statistics/improfile.xml">
+<!ENTITY a2783024745cfadfc67ec854e4b371109 SYSTEM "Image%20Analysis%20and%20Statistics/impsnr.xml">
+<!ENTITY aab7a6bcdb8e18fdee993a0f87fd75a36 SYSTEM "Image%20Analysis%20and%20Statistics/imssim.xml">
+<!ENTITY a17ec432bcf2950de694f0150ec4c0148 SYSTEM "Image%20Analysis%20and%20Statistics/mean2.xml">
+<!ENTITY a5efcbef4dacfd4b2f9eaa3b84bc66665 SYSTEM "Image%20Analysis%20and%20Statistics/std2.xml">
+<!ENTITY aa742eae7f1a4f836b3d385b34d3aeb27 SYSTEM "Image%20Analysis%20and%20Statistics/stdev2.xml">
+<!ENTITY ae9c82fa1c558dd3ef5087d149edfb2c5 SYSTEM "Image%20Arithmetic/imabsdiff.xml">
+<!ENTITY ad9cfbc7c389d0ff1fd29f4f30892ad60 SYSTEM "Image%20Arithmetic/imadd.xml">
+<!ENTITY a1bfa161ef90462d547685ea94b2b5598 SYSTEM "Image%20Arithmetic/imcomplement.xml">
+<!ENTITY aebc81351662b890de71e7b09717f6c4e SYSTEM "Image%20Arithmetic/imdivide.xml">
+<!ENTITY afb4fd706adaae574ac74554c8f626ce5 SYSTEM "Image%20Arithmetic/imlincomb.xml">
+<!ENTITY afd8955b5318a12b1e36409743fc98cd0 SYSTEM "Image%20Arithmetic/immultiply.xml">
+<!ENTITY a590057cdceaca99fe14eeeb4b3eff365 SYSTEM "Image%20Arithmetic/imsubtract.xml">
+<!ENTITY a05fe31b7a4f0b677ce40570f89887d7d SYSTEM "Image%20Block%20Processing/im2col.xml">
+<!ENTITY a975f89b3a733d9922c2453c8fcbbbdb1 SYSTEM "Image%20Block%20Processing/imblockproc.xml">
+<!ENTITY a160c43a92e93dcefe1e12a79dd1f7298 SYSTEM "Image%20Block%20Processing/imblockslide.xml">
+<!ENTITY a403a85a8b8a3470b0a60c5ba9116999f SYSTEM "Image%20Block%20Processing/imcolproc.xml">
+<!ENTITY af7c55c1944b90c53bdbaa98603e70f67 SYSTEM "Image%20Enhancement%20and%20Restoration/imadapthistequal.xml">
+<!ENTITY a40c169e8596b2496f090874edc544ac6 SYSTEM "Image%20Enhancement%20and%20Restoration/imadjust.xml">
+<!ENTITY abedacb7d863ff524666f6f6bdaac56cb SYSTEM "Image%20Enhancement%20and%20Restoration/imdeconvl2.xml">
+<!ENTITY a035314f7fb98e5e3e762a82e9f874e64 SYSTEM "Image%20Enhancement%20and%20Restoration/imdeconvsobolev.xml">
+<!ENTITY a9e52b877f2ceb6870697c423a2ca11c1 SYSTEM "Image%20Enhancement%20and%20Restoration/imdeconvwiener.xml">
+<!ENTITY a160bb85e0dd8ed97061d3c55df76fb4e SYSTEM "Image%20Enhancement%20and%20Restoration/imdecorrstretch.xml">
+<!ENTITY a736e6f94b6494c58410076df4268a2f7 SYSTEM "Image%20Enhancement%20and%20Restoration/imdenoise.xml">
+<!ENTITY acc53524936ebb863f725f8ee623c9c6f SYSTEM "Image%20Enhancement%20and%20Restoration/imhistequal.xml">
+<!ENTITY ac8c7150632d5882cb20b263f73c49d8e SYSTEM "Image%20Enhancement%20and%20Restoration/iminpaint.xml">
+<!ENTITY ad326e496d2de952a13ad9f5bff550a97 SYSTEM "Image%20Enhancement%20and%20Restoration/immedian.xml">
+<!ENTITY a02170175f90ab496f1190d9d036afc26 SYSTEM "Image%20Enhancement%20and%20Restoration/imnoise.xml">
+<!ENTITY ad4467bfa485a72aa89b94019579c959d SYSTEM "Image%20Enhancement%20and%20Restoration/imwiener2.xml">
+<!ENTITY ae53a585b8bd49e5fbd145f83825724f9 SYSTEM "Image%20Linear%20Filtering/filter2.xml">
+<!ENTITY a87a16d7ef81f9289efb22ea9558af05f SYSTEM "Image%20Linear%20Filtering/fspecial.xml">
+<!ENTITY a707cbd3de04a818c13627f3e5bf05e5f SYSTEM "Image%20Linear%20Filtering/imbilateralfilter.xml">
+<!ENTITY a3ddee09cc31a6e5fb942bcf8357c2dff SYSTEM "Image%20Linear%20Filtering/imblur.xml">
+<!ENTITY a7583881b158a4198b5425980463ab548 SYSTEM "Image%20Linear%20Filtering/imboxfilter.xml">
+<!ENTITY aa5e22b79b2543f513fe28ba0fa6b910b SYSTEM "Image%20Linear%20Filtering/imfilter.xml">
+<!ENTITY a9baa26d6dc0e6e914d637f1fa0af083e SYSTEM "Image%20Linear%20Filtering/imgaussianblur.xml">
+<!ENTITY a560fa58746edc10006dc8da3c621cdff SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imcount.xml">
+<!ENTITY a62ebabd8203505890e52a55178f3664c SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imcreatechecker.xml">
+<!ENTITY ad8f45503de12f28f929710960a018f28 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imdestroy.xml">
+<!ENTITY a2a93cd63ada3149c3fdc34a9cebe5f33 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imdestroyall.xml">
+<!ENTITY a3b34143c015a1f45024eb36730110259 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imdisplay.xml">
+<!ENTITY a29ea542de6ef5f069206613bd218c0ac SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imfinfo.xml">
+<!ENTITY aa769d0aafe9607b75ccfcf42759d223e SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imread.xml">
+<!ENTITY aa995a5ce2d54d62332a44216d6c41822 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imreadable.xml">
+<!ENTITY aca57c64ccc6f0c6044a67a400f3e1911 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imreadflags.xml">
+<!ENTITY a59f065228cdb052f313dbbb6313adac0 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imreadmulti.xml">
+<!ENTITY a0e7d9247c4ff6315150130ac9aecc0b4 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imshow.xml">
+<!ENTITY aa6f8707915b1588b1a2a0b6c2bbbd18c SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imwritable.xml">
+<!ENTITY aa494dee0bb1fd0a2e5bbe908f5d5c8b6 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imwritableexts.xml">
+<!ENTITY a54b02642fcd3ed306a65d87c28fdc78a SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imwrite.xml">
+<!ENTITY a9d122ed91c8ff681795dfac1ed6277c1 SYSTEM "Image%20Reading,%20Display%20and%20Exploration/imwriteparams.xml">
+<!ENTITY a3fc7cbd06921d7084b15cb000a945c0f SYSTEM "Image%20Reading,%20Display%20and%20Exploration/tifread.xml">
+<!ENTITY a4ac49a003ba3b729c9436a0600bc589e SYSTEM "Image%20Registration%20and%20Image%20Fusion/imfuse.xml">
+<!ENTITY aa00477f202513a0a22271c8ed68cf368 SYSTEM "Image%20Registration%20and%20Image%20Fusion/imgettransform.xml">
+<!ENTITY a1adbe4322eb1b48a4069516a934669df SYSTEM "Image%20Registration%20and%20Image%20Fusion/imphasecorr.xml">
+<!ENTITY a2ebd66f6e54f980e53587cefc0b2b029 SYSTEM "Image%20Registration%20and%20Image%20Fusion/imtransform.xml">
+<!ENTITY a67bf6bb0cfcf8a1562ab6927f9a7969e SYSTEM "Image%20Registration%20and%20Image%20Fusion/warpmatselect.xml">
+<!ENTITY aaa7215ba9e4cf727b77cb7caa56bdcbf SYSTEM "Image%20Stitching/imstitchimage.xml">
+<!ENTITY a3228656a3505867ceb6dd26e5320bb45 SYSTEM "Image%20Stitching/imstitchimage_params.xml">
+<!ENTITY acc173f64be821ae2c9c47187b16e5768 SYSTEM "Image%20Transforms/imdct.xml">
+<!ENTITY aa2d226d62e98382d70d291707b555ec9 SYSTEM "Image%20Transforms/imdistransf.xml">
+<!ENTITY ab8675b89f04d804f45496552d6a15b0a SYSTEM "Image%20Transforms/imhough.xml">
+<!ENTITY a6c3cdf6ac9ac1dbb58e2e9a6c5c0d8ad SYSTEM "Image%20Transforms/imhoughc.xml">
+<!ENTITY a909e7d0607cb483a5dfa6733b9f5f0b7 SYSTEM "Image%20Transforms/imidct.xml">
+<!ENTITY ab4d707861d81a451a498918998653d72 SYSTEM "Image%20Transforms/imlogpolar.xml">
+<!ENTITY a3b6459699d2f5d0d587bdca290448852 SYSTEM "Image%20Transforms/imradon.xml">
+<!ENTITY a158e975e3e755e4c75438b465339da4c SYSTEM "Image%20Transforms/imwatershed.xml">
+<!ENTITY a39b2d7c00818b9c5692870734a306d4a SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/gray2rgb.xml">
+<!ENTITY a49714b4a0294670eb13112ece86676f9 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/hls2rgb.xml">
+<!ENTITY a20170ba23f27c24e6d375a14169c589e SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/hsv2rgb2.xml">
+<!ENTITY a5d83824c39f5e3b07ca3762276a985d8 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2bw.xml">
+<!ENTITY a3102416827154fd8bb31c209cb7d174e SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2double.xml">
+<!ENTITY ad224b95b85e5ca95aadeb8e3347ff49d SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2int16.xml">
+<!ENTITY af30dfce7b250f9308f1307fe78ba7890 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2int32.xml">
+<!ENTITY aed0b414315ed4a4eec7cef0bd0e472da SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2int8.xml">
+<!ENTITY ac10b8c20923fc8b9f57c81e9f075dbc6 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2uint16.xml">
+<!ENTITY af3861db2ad08f65f4c3f57d191ce9f67 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/im2uint8.xml">
+<!ENTITY a72cfa66e5938c7a2bf974452de30eabf SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/imcvtcolor.xml">
+<!ENTITY ae3e32604087c434af3143fbd1ab64470 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/imgraythresh.xml">
+<!ENTITY af035f45cbe1cadea59ef60c34213b336 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/imnorm.xml">
+<!ENTITY aea2544c4a3c8e5b873e2c0587f8cba36 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/ind2rgb.xml">
+<!ENTITY abbd73b33f8735a63db5daf8bad464094 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/lab2rgb.xml">
+<!ENTITY a0f6016ea990f9a9ad7912944adf8ce46 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/luv2rgb.xml">
+<!ENTITY a9db4e8a9866561d9307c5b56df573d77 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/mat2gray.xml">
+<!ENTITY a635a8b504c7aac1503c65079a0c48d06 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/ntsc2rgb.xml">
+<!ENTITY a4a76504045399a141e73fc213a5f0ef4 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2gray.xml">
+<!ENTITY a863fb69cd2db31346f13d675eddbc440 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2hls.xml">
+<!ENTITY a83f6dd11391dea5379dab22fb18bf2b2 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2hsv.xml">
+<!ENTITY a6b02de5d3092a587b6e1c042f4d6ab59 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2ind.xml">
+<!ENTITY aa8a19da500e52950aec94391060f6d89 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2lab.xml">
+<!ENTITY ac9cf5d6f0019242c72c135abc6399244 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2luv.xml">
+<!ENTITY a2ae8ac56a3395cafbe0258f747ab6f30 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2ntsc.xml">
+<!ENTITY a6376aae2b90ca42018ab724e89c1aabe SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2xyz.xml">
+<!ENTITY aa3577d2f7a3d74f5dced1c17e0faac72 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2ycbcr.xml">
+<!ENTITY ad45e9d1d9a115d41a24c1f88c2a28593 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/rgb2yuv.xml">
+<!ENTITY a3ac91336d9d00f8d9d8be11ca1a28601 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/xs2im.xml">
+<!ENTITY aa8a805e35906bd777e91aa8902c5dd16 SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/xyz2rgb.xml">
+<!ENTITY ae5721f96e1fda78f7258bf46b4bdd3be SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/ycbcr2rgb.xml">
+<!ENTITY a27dd83d7e0f2e974815e481935ccf54b SYSTEM "Image%20Types%20and%20Color%20Space%20Conversions/yuv2rgb.xml">
+<!ENTITY a37db7d37f6f0fe98d5bea8fc938142e4 SYSTEM "Morphological%20Operations/bwborder.xml">
+<!ENTITY a99ca39cdabf12df7322d9f8f9a8bb640 SYSTEM "Morphological%20Operations/imblackhat.xml">
+<!ENTITY ac6d7198a87d22fc1bdc5cb5946615842 SYSTEM "Morphological%20Operations/imblobprop.xml">
+<!ENTITY a0acbd8cee541cf4a9fdef501d8e32705 SYSTEM "Morphological%20Operations/imclose.xml">
+<!ENTITY ac8423ce094da564a1fa5f7e9ddd1c86a SYSTEM "Morphological%20Operations/imcreatese.xml">
+<!ENTITY ae1d5e1e6e2b021e5df8cd9205670b402 SYSTEM "Morphological%20Operations/imdilate.xml">
+<!ENTITY a0c71054e880378d70c776c847839e819 SYSTEM "Morphological%20Operations/imerode.xml">
+<!ENTITY a3a8f941e93349ac75c33b3456c5005cb SYSTEM "Morphological%20Operations/imfill.xml">
+<!ENTITY a8390a56b78d9247cfb764ccc17aa5283 SYSTEM "Morphological%20Operations/imgradient.xml">
+<!ENTITY a4af0a682b797fe10835f941da8d0f3a4 SYSTEM "Morphological%20Operations/imhitmiss.xml">
+<!ENTITY a637820c17274033f40904e4be48fb9d1 SYSTEM "Morphological%20Operations/imlabel.xml">
+<!ENTITY a085831ea6e7dc9fbfd6485e5505d6578 SYSTEM "Morphological%20Operations/immorphologyex.xml">
+<!ENTITY a737e2c11e573c02d33b9d05da65e7e8b SYSTEM "Morphological%20Operations/imopen.xml">
+<!ENTITY ac7c81674d4d15bbd63f6d3caba401081 SYSTEM "Morphological%20Operations/imthin.xml">
+<!ENTITY a71fca739882ec8fdd48f6a8d1b3f172c SYSTEM "Morphological%20Operations/imtophat.xml">
+<!ENTITY a1071ccbf87d9c56650a3e8ba27b360d5 SYSTEM "Object%20Detection/imdetectobjects.xml">
+<!ENTITY a171c2af2ffdbbbe97c9bd69d29f92e96 SYSTEM "Object%20Tracking/imtrack_init.xml">
+<!ENTITY a692f50a0e8808ef8731045e9809b198c SYSTEM "Object%20Tracking/imtrack_unloadall.xml">
+<!ENTITY a8d9bb1b9ed6d99b2549ec496e53729a2 SYSTEM "Object%20Tracking/imtrack_update.xml">
+<!ENTITY a828babe5073be18db79503edd1e98608 SYSTEM "ROI%20Processing/imroifill.xml">
+<!ENTITY aee4e49097d01904f2d1d0849fa975c4e SYSTEM "ROI%20Processing/imroifilt.xml">
+<!ENTITY a947d15413cea1f8103c2258099f73b90 SYSTEM "Spatial%20Transformations/imcrop.xml">
+<!ENTITY aa6009432c4bf7022315e8e496277df99 SYSTEM "Spatial%20Transformations/imcropm.xml">
+<!ENTITY a72492677a58f4af6e2e445e259453551 SYSTEM "Spatial%20Transformations/impyramid.xml">
+<!ENTITY a73f5a8a9a95d150d24da21325b965c63 SYSTEM "Spatial%20Transformations/imremap.xml">
+<!ENTITY aec8de7023eb8d64453c151ad8f4df2d1 SYSTEM "Spatial%20Transformations/imresize.xml">
+<!ENTITY abbb05ab99863797d2c530ab2858fe0d9 SYSTEM "Spatial%20Transformations/imrotate.xml">
+<!ENTITY a743cdd0060309542ce4c1544da37eac7 SYSTEM "Spatial%20Transformations/imwarpAffine.xml">
+<!ENTITY a5f87db2aeae5411d2eeba782a947a5c5 SYSTEM "Spatial%20Transformations/imwarpPerspective.xml">
+<!ENTITY abcdc0bfa1ea7b9603589b1b6e8bfab62 SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imarclength.xml">
+<!ENTITY a8720be8de4b89c5de210f7f435ac4df3 SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imcontour2label.xml">
+<!ENTITY a76a355160eef2c4866180da4aad996fb SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imcontourarea.xml">
+<!ENTITY a49962d26d54cd5e1a159dc2633001580 SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imconvexHull.xml">
+<!ENTITY a6686bad52072ac3d0639360399ae9a2d SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imconvexityDefects.xml">
+<!ENTITY a9c37056120dac0736ef82007babbcb18 SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imdrawcontours.xml">
+<!ENTITY a75b524624de82c54789d14ab8afc338d SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/imfindcontours.xml">
+<!ENTITY ac541e4d21d07dfb08beb20ebe565dfa3 SYSTEM "Structural%20Analysis%20and%20Shape%20Descriptors/implotContours.xml">
+<!ENTITY a74fdbb9b0dbe721ff6b53749aa1fd710 SYSTEM "Super%20Resolution/imsuperres.xml">
+<!ENTITY abb8b2825b47a2bdb5f28f006c63b6508 SYSTEM "Super%20Resolution/imsuperres_params.xml">
+<!ENTITY a4176c7b5268cab0fd3a5349a7543a98e SYSTEM "Utilities%20and%20Interactive%20Tools/im2movie.xml">
+<!ENTITY aecbceeb00284cc7634226d49b5179c0e SYSTEM "Utilities%20and%20Interactive%20Tools/imaddtext.xml">
+<!ENTITY a0211e2f091100b6c4b86163835813aeb SYSTEM "Utilities%20and%20Interactive%20Tools/imbreakset.xml">
+<!ENTITY a020968b6074cd012696aeeb74931d27b SYSTEM "Utilities%20and%20Interactive%20Tools/imbreakunset.xml">
+<!ENTITY ae2859586c11ab8cd2cc48d28d59cad05 SYSTEM "Utilities%20and%20Interactive%20Tools/imcaminfo.xml">
+<!ENTITY a344ae7a0033465c914f498f146985a56 SYSTEM "Utilities%20and%20Interactive%20Tools/imchoose.xml">
+<!ENTITY afef23cfae889eee373c84ebf30892369 SYSTEM "Utilities%20and%20Interactive%20Tools/imdistline.xml">
+<!ENTITY a512f63217eec8305f3d3b41e836b6988 SYSTEM "Utilities%20and%20Interactive%20Tools/imlsusb.xml">
+<!ENTITY a9b30adeccd52c97f5f7b3dd792a588bc SYSTEM "Utilities%20and%20Interactive%20Tools/impixelval.xml">
+<!ENTITY a4b3a2903a5e353de7b4185917f255010 SYSTEM "Utilities%20and%20Interactive%20Tools/imrects.xml">
+<!ENTITY a53042611d98c94b7ec8b815997544fe8 SYSTEM "Utilities%20and%20Interactive%20Tools/imroi.xml">
+<!ENTITY a41a32f3d3dc96c23fc92475989e53cb3 SYSTEM "Utilities%20and%20Interactive%20Tools/imselect.xml">
+<!ENTITY a2c2ecc8c53bdd3c7966d08dec26a3a0d SYSTEM "Utilities%20and%20Interactive%20Tools/rect2cart.xml">
+<!ENTITY a5f5b217309c3af066bdd0ccaf64ce738 SYSTEM "Utilities%20and%20Interactive%20Tools/rectangle.xml">
+<!ENTITY a151c7390e55e516e65668ff2c4272706 SYSTEM "Utilities%20and%20Interactive%20Tools/sub2cart.xml">
+<!ENTITY a21f51e6298f9b7d90728e877dea19c46 SYSTEM "Video%20Handling/addframe.xml">
+<!ENTITY abeb459362f1c446a471effff149bf657 SYSTEM "Video%20Handling/aviaddframe.xml">
+<!ENTITY a78e620f02445fdd21a41ca171b24ce86 SYSTEM "Video%20Handling/aviclose.xml">
+<!ENTITY a58ac8d170ea24d93d3f1e9bf855a1499 SYSTEM "Video%20Handling/avicloseall.xml">
+<!ENTITY a6f6d1254782b7d8b99b1f64ab6b14fb4 SYSTEM "Video%20Handling/avifile.xml">
+<!ENTITY a618e97c4a2adaafbe932c5a692e1e1a4 SYSTEM "Video%20Handling/aviget.xml">
+<!ENTITY ab455a000060a5257c93e171dd095663b SYSTEM "Video%20Handling/aviinfo.xml">
+<!ENTITY a7dab8411a30ab38bb32d8a6cb382d091 SYSTEM "Video%20Handling/avilistopened.xml">
+<!ENTITY a04c09cc82e552dfddc2df535c237784d SYSTEM "Video%20Handling/aviopen.xml">
+<!ENTITY a3b333d87d664a9f988ae41e7ad6d4ef3 SYSTEM "Video%20Handling/avipos.xml">
+<!ENTITY abe453b38858b0e2157f616fae73bbf40 SYSTEM "Video%20Handling/aviprops.xml">
+<!ENTITY a4f444772ef6e1e33c0857c1f2223a46d SYSTEM "Video%20Handling/avireadframe.xml">
+<!ENTITY abcc15da4eb648cbb338aaaad9d62b931 SYSTEM "Video%20Handling/aviseek.xml">
+<!ENTITY a36199eb7d918ebd176813cedac5e31af SYSTEM "Video%20Handling/aviset.xml">
+<!ENTITY aa4454f551f863eb0c29c3a7834d52089 SYSTEM "Video%20Handling/imvideocapabilities.xml">
+<!ENTITY a31a489359a80825e1d92e576b6a7cba4 SYSTEM "Video%20Handling/imvideopropid.xml">
+<!ENTITY a9263c04cc8830e3676cf4992c683e874 SYSTEM "Video%20Handling/imvideoprops.xml">
 <!--End Entities-->
 ]>
 <book version="5.0-subset Scilab" xml:lang="en_US"
