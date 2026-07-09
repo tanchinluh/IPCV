@@ -238,3 +238,196 @@ extern "C" IPCV_CORE_API int ipcv_filter2d_image(const IpcvDecodedImage *source,
         return -1;
     }
 }
+
+extern "C" IPCV_CORE_API int ipcv_blur_image(const IpcvDecodedImage *source, int kernel_rows, int kernel_cols, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+    if (kernel_rows <= 0 || kernel_cols <= 0)
+    {
+        set_error(output, "kernel size must be positive");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat filtered;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+
+        cv::blur(sourceMat, filtered, cv::Size(kernel_cols, kernel_rows));
+        if (!mat_to_image(filtered, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert blur result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown blur failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_gaussian_blur_image(const IpcvDecodedImage *source, int kernel_rows, int kernel_cols, double sigma_x, double sigma_y, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+    if (kernel_rows <= 0 || kernel_cols <= 0 || (kernel_rows % 2) == 0 || (kernel_cols % 2) == 0)
+    {
+        set_error(output, "Gaussian kernel size must be positive and odd");
+        return -1;
+    }
+    if (sigma_x < 0.0 || sigma_y < 0.0)
+    {
+        set_error(output, "Gaussian sigma values must be non-negative");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat filtered;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+
+        cv::GaussianBlur(sourceMat, filtered, cv::Size(kernel_cols, kernel_rows), sigma_x, sigma_y);
+        if (!mat_to_image(filtered, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert Gaussian blur result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown Gaussian blur failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_bilateral_filter_image(const IpcvDecodedImage *source, int diameter, double sigma_color, double sigma_space, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+    if (diameter <= 0)
+    {
+        set_error(output, "bilateral filter diameter must be positive");
+        return -1;
+    }
+    if (sigma_color <= 0.0 || sigma_space <= 0.0)
+    {
+        set_error(output, "bilateral filter sigma values must be positive");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat filtered;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+
+        cv::bilateralFilter(sourceMat, filtered, diameter, sigma_color, sigma_space);
+        if (!mat_to_image(filtered, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert bilateral filter result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown bilateral filter failure");
+        return -1;
+    }
+}

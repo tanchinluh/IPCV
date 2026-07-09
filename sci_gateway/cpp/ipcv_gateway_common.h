@@ -117,6 +117,8 @@ extern "C"
 	int sci_int_getaffinetransform(char * fname, void* pvApiCtx);
 	int sci_int_getperspectivetransform(char * fname, void* pvApiCtx);
 	int sci_int_imadapthistequal(char * fname, void* pvApiCtx);
+	int sci_int_imbilateralfilter(char * fname, void* pvApiCtx);
+	int sci_int_imblur(char * fname, void* pvApiCtx);
 	int sci_int_imboundingRect(char * fname, void* pvApiCtx);
 	int sci_int_imconvexHull(char * fname, void* pvApiCtx);
 	int sci_int_imconvexityDefects(char * fname, void* pvApiCtx);
@@ -143,6 +145,7 @@ extern "C"
 	int sci_int_imfilter(char * fname, void* pvApiCtx);
 	int sci_int_imfindContours(char * fname, void* pvApiCtx);
 	int sci_int_imfinfo(char *fname, void* pvApiCtx);
+	int sci_int_imgaussianblur(char * fname, void* pvApiCtx);
 	int sci_int_imreadable(char *fname, void* pvApiCtx);
 	int sci_int_imhough(char * fname, void* pvApiCtx);
 	int sci_int_imhoughcircles(char * fname, void* pvApiCtx);

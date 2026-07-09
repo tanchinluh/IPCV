@@ -76,4 +76,18 @@ rgb2 = hls2rgb(hls);
    <member>Tan Chin Luh</member>
    </simplelist>
 </refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr>
+         <td><emphasis role="bold">Version</emphasis></td>
+         <td><emphasis role="bold">Description</emphasis></td>
+      </tr>
+      <tr>
+         <td>5.0.0</td>
+         <td>Function introduced.</td>
+      </tr>
+   </informaltable>
+</refsection>
 </refentry>

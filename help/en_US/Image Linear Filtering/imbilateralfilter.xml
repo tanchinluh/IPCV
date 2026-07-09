@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbilateralfilter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imbilateralfilter</refname>
+    <refpurpose>Blur an image while preserving edges with a bilateral filter.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imbilateralfilter(imin)
+   imout = imbilateralfilter(imin, diameter)
+   imout = imbilateralfilter(imin, diameter, sigmaColor)
+   imout = imbilateralfilter(imin, diameter, sigmaColor, sigmaSpace)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para>Input image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>diameter :</term>
+            <listitem><para>Diameter of each pixel neighborhood. Default is 5.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sigmaColor :</term>
+            <listitem><para>Filter sigma in color space. Default is 75.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sigmaSpace :</term>
+            <listitem><para>Filter sigma in coordinate space. Default is 75.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para>Filtered image with the same type and size as <literal>imin</literal>.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imbilateralfilter</function> applies OpenCV 5 <function>bilateralFilter</function> to each image channel.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imbilateralfilter(im, 7, 50, 50);
+imshow(out);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imblur">imblur</link></member>
+   <member><link linkend="imgaussianblur">imgaussianblur</link></member>
+   <member><link linkend="imfilter">imfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr>
+         <td><emphasis role="bold">Version</emphasis></td>
+         <td><emphasis role="bold">Description</emphasis></td>
+      </tr>
+      <tr>
+         <td>5.0.0</td>
+         <td>Function introduced.</td>
+      </tr>
+   </informaltable>
+</refsection>
+</refentry>

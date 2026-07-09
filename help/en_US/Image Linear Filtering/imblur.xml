@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from rgb2yuv.sci using help_from_sci().
- *
- -->
-
-<refentry version="5.0-subset Scilab" xml:id="rgb2yuv" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="imblur" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -16,16 +9,15 @@
           xmlns:db="http://docbook.org/ns/docbook">
 
   <refnamediv>
-    <refname>rgb2yuv</refname>
-    <refpurpose>Convert an RGB image to YUV.</refpurpose>
+    <refname>imblur</refname>
+    <refpurpose>Blur an image using a normalized box filter.</refpurpose>
   </refnamediv>
-
 
 <refsynopsisdiv>
    <title>Syntax</title>
    <synopsis>
-   yuv = rgb2yuv(rgb)
-
+   imout = imblur(imin)
+   imout = imblur(imin, ksize)
    </synopsis>
 </refsynopsisdiv>
 
@@ -33,12 +25,16 @@
    <title>Arguments</title>
    <variablelist>
         <varlistentry>
-            <term>rgb :</term>
-            <listitem><para> RGB image.</para></listitem>
+            <term>imin :</term>
+            <listitem><para>Input image.</para></listitem>
         </varlistentry>
         <varlistentry>
-            <term>yuv :</term>
-            <listitem><para> YUV image.</para></listitem>
+            <term>ksize :</term>
+            <listitem><para>Filter size. It can be a scalar or <literal>[rows cols]</literal>. Default is <literal>[3 3]</literal>.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para>Blurred image with the same type and size as <literal>imin</literal>.</para></listitem>
         </varlistentry>
    </variablelist>
 </refsection>
@@ -46,27 +42,25 @@
 <refsection>
    <title>Description</title>
    <para>
-rgb2yuv converts an RGB image to YUV using OpenCV 5 cvtColor.
+      <function>imblur</function> applies OpenCV 5 <function>blur</function> to each image channel.
    </para>
-   <para>
-</para>
 </refsection>
 
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-rgb = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
-yuv = rgb2yuv(rgb);
-
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imblur(im, [5 5]);
+imshow(out);
    ]]></programlisting>
 </refsection>
 
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="yuv2rgb">yuv2rgb</link></member>
-   <member><link linkend="rgb2ycbcr">rgb2ycbcr</link></member>
-   <member><link linkend="imcvtcolor">imcvtcolor</link></member>
+   <member><link linkend="imgaussianblur">imgaussianblur</link></member>
+   <member><link linkend="imbilateralfilter">imbilateralfilter</link></member>
+   <member><link linkend="imfilter">imfilter</link></member>
    </simplelist>
 </refsection>
 

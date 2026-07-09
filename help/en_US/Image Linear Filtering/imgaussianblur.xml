@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgaussianblur" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imgaussianblur</refname>
+    <refpurpose>Blur an image using a Gaussian kernel.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imgaussianblur(imin)
+   imout = imgaussianblur(imin, ksize)
+   imout = imgaussianblur(imin, ksize, sigmaX)
+   imout = imgaussianblur(imin, ksize, sigmaX, sigmaY)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para>Input image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ksize :</term>
+            <listitem><para>Gaussian kernel size. It can be a scalar or <literal>[rows cols]</literal>. Values must be positive and odd. Default is <literal>[5 5]</literal>.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sigmaX :</term>
+            <listitem><para>Gaussian sigma in the X direction. Default is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>sigmaY :</term>
+            <listitem><para>Gaussian sigma in the Y direction. Default is 0.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para>Blurred image with the same type and size as <literal>imin</literal>.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imgaussianblur</function> applies OpenCV 5 <function>GaussianBlur</function> to each image channel.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imgaussianblur(im, [7 7], 1.5);
+imshow(out);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imblur">imblur</link></member>
+   <member><link linkend="imbilateralfilter">imbilateralfilter</link></member>
+   <member><link linkend="imfilter">imfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr>
+         <td><emphasis role="bold">Version</emphasis></td>
+         <td><emphasis role="bold">Description</emphasis></td>
+      </tr>
+      <tr>
+         <td>5.0.0</td>
+         <td>Function introduced.</td>
+      </tr>
+   </informaltable>
+</refsection>
+</refentry>

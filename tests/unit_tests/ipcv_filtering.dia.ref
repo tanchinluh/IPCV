@@ -20,4 +20,21 @@ filteredColor = imfilter(color, kernel);
 assert_checkequal(typeof(filteredColor), "uint8");
 assert_checkequal(size(filteredColor), [3 3 3]);
 
+blurred = imblur(gray, [3 3]);
+assert_checkequal(typeof(blurred), "uint8");
+assert_checkequal(size(blurred), [3 3]);
+assert_checkequal(blurred, filteredSame);
+
+blurredColor = imblur(color, 3);
+assert_checkequal(typeof(blurredColor), "uint8");
+assert_checkequal(size(blurredColor), [3 3 3]);
+
+gaussian = imgaussianblur(gray, [3 3], 0);
+assert_checkequal(typeof(gaussian), "uint8");
+assert_checkequal(size(gaussian), [3 3]);
+
+bilateral = imbilateralfilter(gray, 3, 30, 30);
+assert_checkequal(typeof(bilateral), "uint8");
+assert_checkequal(size(bilateral), [3 3]);
+
 //==============================================================================

@@ -76,7 +76,10 @@
 <!ENTITY ad4467bfa485a72aa89b94019579c959d SYSTEM "Image Enhancement and Restoration/imwiener2.xml">
 <!ENTITY ae53a585b8bd49e5fbd145f83825724f9 SYSTEM "Image Linear Filtering/filter2.xml">
 <!ENTITY a87a16d7ef81f9289efb22ea9558af05f SYSTEM "Image Linear Filtering/fspecial.xml">
+<!ENTITY a707cbd3de04a818c13627f3e5bf05e5f SYSTEM "Image Linear Filtering/imbilateralfilter.xml">
+<!ENTITY a3ddee09cc31a6e5fb942bcf8357c2dff SYSTEM "Image Linear Filtering/imblur.xml">
 <!ENTITY aa5e22b79b2543f513fe28ba0fa6b910b SYSTEM "Image Linear Filtering/imfilter.xml">
+<!ENTITY a9baa26d6dc0e6e914d637f1fa0af083e SYSTEM "Image Linear Filtering/imgaussianblur.xml">
 <!ENTITY a560fa58746edc10006dc8da3c621cdff SYSTEM "Image Reading, Display and Exploration/imcount.xml">
 <!ENTITY a62ebabd8203505890e52a55178f3664c SYSTEM "Image Reading, Display and Exploration/imcreatechecker.xml">
 <!ENTITY ad8f45503de12f28f929710960a018f28 SYSTEM "Image Reading, Display and Exploration/imdestroy.xml">
@@ -313,7 +316,10 @@
 <title>Image Linear Filtering</title>
 &ae53a585b8bd49e5fbd145f83825724f9;
 &a87a16d7ef81f9289efb22ea9558af05f;
+&a707cbd3de04a818c13627f3e5bf05e5f;
+&a3ddee09cc31a6e5fb942bcf8357c2dff;
 &aa5e22b79b2543f513fe28ba0fa6b910b;
+&a9baa26d6dc0e6e914d637f1fa0af083e;
 </part>
 <part xml:id='section_ecece74f539adeeee3b98a7bcf8d5106'>
 <title>Image Reading, Display and Exploration</title>
