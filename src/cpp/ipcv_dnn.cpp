@@ -387,7 +387,7 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
     }
 }
 
-extern "C" IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage *source, int width, int height, const char *layer_name, double scale_factor, const double mean[3], int swap_rb, int crop, IpcvDnnTensor *output)
+extern "C" IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage *source, int width, int height, const char *layer_name, double scale_factor, const double mean[3], const double std_values[3], int swap_rb, int crop, IpcvDnnTensor *output)
 {
     if (output != NULL)
     {
@@ -419,7 +419,32 @@ extern "C" IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage
         }
 
         const double local_mean[3] = {mean == NULL ? 0.0 : mean[0], mean == NULL ? 0.0 : mean[1], mean == NULL ? 0.0 : mean[2]};
+        const double local_std[3] = {std_values == NULL ? 1.0 : std_values[0], std_values == NULL ? 1.0 : std_values[1], std_values == NULL ? 1.0 : std_values[2]};
+        if (local_std[0] == 0.0 || local_std[1] == 0.0 || local_std[2] == 0.0)
+        {
+            set_tensor_error(output, "DNN input standard deviation values must be nonzero");
+            return -1;
+        }
+
         cv::Mat input_blob = cv::dnn::blobFromImage(image, scale_factor, cv::Size(width, height), cv::Scalar(local_mean[0], local_mean[1], local_mean[2]), swap_rb != 0, crop != 0);
+        if (local_std[0] != 1.0 || local_std[1] != 1.0 || local_std[2] != 1.0)
+        {
+            const int channels = input_blob.size[1];
+            if (channels >= 3)
+            {
+                for (int c = 0; c < 3; c++)
+                {
+                    cv::Range ranges[4] = {cv::Range::all(), cv::Range(c, c + 1), cv::Range::all(), cv::Range::all()};
+                    cv::Mat channel_blob = input_blob(ranges);
+                    channel_blob /= local_std[c];
+                }
+            }
+            else if (channels == 1)
+            {
+                input_blob /= local_std[0];
+            }
+        }
+
         cv::dnn::Net& net = g_nets[handle - 1];
         net.setInput(input_blob);
 

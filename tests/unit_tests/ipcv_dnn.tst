@@ -36,6 +36,7 @@ assert_checkequal(zooYolo.decoder, "yolo");
 zooNanoDet = dnn_zoo_modelinfo("object_detection_nanodet_2022nov.onnx", "object_detection_nanodet");
 assert_checkequal(zooNanoDet.decoder, "nanodet");
 assert_checkequal(zooNanoDet.inputSize, [416 416]);
+assert_checkequal(zooNanoDet.std, [57.375 57.12 58.395]);
 zooSsd = dnn_zoo_modelinfo("object_detection_ssd_mobilenetv1.onnx", "object_detection_ssd");
 assert_checkequal(zooSsd.decoder, "ssd");
 zooYunet = dnn_zoo_modelinfo("face_detection_yunet_2023mar.onnx", "face_detection_yunet");
@@ -77,6 +78,8 @@ assert_checkequal(segMask, [1 2; 2 2]);
 S = imread(dnn_path + "3.jpg");
 out = dnn_forward(net, ~S, [28, 28]);
 assert_checktrue(size(out, "*") > 0);
+outStd = dnn_forward(net, ~S, [28, 28], [], 1, [0 0 0], 1, 0, [1 1 1]);
+assert_checkequal(size(outStd), size(out));
 
 out1 = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
 assert_checkequal(size(out1), [28 28 6]);

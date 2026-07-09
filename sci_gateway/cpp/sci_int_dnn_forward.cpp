@@ -8,7 +8,7 @@
 
 int sci_int_dnn_forward(char * fname, void* pvApiCtx)
 {
-	CheckInputArgument(pvApiCtx, 8, 8);
+	CheckInputArgument(pvApiCtx, 8, 9);
 	CheckOutputArgument(pvApiCtx, 0, 1);
 
 	double *handleValue = NULL;
@@ -16,6 +16,7 @@ int sci_int_dnn_forward(char * fname, void* pvApiCtx)
 	char *layerName = NULL;
 	double *scaleFactor = NULL;
 	double *mean = NULL;
+	double *stdValues = NULL;
 	double *swapRB = NULL;
 	double *crop = NULL;
 	int iRows = 0;
@@ -38,10 +39,16 @@ int sci_int_dnn_forward(char * fname, void* pvApiCtx)
 	GetDouble(6, mean, iRows, iCols, pvApiCtx);
 	GetDouble(7, swapRB, iRows, iCols, pvApiCtx);
 	GetDouble(8, crop, iRows, iCols, pvApiCtx);
+	double defaultStd[3] = {1.0, 1.0, 1.0};
+	stdValues = defaultStd;
+	if (nbInputArgument(pvApiCtx) >= 9)
+	{
+		GetDouble(9, stdValues, iRows, iCols, pvApiCtx);
+	}
 
 	IpcvDnnTensor output;
 	memset(&output, 0, sizeof(output));
-	iRet = ipcv_dnn_forward(handle, &image, static_cast<int>(inputSize[0]), static_cast<int>(inputSize[1]), layerName, *scaleFactor, mean, static_cast<int>(*swapRB), static_cast<int>(*crop), &output);
+	iRet = ipcv_dnn_forward(handle, &image, static_cast<int>(inputSize[0]), static_cast<int>(inputSize[1]), layerName, *scaleFactor, mean, stdValues, static_cast<int>(*swapRB), static_cast<int>(*crop), &output);
 	ipcv_release_image_argument(image);
 	if (iRet)
 	{

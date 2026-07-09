@@ -26,7 +26,7 @@ typedef struct IpcvStringList
 } IpcvStringList;
 
 IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config, int model_type, int *handle, char *error, int error_size);
-IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage *source, int width, int height, const char *layer_name, double scale_factor, const double mean[3], int swap_rb, int crop, IpcvDnnTensor *output);
+IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage *source, int width, int height, const char *layer_name, double scale_factor, const double mean[3], const double std_values[3], int swap_rb, int crop, IpcvDnnTensor *output);
 IPCV_CORE_API int ipcv_dnn_get_layer_names(int handle, IpcvStringList *names);
 IPCV_CORE_API int ipcv_dnn_get_unconnected_output_names(int handle, IpcvStringList *names);
 IPCV_CORE_API int ipcv_dnn_get_layer_types(int handle, IpcvStringList *types);

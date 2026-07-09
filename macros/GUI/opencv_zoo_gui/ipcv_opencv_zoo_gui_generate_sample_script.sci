@@ -93,10 +93,10 @@ function script_file = ipcv_opencv_zoo_gui_generate_sample_script(model_file, mo
         "        if model_info.decoder == ""nanodet"" & size(net.outputname, ""*"") > 1 then";
         "            out = list();";
         "            for k = 1:size(net.outputname, ""*"")";
-        "                out(k) = dnn_forward(net, S, model_info.inputSize, net.outputname(k), model_info.scale, model_info.mean, model_info.swapRB, model_info.crop);";
+        "                out(k) = dnn_forward(net, S, model_info.inputSize, net.outputname(k), model_info.scale, model_info.mean, model_info.swapRB, model_info.crop, model_info.std);";
         "            end";
         "        else";
-        "            out = dnn_forward(net, S, model_info.inputSize, [], model_info.scale, model_info.mean, model_info.swapRB, model_info.crop);";
+        "            out = dnn_forward(net, S, model_info.inputSize, [], model_info.scale, model_info.mean, model_info.swapRB, model_info.crop, model_info.std);";
         "        end";
         "        if typeof(out) == ""list"" then";
         "            mprintf(""Forward output tensors: %d\n"", length(out));";

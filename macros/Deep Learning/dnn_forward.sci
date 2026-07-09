@@ -2,11 +2,13 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2018  Tan Chin Luh
 //=============================================================================
-function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop)
+function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std)
     // Runs forward pass to compute output of layer with name layer_name
     //
     // Syntax
-    //    out = dnn_forward(net,img,scalefactor,image_size,rgb_mean,swapRB,layer_name);
+    //    out = dnn_forward(net,img,input_size)
+    //    out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop)
+    //    out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std)
     //
     // Parameters
     //    net : DNN object loaded in Scilab
@@ -14,7 +16,8 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //    input_size : DNN input size
     //    layer_name : Name for layer which output is needed to get
     //    scalefactor : Spatial size for input image
-    //    rgb_mean : Scalar with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true. 
+    //    rgb_mean : Vector with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
+    //    rgb_std : Optional vector with per-channel standard deviation values applied after mean subtraction. Use [1, 1, 1] for no per-channel standardization.
     //    swapRB : Flag which indicates that swap first and last channels in 3-channel image is necessary.
     //    crop : flag which indicates whether image will be cropped after resize or not
     //    out : Output matrix of the results depending on the type of DNN loaded.
@@ -62,6 +65,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     if rhs < 6; rgb_mean = [0, 0, 0]; end
     if rhs < 7; swapRB = 1; end
     if rhs < 8; crop = 0; end
+    if rhs < 9; rgb_std = [1, 1, 1]; end
 
     // Check for empty optional inputs
     if isempty(layer_name) then
@@ -76,6 +80,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     if isempty(rgb_mean); rgb_mean = [0, 0, 0]; end
     if isempty(swapRB); swapRB = 1; end
     if isempty(crop); crop = 0; end
+    if isempty(rgb_std); rgb_std = [1, 1, 1]; end
     
     
      
@@ -85,7 +90,13 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     end   
     if type(rgb_mean) ~= 1 | length(rgb_mean)<3
         error("Input rgb_mean must be vector of [R,G,B]"); 
-    end   
+    end
+    if type(rgb_std) ~= 1 | length(rgb_std)<3
+        error("Input rgb_std must be vector of [R,G,B]");
+    end
+    if or(rgb_std(1:3) == 0) then
+        error("Input rgb_std values must be nonzero");
+    end
     checkrange(7,swapRB,0,1);
     checkrange(8,crop,0,1);
     
@@ -102,7 +113,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
         error("Layer name not found in the DNN structure."); 
     end
     
-    out = int_dnn_forward(net.ptr,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop);
+    out = int_dnn_forward(net.ptr,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std);
     
     
 endfunction

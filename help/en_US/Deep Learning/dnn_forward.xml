@@ -26,6 +26,7 @@
    <synopsis>
    out = dnn_forward(net,img,input_size)
    out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop)
+   out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std)
    
    </synopsis>
 </refsynopsisdiv>
@@ -55,7 +56,11 @@
         </varlistentry>
         <varlistentry>
             <term>rgb_mean :</term>
-            <listitem><para> Scalar with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.</para></listitem>
+            <listitem><para> Vector with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>rgb_std :</term>
+            <listitem><para> Optional vector with per-channel standard deviation values applied after mean subtraction. Use [1, 1, 1] for no per-channel standardization.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>swapRB :</term>
