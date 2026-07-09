@@ -22,7 +22,7 @@ function builder_cpp()
     cflags = ilib_include_flag([src_cpp_path, opencv_include]);
     if getos() == "Windows" then
         cflags = cflags + " /std:c++17";
-    else
+    elseif getos() == "Linux"
         cflags = cflags + " -std=c++17";
     end
 
