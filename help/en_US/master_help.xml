@@ -46,7 +46,10 @@
 <!ENTITY a4aed5f460ba5e42729e99e0a1c25858b SYSTEM "Filter Design and Visualization/mkfftfilter.xml">
 <!ENTITY a1b861fd021e04a44ca7a3a29ab4dd502 SYSTEM "Image Analysis and Statistics/corr2.xml">
 <!ENTITY a462f305ab08e025e3ac69ec551f1761c SYSTEM "Image Analysis and Statistics/edge.xml">
+<!ENTITY a886482e8f59b6f3ba105de4b2357e117 SYSTEM "Image Analysis and Statistics/imcountnonzero.xml">
 <!ENTITY adfc1d4e58c8e71bc204b3d78e42533c1 SYSTEM "Image Analysis and Statistics/imhist.xml">
+<!ENTITY a942b45e29b96ccbf3863abdfd238fc56 SYSTEM "Image Analysis and Statistics/immeanstddev.xml">
+<!ENTITY afa7ffaf4966e4f677e94437321243777 SYSTEM "Image Analysis and Statistics/imminmax.xml">
 <!ENTITY a438c36c2fc4efa2b19aca0e50126742d SYSTEM "Image Analysis and Statistics/impixel.xml">
 <!ENTITY a086232b25a0fe2a1dfb00fb215c2ea3e SYSTEM "Image Analysis and Statistics/improfile.xml">
 <!ENTITY a17ec432bcf2950de694f0150ec4c0148 SYSTEM "Image Analysis and Statistics/mean2.xml">
@@ -69,6 +72,7 @@
 <!ENTITY a035314f7fb98e5e3e762a82e9f874e64 SYSTEM "Image Enhancement and Restoration/imdeconvsobolev.xml">
 <!ENTITY a9e52b877f2ceb6870697c423a2ca11c1 SYSTEM "Image Enhancement and Restoration/imdeconvwiener.xml">
 <!ENTITY a160bb85e0dd8ed97061d3c55df76fb4e SYSTEM "Image Enhancement and Restoration/imdecorrstretch.xml">
+<!ENTITY a736e6f94b6494c58410076df4268a2f7 SYSTEM "Image Enhancement and Restoration/imdenoise.xml">
 <!ENTITY acc53524936ebb863f725f8ee623c9c6f SYSTEM "Image Enhancement and Restoration/imhistequal.xml">
 <!ENTITY ac8c7150632d5882cb20b263f73c49d8e SYSTEM "Image Enhancement and Restoration/iminpaint.xml">
 <!ENTITY ad326e496d2de952a13ad9f5bff550a97 SYSTEM "Image Enhancement and Restoration/immedian.xml">
@@ -78,6 +82,7 @@
 <!ENTITY a87a16d7ef81f9289efb22ea9558af05f SYSTEM "Image Linear Filtering/fspecial.xml">
 <!ENTITY a707cbd3de04a818c13627f3e5bf05e5f SYSTEM "Image Linear Filtering/imbilateralfilter.xml">
 <!ENTITY a3ddee09cc31a6e5fb942bcf8357c2dff SYSTEM "Image Linear Filtering/imblur.xml">
+<!ENTITY a7583881b158a4198b5425980463ab548 SYSTEM "Image Linear Filtering/imboxfilter.xml">
 <!ENTITY aa5e22b79b2543f513fe28ba0fa6b910b SYSTEM "Image Linear Filtering/imfilter.xml">
 <!ENTITY a9baa26d6dc0e6e914d637f1fa0af083e SYSTEM "Image Linear Filtering/imgaussianblur.xml">
 <!ENTITY a560fa58746edc10006dc8da3c621cdff SYSTEM "Image Reading, Display and Exploration/imcount.xml">
@@ -91,6 +96,7 @@
 <!ENTITY a59f065228cdb052f313dbbb6313adac0 SYSTEM "Image Reading, Display and Exploration/imreadmulti.xml">
 <!ENTITY a0e7d9247c4ff6315150130ac9aecc0b4 SYSTEM "Image Reading, Display and Exploration/imshow.xml">
 <!ENTITY aa6f8707915b1588b1a2a0b6c2bbbd18c SYSTEM "Image Reading, Display and Exploration/imwritable.xml">
+<!ENTITY aa494dee0bb1fd0a2e5bbe908f5d5c8b6 SYSTEM "Image Reading, Display and Exploration/imwritableexts.xml">
 <!ENTITY a54b02642fcd3ed306a65d87c28fdc78a SYSTEM "Image Reading, Display and Exploration/imwrite.xml">
 <!ENTITY a3fc7cbd06921d7084b15cb000a945c0f SYSTEM "Image Reading, Display and Exploration/tifread.xml">
 <!ENTITY a4ac49a003ba3b729c9436a0600bc589e SYSTEM "Image Registration and Image Fusion/imfuse.xml">
@@ -166,7 +172,9 @@
 <!ENTITY a72492677a58f4af6e2e445e259453551 SYSTEM "Spatial Transformations/impyramid.xml">
 <!ENTITY aec8de7023eb8d64453c151ad8f4df2d1 SYSTEM "Spatial Transformations/imresize.xml">
 <!ENTITY abbb05ab99863797d2c530ab2858fe0d9 SYSTEM "Spatial Transformations/imrotate.xml">
+<!ENTITY abcdc0bfa1ea7b9603589b1b6e8bfab62 SYSTEM "Structural Analysis and Shape Descriptors/imarclength.xml">
 <!ENTITY a8720be8de4b89c5de210f7f435ac4df3 SYSTEM "Structural Analysis and Shape Descriptors/imcontour2label.xml">
+<!ENTITY a76a355160eef2c4866180da4aad996fb SYSTEM "Structural Analysis and Shape Descriptors/imcontourarea.xml">
 <!ENTITY a49962d26d54cd5e1a159dc2633001580 SYSTEM "Structural Analysis and Shape Descriptors/imconvexHull.xml">
 <!ENTITY a6686bad52072ac3d0639360399ae9a2d SYSTEM "Structural Analysis and Shape Descriptors/imconvexityDefects.xml">
 <!ENTITY a9c37056120dac0736ef82007babbcb18 SYSTEM "Structural Analysis and Shape Descriptors/imdrawcontours.xml">
@@ -208,8 +216,8 @@
       xmlns:mml="http://www.w3.org/1998/Math/MathML"
       xmlns:html="http://www.w3.org/1999/xhtml"
       xmlns:db="http://docbook.org/ns/docbook">
-  <info xml:id='ipcv_-_image_processing_and_computer_vision_toolbox_for_scilab_manual'>
-    <title>IPCV - Image Processing and Computer Vision Toolbox for Scilab</title>
+  <info xml:id='ipcv_manual'>
+    <title>IPCV</title>
   </info>
 
 <part xml:id='section_64c1abd1cfbadfbd1e0e81ebdc661443'>
@@ -274,7 +282,10 @@
 <title>Image Analysis and Statistics</title>
 &a1b861fd021e04a44ca7a3a29ab4dd502;
 &a462f305ab08e025e3ac69ec551f1761c;
+&a886482e8f59b6f3ba105de4b2357e117;
 &adfc1d4e58c8e71bc204b3d78e42533c1;
+&a942b45e29b96ccbf3863abdfd238fc56;
+&afa7ffaf4966e4f677e94437321243777;
 &a438c36c2fc4efa2b19aca0e50126742d;
 &a086232b25a0fe2a1dfb00fb215c2ea3e;
 &a17ec432bcf2950de694f0150ec4c0148;
@@ -306,6 +317,7 @@
 &a035314f7fb98e5e3e762a82e9f874e64;
 &a9e52b877f2ceb6870697c423a2ca11c1;
 &a160bb85e0dd8ed97061d3c55df76fb4e;
+&a736e6f94b6494c58410076df4268a2f7;
 &acc53524936ebb863f725f8ee623c9c6f;
 &ac8c7150632d5882cb20b263f73c49d8e;
 &ad326e496d2de952a13ad9f5bff550a97;
@@ -318,6 +330,7 @@
 &a87a16d7ef81f9289efb22ea9558af05f;
 &a707cbd3de04a818c13627f3e5bf05e5f;
 &a3ddee09cc31a6e5fb942bcf8357c2dff;
+&a7583881b158a4198b5425980463ab548;
 &aa5e22b79b2543f513fe28ba0fa6b910b;
 &a9baa26d6dc0e6e914d637f1fa0af083e;
 </part>
@@ -334,6 +347,7 @@
 &a59f065228cdb052f313dbbb6313adac0;
 &a0e7d9247c4ff6315150130ac9aecc0b4;
 &aa6f8707915b1588b1a2a0b6c2bbbd18c;
+&aa494dee0bb1fd0a2e5bbe908f5d5c8b6;
 &a54b02642fcd3ed306a65d87c28fdc78a;
 &a3fc7cbd06921d7084b15cb000a945c0f;
 </part>
@@ -439,7 +453,9 @@
 </part>
 <part xml:id='section_87065bdb9c0a8e63363dfdf429cca9d9'>
 <title>Structural Analysis and Shape Descriptors</title>
+&abcdc0bfa1ea7b9603589b1b6e8bfab62;
 &a8720be8de4b89c5de210f7f435ac4df3;
+&a76a355160eef2c4866180da4aad996fb;
 &a49962d26d54cd5e1a159dc2633001580;
 &a6686bad52072ac3d0639360399ae9a2d;
 &a9c37056120dac0736ef82007babbcb18;

@@ -12,6 +12,16 @@ firstContour = contours(1);
 assert_checkequal(size(firstContour, 2), 2);
 assert_checktrue(size(firstContour, 1) >= 3);
 
+areas = imcontourarea(contours);
+assert_checkequal(size(areas, 2), 1);
+assert_checktrue(size(areas, 1) >= 1);
+assert_checktrue(max(areas) > 0);
+
+perimeters = imarclength(contours);
+assert_checkequal(size(perimeters, 2), 1);
+assert_checktrue(size(perimeters, 1) >= 1);
+assert_checktrue(max(perimeters) > 0);
+
 hulls = imconvexHull(contours);
 firstHull = hulls(1);
 assert_checkequal(size(firstHull, 2), 2);

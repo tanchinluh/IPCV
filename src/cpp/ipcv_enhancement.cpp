@@ -354,6 +354,89 @@ extern "C" IPCV_CORE_API int ipcv_clahe_image(const IpcvDecodedImage *source, do
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_denoise_image(const IpcvDecodedImage *source, double h, double h_color, int template_window_size, int search_window_size, IpcvDecodedImage *output)
+{
+    if (output == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    if (source == NULL)
+    {
+        set_error(output, "missing image input");
+        return -1;
+    }
+    if (h <= 0.0 || h_color <= 0.0)
+    {
+        set_error(output, "denoise strength values must be positive");
+        return -1;
+    }
+    if (template_window_size <= 0 || search_window_size <= 0 || (template_window_size % 2) == 0 || (search_window_size % 2) == 0)
+    {
+        set_error(output, "denoise window sizes must be positive and odd");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat denoised;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (sourceMat.depth() != CV_8U)
+        {
+            set_error(output, "denoise currently supports uint8 images");
+            return -1;
+        }
+        if (sourceMat.channels() == 1)
+        {
+            cv::fastNlMeansDenoising(sourceMat, denoised, static_cast<float>(h), template_window_size, search_window_size);
+        }
+        else if (sourceMat.channels() == 3)
+        {
+            cv::fastNlMeansDenoisingColored(sourceMat, denoised, static_cast<float>(h), static_cast<float>(h_color), template_window_size, search_window_size);
+        }
+        else
+        {
+            set_error(output, "denoise supports single-channel or RGB images");
+            return -1;
+        }
+
+        if (!mat_to_image(denoised, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert denoise result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown denoise failure");
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API int ipcv_inpaint_image(const IpcvDecodedImage *source, const IpcvDecodedImage *mask, double radius, int method, IpcvDecodedImage *output)
 {
     if (output == NULL)

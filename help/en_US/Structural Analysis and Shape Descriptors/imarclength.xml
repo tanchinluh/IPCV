@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imarclength" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imarclength</refname>
+    <refpurpose>Compute contour arc lengths or perimeters.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   length = imarclength(contours)
+   length = imarclength(contours, closed)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry><term>contours :</term><listitem><para>Contour list returned by <function>imfindContours</function>.</para></listitem></varlistentry>
+        <varlistentry><term>closed :</term><listitem><para>If true, treat contours as closed curves. Default is <literal>%t</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>length :</term><listitem><para>Column vector of contour arc lengths.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imarclength</function> computes OpenCV 5 <function>arcLength</function> for each contour.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "star.png"));
+bw = im2bw(im, 0.5);
+contours = imfindContours(bw);
+perimeter = imarclength(contours);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfindContours">imfindContours</link></member>
+   <member><link linkend="imcontourarea">imcontourarea</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

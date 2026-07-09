@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imdenoise" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imdenoise</refname>
+    <refpurpose>Denoise an image using non-local means filtering.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imdenoise(imin)
+   imout = imdenoise(imin, h, hColor, templateWindowSize, searchWindowSize)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry><term>imin :</term><listitem><para>Input 8-bit grayscale or RGB image.</para></listitem></varlistentry>
+        <varlistentry><term>h :</term><listitem><para>Filter strength for luminance or grayscale detail. Default is <literal>3</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>hColor :</term><listitem><para>Filter strength for color components. Default is <literal>3</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>templateWindowSize :</term><listitem><para>Odd template patch size. Default is <literal>7</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>searchWindowSize :</term><listitem><para>Odd search window size. Default is <literal>21</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>imout :</term><listitem><para>Denoised image with the same type and size as <literal>imin</literal>.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imdenoise</function> uses OpenCV 5 <function>fastNlMeansDenoising</function> for grayscale images and <function>fastNlMeansDenoisingColored</function> for RGB images.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imdenoise(im, 5, 5, 7, 21);
+imshow(out);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imnoise">imnoise</link></member>
+   <member><link linkend="immedian">immedian</link></member>
+   <member><link linkend="imbilateralfilter">imbilateralfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

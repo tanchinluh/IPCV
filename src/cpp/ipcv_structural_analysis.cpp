@@ -23,6 +23,17 @@ void set_error(IpcvContourList *list, const char *message)
     list->error[sizeof(list->error) - 1] = 0;
 }
 
+void set_error(IpcvDoubleMatrix *matrix, const char *message)
+{
+    if (matrix == NULL)
+    {
+        return;
+    }
+
+    std::strncpy(matrix->error, message, sizeof(matrix->error) - 1);
+    matrix->error[sizeof(matrix->error) - 1] = 0;
+}
+
 size_t depth_size(int depth)
 {
     switch (depth)
@@ -170,6 +181,25 @@ bool allocate_list(IpcvContourList *list, int count, int columns, const std::vec
         return false;
     }
 
+    return true;
+}
+
+bool allocate_matrix(IpcvDoubleMatrix *matrix, int rows, int cols)
+{
+    if (matrix == NULL || rows < 0 || cols <= 0)
+    {
+        return false;
+    }
+
+    std::memset(matrix, 0, sizeof(*matrix));
+    matrix->rows = rows;
+    matrix->cols = cols;
+    matrix->data = static_cast<double*>(std::calloc(rows == 0 ? 1 : static_cast<size_t>(rows) * cols, sizeof(double)));
+    if (matrix->data == NULL)
+    {
+        set_error(matrix, "out of memory");
+        return false;
+    }
     return true;
 }
 }
@@ -414,6 +444,102 @@ extern "C" IPCV_CORE_API int ipcv_convexity_defects(const IpcvContourList *conto
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_contour_area(const IpcvContourList *contours, int oriented, IpcvDoubleMatrix *areas)
+{
+    if (areas == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(areas, 0, sizeof(*areas));
+    if (contours == NULL)
+    {
+        set_error(areas, "missing contour list input");
+        return -1;
+    }
+
+    try
+    {
+        std::vector<std::vector<cv::Point>> contour_points = list_to_contours(contours);
+        if (!allocate_matrix(areas, static_cast<int>(contour_points.size()), 1))
+        {
+            return -1;
+        }
+
+        for (size_t i = 0; i < contour_points.size(); i++)
+        {
+            areas->data[i] = cv::contourArea(contour_points[i], oriented != 0);
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        ipcv_free_double_matrix(areas);
+        set_error(areas, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        ipcv_free_double_matrix(areas);
+        set_error(areas, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        ipcv_free_double_matrix(areas);
+        set_error(areas, "unknown contour area failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_arc_length(const IpcvContourList *contours, int closed, IpcvDoubleMatrix *lengths)
+{
+    if (lengths == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(lengths, 0, sizeof(*lengths));
+    if (contours == NULL)
+    {
+        set_error(lengths, "missing contour list input");
+        return -1;
+    }
+
+    try
+    {
+        std::vector<std::vector<cv::Point>> contour_points = list_to_contours(contours);
+        if (!allocate_matrix(lengths, static_cast<int>(contour_points.size()), 1))
+        {
+            return -1;
+        }
+
+        for (size_t i = 0; i < contour_points.size(); i++)
+        {
+            lengths->data[i] = cv::arcLength(contour_points[i], closed != 0);
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        ipcv_free_double_matrix(lengths);
+        set_error(lengths, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        ipcv_free_double_matrix(lengths);
+        set_error(lengths, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        ipcv_free_double_matrix(lengths);
+        set_error(lengths, "unknown arc length failure");
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API int ipcv_bounding_rect(const IpcvDecodedImage *source, double rect[4], char *error, int error_size)
 {
     if (rect == NULL)
@@ -501,4 +627,17 @@ extern "C" IPCV_CORE_API void ipcv_free_contour_list(IpcvContourList *contours)
     contours->data = NULL;
     contours->count = 0;
     contours->columns = 0;
+}
+
+extern "C" IPCV_CORE_API void ipcv_free_double_matrix(IpcvDoubleMatrix *matrix)
+{
+    if (matrix == NULL)
+    {
+        return;
+    }
+
+    std::free(matrix->data);
+    matrix->data = NULL;
+    matrix->rows = 0;
+    matrix->cols = 0;
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immeanstddev" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>immeanstddev</refname>
+    <refpurpose>Compute per-channel image mean and standard deviation.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   [meanValue, stdValue] = immeanstddev(im)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry><term>im :</term><listitem><para>Input image.</para></listitem></varlistentry>
+        <varlistentry><term>meanValue :</term><listitem><para>Row vector of per-channel mean values.</para></listitem></varlistentry>
+        <varlistentry><term>stdValue :</term><listitem><para>Row vector of per-channel population standard deviations.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>immeanstddev</function> computes per-channel statistics in the same style as OpenCV <function>meanStdDev</function>.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+[m, s] = immeanstddev(im);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="mean2">mean2</link></member>
+   <member><link linkend="std2">std2</link></member>
+   <member><link linkend="imminmax">imminmax</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

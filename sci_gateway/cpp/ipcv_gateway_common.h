@@ -122,8 +122,10 @@ extern "C"
 	int sci_int_imboundingRect(char * fname, void* pvApiCtx);
 	int sci_int_imconvexHull(char * fname, void* pvApiCtx);
 	int sci_int_imconvexityDefects(char * fname, void* pvApiCtx);
+	int sci_int_imcontourarea(char * fname, void* pvApiCtx);
 	int sci_int_imcreatese(char * fname, void* pvApiCtx);
 	int sci_int_imdct(char * fname, void* pvApiCtx);
+	int sci_int_imdenoise(char * fname, void* pvApiCtx);
 	int sci_int_imdetect_BRISK(char * fname, void* pvApiCtx);
 	int sci_int_imdetect_FAST(char * fname, void* pvApiCtx);
 	int sci_int_imdetect_GFTT(char * fname, void* pvApiCtx);
@@ -167,6 +169,7 @@ extern "C"
 	int sci_int_imwatershed(char * fname, void* pvApiCtx);
 	int sci_int_imwrite(char * fname, void* pvApiCtx);
 	int sci_int_imwritable(char *fname, void* pvApiCtx);
+	int sci_int_imarclength(char * fname, void* pvApiCtx);
 	int sci_int_perspectivetransform(char * fname, void* pvApiCtx);
 	int sci_int_rgb2gray(char * fname, void* pvApiCtx);
 	int sci_int_rgb2lab(char * fname, void* pvApiCtx);

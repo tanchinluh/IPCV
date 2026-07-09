@@ -25,6 +25,11 @@ assert_checkequal(typeof(blurred), "uint8");
 assert_checkequal(size(blurred), [3 3]);
 assert_checkequal(blurred, filteredSame);
 
+boxFiltered = imboxfilter(gray, [3 3]);
+assert_checkequal(typeof(boxFiltered), "uint8");
+assert_checkequal(size(boxFiltered), [3 3]);
+assert_checkequal(boxFiltered, blurred);
+
 blurredColor = imblur(color, 3);
 assert_checkequal(typeof(blurredColor), "uint8");
 assert_checkequal(size(blurredColor), [3 3 3]);

@@ -20,6 +20,8 @@ assert_checkfalse(imreadable(fullpath(TMPDIR + "/ipcv_missing_image.png")));
 assert_checktrue(imwritable(".png"));
 assert_checktrue(imwritable(fullpath(TMPDIR + "/ipcv_image_io_capability.jpg")));
 assert_checkfalse(imwritable(".ipcv_unknown"));
+extensions = imwritableexts();
+assert_checktrue(or(extensions == ".png"));
 
 patch = img(1:16, 1:16, :);
 outPath = fullpath(TMPDIR + "/ipcv_image_io.png");

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imboxfilter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imboxfilter</refname>
+    <refpurpose>Blur an image using a normalized box filter.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   imout = imboxfilter(imin)
+   imout = imboxfilter(imin, ksize)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry>
+            <term>imin :</term>
+            <listitem><para>Input image.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>ksize :</term>
+            <listitem><para>Filter size. It can be a scalar or <literal>[rows cols]</literal>. Default is <literal>[3 3]</literal>.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imout :</term>
+            <listitem><para>Filtered image with the same type and size as <literal>imin</literal>.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imboxfilter</function> applies a normalized box filter, compatible with OpenCV 5 <function>boxFilter</function> with normalization enabled.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
+out = imboxfilter(im, [5 5]);
+imshow(out);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imblur">imblur</link></member>
+   <member><link linkend="imgaussianblur">imgaussianblur</link></member>
+   <member><link linkend="imbilateralfilter">imbilateralfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

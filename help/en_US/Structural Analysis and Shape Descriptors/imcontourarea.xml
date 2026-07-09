@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcontourarea" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imcontourarea</refname>
+    <refpurpose>Compute contour areas.</refpurpose>
+  </refnamediv>
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   area = imcontourarea(contours)
+   area = imcontourarea(contours, oriented)
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection role="arguments">
+   <title>Arguments</title>
+   <variablelist>
+        <varlistentry><term>contours :</term><listitem><para>Contour list returned by <function>imfindContours</function>.</para></listitem></varlistentry>
+        <varlistentry><term>oriented :</term><listitem><para>If true, return signed oriented areas. Default is <literal>%f</literal>.</para></listitem></varlistentry>
+        <varlistentry><term>area :</term><listitem><para>Column vector of contour areas.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+      <function>imcontourarea</function> computes OpenCV 5 <function>contourArea</function> for each contour.
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/" + "star.png"));
+bw = im2bw(im, 0.5);
+contours = imfindContours(bw);
+area = imcontourarea(contours);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfindContours">imfindContours</link></member>
+   <member><link linkend="imarclength">imarclength</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

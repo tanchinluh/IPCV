@@ -45,4 +45,8 @@ assert_checkequal(typeof(restored), "uint8");
 assert_checkequal(size(restored), [5 5]);
 assert_checktrue(restored(3, 3) > uint8(0));
 
+denoised = imdenoise(rgb, 3, 3, 7, 21);
+assert_checkequal(typeof(denoised), "uint8");
+assert_checkequal(size(denoised), [4 4 3]);
+
 //==============================================================================
