@@ -15,7 +15,12 @@ function detections = dnn_decode_ssd(output, imageSize, confThreshold, nmsThresh
     if rhs < 3 then confThreshold = 0.25; end
     if rhs < 4 then nmsThreshold = 0.45; end
 
-    values = matrix(double(output), -1, 7);
+    dims = size(output);
+    if size(dims, "*") >= 2 & dims(1) == 7 then
+        values = matrix(double(output), 7, -1)';
+    else
+        values = matrix(double(output), -1, 7);
+    end
     width = imageSize(1);
     height = imageSize(2);
     boxes = [];

@@ -16,14 +16,14 @@ function mask = dnn_decode_segmentation(output)
         error("dnn_decode_segmentation: output must be H-by-W-by-C.");
     end
 
-    h = dims(1);
-    w = dims(2);
+    w = dims(1);
+    h = dims(2);
     cnum = dims(3);
     mask = zeros(h, w);
-    for r = 1:h
+    for row = 1:h
         for col = 1:w
-            [dummy, idx] = max(matrix(output(r, col, :), -1, 1));
-            mask(r, col) = idx;
+            [dummy, idx] = max(matrix(output(col, row, :), -1, 1));
+            mask(row, col) = idx;
         end
     end
 endfunction

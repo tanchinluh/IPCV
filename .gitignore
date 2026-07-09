@@ -43,9 +43,22 @@ help/en_US/scilab_en_US_help/
 
 # DNN models are downloaded on demand by demos/tests.
 *.onnx
+*.caffemodel
 
 # OpenCV Zoo GUI generated starter scripts in the default DNN download folder.
 images/dnn/*_sample.sce
+
+# DNN demo downloads.
+images/dnn/dog416.png
+images/dnn/fruits.jpg
+images/dnn/lena.jpg
+images/dnn/messi5.jpg
+images/dnn/object_detection_classes_coco.txt
+images/dnn/object_detection_classes_yolo.txt
+images/dnn/deploy.prototxt
+images/dnn/opencv_face_detector_uint8.pb
+images/dnn/opencv_face_detector.pbtxt
+images/dnn/human_segmentation_pphumanseg_README.md
 
 # ignore doc/notes.txt, but not doc/server/arch.txt
 #doc/*.txt
