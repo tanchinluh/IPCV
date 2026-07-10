@@ -21,7 +21,7 @@ Stability and compatibility update for the OpenCV 5.0.0 backend
 3. Convert OpenCV float32 image and multipage output safely to Scilab doubles
 4. Prevent DNN and DNN super-resolution handles from sharing the same slot
 5. Remove the machine-specific imread debug log path
-6. Apply C++17 flags consistently on Linux and macOS
+6. Apply explicit C++17 flags on Windows and Linux without passing C++ flags to the macOS C compiler probe
 7. Enforce the Scilab 2026.1 minimum version during builds
 8. Add ipcv_version runtime version reporting
 9. Improve imfuse defaults and mixed grayscale/RGB handling

@@ -49,6 +49,9 @@ Completed:
 - Fix `imfuse` defaults and mixed grayscale/RGB input handling.
 - Repair help links and add missing help for version, path, and Zoo GUI entry points.
 - Enforce Scilab 2026.1 and C++17 build requirements.
+- Keep the explicit `-std=c++17` flag Linux-only because Scilab tests its
+  compiler configuration with C sources and Clang rejects that C++ flag on
+  macOS (PR #30).
 - Add a Windows stability runner with explicit process-level PASS/FAIL reporting.
 
 Exit criteria:

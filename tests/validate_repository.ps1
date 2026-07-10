@@ -67,6 +67,17 @@ foreach ($file in Get-ChildItem -LiteralPath $gatewayRoot -File -Filter "sci_*.c
     }
 }
 
+$nativeBuilders = @(
+    (Join-Path $RepositoryRoot "src\cpp\builder_cpp.sce"),
+    (Join-Path $RepositoryRoot "sci_gateway\cpp\builder_gateway_cpp.sce")
+)
+foreach ($builder in $nativeBuilders) {
+    $content = Get-Content -LiteralPath $builder -Raw
+    if ($content -notmatch 'elseif\s+getos\(\)\s*==\s*"Linux"') {
+        Add-ValidationError "Native builder must keep the explicit -std=c++17 flag Linux-only for macOS compiler probing: $builder."
+    }
+}
+
 $unitRoot = Join-Path $RepositoryRoot "tests\unit_tests"
 foreach ($test in Get-ChildItem -LiteralPath $unitRoot -File -Filter "*.tst") {
     $reference = Join-Path $unitRoot ($test.BaseName + ".dia.ref")
