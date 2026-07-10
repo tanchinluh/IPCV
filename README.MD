@@ -2,10 +2,10 @@
 
 IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides Scilab macros and native gateways for image I/O, filtering, morphology, feature detection, DNN inference, video/camera handling, object tracking, and other OpenCV-backed workflows.
 
-The current development line is IPCV 5.0.0.2, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
+The current development line is IPCV 5.0.0, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
 
-IPCV 5.0.0.2 is currently in development on the
-`codex/5.0.0.2-quality` branch. The release sequence, current evidence, remaining
+Rapid development is organized as numbered roadmap steps on the single
+`codex/new-features` branch. The current evidence, remaining
 gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
 
 ## Highlights
@@ -27,7 +27,10 @@ For native builds on Windows, start Scilab from a Visual Studio native tools com
 
 ## Versioning
 
-IPCV uses compatibility versioning in the form `X.Y.Z.R`. The first three numbers identify the OpenCV baseline and the optional fourth number identifies an IPCV-only revision. For example, IPCV `5.0.0.2` uses OpenCV `5.0.0` and is the second IPCV update on that backend. When the OpenCV baseline changes, the IPCV revision resets.
+IPCV public versions follow the OpenCV baseline used by the native backend.
+Rapid development work does not increment the package version after every
+change; it is tracked as Step 1, Step 2, and so on in the roadmap. `VERSION` and
+`DESCRIPTION` change only when a release candidate is deliberately prepared.
 
 The loaded package and native backend versions can be inspected at runtime:
 
@@ -289,9 +292,9 @@ Detailed release notes, migration notes, and the converted-function list are mai
 
 ## Roadmap
 
-The current milestone status and planned `5.0.0.R` improvements are maintained
-in [ROADMAP.md](ROADMAP.md). The roadmap separates implemented work from
-validated releases and gives each milestone explicit completion criteria.
+The current OpenCV 5.0.0 development steps are maintained in
+[ROADMAP.md](ROADMAP.md). Steps are planning and progress markers, not package
+versions or tags.
 
 ## License
 

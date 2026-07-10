@@ -4,7 +4,7 @@ Title: Image Processing and Computer Vision Toolbox
 
 Summary: Image Processing and Computer Vision Toolbox for Scilab
 
-Version: 5.0.0.2
+Version: 5.0.0
 
 Author: Tan Chin Luh
 
@@ -18,7 +18,7 @@ Entity:
 
 WebSite: https://github.com/tanchinluh/IPCV
 
-URL: https://atoms.scilab.org/toolboxes/IPCV/5.0.0.2
+URL: https://atoms.scilab.org/toolboxes/IPCV/5.0.0
 
 License: GPL
 
@@ -30,8 +30,8 @@ Date: 2026-07-10
 
 Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
  This release targets Scilab 2026.1 and OpenCV/OpenCV contrib 5.0.0.
- This revision adds classified test suites, machine-readable reports, and
- correctness contracts for image exchange, codecs, and native handles.
+ Rapid development work is organized as roadmap steps under the OpenCV 5.0.0
+ baseline instead of assigning a package version to every development step.
  
  OpenCV 5 and C++ Migration:
  - Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds.
@@ -50,18 +50,18 @@ Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
 
 HasNativeCode: Yes
 
-sourceName: IPCV-5.0.0.2.zip
+sourceName: IPCV-5.0.0.zip
 
-sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/5.0.0.2/files/IPCV-5.0.0.2.zip
+sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV-5.0.0.zip
 
 sourceFileClass: source
 
 sourceSupportedScilab: 2026.1
 
-windows64Name: IPCV_5.0.0.2.bin.x64.Windows.zip
+windows64Name: IPCV_5.0.0.bin.x64.Windows.zip
 
-windows64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0.2/files/IPCV_5.0.0.2.bin.x64.Windows.zip
+windows64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Windows.zip
 
-linux64Name: IPCV_5.0.0.2.bin.x64.Linux.tar.gz
+linux64Name: IPCV_5.0.0.bin.x64.Linux.tar.gz
 
-linux64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0.2/files/IPCV_5.0.0.2.bin.x64.Linux.tar.gz
+linux64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Linux.tar.gz

@@ -1,5 +1,5 @@
 //==============================================================================
-// IPCV 5.0.0.2 native handle lifecycle stress
+// IPCV OpenCV 5.0.0 development Step 2 native handle lifecycle stress
 // <-- NO CHECK REF -->
 //==============================================================================
 

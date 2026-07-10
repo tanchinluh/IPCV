@@ -19,5 +19,5 @@ imshow(imfuse(a, b, "composite", 0.25));
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imtransform">imtransform</link></member><member><link linkend="imphasecorr">imphasecorr</link></member><member><link linkend="imabsdiff">imabsdiff</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0.1</td><td>Updated to handle grayscale/RGB input combinations and default arguments.</td></tr></informaltable></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Updated to handle grayscale/RGB input combinations and default arguments.</td></tr></informaltable></refsection>
 </refentry>

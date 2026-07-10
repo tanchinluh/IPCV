@@ -2,40 +2,40 @@
 
 Last updated: 10-Jul-26
 
-IPCV follows the OpenCV release used by its native backend. Versions use
-`X.Y.Z.R`, where `X.Y.Z` is the OpenCV baseline and `R` is the IPCV-only
-revision on that baseline. A change to the OpenCV baseline resets the IPCV
-revision. This roadmap therefore keeps improvements on OpenCV 5.0.0 in the
-`5.0.0.R` line.
+IPCV follows the OpenCV release used by its native backend. The active baseline
+is OpenCV/OpenCV contrib 5.0.0. During rapid development, roadmap Steps track
+progress without creating a new package version, branch, or tag for every
+batch of work. `VERSION` and `DESCRIPTION` change only during deliberate
+release preparation.
 
 ## Status Legend
 
-- **Released**: tagged and published.
-- **In validation**: implemented on a development branch; release gates remain.
-- **In development**: implementation is active and some planned gates remain.
+- **Baseline**: current OpenCV compatibility line.
+- **Complete**: implementation is complete for the stated development scope.
+- **In validation**: implemented; platform or hardware evidence remains.
 - **Planned**: scope agreed, implementation not yet started.
 - **Backlog**: desired direction without a committed release slot.
 
 ## Current Status
 
-| Milestone | Status | Current evidence | Remaining release gate |
+| Step | Status | Current evidence | Remaining gate |
 | --- | --- | --- | --- |
-| 5.0.0 | **Released** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Maintenance only. |
-| 5.0.0.1 | **In validation** | Implemented on `codex/new-features`; Windows native build succeeds and the focused stability suite passes 17/17. | Validate the native build on macOS and Linux, merge to `master`, build release archives, update archive checksums/sizes in `DESCRIPTION`, tag, and publish. |
-| 5.0.0.2 | **In development** | On Windows, the rebuilt native toolbox passes stability 21/21, release 111/111, GUI 21/21, and network/model 1/1. Static repository checks also pass. | Run the release suite on macOS and Linux, exercise physical-camera hardware where available, add hosted CI/package checks, and resolve any platform defects. |
-| 5.0.0.3 | **Planned** | Scope defined below. | Requires the 5.0.0.2 quality baseline. |
-| 5.0.0.4 | **Planned** | Scope defined below. | Requires stable DNN contracts and model fixtures. |
-| 5.0.0.5 | **Planned** | Scope defined below. | Requires benchmarks from earlier milestones. |
-| Next OpenCV baseline | **Backlog** | Version will follow the next adopted OpenCV release. | OpenCV release availability, dependency audit, and migration branch. |
+| OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Continue improvements on `codex/new-features`. |
+| Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
+| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 21/21, release 111/111, GUI 21/21, and network/model 1/1. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
+| Step 3 - Image processing completeness | **Planned** | Scope defined below. | Requires the Step 2 quality baseline. |
+| Step 4 - DNN and OpenCV Zoo workflows | **Planned** | Scope defined below. | Requires stable DNN contracts and model fixtures. |
+| Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
+| Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
 
 The repository currently contains 134 active Scilab unit-test scripts. That is
 an inventory count, not a claim that every script passes on every platform.
-The `5.0.0.2` manifest classifies each test and the expanded focused stability
+The Step 2 manifest classifies each test and the expanded focused stability
 suite contains 21 deterministic or local-asset checks.
 
-## 5.0.0.1 - Stability And Compatibility
+## Step 1 - Stability And Compatibility
 
-Status: **In validation**
+Status: **Complete**
 
 Goal: make the OpenCV 5 migration safe enough to become the new maintenance
 baseline.
@@ -54,14 +54,14 @@ Completed:
 Exit criteria:
 
 - Windows build and focused stability suite pass. **Complete**
-- macOS native build and loader smoke test pass. **Pending**
-- Linux native build and loader smoke test pass. **Pending**
-- No known loader, image-exchange, or teardown crash remains. **Pending cross-platform confirmation**
-- Merge, package, populate release metadata, tag, and publish. **Pending**
+- Image-exchange and teardown regressions are covered by the stability suite.
+  **Complete**
+- macOS and Linux regression evidence continues as a cross-platform workstream,
+  not as a separate package version.
 
-## 5.0.0.2 - Correctness And Test Foundation
+## Step 2 - Correctness And Test Foundation
 
-Status: **In development**
+Status: **In validation**
 
 Goal: turn migration tests into a dependable compatibility contract.
 
@@ -90,7 +90,7 @@ Exit criteria:
 - Failures and crashes return a non-zero process status.
 - No critical native memory or handle-lifecycle defect remains open.
 
-## 5.0.0.3 - Image Processing Completeness
+## Step 3 - Image Processing Completeness
 
 Status: **Planned**
 
@@ -116,7 +116,7 @@ Exit criteria:
 - Priority gaps have help, examples, unit tests, and documented compatibility.
 - Common workflows do not require users to call internal gateways directly.
 
-## 5.0.0.4 - DNN And OpenCV Zoo Workflows
+## Step 4 - DNN And OpenCV Zoo Workflows
 
 Status: **Planned**
 
@@ -143,7 +143,7 @@ Exit criteria:
 - Preprocessing and decoding are reusable public APIs rather than demo-only code.
 - Model downloads are reproducible and integrity checked.
 
-## 5.0.0.5 - Performance And Product Workflows
+## Step 5 - Performance And Product Workflows
 
 Status: **Planned**
 
@@ -178,7 +178,7 @@ Exit criteria:
 | Native C++ migration | **Operational** | Keep category-based C++ sources and remove remaining obsolete compatibility code when verified unused. |
 | Scilab/OpenCV memory exchange | **Stabilizing** | Expand type/channel coverage and stress tests before pursuing fewer-copy paths. |
 | Documentation | **Improving** | Require help, author, History, linked See Also entries, and runnable examples for public functions. |
-| Cross-platform builds | **At risk** | Windows is verified; macOS and Linux need repeatable validation for 5.0.0.1. |
+| Cross-platform builds | **At risk** | Windows is verified; macOS and Linux need repeatable validation for the OpenCV 5.0.0 development line. |
 | Automated quality gates | **Local foundation complete** | Classified suites, reports, watchdogs, static validation, and release orchestration exist; repository-hosted CI is not yet present. |
 | DNN and Zoo integration | **Functional, partial** | Core inference, decoders, examples, and Zoo GUI exist; broader model validation is planned. |
 | Performance evidence | **Not established** | Add benchmark baselines before making optimization claims. |
@@ -196,30 +196,18 @@ Exit criteria:
 5. Platform-specific behavior must be documented and must not silently change
    results on another supported platform.
 
-## Branch And Release Sequence
+## Development Workflow
 
-Each IPCV revision is developed on a branch created from the preceding
-revision. The branches are stacked intentionally, so a newer revision contains
-all earlier revision work without cherry-picking:
+Rapid development uses one long-lived feature branch:
 
 ```text
 master
-  `-- codex/new-features          5.0.0.1
-       `-- codex/5.0.0.2-quality  5.0.0.2
-            `-- codex/5.0.0.3     5.0.0.3
+  `-- codex/new-features   Step 1 -> Step 2 -> Step 3 -> ...
 ```
 
-Releases are merged and tagged in version order:
-
-1. Merge `codex/new-features` into `master`, validate, and tag `5.0.0.1`.
-2. Merge `codex/5.0.0.2-quality` into the updated `master`, validate, and tag
-   `5.0.0.2`.
-3. Create `codex/5.0.0.3` from the completed `5.0.0.2` branch. Merge and tag it
-   only after `5.0.0.2` reaches `master`.
-
-While an earlier pull request is pending, the next revision can target the
-preceding development branch so its review shows only the new revision. After
-the earlier revision is merged, retarget the newer pull request to `master`.
-If an intermediate revision will not be published separately, the newest
-stacked branch can be merged directly and will carry the earlier commits with
-it.
+Step numbers are roadmap checkpoints, not versions, branches, releases, or
+tags. Work continues on `codex/new-features` until a deliberate release point
+is chosen. At that point, freeze features, choose the public version, update
+release metadata and archives, run every release gate, merge to `master`, and
+create one release tag. After the release, continue the next roadmap Step on
+`codex/new-features` from the updated `master` baseline.

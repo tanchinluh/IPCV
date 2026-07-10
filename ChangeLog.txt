@@ -1,6 +1,6 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
-Version 5.0.0.2 (10-Jul-26)
+OpenCV 5.0.0 Development - Step 2 (10-Jul-26)
 Correctness and test-foundation update for the OpenCV 5.0.0 backend
 1. Add a manifest-driven test runner with core, integration, GUI, network, hardware, stability, release, and all suites
 2. Add PowerShell and POSIX wrappers with conventional process status and machine-readable CSV reports
@@ -14,7 +14,7 @@ Correctness and test-foundation update for the OpenCV 5.0.0 backend
 10. Add repository validation for version metadata, help XML and links, gateway entry points, test references, machine-specific paths, and built artifacts
 11. Add build and release-check wrappers plus automatic timeout and last-progress reporting for blocked Scilab tests
 
-Version 5.0.0.1 (10-Jul-26)
+OpenCV 5.0.0 Development - Step 1 (10-Jul-26)
 Stability and compatibility update for the OpenCV 5.0.0 backend
 1. Fix IPCV initialization path bounds checking
 2. Route imread output through the shared gateway image adapter

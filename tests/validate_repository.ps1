@@ -77,6 +77,7 @@ foreach ($test in Get-ChildItem -LiteralPath $unitRoot -File -Filter "*.tst") {
 }
 
 $trackedFiles = & git -C $RepositoryRoot ls-files
+$machineSpecificRoot = "F:" + [System.IO.Path]::DirectorySeparatorChar + "ScilabModules"
 if ($LASTEXITCODE -ne 0) {
     Add-ValidationError "git ls-files failed; tracked-path validation could not run."
 } else {
@@ -90,8 +91,8 @@ if ($LASTEXITCODE -ne 0) {
             continue
         }
         $content = Get-Content -LiteralPath $path -Raw -ErrorAction SilentlyContinue
-        if ($null -ne $content -and $content -match 'F:\\ScilabModules') {
-            Add-ValidationError "Tracked source contains a machine-specific F:\ScilabModules path: $relativePath."
+        if ($null -ne $content -and $content.Contains($machineSpecificRoot)) {
+            Add-ValidationError "Tracked source contains a machine-specific workspace root: $relativePath."
         }
     }
 }

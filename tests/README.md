@@ -1,6 +1,6 @@
 # IPCV Tests
 
-IPCV 5.0.0.2 uses a manifest-driven runner. Every `.tst` file under
+IPCV OpenCV 5.0.0 development uses a manifest-driven runner. Every `.tst` file under
 `tests/unit_tests` receives a suite, family, requirement list, and supported
 platform declaration from `test_manifest.sce`.
 
