@@ -63,7 +63,7 @@ function builder_gateway_cpp()
     inter_cflags = ilib_include_flag([OPENCV_INCLUDE,gw_cpp_path,fullfile(gw_cpp_path,"..","..","src","cpp")]); 
     if getos() == "Windows" then
         inter_cflags = inter_cflags + " /std:c++17";
-    elseif getos() == "Linux"
+    else
         inter_cflags = inter_cflags + " -std=c++17";
     end
     inter_ldflags = "";

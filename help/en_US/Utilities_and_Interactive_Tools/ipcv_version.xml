@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ipcv_version" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>ipcv_version</refname><refpurpose>Return IPCV and runtime dependency version information.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>info = ipcv_version()</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>ipcv_version</function> returns a structure containing the IPCV package version, the OpenCV version used by the loaded native gateway, the Scilab version, platform, and architecture.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+info = ipcv_version();
+disp(info.ipcv);
+disp(info.opencv);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="getIPCVpath">getIPCVpath</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0.1</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

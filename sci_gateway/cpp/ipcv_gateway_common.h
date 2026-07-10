@@ -156,6 +156,7 @@ extern "C"
 	int sci_int_imhough(char * fname, void* pvApiCtx);
 	int sci_int_imhoughcircles(char * fname, void* pvApiCtx);
 	int sci_int_imidct(char * fname, void* pvApiCtx);
+	int sci_int_ipcv_opencv_version(char * fname, void* pvApiCtx);
 	int sci_int_iminpaint(char * fname, void* pvApiCtx);
 	int sci_int_imlabel(char * fname, void* pvApiCtx);
 	int sci_int_imlogpolar(char * fname, void* pvApiCtx);

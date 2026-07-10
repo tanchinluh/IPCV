@@ -82,7 +82,7 @@ imshow(S);
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="imfeaturematch">imfeaturematch</link></member>
+   <member><link linkend="immatchimages">immatchimages</link></member>
    </simplelist>
 </refsection>
 

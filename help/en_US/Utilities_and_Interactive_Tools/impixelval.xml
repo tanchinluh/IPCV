@@ -60,7 +60,8 @@ impixelval(S)
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="impixel,">improfile, iminspect</link></member>
+   <member><link linkend="impixel">impixel</link></member>
+   <member><link linkend="improfile">improfile</link></member>
    </simplelist>
 </refsection>
 

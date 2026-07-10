@@ -2,7 +2,7 @@
 
 IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides Scilab macros and native gateways for image I/O, filtering, morphology, feature detection, DNN inference, video/camera handling, object tracking, and other OpenCV-backed workflows.
 
-The current development line is the OpenCV 5 and C++ migration of IPCV. The native implementation targets OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.x, with the legacy gateway helpers replaced by category-based C++ source modules.
+The current development line is IPCV 5.0.0.1, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
 
 ## Highlights
 
@@ -20,6 +20,17 @@ The current development line is the OpenCV 5 and C++ migration of IPCV. The nati
 - OpenCV/OpenCV contrib 5.0.0 thirdparty build for the IPCV native gateway
 
 For native builds on Windows, start Scilab from a Visual Studio native tools command prompt so the compiler environment is available.
+
+## Versioning
+
+IPCV uses compatibility versioning in the form `X.Y.Z.R`. The first three numbers identify the OpenCV baseline and the optional fourth number identifies an IPCV-only revision. For example, IPCV `5.0.0.1` uses OpenCV `5.0.0` and is the first IPCV update on that backend. When the OpenCV baseline changes, the IPCV revision resets.
+
+The loaded package and native backend versions can be inspected at runtime:
+
+```scilab
+info = ipcv_version();
+disp(info);
+```
 
 ## Load IPCV
 
@@ -217,6 +228,14 @@ tests/unit_tests/4.5
 That archive path is only for historical behavior checks and should not be mixed with the active OpenCV 5 `.tst` and `.dia.ref` files.
 
 Run tests from Scilab after loading/building the toolbox as needed. For focused migration checks, run the relevant `.tst` file directly or use Scilab's `test_run` workflow.
+
+On Windows, the current stability suite can be run with a process-status wrapper:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tests/run_stability_tests.ps1 -ScilabExecutable "C:\Tools\scilab-2026.1.0\bin\WScilex-cli.exe"
+```
+
+The wrapper records an explicit PASS/FAIL status and returns a conventional process exit code for local automation and future CI jobs.
 
 ## Repository Layout
 

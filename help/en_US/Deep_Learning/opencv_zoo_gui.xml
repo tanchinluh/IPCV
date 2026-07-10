@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="opencv_zoo_gui" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+<refnamediv><refname>opencv_zoo_gui</refname><refpurpose>Browse and download official OpenCV Zoo models.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>opencv_zoo_gui()</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>opencv_zoo_gui</function> opens the IPCV browser interface for the official OpenCV Zoo. Models are grouped by task and can be downloaded with their companion assets. The interface can also generate and open a starter Scilab inference script.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+opencv_zoo_gui();
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_zoo_modelinfo">dnn_zoo_modelinfo</link></member><member><link linkend="dnn_readmodel">dnn_readmodel</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr><tr><td>5.0.0.1</td><td>Added the dedicated help page.</td></tr></informaltable></refsection>
+</refentry>

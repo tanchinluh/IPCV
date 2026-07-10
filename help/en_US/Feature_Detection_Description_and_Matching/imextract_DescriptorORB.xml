@@ -72,10 +72,8 @@ des = imextract_DescriptorORB(S,fobj);
    <simplelist type="inline">
    <member><link linkend="imextract_DescriptorSIFT">imextract_DescriptorSIFT</link></member>
    <member><link linkend="imextract_DescriptorSURF">imextract_DescriptorSURF</link></member>
-   <member><link linkend="imextract_DescriptorBRIEF">imextract_DescriptorBRIEF</link></member>
    <member><link linkend="imextract_DescriptorBRISK">imextract_DescriptorBRISK</link></member>
    <member><link linkend="imextract_DescriptorORB">imextract_DescriptorORB</link></member>
-   <member><link linkend="imextract_DescriptorFREAK">imextract_DescriptorFREAK</link></member>
    </simplelist>
 </refsection>
 

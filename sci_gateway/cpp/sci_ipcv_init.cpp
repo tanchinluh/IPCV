@@ -67,12 +67,15 @@ int sci_ipcv_init(char * fname,void* pvApiCtx)
 
 	if (pStr)
 	{
-		size_t len = strlen(pStr);
-		strncpy(sIPCV_PATH, pStr, MAX_FILENAME_LENGTH);
-		if (len > 0)
+		const size_t len = strlen(pStr);
+		if (len >= MAX_FILENAME_LENGTH)
 		{
-			sIPCV_PATH[strlen(pStr)] = 0;
+			Scierror(999, ("%s: IPCV installation path is too long.\n"), fname);
+			freeAllocatedSingleString(pStr);
+			return 0;
 		}
+
+		memcpy(sIPCV_PATH, pStr, len + 1);
 		freeAllocatedSingleString(pStr);
 		pStr = NULL;
 	}
