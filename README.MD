@@ -4,6 +4,10 @@ IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides 
 
 The current development line is IPCV 5.0.0.1, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
 
+IPCV 5.0.0.1 is currently in cross-platform validation on the
+`codex/new-features` branch. The release sequence, current evidence, remaining
+gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
+
 ## Highlights
 
 - OpenCV 5 native backend with category-based C++ source files under `src/cpp`.
@@ -254,6 +258,12 @@ images/              Sample images and downloaded model location
 ## Change History
 
 Detailed release notes, migration notes, and the converted-function list are maintained in `ChangeLog.txt`.
+
+## Roadmap
+
+The current milestone status and planned `5.0.0.R` improvements are maintained
+in [ROADMAP.md](ROADMAP.md). The roadmap separates implemented work from
+validated releases and gives each milestone explicit completion criteria.
 
 ## License
 
