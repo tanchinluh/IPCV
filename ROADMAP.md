@@ -13,6 +13,7 @@ release preparation.
 - **Baseline**: current OpenCV compatibility line.
 - **Complete**: implementation is complete for the stated development scope.
 - **In validation**: implemented; platform or hardware evidence remains.
+- **In progress**: implementation is active for the current Step.
 - **Planned**: scope agreed, implementation not yet started.
 - **Backlog**: desired direction without a committed release slot.
 
@@ -22,16 +23,16 @@ release preparation.
 | --- | --- | --- | --- |
 | OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Continue improvements on `codex/new-features`. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
-| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 21/21, release 111/111, GUI 21/21, and network/model 1/1. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
-| Step 3 - Image processing completeness | **Planned** | Scope defined below. | Requires the Step 2 quality baseline. |
+| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 25/25 and release 115/115. GUI, network/model, and hardware suites remain selectively exercised. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
+| Step 3 - Image processing completeness | **In progress** | Batches 1–4 add thresholding, connected components, binary measurement, extrema, filtering compatibility aliases, enhancement, and local-statistics APIs. | Continue the priority gaps in the capability matrix. |
 | Step 4 - DNN and OpenCV Zoo workflows | **Planned** | Scope defined below. | Requires stable DNN contracts and model fixtures. |
 | Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
 | Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
 
-The repository currently contains 134 active Scilab unit-test scripts. That is
+The repository currently contains 138 active Scilab unit-test scripts. That is
 an inventory count, not a claim that every script passes on every platform.
 The Step 2 manifest classifies each test and the expanded focused stability
-suite contains 21 deterministic or local-asset checks.
+suite contains 25 deterministic or local-asset checks.
 
 ## Step 1 - Stability And Compatibility
 
@@ -95,14 +96,30 @@ Exit criteria:
 
 ## Step 3 - Image Processing Completeness
 
-Status: **Planned**
+Status: **In progress**
 
 Goal: close the most useful MATLAB Image Processing Toolbox workflow gaps while
 keeping Scilab-friendly APIs.
 
-Planned work:
+Current work:
 
 - Publish a MATLAB/OpenCV/IPCV capability matrix by help category.
+  **Batch 1 implemented**
+- Add fixed and automatic thresholding plus boolean binarization.
+  **Batch 1 implemented**
+- Add measured 4/8-connected components and share the engine with `imlabel`.
+  **Batch 1 implemented**
+- Add area opening and border-object removal on the shared component engine.
+  **Batch 2 implemented**
+- Add binary measurement, binary reconstruction, local extrema, contrast-filtered
+  extrema, and Sobel gradient APIs.
+  **Batch 3 implemented**
+- Add MATLAB-style filtering and enhancement compatibility aliases, plus new
+  sharpening, Laplacian, gradient-direction, and local-statistics compositions.
+  **Batch 4 implemented**
+
+Planned follow-up:
+
 - Fill high-value gaps in image types, geometric transforms, filtering,
   morphology, segmentation, measurement, connected components, and region
   analysis.

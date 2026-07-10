@@ -3,16 +3,18 @@
 // Copyright (C) 2017  Tan Chin Luh
 //=============================================================================
 
-function [imout,n] = imlabel(imin)
+function [imout,n] = imlabel(imin, connectivity)
     // Find blobs in an image
     //
     // Syntax
     //     [imout,n] = imlabel(imin)
+    //     [imout,n] = imlabel(imin, connectivity)
     //
     // Parameters
     //    imin : Source Image
     //    n : Number of detected objects
     //    imout : Labeled Image
+    //    connectivity : Pixel connectivity, 4 or 8. Default is 4.
     //
     // Description
     //    This function find all components on an image.
@@ -27,13 +29,14 @@ function [imout,n] = imlabel(imin)
     //
     // See also
     //    imblobprop
+    //    imconnectedcomponents
     //
     // Authors
     //    Tan Chin Luh
     //
     
-    mask = im2bw(imin,0.5).*1;
-    imout = int_imlabel(mask);
-    n = double(max(imout));
+    if argn(2) < 2 then connectivity = 4; end
+    mask = im2bw(imin, 0.5);
+    [imout, n] = imconnectedcomponents(mask, connectivity);
 
 endfunction

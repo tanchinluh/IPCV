@@ -14,6 +14,8 @@ gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
 - Scilab gateway image exchange rewritten for the current Scilab API.
 - DNN support updated for OpenCV 5, including ONNX examples and OpenCV Zoo model download support.
 - OpenCV Zoo browser GUI: `opencv_zoo_gui()`.
+- Step 3 thresholding, binarization, connected-component measurement, binary geometry, reconstruction, extrema, Sobel gradients, filtering, denoising, and local-statistics APIs.
+- MATLAB-style names such as `wiener2` and `adapthisteq` are compatibility entry points; the established IPCV names remain canonical.
 - Current OpenCV 5 migration tests are in `tests/unit_tests`; legacy 4.5 tests are kept only as an optional archive/reference set.
 - Large DNN `.onnx` models are excluded from git and downloaded on demand.
 
@@ -24,6 +26,26 @@ gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
 - OpenCV/OpenCV contrib 5.0.0 thirdparty build for the IPCV native gateway
 
 For native builds on Windows, start Scilab from a Visual Studio native tools command prompt so the compiler environment is available.
+
+## Similar Function Names
+
+Similar names do not necessarily mean identical contracts. IPCV keeps its
+historical names as canonical entry points and provides MATLAB-style names for
+porting code. The compatibility entry points may add defaults, validation, or
+MATLAB-oriented naming while currently sharing the same native implementation.
+
+| Compatibility entry point | Canonical IPCV entry point | Relationship |
+| --- | --- | --- |
+| `wiener2` | `imwiener2` | Adds defaults for the local window and optional noise estimate. |
+| `adapthisteq` | `imadapthistequal` | MATLAB-style name with the same current CLAHE backend. |
+| `imboxfilt` | `imboxfilter` | MATLAB-style filter name; delegates to the normalized box filter. |
+| `imgaussfilt` | `imgaussianblur` | MATLAB-style filter name; delegates to OpenCV Gaussian blur. |
+| `imbilateralfilt` | `imbilateralfilter` | MATLAB-style filter name; delegates to bilateral filtering. |
+| `immedianfilt`, `medfilt2` | `immedian` | MATLAB-style names with scalar-window and grayscale validation. |
+| `imnlmfilt` | `imdenoise` | MATLAB-style name for OpenCV fast non-local-means denoising. |
+
+Functions such as `imsharpen`, `imlaplacian`, `imgradientdirection`,
+`imlocalmean`, and `imlocalstd` are separate compositions, not aliases.
 
 ## Versioning
 
@@ -295,6 +317,9 @@ Detailed release notes, migration notes, and the converted-function list are mai
 The current OpenCV 5.0.0 development steps are maintained in
 [ROADMAP.md](ROADMAP.md). Steps are planning and progress markers, not package
 versions or tags.
+
+Category coverage and priority gaps are tracked in
+[CAPABILITIES.md](CAPABILITIES.md).
 
 ## License
 

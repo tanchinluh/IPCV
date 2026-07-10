@@ -127,6 +127,7 @@ extern "C"
 	int sci_int_imconvexHull(char * fname, void* pvApiCtx);
 	int sci_int_imconvexityDefects(char * fname, void* pvApiCtx);
 	int sci_int_imcontourarea(char * fname, void* pvApiCtx);
+	int sci_int_imconnectedcomponents(char * fname, void* pvApiCtx);
 	int sci_int_imcreatese(char * fname, void* pvApiCtx);
 	int sci_int_imdct(char * fname, void* pvApiCtx);
 	int sci_int_imdenoise(char * fname, void* pvApiCtx);
@@ -165,6 +166,7 @@ extern "C"
 	int sci_int_immedian(char * fname, void* pvApiCtx);
 	int sci_int_immorphologyex(char * fname, void* pvApiCtx);
 	int sci_int_imthin(char * fname, void* pvApiCtx);
+	int sci_int_imthreshold(char * fname, void* pvApiCtx);
 	int sci_int_imradon(char * fname, void* pvApiCtx);
 	int sci_int_imread(char * fname, void* pvApiCtx);
 	int sci_int_imreadmulti(char * fname, void* pvApiCtx);

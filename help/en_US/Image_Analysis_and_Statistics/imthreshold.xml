@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imthreshold" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imthreshold</refname><refpurpose>Apply fixed, Otsu, or Triangle thresholding.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[out, level] = imthreshold(image)
+[out, level] = imthreshold(image, level, mode)
+[out, level] = imthreshold(image, level, mode, maxValue)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>A grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry>
+<varlistentry><term>level</term><listitem><para>A normalized fixed threshold in the range 0 to 1. It is ignored by automatic modes.</para></listitem></varlistentry>
+<varlistentry><term>mode</term><listitem><para><literal>binary</literal>, <literal>binary_inv</literal>, <literal>trunc</literal>, <literal>tozero</literal>, <literal>tozero_inv</literal>, <literal>otsu</literal>, or <literal>triangle</literal>. The default is <literal>otsu</literal>.</para></listitem></varlistentry>
+<varlistentry><term>maxValue</term><listitem><para>Output value used by binary modes, from 0 to 255. The default is 255.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>The thresholded uint8 image.</para></listitem></varlistentry>
+<varlistentry><term>level</term><listitem><para>The normalized threshold used.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>imthreshold</function> is the general numeric thresholding API. It uses OpenCV after converting the input to uint8, supports binary and non-binary modes, and returns a uint8 image. Fixed levels and returned levels use a class-independent 0-to-1 scale. Use <function>imbinarize</function> when the desired result is a boolean mask.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+[binary, level] = imthreshold(image);
+imshow(binary);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbinarize">imbinarize</link></member><member><link linkend="imgraythresh">imgraythresh</link></member><member><link linkend="im2bw">im2bw</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>

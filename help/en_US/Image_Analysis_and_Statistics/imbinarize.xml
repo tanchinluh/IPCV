@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbinarize" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imbinarize</refname><refpurpose>Convert an image to a boolean mask using fixed or automatic thresholding.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[bw, level] = imbinarize(image)
+[bw, level] = imbinarize(image, method)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>A grayscale or RGB image.</para></listitem></varlistentry>
+<varlistentry><term>method</term><listitem><para><literal>global</literal>, <literal>otsu</literal>, <literal>triangle</literal>, or a normalized scalar threshold. The default is <literal>otsu</literal>.</para></listitem></varlistentry>
+<varlistentry><term>bw</term><listitem><para>A boolean mask.</para></listitem></varlistentry>
+<varlistentry><term>level</term><listitem><para>The normalized threshold used.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>imbinarize</function> is the mask-oriented convenience API. It applies fixed, Otsu, or Triangle thresholding through <function>imthreshold</function> and always returns a boolean image. Use <function>imthreshold</function> when a numeric uint8 result or modes such as <literal>trunc</literal> and <literal>tozero</literal> are required.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+[bw, level] = imbinarize(image, "global");
+imshow(bw);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imthreshold">imthreshold</link></member><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="im2bw">im2bw</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>

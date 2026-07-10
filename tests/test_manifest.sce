@@ -94,6 +94,10 @@ function manifest = ipcv_test_manifest(testRoot)
         "ipcv_codec_matrix"; ..
         "ipcv_arithmetic"; ..
         "ipcv_spatial_transform"; ..
+        "ipcv_step3_image_completeness"; ..
+        "ipcv_step3_morphology_completeness"; ..
+        "ipcv_step3_measurement_extrema"; ..
+        "ipcv_step3_filtering_completeness"; ..
         "ipcv_filtering"; ..
         "ipcv_morphology"; ..
         "ipcv_color"; ..

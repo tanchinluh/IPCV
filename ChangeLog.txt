@@ -1,5 +1,17 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
+OpenCV 5.0.0 Development - Step 3 (10-Jul-26)
+Image-processing completeness
+1. Add OpenCV-backed fixed, Otsu, and Triangle thresholding with normalized levels
+2. Add boolean-output imbinarize convenience API
+3. Add connected-components labels, counts, areas, 1-based bounding boxes, and centroids
+4. Add 4- and 8-connectivity support and route imlabel through the shared native engine
+5. Add a help-category capability matrix and Step 3 regression coverage
+6. Add bwareaopen and imclearborder using measured connected components
+7. Clarify the numeric-output contract of imthreshold versus the boolean-mask contract of imbinarize
+8. Add 12 measurement, reconstruction, extrema, and gradient APIs: imarea, imcentroid, imboundingbox, imperimeter, bwareafilt, imreconstruct, imregionalmax, imregionalmin, imextendedmax, imextendedmin, imgradientxy, and imgradientmagnitude
+9. Add MATLAB-style compatibility aliases for existing filters and denoisers, plus new imsharpen, imlaplacian, imgradientdirection, imlocalmean, and imlocalstd compositions
+
 OpenCV 5.0.0 Development - Step 2 (10-Jul-26)
 Correctness and test-foundation update for the OpenCV 5.0.0 backend
 1. Add a manifest-driven test runner with core, integration, GUI, network, hardware, stability, release, and all suites

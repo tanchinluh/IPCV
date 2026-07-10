@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imconnectedcomponents" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imconnectedcomponents</refname><refpurpose>Label connected components and return measurements.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[labels, count, stats, centroids] = imconnectedcomponents(image)
+[labels, count, stats, centroids] = imconnectedcomponents(image, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>A 2D binary or intensity matrix. Nonzero pixels are foreground.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para>Pixel connectivity, 4 or 8. The default is 8.</para></listitem></varlistentry>
+<varlistentry><term>labels</term><listitem><para>A double label matrix. Zero is background and foreground labels start at one.</para></listitem></varlistentry>
+<varlistentry><term>count</term><listitem><para>Number of foreground components.</para></listitem></varlistentry>
+<varlistentry><term>stats</term><listitem><para>One row per component: <literal>[x, y, width, height, area]</literal>. Coordinates are 1-based.</para></listitem></varlistentry>
+<varlistentry><term>centroids</term><listitem><para>One 1-based <literal>[x, y]</literal> centroid row per component.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>The function uses OpenCV <function>connectedComponentsWithStats</function>. Background measurements are excluded from <varname>stats</varname> and <varname>centroids</varname>.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+bw = imbinarize(image, "global");
+[labels, count, stats, centroids] = imconnectedcomponents(bw, 8);
+imshow(labels, jet(max(count, 1)));
+disp(stats);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlabel">imlabel</link></member><member><link linkend="imblobprop">imblobprop</link></member><member><link linkend="imbinarize">imbinarize</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>
