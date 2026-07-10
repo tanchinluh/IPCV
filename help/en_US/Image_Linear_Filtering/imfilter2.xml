@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from imfilter2.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="imfilter2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>imfilter2</refname>
+    <refpurpose>2D digital filtering</refpurpose>
+  </refnamediv>
+
+
+<refsynopsisdiv>
+   <title>Syntax</title>
+   <synopsis>
+   inf = imfilter2(im,F)
+
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+        <varlistentry>
+            <term>im :</term>
+            <listitem><para> An image/matrix which will be filterd. The image can be INT8, UINT8, INT16, UINT16, INT32, DOUBLE.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>F :</term>
+            <listitem><para> A double 2D filter.</para></listitem>
+        </varlistentry>
+        <varlistentry>
+            <term>imf :</term>
+            <listitem><para> The filtered image which has the same size with imf and the class double.</para></listitem>
+        </varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+imfilter2 filters an image im with filter F. When im is a mult-channel image, each channel can be filtered with F seperately. Input image pixel values outside the bounds of the image are assumed to equal the nearest array border value.
+   </para>
+   <para>
+The only diffence of imfilter2 with imfilter is the output of imfilter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+filter = imfspecial('sobel');
+imf = imfilter2(im,filter);
+imshow(imf);
+
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imfspecial">imfspecial</link></member>
+   <member><link linkend="imfilter">imfilter</link></member>
+   </simplelist>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Shiqi Yu</member>
+   <member>Tan Chin Luh</member>
+   </simplelist>
+</refsection>
+<refsection>
+   <title>History</title>
+   <informaltable border="1">
+      <tr><td>Version</td><td>Description</td></tr>
+      <tr><td>5.0.0</td><td>IPC V-style public name introduced in development Step 3.</td></tr>
+   </informaltable>
+</refsection>
+</refentry>

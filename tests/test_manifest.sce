@@ -41,7 +41,7 @@ function manifest = ipcv_test_manifest(testRoot)
     end
 
     guiTests = [ ..
-        "edge"; ..
+        "imedge"; ..
         "imdecorrstretch"; ..
         "imdeconvl2"; ..
         "imdeconvsobolev"; ..
@@ -98,6 +98,8 @@ function manifest = ipcv_test_manifest(testRoot)
         "ipcv_step3_morphology_completeness"; ..
         "ipcv_step3_measurement_extrema"; ..
         "ipcv_step3_filtering_completeness"; ..
+        "ipcv_step3_binary_compatibility"; ..
+        "ipcv_step3_im_naming"; ..
         "ipcv_filtering"; ..
         "ipcv_morphology"; ..
         "ipcv_color"; ..

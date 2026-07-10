@@ -4,9 +4,9 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //==============================================================================
-// unit test fspecial
+// unit test imfspecial
 //==============================================================================
 
-filter = fspecial('average',5);
+filter = imfspecial('average',5);
 assert_checkequal(filter,1/25*ones(5,5));
 //==============================================================================

@@ -6,7 +6,7 @@
 mask = zeros(7, 8) == 1;
 mask(2, 2) = %t;
 mask(4:5, 5:6) = %t;
-clean = bwareaopen(mask, 2);
+clean = imbwareaopen(mask, 2);
 assert_checkequal(typeof(clean), "boolean");
 assert_checkequal(sum(clean), 4);
 assert_checktrue(~clean(2, 2));
@@ -21,9 +21,9 @@ assert_checktrue(~cleared(1, 3));
 assert_checktrue(cleared(4, 5));
 
 diagonal = [%t %f %f; %f %t %f; %f %f %t];
-assert_checkequal(sum(bwareaopen(diagonal, 2, 4)), 0);
-assert_checkequal(sum(bwareaopen(diagonal, 2, 8)), 3);
-assert_checktrue(execstr("bwareaopen(diagonal, 0);", "errcatch") <> 0);
+assert_checkequal(sum(imbwareaopen(diagonal, 2, 4)), 0);
+assert_checkequal(sum(imbwareaopen(diagonal, 2, 8)), 3);
+assert_checktrue(execstr("imbwareaopen(diagonal, 0);", "errcatch") <> 0);
 assert_checktrue(execstr("imclearborder(diagonal, 6);", "errcatch") <> 0);
 
 //==============================================================================

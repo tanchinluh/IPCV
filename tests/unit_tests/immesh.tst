@@ -7,7 +7,7 @@
 // unit test immesh
 //==============================================================================
 
-f = fspecial('gaussian');
+f = imfspecial('gaussian');
 F = fftshift(fft2pad(f,256,256));
 immesh(abs(F),100);
 

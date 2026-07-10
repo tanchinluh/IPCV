@@ -13,7 +13,7 @@ assert_checkequal(imperimeter(mask), 12);
 components = zeros(7, 8) == 1;
 components(2, 2) = %t;
 components(4:5, 5:6) = %t;
-filtered = bwareafilt(components, [2 4]);
+filtered = imbwareafilt(components, [2 4]);
 assert_checkequal(sum(filtered), 4);
 assert_checktrue(~filtered(2, 2));
 
@@ -44,7 +44,7 @@ assert_checkequal(size(gy), [3 3]);
 assert_checkequal(size(magnitude), [3 3]);
 assert_checktrue(sum(abs(magnitude - sqrt(gx .^ 2 + gy .^ 2))) == 0);
 
-assert_checktrue(execstr("bwareafilt(components, [4 2]);", "errcatch") <> 0);
+assert_checktrue(execstr("imbwareafilt(components, [4 2]);", "errcatch") <> 0);
 assert_checktrue(execstr("imreconstruct(marker, ~constraint);", "errcatch") <> 0);
 
 //==============================================================================

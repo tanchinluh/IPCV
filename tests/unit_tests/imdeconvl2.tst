@@ -8,7 +8,7 @@
 //==============================================================================
 S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
 S = im2double(S);
-h = fspecial('motion',25,45);
+h = imfspecial('motion',25,45);
 S2 = imfilter(S,h,'circular');
 imshow(S2);
 S3 = imdeconvl2(S2,h,0);

@@ -11,7 +11,7 @@ filteredSame = imfilter(gray, kernel);
 assert_checkequal(typeof(filteredSame), "uint8");
 assert_checkequal(size(filteredSame), [3 3]);
 
-filteredDouble = filter2(gray, kernel);
+filteredDouble = imfilter2(gray, kernel);
 assert_checkequal(typeof(filteredDouble), "constant");
 assert_checkequal(size(filteredDouble), [3 3]);
 

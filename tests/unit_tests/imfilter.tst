@@ -7,7 +7,7 @@
 // unit test imfilter
 //==============================================================================
 im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-filter = fspecial('sobel');
+filter = imfspecial('sobel');
 imf = imfilter(im, filter);
 imshow(imf);
 //==============================================================================

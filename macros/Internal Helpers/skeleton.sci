@@ -11,13 +11,13 @@ function [image] = skeleton(I,display);
 se = [0 0 0;0 1 0;0 0 0];
 I1 = imerode(I,se);
 
-I2 = bwmorph(I1,'spur');
+I2 = imbwmorph(I1,'spur');
 
-I3 = bwmorph(I2,'hbreak');
+I3 = imbwmorph(I2,'hbreak');
 
-I4 = bwmorph(I3,'thin',inf);
+I4 = imbwmorph(I3,'thin',inf);
 
-I5 = bwmorph(I4,'skel',inf);
+I5 = imbwmorph(I4,'skel',inf);
 
 image = I5;
 

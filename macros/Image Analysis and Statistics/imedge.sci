@@ -11,15 +11,15 @@
 ////////////////////////////////////////////////////////////
 
 
-function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
+function [border, thresh]=imedge(Img, method, thresh, dir_or_sig, sig)
     // Find edges in a single channel image.
     //
     // Syntax
-    //    E = edge(im, method)
-    //    E = edge(im, method, thresh)
-    //    E = edge(im, method, thresh, direction)
-    //    E = edge(im, method, thresh, sigma)
-    //    [E, thresh] = edge(im, method, ...)
+    //    E = imedge(im, method)
+    //    E = imedge(im, method, thresh)
+    //    E = imedge(im, method, thresh, direction)
+    //    E = imedge(im, method, thresh, sigma)
+    //    [E, thresh] = imedge(im, method, ...)
     //
     // Parameters
     //    im : Input image which must be a single channel image.
@@ -27,24 +27,24 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
     //    thresh : sets the threshold level, from 0 to 1. Defaults to 0.2. If negative, then the output image, E , will have the un-thresholded gradient image.
     //    direction : may be 'horizontal', 'vertical' or 'both'(default). This determines the direction to compute the image gradient.
     //    sigma : Controls the ammount of high-frequency attenuation in some methods (only the 'fftderiv' method uses this parameter). This can be used to obtain different levels of detail and to filter out high-frequency noise.
-    //    E : edge image which is boolean matrix and has the same size as im . If thresh<0 , E is a double un-thresholded image.
+    //    E : imedge image which is boolean matrix and has the same size as im . If thresh<0 , E is a double un-thresholded image.
     //
     // Description
-    //    The function edge performs edge detection on a grayscale intensity image. The user may set the method, the threshold level, the direction of the edge detection, etc.
+    //    The function imedge performs imedge detection on a grayscale intensity image. The user may set the method, the threshold level, the direction of the imedge detection, etc.
     //
-    //    E=edge(im, 'sobel', thresh, direction)
+    //    E=imedge(im, 'sobel', thresh, direction)
     //    Detects edges in im , using the sobel gradient estimator.
     //
-    //    E=edge(im, 'prewitt', thresh, direction)
+    //    E=imedge(im, 'prewitt', thresh, direction)
     //    Detects edges in im , using the prewitt gradient estimator.
     //
-    //    E=edge(im, 'log', thresh, sigma)
+    //    E=imedge(im, 'log', thresh, sigma)
     //    Detects edges in im , using the the Laplacian of Gaussian method. sigma is the standard deviation of the LoG filter and the size of the LoG filter is nxn, where n = ceil(sigma*3)*2+1. The default value for sigma is 2.
     //
-    //    E=edge(im, 'fftderiv', thresh, direction, sigma)
+    //    E=imedge(im, 'fftderiv', thresh, direction, sigma)
     //    Detects edges in im , using the FFT gradient method, default sigma 1.0
     //
-    //    E=edge(im, 'canny', thresh, sigma)
+    //    E=imedge(im, 'canny', thresh, sigma)
     //    Detects edges in im , using Canny method. thresh is a two-element vector, in which the fist element is the low threshold and the seond one is the high threshold. If thresh is a scalar, the low threshold is 0.4*thresh and the high one is thresh . Besides, thresh can not be negative scalar. sigma is the Aperture parameter for canny operator, which must be 1, 3, 5 or 7. default thresh 0.2; default sigma 3.
     //
     // Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
@@ -52,19 +52,19 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
     // Examples
     //    im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
     //    im = rgb2gray(im);
-    //    E = edge(im, 'sobel');
+    //    E = imedge(im, 'sobel');
     //    imshow(E);
-    //    
-    //    E = edge(im, 'canny', [0.06, 0.2]);
+    //
+    //    E = imedge(im, 'canny', [0.06, 0.2]);
     //    imshow(E);
-    //    
-    //    E = edge(im, 'prewitt');
-    //    imshow(mat2gray(E));    
+    //
+    //    E = imedge(im, 'prewitt');
+    //    imshow(immat2gray(E));
     //
     // See also
-    //    fspecial
+    //    imfspecial
     //    imfilter
-    //    filter2
+    //    imfilter2
     //
     // Authors
     //    Shiqi Yu (SIVP)
@@ -106,16 +106,16 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
 
     select method,
     case 'sobel' then
-        //mask = fspecial('sobel');
+        //mask = imfspecial('sobel');
         if(direction=='horizontal') then
             border=int_sobel(Img, 0, 1);
         elseif(direction=='vertical') then
             border=int_sobel(Img, 1, 0);
-        elseif(direction=='both') then         // Modified by Trity 12-July-2012 
+        elseif(direction=='both') then         // Modified by Trity 12-July-2012
             //border1=int_sobel(Img, 0, 1);
-            //border2=int_sobel(Img, 1, 0);      
-            //border = border1 | border2;  
-            border=int_sobel(Img, 1, 1);    
+            //border2=int_sobel(Img, 1, 0);
+            //border = border1 | border2;
+            border=int_sobel(Img, 1, 1);
         else
             error('Invalid direction');
         end
@@ -126,27 +126,27 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
             border=double(border);
         end
         //End sobel
-        return; 
+        return;
     case 'prewitt' then
-        mask = fspecial('prewitt');
+        mask = imfspecial('prewitt');
     case 'log' then
         if isempty(sigma) then
             sigma=2;
         end
         direction = 'horizontal'; //to prevent filter two times
 
-        mask = fspecial('log', ceil(sigma*3)*2+1, sigma);
+        mask = imfspecial('log', ceil(sigma*3)*2+1, sigma);
     case 'canny' then
-        
-        // Issue 1739: Error function "edge" with method "canny" 
+
+        // Issue 1739: Error function "imedge" with method "canny"
         if type(Img) == 1
             Img = im2uint8(Img);
         end
-        
+
         //set default thresh value
         //negative value is invalid here
 
-        
+
         if thresh < 0 then
             thresh = 0.3;
         end
@@ -224,23 +224,23 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
         // END
         return
     else
-        error('Invalid edge detection method.')
+        error('Invalid imedge detection method.')
     end
 
     select direction
     case 'horizontal'
-        //mx=filter2(mask, Img);
-        mx=filter2(Img,mask);
+        //mx=imfilter2(mask, Img);
+        mx=imfilter2(Img,mask);
         border=abs(mx)
     case 'vertical'
-        //my=filter2(mask', Img);
-        mx=filter2(Img,mask');
+        //my=imfilter2(mask', Img);
+        mx=imfilter2(Img,mask');
         border=abs(my)
     case 'both'
-        //mx=filter2(mask, Img);
-        //my=filter2(mask',Img);
-        mx=filter2(Img,mask);
-        my=filter2(Img,mask');
+        //mx=imfilter2(mask, Img);
+        //my=imfilter2(mask',Img);
+        mx=imfilter2(Img,mask);
+        my=imfilter2(Img,mask');
         border=sqrt(mx.*mx + my.*my);
     else
         error('Invalid direction.');
@@ -252,4 +252,3 @@ function [border, thresh]=edge(Img, method, thresh, dir_or_sig, sig)
     end
 
 endfunction
-

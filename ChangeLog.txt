@@ -7,10 +7,12 @@ Image-processing completeness
 3. Add connected-components labels, counts, areas, 1-based bounding boxes, and centroids
 4. Add 4- and 8-connectivity support and route imlabel through the shared native engine
 5. Add a help-category capability matrix and Step 3 regression coverage
-6. Add bwareaopen and imclearborder using measured connected components
+6. Add imbwareaopen and imclearborder using measured connected components
 7. Clarify the numeric-output contract of imthreshold versus the boolean-mask contract of imbinarize
-8. Add 12 measurement, reconstruction, extrema, and gradient APIs: imarea, imcentroid, imboundingbox, imperimeter, bwareafilt, imreconstruct, imregionalmax, imregionalmin, imextendedmax, imextendedmin, imgradientxy, and imgradientmagnitude
+8. Add 12 measurement, reconstruction, extrema, and gradient APIs: imarea, imcentroid, imboundingbox, imperimeter, imbwareafilt, imreconstruct, imregionalmax, imregionalmin, imextendedmax, imextendedmin, imgradientxy, and imgradientmagnitude
 9. Add MATLAB-style compatibility aliases for existing filters and denoisers, plus new imsharpen, imlaplacian, imgradientdirection, imlocalmean, and imlocalstd compositions
+10. Standardize 18 public image, filtering, statistics, binary, ROI, and boundary APIs around IPCV-style `im...` names; archive replaced non-`im` sources under `macros/old` and exclude them from macro builds
+11. Add executable `imfilter2` double-output filtering and optional-noise defaults to `imwiener2`
 
 OpenCV 5.0.0 Development - Step 2 (10-Jul-26)
 Correctness and test-foundation update for the OpenCV 5.0.0 backend

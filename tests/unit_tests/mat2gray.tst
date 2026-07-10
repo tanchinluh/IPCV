@@ -4,11 +4,11 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //==============================================================================
-// unit test mat2gray
+// unit test immat2gray
 //==============================================================================
 
 M = [0:10;0:10];
-I = mat2gray(M);
+I = immat2gray(M);
 assert_checkequal(min(I),0);
 assert_checkequal(max(I),1);
 //==============================================================================

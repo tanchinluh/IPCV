@@ -14,13 +14,13 @@ assert_checkequal(size(gaussian), size(source));
 assert_checkequal(size(bilateral), size(source));
 
 medianColor = immedianfilt(source, 3);
-medianGray = medfilt2(gray, 3);
+medianGray = immedian(gray, 3);
 assert_checkequal(size(medianColor), size(source));
 assert_checkequal(size(medianGray), size(gray));
 
-wiener = wiener2(double(gray), [3 3]);
+wiener = imwiener2(double(gray), [3 3]);
 nonLocal = imnlmfilt(source, 3, 3, 7, 21);
-equalized = adapthisteq(gray, 3);
+equalized = imadapthistequal(gray, 3);
 assert_checkequal(size(wiener), size(gray));
 assert_checkequal(size(nonLocal), size(source));
 assert_checkequal(size(equalized), size(gray));

@@ -8,7 +8,7 @@
 //==============================================================================
 
 A = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
-A_edge = edge(A,'canny');
+A_edge = imedge(A,'canny');
 se = imcreatese('ellipse',15,15);
 A_dilate = imdilate(A_edge,se);
 [A_labeled,n] = imlabel(A_dilate);

@@ -7,7 +7,7 @@
 // unit test imsmoothsurf
 //==============================================================================
 
-f = fspecial('gaussian');
+f = imfspecial('gaussian');
 F = fftshift(fft2pad(f,256,256));
 imsmoothsurf(abs(F),100);
 

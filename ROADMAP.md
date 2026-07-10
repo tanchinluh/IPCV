@@ -23,16 +23,16 @@ release preparation.
 | --- | --- | --- | --- |
 | OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Continue improvements on `codex/new-features`. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
-| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 25/25 and release 115/115. GUI, network/model, and hardware suites remain selectively exercised. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
-| Step 3 - Image processing completeness | **In progress** | Batches 1–4 add thresholding, connected components, binary measurement, extrema, filtering compatibility aliases, enhancement, and local-statistics APIs. | Continue the priority gaps in the capability matrix. |
+| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 27/27 and release 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
+| Step 3 - Image processing completeness | **In progress** | Batches 1-5 add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, and binary compatibility APIs. | Continue the priority gaps in the capability matrix. |
 | Step 4 - DNN and OpenCV Zoo workflows | **Planned** | Scope defined below. | Requires stable DNN contracts and model fixtures. |
 | Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
 | Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
 
-The repository currently contains 138 active Scilab unit-test scripts. That is
+The repository currently contains 140 active Scilab unit-test scripts. That is
 an inventory count, not a claim that every script passes on every platform.
 The Step 2 manifest classifies each test and the expanded focused stability
-suite contains 25 deterministic or local-asset checks.
+suite contains 27 deterministic or local-asset checks.
 
 ## Step 1 - Stability And Compatibility
 
@@ -117,6 +117,9 @@ Current work:
 - Add MATLAB-style filtering and enhancement compatibility aliases, plus new
   sharpening, Laplacian, gradient-direction, and local-statistics compositions.
   **Batch 4 implemented**
+- Standardize public names around the `im...` convention, add executable
+  `imfilter2`, and archive replaced non-`im` sources under `macros/old`.
+  **Batch 5 implemented**
 
 Planned follow-up:
 

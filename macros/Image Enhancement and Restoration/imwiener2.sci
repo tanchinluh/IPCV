@@ -4,7 +4,9 @@
 //=============================================================================
 function imout = imwiener2(imin,mn,noise)
     // Wiener filter for image
-    //
+    if argn(2) < 3 then
+        noise = [];
+    end
     // Syntax
     //    imout = imwiener2(imin,mn,noise)
     //
@@ -36,8 +38,8 @@ function imout = imwiener2(imin,mn,noise)
 
     block_sz = prod(mn);
 
-    loc_mean = filter2(imin,ones(mn(1),mn(2))) / block_sz;
-    loc_var = filter2(imin.^2,ones(mn(1),mn(2))) / block_sz - loc_mean.^2;
+    loc_mean = imfilter2(imin,ones(mn(1),mn(2))) / block_sz;
+    loc_var = imfilter2(imin.^2,ones(mn(1),mn(2))) / block_sz - loc_mean.^2;
 
     // Estimate the noise power if necessary.
     if (isempty(noise))
@@ -48,6 +50,3 @@ function imout = imwiener2(imin,mn,noise)
     imout = loc_mean + (max(0, loc_var - noise) ./ max(loc_var, noise)) .* (imin - loc_mean);
 
 endfunction
-
-
-

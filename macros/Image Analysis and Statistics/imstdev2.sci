@@ -4,35 +4,34 @@
 //
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
-//  
+//
 ////////////////////////////////////////////////////////////
-function [m] = mean2(im)
-    //    Average/mean of matrix elements
-    //    
+function [s] = imstdev2(im)
+    //    Standard deviation of 2D matrix elements
+    //
     //    Syntax
-    //      m = mean2(im)
-    //    
+    //      s = imstd2(im)
+    //      s = imstdev2(im)
+    //
     //    Parameters
-    //      im : An image, which can be integer or double matrix, but must be one channel image.
-    //      m : The mean of the values in im , a scalar of class double.
-    //    
+    //      im : An matrix/image, which can be integer or double matrix, but must be one channel image.
+    //      s : The standard deviation, a scalar of class double.
+    //
     //    Description
-    //      mean2 computes the mean of a matrix using mean(im(:)).
-    //    
+    //      imstd2/imstdev2 computes standard deviation of matrix im using stdev(im(:)).
+    //
     //    See also
-    //      corr2
-    //      std2
-    //      stdev2
-    //    
+    //      immean2
+    //      imcorr2
+    //
     //    Authors
     //      Shiqi Yu
     //      Tan Chin Luh
 
 
-    
     if (size(size(im), 2) >=3) then
         error("The input must be 2D matrix.");
     end
 
-    m = mean(double(im(:)));
+    s = stdev(double(im(:)));
 endfunction

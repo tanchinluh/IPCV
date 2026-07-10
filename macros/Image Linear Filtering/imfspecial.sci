@@ -4,16 +4,16 @@
 //
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
-//============================================================================= 
+//=============================================================================
 
 //Create 2-D special filters.
-function [F] = fspecial(ftype, varargin)
+function [F] = imfspecial(ftype, varargin)
     // Create some 2D special filters
     //
     // Syntax
-    //      F = fspecial(type)
-    //      F = fspecial(type, op1)
-    //      F = fspecial(type, op1, op2)
+    //      F = imfspecial(type)
+    //      F = imfspecial(type, op1)
+    //      F = imfspecial(type, op1, op2)
     //
     // Parameters
     //      type : Filter type. It can be one of these string: 'sobel', 'prewitt', 'gaussion', 'laplacian', 'log', 'average', 'unsharp', 'motion'. ('disk' in future.)
@@ -22,61 +22,61 @@ function [F] = fspecial(ftype, varargin)
     //      FT : The returned filter, which is of type double.
     //
     // Description
-    //    fspecial create some 2D special filters. If no parameters are given, fspecial will uses default values.
+    //    imfspecial create some 2D special filters. If no parameters are given, imfspecial will uses default values.
     //
     //    The supported filters and the syntax for each filter type are listed in the following list:
     //
     // <variablelist>
     // <varlistentry>
-    //    <term>F = fspecial('sobel') : </term>
+    //    <term>F = imfspecial('sobel') : </term>
     //    <listitem>returns a 3x3 horizontal edges sobel filter. If you want avertical e dges sobel filter, you can use transposition of F. F is [ 1 2 1; 0 0 0; -1 -2 -1].</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('prewitt') : </term>
+    //    <term>F = imfspecial('prewitt') : </term>
     //    <listitem>returns a 3x3 horizontal edges prewitt filter. If you want avertical edges prewitt filter, you can use transposition of F. F is [ 1 1 1; 0 0 0; -1 -1 -1].</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('gaussian', hsize, sigma) : </term>
+    //    <term>F = imfspecial('gaussian', hsize, sigma) : </term>
     //    <listitem>returns a Gaussian lowpass filter. The size of returned filter is determined by parameter hsize. hsize can be a 1x2 vector which indicate the rows and columns of F. If hsize is a scalar, F is a square matrix. The default value for hsize is [3, 3]; the default value for sigma is 0.5.</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('laplacian', alpha) : </term>
+    //    <term>F = imfspecial('laplacian', alpha) : </term>
     //    <listitem>returns a 3-by-3 Laplacian filter. The returned filter is [alpha, 1-alpha, alpha; 1-alpha, -4, 1-alpha; alpha, 1-alpha, alpha]/(alpha+1). The default value for alpha is 0.2.</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('log', hsize, sigma) : </term>
+    //    <term>F = imfspecial('log', hsize, sigma) : </term>
     //    <listitem>returns a Laplacian of Gaussian filter. The size of returned filter is determined by parameter hsize. hsize can be a 1x2 vector which indicate the rows and columns of F. If hsize is a scalar, F is a square matrix. The default value for hsize is [5, 5]; the default value for sigma is 0.5.</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('average',hsize) : </term>
+    //    <term>F = imfspecial('average',hsize) : </term>
     //    <listitem>returns an averaging filter. The size of returned filter is determined by parameter hsize. hsize can be a 1x2 vector which indicate the rows and columns of F. If hsize is a scalar, F is a square matrix. The default value for hsize is [3, 3].</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('unsharp', alpha) : </term>
+    //    <term>F = imfspecial('unsharp', alpha) : </term>
     //    <listitem>returns a 3x3 unsharp contrast enhancement filter. alpha must be in the range [0.0, 1.0]. The default value of alpha is 0.2.</listitem>
-    // </varlistentry> 
+    // </varlistentry>
     // <varlistentry>
-    //    <term>F = fspecial('motion', length, angle1) : </term>
+    //    <term>F = imfspecial('motion', length, angle1) : </term>
     //    <listitem>returns a motion blurred filter with length and angle.</listitem>
-    //  </varlistentry>    
+    //  </varlistentry>
     //  </variablelist>
     //
     //Examples
     //
     //      im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-    //      filter = fspecial('sobel');
+    //      filter = imfspecial('sobel');
     //      imf = imfilter(im, filter);
     //      imshow(imf);
     //
     //See also
     //      imfilter
-    //      filter2
+    //      imfilter2
     //
     //Authors
     //      Shiqi Yu
     //      Tan Chin Luh
     //
-    
+
     //check input
     if typeof(ftype)~='string' then
         error('The first argument must be a string.');
@@ -101,7 +101,7 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //sobel filter
     case 'sobel' then,
-        if length(varargin)>0 then, 
+        if length(varargin)>0 then,
             error("Too many arguments for this kind of filter");
         end
         F=[1 2 1; 0 0 0; -1 -2 -1];
@@ -110,8 +110,8 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //motion  filter
         //
-        // Taken (with some changes) from Peter Kovesis implementation 
-        // (http://www.csse.uwa.edu.au/~pk/research/matlabfns/OctaveCode/fspecial.m)
+        // Taken (with some changes) from Peter Kovesis implementation
+        // (http://www.csse.uwa.edu.au/~pk/research/matlabfns/OctaveCode/imfspecial.m)
         // FIXME: The implementation is not quite matlab compatible.
     case "motion"
         if (isreal (op1))
@@ -142,7 +142,7 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //prewitt filter
     case 'prewitt' then,
-        if length(varargin)>0 then, 
+        if length(varargin)>0 then,
             error("Too many arguments for this kind of filter");
         end
         F=[1 1 1; 0 0 0; -1 -1 -1];
@@ -150,11 +150,11 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //average filter
     case 'average' then,
-        if length(varargin)>1 then, 
+        if length(varargin)>1 then,
             error("Too many arguments for this kind of filter");
         end
-        if isempty(op1) then, 
-            op1=3; 
+        if isempty(op1) then,
+            op1=3;
         else
             if op1 ~= floor(op1) then, error('The second argument must be an integer.'); end;
         end
@@ -199,11 +199,11 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //laplacian filter
     case 'laplacian' then,
-        if length(varargin)>1 then, 
+        if length(varargin)>1 then,
             error("Too many arguments for this kind of filter");
         end
-        if isempty(op1) then, 
-            op1=0.2; 
+        if isempty(op1) then,
+            op1=0.2;
         else
             if (op1 < 0 | op1 > 1) then, error("The second argument should be in range [0, 1]"); end,
         end
@@ -211,7 +211,7 @@ function [F] = fspecial(ftype, varargin)
         F = [op1, op1d, op1; op1d, -4, op1d; op1, op1d, op1]/(op1+1);
 
         //----------------------------------------------
-        //log filter:a rotationally symmetric Laplacian of Gaussian filter 
+        //log filter:a rotationally symmetric Laplacian of Gaussian filter
     case 'log' then,
         //get faussian filter first
         if isempty(op1) then
@@ -253,15 +253,15 @@ function [F] = fspecial(ftype, varargin)
         //----------------------------------------------
         //unsharp contrast enhancement filter
     case 'unsharp' then,
-        if length(varargin)>1 then, 
+        if length(varargin)>1 then,
             error("Too many arguments for this kind of filter");
         end
-        if isempty(op1) then, 
-            op1=0.2; 
+        if isempty(op1) then,
+            op1=0.2;
         else
             if (op1 < 0 | op1 > 1) then, error("The second argument should be in range [0, 1]"); end,
         end
-        F = [0, 0,0; 0, 1, 0; 0, 0, 0] - fspecial('laplacian',op1);
+        F = [0, 0,0; 0, 1, 0; 0, 0, 0] - imfspecial('laplacian',op1);
 
     else
         error('No such kind of filter: ' + ftype );

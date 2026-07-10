@@ -26,11 +26,11 @@ function [c] = corr2(imA, imB)
     // See also
     //    mean2
     //    std2
-    //    stdev2 
+    //    stdev2
     //
     // Authors
     //    Tan Chin Luh. Modified from the original work of Shiqi Yu
-        
+
     if ( (size(size(imA), 2) >=3) | (size(size(imB), 2) >=3)) then
         error("The input must be 2D matrix.");
     end
