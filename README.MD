@@ -2,10 +2,10 @@
 
 IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides Scilab macros and native gateways for image I/O, filtering, morphology, feature detection, DNN inference, video/camera handling, object tracking, and other OpenCV-backed workflows.
 
-The current development line is IPCV 5.0.0.1, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
+The current development line is IPCV 5.0.0.2, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
 
-IPCV 5.0.0.1 is currently in cross-platform validation on the
-`codex/new-features` branch. The release sequence, current evidence, remaining
+IPCV 5.0.0.2 is currently in development on the
+`codex/5.0.0.2-quality` branch. The release sequence, current evidence, remaining
 gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
 
 ## Highlights
@@ -27,7 +27,7 @@ For native builds on Windows, start Scilab from a Visual Studio native tools com
 
 ## Versioning
 
-IPCV uses compatibility versioning in the form `X.Y.Z.R`. The first three numbers identify the OpenCV baseline and the optional fourth number identifies an IPCV-only revision. For example, IPCV `5.0.0.1` uses OpenCV `5.0.0` and is the first IPCV update on that backend. When the OpenCV baseline changes, the IPCV revision resets.
+IPCV uses compatibility versioning in the form `X.Y.Z.R`. The first three numbers identify the OpenCV baseline and the optional fourth number identifies an IPCV-only revision. For example, IPCV `5.0.0.2` uses OpenCV `5.0.0` and is the second IPCV update on that backend. When the OpenCV baseline changes, the IPCV revision resets.
 
 The loaded package and native backend versions can be inspected at runtime:
 
@@ -233,13 +233,41 @@ That archive path is only for historical behavior checks and should not be mixed
 
 Run tests from Scilab after loading/building the toolbox as needed. For focused migration checks, run the relevant `.tst` file directly or use Scilab's `test_run` workflow.
 
-On Windows, the current stability suite can be run with a process-status wrapper:
+Tests are classified as `core`, `integration`, `gui`, `network`, or `hardware`.
+The `stability` suite is the focused migration signal and `release` combines
+the deterministic core and local-asset integration tests. Network, GUI, and
+physical-camera tests are opt-in.
+
+On Windows, run a suite with:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File tests/run_stability_tests.ps1 -ScilabExecutable "C:\Tools\scilab-2026.1.0\bin\WScilex-cli.exe"
+powershell -ExecutionPolicy Bypass -File tests/run_tests.ps1 -ScilabExecutable "C:\Tools\scilab-2026.1.0\bin\WScilex-cli.exe" -Suite stability
 ```
 
-The wrapper records an explicit PASS/FAIL status and returns a conventional process exit code for local automation and future CI jobs.
+On Linux or macOS, run:
+
+```sh
+sh ./tests/run_tests.sh /path/to/scilab-cli stability
+```
+
+Available suite names are `core`, `integration`, `gui`, `network`, `hardware`,
+`stability`, `release`, and `all`. Reports are written to `tests/results` and
+are ignored by git. Run one or more named tests by setting `IPCV_TEST_NAMES`,
+or on Windows by passing `-TestNames "ipcv_image_io,ipcv_codec_matrix"`.
+
+The original `run_stability_tests.ps1` and `run_stability_tests.sce` files are
+kept as compatibility entry points and delegate to the suite runner.
+
+Run the Windows repository validator and deterministic release suite together:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tests/run_release_checks.ps1 -ScilabExecutable "C:\Tools\scilab-2026.1.0\bin\WScilex-cli.exe"
+```
+
+Add `-Build` when the command is launched from a Visual Studio x64 native tools
+environment and a complete native rebuild is required. See
+[`tests/README.md`](tests/README.md) for suite definitions, opt-in requirements,
+timeouts, reports, and test-authoring rules.
 
 ## Repository Layout
 

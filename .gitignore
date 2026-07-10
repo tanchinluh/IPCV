@@ -29,6 +29,7 @@ Release/
 jar/
 2.0/
 **/testing
+tests/results/
 
 # ignore bundled thirdparty payloads, but keep build helper scripts tracked
 thirdparty/*
