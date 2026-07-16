@@ -258,9 +258,45 @@ For a focused command-line check, run a current unit test from `tests/unit_tests
 test_run(getIPCVpath(), "ipcv_image_io");
 ```
 
-## OpenCV Zoo Models
+## Graphical Tools
+
+IPCV includes two browser-based Scilab GUIs:
+
+### Image And Video Tool
+
+Launch `imtool` with an empty workspace, an image matrix, or a media filename:
+
+![IPCV Image and Video Tool](images/gui/imtool.png)
+
+```scilab
+imtool();
+
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+imtool(image);
+
+imtool("C:/path/to/video.mp4");
+```
+
+The GUI provides:
+
+- Image and video loading through IPCV and OpenCV.
+- Zoom, pan, rotation, fit-to-window, and pixel-grid inspection.
+- Per-pixel RGB values when the image is zoomed sufficiently.
+- RGB, grayscale, HSV, Lab, and YCbCr color-space views.
+- Video playback, pause, seek, frame stepping, and playback-rate controls.
+- Paused-frame inspection and temporal difference, motion heatmap, temporal
+  average, and sparse optical-flow analysis.
+- Recording of the rendered analysis stream at 0.25x, 0.5x, 1x, or 2x output
+  speed.
+
+MP4, H.264, and HEVC playback depends on the codecs enabled in the bundled
+OpenCV build.
+
+### OpenCV Zoo Model Browser
 
 IPCV includes a Scilab browser GUI for OpenCV Zoo models:
+
+![IPCV OpenCV Zoo Model Browser](images/gui/opencv_zoo_gui.png)
 
 ```scilab
 opencv_zoo_gui();
