@@ -21,7 +21,7 @@ release preparation.
 
 | Step | Status | Current evidence | Remaining gate |
 | --- | --- | --- | --- |
-| OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Continue improvements on `codex/new-features`. |
+| OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration and the completed `codex/new-features` work were merged into `master` through PR #31. | Continue roadmap development from the current `master` baseline. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
 | Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 35/35; the earlier release suite passed 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static repository checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
 | Step 3 - Image processing completeness | **In progress** | Batches 1-13 add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, transforms, restoration, Hough post-processing, feature helpers, matching, registration, lens correction, stereo, 3-D processing, segmentation, and shape fitting. Windows stability is 35/35. | Continue the priority gaps in the capability matrix and validate on macOS/Linux. |
@@ -291,16 +291,19 @@ Exit criteria:
 
 ## Development Workflow
 
-Rapid development uses one long-lived feature branch:
+`master` is the active integration and development branch:
 
 ```text
-master
-  `-- codex/new-features   Step 1 -> Step 2 -> Step 3 -> ...
+master   Step 1 -> Step 2 -> Step 3 -> Step 4 -> ...
 ```
 
 Step numbers are roadmap checkpoints, not versions, branches, releases, or
-tags. Work continues on `codex/new-features` until a deliberate release point
-is chosen. At that point, freeze features, choose the public version, update
-release metadata and archives, run every release gate, merge to `master`, and
-create one release tag. After the release, continue the next roadmap Step on
-`codex/new-features` from the updated `master` baseline.
+tags. Small validated improvements may proceed on `master`. Substantial,
+experimental, or collaborative changes should use a short-lived branch created
+from the latest `master`, then return through a pull request and be deleted
+after merge.
+
+At a deliberate release point, freeze features on `master`, choose the public
+version, update release metadata and archives, run every release gate, and
+create one release tag. Development then continues from that tagged `master`
+baseline.

@@ -4,9 +4,10 @@ IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides 
 
 The current development line is IPCV 5.0.0, based on OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.1. The native implementation uses category-based C++ source modules and a current Scilab gateway API.
 
-Rapid development is organized as numbered roadmap steps on the single
-`codex/new-features` branch. The current evidence, remaining
-gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
+Rapid development is organized as numbered roadmap steps on `master`.
+Short-lived branches may be used for substantial or experimental changes, then
+merged and deleted. Current evidence, remaining gates, and longer-term
+priorities are maintained in [ROADMAP.md](ROADMAP.md).
 
 ## Highlights
 
@@ -49,13 +50,13 @@ gates, and longer-term priorities are maintained in [ROADMAP.md](ROADMAP.md).
 
 ## Current Development Status
 
-The active work remains on `codex/new-features` under the OpenCV 5.0.0
-baseline. On 17-Jul-26, the toolbox completed a clean VS 2022 x64 native build,
-repository validation, regenerated help, and the Windows stability suite with
-35 passed and 0 failed. Release preparation still requires the broader
-release/GUI/network/hardware suites where applicable and macOS/Linux validation.
-Generated binaries, help output, downloaded models, and local Codex/Scilab
-profiles are not source-controlled.
+The completed `codex/new-features` work was merged into `master` through PR #31,
+and that feature branch has been retired. On 17-Jul-26, the toolbox completed a
+clean VS 2022 x64 native build, repository validation, regenerated help, and the
+Windows stability suite with 35 passed and 0 failed. Release preparation still
+requires the broader release/GUI/network/hardware suites where applicable and
+macOS/Linux validation. Generated binaries, help output, downloaded models, and
+local Codex/Scilab profiles are not source-controlled.
 
 ## Coordinate Convention
 
