@@ -12,7 +12,8 @@
 //    fps : Frame per second.
 //    fourcc : 4-character code of codec used to compress the frames.
 //    
-//    For e.g.: 'xvid', 'mjpg', 'pim1', 'mp42', 'divx','flv1', etc.
+//    For example: "MJPG", "XVID", "DIVX", or "mp4v". Available codecs
+//    depend on the OpenCV video backend. "MJPG" is recommended for AVI.
 //    
 //    Under windows:
 //    
@@ -24,25 +25,29 @@
 //    
 //    Description
 //    
-//    In order to use certain codec, the codec must be installed. 
-//    
-//    For e.g., xvid required xvid codec (http://www.xvid.org) while the mpg required ffdshow codec. (http://www.free-codecs.com/ffdshow_download.htm)
-//    avifile create a new video file. 
+//    The output directory must exist and be writable. Relative filenames are
+//    resolved from pwd(); use fullfile() when the destination must be explicit.
+//    avifile creates a new video file.
 //    
 //    After the video file is created, addframe can be used to add frame to the file. Remember to close the opened file using aviclose(n) or avicloseall().
 //    
 //    Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
 //    
 //    Examples
-//    im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-//    n = avifile('baboon.avi', [300;300], 30,'xvid');
-//    
-//    for ii=1:200
-//        ims = im(ii:512-ii, ii:512-ii, :);
-//        aviaddframe(n, ims);
+//    image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+//    outputFile = fullfile(TMPDIR, "baboon_zoom.avi");
+//    if isfile(outputFile) then mdelete(outputFile); end
+//    n = avifile(outputFile, [300; 300], 30, "MJPG");
+//
+//    for frameIndex = 1:90
+//        margin = round((frameIndex - 1) * 1.5);
+//        cropped = image(1 + margin:$ - margin, 1 + margin:$ - margin, :);
+//        frame = imresize(cropped, [300 300], "area");
+//        aviaddframe(n, frame);
 //    end
-//    
+//
 //    aviclose(n);
+//    disp(outputFile);
 //     
 //    See also
 //    avifile

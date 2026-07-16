@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imshow_detections" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imshow_detections</refname><refpurpose>Display an image with detection boxes and labels.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>imshow_detections(image, detections)
+imshow_detections(image, detections, labels, rgb, titleText)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>detections :</term><listitem><para>Structure with <literal>boxes</literal>, <literal>scores</literal>, and <literal>classIds</literal> fields.</para></listitem></varlistentry><varlistentry><term>labels :</term><listitem><para>Optional class label vector.</para></listitem></varlistentry><varlistentry><term>rgb :</term><listitem><para>RGB box color. Default is <literal>[0 255 0]</literal>.</para></listitem></varlistentry><varlistentry><term>titleText :</term><listitem><para>Optional figure title.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imshow_detections</function> displays an image with image-space detection boxes and class labels. Label placement converts the image top-left origin to Scilab graphics coordinates.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+detections.boxes = [40 40 120 100];
+detections.scores = 0.95;
+detections.classIds = 1;
+imshow_detections(image, detections, "object", [0 255 0], "Detections");
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdrawboxes">imdrawboxes</link></member><member><link linkend="dnn_decode_yolo">dnn_decode_yolo</link></member><member><link linkend="dnn_decode_ssd">dnn_decode_ssd</link></member><member><link linkend="imshow">imshow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwpropfilt" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>imbwpropfilt</refname>
+        <refpurpose>Filter binary components by measured properties.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>out = imbwpropfilt(image, property, limits)
+out = imbwpropfilt(image, property, limits, connectivity)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>Keeps connected components whose area, extent, or perimeter falls within the requested limits.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <emphasis role="bold">Source reference:</emphasis>
+            <ulink url="https://docs.opencv.org/master/d2/d75/namespacecv.html">OpenCV connected-components and shape-measurement documentation</ulink>.
+            The examples use known component dimensions so the accepted and rejected objects are easy to verify.
+        </para>
+        <para>Example 1: Keep only the medium-sized component by area</para>
+        <programlisting role="example"><![CDATA[
+mask = zeros(150, 260) == 1;
+mask(25:44, 20:39) = %t;
+mask(25:74, 90:139) = %t;
+mask(25:104, 180:239) = %t;
+
+selected = imbwpropfilt(mask, "area", [1000 3000]);
+
+subplot(1, 2, 1);
+imshow(uint8(mask .* 255));
+xtitle("All components: areas 400, 2500, and 4800");
+subplot(1, 2, 2);
+imshow(uint8(selected .* 255));
+xtitle("Area from 1000 to 3000: middle object retained");
+]]></programlisting>
+        <para>Example 2: Keep a compact component and reject an L-shaped component by extent</para>
+        <programlisting role="example"><![CDATA[
+mask = zeros(130, 220) == 1;
+mask(25:74, 25:74) = %t;
+mask(25:94, 130:139) = %t;
+mask(85:94, 130:199) = %t;
+
+compact = imbwpropfilt(mask, "extent", [0.8 1]);
+
+subplot(1, 2, 1);
+imshow(uint8(mask .* 255));
+xtitle("Filled square and sparse L-shaped component");
+subplot(1, 2, 2);
+imshow(uint8(compact .* 255));
+xtitle("Extent from 0.8 to 1.0: compact object retained");
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="imbwareafilt">imbwareafilt</link></member>
+            <member><link linkend="imregionprops">imregionprops</link></member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert"><member>Tan Chin Luh</member></simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr>
+        </informaltable>
+    </refsection>
+</refentry>

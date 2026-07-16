@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imroi2mask" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imroi2mask</refname><refpurpose>Convert a geometric ROI to a binary mask.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mask = imroi2mask(roi, [rows cols])
+mask = imroi2mask(roi, [rows cols], shape)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>roi</term><listitem><para>ROI coordinates. Rectangles and ellipses use <literal>[x y width height]</literal>; polygons use N-by-2 <literal>[x y]</literal> points.</para></listitem></varlistentry><varlistentry><term>imageSize</term><listitem><para>Output mask size as <literal>[rows cols]</literal>.</para></listitem></varlistentry><varlistentry><term>shape</term><listitem><para>ROI shape: <literal>"polygon"</literal>, <literal>"rectangle"</literal>, or <literal>"ellipse"</literal>. Default is <literal>"polygon"</literal>.</para></listitem></varlistentry><varlistentry><term>mask</term><listitem><para>Boolean ROI mask.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Creates rectangle, ellipse, or polygon masks. Coordinates use the upper-left image origin.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+mask = imroi2mask([90 55 140 120], [size(image, 1) size(image, 2)], "rectangle");
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(mask);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="impoly2mask">impoly2mask</link></member><member><link linkend="imbwselect">imbwselect</link></member><member><link linkend="imroifilt">imroifilt</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

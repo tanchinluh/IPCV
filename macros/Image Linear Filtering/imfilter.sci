@@ -18,22 +18,22 @@ function imf = imfilter(A, F, bound, opsz);
     //      F : A double 2D filter.
     //      imf : The filtered image which has the same dimension and class with im .
     //      bound : Type of boundary, values or keywords. Current supported type with keyword is 'circular'.
-    //      opsz : Output image size, either 'full' or 'same'. 
+    //      opsz : Output image size, either 'full' or 'same'.
     //
     // Description
     //      imfilter filters an image im with filter F. When im is a mult-channel image, each channel can be filtered with F seperately. Input image pixel values outside the bounds of the image are assumed to equal the nearest array border value.
     //
-    //      The only diffence of filter2 with imfilter is the output of filter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.
+    //      The only diffence of imfilter2 with imfilter is the output of imfilter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.
     //
     // Examples
     //      im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-    //      filter = fspecial('sobel');
+    //      filter = imfspecial('sobel');
     //      imf = imfilter(im, filter);
     //      imshow(imf);
     //
     // See also
-    //      fspecial
-    //      filter2
+    //      imfspecial
+    //      imfilter2
     //
     // Authors
     //      Tan Chin Luh
@@ -42,7 +42,7 @@ function imf = imfilter(A, F, bound, opsz);
     rhs=argn(2);
 
     // Error Checking
-    if rhs < 2; error("Expect 2 arguments, source image and filter kernel"); end    
+    if rhs < 2; error("Expect 2 arguments, source image and filter kernel"); end
 
     // Setting default behavior
     if rhs == 2; bound = []; opsz = 'same'; end
@@ -80,7 +80,7 @@ function imf = imfilter(A, F, bound, opsz);
         end
 
         clear A;
-        A = int_imfilter(B,F);        
+        A = int_imfilter(B,F);
         clear B;
 
 
@@ -109,7 +109,7 @@ function imf = imfilter(A, F, bound, opsz);
 
         case 'symmetric' then
 
-        case 'replicate' then 
+        case 'replicate' then
 
         end
 

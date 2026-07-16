@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imellipsefit" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>imellipsefit</refname>
+        <refpurpose>Fit an ellipse to two-dimensional point coordinates.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>result = imellipsefit(points)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>points</term>
+                <listitem><para>N-by-2 matrix of at least five <literal>[x y]</literal> coordinates.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>result</term>
+                <listitem>
+                    <para>Structure containing:</para>
+                    <simplelist type="vert">
+                        <member><literal>Center</literal>: ellipse center as <literal>[x y]</literal>.</member>
+                        <member><literal>Axes</literal>: full major-axis and minor-axis lengths.</member>
+                        <member><literal>Angle</literal>: major-axis orientation in radians, measured in the input coordinate system.</member>
+                    </simplelist>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Estimates an ellipse from the centroid and covariance of the input points. The method is compact and deterministic, but it is not a robust outlier-resistant estimator.</para>
+        <para>Contour coordinates returned by IPCV use an upper-left image origin. Convert sampled and fitted coordinates with <function>rect2cart</function> before drawing them with Scilab plotting functions.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/dd/d49/tutorial_py_contour_features.html">OpenCV contour-features tutorial: fitting an ellipse</ulink>.</para>
+        <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/three_objects.png"));
+gray = image;
+mask = gray > 180;
+contours = imfindContours(mask, 0, 1);
+
+largestIndex = 1;
+largestCount = 0;
+for k = 1:length(contours)
+    if size(contours(k), 1) > largestCount then
+        largestCount = size(contours(k), 1);
+        largestIndex = k;
+    end
+end
+
+points = contours(largestIndex);
+result = imellipsefit(points);
+
+t = linspace(0, 2 * %pi, 240)';
+majorRadius = result.Axes(1) / 2;
+minorRadius = result.Axes(2) / 2;
+cosAngle = cos(result.Angle);
+sinAngle = sin(result.Angle);
+ellipsePoints = [result.Center(1) + majorRadius .* cos(t) .* cosAngle - minorRadius .* sin(t) .* sinAngle, ..
+                 result.Center(2) + majorRadius .* cos(t) .* sinAngle + minorRadius .* sin(t) .* cosAngle];
+
+plotContour = rect2cart(size(gray), points);
+plotEllipse = rect2cart(size(gray), ellipsePoints);
+plotCenter = rect2cart(size(gray), result.Center);
+
+imshow(image);
+axesHandle = gca();
+axesHandle.auto_clear = "off";
+plot(plotContour(:, 1), plotContour(:, 2), "b.");
+plot(plotEllipse(:, 1), plotEllipse(:, 2), "r-");
+plot(plotCenter(1), plotCenter(2), "g+");
+xtitle("Blue: measured contour; red: fitted ellipse; green: center");
+
+disp(result);
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="imfindContours">imfindContours</link></member>
+            <member><link linkend="imfitline">imfitline</link></member>
+            <member><link linkend="imminenclosingcircle">imminenclosingcircle</link></member>
+            <member><link linkend="rect2cart">rect2cart</link></member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert"><member>Tan Chin Luh</member></simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Function introduced with covariance-based ellipse fitting.</td></tr>
+        </informaltable>
+    </refsection>
+</refentry>

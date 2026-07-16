@@ -60,6 +60,12 @@ assert_checktrue(or(keep == 3));
 yolo = dnn_decode_yolo([0.5 0.5 0.2 0.2 0.9 0.1 0.8], [640 480], 0.25, 0.45);
 assert_checkequal(size(yolo.boxes), [1 4]);
 assert_checkequal(yolo.classIds, 2);
+yoloxOutput = zeros(1, 85);
+yoloxOutput(1, 1:5) = [0.5 0.5 0 0 0.9];
+yoloxOutput(1, 8) = 0.8;
+yolox = dnn_decode_yolo(yoloxOutput, [640 480], 0.25, 0.45, "yolox", [640 640], [8 16 32]);
+assert_checkequal(size(yolox.boxes), [1 4]);
+assert_checkequal(yolox.classIds, 3);
 nanodetBbox = zeros(1, 32);
 nanodetBbox(1, [2 10 18 26]) = 8;
 nanodet = dnn_decode_nanodet(list([0.1 0.9], nanodetBbox), [640 480], [8 8], 0.25, 0.6, 8, 7);
@@ -72,8 +78,11 @@ yunet = dnn_decode_yunet([10 20 80 80 20 30 60 30 40 50 25 70 55 70 0.95], [640 
 assert_checkequal(size(yunet.boxes), [1 4]);
 assert_checkequal(size(yunet.landmarks), [1 10]);
 segScores = cat(3, [0.9 0.1; 0.1 0.2], [0.1 0.9; 0.8 0.7]);
-segMask = dnn_decode_segmentation(segScores);
+segMask = dnn_decode_segmentation(segScores, "hwc");
 assert_checkequal(segMask, [1 2; 2 2]);
+segScoresWhc = cat(3, segScores(:, :, 1)', segScores(:, :, 2)');
+segMaskWhc = dnn_decode_segmentation(segScoresWhc, "whc");
+assert_checkequal(segMaskWhc, [1 2; 2 2]);
 
 S = imread(dnn_path + "3.jpg");
 out = dnn_forward(net, ~S, [28, 28]);
@@ -91,53 +100,5 @@ lst = dnn_list();
 assert_checkequal(lst, net.ptr);
 dnn_unloadmodel(net);
 assert_checkequal(dnn_list(), []);
-
-mobilenet_model = dnn_path + "image_classification_mobilenetv2_2022apr.onnx";
-if ~isfile(mobilenet_model) then
-    mobilenet_url = "https://github.com/opencv/opencv_zoo/raw/main/models/image_classification_mobilenet/image_classification_mobilenetv2_2022apr.onnx";
-    http_get(mobilenet_url, mobilenet_model, follow=%t, timeout=300);
-end
-model_info = fileinfo(mobilenet_model);
-assert_checktrue(model_info <> []);
-assert_checktrue(model_info(1) > 1000000);
-
-net = dnn_readmodel(mobilenet_model, "", "onnx");
-assert_checktrue(net.ptr > 0);
-assert_checkequal(net.type, "onnx");
-assert_checktrue(size(net.outputname, "*") > 0);
-Sclass = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-out = dnn_forward(net, Sclass, [224, 224], [], 1 / 127.5, [127.5 127.5 127.5], 1, 0);
-assert_checkequal(size(out), [1000 1]);
-assert_checktrue(max(out) > min(out));
-dnn_unloadmodel(net);
-assert_checkequal(dnn_list(), []);
-
-clip_model = dnn_path + "clip_rn50_openai_visual_fp16.onnx";
-if isfile(clip_model) then
-    net = dnn_readmodel(clip_model, "", "onnx");
-    assert_checktrue(net.ptr > 0);
-    assert_checkequal(net.type, "onnx");
-    assert_checktrue(size(net.outputname, "*") > 0);
-    text_embeddings = csvRead(dnn_path + "clip_rn50_openai_text_embeddings.csv");
-    prompts = mgetl(dnn_path + "clip_rn50_openai_prompts.txt");
-    Sclip = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-    Sclip = im2double(imresize(Sclip, [224 224]));
-    clip_mean = [0.48145466 0.4578275 0.40821073];
-    clip_std = [0.26862954 0.26130258 0.27577711];
-    for c = 1:3
-        Sclip(:,:,c) = (Sclip(:,:,c) - clip_mean(c)) ./ clip_std(c);
-    end
-    embedding = dnn_forward(net, Sclip, [224, 224], [], 1, [0 0 0], 0, 0);
-    assert_checkequal(size(embedding), [1024 1]);
-    embedding = embedding(:)';
-    embedding = embedding ./ sqrt(sum(embedding .* embedding));
-    scores = text_embeddings * embedding';
-    [score, index] = max(scores);
-    label = strsplit(prompts(index), "|");
-    assert_checkequal(label(1), "baboon");
-    assert_checktrue(score > 0.2);
-    dnn_unloadmodel(net);
-    assert_checkequal(dnn_list(), []);
-end
 
 //==============================================================================

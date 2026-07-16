@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgradientweight" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgradientweight</refname><refpurpose>Convert gradient magnitude into an edge-aware weight map.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>weight = imgradientweight(image)
+weight = imgradientweight(image, sensitivity)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image used to compute gradient magnitude.</para></listitem></varlistentry><varlistentry><term>sensitivity</term><listitem><para>Positive edge sensitivity. Larger values reduce weights more strongly near edges. Default is <literal>1</literal>.</para></listitem></varlistentry><varlistentry><term>weight</term><listitem><para>Double edge-aware weight map.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns weights in the range 0 to 1. Smooth regions receive weights near one, while strong image edges receive lower weights.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+weight = imgradientweight(image, 1);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(weight);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgradientmagnitude">imgradientmagnitude</link></member><member><link linkend="imwatershed">imwatershed</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

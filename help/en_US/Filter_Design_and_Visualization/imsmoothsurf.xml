@@ -57,7 +57,7 @@ domain, and also the frequency response of the images.
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-f = fspecial('gaussian');
+f = imfspecial('gaussian');
 F = fftshift(fft2pad(f,256,256));
 imsmoothsurf(abs(F),100);
 

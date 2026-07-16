@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="imhist2" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
-<refnamediv><refname>imhist2</refname><refpurpose>Compute a two-dimensional joint histogram.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>[counts, xcells, ycells] = imhist2(x, y, bins)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para><function>imhist2</function> counts paired values from two same-size arrays.</para></refsection>
-<refsection><title>Examples</title><programlisting role="example"><![CDATA[
-[counts, xcells, ycells] = imhist2([0 1; 1 2], [0 0; 1 1], [3 2]);
-]]></programlisting></refsection>
-<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcalchist">imcalchist</link></member><member><link linkend="imcomparehist">imcomparehist</link></member></simplelist></refsection>
-<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+<refentry version="5.0-subset Scilab" xml:id="imhist2" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org">
+  <refnamediv>
+    <refname>imhist2</refname>
+    <refpurpose>Compute a two-dimensional joint histogram.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+[counts, xcells, ycells] = imhist2(x, y)
+[counts, xcells, ycells] = imhist2(x, y, bins)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x, y</term>
+        <listitem><para>Input arrays or vectors containing paired sample values.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bins</term>
+        <listitem><para>Scalar bin count or two-element bin count. Default is <literal>[32 32]</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>counts</term>
+        <listitem><para>2-D histogram count matrix. <literal>counts(i, j)</literal> is the number of samples in x-bin <literal>i</literal> and y-bin <literal>j</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xcells, ycells</term>
+        <listitem><para>Bin center values for the x and y dimensions.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      <function>imhist2</function> counts paired values from two same-size arrays.
+      For images, this is useful for visualizing relationships between channels,
+      such as red-vs-green intensity distribution in a color image.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(image, [180 240]);
+
+red = image(:, :, 1);
+green = image(:, :, 2);
+[counts, redBins, greenBins] = imhist2(red, green, [64 64]);
+
+mprintf("pixels counted: %.0f\n", sum(counts));
+mprintf("image pixels  : %.0f\n", size(image, 1) * size(image, 2));
+
+jointView = round(immat2gray(log(counts' + 1)) * 63) + 1;
+
+subplot(1, 2, 1);
+imshow(image);
+title("Input image");
+subplot(1, 2, 2);
+imshow(jointView, hot(64));
+title("Red-Green joint histogram");
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imcalchist">imcalchist</link></member>
+      <member><link linkend="imcomparehist">imcomparehist</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+    </informaltable>
+  </refsection>
 </refentry>

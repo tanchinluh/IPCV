@@ -202,6 +202,44 @@ int validate_distance_method(int method)
         return -1;
     }
 }
+
+int to_opencv_threshold_mode(int mode)
+{
+    switch (mode)
+    {
+    case 0:
+        return cv::THRESH_BINARY;
+    case 1:
+        return cv::THRESH_BINARY_INV;
+    case 2:
+        return cv::THRESH_TRUNC;
+    case 3:
+        return cv::THRESH_TOZERO;
+    case 4:
+        return cv::THRESH_TOZERO_INV;
+    case 8:
+        return cv::THRESH_BINARY | cv::THRESH_OTSU;
+    case 16:
+        return cv::THRESH_BINARY | cv::THRESH_TRIANGLE;
+    default:
+        return -1;
+    }
+}
+
+bool allocate_double_matrix(IpcvDoubleMatrix *matrix, int rows, int cols)
+{
+    if (matrix == NULL || rows < 0 || cols <= 0)
+    {
+        return false;
+    }
+
+    std::memset(matrix, 0, sizeof(*matrix));
+    matrix->rows = rows;
+    matrix->cols = cols;
+    const size_t count = rows == 0 ? 1 : static_cast<size_t>(rows) * cols;
+    matrix->data = static_cast<double*>(std::calloc(count, sizeof(double)));
+    return matrix->data != NULL;
+}
 }
 
 extern "C" IPCV_CORE_API int ipcv_distance_l1_image(const IpcvDecodedImage *source, IpcvDecodedImage *output)
@@ -434,6 +472,182 @@ extern "C" IPCV_CORE_API int ipcv_label_binary_image(const IpcvDecodedImage *sou
     catch (...)
     {
         set_error(output, "unknown binary label failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_threshold_image(const IpcvDecodedImage *source, double threshold, double max_value, int mode, IpcvDecodedImage *output, double *used_threshold)
+{
+    if (output == NULL || used_threshold == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(output, 0, sizeof(*output));
+    *used_threshold = 0.0;
+    if (source == NULL)
+    {
+        set_error(output, "missing threshold image input");
+        return -1;
+    }
+
+    const int thresholdMode = to_opencv_threshold_mode(mode);
+    if (thresholdMode < 0)
+    {
+        set_error(output, "unsupported threshold mode");
+        return -1;
+    }
+    if (max_value < 0.0 || max_value > 255.0)
+    {
+        set_error(output, "maximum threshold value must be in the range 0 to 255");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat sourceMat;
+        cv::Mat thresholded;
+        char error[256] = {0};
+        if (!image_to_mat(*source, sourceMat, error))
+        {
+            set_error(output, error);
+            return -1;
+        }
+        if (sourceMat.channels() != 1)
+        {
+            set_error(output, "thresholding requires a single-channel image");
+            return -1;
+        }
+        if (sourceMat.depth() != CV_8U)
+        {
+            set_error(output, "thresholding requires a uint8 image");
+            return -1;
+        }
+
+        *used_threshold = cv::threshold(sourceMat, thresholded, threshold, max_value, thresholdMode);
+        if (!mat_to_image(thresholded, output))
+        {
+            if (output->error[0] == 0)
+            {
+                set_error(output, "could not convert threshold result");
+            }
+            return -1;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        set_error(output, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        set_error(output, "unknown threshold failure");
+        return -1;
+    }
+}
+
+extern "C" IPCV_CORE_API int ipcv_connected_components(const IpcvDecodedImage *source, int connectivity, IpcvDecodedImage *labels, int *component_count, IpcvDoubleMatrix *stats, IpcvDoubleMatrix *centroids)
+{
+    if (labels == NULL || component_count == NULL || stats == NULL || centroids == NULL)
+    {
+        return -1;
+    }
+
+    std::memset(labels, 0, sizeof(*labels));
+    std::memset(stats, 0, sizeof(*stats));
+    std::memset(centroids, 0, sizeof(*centroids));
+    *component_count = 0;
+    if (source == NULL)
+    {
+        set_error(labels, "missing connected-components image input");
+        return -1;
+    }
+    if (connectivity != 4 && connectivity != 8)
+    {
+        set_error(labels, "connectivity must be 4 or 8");
+        return -1;
+    }
+
+    try
+    {
+        cv::setNumThreads(1);
+        cv::setUseOptimized(false);
+
+        cv::Mat mask;
+        cv::Mat labelMat;
+        cv::Mat labelMat64;
+        cv::Mat statsMat;
+        cv::Mat centroidMat;
+        if (!make_binary_mask(source, mask, labels))
+        {
+            return -1;
+        }
+
+        const int labelCount = cv::connectedComponentsWithStats(mask, labelMat, statsMat, centroidMat, connectivity, CV_32S);
+        *component_count = std::max(0, labelCount - 1);
+        labelMat.convertTo(labelMat64, CV_64F);
+        if (!mat_to_image(labelMat64, labels))
+        {
+            if (labels->error[0] == 0)
+            {
+                set_error(labels, "could not convert connected-components labels");
+            }
+            return -1;
+        }
+
+        if (!allocate_double_matrix(stats, *component_count, 5) || !allocate_double_matrix(centroids, *component_count, 2))
+        {
+            ipcv_free_decoded_image(labels);
+            ipcv_free_double_matrix(stats);
+            ipcv_free_double_matrix(centroids);
+            set_error(labels, "out of memory");
+            return -1;
+        }
+
+        for (int component = 0; component < *component_count; component++)
+        {
+            const int label = component + 1;
+            stats->data[component] = static_cast<double>(statsMat.at<int>(label, cv::CC_STAT_LEFT) + 1);
+            stats->data[*component_count + component] = static_cast<double>(statsMat.at<int>(label, cv::CC_STAT_TOP) + 1);
+            stats->data[2 * *component_count + component] = static_cast<double>(statsMat.at<int>(label, cv::CC_STAT_WIDTH));
+            stats->data[3 * *component_count + component] = static_cast<double>(statsMat.at<int>(label, cv::CC_STAT_HEIGHT));
+            stats->data[4 * *component_count + component] = static_cast<double>(statsMat.at<int>(label, cv::CC_STAT_AREA));
+            centroids->data[component] = centroidMat.at<double>(label, 0) + 1.0;
+            centroids->data[*component_count + component] = centroidMat.at<double>(label, 1) + 1.0;
+        }
+        return 0;
+    }
+    catch (const cv::Exception& e)
+    {
+        ipcv_free_decoded_image(labels);
+        ipcv_free_double_matrix(stats);
+        ipcv_free_double_matrix(centroids);
+        set_error(labels, e.what());
+        return -1;
+    }
+    catch (const std::exception& e)
+    {
+        ipcv_free_decoded_image(labels);
+        ipcv_free_double_matrix(stats);
+        ipcv_free_double_matrix(centroids);
+        set_error(labels, e.what());
+        return -1;
+    }
+    catch (...)
+    {
+        ipcv_free_decoded_image(labels);
+        ipcv_free_double_matrix(stats);
+        ipcv_free_double_matrix(centroids);
+        set_error(labels, "unknown connected-components failure");
         return -1;
     }
 }

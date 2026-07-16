@@ -72,7 +72,7 @@ imshow(outm);
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="edge">edge</link></member>
+   <member><link linkend="imedge">imedge</link></member>
    <member><link linkend="im2bw">im2bw</link></member>
    </simplelist>
 </refsection>

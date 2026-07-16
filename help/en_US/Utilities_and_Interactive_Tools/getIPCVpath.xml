@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="getIPCVpath" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>getIPCVpath</refname><refpurpose>Return the IPCV installation folder.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>path = getIPCVpath()</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>getIPCVpath</function> returns the absolute root folder of the currently loaded IPCV toolbox.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+path = getIPCVpath();
+image = imread(fullfile(path, "images", "baboon.png"));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="ipcv_version">ipcv_version</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Help page introduced during OpenCV 5 development.</td></tr></informaltable></refsection>
+</refentry>

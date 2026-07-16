@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlocalnormalize" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlocalnormalize</refname><refpurpose>Normalize image intensity using local statistics.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imlocalnormalize(image)
+out = imlocalnormalize(image, window, epsilon)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Subtracts a local mean, divides by a local standard deviation, and rescales the result to 0 through 1. This is useful for uneven illumination and local contrast enhancement.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+normalized = imlocalnormalize(image, [7 7], 0.02);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(normalized);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlocalmean">imlocalmean</link></member><member><link linkend="imlocalstd">imlocalstd</link></member><member><link linkend="imnormalize">imnormalize</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

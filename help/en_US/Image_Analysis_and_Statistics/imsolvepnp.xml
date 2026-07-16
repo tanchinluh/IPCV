@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imsolvepnp" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imsolvepnp</refname><refpurpose>Estimate camera pose from 3D and 2D point correspondences.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[rotationVector, translationVector] = imsolvepnp(objectPoints, imagePoints, cameraMatrix)
+[rotationVector, translationVector] = imsolvepnp(objectPoints, imagePoints, cameraMatrix, distortion)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>objectPoints</term><listitem><para>N-by-3 world/object points.</para></listitem></varlistentry><varlistentry><term>imagePoints</term><listitem><para>N-by-2 matching image points as <literal>[x y]</literal>.</para></listitem></varlistentry><varlistentry><term>cameraMatrix</term><listitem><para>3-by-3 camera intrinsic matrix.</para></listitem></varlistentry><varlistentry><term>distortion</term><listitem><para>Optional distortion coefficient vector.</para></listitem></varlistentry><varlistentry><term>rotationVector</term><listitem><para>Estimated rotation vector.</para></listitem></varlistentry><varlistentry><term>translationVector</term><listitem><para>Estimated translation vector.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Uses OpenCV solvePnP to estimate a Rodrigues rotation vector and translation vector.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+imshow(image);
+objectPoints = [0 0 0; 1 0 0; 0 1 0; 1 1 0; 0 0 1; 1 0 1; 0 1 1; 1 1 1];
+imagePoints = [320 240; 420 240; 320 340; 420 340; 320 240; 420 240; 320 340; 420 340];
+cameraMatrix = [700 0 320; 0 700 240; 0 0 1];
+[rotationVector, translationVector] = imsolvepnp(objectPoints, imagePoints, cameraMatrix);
+disp(rotationVector);
+disp(translationVector);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcalibratecamera">imcalibratecamera</link></member><member><link linkend="imtriangulate">imtriangulate</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced with an OpenCV 5 gateway.</td></tr></informaltable></refsection>
+</refentry>

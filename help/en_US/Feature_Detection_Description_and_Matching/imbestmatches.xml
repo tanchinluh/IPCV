@@ -100,7 +100,7 @@ imshow(SS);
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imdrawmatches">imdrawmatches</link></member>
-   <member><link linkend="immatch_Brute">immatch_Brute</link></member>
+   <member><link linkend="immatch_BruteForce">immatch_BruteForce</link></member>
    </simplelist>
 </refsection>
 

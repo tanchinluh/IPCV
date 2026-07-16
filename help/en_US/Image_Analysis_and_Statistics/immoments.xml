@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immoments" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immoments</refname><refpurpose>Calculate raw and central image moments.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>moments = immoments(image)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Binary or numeric 2-D image.</para></listitem></varlistentry><varlistentry><term>moments</term><listitem><para>Structure containing spatial image moments.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns M00, first and second raw moments, and the central moments Mu20, Mu02, and Mu11 using one-based image coordinates.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+moments = immoments(image);
+disp(moments);
+imshow(image);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcentroid">imcentroid</link></member><member><link linkend="imregionprops">imregionprops</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

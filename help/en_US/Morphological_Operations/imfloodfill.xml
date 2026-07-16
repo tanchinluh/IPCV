@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imfloodfill" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imfloodfill</refname><refpurpose>Fill a connected image region from a seed point.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mask = imfloodfill(image, seed)
+mask = imfloodfill(image, seed, tolerance, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Grayscale image to inspect.</para></listitem></varlistentry><varlistentry><term>seed</term><listitem><para>Two-element [x y] seed coordinate.</para></listitem></varlistentry><varlistentry><term>tolerance</term><listitem><para>Maximum absolute intensity difference from the seed. The default is 0.</para></listitem></varlistentry><varlistentry><term>connectivity</term><listitem><para>Either 4 or 8. The default is 4.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imfloodfill</function> returns a logical mask for the region connected to the seed whose intensity remains within the requested tolerance.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+gray = rgb2gray(image);
+mask = imfloodfill(gray, [160 120], 20, 8);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(mask);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imfill">imfill</link></member><member><link linkend="imlabel">imlabel</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

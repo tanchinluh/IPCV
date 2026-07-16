@@ -79,7 +79,7 @@ imshow(RGB);
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="rgb2gray">rgb2gray</link></member>
-   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="immat2gray">immat2gray</link></member>
    <member><link linkend="rgb2hsv">rgb2hsv</link></member>
    <member><link linkend="hsv2rgb2">hsv2rgb2</link></member>
    <member><link linkend="ycbcr2rgb">ycbcr2rgb</link></member>

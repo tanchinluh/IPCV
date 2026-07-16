@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imridge" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imridge</refname><refpurpose>Compute a second-derivative ridge response.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imridge(image)
+out = imridge(image, threshold)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>threshold</term><listitem><para>Optional positive threshold. When greater than zero, the output is a boolean ridge mask. Default is <literal>0</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Ridge response image or boolean ridge mask.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Computes the smaller-magnitude Hessian eigenvalue as a ridge response. An optional threshold returns a binary ridge mask.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+image = imresize(image, [240 320]);
+gray = rgb2gray(image);
+out = imridge(gray);
+subplot(1, 2, 1);
+imshow(gray);
+subplot(1, 2, 2);
+imshow(immat2gray(out));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imphasecong">imphasecong</link></member><member><link linkend="imgradientxy">imgradientxy</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imshowpair" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imshowpair</refname><refpurpose>Compare two images in a single display matrix.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imshowpair(image1, image2)
+out = imshowpair(image1, image2, method)
+out = imshowpair(image1, image2, method, alpha)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns a side-by-side, blended, false-color, or difference comparison. Supported methods include montage, blend, falsecolor, and diff.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image1 = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image1 = imresize(image1, [240 320]);
+image2 = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+image2 = imresize(image2, [240 320]);
+comparison = imshowpair(image1, image2, "falsecolor");
+imshow(comparison);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imfuse">imfuse</link></member><member><link linkend="imflip">imflip</link></member><member><link linkend="imshow">imshow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

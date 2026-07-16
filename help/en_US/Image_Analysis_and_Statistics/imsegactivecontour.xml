@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imsegactivecontour" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imsegactivecontour</refname><refpurpose>Segment an image from an initial contour mask.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mask = imsegactivecontour(image, initialMask)
+mask = imsegactivecontour(image, initialMask, iterations, smoothing)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>initialMask</term><listitem><para>Initial boolean or numeric mask with the same height and width as the image.</para></listitem></varlistentry><varlistentry><term>iterations</term><listitem><para>Positive iteration count. Default is <literal>20</literal>.</para></listitem></varlistentry><varlistentry><term>smoothing</term><listitem><para>Number of majority-filter smoothing passes per iteration. Default is <literal>1</literal>.</para></listitem></varlistentry><varlistentry><term>mask</term><listitem><para>Final boolean segmentation mask.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Uses a compact Chan-Vese-style region update to refine a binary initial mask from inside and outside intensity means.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [64 96]);
+gray = rgb2gray(image);
+initialMask = imroi2mask([18 26 42 34], size(gray), "ellipse");
+mask = imsegactivecontour(gray, initialMask, 3, 1);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(mask);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgrabcut">imgrabcut</link></member><member><link linkend="imsegkmeans">imsegkmeans</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

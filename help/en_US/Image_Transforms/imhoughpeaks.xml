@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imhoughpeaks" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imhoughpeaks</refname><refpurpose>Extract peaks from a Hough accumulator.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>peaks = imhoughpeaks(accumulator, count)
+peaks = imhoughpeaks(accumulator, count, threshold, suppression)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns row and column indices of the strongest accumulator peaks, with optional threshold and suppression radius.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/2lines.png"));
+edges = im2double(image) > 0.5;
+[accumulator, rho, theta] = imhough(edges);
+peaks = imhoughpeaks(accumulator, 2);
+subplot(1, 2, 1);
+imshow(edges);
+subplot(1, 2, 2);
+imshow(immat2gray(accumulator), hot(64));
+disp(peaks);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhough">imhough</link></member><member><link linkend="imhoughlines">imhoughlines</link></member><member><link linkend="imradon">imradon</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

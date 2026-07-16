@@ -182,7 +182,7 @@ int first_free_net()
 {
     for (int i = 0; i < kMaxDnnModels; i++)
     {
-        if (g_nets[i].empty())
+        if (g_nets[i].empty() && !g_superres_loaded[i])
         {
             return i;
         }
@@ -194,7 +194,7 @@ int first_free_superres()
 {
     for (int i = 0; i < kMaxDnnModels; i++)
     {
-        if (!g_superres_loaded[i])
+        if (g_nets[i].empty() && !g_superres_loaded[i])
         {
             return i;
         }

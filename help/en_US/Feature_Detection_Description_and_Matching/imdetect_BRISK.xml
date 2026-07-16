@@ -121,8 +121,6 @@ imshow(S); plotfeature(fobj);
    <member><link linkend="imdetect_BRISK">imdetect_BRISK</link></member>
    <member><link linkend="imdetect_MSER">imdetect_MSER</link></member>
    <member><link linkend="imdetect_GFTT">imdetect_GFTT</link></member>
-   <member><link linkend="imdetect_HARRIS">imdetect_HARRIS</link></member>
-   <member><link linkend="imdetect_DENSE">imdetect_DENSE</link></member>
    <member><link linkend="plotfeature">plotfeature</link></member>
    </simplelist>
 </refsection>

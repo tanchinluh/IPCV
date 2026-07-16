@@ -41,6 +41,18 @@ function count = imcountnonzero(im)
         else
             values = matrix(im(:, :, c), -1, 1);
         end
-        count(c) = sum(values <> 0);
+        if type(values) == 4 then
+            for k = 1:size(values, "*")
+                if values(k) then
+                    count(c) = count(c) + 1;
+                end
+            end
+        else
+            for k = 1:size(values, "*")
+                if values(k) <> 0 then
+                    count(c) = count(c) + 1;
+                end
+            end
+        end
     end
 endfunction

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imadaptthresh" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imadaptthresh</refname><refpurpose>Estimate a local adaptive threshold surface.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>threshold = imadaptthresh(image)
+threshold = imadaptthresh(image, window, sensitivity)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>window</term><listitem><para>Scalar or two-element odd positive local window size. Default is <literal>[15 15]</literal>.</para></listitem></varlistentry><varlistentry><term>sensitivity</term><listitem><para>Threshold sensitivity in <literal>[0, 1]</literal>. Larger values lower the local threshold. Default is <literal>0.5</literal>.</para></listitem></varlistentry><varlistentry><term>threshold</term><listitem><para>Double local threshold image clipped to <literal>[0, 1]</literal>.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Estimates a normalized threshold at each pixel from the local mean and standard deviation. Higher sensitivity lowers the local threshold and generally produces more foreground pixels.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+threshold = imadaptthresh(image, [15 15], 0.5);
+binary = im2double(image) > threshold;
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(threshold);
+subplot(1, 3, 3);
+imshow(binary);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbinarize">imbinarize</link></member><member><link linkend="imthreshold">imthreshold</link></member><member><link linkend="imlocalmean">imlocalmean</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

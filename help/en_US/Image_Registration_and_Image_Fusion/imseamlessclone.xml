@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imseamlessclone" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imseamlessclone</refname><refpurpose>Composite a masked source image over a destination.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imseamlessclone(source, destination, mask)
+out = imseamlessclone(source, destination, mask, center, mode)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Composites the source where the mask is nonzero. The current macro implementation provides a predictable alpha-compositing fallback for equal-sized images; center and mode are accepted for API compatibility.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[source = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+source = imresize(source, [240 320]);
+destination = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+destination = imresize(destination, [240 320]);
+mask = zeros(size(destination, 1), size(destination, 2));
+mask(60:180, 100:220) = 1;
+out = imseamlessclone(source, destination, mask, [160 120], "normal");
+subplot(1, 3, 1);
+imshow(source);
+subplot(1, 3, 2);
+imshow(destination);
+subplot(1, 3, 3);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imfuse">imfuse</link></member><member><link linkend="imoverlaymask">imoverlaymask</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

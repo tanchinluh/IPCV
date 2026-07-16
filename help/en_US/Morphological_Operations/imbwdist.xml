@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwdist" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imbwdist</refname><refpurpose>Compute distance to the nearest background pixel.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>distance = imbwdist(image)
+distance = imbwdist(image, metric)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>Two-dimensional Boolean or numeric binary image. Nonzero pixels are foreground and zero-valued pixels are background.</para></listitem></varlistentry>
+<varlistentry><term>metric</term><listitem><para>Distance metric: <literal>"euclidean"</literal> (default), <literal>"cityblock"</literal>, or <literal>"chessboard"</literal>. Numeric values 2, 1, and 3 respectively are also accepted.</para></listitem></varlistentry>
+<varlistentry><term>distance</term><listitem><para>Double matrix with the same size as <literal>image</literal>. Background pixels are zero and foreground values increase with distance from the nearest background pixel. Values are normalized to the range [0, 1].</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Computes an OpenCV distance transform of a binary image. Distance peaks occur near the centers of foreground objects, making the result useful for constructing reliable foreground markers before watershed segmentation.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+smoothed = imgaussianblur(image, [11 11], 3);
+
+mask = smoothed < 125;
+mask = imclose(mask, imcreatese("ellipse", 5, 5)) <> 0;
+mask = imopen(mask, imcreatese("ellipse", 3, 3)) <> 0;
+
+distance = imbwdist(mask, "euclidean");
+coinCores = distance > 0.55 * max(distance);
+overlay = imoverlaymask(image, coinCores .* 1, [255 0 0], 0.65, %t);
+
+figure("figure_size", [1000 700]);
+subplot(2, 2, 1);
+imshow(image);
+xtitle("Original coin image");
+
+subplot(2, 2, 2);
+imshow(mask);
+xtitle("Segmented foreground");
+
+subplot(2, 2, 3);
+imshow(distance, hot(64));
+xtitle("Distance to nearest background pixel");
+
+subplot(2, 2, 4);
+imshow(overlay);
+xtitle("High-distance coin centers");
+gcf().background = -2;]]></programlisting></refsection>
+<refsection><title>Reference</title><para>Example workflow adapted from the <ulink url="https://docs.opencv.org/master/d2/dbd/tutorial_distance_transform.html">official OpenCV distance-transform and watershed tutorial</ulink>.</para></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdistransf">imdistransf</link></member><member><link linkend="imbwdistgeodesic">imbwdistgeodesic</link></member><member><link linkend="imwatershed">imwatershed</link></member><member><link linkend="imregionalmax">imregionalmax</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>

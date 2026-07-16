@@ -1,93 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from imfuse.sci using help_from_sci().
- *
- -->
-
-<refentry version="5.0-subset Scilab" xml:id="imfuse" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:scilab="http://www.scilab.org"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-  <refnamediv>
-    <refname>imfuse</refname>
-    <refpurpose>Image fusion</refpurpose>
-  </refnamediv>
-
-
-<refsynopsisdiv>
-   <title>Syntax</title>
-   <synopsis>
-   y = imfuse(x1,x2,method,alpha);
-   
-   </synopsis>
-</refsynopsisdiv>
-
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-        <varlistentry>
-            <term>x1 :</term>
-            <listitem><para> First image</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>x2 :</term>
-            <listitem><para> Second image</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>method :</term>
-            <listitem><para> Fusion method, currently support 'colordiff', 'composite', 'diff','cascade', 'max' and 'min'</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>alpha :</term>
-            <listitem><para> ration for composite method</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>y :</term>
-            <listitem><para> Fused image</para></listitem>
-        </varlistentry>
-   </variablelist>
-</refsection>
-
-<refsection>
-   <title>Description</title>
-   <para>
-The function combine 2 images together using different method.
-   </para>
-   <para>
-</para>
-</refsection>
-
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
+<refentry version="5.0-subset Scilab" xml:id="imfuse" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imfuse</refname><refpurpose>Combine two images using a fusion method.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>y = imfuse(x1, x2)
+y = imfuse(x1, x2, method)
+y = imfuse(x1, x2, method, alpha)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>x1 :</term><listitem><para>First image, grayscale or RGB.</para></listitem></varlistentry><varlistentry><term>x2 :</term><listitem><para>Second image with the same height and width as <literal>x1</literal>.</para></listitem></varlistentry><varlistentry><term>method :</term><listitem><para>Fusion method: <literal>"colordiff"</literal>, <literal>"composite"</literal>, <literal>"diff"</literal>, <literal>"cascade"</literal>, <literal>"max"</literal>, or <literal>"min"</literal>. Default is <literal>"colordiff"</literal>.</para></listitem></varlistentry><varlistentry><term>alpha :</term><listitem><para>Blend ratio for <literal>"composite"</literal>, from <literal>0</literal> to <literal>1</literal>. Default is <literal>0.5</literal>.</para></listitem></varlistentry><varlistentry><term>y :</term><listitem><para>Fused image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imfuse</function> combines two images for visual comparison. The <literal>"colordiff"</literal> method converts RGB inputs to grayscale before creating a three-channel difference image. For <literal>"composite"</literal>, <literal>"diff"</literal>, <literal>"cascade"</literal>, <literal>"max"</literal>, and <literal>"min"</literal>, grayscale and RGB inputs can be mixed; the grayscale input is expanded to RGB when needed.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
 I1 = imread(fullpath(getIPCVpath() + "/images/lena.bmp"));
 I2 = imread(fullpath(getIPCVpath() + "/images/lena7030.bmp"));
-[S,TR,ROT,SC]=imphasecorr(I1,I2);
-y = imfuse(I1,S,'colordiff');
+[S, TR, ROT, SC] = imphasecorr(I1, I2);
+y = imfuse(I1, S, "colordiff");
 imshow(y);
-
-   ]]></programlisting>
-</refsection>
-
-<refsection role="see also">
-   <title>See also</title>
-   <simplelist type="inline">
-   <member><link linkend="imfeaturematch">imfeaturematch</link></member>
-   <member><link linkend="imtransform">imtransform</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Tan Chin Luh</member>
-   </simplelist>
-</refsection>
+]]></programlisting><programlisting role="example"><![CDATA[
+a = uint8([10 20; 30 40]);
+b = uint8([40 30; 20 10]);
+imshow(imfuse(a, b, "composite", 0.25));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imtransform">imtransform</link></member><member><link linkend="imphasecorr">imphasecorr</link></member><member><link linkend="imabsdiff">imabsdiff</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Updated to handle grayscale/RGB input combinations and default arguments.</td></tr></informaltable></refsection>
 </refentry>

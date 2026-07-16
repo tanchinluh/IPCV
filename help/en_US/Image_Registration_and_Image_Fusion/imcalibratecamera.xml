@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcalibratecamera" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imcalibratecamera</refname><refpurpose>Return an initial camera calibration model.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[cameraMatrix, distortion, reprojectionError] = imcalibratecamera(objectPoints, imagePoints, imageSize)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Builds a deterministic initial intrinsic matrix from the image dimensions and returns five zero distortion coefficients. When at least six non-degenerate 3-D to 2-D correspondences are supplied, the macro estimates a pose with <function>imsolvepnp</function> and reports the RMS reprojection error for this initial model. This macro is a calibration baseline for camera workflows; it does not yet optimize multiple views as OpenCV's full calibration routine does.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+imshow(image);
+objectPoints = [0 0 0; 1 0 0; 1 1 0; 0 1 0; 0 0 1; 1 0 1];
+imagePoints = [224 72; 508 76; 514 379; 226 382; 360 220; 500 218];
+[cameraMatrix, distortion, reprojectionError] = imcalibratecamera(objectPoints, imagePoints, [size(image, 1) size(image, 2)]);
+disp(cameraMatrix);
+disp(distortion);
+disp(reprojectionError);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imsolvepnp">imsolvepnp</link></member><member><link linkend="imwarpAffine">imwarpAffine</link></member><member><link linkend="imwarpPerspective">imwarpPerspective</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

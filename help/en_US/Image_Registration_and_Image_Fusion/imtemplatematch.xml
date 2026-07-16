@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtemplatematch" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtemplatematch</refname><refpurpose>Compute a template correlation map.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>score = imtemplatematch(image, template)
+score = imtemplatematch(image, template, method)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>Source grayscale or color image in which to search.</para></listitem></varlistentry>
+<varlistentry><term>template</term><listitem><para>Image patch to locate. It must fit inside <literal>image</literal> and have the same channel count.</para></listitem></varlistentry>
+<varlistentry><term>method</term><listitem><para>Matching method: <literal>"ccorr"</literal>, <literal>"ccorr_normed"</literal>, <literal>"ccoeff"</literal>, or <literal>"ccoeff_normed"</literal>. The default is <literal>"ccorr_normed"</literal>.</para></listitem></varlistentry>
+<varlistentry><term>score</term><listitem><para>Single-channel comparison map of size <literal>[image rows - template rows + 1, image columns - template columns + 1]</literal>. Each coordinate is the upper-left image position of the template.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Uses OpenCV <function>matchTemplate</function> to slide the template over every valid source-image position. For all supported methods, the highest score identifies the best match.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+template = image(45:115, 340:405, :);
+score = imtemplatematch(image, template, "ccoeff_normed");
+
+columnScores = max(score, "c");
+[bestScore, matchRow] = max(columnScores);
+rowScores = max(score, "r");
+[bestScore, matchColumn] = max(rowScores);
+
+box = [matchColumn matchRow size(template, 2) size(template, 1)];
+detected = imdrawboxes(image, box, [255 0 0]);
+
+subplot(1, 3, 1);
+imshow(template);
+subplot(1, 3, 2);
+imshow(immat2gray(score), hot(64));
+subplot(1, 3, 3);
+imshow(detected);
+xtitle(msprintf("Best match score: %.3f", bestScore));]]></programlisting></refsection>
+<refsection><title>Reference</title><para>Example workflow adapted from the <ulink url="https://docs.opencv.org/master/de/da9/tutorial_template_matching.html">official OpenCV Template Matching tutorial</ulink>.</para></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbackproject">imbackproject</link></member><member><link linkend="imdrawmatches">imdrawmatches</link></member><member><link linkend="imfuse">imfuse</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>OpenCV-backed template matching introduced.</td></tr></informaltable></refsection>
+</refentry>

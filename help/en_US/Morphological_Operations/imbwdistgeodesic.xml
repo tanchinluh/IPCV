@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwdistgeodesic" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imbwdistgeodesic</refname><refpurpose>Compute distances from a seed within a binary mask.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>distance = imbwdistgeodesic(image, [x y])
+distance = imbwdistgeodesic(image, [x y], connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns shortest-path distances through foreground pixels from the seed. Connectivity may be 4 or 8.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+mask = imroi2mask([30 30 100 60], [size(image, 1) size(image, 2)], "rectangle");
+distance = imbwdistgeodesic(mask, [80 60], 8);
+subplot(1, 2, 1);
+imshow(mask);
+subplot(1, 2, 2);
+imshow(distance, hot(64));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdistransf">imdistransf</link></member><member><link linkend="imreconstruct">imreconstruct</link></member><member><link linkend="imregionalmax">imregionalmax</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

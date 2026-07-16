@@ -6,7 +6,8 @@ function ipcv_build_macro_tree(path)
 
     entries = ls(path + filesep() + "*");
     for i = 1:size(entries, "*")
-        if isdir(entries(i)) then
+        // Keep archived compatibility sources out of the generated macro libraries.
+        if isdir(entries(i)) & convstr(basename(entries(i)), "l") <> "old" then
             ipcv_build_macro_tree(pathconvert(entries(i), %F));
         end
     end

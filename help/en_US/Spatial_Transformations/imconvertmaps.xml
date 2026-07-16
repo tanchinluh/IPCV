@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imconvertmaps" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imconvertmaps</refname><refpurpose>Quantize coordinate maps for remapping.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>[map1, map2] = imconvertmaps(mapx, mapy); [map1, map2] = imconvertmaps(mapx, mapy, scale)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Converts floating-point remap coordinates into a repeatable fixed-point pair. The default scale is 32 and the result can be stored or reused before calling a remap workflow.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/trunk/d1/da0/tutorial_remap.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+rows = size(image, 1);
+cols = size(image, 2);
+[xx, yy] = meshgrid(1:cols, 1:rows);
+[map1, map2] = imconvertmaps(xx, yy);
+disp([map1(1, 1) map2(1, 1)]);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+mapx = [0.1 1.2; 2.3 3.4];
+mapy = [4.5 5.6; 6.7 7.8];
+[map1, map2] = imconvertmaps(mapx, mapy, 16);
+disp(map1);
+disp(map2);
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imremap">imremap</link></member><member><link linkend="imtransform">imtransform</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

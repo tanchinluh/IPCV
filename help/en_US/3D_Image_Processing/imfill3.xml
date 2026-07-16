@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imfill3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imfill3</refname><refpurpose>Fill enclosed cavities in a 3D binary volume.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imfill3(volume); out = imfill3(volume, connectivity)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Floods background from the volume border and fills background regions that are not connected to that border.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+volume = zeros(20, 20, 8) == 1;
+volume(4:17, 4:17, 2:7) = %t;
+volume(8:13, 8:13, 4:5) = %f;
+filled = imfill3(volume);
+imshow(max(filled, 3));
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+volume = zeros(24, 24, 10) == 1;
+volume(5:19, 5:19, 3:8) = %t;
+volume(10:14, 10:14, 5:6) = %f;
+filled = imfill3(volume, 26);
+imshow(max(filled, 3));
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imfill">imfill</link></member><member><link linkend="imfillholes">imfillholes</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

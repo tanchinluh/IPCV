@@ -4,7 +4,7 @@
 ////////////////////////////////////////////////////////////
 function demo_imagestats()
 
-    re = messagebox("This demo will show you image statistics and simple analysis", "Image Analysis and Stats", "info", ["Continue" "Stop"], "modal") 
+    re = messagebox("This demo will show you image statistics and simple analysis", "Image Analysis and Stats", "info", ["Continue" "Stop"], "modal")
 
     if re ==1 then
 
@@ -24,21 +24,21 @@ function demo_imagestats()
         drawnow();
         scf();
         drawlater();
-        E = edge(im, 'sobel',0,'both');
+        E = imedge(im, 'sobel',0,'both');
         subplot(221);imshow(E);title("Sobel");
 
-        E = edge(im, 'canny', [0.06, 0.2]);
+        E = imedge(im, 'canny', [0.06, 0.2]);
         subplot(222);imshow(E);title("canny");
 
-        E = edge(im, 'prewitt',0.5,'both');
+        E = imedge(im, 'prewitt',0.5,'both');
         subplot(223);imshow(E);title("prewitt");
 
-        E = edge(im, 'fftderiv');
+        E = imedge(im, 'fftderiv');
         subplot(224);imshow(E);title("fftderiv");
         drawnow();
 
         messagebox("Thanks!", "End of demo", "info", "Done", "modal") ;
-        
+
     else
         messagebox("Exit Demo Now", "User Interruption", "warning", "Done", "modal") ;
     end

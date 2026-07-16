@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imshow_segmentation" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imshow_segmentation</refname><refpurpose>Display an image with a segmentation mask overlay.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>overlay = imshow_segmentation(image, mask)
+overlay = imshow_segmentation(image, mask, rgb, alpha, titleText)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>mask :</term><listitem><para>Binary or label mask.</para></listitem></varlistentry><varlistentry><term>rgb :</term><listitem><para>RGB overlay color. Default is <literal>[255 0 0]</literal>.</para></listitem></varlistentry><varlistentry><term>alpha :</term><listitem><para>Overlay opacity from <literal>0</literal> to <literal>1</literal>. Default is <literal>0.35</literal>.</para></listitem></varlistentry><varlistentry><term>titleText :</term><listitem><para>Optional figure title.</para></listitem></varlistentry><varlistentry><term>overlay :</term><listitem><para>Displayed RGB overlay image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imshow_segmentation</function> displays a segmentation overlay and also returns the overlay image for saving or further processing.</para></refsection>
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+mask = zeros(size(image, 1), size(image, 2));
+mask(80:180, 100:220) = 1;
+overlay = imshow_segmentation(image, mask, [255 0 0], 0.35, "Segmentation");
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imoverlaymask">imoverlaymask</link></member><member><link linkend="dnn_decode_segmentation">dnn_decode_segmentation</link></member><member><link linkend="imshow">imshow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

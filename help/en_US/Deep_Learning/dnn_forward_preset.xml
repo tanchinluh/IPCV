@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_forward_preset" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>dnn_forward_preset</refname><refpurpose>Run a DNN with reusable preprocessing metadata.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = dnn_forward_preset(net, image, preset)
+out = dnn_forward_preset(net, image, preset, layer_name)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>net</term><listitem><para>A DNN object returned by <function>dnn_readmodel</function>.</para></listitem></varlistentry>
+<varlistentry><term>image</term><listitem><para>Input image in Scilab format.</para></listitem></varlistentry>
+<varlistentry><term>preset</term><listitem><para>A name from <function>dnn_presets</function>, or a structure containing <literal>inputSize</literal>, <literal>scale</literal>, <literal>mean</literal>, <literal>std</literal>, <literal>swapRB</literal>, and <literal>crop</literal>.</para></listitem></varlistentry>
+<varlistentry><term>layer_name</term><listitem><para>Optional output layer name.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>dnn_forward_preset</function> applies one consistent preprocessing configuration and forwards it to <function>dnn_forward</function>. It supports scalar scaling, channel means, per-channel standard deviations, channel swapping, and cropping. Structures from <function>dnn_zoo_modelinfo</function> can be passed directly.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+presets = dnn_presets();
+clip = presets.clip;
+clip.inputSize
+clip.std
+
+zoo = dnn_zoo_modelinfo("image_classification_mobilenetv2_2022apr.onnx", "image_classification_mobilenet");
+zoo.inputSize
+zoo.std
+
+// With a loaded model:
+// net = dnn_readmodel(modelFile, "", "onnx");
+// output = dnn_forward_preset(net, image, zoo);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_forward">dnn_forward</link></member><member><link linkend="dnn_presets">dnn_presets</link></member><member><link linkend="dnn_zoo_modelinfo">dnn_zoo_modelinfo</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 4.</td></tr></informaltable></refsection>
+</refentry>

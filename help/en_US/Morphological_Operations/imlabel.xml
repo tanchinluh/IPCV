@@ -25,6 +25,7 @@
    <title>Syntax</title>
    <synopsis>
    [imout,n] = imlabel(imin)
+   [imout,n] = imlabel(imin, connectivity)
    
    </synopsis>
 </refsynopsisdiv>
@@ -44,6 +45,10 @@
             <term>imout :</term>
             <listitem><para> Labeled Image</para></listitem>
         </varlistentry>
+        <varlistentry>
+            <term>connectivity :</term>
+            <listitem><para> Pixel connectivity, 4 or 8. Default is 4.</para></listitem>
+        </varlistentry>
    </variablelist>
 </refsection>
 
@@ -59,12 +64,15 @@ This function find all components on an image.
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-A = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
-A_edge = edge(A,'canny');
-se = imcreatese('ellipse',15,15);
-A_dilate = imdilate(A_edge,se);
-[A_labeled,n] = imlabel(A_dilate);
-imshow(A_labeled,jet(n));
+  A = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+  A = imresize(rgb2gray(A), [120 160]);
+  A_bw = imbinarize(A, "global");
+  [A_labeled,n] = imlabel(A_bw, 8);
+  subplot(1, 2, 1);
+  imshow(A);
+  subplot(1, 2, 2);
+  imshow(A_labeled,jet(max(n, 1)));
+  disp(n);
 
    ]]></programlisting>
 </refsection>
@@ -73,6 +81,7 @@ imshow(A_labeled,jet(n));
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imblobprop">imblobprop</link></member>
+   <member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member>
    </simplelist>
 </refsection>
 
@@ -82,4 +91,5 @@ imshow(A_labeled,jet(n));
    <member>Tan Chin Luh</member>
    </simplelist>
 </refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr><tr><td>5.0.0</td><td>Added optional connectivity and shared connected-components implementation in development Step 3.</td></tr></informaltable></refsection>
 </refentry>

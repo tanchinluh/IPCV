@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imref2d" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imref2d</refname><refpurpose>Create a 2D image-coordinate reference structure.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>ref = imref2d(imageSize); ref = imref2d(imageSize, xWorldLimits, yWorldLimits)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Creates a Scilab structure containing image size, world limits, and pixel extents for registration and geometric workflows.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/da/d54/group__imgproc__transform.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+ref = imref2d([size(image, 1) size(image, 2)]);
+disp(ref.XWorldLimits);
+disp(ref.YWorldLimits);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+ref = imref2d([480 640], [-320 320], [-240 240]);
+disp(ref.PixelExtentInWorldX);
+disp(ref.PixelExtentInWorldY);
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imref3d">imref3d</link></member><member><link linkend="imregister">imregister</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

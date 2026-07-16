@@ -54,7 +54,7 @@
 <refsection>
    <title>Description</title>
    <para>
-Wiener filter is used tp filter out noise that has corrupted an image based on a statistical approach.
+Wiener filter is used to filter out noise that has corrupted an image based on a statistical approach. Integer input images are processed in normalized double precision and converted back to the input integer class. Double input images return normalized double output.
    </para>
    <para>
 </para>
@@ -63,11 +63,16 @@ Wiener filter is used tp filter out noise that has corrupted an image based on a
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-S = imread(fullpath(getIPCVpath() + "/images/measure_gray.jpg"));
-S2 = imnoise(S,'gaussian');
-imshow(S2);
-S3 = imwiener2(S2,[3 3],0.2);
-imshow(S3);
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+noisy = imnoise(image, "gaussian", 0, 0.01);
+restored = imwiener2(noisy, [5 5], 0.01);
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(noisy);
+subplot(1, 3, 3);
+imshow(restored);
 
    ]]></programlisting>
 </refsection>

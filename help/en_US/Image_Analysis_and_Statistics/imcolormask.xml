@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcolormask" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imcolormask</refname><refpurpose>Select pixels within a three-channel color range.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mask = imcolormask(image, lower, upper)
+mask = imcolormask(image, lower, upper, colorSpace)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input three-channel RGB image.</para></listitem></varlistentry><varlistentry><term>lower</term><listitem><para>Three-element lower bound in RGB or HSV space.</para></listitem></varlistentry><varlistentry><term>upper</term><listitem><para>Three-element upper bound in RGB or HSV space.</para></listitem></varlistentry><varlistentry><term>colorSpace</term><listitem><para>Color space for the bounds: <literal>"rgb"</literal> or <literal>"hsv"</literal>. Default is <literal>"rgb"</literal>.</para></listitem></varlistentry><varlistentry><term>mask</term><listitem><para>Boolean mask selecting pixels inside the requested color range.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a boolean mask for RGB or HSV pixels between the inclusive lower and upper bounds.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [120 160]);
+mask = imcolormask(image, [0 0 0], [1 0 0], "rgb");
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(mask);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="rgb2hsv">rgb2hsv</link></member><member><link linkend="imsegkmeans">imsegkmeans</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

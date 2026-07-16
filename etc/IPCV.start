@@ -1,112 +1,79 @@
 //=============================================================================
-// IPCV - Scilab Image Processing and Computer Vision toolbox
+// IPCV - Image Processing and Computer Vision toolbox for Scilab
 // Copyright (C) 2017  Tan Chin Luh
 // Copyright (C) 2023-2025 - UTC - Stéphane Mottelet
 //=============================================================================
-//
-function ipcvlib = startModule()
 
-    TOOLBOX_NAME  = "IPCV"
-    TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
+if isdef("ipcvlib") then
+    warning("IPCV library is already loaded");
+    return;
+end
 
-    etc_tlbx  = get_absolute_file_path("IPCV.start");
-    etc_tlbx  = getshortpathname(etc_tlbx);
-    root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
+TOOLBOX_NAME = "IPCV";
+TOOLBOX_TITLE = "Image Processing and Computer Vision Toolbox for Scilab";
+etc_tlbx = getshortpathname(get_absolute_file_path("IPCV.start"));
+root_tlbx = strncpy(etc_tlbx, length(etc_tlbx) - length("\etc\"));
 
-    mprintf("Start %s %s: ",TOOLBOX_NAME,mgetl(fullfile(root_tlbx,"VERSION")));
-
-    if isdef("ipcvlib") then
-        warning(TOOLBOX_NAME + " library is already loaded");
-        return;
+function libdirs = ipcvFindMacroLibraries(path)
+    path = pathconvert(path, %F);
+    libdirs = [];
+    if isfile(path + filesep() + "lib") then
+        libdirs = path + filesep();
     end
 
-    function libdirs = findMacroLibraries(path)
-        path = pathconvert(path, %F);
-        libdirs = [];
-        if isfile(path + filesep() + "lib") then
-            libdirs = path + filesep();
-        end
-
-        entries = ls(path + filesep() + "*");
-        for i = 1:size(entries, "*")
-            if isdir(entries(i)) then
-                child = pathconvert(entries(i), %F);
-                child_libdirs = findMacroLibraries(child);
-                libdirs = [libdirs; child_libdirs];
-            end
-        end
-    endfunction
-
-    //Load  functions libraries
-    // =============================================================================
-    mprintf("load macros");
-    pathmacros = pathconvert( root_tlbx ) + "macros";
-    macro_libdirs = findMacroLibraries(pathmacros);
-    ipcvlib = lib(pathmacros + filesep());
-    for i = 1:size(macro_libdirs, "*")
-        if macro_libdirs(i) <> pathmacros + filesep() then
-            libvar = "ipcv_categorylib_" + string(i);
-            execstr("global " + libvar);
-            execstr(libvar + " = lib(" + sci2exp(macro_libdirs(i)) + ");");
+    entries = ls(path + filesep() + "*");
+    for entryIndex = 1:size(entries, "*")
+        if isdir(entries(entryIndex)) then
+            child = pathconvert(entries(entryIndex), %F);
+            libdirs = [libdirs; ipcvFindMacroLibraries(child)];
         end
     end
+endfunction
 
+mprintf("Start %s %s: ", TOOLBOX_NAME, mgetl(fullfile(root_tlbx, "VERSION")));
+mprintf("load macros");
+
+pathmacros = pathconvert(root_tlbx) + "macros";
+macro_libdirs = ipcvFindMacroLibraries(pathmacros);
+ipcvlib = lib(pathmacros + filesep());
+for libraryIndex = 1:size(macro_libdirs, "*")
+    if macro_libdirs(libraryIndex) <> pathmacros + filesep() then
+        libvar = "ipcv_categorylib_" + string(libraryIndex);
+        execstr(libvar + " = lib(" + sci2exp(macro_libdirs(libraryIndex)) + ");");
+    end
+end
+
+function ipcvStartNative(root_tlbx, etc_tlbx, toolboxTitle)
     verboseMode = ilib_verbose();
     ilib_verbose(0);
 
-    // load dependencies
-    // =============================================================================
-    // load dependencies on OpenCV
     mprintf(", dependencies");
-    OPENCV_LIBS = ['opencv_world'];
-
-    bDepsLoaded = %t;
-    bNonfLoaded = %t;
-
-    if getos() <> 'Windows' then // Darwin, Linux
-
-        exec(etc_tlbx+'IPCV_unix.sci');
-        IPCV_unix(root_tlbx,OPENCV_LIBS);
-
+    if getos() <> "Windows" then
+        exec(etc_tlbx + "IPCV_unix.sci");
+        IPCV_unix(root_tlbx, ["opencv_world"]);
     end
 
-    // load gateways
-    // =============================================================================
     mprintf(", gateways");
-    
     exec(pathconvert(root_tlbx + "/sci_gateway/loader_gateway.sce", %f));
-
     ilib_verbose(verboseMode);
 
-    // Load and add help chapter
-    // =============================================================================
-    if or(getscilabmode() == ["NW";"STD"]) then
+    if getscilabmode() == "STD" then
         mprintf(", help");
-        path_addchapter = pathconvert(root_tlbx+"/jar");
-        if ( isdir(path_addchapter) <> [] ) then
-            add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
+        path_addchapter = pathconvert(root_tlbx + "/jar");
+        if isdir(path_addchapter) <> [] then
+            add_help_chapter(toolboxTitle, path_addchapter, %F);
         end
-    end
 
-    // Load demos
-    // =============================================================================
-    if or(getscilabmode() == ["NW";"STD"]) then
         mprintf(", demos.");
-        pathdemos = pathconvert(root_tlbx+"/demos/ipcv.dem.gateway.sce",%F,%T);
-        add_demo("IPCV",pathdemos);
+        pathdemos = pathconvert(root_tlbx + "/demos/ipcv.dem.gateway.sce", %F, %T);
+        add_demo("IPCV", pathdemos);
     end
 
     ipcv_init(root_tlbx);
-
 endfunction
-// =============================================================================
 
-if isdef("ipcvlib") then
-    warning(" IPCV library is already loaded");
-    return;
-else
-    ipcvlib = startModule();
-    clear startModule; // remove startModule on stack
+ipcvStartNative(root_tlbx, etc_tlbx, TOOLBOX_TITLE);
 
-end
-// =============================================================================
+clear ipcvStartNative ipcvFindMacroLibraries;
+clear TOOLBOX_NAME TOOLBOX_TITLE etc_tlbx root_tlbx;
+clear pathmacros macro_libdirs libraryIndex libvar;

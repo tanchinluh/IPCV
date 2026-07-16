@@ -27,7 +27,7 @@ function builder_cpp()
     end
 
     tbx_build_src(["ipcv_core"], ..
-        ["ipcv_image_io.cpp"; "ipcv_arithmetic.cpp"; "ipcv_spatial_transform.cpp"; "ipcv_filtering.cpp"; "ipcv_morphology.cpp"; "ipcv_color.cpp"; "ipcv_edge_filter.cpp"; "ipcv_binary_analysis.cpp"; "ipcv_enhancement.cpp"; "ipcv_image_transform.cpp"; "ipcv_segmentation.cpp"; "ipcv_structural_analysis.cpp"; "ipcv_feature_detection.cpp"; "ipcv_hough.cpp"; "ipcv_stitching.cpp"; "ipcv_superres.cpp"; "ipcv_detection_tracking.cpp"; "ipcv_video_camera.cpp"; "ipcv_display_utils.cpp"; "ipcv_dnn.cpp"], ..
+        ["ipcv_image_io.cpp"; "ipcv_arithmetic.cpp"; "ipcv_spatial_transform.cpp"; "ipcv_filtering.cpp"; "ipcv_morphology.cpp"; "ipcv_color.cpp"; "ipcv_edge_filter.cpp"; "ipcv_binary_analysis.cpp"; "ipcv_enhancement.cpp"; "ipcv_image_transform.cpp"; "ipcv_segmentation.cpp"; "ipcv_structural_analysis.cpp"; "ipcv_feature_detection.cpp"; "ipcv_hough.cpp"; "ipcv_stitching.cpp"; "ipcv_superres.cpp"; "ipcv_detection_tracking.cpp"; "ipcv_video_camera.cpp"; "ipcv_display_utils.cpp"; "ipcv_dnn.cpp"; "ipcv_geometry.cpp"; "ipcv_registration.cpp"], ..
         "cpp", ..
         src_cpp_path, ..
         [opencv_lib], ..

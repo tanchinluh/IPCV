@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immultithresh" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immultithresh</refname><refpurpose>Estimate multiple intensity thresholds.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>edges = immultithresh(image, count)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>count</term><listitem><para>Number of thresholds to estimate.</para></listitem></varlistentry><varlistentry><term>edges</term><listitem><para>Estimated multilevel threshold values.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns count histogram-quantile thresholds suitable for multilevel image quantization.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+edges = immultithresh(image, 2);
+[labels, edges] = imquantize(image, edges);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(labels, hot(3));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imquantize">imquantize</link></member><member><link linkend="imhist">imhist</link></member><member><link linkend="imthreshold">imthreshold</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -4,12 +4,12 @@
 // IPCV - Scilab Image Processing and Computer Vision toolbox
 // Copyright (C) 2017  Tan Chin Luh
 //==============================================================================
-// unit test mean2
+// unit test immean2
 //==============================================================================
 
 a = rand(10,10).*100;
 b = round(a);
-y1 = std2(uint8(b));
+y1 = imstd2(uint8(b));
 y2 = stdev(b);
 assert_checkequal(y1,y2);
 

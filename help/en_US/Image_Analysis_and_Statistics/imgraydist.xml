@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgraydist" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>imgraydist</refname>
+    <refpurpose>Compute minimum accumulated grayscale cost from seed points.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+out = imgraydist(weights, seedPoints)
+out = imgraydist(weights, seedPoints, connectivity)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>weights</term>
+        <listitem><para>2-D nonnegative cost or weight image.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>seedPoints</term>
+        <listitem><para>Seed coordinates as rows of <literal>[x y]</literal> image points.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>connectivity</term>
+        <listitem><para>Connectivity, either <literal>4</literal> or <literal>8</literal>. Default is <literal>8</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out</term>
+        <listitem><para>Geodesic distance image initialized from the seed points.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Uses positive image values as traversal costs and computes a shortest-path
+      cost map from one or more <literal>[x y]</literal> seeds with 4- or
+      8-connectivity. Low-cost pixels are easier to cross; high-cost pixels make
+      the accumulated distance grow faster.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+image = rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg")));
+image = imresize(image, [90 120]);
+
+weights = 1 + 4 * im2double(image);
+seed = [round(size(image, 2) / 2) round(size(image, 1) / 2)];
+distance = imgraydist(weights, seed, 8);
+
+seedMask = zeros(size(image, 1), size(image, 2)) == 1;
+seedMask(seed(2), seed(1)) = %t;
+
+subplot(1, 3, 1);
+imshow(image);
+title("Input");
+subplot(1, 3, 2);
+imshow(imoverlaymask(image, seedMask, [255 0 0], 0.8, %t));
+title("Seed");
+subplot(1, 3, 3);
+imshow(immat2gray(distance));
+title("Gray-weighted distance");
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imbwdist">imbwdist</link></member>
+      <member><link linkend="improfile">improfile</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr>
+    </informaltable>
+  </refsection>
+</refentry>

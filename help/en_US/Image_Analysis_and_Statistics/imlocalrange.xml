@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlocalrange" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org">
+  <refnamediv>
+    <refname>imlocalrange</refname>
+    <refpurpose>Measure local intensity range.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+out = imlocalrange(image)
+out = imlocalrange(image, window)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>image</term>
+        <listitem><para>Input grayscale image.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>window</term>
+        <listitem><para>Scalar or two-element <literal>[rows cols]</literal> neighborhood. Values must be positive odd integers. The default is <literal>[3 3]</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out</term>
+        <listitem><para>Double image containing local maximum minus local minimum.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Returns the local maximum minus the local minimum in each rectangular
+      neighborhood. High values indicate local contrast, texture, or edges.
+      The implementation uses OpenCV morphology through <function>imdilate</function>
+      and <function>imerode</function>, so it is suitable for normal image-sized
+      inputs.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+gray = rgb2gray(image);
+
+rangeImage = imlocalrange(gray, [9 9]);
+
+subplot(1, 2, 1);
+imshow(image);
+title("Input");
+subplot(1, 2, 2);
+imshow(immat2gray(rangeImage));
+title("Local range");
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imrange">imrange</link></member>
+      <member><link linkend="imordfilt">imordfilt</link></member>
+      <member><link linkend="imlocalstd">imlocalstd</link></member>
+      <member><link linkend="imdilate">imdilate</link></member>
+      <member><link linkend="imerode">imerode</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+      <tr><td>5.0.0</td><td>Updated to use OpenCV morphology for local maximum and minimum computation.</td></tr>
+    </informaltable>
+  </refsection>
+</refentry>

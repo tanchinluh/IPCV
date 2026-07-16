@@ -10,7 +10,7 @@
 S = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
 mask = zeros(S);
 mask(1:80,70:145) = 1;
-h = fspecial('average',15);
+h = imfspecial('average',15);
 S2 = imroifilt(S,h,mask);
 imshow(S2);
 

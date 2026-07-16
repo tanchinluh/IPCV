@@ -26,10 +26,12 @@ ScilabVersion: >= 2026.1
 
 Depends: 
 
-Date: 2026-07-07
+Date: 2026-07-10
 
 Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
  This release targets Scilab 2026.1 and OpenCV/OpenCV contrib 5.0.0.
+ Rapid development work is organized as roadmap steps under the OpenCV 5.0.0
+ baseline instead of assigning a package version to every development step.
  
  OpenCV 5 and C++ Migration:
  - Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds.
@@ -58,20 +60,8 @@ sourceSupportedScilab: 2026.1
 
 windows64Name: IPCV_5.0.0.bin.x64.Windows.zip
 
-windows64Md5: 934E9CB9F619CB3AED8D1DB8969CAB12
-
-windows64Sha1: D87DD874F6410F7DB271D681A98F0350836936EF
-
-windows64Size: 69734392
-
 windows64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Windows.zip
 
 linux64Name: IPCV_5.0.0.bin.x64.Linux.tar.gz
-
-linux64Md5: 36F47A6B9D56A931EBA4BC41C77E05D9
-
-linux64Sha1: A9F3B97F74AFA039575F90A2190C1B426792C4E7
-
-linux64Size: 63862035
 
 linux64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Linux.tar.gz

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgradient3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgradient3</refname><refpurpose>Compute central-difference gradients in a 3D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[magnitude, gx, gy, gz] = imgradient3(volume)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>volume</term><listitem><para>Input 3-D scalar volume.</para></listitem></varlistentry><varlistentry><term>magnitude</term><listitem><para>Gradient magnitude volume.</para></listitem></varlistentry><varlistentry><term>gx, gy, gz</term><listitem><para>Gradient component volumes along the column, row, and slice directions.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns the gradient magnitude and the three axis derivatives for a numeric 3D volume.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(image, [120 160]);
+gray = rgb2gray(image);
+volume = cat(3, gray, imtranslate(gray, [2 0]), imtranslate(gray, [4 0]));
+[magnitude, gx, gy, gz] = imgradient3(volume);
+imshow3d(magnitude, 2);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgradientmagnitude">imgradientmagnitude</link></member><member><link linkend="imresize3">imresize3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

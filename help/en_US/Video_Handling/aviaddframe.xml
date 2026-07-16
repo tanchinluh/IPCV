@@ -1,93 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from aviaddframe.sci using help_from_sci().
- *
- -->
-
 <refentry version="5.0-subset Scilab" xml:id="aviaddframe" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:scilab="http://www.scilab.org"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-  <refnamediv>
-    <refname>aviaddframe</refname>
-    <refpurpose>Add a frame to the video file.</refpurpose>
-  </refnamediv>
-
-
-<refsynopsisdiv>
-   <title>Syntax</title>
-   <synopsis>
-   n = aviaddframe(n, im)
-   
-   </synopsis>
-</refsynopsisdiv>
-
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-        <varlistentry>
-            <term>n :</term>
-            <listitem><para> The opened video file index, the return value of avifile .</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>im :</term>
-            <listitem><para> The input image which must be UINT8 RGB image. If the image size is not the same with the argument dims of function avifile , the image will be resized to dims .</para></listitem>
-        </varlistentry>
-   </variablelist>
-</refsection>
-
-<refsection>
-   <title>Description</title>
-   <para>
-addframe add a frame to video file n.
-   </para>
-   <para>
-Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
-   </para>
-   <para>
-</para>
-</refsection>
-
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
-im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-n = avifile('baboon.avi', [300;300], 30,'xvid');
-for ii=1:200
-ims = im(ii:512-ii, ii:512-ii, :);
-aviaddframe(n, ims);
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>aviaddframe</refname>
+        <refpurpose>Append an image frame to an open video writer.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>aviaddframe(writer, image)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>writer</term>
+                <listitem><para>Valid video-writer handle returned by a successful call to <function>avifile</function>.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>image</term>
+                <listitem><para>Image to append. IPCV converts it to an 8-bit three-channel frame and resizes it to the dimensions specified by <function>avifile</function> when necessary.</para></listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Appends one frame to an open video writer. The writer must have been created successfully and must not have been closed.</para>
+        <para>If <function>avifile</function> reports an error, do not call <function>aviaddframe</function> or <function>aviclose</function> with that handle. Correct the output path or codec and create the writer again.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+outputFile = fullfile(TMPDIR, "aviaddframe_zoom.avi");
+if isfile(outputFile) then
+    mdelete(outputFile);
 end
 
-aviclose(n);
+writer = avifile(outputFile, [300; 300], 30, "MJPG");
 
-   ]]></programlisting>
-</refsection>
+for frameIndex = 1:90
+    margin = round((frameIndex - 1) * 1.5);
+    cropped = image(1 + margin:$ - margin, 1 + margin:$ - margin, :);
+    frame = imresize(cropped, [300 300], "area");
+    aviaddframe(writer, frame);
+end
 
-<refsection role="see also">
-   <title>See also</title>
-   <simplelist type="inline">
-   <member><link linkend="avifile">avifile</link></member>
-   <member><link linkend="aviopen">aviopen</link></member>
-   <member><link linkend="aviaddframe">aviaddframe</link></member>
-   <member><link linkend="aviclose">aviclose</link></member>
-   <member><link linkend="avicloseall">avicloseall</link></member>
-   <member><link linkend="avilistopened">avilistopened</link></member>
-   <member><link linkend="avireadframe">avireadframe</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Shiqi Yu</member>
-   <member>Tan Chin Luh</member>
-   </simplelist>
-</refsection>
+aviclose(writer);
+disp(outputFile);
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="avifile">avifile</link></member>
+            <member><link linkend="aviclose">aviclose</link></member>
+            <member><link linkend="aviinfo">aviinfo</link></member>
+            <member><link linkend="addframe">addframe</link></member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert">
+            <member>Shiqi Yu</member>
+            <member>Tan Chin Luh</member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Updated for the OpenCV 5 video-writer gateway.</td></tr>
+        </informaltable>
+    </refsection>
 </refentry>

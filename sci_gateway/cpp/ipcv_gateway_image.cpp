@@ -305,6 +305,8 @@ int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& im
 	const int outVar = nbInputArgument(pvApiCtx) + nPos;
 	const size_t elemBytes = ipcv_depth_size(image.depth);
 	const size_t expectedBytes = static_cast<size_t>(rows) * cols * channels * elemBytes;
+	const size_t valueCount = static_cast<size_t>(rows) * cols * channels;
+	std::vector<double> convertedFloatData;
 	SciErr sciErr;
 
 	if (rows <= 0 || cols <= 0 || channels <= 0 || image.data == NULL || elemBytes == 0 || image.byte_count != expectedBytes)
@@ -365,6 +367,20 @@ int ipcv_set_image_argument(void* pvApiCtx, int nPos, const IpcvDecodedImage& im
 			sciErr = createMatrixOfInteger32(pvApiCtx, outVar, rows, cols, reinterpret_cast<const int*>(image.data));
 		}
 		break;
+	case IPCV_DEPTH_32F:
+		{
+			const float *source = reinterpret_cast<const float*>(image.data);
+			convertedFloatData.assign(source, source + valueCount);
+			if (channels >= 2)
+			{
+				sciErr = createHypermatOfDouble(pvApiCtx, outVar, dims, 3, convertedFloatData.data());
+			}
+			else
+			{
+				sciErr = createMatrixOfDouble(pvApiCtx, outVar, rows, cols, convertedFloatData.data());
+			}
+			break;
+		}
 	case IPCV_DEPTH_64F:
 		if (channels >= 2)
 		{
@@ -396,6 +412,8 @@ int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedIma
 	const int outVar = nbInputArgument(pvApiCtx) + nPos;
 	const size_t elemBytes = ipcv_depth_size(stack.depth);
 	const size_t expectedBytes = static_cast<size_t>(stack.rows) * stack.cols * stack.channels * stack.pages * elemBytes;
+	const size_t valueCount = static_cast<size_t>(stack.rows) * stack.cols * stack.channels * stack.pages;
+	std::vector<double> convertedFloatData;
 	SciErr sciErr;
 
 	if (stack.rows <= 0 || stack.cols <= 0 || stack.channels <= 0 || stack.pages <= 0 || stack.data == NULL || elemBytes == 0 || stack.byte_count != expectedBytes)
@@ -421,6 +439,13 @@ int ipcv_set_image_stack_argument(void* pvApiCtx, int nPos, const IpcvDecodedIma
 	case IPCV_DEPTH_32S:
 		sciErr = createHypermatOfInteger32(pvApiCtx, outVar, dims, 4, reinterpret_cast<const int*>(stack.data));
 		break;
+	case IPCV_DEPTH_32F:
+	{
+		const float *source = reinterpret_cast<const float*>(stack.data);
+		convertedFloatData.assign(source, source + valueCount);
+		sciErr = createHypermatOfDouble(pvApiCtx, outVar, dims, 4, convertedFloatData.data());
+		break;
+	}
 	case IPCV_DEPTH_64F:
 		sciErr = createHypermatOfDouble(pvApiCtx, outVar, dims, 4, reinterpret_cast<const double*>(stack.data));
 		break;

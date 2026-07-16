@@ -76,7 +76,7 @@ imshow(Sbin);
    <member><link linkend="im2int16">im2int16</link></member>
    <member><link linkend="im2int32">im2int32</link></member>
    <member><link linkend="im2double">im2double</link></member>
-   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="immat2gray">immat2gray</link></member>
    </simplelist>
 </refsection>
 

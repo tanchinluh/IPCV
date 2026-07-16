@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imsuperpixels" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imsuperpixels</refname><refpurpose>Generate SLICO superpixels with OpenCV contrib.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[labels, contours] = imsuperpixels(image)
+[labels, contours] = imsuperpixels(image, regionSize, ruler, iterations)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>regionSize</term><listitem><para>Approximate superpixel region size. Default is <literal>20</literal>.</para></listitem></varlistentry><varlistentry><term>ruler</term><listitem><para>Compactness/smoothness weight. Default is <literal>10</literal>.</para></listitem></varlistentry><varlistentry><term>iterations</term><listitem><para>SLICO iteration count. Default is <literal>10</literal>.</para></listitem></varlistentry><varlistentry><term>labels</term><listitem><para>Zero-based superpixel label image.</para></listitem></varlistentry><varlistentry><term>contours</term><listitem><para>uint8 boundary image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imsuperpixels</function> uses OpenCV 5 ximgproc SLICO. labels are zero-based and contours is a uint8 boundary image.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(image, [120 160]);
+[labels, contours] = imsuperpixels(image, 16, 10, 10);
+colored = imlabel2rgb(labels + 1);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(colored);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imsegkmeans">imsegkmeans</link></member><member><link linkend="imlabel2rgb">imlabel2rgb</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

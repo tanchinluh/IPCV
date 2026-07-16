@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imstereobm" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imstereobm</refname><refpurpose>Estimate disparity with local stereo block matching.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>disparity = imstereobm(left, right)
+disparity = imstereobm(left, right, numDisparities, blockSize)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>left, right</term><listitem><para>Rectified left and right stereo images with matching sizes.</para></listitem></varlistentry><varlistentry><term>numDisparities</term><listitem><para>Number of disparities to search. Default is <literal>16</literal>.</para></listitem></varlistentry><varlistentry><term>blockSize</term><listitem><para>Odd matching block size, at least <literal>3</literal>. Default is <literal>5</literal>.</para></listitem></varlistentry><varlistentry><term>disparity</term><listitem><para>Disparity map in pixels.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Compares local blocks in a rectified left and right image pair and returns the disparity with the lowest absolute-difference cost. The macro is intended for small demonstrations and requires equal-sized images. Border pixels where the search window cannot fit are returned as zero.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[left = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+left = imresize(rgb2gray(left), [80 120]);
+shift = 6;
+right = left * 0;
+right(:, 1:$-shift) = left(:, shift+1:$);
+disparity = imstereobm(left, right, 10, 5);
+subplot(1, 3, 1);
+imshow(left);
+subplot(1, 3, 2);
+imshow(right);
+subplot(1, 3, 3);
+imshow(immat2gray(disparity), hot(64));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imstereosgbm">imstereosgbm</link></member><member><link linkend="imopticalflow">imopticalflow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

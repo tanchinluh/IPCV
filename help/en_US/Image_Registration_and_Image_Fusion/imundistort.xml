@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imundistort" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imundistort</refname><refpurpose>Correct radial and tangential lens distortion.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imundistort(image, cameraMatrix, distortion)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Uses a 3-by-3 camera matrix and at least four distortion coefficients [k1 k2 p1 p2], with optional k3, for nearest-neighbor correction.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [120 160]);
+cameraMatrix = [180 0 80; 0 180 60; 0 0 1];
+out = imundistort(image, cameraMatrix, [0.01 -0.002 0 0]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imrectify">imrectify</link></member><member><link linkend="imtransform">imtransform</link></member><member><link linkend="imresize">imresize</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

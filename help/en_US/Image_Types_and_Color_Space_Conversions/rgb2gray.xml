@@ -66,7 +66,7 @@ imshow(G);
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="im2bw">im2bw</link></member>
-   <member><link linkend="mat2gray">mat2gray</link></member>
+   <member><link linkend="immat2gray">immat2gray</link></member>
    </simplelist>
 </refsection>
 

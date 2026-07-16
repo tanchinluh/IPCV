@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbweuler" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imbweuler</refname><refpurpose>Compute the Euler number of a binary image.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = imbweuler(image)
+value = imbweuler(image, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>Two-dimensional Boolean or numeric binary image. Nonzero pixels represent foreground objects.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para>Pixel connectivity used to identify objects and holes: 4 or 8. The default is 8.</para></listitem></varlistentry>
+<varlistentry><term>value</term><listitem><para>Scalar Euler number, computed as the number of connected foreground objects minus the number of enclosed background holes.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>The Euler number describes the topology of a binary image. A solid object contributes +1, while each hole contributes -1. For example, three objects containing three holes have Euler number 3 - 3 = 0.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[[x, y] = meshgrid(1:260, 1:180);
+
+solid = (x - 45).^2 + (y - 50).^2 <= 25^2;
+ring = ((x - 125).^2 + (y - 50).^2 <= 30^2) ..
+     & ((x - 125).^2 + (y - 50).^2 >= 13^2);
+
+plate = (x >= 130) & (x <= 235) & (y >= 105) & (y <= 165);
+holes = ((x - 160).^2 + (y - 135).^2 < 12^2) ..
+      | ((x - 205).^2 + (y - 135).^2 < 12^2);
+
+mask = solid | ring | (plate & ~holes);
+filled = imfill(mask);
+
+eulerWithHoles = imbweuler(mask, 8);
+eulerFilled = imbweuler(filled, 8);
+
+figure("figure_size", [900 400]);
+subplot(1, 2, 1);
+imshow(mask);
+xtitle(msprintf("3 objects - 3 holes: Euler number = %d", eulerWithHoles));
+
+subplot(1, 2, 2);
+imshow(filled);
+xtitle(msprintf("3 objects - 0 holes: Euler number = %d", eulerFilled));]]></programlisting></refsection>
+<refsection><title>Reference</title><para>The example illustrates the Euler-number definition documented by the <ulink url="https://www.mathworks.com/help/images/ref/bweuler.html">MATLAB Image Processing Toolbox <function>bweuler</function> reference</ulink> using an independently constructed IPCV image.</para></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imbwperim">imbwperim</link></member><member><link linkend="imfill">imfill</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -29,6 +29,11 @@ Release/
 jar/
 2.0/
 **/testing
+tests/results/
+
+# Local Codex/Scilab test profile and separately versioned website workspace.
+.codex/
+/website/
 
 # ignore bundled thirdparty payloads, but keep build helper scripts tracked
 thirdparty/*

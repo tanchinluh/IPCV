@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imhistmatch" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imhistmatch</refname><refpurpose>Match an image histogram to a reference.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imhistmatch(image, reference)
+out = imhistmatch(image, reference, bins)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Maps image intensities using cumulative histogram matching. The result is double-valued in the range 0 to 1.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+reference = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+reference = imresize(reference, [240 320]);
+out = imhistmatch(image, reference, 256);
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(reference);
+subplot(1, 3, 3);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhist">imhist</link></member><member><link linkend="imadjust">imadjust</link></member><member><link linkend="imstretchlim">imstretchlim</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

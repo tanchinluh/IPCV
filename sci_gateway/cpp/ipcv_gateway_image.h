@@ -15,6 +15,7 @@
 #include "ipcv_image_io.h"
 #include "ipcv_image_transform.h"
 #include "ipcv_morphology.h"
+#include "ipcv_registration.h"
 #include "ipcv_segmentation.h"
 #include "ipcv_spatial_transform.h"
 #include "ipcv_stitching.h"

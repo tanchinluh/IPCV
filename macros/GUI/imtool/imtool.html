@@ -1,0 +1,2134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPCV Image Tool</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #1c252c;
+      background: #eef1f3;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) 30px;
+      background: #eef1f3;
+    }
+
+    .toolbar {
+      min-height: 54px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 10px;
+      border-bottom: 1px solid #cbd2d7;
+      background: #ffffff;
+    }
+
+    .tool-group {
+      height: 36px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding-right: 9px;
+      border-right: 1px solid #dce1e5;
+    }
+
+    .tool-group:last-child {
+      border-right: 0;
+    }
+
+    button,
+    select {
+      height: 32px;
+      border: 1px solid #aeb8bf;
+      border-radius: 4px;
+      background: #ffffff;
+      color: #26323a;
+      font: 600 13px "Segoe UI", Arial, sans-serif;
+    }
+
+    button {
+      min-width: 32px;
+      padding: 0 9px;
+      cursor: pointer;
+    }
+
+    button:hover:not(:disabled) {
+      border-color: #16745f;
+      background: #edf8f4;
+    }
+
+    button:active:not(:disabled) {
+      background: #dcefe8;
+    }
+
+    button.primary {
+      padding: 0 13px;
+      border-color: #12634f;
+      background: #12634f;
+      color: #ffffff;
+    }
+
+    button.primary:hover:not(:disabled) {
+      border-color: #0c4e3e;
+      background: #0c5946;
+    }
+
+    button.recording {
+      border-color: #9f2430;
+      background: #b82b38;
+      color: #ffffff;
+    }
+
+    button.recording:hover:not(:disabled) {
+      border-color: #7f1822;
+      background: #9f2430;
+    }
+
+    button:disabled,
+    select:disabled {
+      opacity: 0.45;
+      cursor: default;
+    }
+
+    button.icon {
+      width: 32px;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    button.fit {
+      min-width: 42px;
+    }
+
+    select {
+      min-width: 108px;
+      padding: 0 26px 0 8px;
+      font-weight: 500;
+    }
+
+    .control-label {
+      margin-right: 1px;
+      color: #56646d;
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .toggle {
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 7px;
+      color: #35434b;
+      font-size: 13px;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    .toggle input {
+      width: 16px;
+      height: 16px;
+      accent-color: #12634f;
+    }
+
+    .timeline-group {
+      flex: 1 1 360px;
+      min-width: 320px;
+    }
+
+    .timeline {
+      flex: 1;
+      min-width: 120px;
+      height: 20px;
+      accent-color: #12634f;
+      cursor: pointer;
+    }
+
+    .time-readout {
+      min-width: 92px;
+      color: #34424a;
+      font: 12px Consolas, "Segoe UI", monospace;
+      text-align: center;
+    }
+
+    .analysis-select {
+      min-width: 158px;
+    }
+
+    .record-readout {
+      min-width: 62px;
+      color: #7f1822;
+      font: 600 12px Consolas, "Segoe UI", monospace;
+    }
+
+    .video-details {
+      display: grid;
+      gap: 5px;
+      color: #334149;
+      font: 12px Consolas, "Segoe UI", monospace;
+    }
+
+    main {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 238px;
+    }
+
+    .stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      background: #202529;
+    }
+
+    canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+      outline: none;
+    }
+
+    canvas.dragging {
+      cursor: grabbing;
+    }
+
+    .empty-state {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      gap: 12px;
+      text-align: center;
+      color: #d4dade;
+      pointer-events: none;
+    }
+
+    .empty-state[hidden] {
+      display: none;
+    }
+
+    .empty-state strong {
+      font-size: 18px;
+      font-weight: 650;
+    }
+
+    .empty-state button {
+      pointer-events: auto;
+      justify-self: center;
+    }
+
+    .inspector {
+      min-width: 0;
+      overflow: auto;
+      border-left: 1px solid #cbd2d7;
+      background: #f7f8f9;
+    }
+
+    .section {
+      padding: 13px 14px;
+      border-bottom: 1px solid #dce1e5;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      color: #596771;
+      font-size: 11px;
+      font-weight: 750;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .filename {
+      overflow: hidden;
+      color: #202b31;
+      font-size: 13px;
+      font-weight: 650;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .metadata {
+      margin-top: 4px;
+      color: #63717a;
+      font: 12px Consolas, "Segoe UI", monospace;
+    }
+
+    .coordinate {
+      margin-bottom: 10px;
+      color: #26343c;
+      font: 600 13px Consolas, "Segoe UI", monospace;
+    }
+
+    .pixel-row {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .swatch {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #8e999f;
+      background: #ffffff;
+    }
+
+    .rgb-values {
+      display: grid;
+      gap: 2px;
+      font: 12px Consolas, "Segoe UI", monospace;
+    }
+
+    .rgb-values span {
+      display: grid;
+      grid-template-columns: 17px 1fr;
+    }
+
+    .r-label {
+      color: #b3212d;
+    }
+
+    .g-label {
+      color: #16723d;
+    }
+
+    .b-label {
+      color: #185f9d;
+    }
+
+    .converted-values {
+      min-height: 54px;
+      color: #26343c;
+      font: 12px/1.55 Consolas, "Segoe UI", monospace;
+      white-space: pre-line;
+    }
+
+    .statusbar {
+      min-width: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 16px;
+      align-items: center;
+      padding: 0 10px;
+      border-top: 1px solid #cbd2d7;
+      background: #ffffff;
+      color: #56646d;
+      font-size: 12px;
+    }
+
+    .status-message {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .status-value {
+      color: #2c3941;
+      font: 12px Consolas, "Segoe UI", monospace;
+    }
+
+    @media (max-width: 780px) {
+      main {
+        grid-template-columns: minmax(0, 1fr) 194px;
+      }
+
+      .inspector {
+        font-size: 12px;
+      }
+
+      .tool-group {
+        padding-right: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="toolbar">
+    <div class="tool-group">
+      <button class="primary" type="button" id="openButton">Image</button>
+      <button type="button" id="openVideoButton">Video</button>
+      <input id="fileInput" type="file" accept="image/*" hidden>
+    </div>
+
+    <div class="tool-group">
+      <button class="icon image-control" type="button" id="zoomOutButton" title="Zoom out" disabled>&minus;</button>
+      <button class="icon image-control" type="button" id="zoomInButton" title="Zoom in" disabled>+</button>
+      <button class="fit image-control" type="button" id="actualSizeButton" title="Show one image pixel per screen pixel" disabled>1:1</button>
+      <button class="fit image-control" type="button" id="fitButton" title="Fit image to window" disabled>Fit</button>
+    </div>
+
+    <div class="tool-group">
+      <button class="icon image-control" type="button" id="rotateLeftButton" title="Rotate left" disabled>&#8634;</button>
+      <button class="icon image-control" type="button" id="rotateRightButton" title="Rotate right" disabled>&#8635;</button>
+    </div>
+
+    <div class="tool-group">
+      <label class="toggle">
+        <input class="image-control" id="gridToggle" type="checkbox" disabled>
+        <span>Grid</span>
+      </label>
+    </div>
+
+    <div class="tool-group">
+      <span class="control-label">Color space</span>
+      <select class="image-control" id="colorSpace" disabled>
+        <option value="rgb">RGB</option>
+        <option value="gray">Grayscale</option>
+        <option value="hsv">HSV</option>
+        <option value="lab">CIELAB</option>
+        <option value="ycbcr">YCbCr</option>
+      </select>
+      <span class="control-label">Channel</span>
+      <select class="image-control" id="channel" disabled></select>
+    </div>
+
+    <div class="tool-group timeline-group" id="videoControls" hidden>
+      <button class="video-control" type="button" id="playPauseButton">Play</button>
+      <button class="video-control" type="button" id="previousFrameButton" title="Previous approximate frame">-1f</button>
+      <button class="video-control" type="button" id="nextFrameButton" title="Next approximate frame">+1f</button>
+      <input class="timeline video-control" id="timeline" type="range" min="0" max="1000" value="0" step="1">
+      <span class="time-readout" id="timeReadout">0:00 / 0:00</span>
+      <select class="video-control" id="playbackRate" title="Playback speed">
+        <option value="0.25">0.25x</option>
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="1.5">1.5x</option>
+        <option value="2">2x</option>
+      </select>
+    </div>
+
+    <div class="tool-group" id="temporalControls" hidden>
+      <span class="control-label">Temporal analysis</span>
+      <select class="analysis-select video-control" id="temporalMode">
+        <option value="none">Current frame</option>
+        <option value="difference">Frame difference</option>
+        <option value="heatmap">Motion heatmap</option>
+        <option value="average">Temporal average</option>
+        <option value="flow">Optical flow vectors</option>
+      </select>
+      <button class="video-control" type="button" id="resetTemporalButton" title="Reset temporal history">Reset</button>
+    </div>
+
+    <div class="tool-group" id="recordControls" hidden>
+      <button class="record-control" type="button" id="recordButton" title="Record the rendered analysis video" disabled>Record</button>
+      <select class="record-control" id="recordRate" title="Saved video speed" disabled>
+        <option value="0.25">0.25x</option>
+        <option value="0.5">0.5x</option>
+        <option value="1" selected>1x</option>
+        <option value="2">2x</option>
+      </select>
+      <span class="record-readout" id="recordReadout">0 frames</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="stage" id="stage">
+      <canvas id="canvas" tabindex="0"></canvas>
+      <div class="empty-state" id="emptyState">
+        <strong>No media loaded</strong>
+        <button class="primary" type="button" id="emptyOpenButton">Open image</button>
+      </div>
+    </section>
+
+    <aside class="inspector">
+      <section class="section">
+        <h2 class="section-title">Media</h2>
+        <div class="filename" id="filename">No media</div>
+        <div class="metadata" id="dimensions">-</div>
+      </section>
+
+      <section class="section" id="videoSection" hidden>
+        <h2 class="section-title">Video frame</h2>
+        <div class="video-details">
+          <span id="videoState">Paused</span>
+          <span id="videoPosition">0:00.000</span>
+          <span id="analysisState">Current frame</span>
+          <span id="recordingState" hidden>Recording</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Pixel</h2>
+        <div class="coordinate" id="coordinate">Column - | Row -</div>
+        <div class="pixel-row">
+          <div class="swatch" id="swatch"></div>
+          <div class="rgb-values">
+            <span><b class="r-label">R</b><b id="redValue">-</b></span>
+            <span><b class="g-label">G</b><b id="greenValue">-</b></span>
+            <span><b class="b-label">B</b><b id="blueValue">-</b></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title" id="convertedTitle">RGB values</h2>
+        <div class="converted-values" id="convertedValues">Move over the image.</div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="statusbar">
+    <div class="status-message" id="status">Ready</div>
+    <div class="status-value" id="zoomValue">Zoom -</div>
+    <div class="status-value" id="rotationValue">Rotation 0 degrees</div>
+  </footer>
+
+  <script>
+    const sourceCanvas = document.createElement("canvas");
+    const sourceContext = sourceCanvas.getContext("2d", { willReadFrequently: true });
+    const displayCanvas = document.createElement("canvas");
+    const displayContext = displayCanvas.getContext("2d");
+    const recordingCanvas = document.createElement("canvas");
+    const recordingContext = recordingCanvas.getContext("2d");
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+    const stage = document.getElementById("stage");
+    const state = {
+      original: null,
+      width: 0,
+      height: 0,
+      filename: "",
+      viewportWidth: 0,
+      viewportHeight: 0,
+      centerX: 0,
+      centerY: 0,
+      scale: 1,
+      rotation: 0,
+      grid: false,
+      dragging: false,
+      dragX: 0,
+      dragY: 0,
+      colorSpace: "rgb",
+      channel: "composite",
+      hoverX: null,
+      hoverY: null,
+      mediaType: "none",
+      videoFrameCount: 0,
+      videoFps: 30,
+      videoCurrentFrame: 0,
+      videoCurrentTime: 0,
+      videoDuration: 0,
+      videoPlaying: false,
+      videoRequestPending: false,
+      videoTimer: null,
+      videoPlaybackRate: 1,
+      videoSessionToken: 0,
+      videoPath: "",
+      pendingVideoResponse: null,
+      lastVideoTime: -1,
+      temporalMode: "none",
+      previousGray: null,
+      frameDifference: null,
+      motionHeat: null,
+      temporalMean: null,
+      flowVectors: [],
+      flowReferenceGray: null,
+      lastFlowTime: -1,
+      recording: false,
+      recordingStarting: false,
+      recordingStopping: false,
+      recordingFramePending: false,
+      recordingStopRequested: false,
+      recordingFrames: 0,
+      recordingRate: 1,
+      recordingPath: ""
+    };
+
+    const channelOptions = {
+      rgb: [
+        ["composite", "Composite"],
+        ["red", "Red"],
+        ["green", "Green"],
+        ["blue", "Blue"]
+      ],
+      gray: [["intensity", "Intensity"]],
+      hsv: [
+        ["composite", "Composite"],
+        ["hue", "Hue"],
+        ["saturation", "Saturation"],
+        ["value", "Value"]
+      ],
+      lab: [
+        ["composite", "Composite"],
+        ["lightness", "L*"],
+        ["a", "a*"],
+        ["b", "b*"]
+      ],
+      ycbcr: [
+        ["composite", "Composite"],
+        ["y", "Y"],
+        ["cb", "Cb"],
+        ["cr", "Cr"]
+      ]
+    };
+
+    function clamp(value, minimum, maximum) {
+      return Math.max(minimum, Math.min(maximum, value));
+    }
+
+    function parseResponse(payload) {
+      return typeof payload === "string" ? JSON.parse(payload) : payload;
+    }
+
+    function callScilab(command, callback, attempt) {
+      if (typeof toScilab !== "function") {
+        const retry = attempt || 0;
+        if (retry < 25) {
+          setTimeout(function () {
+            callScilab(command, callback, retry + 1);
+          }, 80);
+          return;
+        }
+        callback({ status: "ok", initialFile: "" });
+        return;
+      }
+
+      toScilab(command, function (payload) {
+        try {
+          const response = parseResponse(payload);
+          callback(response);
+        } catch (error) {
+          setStatus("Could not parse Scilab response.");
+        }
+      });
+    }
+
+    function sendScilab(command) {
+      if (typeof toScilab !== "function") {
+        setStatus("The Scilab browser bridge is not available.");
+        return;
+      }
+      toScilab(command);
+    }
+
+    function setStatus(message) {
+      document.getElementById("status").textContent = message;
+    }
+
+    function setControlsEnabled(enabled) {
+      document.querySelectorAll(".image-control").forEach(function (control) {
+        control.disabled = !enabled;
+      });
+    }
+
+    function setVideoControlsEnabled(enabled) {
+      document.querySelectorAll(".video-control").forEach(function (control) {
+        control.disabled = !enabled;
+      });
+      if (state.recording || state.recordingStarting || state.recordingStopping) {
+        document.getElementById("previousFrameButton").disabled = true;
+        document.getElementById("nextFrameButton").disabled = true;
+        document.getElementById("timeline").disabled = true;
+        document.getElementById("playbackRate").disabled = true;
+        document.getElementById("temporalMode").disabled = true;
+        document.getElementById("resetTemporalButton").disabled = true;
+      }
+      updateRecordingControls();
+    }
+
+    function updateRecordingControls() {
+      const available = state.mediaType === "video" && !!state.original;
+      const busy = state.recordingStarting || state.recordingStopping;
+      const recordButton = document.getElementById("recordButton");
+      recordButton.disabled = !available || busy;
+      recordButton.textContent = state.recording ? "Stop" : "Record";
+      recordButton.classList.toggle("recording", state.recording);
+      document.getElementById("recordRate").disabled = !available || state.recording || busy;
+      document.getElementById("recordReadout").textContent = state.recordingFrames + " frames";
+      document.getElementById("recordingState").hidden = !state.recording;
+      document.getElementById("openButton").disabled = state.recording || busy;
+      document.getElementById("openVideoButton").disabled = state.recording || busy;
+    }
+
+    function showVideoControls(visible) {
+      document.getElementById("videoControls").hidden = !visible;
+      document.getElementById("temporalControls").hidden = !visible;
+      document.getElementById("recordControls").hidden = !visible;
+      document.getElementById("videoSection").hidden = !visible;
+      setVideoControlsEnabled(visible);
+      updateRecordingControls();
+    }
+
+    function updateChannelOptions() {
+      const channelSelect = document.getElementById("channel");
+      const options = channelOptions[state.colorSpace];
+      channelSelect.innerHTML = "";
+      options.forEach(function (item) {
+        const option = document.createElement("option");
+        option.value = item[0];
+        option.textContent = item[1];
+        channelSelect.appendChild(option);
+      });
+      state.channel = options[0][0];
+      channelSelect.value = state.channel;
+    }
+
+    function rgbToHsv(r, g, b) {
+      const rn = r / 255;
+      const gn = g / 255;
+      const bn = b / 255;
+      const maximum = Math.max(rn, gn, bn);
+      const minimum = Math.min(rn, gn, bn);
+      const delta = maximum - minimum;
+      let hue = 0;
+
+      if (delta !== 0) {
+        if (maximum === rn) {
+          hue = 60 * (((gn - bn) / delta) % 6);
+        } else if (maximum === gn) {
+          hue = 60 * ((bn - rn) / delta + 2);
+        } else {
+          hue = 60 * ((rn - gn) / delta + 4);
+        }
+      }
+
+      if (hue < 0) {
+        hue += 360;
+      }
+
+      return [hue, maximum === 0 ? 0 : delta / maximum, maximum];
+    }
+
+    function hsvToRgb(hue, saturation, value) {
+      const chroma = value * saturation;
+      const segment = hue / 60;
+      const x = chroma * (1 - Math.abs((segment % 2) - 1));
+      let rgb = [0, 0, 0];
+
+      if (segment < 1) {
+        rgb = [chroma, x, 0];
+      } else if (segment < 2) {
+        rgb = [x, chroma, 0];
+      } else if (segment < 3) {
+        rgb = [0, chroma, x];
+      } else if (segment < 4) {
+        rgb = [0, x, chroma];
+      } else if (segment < 5) {
+        rgb = [x, 0, chroma];
+      } else {
+        rgb = [chroma, 0, x];
+      }
+
+      const offset = value - chroma;
+      return rgb.map(function (component) {
+        return Math.round((component + offset) * 255);
+      });
+    }
+
+    function srgbLinear(value) {
+      const normalized = value / 255;
+      return normalized <= 0.04045
+        ? normalized / 12.92
+        : Math.pow((normalized + 0.055) / 1.055, 2.4);
+    }
+
+    function labPivot(value) {
+      const delta = 6 / 29;
+      return value > Math.pow(delta, 3)
+        ? Math.cbrt(value)
+        : value / (3 * delta * delta) + 4 / 29;
+    }
+
+    function rgbToLab(r, g, b) {
+      const rl = srgbLinear(r);
+      const gl = srgbLinear(g);
+      const bl = srgbLinear(b);
+      const x = (0.4124564 * rl + 0.3575761 * gl + 0.1804375 * bl) / 0.95047;
+      const y = (0.2126729 * rl + 0.7151522 * gl + 0.0721750 * bl);
+      const z = (0.0193339 * rl + 0.1191920 * gl + 0.9503041 * bl) / 1.08883;
+      const fx = labPivot(x);
+      const fy = labPivot(y);
+      const fz = labPivot(z);
+      return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+    }
+
+    function rgbToYcbcr(r, g, b) {
+      return [
+        0.299 * r + 0.587 * g + 0.114 * b,
+        128 - 0.168736 * r - 0.331264 * g + 0.5 * b,
+        128 + 0.5 * r - 0.418688 * g - 0.081312 * b
+      ];
+    }
+
+    function grayValue(r, g, b) {
+      return 0.299 * r + 0.587 * g + 0.114 * b;
+    }
+
+    function frameToGray(imageData) {
+      const gray = new Float32Array(state.width * state.height);
+      const pixels = imageData.data;
+      for (let pixel = 0, index = 0; pixel < gray.length; pixel += 1, index += 4) {
+        gray[pixel] = grayValue(pixels[index], pixels[index + 1], pixels[index + 2]);
+      }
+      return gray;
+    }
+
+    function resetTemporalHistory(refreshDisplay) {
+      state.previousGray = null;
+      state.frameDifference = null;
+      state.motionHeat = null;
+      state.temporalMean = null;
+      state.flowVectors = [];
+      state.flowReferenceGray = null;
+      state.lastFlowTime = -1;
+      state.lastVideoTime = state.videoCurrentTime || 0;
+      if (refreshDisplay && state.original) {
+        processTemporalFrame(state.original);
+        updateDisplayImage();
+      }
+      updateVideoInspector();
+    }
+
+    function computeBlockFlow(previous, current) {
+      const vectors = [];
+      const width = state.width;
+      const height = state.height;
+      const step = Math.max(16, Math.ceil(Math.max(width, height) / 26));
+      const patchRadius = 2;
+      const searchRadius = 5;
+      const margin = patchRadius + searchRadius + 1;
+      const patchWidth = patchRadius * 2 + 1;
+      const patchPixels = patchWidth * patchWidth;
+
+      for (let y = margin; y < height - margin; y += step) {
+        for (let x = margin; x < width - margin; x += step) {
+          let minimum = 255;
+          let maximum = 0;
+          for (let py = -patchRadius; py <= patchRadius; py += 1) {
+            for (let px = -patchRadius; px <= patchRadius; px += 1) {
+              const value = previous[(y + py) * width + x + px];
+              minimum = Math.min(minimum, value);
+              maximum = Math.max(maximum, value);
+            }
+          }
+          if (maximum - minimum < 14) {
+            continue;
+          }
+
+          let bestError = Number.POSITIVE_INFINITY;
+          let bestX = 0;
+          let bestY = 0;
+          for (let dy = -searchRadius; dy <= searchRadius; dy += 1) {
+            for (let dx = -searchRadius; dx <= searchRadius; dx += 1) {
+              let error = 0;
+              for (let py = -patchRadius; py <= patchRadius; py += 1) {
+                const previousRow = (y + py) * width;
+                const currentRow = (y + dy + py) * width;
+                for (let px = -patchRadius; px <= patchRadius; px += 1) {
+                  error += Math.abs(
+                    previous[previousRow + x + px] -
+                    current[currentRow + x + dx + px]
+                  );
+                }
+              }
+              if (error < bestError) {
+                bestError = error;
+                bestX = dx;
+                bestY = dy;
+              }
+            }
+          }
+
+          const magnitude = Math.sqrt(bestX * bestX + bestY * bestY);
+          if (magnitude >= 0.5 && bestError / patchPixels < 42) {
+            vectors.push({ x: x, y: y, dx: bestX, dy: bestY });
+          }
+        }
+      }
+      return vectors;
+    }
+
+    function processTemporalFrame(imageData) {
+      const source = imageData.data;
+      const currentGray = frameToGray(imageData);
+
+      if (!state.previousGray || state.previousGray.length !== currentGray.length) {
+        state.previousGray = currentGray;
+        state.frameDifference = new Uint8ClampedArray(currentGray.length);
+        state.motionHeat = new Float32Array(currentGray.length);
+        state.temporalMean = new Float32Array(source.length);
+        for (let index = 0; index < source.length; index += 1) {
+          state.temporalMean[index] = source[index];
+        }
+        state.flowVectors = [];
+        return;
+      }
+
+      for (let pixel = 0; pixel < currentGray.length; pixel += 1) {
+        const difference = Math.abs(currentGray[pixel] - state.previousGray[pixel]);
+        state.frameDifference[pixel] = Math.round(difference);
+        state.motionHeat[pixel] = Math.max(difference * 4, state.motionHeat[pixel] * 0.93);
+      }
+
+      for (let index = 0; index < source.length; index += 4) {
+        state.temporalMean[index] = state.temporalMean[index] * 0.94 + source[index] * 0.06;
+        state.temporalMean[index + 1] = state.temporalMean[index + 1] * 0.94 + source[index + 1] * 0.06;
+        state.temporalMean[index + 2] = state.temporalMean[index + 2] * 0.94 + source[index + 2] * 0.06;
+        state.temporalMean[index + 3] = 255;
+      }
+
+      if (state.temporalMode === "flow") {
+        const flowInterval = Math.abs(state.videoCurrentTime - state.lastFlowTime);
+        if (!state.flowReferenceGray) {
+          state.flowReferenceGray = state.previousGray;
+          state.lastFlowTime = state.videoCurrentTime;
+        } else if (flowInterval >= 0.08 || !state.videoPlaying) {
+          state.flowVectors = computeBlockFlow(state.flowReferenceGray, currentGray);
+          state.flowReferenceGray = currentGray;
+          state.lastFlowTime = state.videoCurrentTime;
+        }
+      } else {
+        state.flowVectors = [];
+        state.flowReferenceGray = null;
+        state.lastFlowTime = -1;
+      }
+      state.previousGray = currentGray;
+    }
+
+    function motionColor(intensity) {
+      const value = clamp(intensity / 255, 0, 1);
+      return [
+        Math.round(255 * Math.min(1, value * 2)),
+        Math.round(255 * Math.max(0, value * 2 - 1)),
+        Math.round(48 * (1 - value))
+      ];
+    }
+
+    function channelRgb(r, g, b) {
+      if (state.colorSpace === "rgb") {
+        if (state.channel === "red") {
+          return [r, r, r];
+        }
+        if (state.channel === "green") {
+          return [g, g, g];
+        }
+        if (state.channel === "blue") {
+          return [b, b, b];
+        }
+        return [r, g, b];
+      }
+
+      if (state.colorSpace === "gray") {
+        const gray = Math.round(grayValue(r, g, b));
+        return [gray, gray, gray];
+      }
+
+      if (state.colorSpace === "hsv") {
+        const hsv = rgbToHsv(r, g, b);
+        if (state.channel === "hue") {
+          return hsvToRgb(hsv[0], 1, 1);
+        }
+        if (state.channel === "saturation") {
+          const saturation = Math.round(hsv[1] * 255);
+          return [saturation, saturation, saturation];
+        }
+        if (state.channel === "value") {
+          const value = Math.round(hsv[2] * 255);
+          return [value, value, value];
+        }
+        return [r, g, b];
+      }
+
+      if (state.colorSpace === "lab") {
+        const lab = rgbToLab(r, g, b);
+        let value;
+        if (state.channel === "lightness") {
+          value = Math.round(lab[0] * 2.55);
+        } else if (state.channel === "a") {
+          value = Math.round(clamp(lab[1] + 128, 0, 255));
+        } else if (state.channel === "b") {
+          value = Math.round(clamp(lab[2] + 128, 0, 255));
+        } else {
+          return [r, g, b];
+        }
+        return [value, value, value];
+      }
+
+      const ycbcr = rgbToYcbcr(r, g, b);
+      if (state.channel === "y") {
+        const y = Math.round(ycbcr[0]);
+        return [y, y, y];
+      }
+      if (state.channel === "cb") {
+        const cb = Math.round(clamp(ycbcr[1], 0, 255));
+        return [cb, cb, cb];
+      }
+      if (state.channel === "cr") {
+        const cr = Math.round(clamp(ycbcr[2], 0, 255));
+        return [cr, cr, cr];
+      }
+      return [r, g, b];
+    }
+
+    function updateDisplayImage() {
+      if (!state.original) {
+        return;
+      }
+
+      displayCanvas.width = state.width;
+      displayCanvas.height = state.height;
+      const output = displayContext.createImageData(state.width, state.height);
+      const source = state.original.data;
+      const target = output.data;
+
+      for (let index = 0; index < source.length; index += 4) {
+        const pixel = index / 4;
+        let red = source[index];
+        let green = source[index + 1];
+        let blue = source[index + 2];
+
+        if (state.temporalMode === "average" && state.temporalMean) {
+          red = state.temporalMean[index];
+          green = state.temporalMean[index + 1];
+          blue = state.temporalMean[index + 2];
+        }
+
+        let converted = channelRgb(red, green, blue);
+        if (state.temporalMode === "difference" && state.frameDifference) {
+          converted = motionColor(state.frameDifference[pixel] * 4);
+        } else if (state.temporalMode === "heatmap" && state.motionHeat) {
+          const heat = motionColor(state.motionHeat[pixel]);
+          const alpha = clamp(state.motionHeat[pixel] / 180, 0, 0.78);
+          converted = [
+            converted[0] * (1 - alpha) + heat[0] * alpha,
+            converted[1] * (1 - alpha) + heat[1] * alpha,
+            converted[2] * (1 - alpha) + heat[2] * alpha
+          ];
+        }
+        target[index] = converted[0];
+        target[index + 1] = converted[1];
+        target[index + 2] = converted[2];
+        target[index + 3] = source[index + 3];
+      }
+
+      displayContext.putImageData(output, 0, 0);
+      updateConvertedInspector();
+      render();
+    }
+
+    function imageToScreen(x, y) {
+      const dx = (x - state.width / 2) * state.scale;
+      const dy = (y - state.height / 2) * state.scale;
+      const cosine = Math.cos(state.rotation);
+      const sine = Math.sin(state.rotation);
+      return {
+        x: state.centerX + cosine * dx - sine * dy,
+        y: state.centerY + sine * dx + cosine * dy
+      };
+    }
+
+    function screenToImage(x, y) {
+      const dx = x - state.centerX;
+      const dy = y - state.centerY;
+      const cosine = Math.cos(state.rotation);
+      const sine = Math.sin(state.rotation);
+      return {
+        x: (cosine * dx + sine * dy) / state.scale + state.width / 2,
+        y: (-sine * dx + cosine * dy) / state.scale + state.height / 2
+      };
+    }
+
+    function visibleImageBounds() {
+      const corners = [
+        screenToImage(0, 0),
+        screenToImage(state.viewportWidth, 0),
+        screenToImage(0, state.viewportHeight),
+        screenToImage(state.viewportWidth, state.viewportHeight)
+      ];
+      return {
+        minimumX: clamp(Math.floor(Math.min.apply(null, corners.map(function (point) { return point.x; }))) - 1, 0, state.width),
+        maximumX: clamp(Math.ceil(Math.max.apply(null, corners.map(function (point) { return point.x; }))) + 1, 0, state.width),
+        minimumY: clamp(Math.floor(Math.min.apply(null, corners.map(function (point) { return point.y; }))) - 1, 0, state.height),
+        maximumY: clamp(Math.ceil(Math.max.apply(null, corners.map(function (point) { return point.y; }))) + 1, 0, state.height)
+      };
+    }
+
+    function traceFlowVectors(targetContext, displayScale) {
+      function traceVectors(color, screenWidth) {
+        const gain = 3;
+        const headSize = 5 / displayScale;
+        targetContext.beginPath();
+        state.flowVectors.forEach(function (vector) {
+          const endX = vector.x + vector.dx * gain;
+          const endY = vector.y + vector.dy * gain;
+          const angle = Math.atan2(endY - vector.y, endX - vector.x);
+          targetContext.moveTo(vector.x, vector.y);
+          targetContext.lineTo(endX, endY);
+          targetContext.moveTo(endX, endY);
+          targetContext.lineTo(
+            endX - headSize * Math.cos(angle - Math.PI / 6),
+            endY - headSize * Math.sin(angle - Math.PI / 6)
+          );
+          targetContext.moveTo(endX, endY);
+          targetContext.lineTo(
+            endX - headSize * Math.cos(angle + Math.PI / 6),
+            endY - headSize * Math.sin(angle + Math.PI / 6)
+          );
+        });
+        targetContext.lineWidth = screenWidth / displayScale;
+        targetContext.strokeStyle = color;
+        targetContext.lineCap = "round";
+        targetContext.lineJoin = "round";
+        targetContext.stroke();
+      }
+
+      traceVectors("rgba(0, 0, 0, 0.72)", 4);
+      traceVectors("#31e2b5", 2);
+    }
+
+    function drawFlowOverlay() {
+      if (state.temporalMode !== "flow" || !state.flowVectors.length) {
+        return;
+      }
+
+      context.save();
+      context.translate(state.centerX, state.centerY);
+      context.rotate(state.rotation);
+      context.scale(state.scale, state.scale);
+      context.translate(-state.width / 2, -state.height / 2);
+      context.beginPath();
+      context.rect(0, 0, state.width, state.height);
+      context.clip();
+      traceFlowVectors(context, state.scale);
+      context.restore();
+    }
+
+    function renderedRecordingFrame() {
+      recordingCanvas.width = state.width;
+      recordingCanvas.height = state.height;
+      recordingContext.clearRect(0, 0, state.width, state.height);
+      recordingContext.drawImage(displayCanvas, 0, 0);
+      if (state.temporalMode === "flow" && state.flowVectors.length) {
+        recordingContext.save();
+        recordingContext.beginPath();
+        recordingContext.rect(0, 0, state.width, state.height);
+        recordingContext.clip();
+        traceFlowVectors(recordingContext, 1);
+        recordingContext.restore();
+      }
+      return recordingCanvas.toDataURL("image/png");
+    }
+
+    function drawGrid() {
+      if (!state.grid || !state.original || state.scale < 5) {
+        return;
+      }
+
+      const bounds = visibleImageBounds();
+      context.save();
+      context.translate(state.centerX, state.centerY);
+      context.rotate(state.rotation);
+      context.scale(state.scale, state.scale);
+      context.translate(-state.width / 2, -state.height / 2);
+      context.beginPath();
+
+      for (let x = bounds.minimumX; x <= bounds.maximumX; x += 1) {
+        context.moveTo(x, bounds.minimumY);
+        context.lineTo(x, bounds.maximumY);
+      }
+      for (let y = bounds.minimumY; y <= bounds.maximumY; y += 1) {
+        context.moveTo(bounds.minimumX, y);
+        context.lineTo(bounds.maximumX, y);
+      }
+
+      context.lineWidth = 1 / state.scale;
+      context.strokeStyle = "rgba(255, 255, 255, 0.72)";
+      context.stroke();
+      context.restore();
+    }
+
+    function drawPixelLabels() {
+      if (!state.grid || !state.original || state.scale < 48) {
+        return;
+      }
+
+      const bounds = visibleImageBounds();
+      const columns = bounds.maximumX - bounds.minimumX;
+      const rows = bounds.maximumY - bounds.minimumY;
+      if (columns * rows > 900) {
+        return;
+      }
+
+      const fontSize = clamp(state.scale * 0.2, 10, 36);
+      const lineHeight = fontSize * 1.08;
+      const horizontalPadding = fontSize * 0.35;
+      const verticalPadding = fontSize * 0.2;
+      context.save();
+      context.font = fontSize + "px Consolas, monospace";
+      context.textAlign = "left";
+      context.textBaseline = "top";
+      const boxWidth = Math.min(
+        state.scale - 4,
+        context.measureText("R: 255").width + horizontalPadding * 2
+      );
+      const boxHeight = Math.min(
+        state.scale - 4,
+        lineHeight * 3 + verticalPadding * 2
+      );
+      const textLeftOffset = Math.max(2, (boxWidth - context.measureText("R: 255").width) / 2);
+      const textTopOffset = Math.max(2, (boxHeight - lineHeight * 3) / 2);
+
+      for (let y = bounds.minimumY; y < bounds.maximumY; y += 1) {
+        for (let x = bounds.minimumX; x < bounds.maximumX; x += 1) {
+          const center = imageToScreen(x + 0.5, y + 0.5);
+          if (center.x < -state.scale || center.x > state.viewportWidth + state.scale ||
+              center.y < -state.scale || center.y > state.viewportHeight + state.scale) {
+            continue;
+          }
+
+          const index = (y * state.width + x) * 4;
+          const left = center.x - boxWidth / 2;
+          const top = center.y - boxHeight / 2;
+          context.fillStyle = "rgba(9, 13, 16, 0.78)";
+          context.fillRect(left, top, boxWidth, boxHeight);
+          context.fillStyle = "#ff9ca4";
+          context.fillText("R: " + state.original.data[index], left + textLeftOffset, top + textTopOffset);
+          context.fillStyle = "#8de6a9";
+          context.fillText("G: " + state.original.data[index + 1], left + textLeftOffset, top + textTopOffset + lineHeight);
+          context.fillStyle = "#9dceff";
+          context.fillText("B: " + state.original.data[index + 2], left + textLeftOffset, top + textTopOffset + lineHeight * 2);
+        }
+      }
+
+      context.restore();
+    }
+
+    function render() {
+      const ratio = window.devicePixelRatio || 1;
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+      context.clearRect(0, 0, state.viewportWidth, state.viewportHeight);
+
+      if (!state.original) {
+        return;
+      }
+
+      context.save();
+      context.translate(state.centerX, state.centerY);
+      context.rotate(state.rotation);
+      context.scale(state.scale, state.scale);
+      context.translate(-state.width / 2, -state.height / 2);
+      context.imageSmoothingEnabled = state.scale < 4;
+      context.drawImage(displayCanvas, 0, 0);
+      context.restore();
+      drawFlowOverlay();
+      drawGrid();
+      drawPixelLabels();
+    }
+
+    function resizeCanvas() {
+      const rectangle = stage.getBoundingClientRect();
+      const oldWidth = state.viewportWidth;
+      const oldHeight = state.viewportHeight;
+      state.viewportWidth = Math.max(1, rectangle.width);
+      state.viewportHeight = Math.max(1, rectangle.height);
+      const ratio = window.devicePixelRatio || 1;
+      canvas.width = Math.round(state.viewportWidth * ratio);
+      canvas.height = Math.round(state.viewportHeight * ratio);
+
+      if (state.original && oldWidth > 0 && oldHeight > 0) {
+        state.centerX += (state.viewportWidth - oldWidth) / 2;
+        state.centerY += (state.viewportHeight - oldHeight) / 2;
+      }
+      render();
+    }
+
+    function fitImage() {
+      if (!state.original) {
+        return;
+      }
+
+      const quarterTurns = Math.abs(Math.round(state.rotation / (Math.PI / 2))) % 2;
+      const displayWidth = quarterTurns ? state.height : state.width;
+      const displayHeight = quarterTurns ? state.width : state.height;
+      state.scale = Math.max(0.01, Math.min(
+        (state.viewportWidth - 36) / displayWidth,
+        (state.viewportHeight - 36) / displayHeight
+      ));
+      state.centerX = state.viewportWidth / 2;
+      state.centerY = state.viewportHeight / 2;
+      updateTransformStatus();
+      render();
+    }
+
+    function zoomAt(x, y, factor) {
+      if (!state.original) {
+        return;
+      }
+
+      const imagePoint = screenToImage(x, y);
+      state.scale = clamp(state.scale * factor, 0.01, 160);
+      const offsetX = (imagePoint.x - state.width / 2) * state.scale;
+      const offsetY = (imagePoint.y - state.height / 2) * state.scale;
+      const cosine = Math.cos(state.rotation);
+      const sine = Math.sin(state.rotation);
+      state.centerX = x - (cosine * offsetX - sine * offsetY);
+      state.centerY = y - (sine * offsetX + cosine * offsetY);
+      updateTransformStatus();
+      render();
+    }
+
+    function rotateImage(direction) {
+      if (!state.original) {
+        return;
+      }
+      state.rotation += direction * Math.PI / 2;
+      updateTransformStatus();
+      render();
+    }
+
+    function showActualSize() {
+      if (!state.original) {
+        return;
+      }
+      state.scale = 1;
+      state.centerX = state.viewportWidth / 2;
+      state.centerY = state.viewportHeight / 2;
+      updateTransformStatus();
+      render();
+    }
+
+    function updateTransformStatus() {
+      document.getElementById("zoomValue").textContent = "Zoom " + Math.round(state.scale * 100) + "%";
+      let degrees = Math.round(state.rotation * 180 / Math.PI) % 360;
+      if (degrees < 0) {
+        degrees += 360;
+      }
+      document.getElementById("rotationValue").textContent = "Rotation " + degrees + " degrees";
+
+      if (state.grid) {
+        if (state.scale < 5) {
+          setStatus("Zoom closer to show the pixel grid");
+        } else if (state.scale < 48) {
+          setStatus("Pixel grid visible; zoom closer for RGB labels");
+        } else {
+          setStatus("Pixel grid and RGB labels visible");
+        }
+      }
+    }
+
+    function clearInspector() {
+      state.hoverX = null;
+      state.hoverY = null;
+      document.getElementById("coordinate").textContent = "Column - | Row -";
+      document.getElementById("redValue").textContent = "-";
+      document.getElementById("greenValue").textContent = "-";
+      document.getElementById("blueValue").textContent = "-";
+      document.getElementById("swatch").style.backgroundColor = "#ffffff";
+      document.getElementById("convertedValues").textContent = "Move over the image.";
+    }
+
+    function convertedText(r, g, b) {
+      if (state.colorSpace === "gray") {
+        return "Intensity: " + grayValue(r, g, b).toFixed(2);
+      }
+      if (state.colorSpace === "hsv") {
+        const hsv = rgbToHsv(r, g, b);
+        return "H: " + hsv[0].toFixed(2) + " degrees\n" +
+          "S: " + (hsv[1] * 100).toFixed(2) + "%\n" +
+          "V: " + (hsv[2] * 100).toFixed(2) + "%";
+      }
+      if (state.colorSpace === "lab") {
+        const lab = rgbToLab(r, g, b);
+        return "L*: " + lab[0].toFixed(2) + "\n" +
+          "a*: " + lab[1].toFixed(2) + "\n" +
+          "b*: " + lab[2].toFixed(2);
+      }
+      if (state.colorSpace === "ycbcr") {
+        const ycbcr = rgbToYcbcr(r, g, b);
+        return "Y: " + ycbcr[0].toFixed(2) + "\n" +
+          "Cb: " + ycbcr[1].toFixed(2) + "\n" +
+          "Cr: " + ycbcr[2].toFixed(2);
+      }
+      return "R: " + r + "\nG: " + g + "\nB: " + b;
+    }
+
+    function updateConvertedInspector() {
+      const titles = {
+        rgb: "RGB values",
+        gray: "Grayscale value",
+        hsv: "HSV values",
+        lab: "CIELAB values",
+        ycbcr: "YCbCr values"
+      };
+      document.getElementById("convertedTitle").textContent = titles[state.colorSpace];
+
+      if (state.hoverX === null || state.hoverY === null || !state.original) {
+        return;
+      }
+      const index = (state.hoverY * state.width + state.hoverX) * 4;
+      document.getElementById("convertedValues").textContent = convertedText(
+        state.original.data[index],
+        state.original.data[index + 1],
+        state.original.data[index + 2]
+      );
+    }
+
+    function inspectAt(screenX, screenY) {
+      if (!state.original) {
+        clearInspector();
+        return;
+      }
+
+      const point = screenToImage(screenX, screenY);
+      const x = Math.floor(point.x);
+      const y = Math.floor(point.y);
+      if (x < 0 || x >= state.width || y < 0 || y >= state.height) {
+        clearInspector();
+        return;
+      }
+
+      state.hoverX = x;
+      state.hoverY = y;
+      const index = (y * state.width + x) * 4;
+      const red = state.original.data[index];
+      const green = state.original.data[index + 1];
+      const blue = state.original.data[index + 2];
+      document.getElementById("coordinate").textContent =
+        "Column " + (x + 1) + " | Row " + (y + 1);
+      document.getElementById("redValue").textContent = red;
+      document.getElementById("greenValue").textContent = green;
+      document.getElementById("blueValue").textContent = blue;
+      document.getElementById("swatch").style.backgroundColor =
+        "rgb(" + red + ", " + green + ", " + blue + ")";
+      updateConvertedInspector();
+    }
+
+    function formatTime(seconds, milliseconds) {
+      const safeSeconds = Number.isFinite(seconds) ? Math.max(0, seconds) : 0;
+      const minutes = Math.floor(safeSeconds / 60);
+      const remainder = safeSeconds - minutes * 60;
+      if (milliseconds) {
+        return minutes + ":" + remainder.toFixed(3).padStart(6, "0");
+      }
+      return minutes + ":" + Math.floor(remainder).toString().padStart(2, "0");
+    }
+
+    function updateVideoInspector() {
+      if (state.mediaType !== "video") {
+        return;
+      }
+      const duration = state.videoDuration;
+      const position = state.videoCurrentTime;
+      document.getElementById("timeline").value = duration > 0
+        ? Math.round(position / duration * 1000)
+        : 0;
+      document.getElementById("timeReadout").textContent =
+        formatTime(position, false) + " / " + formatTime(duration, false);
+      document.getElementById("videoState").textContent = state.videoPlaying ? "Playing" : "Paused";
+      document.getElementById("videoPosition").textContent =
+        "Frame " + state.videoCurrentFrame + " / " + state.videoFrameCount +
+        " | Time " + formatTime(position, true);
+      const temporalSelect = document.getElementById("temporalMode");
+      document.getElementById("analysisState").textContent =
+        "Analysis: " + temporalSelect.options[temporalSelect.selectedIndex].text;
+      document.getElementById("playPauseButton").textContent = state.videoPlaying ? "Pause" : "Play";
+    }
+
+    function cancelVideoLoop() {
+      if (state.videoTimer !== null) {
+        clearTimeout(state.videoTimer);
+        state.videoTimer = null;
+      }
+    }
+
+    function submitRecordingFrame() {
+      if (!state.recording || state.recordingFramePending || !state.original) {
+        return;
+      }
+      let data;
+      try {
+        data = renderedRecordingFrame();
+      } catch (error) {
+        state.videoPlaying = false;
+        requestRecordingStop();
+        setStatus("Could not capture the rendered analysis frame: " + error.message);
+        return;
+      }
+      state.recordingFramePending = true;
+      setStatus(
+        "Recording source frame " + state.videoCurrentFrame +
+        " at " + state.recordingRate + "x..."
+      );
+      sendScilab({ type: "recordFrame", data: data });
+    }
+
+    function startRecording() {
+      if (state.mediaType !== "video" || !state.original || state.recordingStarting) {
+        return;
+      }
+      state.videoPlaying = false;
+      cancelVideoLoop();
+      state.recordingStarting = true;
+      state.recordingFrames = 0;
+      state.recordingRate = Number(document.getElementById("recordRate").value);
+      updateRecordingControls();
+      setVideoControlsEnabled(false);
+      setStatus("Choose where to save the rendered analysis video...");
+      sendScilab({
+        type: "recordStart",
+        fps: String(state.videoFps),
+        speed: String(state.recordingRate)
+      });
+    }
+
+    function sendRecordingStop() {
+      if (state.recordingStopping) {
+        return;
+      }
+      state.recordingStopping = true;
+      updateRecordingControls();
+      setStatus("Finalizing " + state.recordingFrames + " recorded frames...");
+      sendScilab({ type: "recordStop" });
+    }
+
+    function requestRecordingStop() {
+      if (!state.recording && !state.recordingStarting) {
+        return;
+      }
+      state.recordingStopRequested = true;
+      state.videoPlaying = false;
+      cancelVideoLoop();
+      updateVideoInspector();
+      if (!state.recordingFramePending && !state.recordingStarting) {
+        sendRecordingStop();
+      }
+    }
+
+    function handleRecordingStart(response) {
+      state.recordingStarting = false;
+      if (response.status !== "ok") {
+        state.recording = false;
+        state.recordingStopRequested = false;
+        setVideoControlsEnabled(true);
+        updateRecordingControls();
+        setStatus(response.message || "Recording was not started.");
+        return;
+      }
+
+      state.recording = true;
+      state.recordingStopping = false;
+      state.recordingStopRequested = false;
+      state.recordingFramePending = false;
+      state.recordingFrames = 0;
+      state.recordingPath = response.path || "";
+      state.videoPlaybackRate = state.recordingRate;
+      document.getElementById("playbackRate").value = String(state.recordingRate);
+      state.videoPlaying = true;
+      setVideoControlsEnabled(true);
+      updateRecordingControls();
+      updateVideoInspector();
+      if (state.videoCurrentFrame >= state.videoFrameCount) {
+        requestNativeFrame(1);
+      } else {
+        submitRecordingFrame();
+      }
+    }
+
+    function handleRecordingFrame(response) {
+      state.recordingFramePending = false;
+      if (response.status !== "ok") {
+        state.videoPlaying = false;
+        state.recording = false;
+        state.recordingStopRequested = false;
+        state.recordingStopping = false;
+        setVideoControlsEnabled(true);
+        updateRecordingControls();
+        updateVideoInspector();
+        setStatus(response.message || "Recording failed while writing a frame.");
+        return;
+      }
+      state.recordingFrames = Number(response.frames) || state.recordingFrames + 1;
+      updateRecordingControls();
+      if (state.recordingStopRequested || state.videoCurrentFrame >= state.videoFrameCount) {
+        sendRecordingStop();
+      } else if (state.videoPlaying) {
+        scheduleVideoLoop();
+      }
+    }
+
+    function handleRecordingStop(response) {
+      const savedPath = response.path || state.recordingPath;
+      const savedFrames = Number(response.frames) || state.recordingFrames;
+      state.recording = false;
+      state.recordingStarting = false;
+      state.recordingStopping = false;
+      state.recordingFramePending = false;
+      state.recordingStopRequested = false;
+      state.videoPlaying = false;
+      state.recordingFrames = savedFrames;
+      state.recordingPath = savedPath;
+      setVideoControlsEnabled(true);
+      updateRecordingControls();
+      updateVideoInspector();
+      if (response.status === "ok") {
+        setStatus("Saved " + savedFrames + " rendered frames to " + savedPath);
+      } else {
+        setStatus(response.message || "Could not finish the recording.");
+      }
+    }
+
+    function scheduleVideoLoop() {
+      cancelVideoLoop();
+      if (!state.videoPlaying || state.mediaType !== "video" || state.videoRequestPending) {
+        return;
+      }
+      const delay = Math.max(10, 1000 / (state.videoFps * state.videoPlaybackRate));
+      state.videoTimer = setTimeout(function () {
+        state.videoTimer = null;
+        if (state.videoCurrentFrame >= state.videoFrameCount) {
+          state.videoPlaying = false;
+          updateVideoInspector();
+          if (state.recording) {
+            requestRecordingStop();
+          } else {
+            setStatus("Video ended at " + formatTime(state.videoCurrentTime, true));
+          }
+          return;
+        }
+        requestNativeFrame(state.videoCurrentFrame + 1);
+      }, delay);
+    }
+
+    function requestNativeFrame(frameIndex, availableResponse) {
+      if (state.mediaType !== "video" || state.videoRequestPending) {
+        return;
+      }
+      const requestedFrame = clamp(Math.round(frameIndex), 1, state.videoFrameCount);
+      const sessionToken = state.videoSessionToken;
+      state.videoRequestPending = true;
+      setVideoControlsEnabled(false);
+      setStatus("Decoding frame " + requestedFrame + " with OpenCV...");
+      let frameResponseFinished = false;
+      const frameResponseTimeout = setTimeout(function () {
+        if (frameResponseFinished || sessionToken !== state.videoSessionToken) {
+          return;
+        }
+        frameResponseFinished = true;
+        state.videoRequestPending = false;
+        state.videoPlaying = false;
+        setVideoControlsEnabled(true);
+        updateVideoInspector();
+        setStatus("OpenCV frame decoding did not return within 10 seconds.");
+      }, 10000);
+      const handleFrameResponse = function (response) {
+        if (frameResponseFinished) {
+          return;
+        }
+        frameResponseFinished = true;
+        clearTimeout(frameResponseTimeout);
+        if (sessionToken !== state.videoSessionToken) {
+          return;
+        }
+        if (response.status !== "ok") {
+          state.videoRequestPending = false;
+          state.videoPlaying = false;
+          setVideoControlsEnabled(true);
+          updateVideoInspector();
+          setStatus(response.message || "OpenCV could not decode the requested frame.");
+          return;
+        }
+        const frameImage = new Image();
+        let frameLoadFinished = false;
+        const frameLoadTimeout = setTimeout(function () {
+          if (frameLoadFinished || sessionToken !== state.videoSessionToken) {
+            return;
+          }
+          frameLoadFinished = true;
+          state.videoRequestPending = false;
+          state.videoPlaying = false;
+          setVideoControlsEnabled(true);
+          updateVideoInspector();
+          setStatus("The decoded frame timed out while loading into the canvas.");
+        }, 5000);
+        frameImage.onload = function () {
+          if (frameLoadFinished) {
+            return;
+          }
+          if (sessionToken !== state.videoSessionToken) {
+            frameLoadFinished = true;
+            clearTimeout(frameLoadTimeout);
+            return;
+          }
+          try {
+            const firstFrame = !state.original;
+            const nextTime = (response.frame - 1) / state.videoFps;
+            const timeJump = state.lastVideoTime >= 0 ? nextTime - state.lastVideoTime : 0;
+            if (timeJump < -0.01 || timeJump > 0.5) {
+              resetTemporalHistory(false);
+            }
+
+            state.width = frameImage.naturalWidth;
+            state.height = frameImage.naturalHeight;
+            sourceCanvas.width = state.width;
+            sourceCanvas.height = state.height;
+            sourceContext.clearRect(0, 0, state.width, state.height);
+            sourceContext.drawImage(frameImage, 0, 0);
+            state.original = sourceContext.getImageData(0, 0, state.width, state.height);
+            state.videoCurrentFrame = response.frame;
+            state.videoCurrentTime = nextTime;
+            processTemporalFrame(state.original);
+            state.lastVideoTime = nextTime;
+            state.videoRequestPending = false;
+            document.getElementById("dimensions").textContent =
+              state.width + " x " + state.height + " pixels | native OpenCV video";
+            document.getElementById("emptyState").hidden = true;
+            setControlsEnabled(true);
+            setVideoControlsEnabled(true);
+            updateDisplayImage();
+            if (firstFrame) {
+              fitImage();
+            }
+            updateVideoInspector();
+            if (state.recording) {
+              submitRecordingFrame();
+            } else if (state.videoPlaying) {
+              scheduleVideoLoop();
+            } else {
+              setStatus("Paused on frame " + state.videoCurrentFrame + " of " + state.videoFrameCount);
+            }
+            frameLoadFinished = true;
+            clearTimeout(frameLoadTimeout);
+          } catch (error) {
+            frameLoadFinished = true;
+            clearTimeout(frameLoadTimeout);
+            state.videoRequestPending = false;
+            state.videoPlaying = false;
+            setVideoControlsEnabled(true);
+            updateVideoInspector();
+            const detail = error && error.message ? error.message : String(error);
+            setStatus("Decoded frame canvas conversion failed: " + detail);
+          }
+        };
+        frameImage.onerror = function () {
+          if (frameLoadFinished) {
+            return;
+          }
+          frameLoadFinished = true;
+          clearTimeout(frameLoadTimeout);
+          state.videoRequestPending = false;
+          state.videoPlaying = false;
+          setVideoControlsEnabled(true);
+          setStatus("The decoded OpenCV frame could not be loaded into the canvas.");
+        };
+        frameImage.src = response.uri;
+      };
+      if (availableResponse) {
+        handleFrameResponse(availableResponse);
+      } else {
+        state.pendingVideoResponse = handleFrameResponse;
+        sendScilab({
+          type: "videoFrame",
+          index: String(requestedFrame)
+        });
+      }
+    }
+
+    function releaseVideoSource(notifyScilab) {
+      cancelVideoLoop();
+      state.videoSessionToken += 1;
+      state.videoPlaying = false;
+      state.videoRequestPending = false;
+      state.pendingVideoResponse = null;
+      if (notifyScilab !== false) {
+        sendScilab({ type: "videoClose" });
+      }
+    }
+
+    function configureNativeVideo(response) {
+      if (state.mediaType === "video") {
+        releaseVideoSource(false);
+      }
+      state.mediaType = "video";
+      state.videoSessionToken += 1;
+      state.filename = response.name || "Video";
+      state.videoPath = response.path || "";
+      state.original = null;
+      state.width = response.width;
+      state.height = response.height;
+      state.rotation = 0;
+      state.grid = false;
+      state.temporalMode = "none";
+      state.videoFrameCount = Math.max(1, Math.round(response.frameCount));
+      state.videoFps = response.fps > 0 ? response.fps : 30;
+      state.videoCurrentFrame = 0;
+      state.videoCurrentTime = 0;
+      state.videoDuration = state.videoFrameCount / state.videoFps;
+      state.videoPlaying = false;
+      state.videoRequestPending = false;
+      state.videoPlaybackRate = 1;
+      state.recording = false;
+      state.recordingStarting = false;
+      state.recordingStopping = false;
+      state.recordingFramePending = false;
+      state.recordingStopRequested = false;
+      state.recordingFrames = 0;
+      state.recordingRate = 1;
+      state.recordingPath = "";
+      state.lastVideoTime = -1;
+      setControlsEnabled(false);
+      document.getElementById("gridToggle").checked = false;
+      document.getElementById("temporalMode").value = "none";
+      document.getElementById("colorSpace").value = "rgb";
+      state.colorSpace = "rgb";
+      updateChannelOptions();
+      resetTemporalHistory(false);
+      showVideoControls(true);
+      document.getElementById("timeline").value = 0;
+      document.getElementById("playbackRate").value = "1";
+      document.getElementById("recordRate").value = "1";
+      document.getElementById("filename").textContent = state.filename;
+      document.getElementById("filename").title = state.filename;
+      document.getElementById("dimensions").textContent =
+        response.width + " x " + response.height + " pixels | native OpenCV video";
+      clearInspector();
+      render();
+      setStatus("OpenCV opened " + state.filename + "; loading frame " + response.frame);
+      requestNativeFrame(response.frame || 1, response);
+    }
+
+    function openNativeVideo(path) {
+      cancelVideoLoop();
+      state.videoPlaying = false;
+      setStatus(path ? "Opening video with OpenCV..." : "Select a video for OpenCV decoding...");
+      const command = path
+        ? { type: "videoOpen", path: path }
+        : { type: "videoChoose" };
+      sendScilab(command);
+    }
+
+    function loadImageSource(source, filename) {
+      if (state.mediaType === "video") {
+        releaseVideoSource();
+      }
+      state.mediaType = "image";
+      state.temporalMode = "none";
+      state.original = null;
+      setControlsEnabled(false);
+      showVideoControls(false);
+      resetTemporalHistory(false);
+      render();
+      const image = new Image();
+      image.onload = function () {
+        try {
+          sourceCanvas.width = image.naturalWidth;
+          sourceCanvas.height = image.naturalHeight;
+          sourceContext.clearRect(0, 0, sourceCanvas.width, sourceCanvas.height);
+          sourceContext.drawImage(image, 0, 0);
+          state.original = sourceContext.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height);
+        } catch (error) {
+          setStatus("The image opened, but browser security blocked pixel access.");
+          return;
+        }
+
+        state.width = sourceCanvas.width;
+        state.height = sourceCanvas.height;
+        state.filename = filename || "Image";
+        state.rotation = 0;
+        state.grid = false;
+        document.getElementById("gridToggle").checked = false;
+        document.getElementById("colorSpace").value = "rgb";
+        state.colorSpace = "rgb";
+        updateChannelOptions();
+        document.getElementById("filename").textContent = state.filename;
+        document.getElementById("filename").title = state.filename;
+        document.getElementById("dimensions").textContent =
+          state.width + " x " + state.height + " pixels";
+        document.getElementById("emptyState").hidden = true;
+        setControlsEnabled(true);
+        clearInspector();
+        updateDisplayImage();
+        fitImage();
+        setStatus("Loaded " + state.filename);
+      };
+      image.onerror = function () {
+        setStatus("Could not load the selected image.");
+      };
+      image.src = source;
+    }
+
+    function loadFile(file) {
+      if (!file) {
+        return;
+      }
+
+      if ((file.type && file.type.indexOf("video/") === 0) ||
+          /\.(mp4|m4v|mov|mkv|webm|avi|mpg|mpeg|wmv|hevc|h265)$/i.test(file.name || "")) {
+        setStatus("Use the Video button so OpenCV can decode this file natively.");
+        return;
+      }
+
+      const imageType = file.type && file.type.indexOf("image/") === 0;
+      const imageExtension = /\.(png|jpe?g|bmp|gif|webp|tiff?)$/i.test(file.name || "");
+      if (!imageType && !imageExtension) {
+        setStatus("Select a supported image file, or use the Video button.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        loadImageSource(event.target.result, file.name);
+      };
+      reader.onerror = function () {
+        setStatus("Could not read the selected image.");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function openFilePicker() {
+      document.getElementById("fileInput").click();
+    }
+
+    document.getElementById("openButton").addEventListener("click", openFilePicker);
+    document.getElementById("emptyOpenButton").addEventListener("click", openFilePicker);
+    document.getElementById("openVideoButton").addEventListener("click", function () {
+      openNativeVideo("");
+    });
+    document.getElementById("fileInput").addEventListener("change", function (event) {
+      if (event.target.files.length) {
+        loadFile(event.target.files[0]);
+      }
+      event.target.value = "";
+    });
+    document.getElementById("zoomOutButton").addEventListener("click", function () {
+      zoomAt(state.viewportWidth / 2, state.viewportHeight / 2, 0.8);
+    });
+    document.getElementById("zoomInButton").addEventListener("click", function () {
+      zoomAt(state.viewportWidth / 2, state.viewportHeight / 2, 1.25);
+    });
+    document.getElementById("fitButton").addEventListener("click", fitImage);
+    document.getElementById("actualSizeButton").addEventListener("click", showActualSize);
+    document.getElementById("rotateLeftButton").addEventListener("click", function () {
+      rotateImage(-1);
+    });
+    document.getElementById("rotateRightButton").addEventListener("click", function () {
+      rotateImage(1);
+    });
+    document.getElementById("gridToggle").addEventListener("change", function (event) {
+      state.grid = event.target.checked;
+      updateTransformStatus();
+      render();
+    });
+    document.getElementById("colorSpace").addEventListener("change", function (event) {
+      state.colorSpace = event.target.value;
+      updateChannelOptions();
+      updateDisplayImage();
+    });
+    document.getElementById("channel").addEventListener("change", function (event) {
+      state.channel = event.target.value;
+      updateDisplayImage();
+    });
+    document.getElementById("playPauseButton").addEventListener("click", function () {
+      if (state.videoPlaying) {
+        state.videoPlaying = false;
+        cancelVideoLoop();
+        updateVideoInspector();
+        setStatus("Paused on frame " + state.videoCurrentFrame);
+      } else {
+        if (state.videoCurrentFrame >= state.videoFrameCount) {
+          requestNativeFrame(1);
+        }
+        state.videoPlaying = true;
+        updateVideoInspector();
+        scheduleVideoLoop();
+      }
+    });
+    document.getElementById("previousFrameButton").addEventListener("click", function () {
+      state.videoPlaying = false;
+      cancelVideoLoop();
+      requestNativeFrame(Math.max(1, state.videoCurrentFrame - 1));
+    });
+    document.getElementById("nextFrameButton").addEventListener("click", function () {
+      state.videoPlaying = false;
+      cancelVideoLoop();
+      requestNativeFrame(Math.min(state.videoFrameCount, state.videoCurrentFrame + 1));
+    });
+    document.getElementById("timeline").addEventListener("change", function (event) {
+      state.videoPlaying = false;
+      cancelVideoLoop();
+      const frame = Math.round(Number(event.target.value) / 1000 * (state.videoFrameCount - 1)) + 1;
+      requestNativeFrame(frame);
+    });
+    document.getElementById("playbackRate").addEventListener("change", function (event) {
+      state.videoPlaybackRate = Number(event.target.value);
+      if (state.videoPlaying) {
+        scheduleVideoLoop();
+      }
+    });
+    document.getElementById("recordButton").addEventListener("click", function () {
+      if (state.recording) {
+        requestRecordingStop();
+      } else {
+        startRecording();
+      }
+    });
+    document.getElementById("recordRate").addEventListener("change", function (event) {
+      state.recordingRate = Number(event.target.value);
+    });
+    document.getElementById("temporalMode").addEventListener("change", function (event) {
+      state.temporalMode = event.target.value;
+      resetTemporalHistory(true);
+      setStatus("Temporal analysis: " + event.target.options[event.target.selectedIndex].text);
+    });
+    document.getElementById("resetTemporalButton").addEventListener("click", function () {
+      resetTemporalHistory(true);
+      setStatus("Temporal history reset at " + formatTime(state.videoCurrentTime, true));
+    });
+
+    canvas.addEventListener("pointerdown", function (event) {
+      if (!state.original || event.button !== 0) {
+        return;
+      }
+      state.dragging = true;
+      state.dragX = event.clientX;
+      state.dragY = event.clientY;
+      canvas.classList.add("dragging");
+      canvas.setPointerCapture(event.pointerId);
+    });
+
+    canvas.addEventListener("pointermove", function (event) {
+      if (state.dragging) {
+        state.centerX += event.clientX - state.dragX;
+        state.centerY += event.clientY - state.dragY;
+        state.dragX = event.clientX;
+        state.dragY = event.clientY;
+        render();
+      }
+      const rectangle = canvas.getBoundingClientRect();
+      inspectAt(event.clientX - rectangle.left, event.clientY - rectangle.top);
+    });
+
+    function stopDragging(event) {
+      if (!state.dragging) {
+        return;
+      }
+      state.dragging = false;
+      canvas.classList.remove("dragging");
+      if (canvas.hasPointerCapture(event.pointerId)) {
+        canvas.releasePointerCapture(event.pointerId);
+      }
+    }
+
+    canvas.addEventListener("pointerup", stopDragging);
+    canvas.addEventListener("pointercancel", stopDragging);
+    canvas.addEventListener("pointerleave", function () {
+      if (!state.dragging) {
+        clearInspector();
+      }
+    });
+    canvas.addEventListener("dblclick", fitImage);
+    canvas.addEventListener("wheel", function (event) {
+      if (!state.original) {
+        return;
+      }
+      event.preventDefault();
+      const rectangle = canvas.getBoundingClientRect();
+      const factor = Math.exp(-event.deltaY * 0.0015);
+      zoomAt(event.clientX - rectangle.left, event.clientY - rectangle.top, factor);
+    }, { passive: false });
+
+    stage.addEventListener("dragover", function (event) {
+      event.preventDefault();
+    });
+    stage.addEventListener("drop", function (event) {
+      event.preventDefault();
+      if (event.dataTransfer.files.length) {
+        loadFile(event.dataTransfer.files[0]);
+      }
+    });
+
+    canvas.addEventListener("keydown", function (event) {
+      if (event.key === "+" || event.key === "=") {
+        zoomAt(state.viewportWidth / 2, state.viewportHeight / 2, 1.25);
+      } else if (event.key === "-") {
+        zoomAt(state.viewportWidth / 2, state.viewportHeight / 2, 0.8);
+      } else if (event.key === "0") {
+        fitImage();
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", function () {
+      updateChannelOptions();
+      setControlsEnabled(false);
+      setVideoControlsEnabled(false);
+      resizeCanvas();
+      callScilab({ type: "init" }, function (response) {
+        if (response.status === "ok" && response.initialVideo) {
+          openNativeVideo(response.initialVideo);
+        } else if (response.status === "ok" && response.initialFile) {
+          let name = response.initialFile.split("/").pop() || "Image";
+          try {
+            name = decodeURIComponent(name);
+          } catch (error) {
+            name = "Image";
+          }
+          loadImageSource(response.initialFile, name);
+        }
+      });
+    });
+
+    window.addEventListener("beforeunload", function () {
+      if (state.recording || state.recordingStarting) {
+        sendScilab({ type: "recordStop" });
+      }
+    });
+
+    new ResizeObserver(resizeCanvas).observe(stage);
+
+    function fromScilab(data) {
+      const response = parseResponse(data);
+      if (response.request === "videoOpen") {
+        if (response.status === "cancel") {
+          setStatus(response.message || "Video selection cancelled.");
+        } else if (response.status !== "ok") {
+          setStatus(response.message || "OpenCV could not open this video.");
+        } else {
+          configureNativeVideo(response);
+        }
+      } else if (response.request === "videoFrame") {
+        const handler = state.pendingVideoResponse;
+        state.pendingVideoResponse = null;
+        if (handler) {
+          handler(response);
+        }
+      } else if (response.request === "recordStart") {
+        handleRecordingStart(response);
+      } else if (response.request === "recordFrame") {
+        handleRecordingFrame(response);
+      } else if (response.request === "recordStop") {
+        handleRecordingStop(response);
+      } else if (response.initialVideo) {
+        openNativeVideo(response.initialVideo);
+      } else if (response.initialFile) {
+        loadImageSource(response.initialFile, "Image");
+      }
+    }
+  </script>
+</body>
+</html>

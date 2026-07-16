@@ -23,6 +23,8 @@ function imshow(im, varargin)
     //
     // Description
     //    Show images in different types, double (0-1), uint8(0-255), binary, and others supported image datatype.
+    //    When a colormap is supplied, 2D double images in the [0, 1] range are mapped across the colormap automatically.
+    //    Indexed images are displayed without rescaling.
     //
     // Examples 
     //    im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
@@ -32,6 +34,11 @@ function imshow(im, varargin)
     //    if with_tk() then
     //      imshow(im, 2);
     //    end
+    //
+    //    im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+    //    gray = rgb2gray(im);
+    //    edgeResponse = imgradientmagnitude(gray);
+    //    imshow(immat2gray(edgeResponse), hot(64));
     //
     // See also
     //    imread
@@ -51,6 +58,15 @@ function imshow(im, varargin)
             imout = im2uint8(im);
         else
             imout = im;
+            dims = size(im);
+            if type(im(1)) == 1 & size(dims, "*") == 2 then
+                minVal = min(im);
+                maxVal = max(im);
+                if minVal >= 0 & maxVal <= 1 then
+                    nColors = size(ColorMap, 1);
+                    imout = round(double(im) * (nColors - 1)) + 1;
+                end
+            end
         end
     endfunction
     //==============================================================================

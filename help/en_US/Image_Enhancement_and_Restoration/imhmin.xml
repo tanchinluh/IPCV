@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imhmin" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imhmin</refname><refpurpose>Suppress low-contrast dark valleys.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imhmin(image, depth)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Applies a local-mean contrast suppression rule. depth is the minimum dark-valley contrast. Integer input images return the same integer class as the input; double input images return double output.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+out = imhmin(image, 10);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregionalmin">imregionalmin</link></member><member><link linkend="imextendedmin">imextendedmin</link></member><member><link linkend="imlocalmean">imlocalmean</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

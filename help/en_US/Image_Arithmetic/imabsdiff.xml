@@ -58,7 +58,12 @@ Supported classes: INT8, UINT8, INT16, UINT16, INT32, DOUBLE.
 </para>
 </refsection>
 
-<refsection role="see also">
+<refsection><title>Examples</title><programlisting role="example"><![CDATA[
+left = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+right = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+difference = imabsdiff(left, right);
+imshow(difference);
+]]></programlisting></refsection><refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
    <member><link linkend="imadd">imadd</link></member>

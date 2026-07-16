@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbackproject" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imbackproject</refname><refpurpose>Compute histogram back-projection scores.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>score = imbackproject(image, model)
+score = imbackproject(image, model, bins)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image to score. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>model</term><listitem><para>Reference image patch or model image used to build the histogram.</para></listitem></varlistentry><varlistentry><term>bins</term><listitem><para>Number of intensity histogram bins. Default is <literal>32</literal>.</para></listitem></varlistentry><varlistentry><term>score</term><listitem><para>Back-projection probability image with one score per input pixel.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Builds a normalized intensity histogram from the model and assigns each image pixel its corresponding histogram probability.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+model = image(55:120, 90:160, :);
+score = imbackproject(image, model, 32);
+scoreView = round(immat2gray(score) * 63) + 1;
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(scoreView, hot(64));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imtemplatematch">imtemplatematch</link></member><member><link linkend="imhist">imhist</link></member><member><link linkend="imsegkmeans">imsegkmeans</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

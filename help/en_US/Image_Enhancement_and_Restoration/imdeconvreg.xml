@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imdeconvreg" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imdeconvreg</refname><refpurpose>Restore an image with regularized deconvolution.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imdeconvreg(image, psf, lambda)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Performs frequency-domain L2-regularized deconvolution. lambda controls the strength of noise suppression. The best demonstration uses the same point-spread function and boundary model for blurring and restoration; otherwise residual blur and ringing are expected.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = im2double(imresize(rgb2gray(image), [64 96]));
+psf = imfspecial("gaussian", 9, 2);
+blurred = imfilter(image, psf, "circular");
+restored = imdeconvreg(blurred, psf, 0.01);
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(blurred);
+subplot(1, 3, 3);
+imshow(immat2gray(restored));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdeconvblind">imdeconvblind</link></member><member><link linkend="imfilter">imfilter</link></member><member><link linkend="imnoise">imnoise</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

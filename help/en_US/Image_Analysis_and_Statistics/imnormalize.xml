@@ -2,7 +2,7 @@
 <refentry version="5.0-subset Scilab" xml:id="imnormalize" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
 <refnamediv><refname>imnormalize</refname><refpurpose>Normalize image values to a target range.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>out = imnormalize(im)
-out = imnormalize(im, alpha, beta)</synopsis></refsynopsisdiv>
+out = imnormalize(im, alpha, beta)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im</term><listitem><para>Input image or numeric array.</para></listitem></varlistentry><varlistentry><term>alpha</term><listitem><para>Lower output value. Default is <literal>0</literal>.</para></listitem></varlistentry><varlistentry><term>beta</term><listitem><para>Upper output value. Default is <literal>1</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Double image normalized channel-by-channel to <literal>[alpha, beta]</literal>.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para><function>imnormalize</function> scales each channel independently to <literal>[alpha, beta]</literal>.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));

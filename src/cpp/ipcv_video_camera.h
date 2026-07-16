@@ -30,6 +30,7 @@ IPCV_CORE_API int ipcv_avi_create(const char *filename, int width, int height, i
 IPCV_CORE_API int ipcv_avi_create_fourcc(const char *filename, int width, int height, int fps, const char *fourcc, int *handle, char *error, int error_size);
 IPCV_CORE_API int ipcv_avi_add_frame(int handle, const IpcvDecodedImage *frame, char *error, int error_size);
 IPCV_CORE_API int ipcv_avi_read_frame(int handle, int frame_index, int has_frame_index, IpcvDecodedImage *frame);
+IPCV_CORE_API int ipcv_avi_export_frame(int handle, int frame_index, const char *filename, char *error, int error_size);
 IPCV_CORE_API int ipcv_avi_get_property(int handle, int property_id, double *value, char *error, int error_size);
 IPCV_CORE_API int ipcv_avi_set_property(int handle, int property_id, double value, char *error, int error_size);
 IPCV_CORE_API int ipcv_avi_close(int handle, char *error, int error_size);

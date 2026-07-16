@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgraycomatrix" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgraycomatrix</refname><refpurpose>Build gray-level co-occurrence matrices.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>glcm = imgraycomatrix(image)
+glcm = imgraycomatrix(image, levels, offsets)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>levels</term><listitem><para>Number of quantized gray levels. Default is <literal>8</literal>.</para></listitem></varlistentry><varlistentry><term>offsets</term><listitem><para>N-by-2 matrix of <literal>[dx dy]</literal> neighbor offsets. Default is <literal>[1 0]</literal>.</para></listitem></varlistentry><varlistentry><term>glcm</term><listitem><para>Normalized gray-level co-occurrence matrix, or stack of matrices for multiple offsets.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Counts normalized pairs of quantized gray levels at the requested [x y] offsets. Multiple offsets return a third matrix dimension.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+glcm = imgraycomatrix(image, 8, [1 0; 0 1]);
+glcmView = round(immat2gray(glcm(:,:,1)) * 63) + 1;
+imshow(glcmView, hot(64));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgraycoprops">imgraycoprops</link></member><member><link linkend="imtexture">imtexture</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

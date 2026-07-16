@@ -95,7 +95,7 @@ imshow(SS);
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="immatch_Brute">immatch_Brute</link></member>
+   <member><link linkend="immatch_BruteForce">immatch_BruteForce</link></member>
    <member><link linkend="imbestmatches">imbestmatches</link></member>
    </simplelist>
 </refsection>

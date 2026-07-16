@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imdiffusefilt" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imdiffusefilt</refname><refpurpose>Reduce noise with edge-preserving diffusion.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imdiffusefilt(image)
+out = imdiffusefilt(image, iterations, conductance, step)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Applies repeated local smoothing while reducing the update near strong intensity differences. The current implementation is a Scilab macro approximation of anisotropic diffusion and returns double values in the range 0 to 1.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [120 160]);
+image = rgb2gray(image);
+filtered = imdiffusefilt(image, 5, 0.08, 0.25);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(filtered);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdenoise">imdenoise</link></member><member><link linkend="imgaussianblur">imgaussianblur</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>
