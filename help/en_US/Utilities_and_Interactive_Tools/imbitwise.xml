@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imbitwise" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imbitwise</refname><refpurpose>Apply uint8 bitwise image operations.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imbitwise(image1, image2, operation); out = imbitwise(image, "not")</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Provides image-oriented AND, OR, XOR, and NOT operations for uint8 masks and binary-coded images.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d2/d18/group__core__hal__interface__logical.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+image = rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png")));
+left = image > 80;
+right = image < 180;
+combined = imbitwise(uint8(left) * 255, uint8(right) * 255, "and");
+imshow(combined);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+a = uint8([0 15 240 255]);
+b = uint8([255 3 15 1]);
+disp(imbitwise(a, b, "or"));
+disp(imbitwise(a, "not"));
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcolormask">imcolormask</link></member><member><link linkend="imoverlaymask">imoverlaymask</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

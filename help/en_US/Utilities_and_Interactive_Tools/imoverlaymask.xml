@@ -3,12 +3,12 @@
 <refnamediv><refname>imoverlaymask</refname><refpurpose>Blend a binary or label mask over an image.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>out = imoverlaymask(image, mask)
 out = imoverlaymask(image, mask, rgb, alpha, boundary)</synopsis></refsynopsisdiv>
-<refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>mask :</term><listitem><para>Binary or label mask. Nonzero pixels are treated as foreground.</para></listitem></varlistentry><varlistentry><term>rgb :</term><listitem><para>RGB overlay color. Default is <literal>[255 0 0]</literal>.</para></listitem></varlistentry><varlistentry><term>alpha :</term><listitem><para>Overlay opacity from <literal>0</literal> to <literal>1</literal>. Default is <literal>0.35</literal>.</para></listitem></varlistentry><varlistentry><term>boundary :</term><listitem><para>Boolean flag to draw a stronger mask boundary.</para></listitem></varlistentry><varlistentry><term>out :</term><listitem><para>RGB uint8 overlay image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>mask :</term><listitem><para>Boolean, binary, or label mask. <literal>%t</literal> and nonzero numeric pixels are treated as foreground.</para></listitem></varlistentry><varlistentry><term>rgb :</term><listitem><para>RGB overlay color. Default is <literal>[255 0 0]</literal>.</para></listitem></varlistentry><varlistentry><term>alpha :</term><listitem><para>Overlay opacity from <literal>0</literal> to <literal>1</literal>. Default is <literal>0.35</literal>.</para></listitem></varlistentry><varlistentry><term>boundary :</term><listitem><para>Boolean flag to draw a stronger mask boundary.</para></listitem></varlistentry><varlistentry><term>out :</term><listitem><para>RGB uint8 overlay image.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para><function>imoverlaymask</function> creates a reusable overlay image for segmentation masks and binary regions. It keeps image-space orientation, so it is suitable for DNN segmentation post-processing.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-mask = zeros(size(image, 1), size(image, 2));
-mask(80:180, 100:220) = 1;
+mask = zeros(size(image, 1), size(image, 2)) == 1;
+mask(80:180, 100:220) = %t;
 out = imoverlaymask(image, mask, [255 0 0], 0.35, %t);
 imshow(out);
 ]]></programlisting></refsection>

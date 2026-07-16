@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwtraceboundary" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>imbwtraceboundary</refname>
+        <refpurpose>Return the contour nearest to a seed point.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>boundary = imbwtraceboundary(image, startPoint)
+boundary = imbwtraceboundary(image, startPoint, connectivity)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>image</term>
+                <listitem><para>Binary or numeric 2D image. Nonzero pixels form the foreground components.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>startPoint</term>
+                <listitem><para>Two-element <literal>[x y]</literal> seed in upper-left-origin image coordinates.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>connectivity</term>
+                <listitem><para>Component connectivity, either <literal>4</literal> or <literal>8</literal>. The default is <literal>8</literal>.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>boundary</term>
+                <listitem><para>Contour coordinates as an N-by-2 <literal>[x y]</literal> matrix using the upper-left image origin.</para></listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Labels the foreground using the requested connectivity, extracts its contours, and returns the contour having the point nearest to <varname>startPoint</varname>. Convert the returned coordinates with <function>rect2cart</function> before overlaying them with Scilab plotting functions.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            <emphasis role="bold">Source reference:</emphasis>
+            <ulink url="https://docs.opencv.org/master/d4/d73/tutorial_py_contours_begin.html">OpenCV contour extraction tutorial</ulink>.
+        </para>
+        <para>Example 1: Select one boundary from two distinct components</para>
+        <programlisting role="example"><![CDATA[
+mask = zeros(140, 230) == 1;
+mask(25:75, 25:75) = %t;
+mask(25:105, 145:165) = %t;
+mask(85:105, 145:205) = %t;
+
+startPoint = [190 95];
+boundary = imbwtraceboundary(mask, startPoint, 8);
+closedBoundary = [boundary; boundary(1, :)];
+plotBoundary = rect2cart(size(mask), closedBoundary);
+plotSeed = rect2cart(size(mask), startPoint);
+
+imshow(uint8(mask .* 255));
+axesHandle = gca();
+axesHandle.auto_clear = "off";
+plot(plotBoundary(:, 1), plotBoundary(:, 2), "r-");
+plot(plotSeed(1), plotSeed(2), "g+");
+xtitle("The seed selects the L-shaped component");
+]]></programlisting>
+        <para>Example 2: Trace one selected object in a real image</para>
+        <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+gray = rgb2gray(image);
+mask = gray < 230;
+
+startPoint = [205 210];
+boundary = imbwtraceboundary(mask, startPoint);
+closedBoundary = [boundary; boundary(1, :)];
+plotBoundary = rect2cart(size(mask), closedBoundary);
+plotSeed = rect2cart(size(mask), startPoint);
+
+imshow(image);
+axesHandle = gca();
+axesHandle.auto_clear = "off";
+plot(plotBoundary(:, 1), plotBoundary(:, 2), "r-");
+plot(plotSeed(1), plotSeed(2), "g+");
+xtitle("Boundary of the orange Smartie nearest to the seed");
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="imbwboundaries">imbwboundaries</link></member>
+            <member><link linkend="imfindContours">imfindContours</link></member>
+            <member><link linkend="rect2cart">rect2cart</link></member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert"><member>Tan Chin Luh</member></simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr>
+        </informaltable>
+    </refsection>
+</refentry>

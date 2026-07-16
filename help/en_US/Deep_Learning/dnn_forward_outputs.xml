@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dnn_forward_outputs" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>dnn_forward_outputs</refname><refpurpose>Run several DNN output layers with one preprocessing configuration.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[outputs, names] = dnn_forward_outputs(net, image, preset)
+[outputs, names] = dnn_forward_outputs(net, image, preset, output_names)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>net</term><listitem><para>A DNN object returned by <function>dnn_readmodel</function>.</para></listitem></varlistentry>
+<varlistentry><term>image</term><listitem><para>Input image in Scilab format.</para></listitem></varlistentry>
+<varlistentry><term>preset</term><listitem><para>A named or structure-based preprocessing preset accepted by <function>dnn_forward_preset</function>.</para></listitem></varlistentry>
+<varlistentry><term>output_names</term><listitem><para>Optional non-empty string matrix of layer names. When omitted, OpenCV unconnected output names are used.</para></listitem></varlistentry>
+<varlistentry><term>outputs</term><listitem><para>A list of output tensors in the same order as <varname>names</varname>.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para><function>dnn_forward_outputs</function> provides a stable multiple-output wrapper around <function>dnn_forward</function>. It returns a list instead of a structure because OpenCV layer names may contain characters that are inconvenient as Scilab field names.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+presets = dnn_presets();
+zoo = dnn_zoo_modelinfo("image_classification_mobilenetv2_2022apr.onnx", "image_classification_mobilenet");
+names = ["output" "auxiliary_output"];
+
+// With a loaded model and model-specific output names:
+// net = dnn_readmodel(modelFile, "", "onnx");
+// [outputs, names] = dnn_forward_outputs(net, image, zoo, names);
+// firstOutput = outputs(1);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dnn_forward">dnn_forward</link></member><member><link linkend="dnn_forward_preset">dnn_forward_preset</link></member><member><link linkend="dnn_getoutputs">dnn_getoutputs</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 4.</td></tr></informaltable></refsection>
+</refentry>

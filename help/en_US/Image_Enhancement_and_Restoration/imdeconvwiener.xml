@@ -74,7 +74,7 @@ The filter is most easily described in the frequency domain:
    <programlisting role="example"><![CDATA[
 S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png"));
 S = im2double(S);
-h = fspecial('motion',25,45);
+h = imfspecial('motion',25,45);
 S2 = imfilter(S,h,'circular');
 imshow(S2);
 S3 = imdeconvwiener(S2,h,0);

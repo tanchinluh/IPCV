@@ -98,8 +98,8 @@ scf(3); imhist(im, 10, 0.8, 'green');
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="mean2">mean2</link></member>
-   <member><link linkend="corr2">corr2</link></member>
+   <member><link linkend="immean2">immean2</link></member>
+   <member><link linkend="imcorr2">imcorr2</link></member>
    </simplelist>
 </refsection>
 

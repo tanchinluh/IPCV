@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imbwareaopen3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imbwareaopen3</refname><refpurpose>Remove small connected objects from a 3D volume.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imbwareaopen3(volume, minSize); out = imbwareaopen3(volume, minSize, connectivity)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Labels 3D foreground components and keeps only components meeting the voxel-count threshold.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+volume = zeros(24, 24, 8) == 1;
+volume(5:18, 5:18, 3:6) = %t;
+volume(2, 2, 2) = %t;
+clean = imbwareaopen3(volume, 20);
+imshow(max(clean, 3));
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+volume = zeros(32, 32, 12) == 1;
+volume(8:24, 8:24, 4:9) = %t;
+volume(2:3, 2:3, 2:3) = %t;
+clean = imbwareaopen3(volume, 100, 26);
+imshow(max(clean, 3));
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwareaopen">imbwareaopen</link></member><member><link linkend="imregionprops3">imregionprops3</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

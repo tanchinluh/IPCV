@@ -59,6 +59,9 @@
 Show images in different types, double (0-1), uint8(0-255), binary, and others supported image datatype.
    </para>
    <para>
+When a colormap is supplied, 2D double images in the [0, 1] range are mapped across the colormap automatically. Indexed images are displayed without rescaling.
+   </para>
+   <para>
 </para>
 </refsection>
 
@@ -72,6 +75,12 @@ imshow(im, 1);
 if with_tk() then
 imshow(im, 2);
 end
+   ]]></programlisting>
+   <programlisting role="example"><![CDATA[
+im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+gray = rgb2gray(im);
+edgeResponse = imgradientmagnitude(gray);
+imshow(immat2gray(edgeResponse), hot(64));
 
    ]]></programlisting>
 </refsection>

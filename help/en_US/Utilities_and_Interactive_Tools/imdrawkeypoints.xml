@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imdrawkeypoints" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imdrawkeypoints</refname><refpurpose>Draw feature locations over an image.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imdrawkeypoints(image, features); out = imdrawkeypoints(image, features, rgb)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Draws small image-space boxes around the keypoint locations returned by IPCV feature detectors.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d4/d5d/group__features2d__draw.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+features = imdetect_ORB(image, 500);
+marked = imdrawkeypoints(image, features, [255 0 0]);
+imshow(marked);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+features = imdetect_AKAZE(image);
+marked = imdrawkeypoints(image, features, [0 255 0]);
+imshow(marked);
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="plotfeature">plotfeature</link></member><member><link linkend="imdrawmatches">imdrawmatches</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

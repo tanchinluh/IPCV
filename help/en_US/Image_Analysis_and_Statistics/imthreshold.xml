@@ -14,9 +14,14 @@
 </variablelist></refsection>
 <refsection><title>Description</title><para><function>imthreshold</function> is the general numeric thresholding API. It uses OpenCV after converting the input to uint8, supports binary and non-binary modes, and returns a uint8 image. Fixed levels and returned levels use a class-independent 0-to-1 scale. Use <function>imbinarize</function> when the desired result is a boolean mask.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
-[binary, level] = imthreshold(image);
-imshow(binary);
+ image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+ image = imresize(rgb2gray(image), [120 160]);
+ [binary, level] = imthreshold(image, "otsu");
+ subplot(1, 2, 1);
+ imshow(image);
+ subplot(1, 2, 2);
+ imshow(binary);
+ disp(level);
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbinarize">imbinarize</link></member><member><link linkend="imgraythresh">imgraythresh</link></member><member><link linkend="im2bw">im2bw</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>

@@ -57,7 +57,28 @@ mA=immean2(imA) and mB=immean2(imB)
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+gray = imresize(rgb2gray(image), [160 220]);
+noisy = imnoise(gray, "gaussian", 0, 0.002);
+inverted = imcomplement(gray);
 
+sameScore = imcorr2(gray, gray);
+noisyScore = imcorr2(gray, noisy);
+invertedScore = imcorr2(gray, inverted);
+
+mprintf("same image      : %6.3f\n", sameScore);
+mprintf("noisy copy      : %6.3f\n", noisyScore);
+mprintf("inverted image  : %6.3f\n", invertedScore);
+
+subplot(1, 3, 1);
+imshow(gray);
+title("Original");
+subplot(1, 3, 2);
+imshow(noisy);
+title("Noisy copy");
+subplot(1, 3, 3);
+imshow(inverted);
+title("Inverted");
    ]]></programlisting>
 </refsection>
 

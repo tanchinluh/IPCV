@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imregionprops3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imregionprops3</refname><refpurpose>Measure labeled regions in a 3D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>props = imregionprops3(labels)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>labels</term><listitem><para>3-D label volume or binary volume.</para></listitem></varlistentry><varlistentry><term>props</term><listitem><para>Structure array of 3-D region measurements such as volume, centroid, and bounding box.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a structure list with Volume, Centroid, BoundingBox, and VoxelIdxList for each nonzero label.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [120 160]);
+gray = rgb2gray(image);
+volume = cat(3, gray, imtranslate(gray, [3 0]), imtranslate(gray, [6 0]));
+labels = zeros(size(volume));
+labels(30:90, 40:120, 1:3) = 1;
+props = imregionprops3(labels);
+disp(props(1).Volume);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregionprops">imregionprops</link></member><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

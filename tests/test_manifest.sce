@@ -100,7 +100,14 @@ function manifest = ipcv_test_manifest(testRoot)
         "ipcv_step3_filtering_completeness"; ..
         "ipcv_step3_binary_compatibility"; ..
         "ipcv_step3_im_naming"; ..
-        "ipcv_filtering"; ..
+        "ipcv_step3_new_features"; ..
+        "ipcv_step3_batch7"; ..
+        "ipcv_step3_batch8"; ..
+        "ipcv_step3_batch9"; ..
+         "ipcv_step3_batch11"; ..
+         "ipcv_step3_batch12"; ..
+         "ipcv_step3_batch13"; ..
+         "ipcv_filtering"; ..
         "ipcv_morphology"; ..
         "ipcv_color"; ..
         "ipcv_edge_filter"; ..
@@ -110,6 +117,7 @@ function manifest = ipcv_test_manifest(testRoot)
         "ipcv_structural_analysis"; ..
         "ipcv_feature_detection"; ..
         "ipcv_hough_stitching"; ..
+        "ipcv_imtool"; ..
         "ipcv_dnn"; ..
         "ipcv_handle_lifecycle"; ..
         "ipcv_repository_contracts" ..

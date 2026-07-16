@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtool" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtool</refname><refpurpose>Inspect images and OpenCV-decoded video frames interactively.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>imtool()
+imtool(filename)
+imtool(image)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>filename</term><listitem><para>Scalar string containing the path of an image or video to open. Recognized video extensions include MP4, M4V, MOV, MKV, WebM, AVI, MPG, MPEG, WMV, HEVC, and H265.</para></listitem></varlistentry>
+<varlistentry><term>image</term><listitem><para>Image matrix accepted by <function>imwrite</function>. IPCV stages the matrix as a temporary PNG for initial display.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title>
+<para><function>imtool</function> opens an IPCV browser uicontrol containing an interactive media canvas. Images can also be opened or dropped directly into the tool. Use the Video button, or pass a video filename to <function>imtool</function>, to open video through IPCV's native OpenCV gateway.</para>
+<para>The canvas supports cursor-centered wheel zoom, button zoom, drag panning, 90-degree rotation, fit-to-window, and pixel-grid display. At sufficiently high zoom, each visible pixel displays its original red, green, and blue values. Pixel coordinates use Scilab's one-based column and row indices with the image origin at the upper-left corner.</para>
+<para>The color-space controls provide RGB, grayscale, HSV, CIELAB, and YCbCr inspection. Individual channels can be displayed while the pixel inspector continues to report the original RGB sample and the selected color-space values.</para>
+<para>For video, OpenCV <function>VideoCapture</function> decodes each requested frame in Scilab and stages it for display in the canvas. The embedded browser never decodes the video stream, so Chromium codec restrictions do not prevent MP4, H.264, or HEVC playback. The playback controls provide play, pause, timeline seeking, playback speed, and single-frame stepping. Pause at any point to zoom, pan, rotate, inspect pixel values, or change the displayed color space on that frame.</para>
+<para>Temporal analysis modes include frame difference, a decaying motion heatmap, temporal averaging, and sparse optical-flow vectors. Select a mode before playback or step through frames manually. The Reset button clears accumulated temporal history at the current frame.</para>
+<para>Available containers and codecs depend on the OpenCV video backend bundled for the current platform. IPCV's Windows OpenCV 5 build supports MP4 with H.264 and HEVC decoding. Other platform builds must include an FFmpeg or equivalent backend with the corresponding decoder. Audio is not played. Playback timing is best effort because frames are transferred individually between OpenCV, Scilab, and the browser canvas.</para>
+</refsection>
+<refsection><title>Examples</title>
+<programlisting><![CDATA[imtool();]]></programlisting>
+<programlisting><![CDATA[filename = fullpath(getIPCVpath() + "/images/opencv_fruits.jpg");
+imtool(filename);]]></programlisting>
+<programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+imtool(image);]]></programlisting>
+<programlisting><![CDATA[// MP4/H.264 and MP4/HEVC are decoded by OpenCV, not the browser.
+videoFile = "sample_hevc.mp4";
+imtool(videoFile);]]></programlisting>
+<programlisting><![CDATA[// Click Video, select a file, and pause on a frame.
+// Then select a temporal-analysis mode and play or step through the video.
+imtool();]]></programlisting>
+</refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imread">imread</link></member><member><link linkend="imshow">imshow</link></member><member><link linkend="impixelval">impixelval</link></member><member><link linkend="imcvtcolor">imcvtcolor</link></member><member><link linkend="aviinfo">aviinfo</link></member><member><link linkend="aviopen">aviopen</link></member><member><link linkend="avireadframe">avireadframe</link></member><member><link linkend="aviclose">aviclose</link></member><member><link linkend="imopticalflow">imopticalflow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Browser-based image inspection tool introduced.</td></tr><tr><td>5.0.0</td><td>Video playback, paused-frame inspection, and temporal analysis added.</td></tr><tr><td>5.0.0</td><td>Native OpenCV video decoding added for MP4, H.264, HEVC, and other backend-supported formats.</td></tr></informaltable></refsection>
+</refentry>

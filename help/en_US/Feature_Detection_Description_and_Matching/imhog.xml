@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imhog" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imhog</refname><refpurpose>Compute a histogram of oriented gradients descriptor.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>descriptor = imhog(image, cellSize, blockSize, bins)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Computes a normalized HOG descriptor from image gradients. cellSize and blockSize are [width height] values and bins is the orientation-bin count.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(rgb2gray(image), [128 160]);
+descriptor = imhog(image, [8 8], [2 2], 9);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+plot(descriptor);
+disp(size(descriptor));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect_SIFT">imdetect_SIFT</link></member><member><link linkend="imextract_DescriptorSIFT">imextract_DescriptorSIFT</link></member><member><link linkend="imcorner">imcorner</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

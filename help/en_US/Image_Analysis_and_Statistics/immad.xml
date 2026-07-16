@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immad" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immad</refname><refpurpose>Measure median absolute deviation.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = immad(image)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image or numeric array.</para></listitem></varlistentry><varlistentry><term>value</term><listitem><para>Median absolute deviation of all values.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns the median absolute deviation around the median intensity, a robust measure of image variation.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [64 96]);
+gray = rgb2gray(image);
+value = immad(gray);
+disp(value);
+imshow(image);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imvar">imvar</link></member><member><link linkend="imstdev2">imstdev2</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

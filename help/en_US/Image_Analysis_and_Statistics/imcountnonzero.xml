@@ -20,6 +20,20 @@
    </synopsis>
 </refsynopsisdiv>
 
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+      <varlistentry>
+         <term>im</term>
+         <listitem><para>Input numeric or boolean array.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+         <term>count</term>
+         <listitem><para>Number of nonzero elements.</para></listitem>
+      </varlistentry>
+   </variablelist>
+</refsection>
+
 <refsection role="arguments">
    <title>Arguments</title>
    <variablelist>
@@ -38,8 +52,27 @@
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-bw = [%t %f; %t %t];
-count = imcountnonzero(bw);
+image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
+mask = imcomplement(imbinarize(image, "otsu"));
+mask = imbwareaopen(mask, 80);
+
+foregroundPixels = imcountnonzero(mask);
+totalPixels = size(mask, 1) * size(mask, 2);
+foregroundPercent = 100 * foregroundPixels / totalPixels;
+
+mprintf("foreground pixels : %d\n", foregroundPixels);
+mprintf("foreground percent: %.2f%%\n", foregroundPercent);
+
+subplot(1, 2, 1);
+imshow(image);
+title("Input");
+subplot(1, 2, 2);
+imshow(mask);
+title("Counted foreground");
+
+rgb = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+channelCounts = imcountnonzero(rgb > 120);
+disp(channelCounts);
    ]]></programlisting>
 </refsection>
 

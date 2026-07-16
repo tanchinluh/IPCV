@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imstereosgbm" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imstereosgbm</refname><refpurpose>Estimate a smoothed stereo disparity map.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>disparity = imstereosgbm(left, right)
+disparity = imstereosgbm(left, right, numDisparities, blockSize)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>left, right</term><listitem><para>Rectified left and right stereo images with matching sizes.</para></listitem></varlistentry><varlistentry><term>numDisparities</term><listitem><para>Number of disparities to search. Default follows <function>imstereobm</function>.</para></listitem></varlistentry><varlistentry><term>blockSize</term><listitem><para>Odd matching block size. Default follows <function>imstereobm</function>.</para></listitem></varlistentry><varlistentry><term>disparity</term><listitem><para>Smoothed disparity map in pixels.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Provides a compact SGBM-style workflow by computing local block disparity and smoothing the result. It is an image-space macro baseline, not a replacement for a full OpenCV SGBM optimizer. Border pixels where the disparity search window cannot fit are returned as zero before smoothing.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[left = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+left = imresize(rgb2gray(left), [80 120]);
+shift = 6;
+right = left * 0;
+right(:, 1:$-shift) = left(:, shift+1:$);
+disparity = imstereosgbm(left, right, 10, 5);
+imshow(immat2gray(disparity), hot(64));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imstereobm">imstereobm</link></member><member><link linkend="imlocalmean">imlocalmean</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

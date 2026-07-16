@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtile" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtile</refname><refpurpose>Arrange images into a display mosaic.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>mosaic = imtile(images)
+mosaic = imtile(images, [rows cols])</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imtile</function> accepts a non-empty Scilab list, converts tiles to RGB uint8, resizes them to common dimensions, and arranges them in a grid.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image1 = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image1 = imresize(image1, [120 160]);
+image2 = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image2 = imresize(image2, [120 160]);
+image3 = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image3 = imresize(image3, [120 160]);
+image4 = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+image4 = imresize(image4, [120 160]);
+images = list(image1, image2, image3, image4);
+mosaic = imtile(images, [2 2]);
+imshow(mosaic);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imresize">imresize</link></member><member><link linkend="imshow">imshow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

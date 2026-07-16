@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtriangulate" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtriangulate</refname><refpurpose>Reconstruct 3D points from two calibrated views.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>points3d = imtriangulate(points1, points2, projection1, projection2)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>points1, points2</term><listitem><para>Matching 2-D image points from two views, one point per row as <literal>[x y]</literal>.</para></listitem></varlistentry><varlistentry><term>projection1, projection2</term><listitem><para>3-by-4 projection matrices for the two views.</para></listitem></varlistentry><varlistentry><term>points3d</term><listitem><para>Triangulated 3-D points, one point per row.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Uses OpenCV triangulation with two 3-by-4 projection matrices and matching N-by-2 image points. The result is N-by-3 Euclidean coordinates.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+left = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+right = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+subplot(1, 2, 1);
+imshow(left);
+subplot(1, 2, 2);
+imshow(right);
+points1 = [10 10; 20 12; 30 15; 40 18; 12 25; 24 28; 36 32; 48 35];
+points2 = [12 11; 24 13; 35 17; 46 21; 14 27; 26 31; 38 36; 52 41];
+projection1 = [100 0 0 0; 0 100 0 0; 0 0 1 0];
+projection2 = [100 0 0 -10; 0 100 0 0; 0 0 1 0];
+points3d = imtriangulate(points1, points2, projection1, projection2);
+disp(points3d);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imstereobm">imstereobm</link></member><member><link linkend="imsolvepnp">imsolvepnp</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced with an OpenCV 5 gateway.</td></tr></informaltable></refsection>
+</refentry>

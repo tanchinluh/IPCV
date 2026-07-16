@@ -1,93 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from addframe.sci using help_from_sci().
- *
- -->
-
 <refentry version="5.0-subset Scilab" xml:id="addframe" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:scilab="http://www.scilab.org"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-  <refnamediv>
-    <refname>addframe</refname>
-    <refpurpose>Add a frame to the video file. (Depreciated. Replaced by aviaddframe.)</refpurpose>
-  </refnamediv>
-
-
-<refsynopsisdiv>
-   <title>Syntax</title>
-   <synopsis>
-   n = addframe(n, im)
-   
-   </synopsis>
-</refsynopsisdiv>
-
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-        <varlistentry>
-            <term>n :</term>
-            <listitem><para> The opened video file index, the return value of avifile .</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>im :</term>
-            <listitem><para> The input image which must be UINT8 RGB image. If the image size is not the same with the argument dims of function avifile , the image will be resized to dims .</para></listitem>
-        </varlistentry>
-   </variablelist>
-</refsection>
-
-<refsection>
-   <title>Description</title>
-   <para>
-addframe add a frame to video file n.
-   </para>
-   <para>
-Video support for IPCV is only available when IPCV is compiled with OpenCV which support video I/O.
-   </para>
-   <para>
-</para>
-</refsection>
-
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
-im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-n = avifile('baboon.avi', [300;300], 30,'xvid');
-for ii=1:200
-ims = im(ii:512-ii, ii:512-ii, :);
-addframe(n, ims);
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>addframe</refname>
+        <refpurpose>Deprecated compatibility alias of aviaddframe.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>addframe(writer, image)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>writer</term>
+                <listitem><para>Valid video-writer handle returned by a successful call to <function>avifile</function>.</para></listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>image</term>
+                <listitem><para>Image to append. It is converted and resized to the writer format when required.</para></listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para><function>addframe</function> is retained for compatibility and uses the same native writer implementation as <function>aviaddframe</function>. New code should use <function>aviaddframe</function>.</para>
+        <para>The writer must have been created successfully. An error from <function>avifile</function> means that no valid handle exists for subsequent frame or close operations.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+outputFile = fullfile(TMPDIR, "addframe_compatibility.avi");
+if isfile(outputFile) then
+    mdelete(outputFile);
 end
 
-aviclose(n);
+writer = avifile(outputFile, [300; 300], 30, "MJPG");
 
-   ]]></programlisting>
-</refsection>
+for frameIndex = 1:30
+    frame = imrotate(image, 2 * (frameIndex - 1));
+    frame = imresize(frame, [300 300], "area");
+    addframe(writer, frame);
+end
 
-<refsection role="see also">
-   <title>See also</title>
-   <simplelist type="inline">
-   <member><link linkend="avifile">avifile</link></member>
-   <member><link linkend="aviopen">aviopen</link></member>
-   <member><link linkend="aviaddframe">aviaddframe</link></member>
-   <member><link linkend="aviclose">aviclose</link></member>
-   <member><link linkend="avicloseall">avicloseall</link></member>
-   <member><link linkend="avilistopened">avilistopened</link></member>
-   <member><link linkend="avireadframe">avireadframe</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Shiqi Yu</member>
-   <member>Tan Chin Luh</member>
-   </simplelist>
-</refsection>
+aviclose(writer);
+disp(outputFile);
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="aviaddframe">aviaddframe</link></member>
+            <member><link linkend="avifile">avifile</link></member>
+            <member><link linkend="aviclose">aviclose</link></member>
+            <member><link linkend="aviinfo">aviinfo</link></member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Authors</title>
+        <simplelist type="vert">
+            <member>Shiqi Yu</member>
+            <member>Tan Chin Luh</member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Documented as a deprecated compatibility alias of aviaddframe.</td></tr>
+        </informaltable>
+    </refsection>
 </refentry>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imfitline" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imfitline</refname><refpurpose>Fit a two-dimensional line to point coordinates.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>line = imfitline(points)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Fits a line using the principal direction of the point covariance. The result is [vx vy x0 y0], where [vx vy] is a unit direction and [x0 y0] is the point centroid.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [240 320]);
+points = [55 80; 105 100; 155 120; 205 140; 255 160];
+line = imfitline(points);
+imshow(image);
+plot(points(:, 1), points(:, 2), "ko");
+plot([line(3) - 120 * line(1) line(3) + 120 * line(1)], [line(4) - 120 * line(2) line(4) + 120 * line(2)], "r-");]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imellipsefit">imellipsefit</link></member><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

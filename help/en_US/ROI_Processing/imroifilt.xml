@@ -65,7 +65,7 @@ This function perform filtering over the region specified in mask.
    <programlisting role="example"><![CDATA[
 S = imread(fullpath(getIPCVpath() + "/images/balloons_gray.png."));
 mask = imroi(S);
-h = fspecial('unsharp');
+h = imfspecial('unsharp');
 S2 = imroifilt(S,h,mask);
 imshow(S2);
 

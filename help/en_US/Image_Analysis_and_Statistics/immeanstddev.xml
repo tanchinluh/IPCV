@@ -18,7 +18,7 @@
    <synopsis>
    [meanValue, stdValue] = immeanstddev(im)
    </synopsis>
-</refsynopsisdiv>
+</refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im</term><listitem><para>Input image or numeric array.</para></listitem></varlistentry><varlistentry><term>meanValue</term><listitem><para>Mean value. Multichannel inputs return one value per channel.</para></listitem></varlistentry><varlistentry><term>stdValue</term><listitem><para>Standard deviation value. Multichannel inputs return one value per channel.</para></listitem></varlistentry></variablelist></refsection>
 
 <refsection role="arguments">
    <title>Arguments</title>
@@ -47,8 +47,8 @@ im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
 <refsection role="see also">
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="mean2">mean2</link></member>
-   <member><link linkend="std2">std2</link></member>
+   <member><link linkend="immean2">immean2</link></member>
+   <member><link linkend="imstd2">imstd2</link></member>
    <member><link linkend="imminmax">imminmax</link></member>
    </simplelist>
 </refsection>

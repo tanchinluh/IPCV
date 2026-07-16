@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imiradon" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imiradon</refname><refpurpose>Reconstruct an image from Radon projections.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imiradon(projection, theta)
+out = imiradon(projection, theta, outputSize)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Performs a simple filtered-back-projection-style reconstruction from projections and their angles in degrees.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/circbw.tif"));
+image = imresize(image, [64 64]);
+theta = 0:10:170;
+[projection, radius] = imradon(image, theta);
+reconstructed = imiradon(projection, theta, 64);
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(projection, hot(64));
+subplot(1, 3, 3);
+imshow(reconstructed);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imradon">imradon</link></member><member><link linkend="imrotate">imrotate</link></member><member><link linkend="imhough">imhough</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

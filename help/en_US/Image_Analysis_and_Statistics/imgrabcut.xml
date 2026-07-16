@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgrabcut" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgrabcut</refname><refpurpose>Extract foreground with OpenCV GrabCut.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[mask, foreground] = imgrabcut(image, rect)
+[mask, foreground] = imgrabcut(image, rect, iterations)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input RGB or grayscale image.</para></listitem></varlistentry><varlistentry><term>rect</term><listitem><para>Initial foreground rectangle <literal>[x y width height]</literal> in upper-left image coordinates.</para></listitem></varlistentry><varlistentry><term>iterations</term><listitem><para>GrabCut iteration count. Default is <literal>5</literal>.</para></listitem></varlistentry><varlistentry><term>mask</term><listitem><para>Binary foreground mask.</para></listitem></varlistentry><varlistentry><term>foreground</term><listitem><para>Image with background pixels suppressed.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imgrabcut</function> runs GrabCut with an initial [x y width height] rectangle in upper-left image coordinates. mask contains 0 or 1 and foreground is black outside the detected foreground.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [240 320]);
+h = size(image, 1);
+w = size(image, 2);
+rect = [round(w * 0.08) round(h * 0.08) round(w * 0.84) round(h * 0.84)];
+[mask, foreground] = imgrabcut(image, rect, 5);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(foreground);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imsegkmeans">imsegkmeans</link></member><member><link linkend="imoverlaymask">imoverlaymask</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

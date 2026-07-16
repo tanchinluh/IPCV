@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcrop3" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org">
+  <refnamediv>
+    <refname>imcrop3</refname>
+    <refpurpose>Crop a 3D image volume.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>out = imcrop3(volume, startPoint, cropSize)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>volume</term>
+        <listitem><para>Input 3-D volume.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>startPoint</term>
+        <listitem><para>Three-element one-based start index <literal>[row col slice]</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cropSize</term>
+        <listitem><para>Three-element crop size <literal>[rows cols slices]</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>out</term>
+        <listitem><para>Cropped 3-D volume.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Extracts a sub-volume using one-based <literal>[row col slice]</literal>
+      start coordinates and <literal>[rows cols slices]</literal> dimensions.
+      For multipage image files returned by <function>imreadmulti</function>,
+      convert the page dimension to a scalar 3-D volume before cropping.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <para>
+      This example uses the public ImageJ MRI stack sample
+      <ulink url="https://imagej.net/ij/images/mri-stack.zip">mri-stack.zip</ulink>.
+    </para>
+    <programlisting role="example"><![CDATA[
+url = "https://imagej.net/ij/images/mri-stack.zip";
+zipFile = fullfile(TMPDIR, "ipcv_mri-stack.zip");
+outDir = fullfile(TMPDIR, "ipcv_mri-stack");
+stackFile = fullfile(outDir, "mri-stack.tif");
+
+if ~isfile(zipFile) then
+    http_get(url, zipFile, follow=%t, timeout=120);
+end
+
+if ~isfile(stackFile) then
+    if ~isdir(outDir) then
+        mkdir(outDir);
+    end
+    decompress(zipFile, outDir);
+end
+
+stack = imreadmulti(stackFile);
+volume = squeeze(stack(:, :, 1, :));
+
+startPoint = [45 35 6];
+cropSize = [140 120 16];
+cropped = imcrop3(volume, startPoint, cropSize);
+
+mprintf("input MRI volume : %d x %d x %d\n", size(volume, 1), size(volume, 2), size(volume, 3));
+mprintf("cropped volume   : %d x %d x %d\n", size(cropped, 1), size(cropped, 2), size(cropped, 3));
+
+subplot(2, 3, 1);
+imshow(volume(:, :, startPoint(3)));
+title("MRI slice 6");
+subplot(2, 3, 2);
+imshow(volume(:, :, startPoint(3) + round(cropSize(3) / 2)));
+title("MRI middle");
+subplot(2, 3, 3);
+imshow(volume(:, :, startPoint(3) + cropSize(3) - 1));
+title("MRI slice 21");
+
+subplot(2, 3, 4);
+imshow(cropped(:, :, 1));
+title("Cropped slice 1");
+subplot(2, 3, 5);
+imshow(cropped(:, :, round(size(cropped, 3) / 2)));
+title("Cropped middle");
+subplot(2, 3, 6);
+imshow(cropped(:, :, size(cropped, 3)));
+title("Cropped last");
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imcrop">imcrop</link></member>
+      <member><link linkend="imresize3">imresize3</link></member>
+      <member><link linkend="imshow3d">imshow3d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+    </informaltable>
+  </refsection>
+</refentry>

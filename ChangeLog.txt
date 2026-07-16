@@ -1,6 +1,6 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
-OpenCV 5.0.0 Development - Step 3 (10-Jul-26)
+OpenCV 5.0.0 Development - Step 3 (17-Jul-26)
 Image-processing completeness
 1. Add OpenCV-backed fixed, Otsu, and Triangle thresholding with normalized levels
 2. Add boolean-output imbinarize convenience API
@@ -13,6 +13,55 @@ Image-processing completeness
 9. Add MATLAB-style compatibility aliases for existing filters and denoisers, plus new imsharpen, imlaplacian, imgradientdirection, imlocalmean, and imlocalstd compositions
 10. Standardize 18 public image, filtering, statistics, binary, ROI, and boundary APIs around IPCV-style `im...` names; archive replaced non-`im` sources under `macros/old` and exclude them from macro builds
 11. Add executable `imfilter2` double-output filtering and optional-noise defaults to `imwiener2`
+12. Add `imflip`, `impadarray`, and `imtile` image workflow helpers
+13. Add `imbothat` as the MATLAB-style bottom-hat morphology entry point
+14. Add OpenCV 5 `imsegkmeans`, `imgrabcut`, and `imsuperpixels` segmentation APIs
+15. Add `imregionprops`, `imentropy`, `imrange`, and `imvar` analysis APIs
+16. Add `imordfilt`, `imcolfilt`, and `imflatfield` filtering and illumination APIs
+17. Add help examples, History sections, and focused stability coverage for the new functions
+18. Add Step 3 Batch 7 image workflows: imtranslate, imshowpair, imstretchlim, imlocalbrighten, imgrayconnected, imquantize, immultithresh, imbweuler, imbwdistgeodesic, imlabeln, imiradon, imhoughpeaks, imhoughlines, imcorner, imhog, imdeconvblind, and imdeconvreg
+19. Add Step 3 Batch 8 enhancement, morphology, analysis, ROI, matching, flow, lens-correction, and rectification functions with help and stability coverage
+20. Replace imnoise, improfile, and imphasecorr with Scilab 2026-compatible implementations and archive the legacy macros under macros/old
+21. Add Step 3 Batch 9 image APIs: imfloodfill, imlocalrange, imcolortransfer, imdiffusefilt, imguidedfilter, imseamlessclone, imlocalnormalize, imregister, imcalibratecamera, imstereobm, imstereosgbm, imfitline, and imellipsefit
+22. Add meaningful one-command-per-line help examples, Tan Chin Luh author metadata, History sections, and stability tests for Batch 9
+23. Skip duplicate proposed names where existing IPCV workflows already cover the use case: im2gray, imoverlay, imlabeloverlay, imregcorr, and imwarp
+24. Add Step 3 Batch 10 robust statistics: imautocorr, imskewness, imkurtosis, and immad
+25. Add FCM and active-contour segmentation plus phase-congruency and ridge response helpers
+26. Add 3D volume APIs: imresize3, imcrop3, imrotate3, imgradient3, imregionprops3, and imshow3d
+27. Add OpenCV 5 camera-geometry gateways: imsolvepnp, imestimatefundamental, and imtriangulate
+28. Add Batch 10 help examples, History metadata, and stability coverage; keep imfindcircles mapped to the existing imhoughc implementation
+29. Replace Batch 10 toy examples with OpenCV sample-data workflows and add smarties, fruits, and chessboard assets under images
+30. Refresh Batch 9 help examples with OpenCV sample images, practical image sizes, and image-based workflows for registration, stereo, calibration, filtering, and shape fitting
+31. Move volumetric APIs and help into the dedicated 3D Image Processing category and add practical volume visualization with imshow3d
+32. Refresh Batch 7 help examples with OpenCV sample images and visual workflows for thresholding, topology, Hough/Radon, corners, HOG, translation, matching, and deconvolution
+33. Refresh Batch 8 help examples with OpenCV sample images and visual workflows for histogram, texture, ROI, matching, optical-flow, lens, and rectification APIs
+34. Refresh Batch 6 help examples with OpenCV sample images and source/result views for spatial helpers, morphology, segmentation, region properties, statistics, and filtering
+35. Refresh Batch 5 help examples with OpenCV sample images for filtering, enhancement, local statistics, gradients, extrema, reconstruction, and binary measurement APIs
+36. Refresh Step 3 foundation help examples with OpenCV sample images for thresholding, binarization, connected components, labeling, area filtering, and border cleanup
+37. Add reusable dnn_forward_preset preprocessing for ImageNet, CLIP, and OpenCV Zoo metadata, including per-channel standard deviation
+38. Add dnn_forward_outputs for named or unconnected multiple-output inference with stable name/list pairing
+39. Add Step 3 Batch 11 adaptive threshold, GLCM, LBP, moments, color-mask, crop, local-variance, and 3-D filtering APIs with help and unit coverage
+40. Remove duplicate MATLAB-style help pages and canonicalize remaining examples and links to the active IPCV `im...` APIs
+41. Add Step 3 Batch 12 image conversion, lookup, distance, 3-D morphology, enhancement, volume, and point-geometry APIs with practical help examples and stability coverage
+42. Add Step 3 Batch 13 binary component/boundary helpers, image-reference structures, registration configuration, 3-D segmentation, bitwise/remapping utilities, and Harris/KAZE/AKAZE feature workflows
+43. Add OpenCV-based Harris and AKAZE/KAZE examples using project sample images, with author metadata, History sections, and focused unit coverage
+44. Skip duplicate Batch 13 proposals where existing IPCV workflows already cover the use case: im2gray, imstdfilt, imentropyfilt, imrangefilt, imnormxcorr2, imwarp, imregcorr, and imbwskel
+45. Revise all Batch 13 help examples with source-reference links and separate OpenCV-adapted and IPCV workflow example blocks
+46. Add browser-based imtool image inspection with zoom, pan, rotation, fit-to-window, pixel grids, RGB values, and RGB/grayscale/HSV/Lab/YCbCr views
+47. Add OpenCV-decoded video playback to imtool with pause, seek, frame stepping, playback rates, MP4/H.264/HEVC support where available, and paused-frame inspection
+48. Add temporal frame difference, motion heatmap, temporal average, sparse optical-flow overlays, and rendered-stream recording at 0.25x, 0.5x, 1x, or 2x output speed
+49. Add native OpenCV gateways for image k-means, GrabCut, superpixels, Harris/KAZE/AKAZE detection, KAZE/AKAZE descriptors, template matching, phase registration, solve-PnP, fundamental-matrix estimation, and triangulation
+50. Improve display and datatype contracts: normalized double colormap display in imshow, output-type preservation in filtering and padding helpers, and correct boolean-mask handling in morphology
+51. Correct image/plot coordinate overlays with rect2cart or sub2cart and fix boundary, Hough, corner, stereo, registration, and ellipse-fitting examples
+52. Correct imphasecorr rotation, scaling, and translation behavior through the OpenCV-backed registration gateway
+53. Fix component and marker operations in imbwpropfilt, imbwtraceboundary, imimposemin, and related examples; correct imellipsefit orientation with quadrant-aware angle calculation
+54. Audit help examples across categories, add missing Parameters/Authors/History sections, use meaningful OpenCV-related workflows, and remove stale duplicate MATLAB-style help pages
+55. Update avifile, aviaddframe, and addframe examples to use explicit writable destinations and MJPG AVI output; document addframe as a deprecated compatibility alias
+56. Add focused Step 3 Batch 7-13, visual-helper, imshow, imwiener2, and imtool tests and register them in the test manifest
+57. Add reusable DNN preprocessing presets and stable named multiple-output inference helpers
+58. Correct boolean-input handling in Feret measurement and 3-D binary area opening, morphology, perimeter, and cavity filling
+59. Stabilize exact-identity phase registration and retain finite normalized estimates for ambiguous size-mismatched inputs
+60. Complete a clean VS 2022 x64 build, repository validation, regenerated help, and the Windows stability suite with 35 passed and 0 failed
 
 OpenCV 5.0.0 Development - Step 2 (10-Jul-26)
 Correctness and test-foundation update for the OpenCV 5.0.0 backend

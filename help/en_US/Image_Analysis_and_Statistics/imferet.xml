@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imferet" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imferet</refname><refpurpose>Estimate foreground span and bounding-box orientation.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>result = imferet(image)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Binary or numeric 2-D image. Nonzero pixels are treated as foreground.</para></listitem></varlistentry><varlistentry><term>result</term><listitem><para>Structure containing Feret-style extent measurements for the foreground region.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a documented bounding-box approximation of the maximum Feret span, its diagonal angle, and the one-based bounding box.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+mask = image > 120;
+result = imferet(mask);
+disp(result);
+imshow(mask);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregionprops">imregionprops</link></member><member><link linkend="imboundingbox">imboundingbox</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

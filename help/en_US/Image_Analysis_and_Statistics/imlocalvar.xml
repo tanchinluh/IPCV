@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlocalvar" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlocalvar</refname><refpurpose>Calculate local image variance.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imlocalvar(image)
+out = imlocalvar(image, window)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>window</term><listitem><para>Scalar or two-element local window size. Default is <literal>[3 3]</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Local variance image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a local variance map derived from the local standard deviation. High values indicate textured or edge-rich neighborhoods.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+out = imlocalvar(image, [7 7]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(immat2gray(out), hot(64));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlocalstd">imlocalstd</link></member><member><link linkend="imtexture">imtexture</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

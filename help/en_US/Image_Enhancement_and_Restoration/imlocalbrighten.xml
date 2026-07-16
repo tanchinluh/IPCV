@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlocalbrighten" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlocalbrighten</refname><refpurpose>Brighten locally dark image regions.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imlocalbrighten(image)
+out = imlocalbrighten(image, amount, sigma)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Estimates a smooth background and lifts local shadows. Amount controls strength and sigma controls the background scale.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [120 160]);
+out = imlocalbrighten(image, 0.5, 10);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imadjust">imadjust</link></member><member><link linkend="imstretchlim">imstretchlim</link></member><member><link linkend="imgaussianblur">imgaussianblur</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

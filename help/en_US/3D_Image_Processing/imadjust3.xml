@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imadjust3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imadjust3</refname><refpurpose>Adjust a 3-D volume to the normalized intensity range.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imadjust3(volume)
+out = imadjust3(volume, [low high])</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Clips and linearly maps a 3-D volume to the range 0 to 1.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"))), [32 48]);
+volume = cat(3, slice, slice, slice);
+volume(:, :, 2) = volume(:, :, 2) * 0.6;
+out = imadjust3(volume);
+subplot(1, 2, 1);
+imshow(volume(:, :, 2));
+subplot(1, 2, 2);
+imshow(out(:, :, 2));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imnormalize">imnormalize</link></member><member><link linkend="imresize3">imresize3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

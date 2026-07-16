@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imopticalflow" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imopticalflow</refname><refpurpose>Estimate a translation flow field between images.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>flow = imopticalflow(first, second)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns a Scilab list containing horizontal and vertical flow matrices. The current implementation estimates a constant translation field using phase correlation.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[first = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+first = imresize(rgb2gray(first), [120 160]);
+second = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+second = imresize(rgb2gray(second), [120 160]);
+flow = imopticalflow(first, second);
+subplot(1, 2, 1);
+imshow(first);
+subplot(1, 2, 2);
+imshow(second);
+disp(size(flow(1)));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imphasecorr">imphasecorr</link></member><member><link linkend="imtranslate">imtranslate</link></member><member><link linkend="imreadmulti">imreadmulti</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

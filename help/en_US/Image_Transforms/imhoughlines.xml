@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imhoughlines" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imhoughlines</refname><refpurpose>Convert Hough peaks to image-border line segments.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>lines = imhoughlines(rho, theta, peaks, imageSize)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>rho</term><listitem><para>Distance vector returned by <function>imhough</function>.</para></listitem></varlistentry>
+<varlistentry><term>theta</term><listitem><para>Angle vector, in degrees, returned by <function>imhough</function>.</para></listitem></varlistentry>
+<varlistentry><term>peaks</term><listitem><para>Two-row matrix of <literal>[rho index; theta index]</literal> peaks returned by <function>imhoughpeaks</function>.</para></listitem></varlistentry>
+<varlistentry><term>imageSize</term><listitem><para>Source image dimensions. The first two values are interpreted as rows and columns.</para></listitem></varlistentry>
+<varlistentry><term>lines</term><listitem><para>One line segment per row in <literal>[x1 y1 x2 y2]</literal> image coordinates.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Converts Hough accumulator peak indices into line segments clipped to the image rectangle. Returned coordinates use the upper-left image origin. Convert the endpoints with <function>rect2cart</function> before drawing them with Scilab plotting functions.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/2lines.png"));
+gray = rgb2gray(image);
+edges = gray > 128;
+[accumulator, rho, theta] = imhough(edges);
+peaks = imhoughpeaks(accumulator, 2);
+lines = imhoughlines(rho, theta, peaks, size(edges));
+imshow(edges);
+axesHandle = gca();
+axesHandle.auto_clear = "off";
+for k = 1:size(lines, 1)
+    endpoints = [lines(k, 1) lines(k, 2); lines(k, 3) lines(k, 4)];
+    plotPoints = rect2cart(size(edges), endpoints);
+    plot(plotPoints(:, 1), plotPoints(:, 2), "r-");
+end
+disp(lines);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhough">imhough</link></member><member><link linkend="imhoughpeaks">imhoughpeaks</link></member><member><link linkend="imdrawmatches">imdrawmatches</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced with image-border clipping.</td></tr></informaltable></refsection>
+</refentry>

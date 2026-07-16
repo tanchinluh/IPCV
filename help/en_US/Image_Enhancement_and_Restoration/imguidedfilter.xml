@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imguidedfilter" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imguidedfilter</refname><refpurpose>Apply edge-aware guided filtering.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imguidedfilter(inputImage)
+out = imguidedfilter(inputImage, guide, radius, epsilon)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Uses a local linear model between the guide and input images. RGB inputs are converted to grayscale for the current macro implementation. The result is double precision.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[inputImage = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+inputImage = imresize(rgb2gray(inputImage), [120 160]);
+guide = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+guide = imresize(rgb2gray(guide), [120 160]);
+filtered = imguidedfilter(inputImage, guide, 4, 0.01);
+subplot(1, 3, 1);
+imshow(inputImage);
+subplot(1, 3, 2);
+imshow(guide);
+subplot(1, 3, 3);
+imshow(filtered);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlocalmean">imlocalmean</link></member><member><link linkend="imdiffusefilt">imdiffusefilt</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

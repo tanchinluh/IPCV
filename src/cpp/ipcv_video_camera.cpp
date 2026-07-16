@@ -2,6 +2,7 @@
 #include "ipcv_video_camera.h"
 
 #include <opencv2/core.hpp>
+#include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 
@@ -462,6 +463,64 @@ extern "C" IPCV_CORE_API int ipcv_avi_get_property(int handle, int property_id, 
     }
 
     *value = slot.cap.get(property_id);
+    return 0;
+}
+
+extern "C" IPCV_CORE_API int ipcv_avi_export_frame(int handle, int frame_index, const char *filename, char *error, int error_size)
+{
+    if (!valid_handle(handle))
+    {
+        copy_error(error, error_size, "video handle is out of range");
+        return -1;
+    }
+    if (filename == NULL || filename[0] == 0)
+    {
+        copy_error(error, error_size, "missing output filename");
+        return -1;
+    }
+    if (frame_index <= 0)
+    {
+        copy_error(error, error_size, "the frame index should be >= 1");
+        return -1;
+    }
+
+    VideoSlot& slot = avi_slots[handle - 1];
+    if (slot.is_writer || !slot.cap.isOpened())
+    {
+        copy_error(error, error_size, "the video file is not opened for reading");
+        return -1;
+    }
+
+    const double frame_count = slot.cap.get(cv::CAP_PROP_FRAME_COUNT);
+    if (frame_count > 0 && frame_index > frame_count)
+    {
+        copy_error(error, error_size, "the frame index is greater than the frame count");
+        return -1;
+    }
+
+    slot.cap.set(cv::CAP_PROP_POS_FRAMES, frame_index - 1);
+    cv::Mat image;
+    slot.cap >> image;
+    if (image.empty())
+    {
+        copy_error(error, error_size, "cannot read frame");
+        return -1;
+    }
+
+    try
+    {
+        if (!cv::imwrite(filename, image))
+        {
+            copy_error(error, error_size, "cannot write decoded frame");
+            return -1;
+        }
+    }
+    catch (const cv::Exception& exception)
+    {
+        copy_error(error, error_size, exception.what());
+        return -1;
+    }
+
     return 0;
 }
 

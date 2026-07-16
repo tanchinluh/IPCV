@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imresize3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imresize3</refname><refpurpose>Resize a 3D image volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imresize3(volume, outputSize)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>volume</term><listitem><para>Input 3-D volume.</para></listitem></varlistentry><varlistentry><term>outputSize</term><listitem><para>Three-element output size <literal>[rows cols slices]</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Resized 3-D volume.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Resizes a three-dimensional volume using nearest-neighbor sampling and [rows cols slices] output dimensions.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+gray = rgb2gray(image);
+slice2 = imtranslate(gray, [3 0]);
+slice3 = imtranslate(gray, [6 0]);
+volume = cat(3, gray, slice2, slice3);
+small = imresize3(volume, [60 80 2]);
+imshow3d(small, 1);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imresize">imresize</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

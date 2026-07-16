@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imautocorr" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imautocorr</refname><refpurpose>Compute normalized two-dimensional autocorrelation.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imautocorr(image)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input 2-D grayscale image.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Normalized 2-D autocorrelation image whose peak absolute value is one when the input has nonzero energy.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Computes the autocorrelation of a centered grayscale image using a Fourier-domain product and normalizes its peak to one.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+gray = rgb2gray(image);
+gray = imresize(gray, [64 96]);
+out = imautocorr(gray);
+subplot(1, 2, 1);
+imshow(gray);
+subplot(1, 2, 2);
+imshow(immat2gray(out));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcorr2">imcorr2</link></member><member><link linkend="imnorm">imnorm</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

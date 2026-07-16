@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imextract_DescriptorKAZE" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <refnamediv><refname>imextract_DescriptorKAZE</refname><refpurpose>Compute KAZE descriptors for image keypoints.</refpurpose></refnamediv>
+  <refsynopsisdiv><title>Syntax</title><synopsis>descriptors = imextract_DescriptorKAZE(image, features)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Image from which to compute descriptors.</para></listitem></varlistentry><varlistentry><term>features :</term><listitem><para>Feature object, normally returned by <link linkend="imdetect_KAZE">imdetect_KAZE</link>.</para></listitem></varlistentry><varlistentry><term>descriptors :</term><listitem><para>One descriptor row for each supplied keypoint.</para></listitem></varlistentry></variablelist></refsection>
+  <refsection><title>Description</title><para>Computes KAZE descriptors for an existing set of keypoints. Use the same image and feature object used for detection.</para></refsection>
+  <refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/db/d70/tutorial_akaze_matching.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+left = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+right = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+leftFeatures = imdetect_KAZE(left);
+rightFeatures = imdetect_KAZE(right);
+leftDescriptors = imextract_DescriptorKAZE(left, leftFeatures);
+rightDescriptors = imextract_DescriptorKAZE(right, rightFeatures);
+disp([size(leftDescriptors, 1) size(rightDescriptors, 1)]);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+features = imdetect_KAZE(image);
+descriptors = imextract_DescriptorKAZE(image, features);
+disp([features.n size(descriptors, 1) size(descriptors, 2)]);
+]]></programlisting></refsection>
+  <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect_KAZE">imdetect_KAZE</link></member><member><link linkend="imextract_DescriptorAKAZE">imextract_DescriptorAKAZE</link></member><member><link linkend="immatch_FLANN">immatch_FLANN</link></member></simplelist></refsection>
+  <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+  <refsection><title>Bibliography</title><para><ulink url="https://docs.opencv.org/master/db/d70/tutorial_akaze_matching.html">OpenCV AKAZE local feature matching tutorial</ulink>.</para></refsection>
+  <refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="impadarray" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>impadarray</refname>
+        <refpurpose>Pad a 2D or RGB image.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Syntax</title>
+        <synopsis>out = impadarray(image, padSize)
+out = impadarray(image, padSize, method)
+out = impadarray(image, padSize, "constant", padValue)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry><term>image</term><listitem><para>Input 2D or multichannel image.</para></listitem></varlistentry>
+            <varlistentry><term>padSize</term><listitem><para>Scalar padding for every side, <literal>[vertical horizontal]</literal> symmetric padding, or asymmetric <literal>[top bottom left right]</literal> padding.</para></listitem></varlistentry>
+            <varlistentry><term>method</term><listitem><para><literal>"constant"</literal> or <literal>"replicate"</literal>. The default is <literal>"constant"</literal>.</para></listitem></varlistentry>
+            <varlistentry><term>padValue</term><listitem><para>Scalar border value used by constant padding. The default is zero.</para></listitem></varlistentry>
+            <varlistentry><term>out</term><listitem><para>Padded image with the same datatype and channel count as <varname>image</varname>.</para></listitem></varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Adds a fixed-value border or extends the nearest edge pixels. Constant and replicate padding preserve the input datatype.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/dc/da3/tutorial_copyMakeBorder.html">OpenCV copyMakeBorder tutorial</ulink>.</para>
+        <para>Example 1: Add different amounts of padding to each image edge</para>
+        <programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+image = imresize(image, [120 160], "area");
+framed = impadarray(image, [10 25 20 35], "constant", 32);
+
+subplot(1, 2, 1);
+imshow(image);
+xtitle("Original 120 x 160 image");
+subplot(1, 2, 2);
+imshow(framed);
+xtitle("Asymmetric padding: top, bottom, left, right");
+]]></programlisting>
+        <para>Example 2: Compare constant and replicated edge padding</para>
+        <programlisting role="example"><![CDATA[
+patch = uint8([25 75 125; 50 100 150; 75 125 175]);
+constantPad = impadarray(patch, 2, "constant", 0);
+replicatePad = impadarray(patch, 2, "replicate");
+displaySize = [196 196];
+
+subplot(1, 3, 1);
+imshow(imresize(patch, displaySize, "nearest"), gray(256));
+xtitle("Original 3 x 3 patch");
+subplot(1, 3, 2);
+imshow(imresize(constantPad, displaySize, "nearest"), gray(256));
+xtitle("Constant zero padding");
+subplot(1, 3, 3);
+imshow(imresize(replicatePad, displaySize, "nearest"), gray(256));
+xtitle("Replicated edge padding");
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See also</title>
+        <simplelist type="inline">
+            <member><link linkend="imcrop">imcrop</link></member>
+            <member><link linkend="imresize">imresize</link></member>
+            <member><link linkend="imfilter">imfilter</link></member>
+        </simplelist>
+    </refsection>
+    <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+    <refsection>
+        <title>History</title>
+        <informaltable border="1">
+            <tr><td>Version</td><td>Description</td></tr>
+            <tr><td>5.0.0</td><td>Function introduced with constant and replicate padding.</td></tr>
+        </informaltable>
+    </refsection>
+</refentry>

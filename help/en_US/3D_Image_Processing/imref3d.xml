@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imref3d" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imref3d</refname><refpurpose>Create a 3D volume-coordinate reference structure.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>ref = imref3d(volumeSize); ref = imref3d(volumeSize, xWorldLimits, yWorldLimits, zWorldLimits)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Creates a Scilab structure containing volume size, world limits, and voxel extents for 3D processing.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/trunk/d6/d55/tutorial_table_of_content_calib3d.html">official OpenCV calibration and 3-D reconstruction documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+volume = zeros(32, 32, 8);
+ref = imref3d(size(volume));
+disp(ref.PixelExtentInWorldZ);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+ref = imref3d([64 80 12], [-40 40], [-32 32], [0 12]);
+disp(ref.XWorldLimits);
+disp(ref.ZWorldLimits);
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imref2d">imref2d</link></member><member><link linkend="improfile3">improfile3</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

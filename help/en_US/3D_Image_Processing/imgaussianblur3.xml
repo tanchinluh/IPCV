@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgaussianblur3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgaussianblur3</refname><refpurpose>Apply Gaussian smoothing to a 3-D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imgaussianblur3(volume)
+out = imgaussianblur3(volume, sigma)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Applies a bounded separable-style Gaussian kernel along the three volume axes and returns double values.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"))), [24 32]);
+volume = cat(3, slice, slice, slice);
+out = imgaussianblur3(volume, 1.2);
+subplot(1, 2, 1);
+imshow(volume(:, :, 2));
+subplot(1, 2, 2);
+imshow(out(:, :, 2));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgaussianblur">imgaussianblur</link></member><member><link linkend="imresize3">imresize3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

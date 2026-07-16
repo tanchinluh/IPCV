@@ -13,10 +13,14 @@
 </variablelist></refsection>
 <refsection><title>Description</title><para>The function uses OpenCV <function>connectedComponentsWithStats</function>. Background measurements are excluded from <varname>stats</varname> and <varname>centroids</varname>.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-image = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
-bw = imbinarize(image, "global");
-[labels, count, stats, centroids] = imconnectedcomponents(bw, 8);
-imshow(labels, jet(max(count, 1)));
+ image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+ image = imresize(rgb2gray(image), [120 160]);
+ bw = imbinarize(image, "global");
+ [labels, count, stats, centroids] = imconnectedcomponents(bw, 8);
+ subplot(1, 2, 1);
+ imshow(image);
+ subplot(1, 2, 2);
+ imshow(labels, jet(max(count, 1)));
 disp(stats);
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlabel">imlabel</link></member><member><link linkend="imblobprop">imblobprop</link></member><member><link linkend="imbinarize">imbinarize</link></member></simplelist></refsection>

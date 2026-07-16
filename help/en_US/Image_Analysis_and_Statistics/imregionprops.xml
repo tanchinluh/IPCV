@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imregionprops" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imregionprops</refname><refpurpose>Measure connected regions in a label image.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>props = imregionprops(labels)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>labels</term><listitem><para>2-D label matrix or binary mask.</para></listitem></varlistentry><varlistentry><term>props</term><listitem><para>Structure array of region measurements such as area, centroid, and bounding box.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imregionprops</function> returns a Scilab list of structures with Area, Centroid, BoundingBox, Perimeter, Extent, and PixelIdxList fields. Coordinates are [x y] with y increasing downward.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+mask = imthreshold(image, 120) > 0;
+[labels,count] = imconnectedcomponents(mask, 8);
+props = imregionprops(labels);
+disp(props(1).Area);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(imlabel2rgb(labels));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imarea">imarea</link></member><member><link linkend="imcentroid">imcentroid</link></member><member><link linkend="imbwboundaries">imbwboundaries</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

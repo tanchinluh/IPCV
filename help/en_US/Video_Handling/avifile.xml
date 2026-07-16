@@ -48,15 +48,7 @@
         </varlistentry>
         <varlistentry>
             <term>fourcc :</term>
-            <listitem><para> 4-character code of codec used to compress the frames.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>For e.g.:</term>
-            <listitem><para> 'xvid', 'mjpg', 'pim1', 'mp42', 'divx','flv1', etc.</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>Under windows:</term>
-            <listitem><para> </para></listitem>
+            <listitem><para>Four-character codec code. Common AVI choices include <literal>"MJPG"</literal>, <literal>"XVID"</literal>, and <literal>"DIVX"</literal>. Codec availability depends on the OpenCV video backend.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>n :</term>
@@ -69,13 +61,9 @@
    <title>Description</title>
    <para>
    </para>
-   <para>
-In order to use certain codec, the codec must be installed.
-   </para>
-   <para>
-For e.g., xvid required xvid codec (http://www.xvid.org) while the mpg required ffdshow codec. (http://www.free-codecs.com/ffdshow_download.htm)
-avifile create a new video file.
-   </para>
+   <para><function>avifile</function> creates a video writer through the OpenCV video I/O backend. The output directory must already exist and must be writable.</para>
+   <para>A relative filename is resolved from <function>pwd</function>. Use <function>fullfile</function> with an explicit destination such as <literal>TMPDIR</literal> when Scilab may have been launched from a protected directory.</para>
+   <para><literal>"MJPG"</literal> is the recommended broadly compatible codec for AVI output. Other FOURCC values may be remapped by FFmpeg or may be unavailable in a particular OpenCV build.</para>
    <para>
 After the video file is created, addframe can be used to add frame to the file. Remember to close the opened file using aviclose(n) or avicloseall().
    </para>
@@ -89,16 +77,23 @@ Video support for IPCV is only available when IPCV is compiled with OpenCV which
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-n = avifile('baboon.avi', [300;300], 30,'xvid');
+image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+outputFile = fullfile(TMPDIR, "baboon_zoom.avi");
+if isfile(outputFile) then
+    mdelete(outputFile);
+end
 
-for ii=1:200
-ims = im(ii:512-ii, ii:512-ii, :);
-aviaddframe(n, ims);
+n = avifile(outputFile, [300; 300], 30, "MJPG");
+
+for frameIndex = 1:90
+    margin = round((frameIndex - 1) * 1.5);
+    cropped = image(1 + margin:$ - margin, 1 + margin:$ - margin, :);
+    frame = imresize(cropped, [300 300], "area");
+    aviaddframe(n, frame);
 end
 
 aviclose(n);
-
+disp(outputFile);
    ]]></programlisting>
 </refsection>
 

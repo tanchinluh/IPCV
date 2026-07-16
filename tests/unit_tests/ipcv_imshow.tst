@@ -13,6 +13,7 @@ imshow(rgb);
 imshow(im2double(rgb));
 imshow(rgb2gray(im2double(rgb)));
 imshow(im2bw(rgb2gray(rgb), 0.5));
+imshow([0 0.5 1; 0.25 0.75 1], hot(64));
 imshow(im2int8(rgb));
 imshow(im2int16(rgb));
 imshow(im2int32(rgb));

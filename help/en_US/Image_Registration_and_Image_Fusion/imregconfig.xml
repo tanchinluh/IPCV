@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imregconfig" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imregconfig</refname><refpurpose>Create a registration configuration structure.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>config = imregconfig(); config = imregconfig(mode)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Returns a documented configuration structure for monomodal or multimodal registration. The current <function>imregister</function> implementation uses phase correlation, while this structure prepares future metric-based workflows.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/dd/d93/samples_2cpp_2image_alignment_8cpp-example.html">official OpenCV image-alignment example</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+config = imregconfig("monomodal");
+disp(config.Metric);
+disp(config.MaximumIterations);
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+config = imregconfig("multimodal");
+disp(config.Metric);
+disp(config.Optimizer);
+]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregister">imregister</link></member><member><link linkend="imphasecorr">imphasecorr</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>

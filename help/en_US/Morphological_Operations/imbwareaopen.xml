@@ -11,11 +11,14 @@ bwout = imbwareaopen(image, minSize, connectivity)</synopsis></refsynopsisdiv>
 </variablelist></refsection>
 <refsection><title>Description</title><para><function>imbwareaopen</function> labels the foreground with <function>imconnectedcomponents</function> and removes components smaller than the requested area.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-image = zeros(9, 9) == 1;
-image(2, 2) = %t;
-image(5:7, 5:7) = %t;
-clean = imbwareaopen(image, 4);
-imshow(clean);
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+image = ~imbinarize(image, "global");
+clean_image = imbwareaopen(image, 200);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(clean_image);
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imclearborder">imclearborder</link></member><member><link linkend="imlabel">imlabel</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>

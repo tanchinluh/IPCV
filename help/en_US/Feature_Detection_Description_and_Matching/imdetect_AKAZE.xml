@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imdetect_AKAZE" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <refnamediv><refname>imdetect_AKAZE</refname><refpurpose>Detect accelerated nonlinear-scale-space AKAZE features.</refpurpose></refnamediv>
+  <refsynopsisdiv><title>Syntax</title><synopsis>fobj = imdetect_AKAZE(image)</synopsis></refsynopsisdiv>
+  <refsection><title>Parameters</title><variablelist><varlistentry><term>image :</term><listitem><para>Input image. Color images are converted to uint8 grayscale internally.</para></listitem></varlistentry><varlistentry><term>fobj :</term><listitem><para>AKAZE keypoint object containing coordinates, scale, orientation, and response fields.</para></listitem></varlistentry></variablelist></refsection>
+  <refsection><title>Description</title><para>Detects AKAZE keypoints with OpenCV. AKAZE is an accelerated variant of the KAZE nonlinear scale-space detector.</para></refsection>
+  <refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/master/db/d70/tutorial_akaze_matching.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
+left = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+right = imread(fullpath(getIPCVpath() + "/images/opencv_left02.jpg"));
+leftFeatures = imdetect_AKAZE(left);
+rightFeatures = imdetect_AKAZE(right);
+imshow(left);
+plotfeature(leftFeatures);
+title("AKAZE features");
+]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+features = imdetect_AKAZE(image);
+imshow(image);
+plotfeature(features);
+title("AKAZE features on fruits");
+]]></programlisting></refsection>
+  <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect_KAZE">imdetect_KAZE</link></member><member><link linkend="imextract_DescriptorAKAZE">imextract_DescriptorAKAZE</link></member><member><link linkend="plotfeature">plotfeature</link></member></simplelist></refsection>
+  <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+  <refsection><title>Bibliography</title><para><ulink url="https://docs.opencv.org/master/db/d70/tutorial_akaze_matching.html">OpenCV AKAZE local feature matching tutorial</ulink>.</para></refsection>
+  <refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection>
+</refentry>

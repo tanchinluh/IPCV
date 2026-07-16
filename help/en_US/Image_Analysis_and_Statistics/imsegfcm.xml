@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imsegfcm" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imsegfcm</refname><refpurpose>Segment an image with fuzzy C-means clustering.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[labels, centers] = imsegfcm(image, clusterCount)
+[labels, centers] = imsegfcm(image, clusterCount, iterations, fuzziness)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>clusterCount</term><listitem><para>Number of fuzzy clusters. Must be at least <literal>2</literal>.</para></listitem></varlistentry><varlistentry><term>iterations</term><listitem><para>Positive iteration count. Default is <literal>20</literal>.</para></listitem></varlistentry><varlistentry><term>fuzziness</term><listitem><para>Fuzzy C-means exponent greater than <literal>1</literal>. Default is <literal>2</literal>.</para></listitem></varlistentry><varlistentry><term>labels</term><listitem><para>1-based cluster label image.</para></listitem></varlistentry><varlistentry><term>centers</term><listitem><para>Cluster center values.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Clusters grayscale intensity values with soft memberships and returns the winning one-based label and cluster centers.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(image, [24 32]);
+gray = rgb2gray(image);
+[labels, centers] = imsegfcm(gray, 4, 3, 2);
+segmented = imlabel2rgb(labels);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(segmented);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imsegkmeans">imsegkmeans</link></member><member><link linkend="imlabel2rgb">imlabel2rgb</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

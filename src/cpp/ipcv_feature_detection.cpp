@@ -729,6 +729,22 @@ extern "C" IPCV_CORE_API int ipcv_detect_gftt(const IpcvDecodedImage *source, in
     return run_detector(source, detector, keypoints, "missing GFTT image input");
 }
 
+extern "C" IPCV_CORE_API int ipcv_detect_harris(const IpcvDecodedImage *source, int max_corners, double quality_level, double min_distance, int block_size, double k, IpcvKeypointMatrix *keypoints)
+{
+    cv::Ptr<cv::GFTTDetector> detector = cv::GFTTDetector::create(max_corners, quality_level, min_distance, block_size, true, k);
+    return run_detector(source, detector, keypoints, "missing Harris image input");
+}
+
+extern "C" IPCV_CORE_API int ipcv_detect_kaze(const IpcvDecodedImage *source, IpcvKeypointMatrix *keypoints)
+{
+    return run_detector(source, cv::xfeatures2d::KAZE::create(), keypoints, "missing KAZE image input");
+}
+
+extern "C" IPCV_CORE_API int ipcv_detect_akaze(const IpcvDecodedImage *source, IpcvKeypointMatrix *keypoints)
+{
+    return run_detector(source, cv::xfeatures2d::AKAZE::create(), keypoints, "missing AKAZE image input");
+}
+
 extern "C" IPCV_CORE_API int ipcv_detect_mser(const IpcvDecodedImage *source, int delta, int min_area, int max_area, double max_variation, double min_diversity, int max_evolution, double area_threshold, double min_margin, int edge_blur_size, IpcvKeypointMatrix *keypoints)
 {
     cv::Ptr<cv::MSER> detector = cv::MSER::create(delta, min_area, max_area, max_variation, min_diversity, max_evolution, area_threshold, min_margin, edge_blur_size);
@@ -829,6 +845,16 @@ extern "C" IPCV_CORE_API int ipcv_compute_surf_descriptors(const IpcvDecodedImag
         set_image_error(descriptors, "unknown SURF descriptor extraction failure");
         return -1;
     }
+}
+
+extern "C" IPCV_CORE_API int ipcv_compute_kaze_descriptors(const IpcvDecodedImage *source, const IpcvKeypointMatrix *keypoints, IpcvDecodedImage *descriptors)
+{
+    return run_descriptor_extractor(source, keypoints, cv::xfeatures2d::KAZE::create(), descriptors, "missing KAZE descriptor input");
+}
+
+extern "C" IPCV_CORE_API int ipcv_compute_akaze_descriptors(const IpcvDecodedImage *source, const IpcvKeypointMatrix *keypoints, IpcvDecodedImage *descriptors)
+{
+    return run_descriptor_extractor(source, keypoints, cv::xfeatures2d::AKAZE::create(), descriptors, "missing AKAZE descriptor input");
 }
 
 extern "C" IPCV_CORE_API int ipcv_match_bruteforce(const IpcvDecodedImage *left, const IpcvDecodedImage *right, int norm_type, IpcvMatchMatrix *matches)

@@ -62,10 +62,14 @@ The only diffence of imfilter2 with imfilter is the output of imfilter2 is doubl
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-filter = imfspecial('sobel');
-imf = imfilter2(im,filter);
-imshow(imf);
+im = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+im = imresize(rgb2gray(im), [120 160]);
+filter = imfspecial("sobel");
+imf = imfilter2(im, filter);
+subplot(1, 2, 1);
+imshow(im);
+subplot(1, 2, 2);
+imshow(immat2gray(imf));
 
    ]]></programlisting>
 </refsection>

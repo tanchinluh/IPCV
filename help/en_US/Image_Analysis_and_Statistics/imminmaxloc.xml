@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="imminmaxloc" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
 <refnamediv><refname>imminmaxloc</refname><refpurpose>Compute per-channel extrema and their first locations.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>[minValue, maxValue, minLocation, maxLocation] = imminmaxloc(im)</synopsis></refsynopsisdiv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[minValue, maxValue, minLocation, maxLocation] = imminmaxloc(im)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im</term><listitem><para>Input 2-D image or numeric matrix.</para></listitem></varlistentry><varlistentry><term>minValue, maxValue</term><listitem><para>Minimum and maximum values.</para></listitem></varlistentry><varlistentry><term>minLocation, maxLocation</term><listitem><para>Locations of the extrema as <literal>[x y]</literal> image coordinates.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para><function>imminmaxloc</function> returns per-channel minimum and maximum values with first [row column] locations.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 im = uint8([0 10; 20 30]);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="immse" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
 <refnamediv><refname>immse</refname><refpurpose>Compute mean squared error between two images.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>value = immse(im1, im2)</synopsis></refsynopsisdiv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = immse(im1, im2)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im1, im2</term><listitem><para>Images with matching sizes.</para></listitem></varlistentry><varlistentry><term>value</term><listitem><para>Mean squared error between the two images.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para><function>immse</function> computes the mean squared pixel difference across all channels.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 im = uint8([0 10; 20 30]);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlocalcontrast" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlocalcontrast</refname><refpurpose>Enhance local image contrast.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imlocalcontrast(image)
+out = imlocalcontrast(image, sigma, amount)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Subtracts a Gaussian local background and adds the scaled detail component. Output is double-valued in the range 0 to 1.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+out = imlocalcontrast(image, 3, 1);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlocalbrighten">imlocalbrighten</link></member><member><link linkend="imsharpen">imsharpen</link></member><member><link linkend="imgaussianblur">imgaussianblur</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

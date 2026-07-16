@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imcorner" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imcorner</refname><refpurpose>Detect strong image corners.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>corners = imcorner(image)
+corners = imcorner(image, maxCorners, qualityLevel, minDistance)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns [x y] image coordinates for Shi-Tomasi-style corners detected from the grayscale image. Image coordinates use the upper-left origin. Convert them with <function>rect2cart</function> before overlaying them with Scilab <function>plot</function>, whose y-axis uses a lower-left Cartesian origin.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [240 320]);
+corners = imcorner(image, 80, 0.01, 4);
+imshow(image);
+pts = rect2cart(size(image)(1:2), corners);
+plot(pts(:, 1), pts(:, 2), "r+");]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imdetect_GFTT">imdetect_GFTT</link></member><member><link linkend="imdetect_FAST">imdetect_FAST</link></member><member><link linkend="imdetect_SIFT">imdetect_SIFT</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

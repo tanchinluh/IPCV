@@ -19,4 +19,11 @@ overlayBoundary = imoverlaymask(image, mask, [255 0 0], 0.5, %t);
 assert_checkequal(size(overlayBoundary), [20 30 3]);
 assert_checktrue(max(double(overlayBoundary(:, :, 1))) == 255);
 
+boolMask = mask <> 0;
+overlayBool = imoverlaymask(image, boolMask, [255 0 0], 0.5, %f);
+assert_checkequal(overlayBool, overlay);
+
+overlayBoolBoundary = imoverlaymask(image, boolMask, [255 0 0], 0.5, %t);
+assert_checkequal(overlayBoolBoundary, overlayBoundary);
+
 //==============================================================================

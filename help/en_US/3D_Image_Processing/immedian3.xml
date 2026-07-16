@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="immedian3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>immedian3</refname><refpurpose>Apply median filtering to a 3-D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = immedian3(volume)
+out = immedian3(volume, window)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Replaces each voxel with the median of its bounded 3-D neighborhood.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"))), [16 24]);
+volume = cat(3, slice, slice, slice);
+volume(8, 12, 2) = 255;
+out = immedian3(volume, [3 3 3]);
+subplot(1, 2, 1);
+imshow(volume(:, :, 2));
+subplot(1, 2, 2);
+imshow(out(:, :, 2));
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="immedianfilt">immedianfilt</link></member><member><link linkend="imgaussianblur3">imgaussianblur3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

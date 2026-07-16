@@ -1,6 +1,6 @@
 # IPCV Roadmap
 
-Last updated: 10-Jul-26
+Last updated: 17-Jul-26
 
 IPCV follows the OpenCV release used by its native backend. The active baseline
 is OpenCV/OpenCV contrib 5.0.0. During rapid development, roadmap Steps track
@@ -23,9 +23,9 @@ release preparation.
 | --- | --- | --- | --- |
 | OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration is on `master` and tagged `5.0.0`. | Continue improvements on `codex/new-features`. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
-| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 27/27 and release 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
-| Step 3 - Image processing completeness | **In progress** | Batches 1-5 add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, and binary compatibility APIs. | Continue the priority gaps in the capability matrix. |
-| Step 4 - DNN and OpenCV Zoo workflows | **Planned** | Scope defined below. | Requires stable DNN contracts and model fixtures. |
+| Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 35/35; the earlier release suite passed 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static repository checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
+| Step 3 - Image processing completeness | **In progress** | Batches 1-13 add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, transforms, restoration, Hough post-processing, feature helpers, matching, registration, lens correction, stereo, 3-D processing, segmentation, and shape fitting. Windows stability is 35/35. | Continue the priority gaps in the capability matrix and validate on macOS/Linux. |
+| Step 4 - DNN and OpenCV Zoo workflows | **In progress** | Added reusable preprocessing and multiple-output inference entry points. | Add broader model fixtures, decoder validation, and download integrity checks. |
 | Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
 | Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
 
@@ -86,6 +86,15 @@ Current progress:
 - Validate metadata, help XML, links, examples, gateway registration, and
   generated loader contents. **Metadata, XML, links, gateways, test references,
   machine paths, and Windows artifacts implemented; runnable help-example checks pending**
+- Audit help examples that overlay `plot()` output on `imshow()` images. Image
+  functions use an upper-left image origin, while Scilab plotting uses a
+  lower-left Cartesian origin, so examples must convert coordinates with
+  `rect2cart()` or `sub2cart()`. **`imcorner` corrected; wider audit pending**
+- Add missing `Parameters` sections to help pages. Initial audit found 182
+  user-facing pages with a syntax block but no parameter documentation; the
+  `Image_Analysis_and_Statistics` category has been remediated, leaving 122
+  pages mostly in enhancement, morphology, registration, DNN, and video help.
+  Fix these with real per-function parameter text, not generated filler.
 
 Exit criteria:
 
@@ -120,6 +129,67 @@ Current work:
 - Standardize public names around the `im...` convention, add executable
   `imfilter2`, and archive replaced non-`im` sources under `macros/old`.
   **Batch 5 implemented**
+- Add spatial helpers, morphology naming, segmentation, region properties,
+  image statistics, neighborhood filtering, and flat-field correction:
+  `imflip`, `impadarray`, `imtile`, `imbothat`, `imsegkmeans`, `imgrabcut`,
+  `imsuperpixels`, `imregionprops`, `imentropy`, `imrange`, `imvar`,
+  `imordfilt`, `imcolfilt`, and `imflatfield`.
+  **Batch 6 implemented; Windows stability coverage 28/28**
+- Add `imtranslate`, `imshowpair`, `imstretchlim`, `imlocalbrighten`,
+  `imgrayconnected`, `imquantize`, and `immultithresh` for spatial, display,
+  enhancement, and intensity-analysis workflows.
+- Add `imbweuler`, `imbwdistgeodesic`, `imlabeln`, `imiradon`, `imhoughpeaks`,
+  `imhoughlines`, `imcorner`, `imhog`, `imdeconvblind`, and `imdeconvreg`.
+  **Batch 7 implemented; Windows stability coverage 29/29**
+- Add enhancement, morphology, texture, ROI, matching, flow, calibration, and
+  rectification helpers: `imhistmatch`, `imlocalcontrast`, `imhmax`, `imhmin`,
+  `imimposemin`, `immajority`, `imlocalentropy`, `imtexture`, `imroi2mask`,
+  `immeanshift`, `imtemplatematch`, `imbackproject`, `imopticalflow`,
+  `imundistort`, and `imrectify`. Document `imnoise`, `improfile`, and
+  `imphasecorr` in the same workflow batch.
+  **Batch 8 implemented; Windows stability coverage 30/30**
+- Add `imfloodfill`, `imlocalrange`, `imcolortransfer`, `imdiffusefilt`,
+  `imguidedfilter`, `imseamlessclone`, `imlocalnormalize`, `imregister`,
+  `imcalibratecamera`, `imstereobm`, `imstereosgbm`, `imfitline`, and
+  `imellipsefit` with meaningful examples and History metadata.
+  **Batch 9 implemented; Windows stability coverage 30/30**
+- Skip proposed duplicates where an established IPCV workflow already exists:
+  `im2gray`, `imoverlay`, `imlabeloverlay`, `imregcorr`, and `imwarp`.
+- Add Batch 10 statistics, segmentation, 3D volume, and camera-geometry
+  functions: `imautocorr`, `imskewness`, `imkurtosis`, `immad`,
+  `imsegfcm`, `imsegactivecontour`, `imphasecong`, `imridge`,
+  `imresize3`, `imcrop3`, `imrotate3`, `imgradient3`,
+  `imregionprops3`, `imshow3d`, `imsolvepnp`,
+  `imestimatefundamental`, and `imtriangulate`.
+  **Batch 10 implemented; focused Windows stability coverage passes.**
+- Add Step 3 Batch 11 APIs: `imadaptthresh`, `imgradientweight`, `imgraycomatrix`,
+  `imgraycoprops`, `imlbp`, `immoments`, `imorientation`, `imferet`,
+  `imlocalvar`, `imcolormask`, `imresizecrop`, `imadjust3`,
+  `imgaussianblur3`, `immedian3`, and `imboxfilt3`.
+  **Batch 11 implemented; focused test coverage added.**
+- Add Step 3 Batch 12 APIs: `im2uint32`, `imlut`, `imapplycolormap`,
+  `imintegral`, `imbwdist`, `imgraydist`, `imbwulterode`, `imlocallapfilt`,
+  `imreducehaze`, `improfile3`, `imtranslate3`, `imregionalmax3`, `imbwmorph3`,
+  `imminarearect`, and `imminenclosingcircle`, with practical examples and
+  focused stability coverage. **Batch 12 implemented; Windows runtime validation passes.**
+- Skip Batch 12 duplicates: `im2gray`, `imstdfilt`, `imentropyfilt`,
+  `imrangefilt`, `imwarp`, and `imregcorr` because active IPCV equivalents
+  already provide those workflows.
+- Skip `imfindcircles` because `imhoughc` already exposes the native
+  OpenCV Hough-circle implementation.
+- Add Step 3 Batch 13: `imbwpropfilt`, `imbwtraceboundary`, `imref2d`, `imref3d`,
+  `imregconfig`, `imdetect_HARRIS`, `imdetect_KAZE`, `imdetect_AKAZE`,
+  `imextract_DescriptorKAZE`, `imextract_DescriptorAKAZE`, `imdrawkeypoints`,
+  `imbitwise`, `imconvertmaps`, `imsegkmeans3`, `imbwareaopen3`, `imbwperim3`,
+  and `imfill3`. **Batch 13 implementation and Windows runtime validation pass.**
+- Skip Batch 13 duplicates: `im2gray` (`rgb2gray`/`immat2gray`), `imstdfilt`
+  (`imlocalstd`), `imentropyfilt` (`imlocalentropy`), `imrangefilt`
+  (`imlocalrange`), `imnormxcorr2` (`imtemplatematch`), `imwarp`
+  (`imtransform` and affine/perspective helpers), `imregcorr` (`imphasecorr`),
+  and `imbwskel` (`imthin`/`imbwmorph`).
+- Revise Batch 13 help examples with visible OpenCV source references and two
+  separately executable example blocks per function: one adapted from OpenCV
+  and one IPCV-specific workflow.
 
 Planned follow-up:
 
@@ -141,19 +211,19 @@ Exit criteria:
 
 ## Step 4 - DNN And OpenCV Zoo Workflows
 
-Status: **Planned**
+Status: **In progress**
 
 Goal: make real model inference easier to reproduce than assembling raw OpenCV
 DNN calls by hand.
 
-Planned work:
+Current work and planned work:
 
 - Formalize preprocessing specifications: resize policy, crop, color order,
   scalar/per-channel scale, mean, standard deviation, and layout.
 - Expand tested decoders for classification, YOLO-family detection, SSD,
   segmentation, face detection, pose estimation, and selected Zoo models.
 - Add batch inference and named/multiple-output support with stable tensor shape
-  conventions.
+  conventions. **Multiple named outputs implemented; batch tensors remain planned**
 - Improve `opencv_zoo_gui` with cached metadata, checksums, download progress,
   cancellation, destination validation, and generated runnable examples.
 - Report available OpenCV DNN backends/targets and provide clear fallback errors.

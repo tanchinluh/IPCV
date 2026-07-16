@@ -18,6 +18,7 @@ S_gray_double = rgb2gray(S_rgb_double);
 imshow(S_gray_double);
 S_binary = im2bw(S_gray_uint8,0.5);
 imshow(S_binary);
+imshow(immat2gray(double(S_gray_uint8)), hot(64));
 S_rgb_int8 = im2int8(S_rgb_uint8);
 imshow(S_rgb_int8);
 S_rgb_int16 = im2int16(S_rgb_uint8);

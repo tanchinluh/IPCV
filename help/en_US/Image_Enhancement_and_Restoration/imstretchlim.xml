@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imstretchlim" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imstretchlim</refname><refpurpose>Estimate limits for contrast stretching.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>limits = imstretchlim(image)
+limits = imstretchlim(image, [low high])</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns low and high normalized intensity limits for each channel using robust histogram percentiles. The limits are suitable for <function>imadjust</function> source ranges.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = im2double(imresize(image, [120 160]));
+limits = imstretchlim(image, [0.01 0.99]);
+out = imadjust(image, limits, [0 1]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imadjust">imadjust</link></member><member><link linkend="imlocalbrighten">imlocalbrighten</link></member><member><link linkend="imhist">imhist</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

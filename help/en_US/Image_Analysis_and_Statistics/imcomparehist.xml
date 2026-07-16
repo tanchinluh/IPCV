@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="imcomparehist" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
 <refnamediv><refname>imcomparehist</refname><refpurpose>Compare two histograms.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>value = imcomparehist(h1, h2, method)</synopsis></refsynopsisdiv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = imcomparehist(h1, h2, method)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>h1, h2</term><listitem><para>Histograms to compare. They are flattened before comparison and must have the same number of elements.</para></listitem></varlistentry><varlistentry><term>method</term><listitem><para>Comparison method: <literal>"correlation"</literal>, <literal>"chisqr"</literal>, <literal>"intersection"</literal>, or <literal>"bhattacharyya"</literal>. Default is <literal>"correlation"</literal>.</para></listitem></varlistentry><varlistentry><term>value</term><listitem><para>Scalar comparison result. Interpretation depends on the selected method.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para>Supported methods are <literal>correlation</literal>, <literal>chisqr</literal>, <literal>intersection</literal>, and <literal>bhattacharyya</literal>.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
-[h, cells] = imcalchist(uint8([0 1; 1 2]), 3);
-value = imcomparehist(h, h);
+// Compare one image with itself, a brightness-shifted copy, and a different scene.
+base = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+base = imresize(base, [240 320]);
+brighter = im2uint8(min(im2double(base) * 1.35, 1));
+different = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+different = imresize(different, [240 320]);
+
+[hBase, cells] = imcalchist(base, 32);
+[hSame, cells] = imcalchist(base, 32);
+[hBright, cells] = imcalchist(brighter, 32);
+[hDifferent, cells] = imcalchist(different, 32);
+
+hBase = hBase / sum(hBase);
+hSame = hSame / sum(hSame);
+hBright = hBright / sum(hBright);
+hDifferent = hDifferent / sum(hDifferent);
+
+// Correlation: larger is more similar. Bhattacharyya: smaller is more similar.
+sameCorrelation = imcomparehist(hBase, hSame, "correlation");
+brightCorrelation = imcomparehist(hBase, hBright, "correlation");
+differentCorrelation = imcomparehist(hBase, hDifferent, "correlation");
+sameDistance = imcomparehist(hBase, hSame, "bhattacharyya");
+brightDistance = imcomparehist(hBase, hBright, "bhattacharyya");
+differentDistance = imcomparehist(hBase, hDifferent, "bhattacharyya");
+
+mprintf("Comparison       Correlation    Bhattacharyya\n");
+mprintf("same image       %8.4f       %8.4f\n", sameCorrelation, sameDistance);
+mprintf("brighter copy    %8.4f       %8.4f\n", brightCorrelation, brightDistance);
+mprintf("different image  %8.4f       %8.4f\n", differentCorrelation, differentDistance);
+
+subplot(2, 2, 1);
+imshow(base);
+title("Base");
+subplot(2, 2, 2);
+imshow(brighter);
+title("Brighter copy");
+subplot(2, 2, 3);
+imshow(different);
+title("Different image");
+subplot(2, 2, 4);
+plot(cells, hBase(:, 1), "r");
+plot(cells, hBright(:, 1), "m");
+plot(cells, hDifferent(:, 1), "b");
+title("Red-channel normalized histograms");
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imcalchist">imcalchist</link></member><member><link linkend="imhist2">imhist2</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>

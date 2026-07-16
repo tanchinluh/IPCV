@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imquantize" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imquantize</refname><refpurpose>Quantize image intensities into numbered regions.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[out, edges] = imquantize(image, edges)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>edges</term><listitem><para>Threshold edges. If a scalar is provided, thresholds are estimated with <function>immultithresh</function>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Quantized label image.</para></listitem></varlistentry><varlistentry><term>edges</term><listitem><para>Threshold values used for quantization.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Assigns each pixel to an interval defined by the sorted threshold vector. Output labels start at one.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+[labels, edges] = imquantize(image, [64 128 192]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(labels, hot(4));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="immultithresh">immultithresh</link></member><member><link linkend="imthreshold">imthreshold</link></member><member><link linkend="imlabel2rgb">imlabel2rgb</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

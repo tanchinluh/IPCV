@@ -1,87 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
- *
- * This help file was generated from improfile.sci using help_from_sci().
- *
- -->
-
-<refentry version="5.0-subset Scilab" xml:id="improfile" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns3="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:scilab="http://www.scilab.org"
-          xmlns:db="http://docbook.org/ns/docbook">
-
-  <refnamediv>
-    <refname>improfile</refname>
-    <refpurpose>Return profiles for the selected 2 points</refpurpose>
-  </refnamediv>
-
-
-<refsynopsisdiv>
-   <title>Syntax</title>
-   <synopsis>
-   [xc,yc,pixval] = improfile(S)
-   
-   </synopsis>
-</refsynopsisdiv>
-
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-        <varlistentry>
-            <term>S :</term>
-            <listitem><para> Image matrix in Scilab</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>xc :</term>
-            <listitem><para> x-coordinates for the selected points</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>yc :</term>
-            <listitem><para> y-coordinates for the selected points</para></listitem>
-        </varlistentry>
-        <varlistentry>
-            <term>pixval :</term>
-            <listitem><para> Correspond pixels' values along the selected points</para></listitem>
-        </varlistentry>
-   </variablelist>
-</refsection>
-
-<refsection>
-   <title>Description</title>
-   <para>
-This function provides interactive way to select 2 points on an image
-and returned with the line profile. Use left mouse click to select 2
-points and the image profile would be computed and ploted on a new graph.
-   </para>
-   <para>
-</para>
-</refsection>
-
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
-S = imread(fullpath(getIPCVpath() + "/images/balloons.png"));
-improfile(S);
-
-   ]]></programlisting>
-</refsection>
-
-<refsection role="see also">
-   <title>See also</title>
-   <simplelist type="inline">
-   <member><link linkend="impixel">impixel</link></member>
-   </simplelist>
-</refsection>
-
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Tan Chin Luh</member>
-   </simplelist>
-</refsection>
+<refentry version="5.0-subset Scilab" xml:id="improfile" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>improfile</refname><refpurpose>Sample image values along a line.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[x, y, values] = improfile(image, points)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image.</para></listitem></varlistentry><varlistentry><term>points</term><listitem><para>N-by-2 polyline points as <literal>[x y]</literal> image coordinates.</para></listitem></varlistentry><varlistentry><term>x, y</term><listitem><para>Sampled image-coordinate positions along the profile.</para></listitem></varlistentry><varlistentry><term>values</term><listitem><para>Sampled grayscale values or RGB rows along the profile.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Samples grayscale or RGB values between successive [x y] points using the upper-left image origin. Explicit points are required; the old interactive graphics implementation is archived under macros/old.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+points = [20 20; 180 120];
+[x, y, values] = improfile(image, points);
+disp(size(values));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imroi2mask">imroi2mask</link></member><member><link linkend="imread">imread</link></member><member><link linkend="imshow">imshow</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Documented in the OpenCV 5 development line.</td></tr></informaltable></refsection>
 </refentry>

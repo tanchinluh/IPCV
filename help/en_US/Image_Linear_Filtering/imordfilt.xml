@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imordfilt" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imordfilt</refname><refpurpose>Apply an order-statistic filter.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imordfilt(image, order, window)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para><function>imordfilt</function> selects a rank value from each replicated-border neighborhood. Window dimensions must be positive odd integers. Integer input images return the same integer class as the input; double input images return double output.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+out = imordfilt(image, 5, [5 5]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="immedian">immedian</link></member><member><link linkend="imcolfilt">imcolfilt</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imentropy" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imentropy</refname><refpurpose>Compute image Shannon entropy.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>value = imentropy(image)
+value = imentropy(image, bins)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>bins</term><listitem><para>Number of histogram bins used to estimate entropy. Default is <literal>256</literal>.</para></listitem></varlistentry><varlistentry><term>value</term><listitem><para>Scalar Shannon entropy estimate.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imentropy</function> computes base-2 Shannon entropy from the image histogram. RGB input is converted to grayscale.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+value = imentropy(image);
+disp(value);
+imshow(image);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhist">imhist</link></member><member><link linkend="imcalchist">imcalchist</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtexture" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtexture</refname><refpurpose>Compute local texture statistic maps.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>result = imtexture(image)
+result = imtexture(image, window)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input image.</para></listitem></varlistentry><varlistentry><term>window</term><listitem><para>Scalar or two-element local window size. Default is <literal>[7 7]</literal>.</para></listitem></varlistentry><varlistentry><term>result</term><listitem><para>Structure containing local <literal>Mean</literal>, <literal>Std</literal>, <literal>Entropy</literal>, and <literal>Contrast</literal> maps.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a structure containing Mean, Std, Entropy, and Contrast maps from a sliding neighborhood.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+result = imtexture(image, [7 7]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(result.Contrast, hot(64));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlocalentropy">imlocalentropy</link></member><member><link linkend="imlocalstd">imlocalstd</link></member><member><link linkend="imlocalmean">imlocalmean</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

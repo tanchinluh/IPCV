@@ -51,7 +51,7 @@
 imfilter filters an image im with filter F. When im is a mult-channel image, each channel can be filtered with F seperately. Input image pixel values outside the bounds of the image are assumed to equal the nearest array border value.
    </para>
    <para>
-The only diffence of filter2 with imfilter is the output of filter2 is double matrix, and the output of imfilter has the same type as input and the elements in the output matrix that exceed the range of the integer type will be truncated.
+Unlike <function>imfilter2</function>, which returns a double matrix, <function>imfilter</function> preserves the input type and truncates values outside the range of the integer type.
    </para>
    <para>
 </para>
@@ -61,7 +61,7 @@ The only diffence of filter2 with imfilter is the output of filter2 is double ma
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
 im = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
-filter = fspecial('sobel');
+filter = imfspecial('sobel');
 imf = imfilter(im, filter);
 imshow(imf);
 
@@ -71,8 +71,8 @@ imshow(imf);
 <refsection>
    <title>See also</title>
    <simplelist type="inline">
-   <member><link linkend="fspecial">fspecial</link></member>
-   <member><link linkend="filter2">filter2</link></member>
+   <member><link linkend="imfspecial">imfspecial</link></member>
+   <member><link linkend="imfilter2">imfilter2</link></member>
    </simplelist>
 </refsection>
 

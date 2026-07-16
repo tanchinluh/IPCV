@@ -18,7 +18,7 @@
    <synopsis>
    [minValue, maxValue] = imminmax(im)
    </synopsis>
-</refsynopsisdiv>
+</refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im</term><listitem><para>Input image or numeric array.</para></listitem></varlistentry><varlistentry><term>minValue</term><listitem><para>Minimum value in the input.</para></listitem></varlistentry><varlistentry><term>maxValue</term><listitem><para>Maximum value in the input.</para></listitem></varlistentry></variablelist></refsection>
 
 <refsection role="arguments">
    <title>Arguments</title>

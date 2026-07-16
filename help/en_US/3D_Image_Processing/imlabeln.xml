@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlabeln" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlabeln</refname><refpurpose>Label connected components in a binary image.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[labels, count] = imlabeln(image)
+[labels, count] = imlabeln(image, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Returns an integer label image and the number of connected components. The current Scilab gateway supports 2D input with 4- or 8-connectivity; 3D hypermatrix support is planned.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+mask = image > 120;
+[labels, count] = imlabeln(mask, 8);
+disp(count);
+imshow(imlabel2rgb(labels));]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imlabel">imlabel</link></member><member><link linkend="imlabel2rgb">imlabel2rgb</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced for 2D binary images.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imregister" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imregister</refname><refpurpose>Register a moving image to a fixed image.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[registered, transform] = imregister(moving, fixed)
+[registered, transform] = imregister(moving, fixed, method)</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Estimates a translation with phase correlation and returns the registered image together with a homogeneous transform matrix. The current implementation supports the method name <literal>phasecorr</literal>.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[fixed = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+fixed = imresize(fixed, [120 160]);
+moving = imtranslate(fixed, [5 3]);
+[registered, transform] = imregister(moving, fixed, "phasecorr");
+disp(transform);
+subplot(1, 3, 1);
+imshow(fixed);
+subplot(1, 3, 2);
+imshow(moving);
+subplot(1, 3, 3);
+imshow(registered);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imphasecorr">imphasecorr</link></member><member><link linkend="imtransform">imtransform</link></member><member><link linkend="imgettransform">imgettransform</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="imcalchist" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
 <refnamediv><refname>imcalchist</refname><refpurpose>Compute per-channel image histograms.</refpurpose></refnamediv>
-<refsynopsisdiv><title>Syntax</title><synopsis>[counts, cells] = imcalchist(im, bins)</synopsis></refsynopsisdiv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[counts, cells] = imcalchist(im, bins)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>im</term><listitem><para>Input grayscale or multichannel image.</para></listitem></varlistentry><varlistentry><term>bins</term><listitem><para>Optional number of histogram bins. When omitted, the default <function>imhist</function> binning is used.</para></listitem></varlistentry><varlistentry><term>counts</term><listitem><para>Histogram counts. Multichannel images return one column per channel.</para></listitem></varlistentry><varlistentry><term>cells</term><listitem><para>Histogram bin center values.</para></listitem></varlistentry></variablelist></refsection>
 <refsection><title>Description</title><para><function>imcalchist</function> extends <function>imhist</function> to return one histogram per channel.</para></refsection>
 <refsection><title>Examples</title><programlisting role="example"><![CDATA[
 im = imread(fullpath(getIPCVpath() + "/images/" + "baboon.png"));
 [counts, cells] = imcalchist(im, 16);
+plot(cells,counts(:,1),'r');
+plot(cells,counts(:,2),'g');
+plot(cells,counts(:,3),'b');
 ]]></programlisting></refsection>
 <refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imhist">imhist</link></member><member><link linkend="imcomparehist">imcomparehist</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>

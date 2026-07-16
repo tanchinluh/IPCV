@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imtranslate" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imtranslate</refname><refpurpose>Translate an image by a pixel offset.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imtranslate(image, [x y])</synopsis></refsynopsisdiv>
+<refsection><title>Description</title><para>Shifts an image by [x y] pixels. Positive x moves right and positive y moves down; newly exposed pixels are set to zero.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [240 320]);
+out = imtranslate(image, [20 10]);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imrotate">imrotate</link></member><member><link linkend="imresize">imresize</link></member><member><link linkend="imflip">imflip</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

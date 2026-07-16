@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imgraycoprops" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imgraycoprops</refname><refpurpose>Calculate properties of gray-level co-occurrence matrices.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>properties = imgraycoprops(glcm)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>glcm</term><listitem><para>Gray-level co-occurrence matrix returned by <function>imgraycomatrix</function>.</para></listitem></varlistentry><varlistentry><term>properties</term><listitem><para>Structure with texture statistics such as contrast, correlation, energy, and homogeneity.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns Contrast, Correlation, Energy, and Homogeneity for each two-dimensional GLCM plane.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"));
+image = imresize(rgb2gray(image), [120 160]);
+glcm = imgraycomatrix(image, 8, [1 0; 0 1]);
+properties = imgraycoprops(glcm);
+disp(properties);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgraycomatrix">imgraycomatrix</link></member><member><link linkend="imtexture">imtexture</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

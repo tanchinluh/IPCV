@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imrectify" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imrectify</refname><refpurpose>Rectify an image with a projective homography.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imrectify(image, homography)
+out = imrectify(image, homography, [rows cols])</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>Input grayscale, color, or Boolean image.</para></listitem></varlistentry>
+<varlistentry><term>homography</term><listitem><para>Standard 3-by-3 projective homography using the OpenCV convention.</para></listitem></varlistentry>
+<varlistentry><term>[rows cols]</term><listitem><para>Optional output dimensions. The input dimensions are used by default.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Rectified image with the same numeric or Boolean type as <literal>image</literal>.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Applies a 3-by-3 projective transform while preserving the input image type and numeric range. The identity transform returns the input without invoking the perspective gateway.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [240 320]);
+homography = [1 0.05 -8; 0.02 1 -5; 0.0002 0.0001 1];
+out = imrectify(image, homography);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(out);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imtransform">imtransform</link></member><member><link linkend="imgettransform">imgettransform</link></member><member><link linkend="imundistort">imundistort</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced with input type preservation and standard homography orientation.</td></tr></informaltable></refsection>
+</refentry>

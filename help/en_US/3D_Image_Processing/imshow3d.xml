@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imshow3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org">
+  <refnamediv>
+    <refname>imshow3d</refname>
+    <refpurpose>Display a 3D image volume.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+view = imshow3d(volume)
+slice = imshow3d(volume, sliceIndex)
+view = imshow3d(volume, mode)
+view = imshow3d(volume, sliceIndex, mode)
+view = imshow3d(volume, "3d", threshold, maxPoints)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>volume</term>
+        <listitem><para>Input 3-D scalar volume, indexed as <literal>volume(row, col, slice)</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sliceIndex</term>
+        <listitem><para>Optional slice index for axial display. The value is rounded and clipped to the valid slice range.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem><para>Display mode: <literal>"3d"</literal>, <literal>"volshow"</literal>, <literal>"slice"</literal>, <literal>"orthoslice"</literal>, <literal>"mip"</literal>, or <literal>"overview"</literal>. Default is <literal>"3d"</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>threshold</term>
+        <listitem><para>Optional intensity threshold for the 3-D voxel view. Voxels at or above this value are displayed.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>maxPoints</term>
+        <listitem><para>Optional maximum number of voxels to plot in the 3-D view. Default is 12000.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>slice</term>
+        <listitem><para>Displayed raw slice, returned when <literal>sliceIndex</literal> is used without a display mode.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>view</term>
+        <listitem><para>Structure containing the displayed slices and/or maximum-intensity projections.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      <function>imshow3d</function> is IPCV's volume display helper inspired by
+      MATLAB <function>volshow</function>. The default mode renders a real 3-D
+      voxel point-cloud view from high-intensity voxels. The plotted coordinates
+      use image columns as X, image rows as Y, and slices as Z; rows are flipped
+      for display because image coordinates start at the upper-left corner while
+      Scilab 3-D axes use a Cartesian view.
+    </para>
+    <para>
+      Use <literal>"overview"</literal> to show axial, coronal, and sagittal
+      center slices together with maximum-intensity projections along the main
+      volume directions.
+    </para>
+    <para>
+      This function expects a scalar 3-D volume. If a multipage image is read by
+      <function>imreadmulti</function> as <literal>rows x cols x channels x pages</literal>,
+      convert the page dimension to a 3-D volume first.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <para>
+      This example uses the public ImageJ MRI stack sample
+      <ulink url="https://imagej.net/ij/images/mri-stack.zip">mri-stack.zip</ulink>.
+    </para>
+    <programlisting role="example"><![CDATA[
+url = "https://imagej.net/ij/images/mri-stack.zip";
+zipFile = fullfile(TMPDIR, "ipcv_mri-stack.zip");
+outDir = fullfile(TMPDIR, "ipcv_mri-stack");
+stackFile = fullfile(outDir, "mri-stack.tif");
+
+if ~isfile(zipFile) then
+    http_get(url, zipFile, follow=%t, timeout=120);
+end
+
+if ~isfile(stackFile) then
+    if ~isdir(outDir) then
+        mkdir(outDir);
+    end
+    decompress(zipFile, outDir);
+end
+
+stack = imreadmulti(stackFile);
+volume = squeeze(stack(:, :, 1, :));
+
+view = imshow3d(volume);
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+slice = imshow3d(volume, 14);
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+view = imshow3d(volume, "mip");
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+view = imshow3d(volume, 14, "orthoslice");
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+view = imshow3d(volume, "overview");
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+view = imshow3d(volume, "3d", 120, 6000);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="imshow">imshow</link></member>
+      <member><link linkend="imreadmulti">imreadmulti</link></member>
+      <member><link linkend="imcrop3">imcrop3</link></member>
+      <member><link linkend="imresize3">imresize3</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Tan Chin Luh</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Function introduced.</td></tr>
+      <tr><td>5.0.0</td><td>3-D voxel, volume-style overview, orthoslice, and MIP display modes added.</td></tr>
+    </informaltable>
+  </refsection>
+</refentry>

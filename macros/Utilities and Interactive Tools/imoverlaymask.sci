@@ -35,7 +35,11 @@ function out = imoverlaymask(image, mask, rgb, alpha, boundary)
     end
 
     src = ipcv_to_uint8_rgb(image);
-    mask01 = double(mask <> 0);
+    if type(mask) == 4 then
+        mask01 = double(mask);
+    else
+        mask01 = double(mask <> 0);
+    end
     maskAlpha = mask01 * alpha;
     out = src;
 

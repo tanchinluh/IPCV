@@ -36,7 +36,7 @@ path_macros = fullpath(current_path) + filesep();
 //help_from_sci(path_macros + 'im2uint16.sci', p2Help);
 //help_from_sci(path_macros + 'im2uint8.sci', p2Help);
 //help_from_sci(path_macros + 'imnorm.sci', p2Help);
-//help_from_sci(path_macros + 'mat2gray.sci', p2Help);
+//help_from_sci(path_macros + 'immat2gray.sci', p2Help);
 //help_from_sci(path_macros + 'rgb2lab.sci', p2Help);
 //help_from_sci(path_macros + 'rgb2ind.sci', p2Help);
 //help_from_sci(path_macros + 'rgb2gray.sci', p2Help)
@@ -84,14 +84,14 @@ path_macros = fullpath(current_path) + filesep();
 //
 //// Generate for Image_Analysis_and_Statistics
 //p5Help = fullpath(current_path + '/../help/en_US/Image_Analysis_and_Statistics');
-//help_from_sci(path_macros + 'corr2.sci', p5Help);
-//help_from_sci(path_macros + 'edge.sci', p5Help);
+//help_from_sci(path_macros + 'imcorr2.sci', p5Help);
+//help_from_sci(path_macros + 'imedge.sci', p5Help);
 //help_from_sci(path_macros + 'impixel.sci', p5Help);
 //help_from_sci(path_macros + 'improfile.sci', p5Help);
 //help_from_sci(path_macros + 'imhist.sci', p5Help);
-//help_from_sci(path_macros + 'mean2.sci', p5Help);
-//help_from_sci(path_macros + 'stdev2.sci', p5Help);
-//help_from_sci(path_macros + 'std2.sci', p5Help);
+//help_from_sci(path_macros + 'immean2.sci', p5Help);
+//help_from_sci(path_macros + 'imstdev2.sci', p5Help);
+//help_from_sci(path_macros + 'imstd2.sci', p5Help);
 //
 //// Generate for Image_Arithmetic
 //p6Help = fullpath(current_path + '/../help/en_US/Image_Arithmetic');
@@ -118,9 +118,9 @@ path_macros = fullpath(current_path) + filesep();
 //
 //// Generate for Image_Linear_Filtering
 //p8Help = fullpath(current_path + '/../help/en_US/Image_Linear_Filtering');
-//help_from_sci(path_macros + 'fspecial.sci', p8Help);
+//help_from_sci(path_macros + 'imfspecial.sci', p8Help);
 ////help_from_sci(path_macros + 'imfilter.sci', p8Help);
-//help_from_sci(path_macros + 'filter2.sci', p8Help);
+//help_from_sci(path_macros + 'imfilter2.sci', p8Help);
 //
 //// Generate for Filter_Design_and_Visualization
 //p9Help = fullpath(current_path + '/../help/en_US/Filter_Design_and_Visualization');
@@ -234,6 +234,30 @@ path_macros = fullpath(current_path) + filesep();
 //p19Help = fullpath(current_path + '/../help/en_US/Super_Resolution');
 //help_from_sci(path_macros + 'imsuperres.sci', p19Help);
 //help_from_sci(path_macros + 'imsuperres_params.sci', p19Help);
+//
+//// Generate for 3D_Image_Processing
+//p3dHelp = fullpath(current_path + '/../help/en_US/3D_Image_Processing');
+//p3dMacros = path_macros + '3D Image Processing/';
+//help_from_sci(p3dMacros + 'imshow3d.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imcrop3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imresize3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imrotate3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imtranslate3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imgradient3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'improfile3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imregionalmax3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imregionprops3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imsegkmeans3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imadjust3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imboxfilt3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imgaussianblur3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'immedian3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imbwareaopen3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imbwmorph3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imbwperim3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imfill3.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imlabeln.sci', p3dHelp);
+//help_from_sci(p3dMacros + 'imref3d.sci', p3dHelp);
 //
 // Structural Analysis and Shape Descriptors
 p20Help = fullpath(current_path + '/../help/en_US/Structural_Analysis_and_Shape_Descriptors');

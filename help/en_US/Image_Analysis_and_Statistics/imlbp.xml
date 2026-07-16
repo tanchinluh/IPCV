@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imlbp" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imlbp</refname><refpurpose>Compute a Local Binary Pattern texture descriptor.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[descriptor, codes] = imlbp(image)
+[descriptor, codes] = imlbp(image, radius, points)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>radius</term><listitem><para>Positive integer neighborhood radius. Default is <literal>1</literal>.</para></listitem></varlistentry><varlistentry><term>points</term><listitem><para>Number of sampled neighbor points, from <literal>1</literal> to <literal>16</literal>. Default is <literal>8</literal>.</para></listitem></varlistentry><varlistentry><term>descriptor</term><listitem><para>Normalized Local Binary Pattern histogram.</para></listitem></varlistentry><varlistentry><term>codes</term><listitem><para>LBP code image.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Computes nearest-neighbor LBP codes and returns their normalized histogram together with the code image.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(rgb2gray(image), [120 160]);
+[descriptor, codes] = imlbp(image, 1, 8);
+subplot(1, 3, 1);
+imshow(image);
+subplot(1, 3, 2);
+imshow(codes, hot(256));
+subplot(1, 3, 3);
+plot(descriptor);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imtexture">imtexture</link></member><member><link linkend="imgraycomatrix">imgraycomatrix</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+</refentry>

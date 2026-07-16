@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imrotate3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imrotate3</refname><refpurpose>Rotate a 3D volume around its slice axis.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imrotate3(volume, angle)
+out = imrotate3(volume, angle, axis)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>volume</term><listitem><para>Input 3-D volume.</para></listitem></varlistentry><varlistentry><term>angle</term><listitem><para>Rotation angle in degrees. Current implementation rounds to a multiple of 90 degrees.</para></listitem></varlistentry><varlistentry><term>axis</term><listitem><para>Rotation axis. Current implementation supports axis <literal>3</literal>. Default is <literal>3</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Rotated 3-D volume.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Rotates a 3D volume by multiples of 90 degrees around axis 3. Arbitrary-angle and other-axis interpolation are reserved for a future native volume backend.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [120 160]);
+gray = rgb2gray(image);
+volume = cat(3, gray, imtranslate(gray, [3 0]), imtranslate(gray, [6 0]));
+rotated = imrotate3(volume, 90, 3);
+imshow3d(rotated, 2);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imrotate">imrotate</link></member><member><link linkend="imresize3">imresize3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

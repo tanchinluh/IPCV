@@ -64,12 +64,15 @@ This function find all components on an image.
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-A = imread(fullpath(getIPCVpath() + "/images/coins_gray.jpg"));
-A_edge = edge(A,'canny');
-se = imcreatese('ellipse',15,15);
-A_dilate = imdilate(A_edge,se);
-[A_labeled,n] = imlabel(A_dilate);
-imshow(A_labeled,jet(n));
+  A = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+  A = imresize(rgb2gray(A), [120 160]);
+  A_bw = imbinarize(A, "global");
+  [A_labeled,n] = imlabel(A_bw, 8);
+  subplot(1, 2, 1);
+  imshow(A);
+  subplot(1, 2, 2);
+  imshow(A_labeled,jet(max(n, 1)));
+  disp(n);
 
    ]]></programlisting>
 </refsection>

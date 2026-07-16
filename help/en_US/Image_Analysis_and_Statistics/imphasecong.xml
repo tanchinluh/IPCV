@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imphasecong" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imphasecong</refname><refpurpose>Return a phase-congruency-inspired edge map.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imphasecong(image)
+out = imphasecong(image, threshold)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image. RGB input is converted to grayscale.</para></listitem></varlistentry><varlistentry><term>threshold</term><listitem><para>Relative magnitude threshold. Default is <literal>0.15</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Boolean phase-congruency-inspired edge map.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para>Returns a compact gradient-based phase-congruency approximation as a logical edge map.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+image = imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"));
+image = imresize(image, [240 320]);
+gray = rgb2gray(image);
+out = imphasecong(gray, 0.12);
+subplot(1, 2, 1);
+imshow(gray);
+subplot(1, 2, 2);
+imshow(out);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgradientmagnitude">imgradientmagnitude</link></member><member><link linkend="imedge">imedge</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>

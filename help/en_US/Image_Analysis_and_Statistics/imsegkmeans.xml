@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imsegkmeans" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refnamediv><refname>imsegkmeans</refname><refpurpose>Segment an image with OpenCV k-means.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[labels, centers] = imsegkmeans(image, clusterCount)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>image</term><listitem><para>Input grayscale or RGB image.</para></listitem></varlistentry><varlistentry><term>clusterCount</term><listitem><para>Number of k-means clusters.</para></listitem></varlistentry><varlistentry><term>labels</term><listitem><para>1-based label image.</para></listitem></varlistentry><varlistentry><term>centers</term><listitem><para>Cluster center values.</para></listitem></varlistentry></variablelist></refsection>
+<refsection><title>Description</title><para><function>imsegkmeans</function> clusters pixels with OpenCV 5 k-means++ and returns a 1-based label image plus one center row per cluster.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
+image = imresize(image, [120 160]);
+[labels, centers] = imsegkmeans(image, 4);
+segmented = imlabel2rgb(labels);
+subplot(1, 2, 1);
+imshow(image);
+subplot(1, 2, 2);
+imshow(segmented);]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlabel">imlabel</link></member><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced.</td></tr></informaltable></refsection>
+</refentry>
