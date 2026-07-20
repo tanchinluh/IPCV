@@ -56,8 +56,10 @@ view = imshow3d(volume, "3d", threshold, maxPoints)
     <title>Description</title>
     <para>
       <function>imshow3d</function> is IPCV's volume display helper inspired by
-      MATLAB <function>volshow</function>. The default mode renders a real 3-D
-      voxel point-cloud view from high-intensity voxels. The plotted coordinates
+      volume visualization workflows. The default mode renders a lightweight 3-D
+      voxel point-cloud view from high-intensity voxels. Use the
+      <literal>"volshow"</literal> mode or call <function>volshow</function>
+      directly for interactive WebGL ray-cast volume rendering. The plotted coordinates
       use image columns as X, image rows as Y, and slices as Z; rows are flipped
       for display because image coordinates start at the upper-left corner while
       Scilab 3-D axes use a Cartesian view.
@@ -122,6 +124,7 @@ view = imshow3d(volume, "3d", 120, 6000);
   <refsection role="see also">
     <title>See also</title>
     <simplelist type="inline">
+      <member><link linkend="volshow">volshow</link></member>
       <member><link linkend="imshow">imshow</link></member>
       <member><link linkend="imreadmulti">imreadmulti</link></member>
       <member><link linkend="imcrop3">imcrop3</link></member>
@@ -142,6 +145,7 @@ view = imshow3d(volume, "3d", 120, 6000);
       <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
       <tr><td>5.0.0</td><td>Function introduced.</td></tr>
       <tr><td>5.0.0</td><td>3-D voxel, volume-style overview, orthoslice, and MIP display modes added.</td></tr>
+      <tr><td>5.0.0</td><td>The volshow mode now opens the interactive GPU volume renderer.</td></tr>
     </informaltable>
   </refsection>
 </refentry>

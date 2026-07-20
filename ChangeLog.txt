@@ -62,6 +62,11 @@ Image-processing completeness
 58. Correct boolean-input handling in Feret measurement and 3-D binary area opening, morphology, perimeter, and cavity filling
 59. Stabilize exact-identity phase registration and retain finite normalized estimates for ambiguous size-mismatched inputs
 60. Complete a clean VS 2022 x64 build, repository validation, regenerated help, and the Windows stability suite with 35 passed and 0 failed
+61. Add the native 3-D volume foundation: shared Scilab/C++ hypermatrix exchange, true 6/18/26-connected imlabeln, plateau-aware imregionalmax3, accelerated filtering and binary morphology, updated help, and focused regression coverage
+62. Add native dicomread and dicomshow support for uncompressed grayscale single- and multi-frame DICOM, structured acquisition metadata, selectable slice grids and information modes, an attributed pydicom-data MR fixture, help, and regression tests
+63. Add interactive WebGL 2 volshow rendering with volume compositing, maximum-intensity projection, shaded isosurfaces, orthogonal slice planes, scrollable 2-D layers, full-resolution export to the Scilab workspace, clipping, DICOM voxel spacing, PNG export, help, and focused tests
+64. Add explicit DICOM spacing-source and physical-extent diagnostics, display-only Z scaling, and full-resolution volshow processing with filtering, gradients, thresholding, morphology, segmentation, undo, reset, and volume export
+65. Preserve native intensity ranges for double 3-D volumes during adjustment, box, Gaussian, median, and gradient processing, preventing processed medical volumes from rendering as solid white while retaining normalized integer-input behavior
 
 OpenCV 5.0.0 Development - Step 2 (10-Jul-26)
 Correctness and test-foundation update for the OpenCV 5.0.0 backend

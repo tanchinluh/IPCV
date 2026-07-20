@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="immedian3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refentry version="5.0-subset Scilab" xml:id="immedian3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
 <refnamediv><refname>immedian3</refname><refpurpose>Apply median filtering to a 3-D volume.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>out = immedian3(volume)
 out = immedian3(volume, window)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para>Replaces each voxel with the median of its bounded 3-D neighborhood.</para></refsection>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Numeric 3-D scalar volume.</para></listitem></varlistentry>
+<varlistentry><term>window</term><listitem><para>Three positive window dimensions <literal>[rows columns slices]</literal>. Default is <literal>[3 3 3]</literal>.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Double filtered volume.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Replaces each voxel with the median of its bounded 3-D neighborhood using a native C++ implementation. It is suited to sparse impulse noise.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"))), [16 24]);
-volume = cat(3, slice, slice, slice);
-volume(8, 12, 2) = 255;
-out = immedian3(volume, [3 3 3]);
-subplot(1, 2, 1);
-imshow(volume(:, :, 2));
-subplot(1, 2, 2);
-imshow(out(:, :, 2));
+volume = zeros(41, 41, 17);
+volume(13:29, 13:29, 6:12) = 1;
+noisy = volume;
+noisy(8, 10, 4) = 5;
+noisy(20, 20, 9) = -4;
+filtered = immedian3(noisy, [3 3 3]);
+imshow3d(filtered, "orthoslice");
 ]]></programlisting></refsection>
-<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="immedianfilt">immedianfilt</link></member><member><link linkend="imgaussianblur3">imgaussianblur3</link></member></simplelist></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imboxfilt3">imboxfilt3</link></member><member><link linkend="imgaussianblur3">imgaussianblur3</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native volumetric median implementation added.</td></tr></informaltable></refsection>
 </refentry>

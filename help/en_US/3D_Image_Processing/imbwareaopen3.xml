@@ -1,13 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imbwareaopen3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imbwareaopen3</refname><refpurpose>Remove small connected objects from a 3D volume.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imbwareaopen3(volume, minSize); out = imbwareaopen3(volume, minSize, connectivity)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Labels 3D foreground components and keeps only components meeting the voxel-count threshold.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
-volume = zeros(24, 24, 8) == 1;
-volume(5:18, 5:18, 3:6) = %t;
-volume(2, 2, 2) = %t;
-clean = imbwareaopen3(volume, 20);
-imshow(max(clean, 3));
-]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
-volume = zeros(32, 32, 12) == 1;
-volume(8:24, 8:24, 4:9) = %t;
-volume(2:3, 2:3, 2:3) = %t;
-clean = imbwareaopen3(volume, 100, 26);
-imshow(max(clean, 3));
-]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwareaopen">imbwareaopen</link></member><member><link linkend="imregionprops3">imregionprops3</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwareaopen3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imbwareaopen3</refname><refpurpose>Remove small connected objects from a 3-D binary volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imbwareaopen3(volume, minimumSize)
+out = imbwareaopen3(volume, minimumSize, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Binary or numeric 3-D volume.</para></listitem></varlistentry>
+<varlistentry><term>minimumSize</term><listitem><para>Minimum component size in voxels.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para><literal>6</literal>, <literal>18</literal>, or <literal>26</literal>. Default is 26.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Boolean volume containing retained components.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Labels foreground components natively and removes every component containing fewer than <varname>minimumSize</varname> voxels.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+volume = zeros(35, 35, 18) == 1;
+volume(8:25, 8:25, 5:14) = %t;
+volume(3, 4, 2) = %t;
+volume(31:32, 30:31, 16) = %t;
+clean = imbwareaopen3(volume, 20, 26);
+imshow3d(clean, "3d", 1, 7000);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imlabeln">imlabeln</link></member><member><link linkend="imbwmorph3">imbwmorph3</link></member><member><link linkend="imregionprops3">imregionprops3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native volumetric connected-component filtering added.</td></tr></informaltable></refsection>
+</refentry>

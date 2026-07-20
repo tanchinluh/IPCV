@@ -203,7 +203,7 @@ function view = imshow3d(volume, varargin)
     case "3d" then
         view = imshow3d_render_voxels(values, threshold, maxPoints, "3d");
     case "volshow" then
-        view = imshow3d_render_voxels(values, threshold, maxPoints, "volshow");
+        view = volshow(volume);
     case "volume" then
         view = imshow3d_render_voxels(values, threshold, maxPoints, "3d");
     case "voxel" then

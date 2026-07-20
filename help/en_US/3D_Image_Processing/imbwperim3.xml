@@ -1,11 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imbwperim3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imbwperim3</refname><refpurpose>Extract the exposed surface of a 3D binary object.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imbwperim3(volume); out = imbwperim3(volume, connectivity)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Marks foreground voxels adjacent to background or volume boundaries using 6- or 26-connectivity.</para></refsection><refsection><title>Examples</title><para><emphasis role="bold">Source reference:</emphasis> <ulink url="https://docs.opencv.org/4.x/d9/d61/tutorial_py_morphological_ops.html">official OpenCV documentation</ulink>. Example 1 is an adapted OpenCV workflow; Example 2 is an independent IPCV workflow.</para><para>Example 1: OpenCV adaptation</para><programlisting role="example"><![CDATA[
-volume = zeros(20, 20, 8) == 1;
-volume(5:16, 5:16, 3:6) = %t;
-surface = imbwperim3(volume);
-imshow(max(surface, 3));
-]]></programlisting><para>Example 2: IPCV workflow</para><programlisting role="example"><![CDATA[
-volume = zeros(24, 24, 10) == 1;
-volume(6:18, 7:17, 3:8) = %t;
-surface = imbwperim3(volume, 26);
-imshow(max(surface, 3));
-]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwperim">imbwperim</link></member><member><link linkend="imregionprops3">imregionprops3</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwperim3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imbwperim3</refname><refpurpose>Extract exposed surface voxels from a 3-D binary volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imbwperim3(volume)
+out = imbwperim3(volume, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Binary or numeric 3-D volume.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para><literal>6</literal>, <literal>18</literal>, or <literal>26</literal>. Default is 6.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Boolean volume of foreground surface voxels.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Marks each foreground voxel that touches background or a volume boundary under the selected 3-D connectivity.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+volume = zeros(31, 31, 17) == 1;
+volume(7:25, 7:25, 4:14) = %t;
+surface = imbwperim3(volume, 6);
+imshow3d(surface, "3d", 1, 8000);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwmorph3">imbwmorph3</link></member><member><link linkend="imfill3">imfill3</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native 6-, 18-, and 26-connected surface extraction added.</td></tr></informaltable></refsection>
+</refentry>

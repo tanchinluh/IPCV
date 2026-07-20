@@ -43,7 +43,7 @@ Status meanings:
 | Utilities and Interactive Tools | **Functional** | Display overlays, ROI tools, annotations, version reporting | Unified annotation/measurement application workflow |
 | Analytic Geometry | **Partial** | Limited plotting helpers | Deliberate scope decision or expanded geometry utilities |
 
-## Step 3 Batches 1 To 13
+## Step 3 Batches 1 To 13 And Native 3-D Foundation
 
 - `imthreshold`: fixed, Otsu, and Triangle threshold modes with normalized levels.
 - `imbinarize`: boolean-output fixed or automatic binarization.
@@ -118,6 +118,14 @@ Status meanings:
   already provides circle detection.
 - Add help examples, History metadata, and focused stability tests.
   **Implemented; Batch 10 stability test passes.**
+- Native 3-D foundation: shared Scilab/C++ hypermatrix exchange, true 6/18/26-connected `imlabeln`, plateau-aware `imregionalmax3`, and accelerated volume filtering and binary morphology.
+  **Implemented; native volume build and focused Windows tests pass.**
+- Medical-volume I/O: `dicomread` supports uncompressed 8/16-bit MONOCHROME1/2 single- and multi-frame DICOM with core metadata, while `dicomshow` provides selectable slice grids and metadata modes.
+  **Implemented; compressed transfer syntaxes and directory-series assembly remain future work.**
+- Interactive volume display: `volshow` provides WebGL 2 ray-cast volume
+  rendering, MIP, isosurface, orthogonal planes, scrollable 2-D layers, workspace export, clipping, transfer controls,
+  physical voxel spacing, and PNG export inside a Scilab figure.
+  **Implemented; GPU/browser validation remains platform-specific.**
 
 ## Step 3 Batch 4
 

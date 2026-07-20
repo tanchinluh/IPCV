@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="volshow" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:scilab="http://www.scilab.org">
+  <refnamediv>
+    <refname>volshow</refname>
+    <refpurpose>Interactively render a 3-D image volume using WebGL.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Syntax</title>
+    <synopsis>
+viewer = volshow(volume)
+viewer = volshow(dicomFilename)
+viewer = volshow(volume, options)
+viewer = volshow(volume, dicomInfo)
+viewer = volshow(volume, options, dicomInfo)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>volume</term>
+        <listitem><para>A non-empty scalar hypermatrix indexed as <literal>volume(row, column, slice)</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dicomFilename</term>
+        <listitem><para>Filename of an uncompressed grayscale DICOM image or multi-frame volume supported by <function>dicomread</function>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>options</term>
+        <listitem><para>Optional structure. Supported fields are <literal>RenderingStyle</literal> (<literal>"volume"</literal>, <literal>"mip"</literal>, <literal>"isosurface"</literal>, <literal>"slices"</literal>, or <literal>"2d"</literal>), <literal>Colormap</literal> (<literal>"gray"</literal>, <literal>"bone"</literal>, <literal>"hot"</literal>, or <literal>"turbo"</literal>), <literal>Opacity</literal>, normalized <literal>Threshold</literal>, texture <literal>Quality</literal> from 32 through 256, intensity <literal>Window</literal> as <literal>[low high]</literal>, <literal>VoxelSpacing</literal> as <literal>[row column slice]</literal>, and <literal>Title</literal>.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dicomInfo</term>
+        <listitem><para>Optional metadata structure returned by <function>dicomread</function>. Pixel spacing, slice spacing, intensity window, photometric interpretation, modality, and series description are used when available.</para></listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>viewer</term>
+        <listitem><para>Structure containing the Scilab figure handle, source and texture dimensions, intensity range, voxel spacing, physical size, rendering style, and temporary runtime directory.</para></listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      <function>volshow</function> opens IPCV's interactive GPU volume renderer
+      in a Scilab browser uicontrol. It uses WebGL 2 ray marching rather than a
+      thresholded point cloud. The viewer supports front-to-back volume
+      compositing, maximum-intensity projection, shaded isosurfaces, and three
+      orthogonal slice planes, and a dedicated 2-D layer viewer.
+    </para>
+    <para>
+      Drag the volume to rotate it, use the mouse wheel to zoom, and
+      double-click to reset the camera. Controls adjust the transfer threshold,
+      opacity, colormap, sampling quality, slice positions, clipping extents,
+      and a display-only Z scale. <literal>Actual spacing</literal> restores the
+      physical DICOM aspect ratio. <literal>Equal voxels</literal> ignores voxel
+      anisotropy for inspection without changing the volume or its metadata.
+      In the 2-D viewer, choose an axial, coronal, or sagittal plane and use the
+      layer slider or mouse wheel to move through the volume. Enter a Scilab
+      variable name and select <literal>Export layer</literal> to place the
+      current full-resolution layer, with its original datatype, in the Scilab
+      workspace. The displayed frame can also be exported as PNG.
+    </para>
+    <para>
+      The <literal>3-D processing</literal> panel applies IPCV operations to the
+      current full-resolution volume and refreshes the GPU preview. It provides
+      intensity adjustment, box, Gaussian and median filtering, gradient
+      magnitude, normalized thresholding, regional maxima, erosion, dilation,
+      opening, closing, cavity filling, small-component removal, surface-voxel
+      extraction, and k-means segmentation. <literal>Undo</literal> exchanges
+      the current and previous result, <literal>Original</literal> restores the
+      input volume, and <literal>Export</literal> places the complete current
+      volume in the Scilab workspace.
+    </para>
+    <para>
+      The native staging gateway normalizes the selected intensity window to
+      8-bit and proportionally downsamples volumes whose largest dimension
+      exceeds <literal>Quality</literal>. Rendering therefore remains responsive
+      without changing the original volume. Physical voxel spacing controls the
+      displayed aspect ratio. DICOM in-plane distance comes from
+      <literal>PixelSpacing</literal>; layer distance comes from
+      <literal>SpacingBetweenSlices</literal>, falling back to
+      <literal>SliceThickness</literal>. The viewer reports the selected source,
+      true physical extent, and scaled display extent. A short partial stack can
+      therefore appear physically thin even when spacing is correct. Image rows
+      retain the IPCV convention that their origin is at the upper-left.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+[volume, info] = dicomread(filename);
+viewer = volshow(volume, info);
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+options = struct( ..
+    "RenderingStyle", "mip", ..
+    "Colormap", "bone", ..
+    "Quality", 192, ..
+    "Threshold", 0.12);
+viewer = volshow(filename, options);
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+options = struct("RenderingStyle", "2d", "Colormap", "gray");
+viewer = volshow(filename, options);
+// Select a layer in the GUI and export it as volshow_layer.
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+[x, y, z] = ndgrid(1:96, 1:96, 1:64);
+volume = exp(-((x - 48).^2 + (y - 48).^2 + (z - 32).^2) / 500);
+options = struct("RenderingStyle", "isosurface", "Threshold", 0.42);
+viewer = volshow(volume, options);
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member><link linkend="dicomread">dicomread</link></member>
+      <member><link linkend="dicomshow">dicomshow</link></member>
+      <member><link linkend="imshow3d">imshow3d</link></member>
+      <member><link linkend="imresize3">imresize3</link></member>
+      <member><link linkend="imgaussianblur3">imgaussianblur3</link></member>
+      <member><link linkend="immedian3">immedian3</link></member>
+      <member><link linkend="imgradient3">imgradient3</link></member>
+      <member><link linkend="imbwmorph3">imbwmorph3</link></member>
+      <member><link linkend="imsegkmeans3">imsegkmeans3</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert"><member>Tan Chin Luh</member></simplelist>
+  </refsection>
+
+  <refsection>
+    <title>History</title>
+    <informaltable border="1">
+      <tr><td><emphasis role="bold">Version</emphasis></td><td><emphasis role="bold">Description</emphasis></td></tr>
+      <tr><td>5.0.0</td><td>Interactive WebGL volume rendering, scrollable 2-D layers, and Scilab workspace export introduced.</td></tr>
+    </informaltable>
+  </refsection>
+</refentry>

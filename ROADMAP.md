@@ -24,7 +24,7 @@ release preparation.
 | OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration and the completed `codex/new-features` work were merged into `master` through PR #31. | Continue roadmap development from the current `master` baseline. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
 | Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 35/35; the earlier release suite passed 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static repository checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
-| Step 3 - Image processing completeness | **In progress** | Batches 1-13 add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, transforms, restoration, Hough post-processing, feature helpers, matching, registration, lens correction, stereo, 3-D processing, segmentation, and shape fitting. Windows stability is 35/35. | Continue the priority gaps in the capability matrix and validate on macOS/Linux. |
+| Step 3 - Image processing completeness | **In progress** | Batches 1-13 plus the native 3-D foundation add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, transforms, restoration, Hough post-processing, feature helpers, matching, registration, lens correction, stereo, 3-D processing, segmentation, and shape fitting. Windows native-volume regression coverage passes. | Continue the priority gaps in the capability matrix and validate on macOS/Linux. |
 | Step 4 - DNN and OpenCV Zoo workflows | **In progress** | Added reusable preprocessing and multiple-output inference entry points. | Add broader model fixtures, decoder validation, and download integrity checks. |
 | Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
 | Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
@@ -182,6 +182,18 @@ Current work:
   `imextract_DescriptorKAZE`, `imextract_DescriptorAKAZE`, `imdrawkeypoints`,
   `imbitwise`, `imconvertmaps`, `imsegkmeans3`, `imbwareaopen3`, `imbwperim3`,
   and `imfill3`. **Batch 13 implementation and Windows runtime validation pass.**
+- Add a shared native 3-D volume exchange layer, true `imlabeln` support for
+  6/18/26 connectivity, plateau-aware `imregionalmax3`, and native box,
+  Gaussian, median, morphology, area-opening, perimeter, and cavity-fill
+  implementations. **Native volume build and focused Windows tests pass.**
+- Add native uncompressed grayscale DICOM import and slice visualization with
+  selectable frames and per-slice, general, or hidden metadata. Bundle an
+  attributed MIT-licensed multi-frame MR fixture. **Windows build and reader/
+  viewer regression tests pass.**
+- Add an interactive GPU `volshow` viewer with volume compositing, MIP,
+  isosurface, orthogonal planes, scrollable 2-D layers, workspace export, clipping, physical voxel spacing, and PNG
+  export through Scilab's JCEF browser control. **Implementation and focused
+  Windows validation complete.**
 - Skip Batch 13 duplicates: `im2gray` (`rgb2gray`/`immat2gray`), `imstdfilt`
   (`imlocalstd`), `imentropyfilt` (`imlocalentropy`), `imrangefilt`
   (`imlocalrange`), `imnormxcorr2` (`imtemplatematch`), `imwarp`

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="imboxfilt3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refentry version="5.0-subset Scilab" xml:id="imboxfilt3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
 <refnamediv><refname>imboxfilt3</refname><refpurpose>Apply normalized box filtering to a 3-D volume.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>out = imboxfilt3(volume)
 out = imboxfilt3(volume, window)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para>Replaces each voxel with the mean of its bounded 3-D neighborhood.</para></refsection>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Numeric 3-D scalar volume.</para></listitem></varlistentry>
+<varlistentry><term>window</term><listitem><para>Three positive window dimensions <literal>[rows columns slices]</literal>. Default is <literal>[3 3 3]</literal>.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Double filtered volume.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Uses a native 3-D integral volume to replace each voxel with the mean of its bounded neighborhood. Border neighborhoods are normalized by their actual voxel count.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg"))), [24 32]);
-volume = cat(3, slice, slice, slice);
-out = imboxfilt3(volume, [3 5 3]);
-subplot(1, 2, 1);
-imshow(volume(:, :, 2));
-subplot(1, 2, 2);
-imshow(out(:, :, 2));
+volume = zeros(41, 41, 17);
+volume(13:29, 13:29, 6:12) = 1;
+noisy = volume + grand(size(volume, 1), size(volume, 2), size(volume, 3), "nor", 0, 0.15);
+smoothed = imboxfilt3(noisy, [5 5 3]);
+imshow3d(smoothed, "orthoslice");
 ]]></programlisting></refsection>
-<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imboxfilt">imboxfilt</link></member><member><link linkend="imgaussianblur3">imgaussianblur3</link></member></simplelist></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgaussianblur3">imgaussianblur3</link></member><member><link linkend="immedian3">immedian3</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native integral-volume implementation added.</td></tr></informaltable></refsection>
 </refentry>

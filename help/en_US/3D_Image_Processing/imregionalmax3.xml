@@ -1,4 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imregionalmax3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imregionalmax3</refname><refpurpose>Find regional maxima in a 3D volume.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imregionalmax3(volume); out = imregionalmax3(volume, connectivity)</synopsis></refsynopsisdiv><refsection><title>Parameters</title><variablelist><varlistentry><term>volume</term><listitem><para>Input 3-D scalar volume.</para></listitem></varlistentry><varlistentry><term>connectivity</term><listitem><para>3-D connectivity, commonly <literal>6</literal> or <literal>26</literal>. Default is <literal>26</literal>.</para></listitem></varlistentry><varlistentry><term>out</term><listitem><para>Boolean volume marking regional maxima.</para></listitem></varlistentry></variablelist></refsection><refsection><title>Description</title><para>Marks strict local maxima using 6-, 18-, or 26-connectivity. Flat plateaus are intentionally excluded by this lightweight implementation.</para></refsection><refsection><title>Examples</title><programlisting><![CDATA[image = im2double(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"))));
-volume = cat(3, image, image + 0.2, image);
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imregionalmax3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imregionalmax3</refname><refpurpose>Find regional-maximum plateaus in a 3-D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imregionalmax3(volume)
+out = imregionalmax3(volume, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Numeric 3-D scalar volume.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para><literal>6</literal>, <literal>18</literal>, or <literal>26</literal>. Default is 26.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Boolean volume marking every voxel belonging to a regional-maximum plateau.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>A connected equal-valued plateau is marked when none of its connected neighbors has a greater value. The complete plateau is returned, including flat peaks.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+volume = zeros(31, 31, 15);
+volume(7:13, 7:13, 5:8) = 4;
+volume(19:24, 18:25, 8:12) = 7;
 maxima = imregionalmax3(volume, 26);
-imshow(max(maxima, 3));]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregionalmax">imregionalmax</link></member><member><link linkend="imregionprops3">imregionprops3</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>
+imshow3d(maxima, "3d", 1, 5000);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imregionalmax">imregionalmax</link></member><member><link linkend="imlabeln">imlabeln</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native plateau-aware implementation added.</td></tr></informaltable></refsection>
+</refentry>

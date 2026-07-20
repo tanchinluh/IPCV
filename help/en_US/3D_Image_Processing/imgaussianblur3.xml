@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="imgaussianblur3" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
+<refentry version="5.0-subset Scilab" xml:id="imgaussianblur3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
 <refnamediv><refname>imgaussianblur3</refname><refpurpose>Apply Gaussian smoothing to a 3-D volume.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>out = imgaussianblur3(volume)
 out = imgaussianblur3(volume, sigma)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para>Applies a bounded separable-style Gaussian kernel along the three volume axes and returns double values.</para></refsection>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Numeric 3-D scalar volume.</para></listitem></varlistentry>
+<varlistentry><term>sigma</term><listitem><para>Positive Gaussian standard deviation in voxels. Default is 1.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Double filtered volume.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Applies a separable native Gaussian kernel along rows, columns, and slices. Replicate boundary handling preserves constant volumes.</para></refsection>
 <refsection><title>Examples</title><programlisting><![CDATA[
-slice = imresize(rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_left01.jpg"))), [24 32]);
-volume = cat(3, slice, slice, slice);
-out = imgaussianblur3(volume, 1.2);
-subplot(1, 2, 1);
-imshow(volume(:, :, 2));
-subplot(1, 2, 2);
-imshow(out(:, :, 2));
+volume = zeros(41, 41, 17);
+volume(13:29, 13:29, 6:12) = 1;
+noisy = volume + grand(size(volume, 1), size(volume, 2), size(volume, 3), "nor", 0, 0.15);
+smoothed = imgaussianblur3(noisy, 1.4);
+imshow3d(smoothed, "orthoslice");
 ]]></programlisting></refsection>
-<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imgaussianblur">imgaussianblur</link></member><member><link linkend="imresize3">imresize3</link></member></simplelist></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imboxfilt3">imboxfilt3</link></member><member><link linkend="immedian3">immedian3</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr></informaltable></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced during Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native separable Gaussian implementation added.</td></tr></informaltable></refsection>
 </refentry>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dicomshow" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>dicomshow</refname><refpurpose>Display selected DICOM slices with optional metadata panels.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>view = dicomshow(filename)
+view = dicomshow(filename, slices, infoMode)
+view = dicomshow(volume, slices, infoMode, info)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>filename</term><listitem><para>DICOM filename. The file is loaded using <link linkend="dicomread">dicomread</link>.</para></listitem></varlistentry>
+<varlistentry><term>volume</term><listitem><para>Previously loaded 3-D scalar volume.</para></listitem></varlistentry>
+<varlistentry><term>slices</term><listitem><para>Scalar or vector of 1-based frame indices. The middle frame is used by default.</para></listitem></varlistentry>
+<varlistentry><term>infoMode</term><listitem><para><literal>"none"</literal> hides DICOM annotations, <literal>"slice"</literal> places information on each slice, and <literal>"general"</literal> adds one shared information panel. A boolean maps true to <literal>"slice"</literal> and false to <literal>"none"</literal>.</para></listitem></varlistentry>
+<varlistentry><term>info</term><listitem><para>Metadata structure returned by <link linkend="dicomread">dicomread</link>. It is optional for a numeric volume.</para></listitem></varlistentry>
+<varlistentry><term>view</term><listitem><para>Structure containing the figure handle, selected slices, information mode, metadata, and displayed uint8 frames.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title>
+<para>Uses one consistent DICOM window across selected frames. Window Center and Window Width are honored when present; otherwise the finite volume range is used. MONOCHROME1 images are inverted for display.</para>
+<para>Multiple frames are arranged with Scilab subplots. General information includes non-identifying acquisition fields such as modality, dimensions, series, spacing, transfer syntax, and rescale values. Patient name and ID are never added to the figure automatically.</para>
+</refsection>
+<refsection><title>Examples</title>
+<para>Example 1 displays four frames and one shared information panel.</para>
+<programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+view = dicomshow(filename, [1 4 7 10], "general");
+]]></programlisting>
+<para>Example 2 reads once, then displays selected frames with per-slice information.</para>
+<programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+[volume, info] = dicomread(filename);
+view = dicomshow(volume, [2 5 8], "slice", info);
+]]></programlisting>
+<para>Example 3 turns off all slice annotations.</para>
+<programlisting role="example"><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+view = dicomshow(filename, 5, "none");
+]]></programlisting>
+</refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dicomread">dicomread</link></member><member><link linkend="imshow3d">imshow3d</link></member><member><link linkend="imtile">imtile</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0 development Step 3</td><td>DICOM slice viewer with selectable metadata modes introduced.</td></tr></informaltable></refsection>
+</refentry>

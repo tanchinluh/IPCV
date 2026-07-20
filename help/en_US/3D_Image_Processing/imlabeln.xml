@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="imlabeln" xml:lang="en" xmlns="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org">
-<refnamediv><refname>imlabeln</refname><refpurpose>Label connected components in a binary image.</refpurpose></refnamediv>
+<refentry version="5.0-subset Scilab" xml:id="imlabeln" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imlabeln</refname><refpurpose>Label connected components in a 2-D image or 3-D volume.</refpurpose></refnamediv>
 <refsynopsisdiv><title>Syntax</title><synopsis>[labels, count] = imlabeln(image)
 [labels, count] = imlabeln(image, connectivity)</synopsis></refsynopsisdiv>
-<refsection><title>Description</title><para>Returns an integer label image and the number of connected components. The current Scilab gateway supports 2D input with 4- or 8-connectivity; 3D hypermatrix support is planned.</para></refsection>
-<refsection><title>Examples</title><programlisting><![CDATA[image = imread(fullpath(getIPCVpath() + "/images/opencv_smarties.png"));
-image = imresize(rgb2gray(image), [120 160]);
-mask = image > 120;
-[labels, count] = imlabeln(mask, 8);
-disp(count);
-imshow(imlabel2rgb(labels));]]></programlisting></refsection>
-<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imlabel">imlabel</link></member><member><link linkend="imlabel2rgb">imlabel2rgb</link></member></simplelist></refsection>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>image</term><listitem><para>Binary or numeric 2-D image or 3-D scalar volume. Nonzero elements are foreground.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para><literal>4</literal> or <literal>8</literal> for 2-D input; <literal>6</literal>, <literal>18</literal>, or <literal>26</literal> for 3-D input. Defaults are 8 and 26 respectively.</para></listitem></varlistentry>
+<varlistentry><term>labels</term><listitem><para>Double image or volume whose foreground components contain positive integer labels.</para></listitem></varlistentry>
+<varlistentry><term>count</term><listitem><para>Number of connected foreground components.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Labels true 3-D components through the native IPCV volume gateway. Face, edge, and corner contact are controlled by 6-, 18-, and 26-connectivity.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+volume = zeros(24, 24, 12) == 1;
+volume(3:9, 3:9, 3:7) = %t;
+volume(14:20, 14:20, 6:10) = %t;
+volume(10, 10, 8) = %t;
+[labels6, count6] = imlabeln(volume, 6);
+[labels26, count26] = imlabeln(volume, 26);
+disp([count6 count26]);
+imshow3d(labels26, "3d", 1, 5000);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imconnectedcomponents">imconnectedcomponents</link></member><member><link linkend="imregionprops3">imregionprops3</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection>
 <refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
-<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced for 2D binary images.</td></tr></informaltable></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced for 2-D binary images.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native 3-D labeling with 6-, 18-, and 26-connectivity added.</td></tr></informaltable></refsection>
 </refentry>

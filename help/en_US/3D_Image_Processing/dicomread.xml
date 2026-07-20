@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dicomread" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>dicomread</refname><refpurpose>Read an uncompressed grayscale DICOM image or multi-frame volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>[volume, info] = dicomread(filename)
+[volume, info] = dicomread(filename, applyRescale)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>filename</term><listitem><para>Path to a DICOM Part 10 file.</para></listitem></varlistentry>
+<varlistentry><term>applyRescale</term><listitem><para>Scalar boolean. When true, the default, output values are transformed using DICOM Rescale Slope and Rescale Intercept.</para></listitem></varlistentry>
+<varlistentry><term>volume</term><listitem><para>Double array arranged as <literal>[rows, columns, frames]</literal>. A single-frame DICOM is returned with one frame.</para></listitem></varlistentry>
+<varlistentry><term>info</term><listitem><para>Structure containing dimensions, stored-bit fields, pixel spacing, display window, rescale values, transfer syntax, modality, photometric interpretation, and selected study, series, and patient tags.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title>
+<para>The native reader supports DICOM Implicit VR Little Endian, Explicit VR Little Endian, and Explicit VR Big Endian transfer syntaxes with uncompressed 8-bit or 16-bit MONOCHROME1 or MONOCHROME2 Pixel Data. Signed stored pixels, non-default High Bit positions, multi-frame images, and modality rescaling are handled.</para>
+<para>JPEG, JPEG-LS, JPEG 2000, RLE, deflated datasets, color DICOM, and directory-based series assembly are not decoded by this function. Unsupported transfer syntaxes produce an explicit error.</para>
+<warning><para>DICOM metadata may contain protected health information. IPCV returns selected patient tags in <varname>info</varname> but <link linkend="dicomshow">dicomshow</link> does not place them on figures by default. This toolbox is not a diagnostic medical device.</para></warning>
+</refsection>
+<refsection><title>Examples</title>
+<para>The sample is the anonymized multi-frame <literal>emri_small.dcm</literal> fixture from the MIT-licensed <ulink url="https://github.com/pydicom/pydicom-data/blob/master/data_store/data/emri_small.dcm">pydicom-data repository</ulink>.</para>
+<programlisting><![CDATA[
+filename = fullpath(getIPCVpath() + "/images/dicom/emri_small.dcm");
+[volume, info] = dicomread(filename);
+disp(size(volume));
+disp(info.Modality);
+disp(info.TransferSyntaxUID);
+dicomshow(volume, [1 4 7 10], "general", info);
+]]></programlisting>
+</refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="dicomshow">dicomshow</link></member><member><link linkend="imshow3d">imshow3d</link></member><member><link linkend="imreadmulti">imreadmulti</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0 development Step 3</td><td>Native uncompressed grayscale DICOM reader introduced.</td></tr></informaltable></refsection>
+</refentry>

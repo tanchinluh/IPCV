@@ -60,6 +60,8 @@ function manifest = ipcv_test_manifest(testRoot)
         "imsurf"; ..
         "imtransform"; ..
         "imwiener2"; ..
+        "ipcv_dicomshow"; ..
+        "ipcv_volshow"; ..
         "ipcv_imshow"; ..
         "mkfftfilter" ..
     ];
@@ -107,6 +109,10 @@ function manifest = ipcv_test_manifest(testRoot)
          "ipcv_step3_batch11"; ..
          "ipcv_step3_batch12"; ..
          "ipcv_step3_batch13"; ..
+         "ipcv_volume_native"; ..
+         "ipcv_dicom"; ..
+         "ipcv_dicomshow"; ..
+         "ipcv_volshow"; ..
          "ipcv_filtering"; ..
         "ipcv_morphology"; ..
         "ipcv_color"; ..

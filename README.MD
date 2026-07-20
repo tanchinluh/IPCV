@@ -39,7 +39,10 @@ priorities are maintained in [ROADMAP.md](ROADMAP.md).
 - Batch 13 help examples now show their source reference and provide two independent executable blocks: an adapted OpenCV workflow and a separate IPCV workflow.
 - Browser-based `imtool()` supports images and OpenCV-decoded video, including paused-frame inspection, zoom, pan, rotation, color-space inspection, pixel grids, temporal difference/heatmap/average analysis, optical-flow overlays, and recording of the rendered analysis stream.
 - Native OpenCV 5 gateways now cover k-means segmentation, GrabCut, superpixels, Harris/KAZE/AKAZE features, KAZE/AKAZE descriptors, template matching, phase registration, solve-PnP, fundamental-matrix estimation, and triangulation.
-- Volumetric functions are grouped under the dedicated `3D Image Processing` category, including filtering, morphology, profiles, transforms, region measurements, segmentation, and `imshow3d`.
+- Volumetric functions are grouped under the dedicated `3D Image Processing` category, including filtering, morphology, profiles, transforms, region measurements, segmentation, `imshow3d`, and the interactive WebGL `volshow` renderer.
+- The native 3-D foundation provides unambiguous Scilab hypermatrix exchange, 6/18/26-connected labeling and morphology, plateau-aware regional maxima, and accelerated box, Gaussian, and median filtering.
+- `dicomread()` imports uncompressed grayscale single- and multi-frame DICOM data with acquisition metadata; `dicomshow()` displays selected frames with per-slice, shared, or hidden information panels.
+- `volshow()` provides GPU ray-cast volume compositing, maximum-intensity projection, shaded isosurfaces, rotatable orthogonal slice planes, scrollable 2-D layers, and full-resolution layer export to the Scilab workspace with DICOM voxel spacing.
 - Display and geometry workflows consistently distinguish upper-left image coordinates from lower-left Scilab plot coordinates. Help overlays use `rect2cart()` or `sub2cart()` where required.
 - The help audit replaces toy or misleading examples with executable image workflows, adds missing Parameters/Author/History sections, removes stale duplicate pages, and links examples to their actual OpenCV references.
 - AVI examples use explicit writable output paths and the broadly compatible `MJPG` codec. `addframe` remains available as a deprecated compatibility alias of `aviaddframe`.
@@ -73,6 +76,7 @@ Current help examples use image assets from the official OpenCV sample-data
 repository:
 
 - `images/opencv_smarties.png`: color segmentation, statistics, and volume examples.
+- `images/dicom/emri_small.dcm`: anonymized 10-frame MR sample from the MIT-licensed pydicom-data repository; attribution and license are stored beside the file.
 - `images/opencv_fruits.jpg`: color/intensity statistics and gradient examples.
 - `images/opencv_left01.jpg` and `images/opencv_left02.jpg`: chessboard pose,
   stereo, and camera-geometry examples.

@@ -1,4 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?><refentry version="5.0-subset Scilab" xml:id="imbwmorph3" xml:lang="en" xmlns="http://docbook.org/ns/docbook"><refnamediv><refname>imbwmorph3</refname><refpurpose>Apply basic 3D binary morphology.</refpurpose></refnamediv><refsynopsisdiv><title>Syntax</title><synopsis>out = imbwmorph3(volume, operation); out = imbwmorph3(volume, operation, iterations, connectivity)</synopsis></refsynopsisdiv><refsection><title>Description</title><para>Supports 3D erode, dilate, open, and close operations with 6- or 26-connectivity. The output is a boolean volume.</para></refsection><refsection><title>Examples</title><programlisting><![CDATA[volume = zeros(21, 21, 9) == 1;
-volume(7:15, 7:15, 3:7) = %t;
-opened = imbwmorph3(volume, "open", 1, 6);
-imshow(max(opened, 3));]]></programlisting></refsection><refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwmorph">imbwmorph</link></member><member><link linkend="imshow3d">imshow3d</link></member></simplelist></refsection><refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection><refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr></informaltable></refsection></refentry>
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="imbwmorph3" xml:lang="en" xmlns="http://docbook.org/ns/docbook">
+<refnamediv><refname>imbwmorph3</refname><refpurpose>Apply native binary morphology to a 3-D volume.</refpurpose></refnamediv>
+<refsynopsisdiv><title>Syntax</title><synopsis>out = imbwmorph3(volume, operation)
+out = imbwmorph3(volume, operation, iterations, connectivity)</synopsis></refsynopsisdiv>
+<refsection><title>Parameters</title><variablelist>
+<varlistentry><term>volume</term><listitem><para>Binary or numeric 3-D volume. Nonzero voxels are foreground.</para></listitem></varlistentry>
+<varlistentry><term>operation</term><listitem><para><literal>"erode"</literal>, <literal>"dilate"</literal>, <literal>"open"</literal>, or <literal>"close"</literal>.</para></listitem></varlistentry>
+<varlistentry><term>iterations</term><listitem><para>Positive number of repetitions. Default is 1.</para></listitem></varlistentry>
+<varlistentry><term>connectivity</term><listitem><para><literal>6</literal>, <literal>18</literal>, or <literal>26</literal>. Default is 6.</para></listitem></varlistentry>
+<varlistentry><term>out</term><listitem><para>Boolean result volume.</para></listitem></varlistentry>
+</variablelist></refsection>
+<refsection><title>Description</title><para>Performs volumetric erosion, dilation, opening, or closing in native C++. Connectivity selects face, face-and-edge, or full 3-by-3-by-3 neighborhoods.</para></refsection>
+<refsection><title>Examples</title><programlisting><![CDATA[
+volume = zeros(31, 31, 15) == 1;
+volume(10:22, 10:22, 5:11) = %t;
+volume(16, 16, 8) = %f;
+volume(4, 4, 3) = %t;
+opened = imbwmorph3(volume, "open", 1, 26);
+closed = imbwmorph3(opened, "close", 1, 26);
+imshow3d(closed, "3d", 1, 6000);
+]]></programlisting></refsection>
+<refsection role="see also"><title>See also</title><simplelist type="inline"><member><link linkend="imbwareaopen3">imbwareaopen3</link></member><member><link linkend="imbwperim3">imbwperim3</link></member><member><link linkend="imfill3">imfill3</link></member></simplelist></refsection>
+<refsection><title>Authors</title><simplelist type="vert"><member>Tan Chin Luh</member></simplelist></refsection>
+<refsection><title>History</title><informaltable border="1"><tr><td>Version</td><td>Description</td></tr><tr><td>5.0.0</td><td>Function introduced in development Step 3.</td></tr><tr><td>5.0.0 development Step 3</td><td>Native 6-, 18-, and 26-connected implementation added.</td></tr></informaltable></refsection>
+</refentry>
