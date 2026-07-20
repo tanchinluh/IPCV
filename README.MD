@@ -61,6 +61,39 @@ requires the broader release/GUI/network/hardware suites where applicable and
 macOS/Linux validation. Generated binaries, help output, downloaded models, and
 local Codex/Scilab profiles are not source-controlled.
 
+## Codex And GPT-5.6 During OpenAI Build Week
+
+IPCV 5.0 development was accelerated with Codex using GPT-5.6. The largest
+migration task was rebasing IPCV's native backend from OpenCV 4.5 to OpenCV
+5.0. Codex helped inspect the legacy Scilab and C++ gateways, trace changed or
+removed OpenCV APIs, reorganize the native boundary, update the build workflow,
+and repeatedly compile, diagnose, and validate the migration. The core rebase
+reached a working state in about one day; based on prior manual maintenance of
+IPCV, the same investigation and migration would normally take weeks and could
+extend to months across hundreds of functions and multiple platforms.
+
+Codex and GPT-5.6 accelerated the engineering loop for:
+
+- Migrating and refactoring OpenCV-backed gateways and function families.
+- Expanding Scilab functions, help pages, runnable examples, and regression
+  coverage.
+- Diagnosing build, API-compatibility, packaging, GUI, video, DNN, DICOM, and
+  three-dimensional volume-processing issues.
+- Creating the containerized browser demonstration so judges can run curated
+  IPCV operations without installing the full desktop stack.
+- Preparing validation evidence, project media, and technical documentation.
+
+The active Scilab function-file count grew from 196 in IPCV 4.5 to 477 in the
+current IPCV 5.0 development tree: a net increase of 281 functions, or 143.4%
+growth (`2.43x`). The official Build Week baseline contained 326 active
+function files; 151 were added during the event period.
+
+This was not a one-click conversion. Human judgment remained responsible for
+the architecture, public API, compatibility requirements, educational
+direction, and definition of correct behavior. Codex and GPT-5.6 shortened the
+inspect-implement-build-test-document cycle while those decisions remained
+under project-owner control.
+
 ## Coordinate Convention
 
 Image-processing functions use image coordinates: `[x y]` means column and row,
