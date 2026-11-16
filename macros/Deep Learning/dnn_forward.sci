@@ -24,7 +24,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    S = imread(dnn_path + "3.jpg");
     //    out = dnn_forward(net, ~S, [28, 28]);
     //    [score, index] = max(out);

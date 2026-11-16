@@ -82,8 +82,8 @@ function ipcvlib = startModule()
     // =============================================================================
     if or(getscilabmode() == ["NW";"STD"]) then
         mprintf(", help");
-        path_addchapter = pathconvert(root_tlbx+"/jar");
-        if ( isdir(path_addchapter) <> [] ) then
+        path_addchapter = pathconvert(root_tlbx+"/help");
+        if isdir(path_addchapter) then
             add_help_chapter(TOOLBOX_TITLE, path_addchapter, %F);
         end
     end

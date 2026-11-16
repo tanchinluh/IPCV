@@ -20,7 +20,7 @@ function dnn_showparam(para_map,out_num,c)
     //    // Initialize
     //    dnn_unloadallmodels
     //    dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-    //    net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+    //    net = dnn_readmodel(dnn_path + 'lenet5.onnx','','onnx');
     //     
     //     
     //    // Read Image

@@ -9,19 +9,22 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
     //    net = dnn_readmodel(model,modelinfo,modeltype);
     //
     // Parameters
-    //    model : Model binary (.caffemodel, .pb, .weights, .onnx, .t7, .tflite).
+    //    model : Model binary (.onnx or .tflite).
     //    modelinfo : Model info/config file, if required by the framework.
-    //    modeltype : Model type. Use "auto", "caffe", "tensorflow", "yolo", "onnx", "torch", or "tflite".
-    //    net : Loaded net with its' pointer and informations. 
+    //    modeltype : Model type. Use "auto", "onnx", or "tflite".
+    //    net : Loaded net with its' pointer and informations.
     //
     // Description
     //    This function is used for loading DNN model and used in Scilab for inference system.
     //
+    //    Since OpenCV 5.1, only ONNX and TFLite models can be read. Caffe, TensorFlow, Darknet (YOLO)
+    //    and Torch models must be converted to ONNX first.
+    //
     // Examples
-    //    // Example 1: TensorFlow LeNet
+    //    // Example 1: LeNet (ONNX)
     //    dnn_unloadallmodels();
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    net = dnn_setpreferable(net, "opencv", "cpu");
     //    info = dnn_info(net, [28, 28], 1);
     //    S = imread(dnn_path + "3.jpg");
@@ -124,12 +127,16 @@ function net = dnn_readmodel(model,modelinfo,modeltype)
         case "tflite" then
             modelselect = 6;
         else
-            error("Unsupported model type. Use ""auto"", ""caffe"", ""tensorflow"", ""yolo"", ""onnx"", ""torch"", or ""tflite"".");
+            error("Unsupported model type. Use ""auto"", ""onnx"", or ""tflite"".");
         end
     else
-        error("Model type must be a number from 0 to 6, or a supported model type string."); 
+        error("Model type must be a number from 0 to 6, or a supported model type string.");
     end
-    
+    // OpenCV 5.1 removed the readers of the other formats
+    if or(modelselect == [1 2 3 5]) then
+        error(msprintf("%s models are not supported by OpenCV 5.1: convert the model to ONNX.", supported_model(modelselect + 1)));
+    end
+
     modelname = strsplit(model,['\','/','\\'])
 
     net.identifier = "dnn"

@@ -7,7 +7,7 @@
 :: openCV build script for Windows
 :: cmake.exe (standalone or Visual Studio cmake.exe) and ninja.exe should be in the PATH
 
-set OPENCV_VER=5.0.0
+set OPENCV_VER=5.1.0
 curl -o opencv.tgz https://codeload.github.com/opencv/opencv/tar.gz/refs/tags/%OPENCV_VER%
 curl -o opencv_contrib.tgz https://codeload.github.com/opencv/opencv_contrib/tar.gz/refs/tags/%OPENCV_VER%
 tar -xf opencv.tgz

@@ -1,5 +1,15 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
+Version 5.1.0 (16-Nov-26)
+OpenCV 5.1
+1. Target OpenCV/OpenCV contrib 5.1.0 for thirdparty builds
+2. build.sh no longer skips the vendored MLAS of OpenCV DNN: its link errors are fixed in OpenCV 5.1.0
+3. Windows builders link opencv_world510 and opencv_img_hash510
+4. Replace the Mat comma initializer removed in OpenCV 5.1 (ipcv_superres.cpp)
+5. dnn_readmodel: use the default DNN engine (ENGINE_CLASSIC was removed in OpenCV 5.1); only ONNX and TFLite models can be read
+6. Load the help chapter from the help directory and fix the existence test of the help directory
+7. Add the IPCV overview help page
+
 Version 5.0.0 (07-Jul-26)
 OpenCV 5 and C++ Migration
 1. Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds

@@ -50,7 +50,7 @@ function builder_gateway_cpp()
     all_libs = [];
     if getos() == "Windows"
         OPENCV_INCLUDE = fullfile(THIRDPARTY,"Windows",ARCH,"include");
-        libs = ["opencv_world500";"opencv_img_hash500"]
+        libs = ["opencv_world510";"opencv_img_hash510"]
         all_libs = [fullfile("..","..","thirdparty","Windows",ARCH,"lib",libs);
                     fullfile("..","..","src","cpp","libipcv_core")]; 
     else  // Darwin, Linux

@@ -10,7 +10,7 @@
 
 THIRDPARTY="$(cd ..; pwd)"
 PREFIX="${THIRDPARTY}/$(uname -s)/$(uname -m)"
-OPENCV_VER=5.0.0
+OPENCV_VER=5.1.0
 FFMPEG_VER=4.3.6
 if [ "$(uname -s)" = "Darwin" ]; then
     INSTALL_RPATH="${PREFIX}/lib"
@@ -35,15 +35,6 @@ cd ..
 tar -xf opencv-${OPENCV_VER}.tar.gz
 tar -xf opencv_contrib-${OPENCV_VER}.tar.gz
 cd opencv-${OPENCV_VER}
-awk '
-    $0 == "# Vendored MLAS (Microsoft Linear Algebra Subprograms) from ONNX Runtime." { seen = 1 }
-    seen && $0 == "if(NOT EMSCRIPTEN)" {
-        print "if(FALSE) # IPCV local Unix build: skip MLAS; OpenCV 5 MLAS link symbols are incomplete."
-        seen = 0
-        next
-    }
-    { print }
-' modules/dnn/CMakeLists.txt > modules/dnn/CMakeLists.txt.tmp && mv modules/dnn/CMakeLists.txt.tmp modules/dnn/CMakeLists.txt
 rm -rf build
 mkdir -p build
 cd build

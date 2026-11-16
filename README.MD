@@ -2,7 +2,7 @@
 
 IPCV is an Image Processing and Computer Vision toolbox for Scilab. It provides Scilab macros and native gateways for image I/O, filtering, morphology, feature detection, DNN inference, video/camera handling, object tracking, and other OpenCV-backed workflows.
 
-The current development line is the OpenCV 5 and C++ migration of IPCV. The native implementation targets OpenCV/OpenCV contrib 5.0.0 and Scilab 2026.x, with the legacy gateway helpers replaced by category-based C++ source modules.
+The current development line is the OpenCV 5 and C++ migration of IPCV. The native implementation targets OpenCV/OpenCV contrib 5.1.0 and Scilab 2026.x, with the legacy gateway helpers replaced by category-based C++ source modules.
 
 ## Highlights
 
@@ -17,7 +17,7 @@ The current development line is the OpenCV 5 and C++ migration of IPCV. The nati
 
 - Scilab 2026.x
 - Windows build tools for native compilation
-- OpenCV/OpenCV contrib 5.0.0 thirdparty build for the IPCV native gateway
+- OpenCV/OpenCV contrib 5.1.0 thirdparty build for the IPCV native gateway
 
 For native builds on Windows, start Scilab from a Visual Studio native tools command prompt so the compiler environment is available.
 
@@ -41,7 +41,7 @@ imshow(S);
 Build order:
 
 1. Prepare compiler tools.
-2. Build OpenCV/OpenCV contrib 5.0.0 into `thirdparty`.
+2. Build OpenCV/OpenCV contrib 5.1.0 into `thirdparty`.
 3. Start Scilab from the compiler environment.
 4. Run IPCV `builder.sce`.
 5. Load IPCV and run a quick smoke test.
@@ -54,7 +54,7 @@ On Linux or macOS, install CMake, Ninja, a C/C++ compiler toolchain, `curl`, `ma
 
 ### 2. Build OpenCV 5 Thirdparty
 
-IPCV expects a local OpenCV/OpenCV contrib 5.0.0 build under `thirdparty`. The helper scripts in `thirdparty/build` download OpenCV sources, configure CMake with Ninja, build `opencv_world`, and install headers/libraries into the platform-specific thirdparty folder.
+IPCV expects a local OpenCV/OpenCV contrib 5.1.0 build under `thirdparty`. The helper scripts in `thirdparty/build` download OpenCV sources, configure CMake with Ninja, build `opencv_world`, and install headers/libraries into the platform-specific thirdparty folder.
 
 For a detailed Windows and Linux thirdparty build guide, see `thirdparty/build/README.txt`.
 
@@ -69,7 +69,7 @@ build.bat
 
 The script:
 
-- Downloads OpenCV and OpenCV contrib `5.0.0`.
+- Downloads OpenCV and OpenCV contrib `5.1.0`.
 - Applies the IPCV local MLAS skip patch for the OpenCV DNN Windows build.
 - Configures OpenCV with `-G Ninja`.
 - Builds and installs into `thirdparty\Windows\%PROCESSOR_ARCHITECTURE%`.
@@ -91,7 +91,7 @@ cd thirdparty/build
 ./build.sh
 ```
 
-The script first builds a local shared FFmpeg dependency, then downloads and builds OpenCV/OpenCV contrib `5.0.0`.
+The script first builds a local shared FFmpeg dependency, then downloads and builds OpenCV/OpenCV contrib `5.1.0`.
 
 Expected layout after installation:
 
@@ -208,7 +208,7 @@ tests/unit_tests
 
 These are the active tests for the C++/OpenCV 5 code path and are the default place for new regression coverage.
 
-Legacy IPCV 4.5 tests are not part of the default 5.0.0 test run. If they are kept for migration comparison, keep them isolated under:
+Legacy IPCV 4.5 tests are not part of the default 5.1.0 test run. If they are kept for migration comparison, keep them isolated under:
 
 ```text
 tests/unit_tests/4.5

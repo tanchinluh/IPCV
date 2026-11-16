@@ -6,7 +6,7 @@
 
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
 assert_checktrue(net.ptr > 0);
 assert_checktrue(size(net.layername, "*") > 0);
 assert_checktrue(size(net.outputname, "*") > 0);

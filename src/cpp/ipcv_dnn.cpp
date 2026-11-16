@@ -336,20 +336,14 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
         case 0:
             framework = "";
             break;
-        case 1:
-            framework = "caffe";
-            break;
-        case 2:
-            framework = "tensorflow";
-            break;
-        case 3:
-            framework = "darknet";
-            break;
+        case 1: // caffe
+        case 2: // tensorflow
+        case 3: // darknet
+        case 5: // torch
+            copy_error(error, error_size, "unsupported DNN model type: OpenCV 5.1 only reads ONNX and TFLite models");
+            return -1;
         case 4:
             framework = "onnx";
-            break;
-        case 5:
-            framework = "torch";
             break;
         case 6:
             framework = "tflite";
@@ -359,7 +353,8 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
             return -1;
         }
 
-        g_nets[slot] = cv::dnn::readNet(model_file, config_file, framework, cv::dnn::ENGINE_CLASSIC);
+        // default engine: the classic engine of OpenCV 5.0 (ENGINE_CLASSIC) was removed in OpenCV 5.1
+        g_nets[slot] = cv::dnn::readNet(model_file, config_file, framework);
 
         if (g_nets[slot].empty())
         {
