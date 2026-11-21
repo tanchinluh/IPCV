@@ -13,7 +13,7 @@ function builder_cpp()
     thirdparty_path = fullpath(fullfile(src_cpp_path, "..", "..", "thirdparty"));
     if getos() == "Windows" then
         opencv_include = fullfile(thirdparty_path, "Windows", ARCH, "include");
-        opencv_lib = fullfile("..", "..", "thirdparty", "Windows", ARCH, "lib", "opencv_world500");
+        opencv_lib = fullfile("..", "..", "thirdparty", "Windows", ARCH, "lib", "opencv_world510");
     else
         opencv_include = fullfile(thirdparty_path, getos(), ARCH, "include", "opencv5");
         opencv_lib = fullfile("..", "..", "thirdparty", getos(), ARCH, "lib", "libopencv_world");

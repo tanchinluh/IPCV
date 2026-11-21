@@ -6,7 +6,7 @@
 
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
 assert_checktrue(net.ptr > 0);
 assert_checktrue(size(net.layername, "*") > 0);
 assert_checktrue(size(net.outputname, "*") > 0);
@@ -84,17 +84,23 @@ segScoresWhc = cat(3, segScores(:, :, 1)', segScores(:, :, 2)');
 segMaskWhc = dnn_decode_segmentation(segScoresWhc, "whc");
 assert_checkequal(segMaskWhc, [1 2; 2 2]);
 
-S = imread(dnn_path + "3.jpg");
+S = rgb2gray(imread(dnn_path + "3.jpg"));
 out = dnn_forward(net, ~S, [28, 28]);
 assert_checktrue(size(out, "*") > 0);
 outStd = dnn_forward(net, ~S, [28, 28], [], 1, [0 0 0], 1, 0, [1 1 1]);
 assert_checkequal(size(outStd), size(out));
 
-out1 = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
-assert_checkequal(size(out1), [28 28 6]);
+namedOut = dnn_forward(net, ~S, [28, 28], net.outputname(1));
+assert_checkequal(size(namedOut), size(out));
+assert_checktrue(max(abs(namedOut - out)) < 0.000001);
 
-para1 = dnn_getparam(net, "conv2d/Conv2D");
-assert_checkequal(size(para1), [5 5 6]);
+intermediateError = execstr("dnn_forward(net, ~S, [28, 28], ""conv2d/BiasAdd"");", "errcatch");
+assert_checktrue(intermediateError <> 0);
+assert_checktrue(~isempty(strindex(lasterror(), "intermediate activations")));
+
+paramError = execstr("dnn_getparam(net, ""conv2d/BiasAdd"");", "errcatch");
+assert_checktrue(paramError <> 0);
+assert_checktrue(~isempty(strindex(lasterror(), "does not expose learned layer parameters")));
 
 lst = dnn_list();
 assert_checkequal(lst, net.ptr);

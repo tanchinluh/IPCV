@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>dnn_getparam</refname>
-    <refpurpose>Get the layer's parameters</refpurpose>
+    <refpurpose>Reports learned-parameter access availability</refpurpose>
   </refnamediv>
 
 
@@ -54,7 +54,7 @@
 <refsection>
    <title>Description</title>
    <para>
-This function is used to retrieve the layer's parameters (filter coefficients)
+This API is retained for compatibility, but OpenCV 5.1's graph engine does not expose learned layer parameters. Calling it reports that limitation instead of forwarding the upstream assertion failure.
    </para>
    <para>
 </para>
@@ -66,15 +66,14 @@ This function is used to retrieve the layer's parameters (filter coefficients)
 // Initialize
 dnn_unloadallmodels
 dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+net = dnn_readmodel(dnn_path + 'lenet5.onnx','','onnx');
 
 
-// Read Image
-S = imread(dnn_path + '3.jpg');
-
-// Forward Pass
-para1 = dnn_getparam(net,"conv2d/Conv2D");
-scf();dnn_showparam(para1);
+try
+    para1 = dnn_getparam(net, net.layername(1));
+catch
+    disp(lasterror());
+end
 
 // Clean Up
 dnn_unloadallmodels();

@@ -336,20 +336,14 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
         case 0:
             framework = "";
             break;
-        case 1:
-            framework = "caffe";
-            break;
-        case 2:
-            framework = "tensorflow";
-            break;
-        case 3:
-            framework = "darknet";
-            break;
+        case 1: // caffe
+        case 2: // tensorflow
+        case 3: // darknet
+        case 5: // torch
+            copy_error(error, error_size, "unsupported DNN model type: OpenCV 5.1 only reads ONNX and TFLite models");
+            return -1;
         case 4:
             framework = "onnx";
-            break;
-        case 5:
-            framework = "torch";
             break;
         case 6:
             framework = "tflite";
@@ -359,7 +353,8 @@ extern "C" IPCV_CORE_API int ipcv_dnn_load(const char *model, const char *config
             return -1;
         }
 
-        g_nets[slot] = cv::dnn::readNet(model_file, config_file, framework, cv::dnn::ENGINE_CLASSIC);
+        // default engine: the classic engine of OpenCV 5.0 (ENGINE_CLASSIC) was removed in OpenCV 5.1
+        g_nets[slot] = cv::dnn::readNet(model_file, config_file, framework);
 
         if (g_nets[slot].empty())
         {
@@ -455,6 +450,21 @@ extern "C" IPCV_CORE_API int ipcv_dnn_forward(int handle, const IpcvDecodedImage
         }
         else
         {
+            const std::vector<cv::String> output_names = net.getUnconnectedOutLayersNames();
+            bool is_model_output = false;
+            for (size_t i = 0; i < output_names.size(); i++)
+            {
+                if (output_names[i] == layer_name)
+                {
+                    is_model_output = true;
+                    break;
+                }
+            }
+            if (!is_model_output)
+            {
+                set_tensor_error(output, "OpenCV 5.1 graph engine exposes final model outputs only; intermediate activations are unavailable");
+                return -1;
+            }
             result = net.forward(cv::String(layer_name));
         }
 
@@ -663,28 +673,9 @@ extern "C" IPCV_CORE_API int ipcv_dnn_get_param(int handle, const char *layer_na
         return -1;
     }
 
-    try
-    {
-        cv::dnn::Net& net = g_nets[handle - 1];
-        const int layer_id = net.getLayerId(cv::String(layer_name));
-        if (layer_id < 0)
-        {
-            set_tensor_error(output, "DNN layer name not found");
-            return -1;
-        }
-
-        cv::Mat param = net.getParam(layer_id, param_index);
-        if (!tensor_from_mat(param, output))
-        {
-            return -1;
-        }
-        return 0;
-    }
-    catch (const cv::Exception& e)
-    {
-        set_tensor_error(output, e.what());
-        return -1;
-    }
+    (void)param_index;
+    set_tensor_error(output, "OpenCV 5.1 graph engine does not expose learned layer parameters");
+    return -1;
 }
 
 extern "C" IPCV_CORE_API int ipcv_dnn_list(double *handles, int max_handles, int *count)

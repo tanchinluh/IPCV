@@ -9,7 +9,7 @@ dependencies required by IPCV:
   - build.sh   : Linux and macOS OpenCV/OpenCV contrib build
 
 This document covers the supported Windows and Linux workflows for the IPCV
-5.0.0 / OpenCV 5 migration. The scripts build OpenCV/OpenCV contrib 5.0.0 and
+5.1.0 / OpenCV 5 migration. The scripts build OpenCV/OpenCV contrib 5.1.0 and
 install the result into the platform-specific folder expected by the IPCV
 Scilab builders.
 
@@ -61,7 +61,7 @@ Commands:
 
 The script will:
 
-  1. Download OpenCV 5.0.0 and OpenCV contrib 5.0.0 tarballs.
+  1. Download OpenCV 5.1.0 and OpenCV contrib 5.1.0 tarballs.
   2. Extract them under thirdparty/build.
   3. Apply the IPCV local OpenCV DNN MLAS skip patch.
   4. Configure OpenCV with Ninja.
@@ -72,10 +72,10 @@ The script will:
 Expected key files after build:
 
   thirdparty\Windows\AMD64\include\opencv2\opencv.hpp
-  thirdparty\Windows\AMD64\lib\opencv_world500.dll
-  thirdparty\Windows\AMD64\lib\opencv_world500.lib
-  thirdparty\Windows\AMD64\lib\opencv_img_hash500.dll
-  thirdparty\Windows\AMD64\lib\opencv_img_hash500.lib
+  thirdparty\Windows\AMD64\lib\opencv_world510.dll
+  thirdparty\Windows\AMD64\lib\opencv_world510.lib
+  thirdparty\Windows\AMD64\lib\opencv_img_hash510.dll
+  thirdparty\Windows\AMD64\lib\opencv_img_hash510.lib
 
 After this, keep the same Visual Studio x64 Native Tools Command Prompt open,
 launch Scilab from that prompt, then run IPCV builder.sce from Scilab.
@@ -112,12 +112,11 @@ The script will:
 
   1. Download and build FFmpeg 4.3.6 as shared libraries.
   2. Install FFmpeg into thirdparty/Linux/<architecture>.
-  3. Download OpenCV 5.0.0 and OpenCV contrib 5.0.0 tarballs.
+  3. Download OpenCV 5.1.0 and OpenCV contrib 5.1.0 tarballs.
   4. Extract them under thirdparty/build.
-  5. Apply the IPCV local OpenCV DNN MLAS skip patch.
-  6. Configure OpenCV with Ninja.
-  7. Build opencv_world and selected contrib modules.
-  8. Install to thirdparty/Linux/<architecture>.
+  5. Configure OpenCV with Ninja.
+  6. Build opencv_world and selected contrib modules.
+  7. Install to thirdparty/Linux/<architecture>.
 
 On common x86_64 Linux systems, <architecture> is x86_64.
 
@@ -125,9 +124,9 @@ Expected key files after build:
 
   thirdparty/Linux/x86_64/include/opencv5/opencv2/opencv.hpp
   thirdparty/Linux/x86_64/lib/libopencv_world.so
-  thirdparty/Linux/x86_64/lib/libopencv_world.so.5.0.0
+  thirdparty/Linux/x86_64/lib/libopencv_world.so.5.1.0
   thirdparty/Linux/x86_64/lib/libopencv_img_hash.so
-  thirdparty/Linux/x86_64/lib/libopencv_img_hash.so.5.0.0
+  thirdparty/Linux/x86_64/lib/libopencv_img_hash.so.5.1.0
   thirdparty/Linux/x86_64/lib/libavcodec.so
   thirdparty/Linux/x86_64/lib/libavformat.so
 
@@ -169,8 +168,8 @@ Clean rebuild:
   Remove the extracted OpenCV/FFmpeg source folders under thirdparty/build
   before rerunning the scripts:
 
-    opencv-5.0.0/
-    opencv_contrib-5.0.0/
+    opencv-5.1.0/
+    opencv_contrib-5.1.0/
     ffmpeg-4.3.6/
 
   Keep the downloaded tarballs if you want to avoid another download.
@@ -187,8 +186,9 @@ Linux missing tools:
 
 OpenCV DNN MLAS link/build problems:
 
-  The scripts patch OpenCV's DNN CMake file to skip vendored MLAS for this
-  local IPCV build. This was required for the OpenCV 5 migration release.
+  build.bat patches OpenCV's DNN CMake file to skip vendored MLAS for the
+  local Windows build. build.sh no longer does it: the MLAS link errors of
+  OpenCV 5.0.0 on Linux and macOS are fixed in OpenCV 5.1.0.
 
 Runtime library load problems on Linux:
 

@@ -6,7 +6,7 @@ function demo_dnn()
     dnn_unloadallmodels();
 
     dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     net = dnn_setpreferable(net, "opencv", "cpu");
 
     info = dnn_info(net, [28, 28], 1);
@@ -17,7 +17,7 @@ function demo_dnn()
     mprintf("Output layer: %s\n", info.outputname($));
     mprintf("FLOPS for [28, 28, 1]: %.0f\n\n", info.flops);
 
-    S = imread(dnn_path + "3.jpg");
+    S = rgb2gray(imread(dnn_path + "3.jpg"));
     out = dnn_forward(net, ~S, [28, 28]);
     [score, index] = max(out);
     prediction = index - 1;
@@ -30,10 +30,9 @@ function demo_dnn()
     imshow(S);
     title("DNN prediction: " + string(prediction));
 
-    conv_output = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
-    conv_param = dnn_getparam(net, "conv2d/Conv2D");
-    mprintf("conv2d/Conv2D output size: %s\n", strcat(string(size(conv_output)), " x "));
-    mprintf("conv2d/Conv2D parameter size: %s\n", strcat(string(size(conv_param)), " x "));
+    outputName = net.outputname(1);
+    namedOutput = dnn_forward(net, ~S, [28, 28], outputName);
+    mprintf("%s output size: %s\n", outputName, strcat(string(size(namedOutput)), " x "));
 
     dnn_unloadmodel(net);
 endfunction

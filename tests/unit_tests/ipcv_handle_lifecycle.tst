@@ -1,5 +1,5 @@
 //==============================================================================
-// IPCV OpenCV 5.0.0 development Step 2 native handle lifecycle stress
+// IPCV OpenCV 5.1.0 native handle lifecycle stress
 // <-- NO CHECK REF -->
 //==============================================================================
 
@@ -8,9 +8,9 @@ imtrack_unloadall();
 avicloseall();
 camcloseall();
 
-modelPath = fullpath(getIPCVpath() + "/images/dnn/lenet5.pb");
+modelPath = fullpath(getIPCVpath() + "/images/dnn/lenet5.onnx");
 for i = 1:8
-    net = dnn_readmodel(modelPath, "", "tensorflow");
+    net = dnn_readmodel(modelPath, "", "onnx");
     assert_checktrue(net.ptr > 0);
     assert_checktrue(or(dnn_list() == net.ptr));
     dnn_unloadmodel(net);

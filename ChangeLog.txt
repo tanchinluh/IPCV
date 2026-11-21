@@ -1,5 +1,19 @@
 Image Processing and Computer Vision Toolbox (IPCV) for Scilab 6
 
+Version 5.1.0 (16-Nov-26)
+OpenCV 5.1 compatibility update
+1. Target OpenCV/OpenCV contrib 5.1.0 for third-party builds
+2. Link OpenCV 5.1 Windows libraries from the native core and gateway builders
+3. Remove the OpenCV 5.0 Unix MLAS workaround, which is no longer required
+4. Replace the cv::Mat comma initializer removed in OpenCV 5.1
+5. Use the default OpenCV 5.1 DNN engine and support ONNX and TFLite model loading
+6. Convert the LeNet DNN examples and tests from TensorFlow to ONNX
+7. Add the IPCV overview help page
+8. Fix the Windows OpenCV packaging script so the flat runtime library directory is created before DLL and import-library copies
+9. Restrict named DNN inference to final model outputs and report clear errors for intermediate activations and learned parameters, which the OpenCV 5.1 graph engine does not expose
+10. Replace the removed TensorFlow SSD face-detector demo with the official ONNX SSD-12 object detector and COCO post-processing
+11. Replace the obsolete bundled TensorFlow LeNet fixture with one small ONNX fixture for deterministic offline DNN tests
+
 OpenCV 5.0.0 Development - Step 3 (17-Jul-26)
 Image-processing completeness
 1. Add OpenCV-backed fixed, Otsu, and Triangle thresholding with normalized levels

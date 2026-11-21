@@ -3,7 +3,7 @@
 // Copyright (C) 2018  Tan Chin Luh
 //=============================================================================
 function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std)
-    // Runs forward pass to compute output of layer with name layer_name
+    // Runs inference and returns a final model output
     //
     // Syntax
     //    out = dnn_forward(net,img,input_size)
@@ -14,7 +14,7 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //    net : DNN object loaded in Scilab
     //    img : Image in Scilab format 
     //    input_size : DNN input size
-    //    layer_name : Name for layer which output is needed to get
+    //    layer_name : Optional final output tensor name from net.outputname
     //    scalefactor : Spatial size for input image
     //    rgb_mean : Vector with mean values which are subtracted from channels. Values are intended to be in (mean-R, mean-G, mean-B) order if image has BGR ordering and swapRB is true.
     //    rgb_std : Optional vector with per-channel standard deviation values applied after mean subtraction. Use [1, 1, 1] for no per-channel standardization.
@@ -23,17 +23,17 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
     //    out : Output matrix of the results depending on the type of DNN loaded.
     //
     // Description
-    //    This function is used to run forward pass to compute output of layer with name layer_name
+    //    OpenCV 5.1 exposes final model outputs only; intermediate activations are unavailable.
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
-    //    S = imread(dnn_path + "3.jpg");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
+    //    S = rgb2gray(imread(dnn_path + "3.jpg"));
     //    out = dnn_forward(net, ~S, [28, 28]);
     //    [score, index] = max(out);
     //    prediction = index - 1
-    //    conv_output = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
-    //    size(conv_output)
+    //    named_output = dnn_forward(net, ~S, [28, 28], net.outputname(1));
+    //    size(named_output)
     //    dnn_unloadmodel(net);
     //
     // See also
@@ -104,13 +104,8 @@ function out = dnn_forward(net,img,input_size,layer_name,scalefactor,rgb_mean,sw
         error("Input layer_name must be a string"); 
     end
     
-    valid_layers = net.layername;
-    if isfield(net, "outputname") then
-        valid_layers = [valid_layers; net.outputname];
-    end
-
-    if sum(valid_layers==layer_name)<1 then
-        error("Layer name not found in the DNN structure."); 
+    if ~isfield(net, "outputname") | sum(net.outputname == layer_name) < 1 then
+        error("OpenCV 5.1 supports final model outputs only; intermediate activations are not exposed by the graph engine.");
     end
     
     out = int_dnn_forward(net.ptr,img,input_size,layer_name,scalefactor,rgb_mean,swapRB,crop,rgb_std);

@@ -14,7 +14,7 @@ function net = dnn_setpreferable(net, backend, target)
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    net = dnn_setpreferable(net, "opencv", "cpu");
     //    info = dnn_info(net)
     //    dnn_unloadmodel(net);

@@ -101,22 +101,34 @@ function demo_dnn_full_examples(selection, show_output)
     endfunction
 
     function show_ssd_example(dnn_path, show_output)
-        model = ensure_download(dnn_path, "opencv_face_detector_uint8.pb", ..
-            "https://github.com/opencv/opencv_3rdparty/raw/dnn_samples_face_detector_20180220_uint8/opencv_face_detector_uint8.pb", 1000000);
-        model_index = ensure_download(dnn_path, "opencv_face_detector.pbtxt", ..
-            "https://raw.githubusercontent.com/opencv/opencv/master/samples/dnn/face_detector/opencv_face_detector.pbtxt", 1000);
-        image_file = ensure_download(dnn_path, "lena.jpg", ..
-            "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/lena.jpg", 1000);
+        model = ensure_download(dnn_path, "ssd-12.onnx", ..
+            "https://github.com/onnx/models/raw/main/validated/vision/object_detection_segmentation/ssd/model/ssd-12.onnx", 50000000);
+        label_file = ensure_download(dnn_path, "object_detection_classes_coco.txt", ..
+            "https://raw.githubusercontent.com/opencv/opencv/master/samples/data/dnn/object_detection_classes_coco.txt", 100);
+        image_file = ensure_download(dnn_path, "dog416.png", ..
+            "https://raw.githubusercontent.com/opencv/opencv_extra/master/testdata/dnn/dog416.png", 1000);
 
-        labels = ["face"];
+        labels = read_plain_labels(label_file);
         image = imread(image_file);
-        net = dnn_readmodel(model, model_index, "tensorflow");
+        net = dnn_readmodel(model, "", "onnx");
         net = dnn_setpreferable(net, "opencv", "cpu");
-        output = dnn_forward(net, image, [300 300], [], 1, [104 177 123], 0, 0, [1 1 1]);
-        detections = dnn_decode_ssd(output, [size(image, 2) size(image, 1)], 0.50, 0.45);
-        mprintf("SSD Face Detection: %d detection(s)\n", size(detections.scores, "*"));
+
+        preset.inputSize = [1200 1200];
+        preset.scale = 1 / 255;
+        preset.mean = [123.675 116.28 103.53];
+        preset.std = [0.229 0.224 0.225];
+        preset.swapRB = %t;
+        preset.crop = %f;
+        [outputs, names] = dnn_forward_outputs(net, image, preset, ["bboxes"; "labels"; "scores"]);
+
+        boxes = outputs(1);
+        classIds = outputs(2);
+        scores = outputs(3);
+        raw = [zeros(scores) classIds scores boxes(2, :)' boxes(1, :)' boxes(4, :)' boxes(3, :)'];
+        detections = dnn_decode_ssd(raw, [size(image, 2) size(image, 1)], 0.35, 0.45);
+        mprintf("SSD-ResNet34 Object Detection: %d detection(s)\n", size(detections.scores, "*"));
         if show_output then
-            imshow_detections(image, detections, labels, [0 255 0], "SSD Face Detection");
+            imshow_detections(image, detections, labels, [0 255 0], "SSD-ResNet34 Object Detection");
         end
         dnn_unloadmodel(net);
     endfunction

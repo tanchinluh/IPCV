@@ -1,9 +1,9 @@
 # IPCV Roadmap
 
-Last updated: 17-Jul-26
+Last updated: 21-Nov-26
 
 IPCV follows the OpenCV release used by its native backend. The active baseline
-is OpenCV/OpenCV contrib 5.0.0. During rapid development, roadmap Steps track
+is OpenCV/OpenCV contrib 5.1.0. During rapid development, roadmap Steps track
 progress without creating a new package version, branch, or tag for every
 batch of work. `VERSION` and `DESCRIPTION` change only during deliberate
 release preparation.
@@ -21,15 +21,15 @@ release preparation.
 
 | Step | Status | Current evidence | Remaining gate |
 | --- | --- | --- | --- |
-| OpenCV 5.0.0 baseline | **Baseline** | OpenCV 5/C++ migration and the completed `codex/new-features` work were merged into `master` through PR #31. | Continue roadmap development from the current `master` baseline. |
+| OpenCV 5.1.0 baseline | **In validation** | PR #32 updates the native dependency, builders, DNN model formats, and compatibility code for OpenCV 5.1. Windows OpenCV/IPCV builds and focused DNN regression tests pass. | Complete macOS and Linux validation before release. |
 | Step 1 - Stability and compatibility | **Complete** | Image exchange, teardown, handles, paths, help links, and the initial stability runner were hardened. | Retain cross-platform regression coverage. |
 | Step 2 - Correctness and test foundation | **In validation** | On Windows, the rebuilt toolbox passes stability 35/35; the earlier release suite passed 117/117. GUI, network/model, and hardware suites remain selectively exercised. Static repository checks pass. | Run on macOS/Linux and exercise physical-camera hardware where available. |
 | Step 3 - Image processing completeness | **In progress** | Batches 1-13 plus the native 3-D foundation add thresholding, connected components, binary measurement, extrema, filtering, statistics, ROI, transforms, restoration, Hough post-processing, feature helpers, matching, registration, lens correction, stereo, 3-D processing, segmentation, and shape fitting. Windows native-volume regression coverage passes. | Continue the priority gaps in the capability matrix and validate on macOS/Linux. |
-| Step 4 - DNN and OpenCV Zoo workflows | **In progress** | Added reusable preprocessing and multiple-output inference entry points. | Add broader model fixtures, decoder validation, and download integrity checks. |
+| Step 4 - DNN and OpenCV Zoo workflows | **In progress** | Added reusable preprocessing, final named-output inference, decoders, and explicit OpenCV 5.1 capability errors. | Add a single-pass native multi-output gateway, broader model fixtures, decoder validation, and download integrity checks. |
 | Step 5 - Performance and product workflows | **Planned** | Scope defined below. | Requires benchmarks from earlier steps. |
 | Next OpenCV baseline | **Backlog** | Adopt only after a deliberate dependency review. | OpenCV release availability and migration assessment. |
 
-The repository currently contains 140 active Scilab unit-test scripts. That is
+The repository currently contains 152 active Scilab unit-test scripts. That is
 an inventory count, not a claim that every script passes on every platform.
 The Step 2 manifest classifies each test and the expanded focused stability
 suite contains 27 deterministic or local-asset checks.
@@ -235,7 +235,12 @@ Current work and planned work:
 - Expand tested decoders for classification, YOLO-family detection, SSD,
   segmentation, face detection, pose estimation, and selected Zoo models.
 - Add batch inference and named/multiple-output support with stable tensor shape
-  conventions. **Multiple named outputs implemented; batch tensors remain planned**
+  conventions. **Final named outputs are implemented; replace the current
+  repeated-forward multi-output macro with one native OpenCV call. Batch tensors
+  remain planned.**
+- Track OpenCV's graph-engine support for intermediate activations and learned
+  parameters. IPCV 5.1 reports these upstream limitations explicitly instead of
+  exposing OpenCV assertion failures.
 - Improve `opencv_zoo_gui` with cached metadata, checksums, download progress,
   cancellation, destination validation, and generated runnable examples.
 - Report available OpenCV DNN backends/targets and provide clear fallback errors.
@@ -283,7 +288,7 @@ Exit criteria:
 | Native C++ migration | **Operational** | Keep category-based C++ sources and remove remaining obsolete compatibility code when verified unused. |
 | Scilab/OpenCV memory exchange | **Stabilizing** | Expand type/channel coverage and stress tests before pursuing fewer-copy paths. |
 | Documentation | **Improving** | Require help, author, History, linked See Also entries, and runnable examples for public functions. |
-| Cross-platform builds | **At risk** | Windows is verified; macOS and Linux need repeatable validation for the OpenCV 5.0.0 development line. |
+| Cross-platform builds | **At risk** | Windows is verified; macOS and Linux need repeatable validation for the OpenCV 5.1.0 development line. |
 | Automated quality gates | **Local foundation complete** | Classified suites, reports, watchdogs, static validation, and release orchestration exist; repository-hosted CI is not yet present. |
 | DNN and Zoo integration | **Functional, partial** | Core inference, decoders, examples, and Zoo GUI exist; broader model validation is planned. |
 | Performance evidence | **Not established** | Add benchmark baselines before making optimization claims. |

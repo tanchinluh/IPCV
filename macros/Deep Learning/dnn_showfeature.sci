@@ -17,21 +17,11 @@ function dnn_showfeature(feature_map,out_num,c)
     //    This function is used to visualize the DNN feature maps 
     // 
     // Examples
-    //    // Initialize
-    //    dnn_unloadallmodels
-    //    dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-    //    net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-    //     
-    //     
-    //    // Read Image
-    //    S = imread(dnn_path + '3.jpg');
-    //    
-    //    // Forward Pass
-    //    out1 = dnn_forward(net,~S,[28,28],"conv2d/Conv2D");
-    //    scf();dnn_showfeature(out1);
-    //     
-    //    // Clean Up 
-    //    dnn_unloadallmodels();
+    //    image = rgb2gray(imread(fullpath(getIPCVpath() + "/images/opencv_fruits.jpg")));
+    //    image = imresize(image, [120 160]);
+    //    feature_map = cat(3, double(image), double(imgaussianblur(image, [7 7], 1.5)), imgradientmagnitude(image));
+    //    scf();
+    //    dnn_showfeature(feature_map);
     //
     // See also
     //     dnn_showfeature

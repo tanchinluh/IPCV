@@ -13,7 +13,7 @@ function names = dnn_getoutputs(net)
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    names = dnn_getoutputs(net)
     //    dnn_unloadmodel(net);
     //

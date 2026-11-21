@@ -59,21 +59,9 @@ This function is used to visualize the DNN parameters (filter) in spatial domain
 <refsection>
    <title>Examples</title>
    <programlisting role="example"><![CDATA[
-// Initialize
-dnn_unloadallmodels
-dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
-
-
-// Read Image
-S = imread(dnn_path + '3.jpg');
-
-// Forward Pass
-para1 = dnn_getparam(net,"conv2d/Conv2D");
-scf();dnn_showparam(para1);
-
-// Clean Up
-dnn_unloadallmodels();
+filters = cat(3, imfspecial("sobel"), imfspecial("laplacian"), imfspecial("gaussian", 3, 0.8));
+scf();
+dnn_showparam(filters);
 
    ]]></programlisting>
 </refsection>

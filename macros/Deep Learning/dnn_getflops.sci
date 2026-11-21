@@ -15,7 +15,7 @@ function flops = dnn_getflops(net, input_size, channels)
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    flops = dnn_getflops(net, [28, 28], 1)
     //    dnn_unloadmodel(net);
     //
