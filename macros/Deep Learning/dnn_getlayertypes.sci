@@ -13,7 +13,7 @@ function types = dnn_getlayertypes(net)
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    types = dnn_getlayertypes(net)
     //    dnn_unloadmodel(net);
     //

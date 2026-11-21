@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="IPCV" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>IPCV</refname>
+    <refpurpose>Image Processing and Computer Vision Toolbox for Scilab, an interface to OpenCV</refpurpose>
+  </refnamediv>
+
+<refsection>
+   <title>Description</title>
+   <para>
+IPCV gives access to the <ulink url="https://opencv.org">OpenCV</ulink> library from Scilab. Images
+and video frames are handled as ordinary Scilab matrices and hypermatrices, and the functions of the
+toolbox call OpenCV through C++ gateways.
+   </para>
+   <para>
+The toolbox covers image reading, display and exploration, color space conversions, arithmetic,
+filtering, morphological operations, geometric transformations, image enhancement and restoration,
+segmentation, structural analysis, feature detection, description and matching, image registration and
+stitching, super resolution, object detection and tracking, deep learning inference, and camera and
+video handling.
+   </para>
+   <para>
+The binary versions of IPCV ship with OpenCV 5.1 (including the <literal>opencv_contrib</literal>
+modules).
+   </para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+S = imread(fullpath(getIPCVpath() + "/images/baboon.png"));
+imshow(S);
+   ]]></programlisting>
+</refsection>
+
+<refsection role="see also">
+   <title>See also</title>
+   <simplelist type="inline">
+   <member><link linkend="imread">imread</link></member>
+   <member><link linkend="imshow">imshow</link></member>
+   </simplelist>
+</refsection>
+</refentry>

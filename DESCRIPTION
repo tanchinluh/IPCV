@@ -4,7 +4,7 @@ Title: Image Processing and Computer Vision Toolbox
 
 Summary: Image Processing and Computer Vision Toolbox for Scilab
 
-Version: 5.0.0
+Version: 5.1.0
 
 Author: Tan Chin Luh
 
@@ -18,7 +18,7 @@ Entity:
 
 WebSite: https://github.com/tanchinluh/IPCV
 
-URL: https://atoms.scilab.org/toolboxes/IPCV/5.0.0
+URL: https://atoms.scilab.org/toolboxes/IPCV/5.1.0
 
 License: GPL
 
@@ -26,16 +26,17 @@ ScilabVersion: >= 2026.1
 
 Depends: 
 
-Date: 2026-07-10
+Date: 2026-11-16
 
 Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
- This release targets Scilab 2026.1 and OpenCV/OpenCV contrib 5.0.0.
- Rapid development work is organized as roadmap steps under the OpenCV 5.0.0
- baseline instead of assigning a package version to every development step.
+ This release targets Scilab 2026.1 and OpenCV/OpenCV contrib 5.1.0.
+ Rapid development work is organized as roadmap steps on the current OpenCV
+ release line instead of assigning a package version to every development step.
  
- OpenCV 5 and C++ Migration:
- - Target OpenCV/OpenCV contrib 5.0.0 for thirdparty builds.
- - Update gateway linking and C++ compile flags for OpenCV 5.
+ OpenCV 5.1:
+ - Target OpenCV/OpenCV contrib 5.1.0 for third-party builds.
+ - Load DNN models in ONNX or TFLite format.
+ - Update native builders and C++ compatibility for OpenCV 5.1.
  - Provide Windows and Linux x64 native binaries for Scilab 2026.1.
  
  Main topics:
@@ -50,18 +51,18 @@ Description: IPCV - Scilab Image Processing and Computer Vision Toolbox.
 
 HasNativeCode: Yes
 
-sourceName: IPCV-5.0.0.zip
+sourceName: IPCV-5.1.0.zip
 
-sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV-5.0.0.zip
+sourceUrl: https://atoms.scilab.org/toolboxes/IPCV/5.1.0/files/IPCV-5.1.0.zip
 
 sourceFileClass: source
 
 sourceSupportedScilab: 2026.1
 
-windows64Name: IPCV_5.0.0.bin.x64.Windows.zip
+windows64Name: IPCV_5.1.0.bin.x64.Windows.zip
 
-windows64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Windows.zip
+windows64Url: https://atoms.scilab.org/toolboxes/IPCV/5.1.0/files/IPCV_5.1.0.bin.x64.Windows.zip
 
-linux64Name: IPCV_5.0.0.bin.x64.Linux.tar.gz
+linux64Name: IPCV_5.1.0.bin.x64.Linux.tar.gz
 
-linux64Url: https://atoms.scilab.org/toolboxes/IPCV/5.0.0/files/IPCV_5.0.0.bin.x64.Linux.tar.gz
+linux64Url: https://atoms.scilab.org/toolboxes/IPCV/5.1.0/files/IPCV_5.1.0.bin.x64.Linux.tar.gz

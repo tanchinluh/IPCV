@@ -34,7 +34,7 @@
    <variablelist>
         <varlistentry>
             <term>model :</term>
-            <listitem><para> Model binary (.caffemodel, .pb, .weights, .onnx, .t7, or .tflite).</para></listitem>
+            <listitem><para> Model binary (.onnx or .tflite).</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>modelinfo :</term>
@@ -42,7 +42,7 @@
         </varlistentry>
         <varlistentry>
             <term>modeltype :</term>
-            <listitem><para> Model type. Use "auto", "caffe", "tensorflow", "yolo", "darknet", "onnx", "torch", or "tflite". Numeric values 0 to 6 are also accepted.</para></listitem>
+            <listitem><para> Model type. Use "auto", "onnx", or "tflite". Numeric values 0, 4 and 6 are also accepted.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>net :</term>
@@ -57,24 +57,28 @@
 This function is used for loading DNN model and used in Scilab for inference system.
    </para>
    <para>
+Since OpenCV 5.1, only ONNX and TFLite models can be read. Caffe, TensorFlow, Darknet (YOLO) and Torch
+models must be converted to ONNX first.
+   </para>
+   <para>
 </para>
 </refsection>
 
 <refsection>
    <title>Examples</title>
-   <para>Example 1: TensorFlow LeNet</para>
+   <para>Example 1: LeNet (ONNX)</para>
    <programlisting role="example"><![CDATA[
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
 
-net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
 net = dnn_setpreferable(net, "opencv", "cpu");
 
 info = dnn_info(net, [28, 28], 1);
 disp(info.outputname);
 disp(info.flops);
 
-S = imread(dnn_path + "3.jpg");
+S = rgb2gray(imread(dnn_path + "3.jpg"));
 out = dnn_forward(net, ~S, [28, 28]);
 [score, index] = max(out);
 prediction = index - 1

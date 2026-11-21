@@ -3,7 +3,7 @@
 // Copyright (C) 2018  Tan Chin Luh
 //=============================================================================
 function out = dnn_getparam(net,layer_name,numParam)
-    // Get the layer's parameters
+    // Reports learned-parameter access availability
     //
     // Syntax
     //    out = dnn_getparam(net,layer_name,numParam)
@@ -15,21 +15,16 @@ function out = dnn_getparam(net,layer_name,numParam)
     //    out : Output matrix of the results depending on the type of DNN loaded.
     //
     // Description
-    //    This function is used to retrieve the layer's parameters (filter coefficients)
+    //    OpenCV 5.1 does not expose learned layer parameters through its graph engine.
     //
     // Examples
     //    // Initialize
     //    dnn_unloadallmodels
     //    dnn_path = fullpath(getIPCVpath() + '/images/dnn/');
-    //    net = dnn_readmodel(dnn_path + 'lenet5.pb','','tensorflow');
+    //    net = dnn_readmodel(dnn_path + 'lenet5.onnx','','onnx');
     //     
     //     
-    //    // Read Image
-    //    S = imread(dnn_path + '3.jpg');
-    //    
-    //    // Forward Pass
-    //    para1 = dnn_getparam(net,"conv2d/Conv2D");
-    //    scf();dnn_showparam(para1);
+    //    // OpenCV 5.1 does not expose learned layer parameters.
     //     
     //    // Clean Up 
     //    dnn_unloadallmodels();
@@ -65,7 +60,5 @@ function out = dnn_getparam(net,layer_name,numParam)
         error("Layer name not found in the DNN structure."); 
     end
     
-    out = int_dnn_getParam(net.ptr,layer_name,numParam);
-    
-    out = squeeze(out);
+    error("dnn_getparam is unavailable because the OpenCV 5.1 graph engine does not expose learned layer parameters.");
 endfunction

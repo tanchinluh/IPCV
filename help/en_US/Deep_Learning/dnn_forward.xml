@@ -17,7 +17,7 @@
 
   <refnamediv>
     <refname>dnn_forward</refname>
-    <refpurpose>Runs forward pass to compute output of layer with name layer_name</refpurpose>
+    <refpurpose>Runs inference and returns a final model output</refpurpose>
   </refnamediv>
 
 
@@ -48,7 +48,7 @@
         </varlistentry>
         <varlistentry>
             <term>layer_name :</term>
-            <listitem><para> Name for layer which output is needed to get</para></listitem>
+            <listitem><para> Optional final output tensor name from <literal>net.outputname</literal>. OpenCV 5.1 does not expose intermediate activations.</para></listitem>
         </varlistentry>
         <varlistentry>
             <term>scalefactor :</term>
@@ -80,7 +80,7 @@
 <refsection>
    <title>Description</title>
    <para>
-This function is used to run forward pass to compute output of layer with name layer_name
+This function runs a forward pass and returns the default or selected final model output. With the OpenCV 5.1 graph engine, <literal>layer_name</literal> must be one of the names in <literal>net.outputname</literal>; intermediate layer activations are unavailable.
    </para>
    <para>
 </para>
@@ -91,15 +91,15 @@ This function is used to run forward pass to compute output of layer with name l
    <programlisting role="example"><![CDATA[
 dnn_unloadallmodels();
 dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
 
-S = imread(dnn_path + "3.jpg");
+S = rgb2gray(imread(dnn_path + "3.jpg"));
 out = dnn_forward(net, ~S, [28, 28]);
 [score, index] = max(out);
 prediction = index - 1
 
-conv_output = dnn_forward(net, ~S, [28, 28], "conv2d/Conv2D");
-size(conv_output)
+named_output = dnn_forward(net, ~S, [28, 28], net.outputname(1));
+size(named_output)
 
 dnn_unloadmodel(net);
 

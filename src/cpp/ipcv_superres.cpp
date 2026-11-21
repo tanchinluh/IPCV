@@ -522,7 +522,7 @@ extern "C" IPCV_CORE_API int ipcv_superres_btv(const IpcvImageList *images, int 
             smallest_y = std::min(smallest_y, move[i].y);
         }
 
-        cv::Mat trans_mat = (cv::Mat_<double>(2, 3) << 1, 0, -smallest_x / scale_factor, 0, 1, -smallest_y / scale_factor);
+        cv::Matx23d trans_mat(1, 0, -smallest_x / scale_factor, 0, 1, -smallest_y / scale_factor);
         cv::warpAffine(degraded[0], degraded[0], trans_mat, degraded[0].size());
         for (int i = 0; i < image_count; i++)
         {

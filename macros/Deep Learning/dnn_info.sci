@@ -16,7 +16,7 @@ function info = dnn_info(net, input_size, channels)
     //
     // Examples
     //    dnn_path = fullpath(getIPCVpath() + "/images/dnn/");
-    //    net = dnn_readmodel(dnn_path + "lenet5.pb", "", "tensorflow");
+    //    net = dnn_readmodel(dnn_path + "lenet5.onnx", "", "onnx");
     //    info = dnn_info(net, [28, 28], 1);
     //    disp(info.outputname);
     //    disp(info.flops);
