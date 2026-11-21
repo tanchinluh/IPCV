@@ -13,6 +13,7 @@ OpenCV 5.1 compatibility update
 9. Restrict named DNN inference to final model outputs and report clear errors for intermediate activations and learned parameters, which the OpenCV 5.1 graph engine does not expose
 10. Replace the removed TensorFlow SSD face-detector demo with the official ONNX SSD-12 object detector and COCO post-processing
 11. Replace the obsolete bundled TensorFlow LeNet fixture with one small ONNX fixture for deterministic offline DNN tests
+12. Add a reproducible one-click Windows ATOMS release builder with OpenCV 5.1 verification, clean payload staging, release tests, and a SHA-256 checksum
 
 OpenCV 5.0.0 Development - Step 3 (17-Jul-26)
 Image-processing completeness

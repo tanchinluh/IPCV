@@ -30,6 +30,7 @@ jar/
 2.0/
 **/testing
 tests/results/
+/dist/
 
 # Local Codex/Scilab test profile and separately versioned website workspace.
 .codex/
