@@ -4,7 +4,7 @@
 // unit test migrated object detection and tracking source layer
 //==============================================================================
 
-S = imread(fullpath(getIPCVpath() + "/images/people2.jpg"));
+S = imread(fullpath(getIPCVpath() + "/images/people.jpg"));
 cfn = fullpath(getIPCVpath() + "/demos/haarcascade_frontalface_alt.xml");
 objects = imdetectobjects(S, cfn);
 assert_checkequal(size(objects, 1), 4);

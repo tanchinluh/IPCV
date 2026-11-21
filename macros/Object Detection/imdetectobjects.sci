@@ -26,7 +26,7 @@ function [r] = imdetectobjects(S,cfn,fac,minNB,minSz,maxSz)
     //      imdetectobjects Detects objects of different sizes in the input image. The detected objects are returned as a list of rectangles.
     //
     // Examples
-    //      S = imread(fullpath(getIPCVpath() + "/images/people2.jpg"));
+    //      S = imread(fullpath(getIPCVpath() + "/images/people.jpg"));
     //      cfn = fullpath(getIPCVpath() + "/demos/haarcascade_frontalface_alt.xml");
     //      r = imdetectobjects(S,cfn);
     //      imshow(S);
