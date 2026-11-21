@@ -23,12 +23,20 @@ else
     filename =  modulename+"_"+mgetl("VERSION")+".bin."+v(2)+"."+getos()+".zip"
 end
 
-// move thirdparty build folder
-movefile("thirdparty/build","../build.moved")
-
-moduledir = fileparts(pwd(),"fname") 
+// Package only toolbox files, not the entire development checkout.
+entries = ["builder.sce"; "CAPABILITIES.md"; "ChangeLog.txt"; "cleaner.sce";
+           "demos"; "DESCRIPTION"; "etc"; "help"; "images"; "inline"; "jar";
+           "LICENSE"; "license.txt"; "loader.sce"; "macros"; "makedist.sce";
+           "README.MD"; "ROADMAP.md"; "sci_gateway"; "src"; "tcl"; "tests";
+           "unloader.sce"; "VERSION"; "thirdparty/" + getos()];
+entries = entries(isfile(entries) | isdir(entries));
+moduledir = fileparts(pwd(), "fname");
 cd("..")
-compress(filename,moduledir)
+try
+    compress(filename, moduledir + "/" + entries);
+catch
+    message = lasterror();
+    cd(path_makedist);
+    error(message);
+end
 cd(path_makedist);
-
-movefile("../build.moved","thirdparty/build")

@@ -1,2 +1,6 @@
 * linguist-vendored
 *.sci linguist-vendored=false
+/output export-ignore
+/outputs export-ignore
+/work export-ignore
+/website export-ignore

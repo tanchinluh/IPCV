@@ -32,8 +32,11 @@ jar/
 tests/results/
 /dist/
 
-# Local Codex/Scilab test profile and separately versioned website workspace.
+# Local development files and separately versioned website workspace.
 .codex/
+/output/
+/outputs/
+/work/
 /website/
 
 # ignore bundled thirdparty payloads, but keep build helper scripts tracked

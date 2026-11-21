@@ -286,7 +286,8 @@ make_release.bat "D:\Scilab\bin\WScilex-cli.exe"
 The archive is staged from committed Git files and then receives only the
 generated macro libraries, native IPCV DLLs, Java help, and required OpenCV 5.1
 runtime DLLs. Local models, build trees, import libraries, editor backups,
-development outputs, and OpenCV 5.0 files are excluded.
+and OpenCV 5.0 files are excluded. The local `output/`, `outputs/`, `work/`,
+and `website/` directories are excluded from release archives.
 
 Install the resulting archive on another Windows x64 computer running Scilab
 2026.1 or newer:
