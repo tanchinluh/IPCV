@@ -4,6 +4,9 @@
 // unit test migrated display utility source layer
 //==============================================================================
 
+// Closing windows must be safe even when OpenCV has no HighGUI backend.
+imdestroyall();
+
 S = uint8([0 1; 127 128]);
 u = mat2utfimg(S);
 assert_checkequal(typeof(u), "uint8");

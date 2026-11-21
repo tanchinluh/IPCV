@@ -184,6 +184,12 @@ Linux missing tools:
 
   Install cmake, ninja-build, build-essential, curl, make, and pkg-config.
 
+Linux native OpenCV display windows:
+
+  The headless release tests do not require GTK. For imdisplay or iminspect
+  on an Ubuntu desktop, install libgtk-3-dev and pkg-config before running
+  build.sh, and check that the OpenCV CMake summary lists GTK as a GUI backend.
+
 OpenCV DNN MLAS link/build problems:
 
   build.bat patches OpenCV's DNN CMake file to skip vendored MLAS for the

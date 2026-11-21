@@ -175,6 +175,33 @@ extern "C" IPCV_CORE_API int ipcv_inspect_image(const IpcvDecodedImage *source, 
     }
 }
 
+extern "C" IPCV_CORE_API int ipcv_close_display_windows(const char *window_name, char *error, int error_size)
+{
+    try
+    {
+        // The headless HighGUI stubs throw even when there are no windows to close.
+        if (cv::currentUIFramework().empty())
+        {
+            return 0;
+        }
+
+        if (window_name == NULL)
+        {
+            cv::destroyAllWindows();
+        }
+        else
+        {
+            cv::destroyWindow(window_name);
+        }
+        return 0;
+    }
+    catch (const std::exception& e)
+    {
+        copy_error(error, error_size, e.what());
+        return -1;
+    }
+}
+
 extern "C" IPCV_CORE_API int ipcv_image_to_utf(const IpcvDecodedImage *source, IpcvByteBuffer *output)
 {
     if (output == NULL)

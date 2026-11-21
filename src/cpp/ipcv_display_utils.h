@@ -16,6 +16,7 @@ typedef struct IpcvByteBuffer
 
 IPCV_CORE_API int ipcv_display_image(const IpcvDecodedImage *source, const char *window_name, double *status, char *error, int error_size);
 IPCV_CORE_API int ipcv_inspect_image(const IpcvDecodedImage *source, const char *window_name, char *error, int error_size);
+IPCV_CORE_API int ipcv_close_display_windows(const char *window_name, char *error, int error_size);
 IPCV_CORE_API int ipcv_image_to_utf(const IpcvDecodedImage *source, IpcvByteBuffer *output);
 IPCV_CORE_API void ipcv_free_byte_buffer(IpcvByteBuffer *buffer);
 
