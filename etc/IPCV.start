@@ -59,7 +59,7 @@ function ipcvStartNative(root_tlbx, etc_tlbx, toolboxTitle)
 
     if getscilabmode() == "STD" then
         mprintf(", help");
-        path_addchapter = pathconvert(root_tlbx + "/jar");
+        path_addchapter = pathconvert(root_tlbx + "/help");
         if isdir(path_addchapter) then
             add_help_chapter(toolboxTitle, path_addchapter, %F);
         end
