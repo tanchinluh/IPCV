@@ -11,7 +11,6 @@ $Root = Split-Path -Parent $PSScriptRoot
 $DistRoot = Join-Path $Root "dist"
 $StageRoot = Join-Path $DistRoot ".stage"
 $SourceStageZip = Join-Path $DistRoot ".source-stage.zip"
-$RestoreGeneratedLinks = $false
 
 function Stop-Release([string]$Message) {
     throw "IPCV release: $Message"
@@ -79,7 +78,6 @@ try {
         $trackedChanges | ForEach-Object { Write-Host "  $_" }
         Stop-Release "commit or restore tracked changes before creating a reproducible package."
     }
-    $RestoreGeneratedLinks = $true
 
     $versionHeader = Join-Path $Root "thirdparty\Windows\AMD64\include\opencv2\core\version.hpp"
     if (-not (Test-Path -LiteralPath $versionHeader -PathType Leaf)) {
@@ -149,6 +147,10 @@ try {
         Copy-RequiredFile (Join-Path $Root $topLevelFile) (Join-Path $stageDirectory $topLevelFile)
     }
     Copy-RequiredDirectory (Join-Path $Root "jar") (Join-Path $stageDirectory "jar")
+    $helpIndex = "inline\en_US\links.json"
+    if (Test-Path -LiteralPath (Join-Path $Root $helpIndex) -PathType Leaf) {
+        Copy-RequiredFile (Join-Path $Root $helpIndex) (Join-Path $stageDirectory $helpIndex)
+    }
 
     Get-ChildItem -LiteralPath (Join-Path $Root "macros") -Recurse -File | Where-Object {
         $_.Extension -eq ".bin" -or $_.Name -eq "lib"
@@ -222,14 +224,5 @@ finally {
     }
     if (Test-Path -LiteralPath $SourceStageZip) {
         Remove-Item -LiteralPath $SourceStageZip -Force
-    }
-    if ($RestoreGeneratedLinks) {
-        $previousErrorAction = $ErrorActionPreference
-        $ErrorActionPreference = "Continue"
-        & git restore --worktree -- "inline/en_US/links.json" 2>$null
-        if ($LASTEXITCODE -ne 0) {
-            Write-Warning "Could not restore inline/en_US/links.json after the build."
-        }
-        $ErrorActionPreference = $previousErrorAction
     }
 }
