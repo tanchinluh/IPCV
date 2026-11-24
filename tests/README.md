@@ -20,6 +20,22 @@ platform declaration from `test_manifest.sce`.
 Network, GUI, and hardware tests are intentionally excluded from `release` so
 an unavailable service or device cannot disguise a deterministic regression.
 
+## From the Scilab console
+
+With IPCV loaded, run the default core suite or the focused stability suite:
+
+```scilab
+exec(fullfile(getIPCVpath(), "tests", "run_tests.sce"), -1);
+// Alternatively:
+exec(fullfile(getIPCVpath(), "tests", "run_stability_tests.sce"), -1);
+```
+
+Both entry points launch a separate process from the same Scilab installation.
+Your console, variables and figures remain open, including on test failure.
+The interactive CSV is written to `TMPDIR/ipcv_test_report.csv` in the calling
+session. Do not execute `run_tests_batch.sce` in your console: it is the
+worker that cleans up test resources and exits.
+
 ## Windows
 
 Run the focused stability suite:

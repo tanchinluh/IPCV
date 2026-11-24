@@ -3,16 +3,16 @@
 set -u
 
 SCILAB_EXECUTABLE=${1:-scilab-cli}
-IPCV_TEST_SUITE=${2:-core}
-IPCV_TEST_NAMES=${3:-}
+IPCV_TEST_SUITE=${2:-${IPCV_TEST_SUITE:-core}}
+IPCV_TEST_NAMES=${3:-${IPCV_TEST_NAMES:-}}
 IPCV_TEST_TIMEOUT=${IPCV_TEST_TIMEOUT:-600}
 SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 STATUS_FILE=$(mktemp "${TMPDIR:-/tmp}/ipcv-test.XXXXXX")
 PROGRESS_FILE=$(mktemp "${TMPDIR:-/tmp}/ipcv-progress.XXXXXX")
 RESULTS_DIR="$SCRIPT_DIR/results"
-REPORT_FILE="$RESULTS_DIR/ipcv-$IPCV_TEST_SUITE-report.csv"
+REPORT_FILE=${IPCV_TEST_REPORT_FILE:-"$RESULTS_DIR/ipcv-$IPCV_TEST_SUITE-report.csv"}
 
-mkdir -p "$RESULTS_DIR"
+mkdir -p "$(dirname "$REPORT_FILE")"
 trap 'rm -f "$STATUS_FILE" "$PROGRESS_FILE"' EXIT HUP INT TERM
 
 export IPCV_TEST_STATUS_FILE="$STATUS_FILE"
@@ -21,7 +21,7 @@ export IPCV_TEST_PROGRESS_FILE="$PROGRESS_FILE"
 export IPCV_TEST_SUITE
 export IPCV_TEST_NAMES
 
-"$SCILAB_EXECUTABLE" -nb -f "$SCRIPT_DIR/run_tests.sce" &
+"$SCILAB_EXECUTABLE" -nb -noatomsautoload -f "$SCRIPT_DIR/run_tests_batch.sce" &
 SCILAB_PID=$!
 ELAPSED=0
 while kill -0 "$SCILAB_PID" 2>/dev/null; do
