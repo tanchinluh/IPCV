@@ -21,7 +21,7 @@ export IPCV_TEST_PROGRESS_FILE="$PROGRESS_FILE"
 export IPCV_TEST_SUITE
 export IPCV_TEST_NAMES
 
-"$SCILAB_EXECUTABLE" -nb -noatomsautoload -f "$SCRIPT_DIR/run_tests_batch.sce" &
+"$SCILAB_EXECUTABLE" -nb -noatomsautoload -f "$SCRIPT_DIR/run_tests_batch.sce" -args ipcv-test-worker &
 SCILAB_PID=$!
 ELAPSED=0
 while kill -0 "$SCILAB_PID" 2>/dev/null; do

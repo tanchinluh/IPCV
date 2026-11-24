@@ -1,3 +1,9 @@
+// Only a process explicitly launched as a worker may clean up resources and exit.
+if ~or(sciargs() == "ipcv-test-worker") then
+    exec(fullfile(get_absolute_file_path("run_tests_batch.sce"), "run_tests.sce"), -1);
+    return;
+end
+
 function value = ipcv_test_env(name, defaultValue)
     value = getenv(name, defaultValue);
     if isempty(value) then
@@ -85,6 +91,7 @@ harnessFailed = %f;
 
 mputl("RUN;<loader>", progressFile);
 loadError = execstr("exec(fullfile(toolboxRoot, ""loader.sce""), -1);", "errcatch");
+mprintf("\n");
 if loadError <> 0 then
     message = ipcv_test_report_text(lasterror());
     report($ + 1) = "<loader>;harness;harness;Windows,Linux,Darwin;built-toolbox;FAIL;0;" + message;
@@ -105,6 +112,7 @@ if ~harnessFailed then
 
         testFile = fullfile(testRoot, "unit_tests", testName + ".tst");
         mputl("RUN;" + testName, progressFile);
+        mprintf("RUN  [%s]: %s\n", manifest.suite(i), testName);
         started = getdate("s");
         [errorCode, message] = ipcv_execute_test(testFile);
         duration = getdate("s") - started;
