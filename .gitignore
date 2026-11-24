@@ -49,6 +49,7 @@ thirdparty/build/*
 
 # generated help output
 help/en_US/scilab_en_US_help/
+/inline/en_US/links.json
 
 # DNN models are downloaded on demand by demos/tests.
 *.onnx
