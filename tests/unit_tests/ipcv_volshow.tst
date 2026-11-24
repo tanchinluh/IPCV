@@ -146,4 +146,15 @@ assert_checkequal(IPCV_VOLSHOW_SOURCE_VOLUME, callbackOriginal);
 ipcv_volshow_callback(struct("type", "resetProcessing"), ipcv_volshow_test_callback);
 assert_checkequal(IPCV_VOLSHOW_SOURCE_VOLUME, callbackOriginal);
 clear ipcv_volshow_test_callback IPCV_VOLSHOW_TEST_RESPONSE callbackOriginal payloadSource;
+// JCEF replaces the local path with the file URL on load end. A handle alone
+// does not mean it is safe to tear down the browser and exit Scilab.
+browser = findobj("tag", "ipcv_volshow_browser");
+browserLoaded = %f;
+for attempt = 1:400
+    url = browser.string;
+    browserLoaded = ~isempty(grep(url, "/^file:.*\/volshow\.html$/", "r"));
+    if browserLoaded then break; end
+    sleep(50);
+end
 delete(viewer.Figure);
+if ~browserLoaded then error("volshow browser did not finish loading: " + url); end
