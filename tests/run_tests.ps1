@@ -35,7 +35,7 @@ $env:IPCV_TEST_SUITE = $Suite
 $env:IPCV_TEST_NAMES = $TestNames
 
 try {
-    $process = Start-Process -FilePath $ScilabExecutable -ArgumentList @("-nb", "-noatomsautoload", "-f", ('"' + $scriptPath + '"')) -NoNewWindow -PassThru
+    $process = Start-Process -FilePath $ScilabExecutable -ArgumentList @("-nb", "-noatomsautoload", "-f", ('"' + $scriptPath + '"'), "-args", "ipcv-test-worker") -NoNewWindow -PassThru
     if (-not $process.WaitForExit($TimeoutSeconds * 1000)) {
         $progress = if (Test-Path -LiteralPath $progressPath) { (Get-Content -LiteralPath $progressPath -Raw).Trim() } else { "no progress reported" }
         Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue

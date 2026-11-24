@@ -32,9 +32,11 @@ exec(fullfile(getIPCVpath(), "tests", "run_stability_tests.sce"), -1);
 
 Both entry points launch a separate process from the same Scilab installation.
 Your console, variables and figures remain open, including on test failure.
+In the GUI console each selected test prints a `RUN` line when it starts and
+a `PASS` or `FAIL` result when it finishes, followed by the suite summary.
 The interactive CSV is written to `TMPDIR/ipcv_test_report.csv` in the calling
-session. Do not execute `run_tests_batch.sce` in your console: it is the
-worker that cleans up test resources and exits.
+session. Executing `run_tests_batch.sce` directly from the console also
+uses the isolated runner. Only the worker started by the launcher exits.
 
 ## Windows
 
