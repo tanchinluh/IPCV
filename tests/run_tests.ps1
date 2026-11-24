@@ -3,9 +3,9 @@ param(
     [string]$ScilabExecutable,
 
     [ValidateSet("core", "integration", "gui", "network", "hardware", "stability", "release", "all")]
-    [string]$Suite = "core",
+    [string]$Suite = $(if ($env:IPCV_TEST_SUITE) { $env:IPCV_TEST_SUITE } else { "core" }),
 
-    [string]$TestNames = "",
+    [string]$TestNames = $env:IPCV_TEST_NAMES,
 
     [string]$ReportPath = "",
 
@@ -14,7 +14,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$scriptPath = Join-Path $PSScriptRoot "run_tests.sce"
+$scriptPath = Join-Path $PSScriptRoot "run_tests_batch.sce"
 $statusPath = Join-Path ([System.IO.Path]::GetTempPath()) ("ipcv-test-" + [guid]::NewGuid().ToString("N") + ".txt")
 $progressPath = Join-Path ([System.IO.Path]::GetTempPath()) ("ipcv-progress-" + [guid]::NewGuid().ToString("N") + ".txt")
 
@@ -35,7 +35,7 @@ $env:IPCV_TEST_SUITE = $Suite
 $env:IPCV_TEST_NAMES = $TestNames
 
 try {
-    $process = Start-Process -FilePath $ScilabExecutable -ArgumentList @("-nb", "-f", ('"' + $scriptPath + '"')) -NoNewWindow -PassThru
+    $process = Start-Process -FilePath $ScilabExecutable -ArgumentList @("-nb", "-noatomsautoload", "-f", ('"' + $scriptPath + '"')) -NoNewWindow -PassThru
     if (-not $process.WaitForExit($TimeoutSeconds * 1000)) {
         $progress = if (Test-Path -LiteralPath $progressPath) { (Get-Content -LiteralPath $progressPath -Raw).Trim() } else { "no progress reported" }
         Stop-Process -Id $process.Id -Force -ErrorAction SilentlyContinue
@@ -64,7 +64,8 @@ try {
     if ($status.Count -gt 0) {
         Write-Error ($status -join [Environment]::NewLine)
     } else {
-        Write-Error "IPCV test runner terminated without producing a status file. Scilab exit code: $processExitCode"
+        $progress = if (Test-Path -LiteralPath $progressPath) { (Get-Content -LiteralPath $progressPath -Raw).Trim() } else { "no progress reported" }
+        Write-Error "IPCV test runner terminated at $progress without producing a status file. Scilab exit code: $processExitCode"
     }
     exit 1
 }
