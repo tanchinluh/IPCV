@@ -1,13 +1,13 @@
 # IPCV: Image Processing and Computer Vision for Scilab
 
-IPCV brings OpenCV image processing, computer vision and neural network inference to Scilab. The current development line is IPCV 5.1.0, built against OpenCV and OpenCV contrib 5.1.0. Use `master` for Scilab 2027 development; use [IPCV5.1-Scilab2026](https://github.com/tanchinluh/IPCV/tree/IPCV5.1-Scilab2026) when building for Scilab 2026.1.
+IPCV brings OpenCV image processing, computer vision and neural network inference to Scilab. The current development line is IPCV 5.1.0, built against OpenCV and OpenCV contrib 5.1.0. This maintenance branch targets **Scilab 2026.1** and loads its compiled help from `jar/`. For Scilab 2027, use [master](https://github.com/tanchinluh/IPCV/tree/master).
 
 **Already have a binary?** [Install it with ATOMS](#install-a-binary). No compiler, Git checkout or separate OpenCV SDK is required. **Building IPCV yourself?** Start with [Build from source](#build-from-source), then follow the instructions for [Windows](#windows-x64), [Ubuntu](#ubuntu-linux) or [macOS](#macos).
 
 ## Install a binary
 
 1. Install [Scilab](https://www.scilab.org/download) for your operating system and CPU.
-2. Get an IPCV **binary** archive built for that Scilab release, OS and architecture. Check [GitHub Releases](https://github.com/tanchinluh/IPCV/releases) or the [Scilab ATOMS catalog](https://atoms.scilab.org/toolboxes/IPCV), or use the archive supplied by your package maintainer. The [5.0.0 release](https://github.com/tanchinluh/IPCV/releases/tag/5.0.0) has Windows x64 and Linux x64 binaries; those are **not** IPCV 5.1.0. A GitHub *Source code* download is not an ATOMS binary.
+2. Get an IPCV **binary** archive built for that Scilab release, OS and architecture. Check [GitHub Releases](https://github.com/tanchinluh/IPCV/releases) or the [Scilab ATOMS catalog](https://atoms.scilab.org/toolboxes/IPCV), or use the archive supplied by your package maintainer. A GitHub *Source code* download is not an ATOMS binary.
 3. In the **Scilab GUI console**, run the following and select the archive **without extracting it**:
 
 ```scilab
@@ -77,11 +77,11 @@ Large models download on demand; the small bundled `lenet5.onnx` supports offlin
 Install the [Scilab distribution](https://www.scilab.org/download) you intend to run, and Git. Clone to a writable directory; use a path without spaces for the Unix third-party build script. From a terminal:
 
 ```sh
-git clone https://github.com/tanchinluh/IPCV.git
+git clone --branch IPCV5.1-Scilab2026 https://github.com/tanchinluh/IPCV.git
 cd IPCV
 ```
 
-Stay on `master` for Scilab 2027. For Scilab 2026.1, run `git switch IPCV5.1-Scilab2026` **before building** and use that branch's scripts. Follow **one** platform section, then [build and load IPCV](#build-and-load-ipcv). If the matching OpenCV **SDK** (headers and libraries, not just the runtime archive) is already installed under this checkout's `thirdparty` directory, skip the OpenCV build.
+Follow **one** platform section, then [build and load IPCV](#build-and-load-ipcv). If the matching OpenCV **SDK** (headers and libraries, not just the runtime archive) is already installed under this checkout's `thirdparty` directory, skip the OpenCV build.
 
 ### Windows x64
 
@@ -98,7 +98,7 @@ popd
 3. Check the build log for errors. The installed SDK should contain `thirdparty\Windows\AMD64\include\opencv2\core.hpp` and `thirdparty\Windows\AMD64\lib\opencv_world510.lib`. From the **same native tools prompt**, launch the target Scilab (adjust the path to your installation):
 
 ```bat
-"C:\Tools\scilab-2027.0.0\bin\WScilex.exe" -noatomsautoload
+"C:\Tools\scilab-2026.1.0\bin\WScilex.exe" -noatomsautoload
 ```
 
 ### Ubuntu Linux
@@ -115,7 +115,7 @@ sudo apt install build-essential gfortran git ca-certificates cmake ninja-build 
 
 ```sh
 export IPCV_ROOT="$PWD"
-export SCILAB_BIN="/absolute/path/to/scilab-2027.0.0/bin"
+export SCILAB_BIN="/absolute/path/to/scilab-2026.1.0/bin"
 (cd thirdparty/build && bash ./build.sh)
 ls "thirdparty/Linux/$(uname -m)/lib/libopencv_world.so"
 "$SCILAB_BIN/scilab" -noatomsautoload
@@ -136,7 +136,7 @@ brew install cmake ninja pkg-config gcc
 
 ```sh
 export IPCV_ROOT="$PWD"
-export SCILAB_BIN="/Applications/scilab-2027.0.0.app/Contents/bin"
+export SCILAB_BIN="/Applications/scilab-2026.1.0.app/Contents/bin"
 (cd thirdparty/build && bash ./build.sh)
 ls "thirdparty/Darwin/$(uname -m)/lib/libopencv_world.dylib"
 "$SCILAB_BIN/scilab-adv-cli" -noatomsautoload
@@ -159,7 +159,7 @@ Only run the loader after the builder finishes successfully. The builder compile
 
 ## Test and distribute
 
-**Test the copy you intend to ship.** In a current `master` build or package, run the focused stability suite from Scilab:
+**Test the copy you intend to ship.** In a build or package from this branch, run the focused stability suite from Scilab:
 
 ```scilab
 exec(fullfile(getIPCVpath(), "tests", "run_stability_tests.sce"), -1);
@@ -169,7 +169,7 @@ Alternatively, run the broader `release` suite from the toolbox root:
 
 ```powershell
 # Windows PowerShell
-.\tests\run_tests.ps1 -ScilabExecutable "C:\Tools\scilab-2027.0.0\bin\WScilex-cli.exe" -Suite release
+.\tests\run_tests.ps1 -ScilabExecutable "C:\Tools\scilab-2026.1.0\bin\WScilex-cli.exe" -Suite release
 ```
 
 ```sh
@@ -185,9 +185,9 @@ The release suite covers core and local integration tests. The GUI, network and 
 exec("makedist.sce", -1);
 ```
 
-On `master`, this writes to `dist/`: a ZIP on Windows or a tar.gz on Linux/macOS. It does not rebuild or run tests. It also queries ATOMS and may refresh the local `DESCRIPTION`; review that file before publishing. Keep artifacts for different Scilab releases separate even when their IPCV filenames match. Test a finished archive by installing it with ATOMS on a clean machine and running the stability suite **from the installed copy**.
+On this branch, this writes to `dist/`: a ZIP on Windows or a tar.gz on Linux/macOS. It does not rebuild or run tests. It also queries ATOMS and may refresh the local `DESCRIPTION`; review that file before publishing. Keep artifacts for different Scilab releases separate even when their IPCV filenames match. Test a finished archive by installing it with ATOMS on a clean machine and running the stability suite **from the installed copy**.
 
-The separate [Windows release batch file](make_release.bat) rebuilds from a clean, committed checkout, runs release checks, and produces a ZIP and SHA-256 checksum. It defaults to Scilab 2026.1 and its staging script requires the legacy `jar/` help directory. For a Scilab 2027 build without `jar/`, use `makedist.sce` after testing instead.
+The separate [Windows release batch file](make_release.bat) rebuilds from a clean, committed checkout, runs release checks, and produces a ZIP and SHA-256 checksum. It defaults to Scilab 2026.1 and its staging script requires the generated `jar/` help directory.
 
 ## Project resources
 
